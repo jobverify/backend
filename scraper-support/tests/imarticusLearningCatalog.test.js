@@ -40,15 +40,15 @@ test('Imarticus Learning local catalog captures the verified redirected no-jobs 
     'https://imarticus.org/',
   )
   assert.equal(IMARTICUS_LEARNING_CATALOG.companyDomain, 'imarticus.org')
-  assert.equal(IMARTICUS_LEARNING_CATALOG.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(IMARTICUS_LEARNING_CATALOG.atsPlatform, 'official-current-student-career-services-inventory-unavailable')
   assert.equal(IMARTICUS_LEARNING_CATALOG.countryFilter, 'India')
   assert.equal(
     IMARTICUS_LEARNING_CATALOG.paginationStrategy,
-    'verified-homepage-plus-careers-redirect-validation',
+    'literal-current-career-services-student-publication-chain-opening-closing',
   )
   assert.equal(
     IMARTICUS_LEARNING_CATALOG.extractionStrategy,
-    'verified-homepage+redirected-careers-homepage-without-public-employer-listings-return-empty',
+    'whole-current-student-course-and-placement-publication+employer-vacancy-inventory-unqualified+company-scope-held',
   )
   assert.equal(IMARTICUS_LEARNING_CATALOG.parser, 'custom-script')
   assert.equal(IMARTICUS_LEARNING_CATALOG.normalizationProfile, 'engineering-default')
@@ -97,7 +97,7 @@ test('getScraperCatalog includes Imarticus Learning as a verified redirected no-
   assert.equal(provider.companyName, 'Imarticus Learning')
   assert.equal(provider.companyCareerPage, 'https://imarticus.org/careers/')
   assert.equal(provider.companyDomain, 'imarticus.org')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-student-career-services-inventory-unavailable')
   assert.match(provider.modulePath, /imarticuslearning[\\/]script\.js$/i)
 })
 
@@ -107,6 +107,6 @@ test('buildScrapers exposes a runnable Imarticus Learning scraper without changi
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'imarticuslearning')
-  assert.equal(scraper.provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(scraper.provider.atsPlatform, 'official-current-student-career-services-inventory-unavailable')
   assert.match(scraper.dryRunFile, /imarticuslearning[\\/]jobs\.json$/i)
 })

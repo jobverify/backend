@@ -6,6 +6,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import { FAB_HOTELS_CATALOG } from './catalog.js'
+import { runCurrentFabHotels } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -273,40 +274,7 @@ export const extractJobDetail = (detailHtml, sourceUrl) => {
 export const createFabHotelsScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    now = () => new Date().toISOString(),
-    maxJobs: overrideMaxJobs,
-  } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('FabHotels verified official homepage changed materially')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('FabHotels verified careers listing surface changed materially')
-    }
-
-    const roleUrls = extractRoleUrls(careersHtml)
-    const limit = Number.isInteger(overrideMaxJobs) ? overrideMaxJobs : maxJobs
-    const selectedRoleUrls = limit ? roleUrls.slice(0, limit) : roleUrls
-    const scrapedAt = now()
-
-    const jobs = []
-    for (const roleUrl of selectedRoleUrls) {
-      const detailHtml = await fetchText(roleUrl)
-      const detail = extractJobDetail(detailHtml, roleUrl)
-      jobs.push({
-        ...detail,
-        source: SOURCE,
-        link: detail.applyUrl || detail.sourceUrl,
-        scrapedAt,
-      })
-    }
-
-    return jobs
-  },
+  run: runCurrentFabHotels,
 })
 
 export const run = async (options = {}) => createFabHotelsScraper(options).run(options)

@@ -2,6 +2,7 @@ import {buildWorkdayAppliedFacets,buildWorkdayDetailApiUrl,extractWorkdayStructu
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {EMPLOYER_PATTERN,BOARD,validateCarrierMappedJobs} from './nativeBinding.js'
 import {readNativeDocument} from './nativeHtml.js'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
 export const API='https://carrier.wd5.myworkdayjobs.com/wday/cxs/carrier/jobs/jobs',INDIA='c4f78be1a8f14da0ab49ce1162348a5e'
 const check=(ok,message)=>{if(!ok)throw Error('Carrier native CXS: '+message)},space=x=>String(x).replace(/\s+/g,' ').trim(),object=x=>x&&typeof x==='object'&&!Array.isArray(x)
 const failure=value=>!object(value)||Object.entries(value).some(([key,v])=>{
@@ -47,8 +48,23 @@ export async function runCarrierNative({binding,signal,now}){
  const detailsController=new AbortController();signal=AbortSignal.any([signal,detailsController.signal])
  const facets=buildWorkdayAppliedFacets(BOARD,INDIA,'location_Country')
  async function get(url,init={}){
-  signal.throwIfAborted();const requestSignal=AbortSignal.any([signal,AbortSignal.timeout(25000)]);let listener
-  try{return await Promise.race([(async()=>{const r=await fetch(url,{...init,signal:requestSignal,redirect:'error',headers:{Accept:'application/json','Content-Type':'application/json','User-Agent':'Mozilla/5.0'}});requestSignal.throwIfAborted();check(r.status===200&&r.url===url,'native HTTP status/final URL unavailable');const payload=await r.json();requestSignal.throwIfAborted();check(!failure(payload),'native error envelope');return payload})(),new Promise((_,reject)=>{listener=()=>reject(requestSignal.reason);requestSignal.addEventListener('abort',listener,{once:true})})])}finally{requestSignal.removeEventListener('abort',listener);signal.throwIfAborted()}
+  signal.throwIfAborted();const requestSignal=AbortSignal.any([signal,AbortSignal.timeout(25000)]);let listener,httpValidation
+  try{return await Promise.race([(async()=>{
+   const r=await fetch(url,{...init,signal:requestSignal,redirect:'error',headers:{Accept:'application/json','Content-Type':'application/json','User-Agent':'Mozilla/5.0'}})
+   requestSignal.throwIfAborted()
+   httpValidation=requireNativeHttpResponse(r,url,{context:'Carrier native CXS: native HTTP status/final URL unavailable',signal:requestSignal,callerSignal:signal})
+   await httpValidation
+   const payload=await r.json();requestSignal.throwIfAborted();check(!failure(payload),'native error envelope');return payload
+  })(),new Promise((_,reject)=>{
+   listener=()=>{
+    if(signal.aborted||!httpValidation){reject(requestSignal.reason);return}
+    // A local deadline can interrupt bounded denial cleanup. Let HTTP
+    // validation retain that primary failure before choosing a body timeout.
+    httpValidation.then(()=>reject(requestSignal.reason),reject)
+   }
+   requestSignal.addEventListener('abort',listener,{once:true})
+   if(requestSignal.aborted)listener()
+  })])}finally{requestSignal.removeEventListener('abort',listener);signal.throwIfAborted()}
  }
  async function inventory(){let total=null,offset=0,pages=0;const rows=[],ids=new Set(),urls=new Set();do{
   const p=await get(API,{method:'POST',body:JSON.stringify({appliedFacets:facets,limit:20,offset,searchText:''})});check(Number.isSafeInteger(p.total)&&p.total>=0&&p.total<=500,'native total unavailable or bounded limit exceeded');if(total==null)total=p.total;else check(p.total===total||p.total===0,'native total drift')

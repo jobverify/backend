@@ -1,3 +1,4 @@
+import { runCurrentImarticus } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -132,7 +133,9 @@ export const hasPublicEmployerJobSignals = (html) => {
 }
 
 export const createImarticusLearningScraper = () => ({
-  async run({ fetchText = defaultFetchText, fetchBrowserText } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentImarticus(options)
+    const { fetchText = defaultFetchText, fetchBrowserText } = options
     let browserSession = null
 
     const getBrowserSession = async () => {

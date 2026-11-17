@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentGenworx } from './currentNative20261117.js'
 
 export const SOURCE = 'genworx'
 export const COMPANY = 'Genworx'
@@ -94,8 +95,11 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
   timeoutMs: 15000,
 })
 
-export const createGenworxScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+export const createGenworxScraper = (defaults = {}) => ({
+  async run(options = {}) {
+    const settings = { ...defaults, ...options }
+    const { fetchText = defaultFetchText } = settings
+    if (settings.fetchImpl || fetchText === defaultFetchText) return runCurrentGenworx(settings)
     const homepageHtml = await fetchText(HOME_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error('Genworx official homepage changed; refusing to assume there is still no public careers surface')

@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-const FIXED_SCRAPED_AT = '2026-07-17T00:00:00.000Z'
 
 const HOMEPAGE_HTML = `
 <!doctype html>
@@ -45,32 +44,6 @@ const LISTING_PAGE_1_HTML = `
 </html>
 `
 
-const LISTING_PAGE_2_HTML = `
-<!doctype html>
-<html lang="en">
-  <body>
-    <h3>Sales Manager - MSME LAP</h3>
-    <p>Business Development</p>
-    <p>Full-Time</p>
-    <p>2-6</p>
-    <p>Hyderabad</p>
-    <p>Posting:</p>
-    <p>16 Jul 2025</p>
-    <a href="https://www.oxyzocareers.in/jobs/sales-manager---msme-lap">View Details</a>
-  </body>
-</html>
-`
-
-const EMPTY_LISTING_PAGE_HTML = `
-<!doctype html>
-<html lang="en">
-  <body>
-    <h4>Didn't find a role that suits you?</h4>
-    <p>For Experienced: career@oxyzo.in</p>
-  </body>
-</html>
-`
-
 const AREA_SALES_DETAIL_HTML = `
 <!doctype html>
 <html lang="en">
@@ -95,50 +68,6 @@ const AREA_SALES_DETAIL_HTML = `
 </html>
 `
 
-const BDM_DETAIL_HTML = `
-<!doctype html>
-<html lang="en">
-  <body>
-    <h2>Business Development Manager</h2>
-    <h2>Business Development</h2>
-    <p>Full-Time</p>
-    <p>1-4</p>
-    <p>Mumbai</p>
-    <h6>Job ID:</h6>
-    <h6>BDM2201</h6>
-    <h2>About the Business</h2>
-    <p>OXYZO Financial Services Ltd. serves SMEs and emerging corporates.</p>
-    <h2>What you will do.</h2>
-    <p>Generate new business opportunities in the assigned market.</p>
-    <h2>What we are looking for.</h2>
-    <p>Relationship-building and sales discipline.</p>
-    <h5>Application Form</h5>
-  </body>
-</html>
-`
-
-const MSME_DETAIL_HTML = `
-<!doctype html>
-<html lang="en">
-  <body>
-    <h2>Sales Manager - MSME LAP</h2>
-    <h2>Business Development</h2>
-    <p>Full-Time</p>
-    <p>2-6</p>
-    <p>Hyderabad</p>
-    <h6>Job ID:</h6>
-    <h6>SML3304</h6>
-    <h2>About the Business</h2>
-    <p>We build secured lending solutions for MSMEs.</p>
-    <h2>What you will do.</h2>
-    <p>Drive MSME LAP growth in Hyderabad.</p>
-    <h2>What we are offering.</h2>
-    <p>Meritocratic and rewarding environment.</p>
-    <h5>Application Form</h5>
-  </body>
-</html>
-`
-
 const loadModule = async () => {
   try {
     return await import('../../scraper/oxyzo/script.js')
@@ -147,17 +76,17 @@ const loadModule = async () => {
   }
 }
 
-test('Oxyzo pins the verified official homepage, page builder, and job-detail URL patterns', async () => {
+test('Oxyzo current catalog target remains separate from dated pure listing and detail helpers', async () => {
   const oxyzo = await loadModule()
 
   assert.equal(oxyzo.HOMEPAGE_URL, 'https://www.oxyzocareers.in/')
-  assert.equal(oxyzo.CAREERS_PAGE_URL, 'https://www.oxyzocareers.in/categories')
+  assert.equal(oxyzo.CAREERS_PAGE_URL, 'https://www.oxyzocareers.in/')
   assert.equal(oxyzo.JOB_PAGE_PREFIX, 'https://www.oxyzocareers.in/jobs/')
   assert.equal(oxyzo.PAGINATION_QUERY_PARAM, 'comp-lyh6vd88_page')
-  assert.equal(oxyzo.buildCategoriesPageUrl(1), 'https://www.oxyzocareers.in/categories')
+  assert.equal(oxyzo.buildCategoriesPageUrl(1), 'https://www.oxyzocareers.in/')
   assert.equal(
     oxyzo.buildCategoriesPageUrl(2),
-    'https://www.oxyzocareers.in/categories?comp-lyh6vd88_page=2',
+    'https://www.oxyzocareers.in/?comp-lyh6vd88_page=2',
   )
   assert.equal(oxyzo.hasOfficialHomepageSignal(HOMEPAGE_HTML), true)
   assert.deepEqual(
@@ -169,7 +98,7 @@ test('Oxyzo pins the verified official homepage, page builder, and job-detail UR
   )
 })
 
-test('Oxyzo extracts a structured job from a verified first-party detail page', async () => {
+test('Oxyzo retains historical source detail without inferring India from a bare city', async () => {
   const oxyzo = await loadModule()
 
   const job = oxyzo.extractJobFromDetailPage(
@@ -182,8 +111,8 @@ test('Oxyzo extracts a structured job from a verified first-party detail page', 
     company: 'Oxyzo',
     department: 'Business Development',
     location: 'Gurugram',
-    city: 'Gurugram',
-    country: 'India',
+    city: null,
+    country: null,
     jobId: 'AS1213',
     requisitionId: 'AS1213',
     sourceUrl: 'https://www.oxyzocareers.in/jobs/area-sales-manager---sme-lending',
@@ -208,118 +137,10 @@ test('Oxyzo extracts a structured job from a verified first-party detail page', 
   })
 })
 
-test('Oxyzo run validates the official homepage, paginates until the first empty page, and returns first-party jobs', async () => {
-  const oxyzo = await loadModule()
-  const requestedUrls = []
 
-  const jobs = await oxyzo.createOxyzoScraper({
-    now: () => FIXED_SCRAPED_AT,
-    maxPages: 10,
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === oxyzo.HOMEPAGE_URL) return HOMEPAGE_HTML
-      if (url === oxyzo.buildCategoriesPageUrl(1)) return LISTING_PAGE_1_HTML
-      if (url === oxyzo.buildCategoriesPageUrl(2)) return LISTING_PAGE_2_HTML
-      if (url === oxyzo.buildCategoriesPageUrl(3)) return EMPTY_LISTING_PAGE_HTML
-      if (url === 'https://www.oxyzocareers.in/jobs/area-sales-manager---sme-lending') return AREA_SALES_DETAIL_HTML
-      if (url === 'https://www.oxyzocareers.in/jobs/business-development-manager') return BDM_DETAIL_HTML
-      if (url === 'https://www.oxyzocareers.in/jobs/sales-manager---msme-lap') return MSME_DETAIL_HTML
-
-      throw new Error(`Unexpected Oxyzo URL: ${url}`)
-    },
-    wait: async () => {},
-  })
-
-  assert.deepEqual(requestedUrls, [
-    oxyzo.HOMEPAGE_URL,
-    oxyzo.buildCategoriesPageUrl(1),
-    oxyzo.buildCategoriesPageUrl(2),
-    oxyzo.buildCategoriesPageUrl(3),
-    'https://www.oxyzocareers.in/jobs/area-sales-manager---sme-lending',
-    'https://www.oxyzocareers.in/jobs/business-development-manager',
-    'https://www.oxyzocareers.in/jobs/sales-manager---msme-lap',
-  ])
-  assert.equal(jobs.length, 3)
-  assert.deepEqual(
-    jobs.map((job) => ({
-      title: job.title,
-      city: job.city,
-      jobId: job.jobId,
-      link: job.link,
-      source: job.source,
-      scrapedAt: job.scrapedAt,
-    })),
-    [
-      {
-        title: 'Area Sales Manager - SME Lending',
-        city: 'Gurugram',
-        jobId: 'AS1213',
-        link: 'https://www.oxyzocareers.in/jobs/area-sales-manager---sme-lending',
-        source: 'oxyzo',
-        scrapedAt: FIXED_SCRAPED_AT,
-      },
-      {
-        title: 'Business Development Manager',
-        city: 'Mumbai',
-        jobId: 'BDM2201',
-        link: 'https://www.oxyzocareers.in/jobs/business-development-manager',
-        source: 'oxyzo',
-        scrapedAt: FIXED_SCRAPED_AT,
-      },
-      {
-        title: 'Sales Manager - MSME LAP',
-        city: 'Hyderabad',
-        jobId: 'SML3304',
-        link: 'https://www.oxyzocareers.in/jobs/sales-manager---msme-lap',
-        source: 'oxyzo',
-        scrapedAt: FIXED_SCRAPED_AT,
-      },
-    ],
-  )
+test('Oxyzo body-only historical city/detail fixtures cannot enter current publication',async()=>{
+ const oxyzo=await loadModule();let calls=0;await assert.rejects(oxyzo.run({fetchText:async()=>{calls++;return HOMEPAGE_HTML},wait:async()=>{}}),/metadata|unsupported/);assert.equal(calls,0)
 })
-
-test('Oxyzo fails closed when the verified homepage, listing surface, or detail pages drift materially', async () => {
-  const oxyzo = await loadModule()
-
-  await assert.rejects(
-    oxyzo.createOxyzoScraper().run({
-      fetchText: async (url) => {
-        if (url === oxyzo.HOMEPAGE_URL) return '<html><body><h1>Unexpected</h1></body></html>'
-        throw new Error(`Unexpected Oxyzo URL: ${url}`)
-      },
-      wait: async () => {},
-    }),
-    /verified official oxyzo homepage/i,
-  )
-
-  await assert.rejects(
-    oxyzo.createOxyzoScraper().run({
-      fetchText: async (url) => {
-        if (url === oxyzo.HOMEPAGE_URL) return HOMEPAGE_HTML
-        if (url === oxyzo.buildCategoriesPageUrl(1)) return '<html><body><p>No roles</p></body></html>'
-        throw new Error(`Unexpected Oxyzo URL: ${url}`)
-      },
-      wait: async () => {},
-    }),
-    /verified oxyzo careers listing surface/i,
-  )
-
-  await assert.rejects(
-    oxyzo.createOxyzoScraper().run({
-      fetchText: async (url) => {
-        if (url === oxyzo.HOMEPAGE_URL) return HOMEPAGE_HTML
-        if (url === oxyzo.buildCategoriesPageUrl(1)) return LISTING_PAGE_1_HTML
-        if (url === oxyzo.buildCategoriesPageUrl(2)) return EMPTY_LISTING_PAGE_HTML
-        if (url === 'https://www.oxyzocareers.in/jobs/area-sales-manager---sme-lending') {
-          return '<html><body><h2>Broken</h2></body></html>'
-        }
-        if (url === 'https://www.oxyzocareers.in/jobs/business-development-manager') return BDM_DETAIL_HTML
-        throw new Error(`Unexpected Oxyzo URL: ${url}`)
-      },
-      wait: async () => {},
-    }),
-    /verified oxyzo job detail page/i,
-  )
+test('Oxyzo current configured corporate transport failure remains exact with no guessed fallback',async()=>{
+ const oxyzo=await loadModule(),reason=Object.assign(new Error('fetch failed'),{cause:{code:'ECONNRESET'}});let calls=0;await assert.rejects(oxyzo.run({requestIntervalMs:0,fetchImpl:async()=>{calls++;throw reason}}),error=>error===reason);assert.equal(calls,1)
 })

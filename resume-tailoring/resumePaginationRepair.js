@@ -24,6 +24,22 @@ export function paginationRepairSchema(pagination, breakIds) {
 
 const entries = new Set(['resumeSubheading', 'resumeSubSubheading', 'resumeProjectHeading']);
 const items = new Set(['resumeItem', 'resumeSubItem', 'item', 'classesList']);
+
+// Only the confident preservation path has a complete, escaped source body.
+// Its decoder already fixes every word; ask the model for layout decisions
+// rather than paying to decode those same fixed bytes one token at a time.
+export function buildPreservedPreparationPlan(layout, pagination) {
+  if (layout?.condenseOriginal || !layout?.contactHeader || !layout?.preservationBlocks?.length
+    || layout.preservationBlocks.some(block => typeof block.latex !== 'string' || !block.latex)) return null;
+  const latex = RESUME_LATEX_PREAMBLE + layout.contactHeader + '\n'
+    + layout.preservationBlocks.map(block => block.latex).join('\n') + '\n\\end{document}';
+  const plan = buildPaginationRepairPlan(latex, pagination);
+  if (!plan) return null;
+  plan.prompt = plan.prompt.replace(/^Repair only[^\n]+\n/,
+    `Choose the initial physical layout of a source-preserving Abey resume. Require ${pagination.exact ? 'exactly' : 'at most'} ${pagination.targetPages} pages.\n`)
+    + '\nThe source blocks and contact header are fixed and must remain unchanged. Choose compact spacing to avoid overflow; prefer a section boundary near the middle for two pages.';
+  return plan;
+}
 const listStarts = new Map([['resumeSubHeadingListStart', 'heading'], ['resumeItemListStart', 'item']]);
 const listEnds = new Map([['resumeSubHeadingListEnd', 'heading'], ['resumeItemListEnd', 'item']]);
 

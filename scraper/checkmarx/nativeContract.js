@@ -53,14 +53,15 @@ function company(html){
   check(typeof c.show_apply_as_an_employee==='boolean'&&typeof c.allow_employee_only_positions==='boolean','Native application visibility configuration unavailable')
   return c
 }
-// Exact observed public US tracking data. These links are never fetched; role
+// Exact observed public foreign tracking data. These links are never fetched; role
 // authority and reads continue to use the query-free Comeet UID URL. A changed
 // raw query, country, visibility, UID or path must pass the original contract.
 const REVIEWED_FOREIGN_TRACKING=Object.freeze({
-  'A0.F64':'12bb8abcaa3cfb3436549c2947360f584a2f908d714e0f58a3799b63065960d2',
-  '26.27C':'c7729e1321e21a4514bbae3ef0cf5f589dbec234d346ddc3403279fdb3a3ac5f',
+  'A0.F64':{country:'US',sha256:'12bb8abcaa3cfb3436549c2947360f584a2f908d714e0f58a3799b63065960d2'},
+  '26.27C':{country:'US',sha256:'c7729e1321e21a4514bbae3ef0cf5f589dbec234d346ddc3403279fdb3a3ac5f'},
+  'BF.475':{country:'SG',sha256:'fb447278f713e98ca8a188f74c5c16442f4c0703228ee9ed7c01e5436437795c'},
 })
-function nativeURL(value,id,firstParty=false,foreignPublicTracking=false){
+function nativeURL(value,id,firstParty=false,foreignPublicTracking=null){
   check(typeof value==='string','Native role URL missing')
   const u=new URL(value)
   check(!u.hash&&!u.username&&!u.password,'Native role URL credentials/fragment changed')
@@ -70,7 +71,8 @@ function nativeURL(value,id,firstParty=false,foreignPublicTracking=false){
     // visibility and actual reads use the query-free native public UID URL.
     const allowed=new Set([id,id.split('-')[0]])
     check(u.origin==='https://checkmarx.com'&&[...allowed].some(x=>u.pathname==='/job-openings/position/'+x+'/'||u.pathname==='/job-openings/position/'+x),'Native official role identity mismatch')
-    const reviewedTracking=foreignPublicTracking&&Object.hasOwn(REVIEWED_FOREIGN_TRACKING,id)&&value===u.href&&u.pathname==='/job-openings/position/'+id+'/'&&createHash('sha256').update(u.search.slice(1)).digest('hex')===REVIEWED_FOREIGN_TRACKING[id]
+    const review=Object.hasOwn(REVIEWED_FOREIGN_TRACKING,id)?REVIEWED_FOREIGN_TRACKING[id]:null
+    const reviewedTracking=review&&review.country===foreignPublicTracking&&value===u.href&&u.pathname==='/job-openings/position/'+id+'/'&&createHash('sha256').update(u.search.slice(1)).digest('hex')===review.sha256
     if(!reviewedTracking){
     const keys=[...u.searchParams.keys()]
     check(new Set(keys).size===keys.length&&keys.every(k=>['ref',';t','Share','utm_search_query','jr_id','employee','employeeShare','t'].includes(k)),'Native official tracking query changed')
@@ -121,7 +123,7 @@ function record(row,now,{allowMissingCountry=false}={}){
   geography(row.location,{allowMissingCountry})
   const native=nativeURL(row.url_comeet_hosted_page,row.uid)
   check(row.url_recruit_hosted_page===native,'Native role canonical disagreement')
-  const official=nativeURL(row.url_active_page,row.uid,true,row.location.country==='US'&&row.is_internal===false)
+  const official=nativeURL(row.url_active_page,row.uid,true,row.location.country!=='IN'&&row.is_internal===false?row.location.country:null)
   check(row.url_detected_page===official,'Native official application URL disagreement')
   instant(row.time_updated,now)
   return row

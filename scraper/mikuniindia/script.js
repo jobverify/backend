@@ -1,3 +1,4 @@
+import { runCurrentMikuni } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -84,7 +85,9 @@ export const hasPublicJobsSignal = (html) =>
   PUBLIC_JOBS_SIGNAL_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
 
 export const createMikuniIndiaScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentMikuni(options)
+    const { fetchPage = defaultFetchPage } = options
     const homepage = await fetchPage(HOMEPAGE_URL)
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('Mikuni India verified official homepage no longer matches the known public surface')

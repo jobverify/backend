@@ -43,12 +43,12 @@ test('Deskera local catalog captures the verified homepage and broken LinkedIn j
   assert.equal(provider.companyCareerPage, 'https://www.linkedin.com/jobs/deskera-jobs')
   assert.equal(provider.linkedinCompanyPageUrl, 'https://www.linkedin.com/company/deskera/')
   assert.equal(provider.companyDomain, 'deskera.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-declared-linkedin-keyword-search-with-unbound-employers')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-linkedin-guest-search-handoff')
+  assert.equal(provider.paginationStrategy, 'current-owned-regional-redirect-and-careers-handoff-corporate-opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-linkedin-company-page+verified-linkedin-guest-search-handoff-without-exact-deskera-board-return-empty',
+    'current-first-party-careers-handoff+complete-unqualified-foreign-keyword-candidates+inventory-unavailable-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

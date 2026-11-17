@@ -1481,6 +1481,7 @@ export function createVerifiedRecruitmentScraper(config) {
       const error = Object.assign(new Error(`[${config.source}] Current verified recruitment inventory is unavailable`),
         { softFailure: true, upstreamOutage: false, abortRetries: true, failureKind: 'coverage_gap', recruitmentObservations: observed })
       addFailureDiagnostics(error, failureCauses, failures, receipts)
+      options.signal?.throwIfAborted()
       throw error
     }
     const summary = failureSummary(failures)
@@ -1499,6 +1500,8 @@ export function createVerifiedRecruitmentScraper(config) {
         ...(readSourceObservationEvidence(jobs, config.source) || {}), nativeBoards },
       configurable: true,
     })
+    options.signal?.throwIfAborted()
+    signal.throwIfAborted()
     return jobs
   } }
 }

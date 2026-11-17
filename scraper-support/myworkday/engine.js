@@ -9,7 +9,8 @@ import { normalizeCity } from '../utils/cityNormalizer.js'
 import { extractJobDetail } from '../detailExtractors/index.js'
 import { extractWorkdayJobDetail } from '../detailExtractors/workday.js'
 import { toPlainText } from '../detailExtractors/shared.js'
-import { parseRetryAfterHeader } from '../utils/fetch.js'
+import { isHttpAccessChallenge, parseRetryAfterHeader } from '../utils/fetch.js'
+import { disposeResponseBody } from '../shared/responseBodyDisposal.js'
 import { isGroupedLocationLabel } from '../../src/utils/jobLocations.js'
 import { isJobInPublicLocationScope } from '../../src/utils/publicJobLocationScope.js'
 import { extractWorkdayDetailLocations } from './locationDetails.js'
@@ -295,7 +296,10 @@ const fetchWorkdayResource = async (
     }, timeoutMs)
   }
 
-  let response
+  let response, primaryHttpError, disposalPromise
+  const disposeResponse = disposalSignal => disposalPromise ||= disposeResponseBody(response, {
+    signal: disposalSignal, bestEffort: true,
+  }).catch(() => {})
   try {
     throwIfAborted(controller.signal)
     response = await fetch(url, {
@@ -308,14 +312,30 @@ const fetchWorkdayResource = async (
         parseRetryAfterHeader(response.headers?.get?.('retry-after'))
           ?? DEFAULT_WORKDAY_RATE_LIMIT_RETRY_DELAY_MS)
     }
+    // A managed access challenge is not a transient rate-limit response. Its
+    // explicit response header also identifies challenges served with HTTP 200.
+    // Stop here before bootstrap retries or any JSON/HTML fallback request.
+    if (isHttpAccessChallenge(response)) {
+      const error = buildWorkdayHttpFailureError(source, url, response.status, response.headers)
+      error.message = `[${source}] Workday access challenge returned HTTP_${response.status} at ${url}`
+      Object.assign(error, {
+        softFailure: true, upstreamOutage: true, failureKind: 'blocked_or_access_denied',
+        abortRetries: true, accessChallenge: true, requestedUrl: String(url), responseUrl: response.url,
+        lifecycleCleanupAllowed: false, sourceScopeComplete: false,
+      })
+      primaryHttpError = error
+      await disposeResponse(controller.signal)
+      throw error
+    }
     const result = await consumeResponse(response)
     throwIfAborted(controller.signal)
     return result
   } catch (error) {
     if (controller.signal.aborted) {
       // Disposal remains owned by this request; never release its slot early.
-      try { await response?.body?.cancel?.() } catch {}
-      throw controller.signal.reason
+      await disposeResponse()
+      throwIfAborted(signal)
+      throw primaryHttpError || controller.signal.reason
     }
     throw markWorkdayTransportFailure(error)
   } finally {
@@ -417,11 +437,13 @@ const buildWorkdayApiFailureError = (source, url, payload, cause = null) => {
   error.workdayJobsApiFailure = true
   error.jobsApiErrorCode = payload.errorCode
   error.jobsApiHttpStatus = httpStatus
+  error.httpStatus = httpStatus
+  error.status = httpStatus
 
   if (httpStatus === 429 || (httpStatus >= 500 && httpStatus <= 599)) {
     error.softFailure = true
     error.upstreamOutage = true
-    error.failureKind = 'network_or_timeout'
+    error.failureKind = httpStatus === 429 ? 'blocked_or_access_denied' : 'network_or_timeout'
     applyWorkdayRetryDelayHint(error, { httpStatus })
   } else if (httpStatus >= 400 && httpStatus <= 499) {
     error.abortRetries = true
@@ -1203,9 +1225,11 @@ export const fetchWorkdayJobsApiPage = async ({
 
         if (workdayApiFailure) {
           throw applyWorkdayRetryDelayHint(
-            buildWorkdayApiFailureError(source, jobsApiUrl, workdayApiFailure),
+            buildWorkdayApiFailureError(source, jobsApiUrl, {
+              errorCode: `HTTP_${response.status}`, httpStatus: response.status,
+            }),
             {
-              httpStatus: getWorkdayApiFailureStatus(workdayApiFailure),
+              httpStatus: response.status,
               responseHeaders: response.headers,
             },
           )

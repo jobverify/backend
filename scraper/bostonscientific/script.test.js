@@ -33,7 +33,8 @@ test('catalog selects current Eightfold wrapper rather than inherited Workday se
 test('full500-row native boundary stays partial even with all geographies resolved and four exact India details',async()=>{
  const foreign=Array.from({length:496},(_,index)=>({...structuredClone(f.foreignRows[0]),id:800000000000000+index,displayJobId:String(700000+index),atsJobId:String(700000+index),name:'Foreign native role '+index,positionUrl:'/careers/job/'+(800000000000000+index),locations:['Arden Hills US-MN, United States | N/A'],standardizedLocations:['Arden Hills, MN, US']}))
  const base=fixture([...f.indiaRows,...foreign]),starts=[],jobs=await run({...base,fetchJson:async(u,o)=>{const url=new URL(u);if(url.pathname.endsWith('/search')&&!url.searchParams.has('filter_country'))starts.push(Number(url.searchParams.get('start')));return base.fetchJson(u,o)}})
- assert.deepEqual(starts,[...Array.from({length:51},(_,index)=>index*10),0])
+ const completePass=Array.from({length:51},(_,index)=>index*10)
+ assert.deepEqual(starts,[...completePass,...completePass])
  assert.equal(jobs.length,4);assert.ok(jobs.every(j=>j.sourceDetailComplete===true&&j.sourceListingComplete===false))
  const evidence=readInventoryEvidence(jobs),diagnostics=readBostonScientificDiagnostics(jobs)
  assert.equal(evidence.reportedTotal,500);assert.equal(evidence.listingComplete,false);assert.notEqual(evidence.status,'verified-empty');assert.match(evidence.reason,/search.*ceiling/)

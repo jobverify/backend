@@ -12,7 +12,11 @@ export const CURRENT_MODULES={main:{path:'index-kQ8lO2tS.js',sha:'fcbbfbc2e5eed2
 export const CURRENT_20261110_MODULES={main:{path:'index-Doyq3TRB.js',sha:'3937e4ee67292fed831755b6c5a25f47ba592d342f96193b0d5069502afc254b'},origins:{path:'src-dGgtAKLy.js',sha:'580f573465192b3a79cdcd6c62d92f12ef94865ef3d29a993abd2298dad41b03'},roles:{path:'page-DkBDFwow.js',sha:'e7ff4016b3caaff126d848cccd58a6f89d65da3d562e9078040123b2a6771439'},detail:{path:'useJob-Dd5siOF_.js',sha:'4466fbe2e23e0ee22b0a00df9a69b075e0fa356bab8a850ed1e11821be579086'},locations:MODULES.locations}
 export const CURRENT_20261111_MODULES={main:{path:'index-ddzPHZYi.js',sha:'05697a5c15dec6db7363f7473a82cc27e7f29e7d6036d9a45b75e6040f93f78f'},origins:{path:'src-BvLlLOJG.js',sha:'f8eeeffc5de4365fecc8cd2eb3974ab217f4bbc522deb19bba705283d82baaf9'},roles:{path:'page-B0S3JwUh.js',sha:'517f6b0c9d6ff0f8db48178a8737ac74046459fbe0a39af00e5f0db1b85d4850'},detail:{path:'useJob-BKEJaqyG.js',sha:'b36df55429f73161276d71480a18f89421100f8b1d4de5652b398f3fa1ab41a8'},locations:MODULES.locations}
 export const CURRENT_20261113_MODULES={main:{path:'index-BUJgqbI9.js',sha:'0e9a525919dfc2374369375cfee77b1f820dd5efac5106883da7316ec5565266'},origins:{path:'src-B3tk8w2V.js',sha:'950352ebd259d0efb18932b2945e023bf829edf79443f9e106ece3c76c692101'},roles:{path:'page-mQHeHhro.js',sha:'9d0c25cb8d3eb16a6e17529f949758685d384b46ab4729ef96d2b32e1f2484ca'},detail:{path:'useJob-C89Jdq1v.js',sha:'983b98639654b238fdb40d2a22b0fb7f151e79db0e465be617f32623bfba3dd2'},locations:MODULES.locations}
-export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES]
+export const CURRENT_20261116_MODULES={main:{path:'index-2IowuTf6.js',sha:'05fcfff9b2f7dac72999000e0909854cd67d32fb2d3573f5f8dcefc8d909d460'},origins:{path:'src-Cs2mm8JW.js',sha:'be56366730e31f8afea599b7b8bbd61b05230eb79399a2a206580fdae0de9d8c'},roles:{path:'page-DktFSOPE.js',sha:'0854f5453329187469ee899db26d0aaa8387e21671472e85c927236fa2303085'},detail:{path:'useJob-DvA4pv2Q.js',sha:'61cf45ff1dc98963ddf84aa3c4f0fcb099b55b3621cb81992d63534718824076'},locations:MODULES.locations}
+// The fresh default response rolled to this exact graph after the earlier
+// Nov16 capture. Only build filenames and AST-owned telemetry literals differ.
+export const CURRENT_20261117_MODULES={main:{path:'index-wTVOiLWE.js',sha:'5d84003f28dedab49b02dea4fde94807ddbc9a96d93401eff93d3ed769cbc387'},origins:{path:'src-B7ntEYHL.js',sha:'8ecb515d3fddc32296c92561de2bb754cc1b6a82fedc1b1d6470fd00cb685525'},roles:{path:'page-8hIpO67b.js',sha:'564e6482847e3252a3924cedb64f8efca48b2ee06e8c87989c21e13af31505cb'},detail:{path:'useJob-CPR5-WtU.js',sha:'c6a5b8cdf8506f5cea6284389519d310f1af696ca39b2e51899a52718dad0649'},locations:MODULES.locations}
+export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES,CURRENT_20261116_MODULES,CURRENT_20261117_MODULES]
 export const profileModuleURL=(key,modules)=>new URL('assets/'+modules[key].path,PRIMARY).href
 export const moduleURL=key=>profileModuleURL(key,MODULES)
 export function profileForPublisher(value){
@@ -48,8 +52,13 @@ export function loadingContract(programs){
  const {main,origins,roles,detail,locations}=programs
  const modules=MODULE_PROFILES.find(profile=>profileModuleURL('main',profile)===main.url)
  need(modules&&Object.keys(modules).every(key=>programs[key].url===profileModuleURL(key,modules)),'mixed reviewed native program graphs')
- need(main.wholeProgram.includes('nS=q(()=>$(()=>import(`./' + modules.roles.path + '`)')&&main.wholeProgram.includes('path:`roles`,element:(0,P.jsx)(nS,{}'),'current roles route binding changed')
- need(main.wholeProgram.includes('function nv(){return d(`production`,!0)}function rv(){return a(`core`,nv())}function iv(){return tv({baseUrl:rv()})}')&&main.wholeProgram.includes('.careers.jobsList()'),'current production inventory client changed')
+ // Nov16 changes minifier bindings in the complete pinned graph. Each exact
+ // graph keeps its own route/client plan; mixed or unseen programs still fail.
+ const recentBindings=modules===CURRENT_20261116_MODULES||modules===CURRENT_20261117_MODULES
+ const roleBinding=recentBindings?'eS':'nS'
+ const productionClient=recentBindings?'function ev(){return c(`production`,!0)}function tv(){return s(`core`,ev())}function nv(){return $_({baseUrl:tv()})}':'function nv(){return d(`production`,!0)}function rv(){return a(`core`,nv())}function iv(){return tv({baseUrl:rv()})}'
+ need(main.wholeProgram.includes(roleBinding+'=q(()=>$(()=>import(`./' + modules.roles.path + '`)')&&main.wholeProgram.includes('path:`roles`,element:(0,P.jsx)('+roleBinding+',{}'),'current roles route binding changed')
+ need(main.wholeProgram.includes(productionClient)&&main.wholeProgram.includes('.careers.jobsList()'),'current production inventory client changed')
  need(origins.wholeProgram.includes('core:{')&&origins.wholeProgram.includes('production:`api-core.livingsocial.com`'),'native production core origin changed')
  need(detail.wholeProgram.includes('async jobsList(){return await(await this.baseClient.callTypedAPI(`GET`,`/careers/jobs`)).json()}')&&detail.wholeProgram.includes('async jobGetById(e){return await(await this.baseClient.callTypedAPI(`GET`,`/careers/jobs/${encodeURIComponent(e)}`)).json()}'),'native GET declarations changed')
  need(roles.wholeProgram.includes('t.contentHtml')&&roles.wholeProgram.includes('dangerouslySetInnerHTML:{__html:t.contentHtml}')&&roles.wholeProgram.includes('/apply/?job=${e}'),'whole current role rendering contract changed')

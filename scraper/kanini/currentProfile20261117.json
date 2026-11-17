@@ -1,0 +1,2486 @@
+{
+  "recordedAt": "2026-11-16T23:34:41.733Z",
+  "primaryTitle": "KANINI | Turning AI into Business Value",
+  "careersTitle": "Careers - KANINI",
+  "listingTitle": "Open Positions - KANINI",
+  "listingClient": {
+    "bytes": 2041,
+    "sha256": "efff58d1d16c3c8b2a50e285ae8e3586839d66662951c0d8d20a67bc77fefdfe",
+    "ASTNodes": 264,
+    "endpoint": "https://kanini.com/wp-admin/admin-ajax.php",
+    "initialPage": 1,
+    "pageSize": 12,
+    "method": "POST",
+    "bodyPrefix": "search=&location=&action=get_all_jobs&page=",
+    "bodySuffix": "&limit=12"
+  },
+  "corporate": [
+    {
+      "url": "https://kanini.com/",
+      "scripts": [
+        {
+          "attrs": {
+            "id": "google_gtagjs-js-consent-mode-data-layer"
+          },
+          "programSHA256": "44bb8831ff00982e0f6a5dcc89df53004adcd16af5ee37220f97887a623083ec",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "id": "jquery-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+            "id": "jquery-migrate-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-js-extra"
+          },
+          "programSHA256": "ff13cc7c14b11a80efe6814cadcb5c8df363eed05dfa24fb8d101d3040dc80e3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.5.9",
+            "id": "cookie-law-info-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-ccpa-js-extra"
+          },
+          "programSHA256": "db1660ae597abc5374294b90248704edf8513dacda8851a81af7df3f3c9d4137",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/admin/modules/ccpa/assets/js/cookie-law-info-ccpa.js?ver=3.5.9",
+            "id": "cookie-law-info-ccpa-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.32.1",
+            "id": "font-awesome-4-shim-js"
+          }
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-6P6BFM5KL6"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "8efe9d5a0b2ae837959175a5c633e1830f3a42510f664d784aadabb63a05f8e2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "65e04625ee8bf1e900d803a3c8c83b73d7899b4c9e8a6854bb669585c5ae34d9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "1a18d71a46429fb023096f126aad1e09d254f4e028819d5bdd881c1c9c0d4869",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript",
+            "src": "https://crmplus.zoho.in/crm/javascript/zcga.js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://cdn-in.pagesense.io/js/kaninimarketing8600/ae35999531d1419dabbb72c65b68a6c4.js"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "b0fe20b1e3b11fa6927bfb3f669773b6444cf4fe6534ff4eb6a7083f415de4b2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "dd0ec57abf154d52c161fae92db6014f042417d9660679097ae55287041ec52e",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+            "id": "wp-hooks-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+            "id": "wp-i18n-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-i18n-js-after"
+          },
+          "programSHA256": "cf01a621447e67a81629bc28276677c86c48fd72c44cba83a82448574aadfd60",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.2",
+            "id": "swv-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "contact-form-7-js-before"
+          },
+          "programSHA256": "05906aa869833e0cf9bac6b5e963a254ef2fb33ef7382271f531b87b8387c88a",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.2",
+            "id": "contact-form-7-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/simple-share-buttons-adder/js/ssba.js?ver=1760118639",
+            "id": "simple-share-buttons-adder-ssba-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "simple-share-buttons-adder-ssba-js-after"
+          },
+          "programSHA256": "d7840c9958b93cc971b6b9e1a0493bf2866b863c8b8ff0fa497230938cd35b02",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-redirect-script-js-extra"
+          },
+          "programSHA256": "24db9a75dbff745048dffe4aa614cfdc64f8d9afca94e5a309e8d87304f8bee3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wpcf7-redirect/build/assets/frontend-script.js?ver=2c532d7e2be36f6af233",
+            "id": "wpcf7-redirect-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=3.0.1",
+            "id": "hello-theme-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-consent-mode-bc2e26cfa69fcd4a8261.js",
+            "id": "googlesitekit-consent-mode-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js?ver=2.4.20",
+            "id": "dflip-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.1",
+            "id": "elementor-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.1",
+            "id": "elementor-frontend-modules-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+            "id": "jquery-ui-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-extra"
+          },
+          "programSHA256": "3ef9454d54bf59e1167c0fcd4d25285320ed803b7cd25a5d0b9750be188de84b",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-before"
+          },
+          "programSHA256": "f717323687be74ed4e4e75f193a7f8e2616bcc437cccae5225191fe3434f87fd",
+          "noncePaths": [
+            "elementorFrontendConfig.nonces.floatingButtonsClickTracking"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/min-js/uael-nav-menu.min.js?ver=1.36.5",
+            "id": "uael-nav-menu-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/jquery-element-resize/jquery_resize.min.js?ver=1.36.5",
+            "id": "uael-element-resize-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/js-cookie/js_cookie.min.js?ver=1.36.5",
+            "id": "uael-cookie-lib-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.1",
+            "id": "e-sticky-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/imagesloaded.min.js?ver=5.0.0",
+            "id": "imagesloaded-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5",
+            "id": "swiper-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "heateor_sss_sharing_js-js-before"
+          },
+          "programSHA256": "2dff0d5c61edba8d51ed2b67983f9c2033cd1754dedf275aaaa57db8e4c4f55c",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/sassy-social-share/public/js/sassy-social-share-public.js?ver=3.3.79",
+            "id": "heateor_sss_sharing_js-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://www.google.com/recaptcha/api.js?render=6LfxONcZAAAAAJ2lHkO0oxd7fcdLb-b9yLRq0Hb8&ver=3.0",
+            "id": "google-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0",
+            "id": "wp-polyfill-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-recaptcha-js-before"
+          },
+          "programSHA256": "43734370e4ff010b7dfc9768c88acdb824dfc6a03f6493ee05da0e0366fd8670",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.2",
+            "id": "wpcf7-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "eael-general-js-extra"
+          },
+          "programSHA256": "1aa55cc5ead032bd811786355b58e7173e8ebd54f2f925d4f83fc0f75b87bed3",
+          "noncePaths": [
+            "localize.nonce"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.8.3",
+            "id": "eael-general-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-consent-api-js-extra"
+          },
+          "programSHA256": "a6ce2cb46c6b54c7bc941868df378d97ada4e7975a073beb906c3a697bd6ae85",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wp-consent-api/assets/js/wp-consent-api.min.js?ver=1.0.8",
+            "id": "wp-consent-api-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.1",
+            "id": "elementor-pro-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-pro-frontend-js-before"
+          },
+          "programSHA256": "efa53166bae286915d11944fa4c0791bfd364d94b749a56047f6ee58ba7fedf3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-pro-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.1",
+            "id": "pro-elements-handlers-js"
+          }
+        },
+        {
+          "attrs": {
+            "data-cfasync": "false"
+          },
+          "programSHA256": "efa9f7db89dabc742d3084c7f1a1920fcd15bd86c68b18558e8df48586667dc9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "programSHA256": "6febc053e1aec17d36ce5cb8143e20dbab10106ed81f87169d7d1aad2bd7b5dc",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "e61a16bbe8c5e17708897798df40805d67f04954b99a021172c5e5dcbb17c9d3",
+          "noncePaths": []
+        }
+      ]
+    },
+    {
+      "url": "https://kanini.com/careers/",
+      "scripts": [
+        {
+          "attrs": {
+            "id": "google_gtagjs-js-consent-mode-data-layer"
+          },
+          "programSHA256": "44bb8831ff00982e0f6a5dcc89df53004adcd16af5ee37220f97887a623083ec",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "id": "jquery-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+            "id": "jquery-migrate-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-js-extra"
+          },
+          "programSHA256": "ff13cc7c14b11a80efe6814cadcb5c8df363eed05dfa24fb8d101d3040dc80e3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.5.9",
+            "id": "cookie-law-info-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-ccpa-js-extra"
+          },
+          "programSHA256": "db1660ae597abc5374294b90248704edf8513dacda8851a81af7df3f3c9d4137",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/admin/modules/ccpa/assets/js/cookie-law-info-ccpa.js?ver=3.5.9",
+            "id": "cookie-law-info-ccpa-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.32.1",
+            "id": "font-awesome-4-shim-js"
+          }
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-6P6BFM5KL6"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "8efe9d5a0b2ae837959175a5c633e1830f3a42510f664d784aadabb63a05f8e2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "65e04625ee8bf1e900d803a3c8c83b73d7899b4c9e8a6854bb669585c5ae34d9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "1a18d71a46429fb023096f126aad1e09d254f4e028819d5bdd881c1c9c0d4869",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript",
+            "src": "https://crmplus.zoho.in/crm/javascript/zcga.js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://cdn-in.pagesense.io/js/kaninimarketing8600/ae35999531d1419dabbb72c65b68a6c4.js"
+          }
+        },
+        {
+          "attrs": {
+            "charset": "utf-8",
+            "type": "text/javascript",
+            "src": "//js.hsforms.net/forms/v2.js?pre=1"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "3b7db7466e0d9935df7182cbf8a361497ac979568cb45af9e17ffe53f5fbf9e4",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "b0fe20b1e3b11fa6927bfb3f669773b6444cf4fe6534ff4eb6a7083f415de4b2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "dd0ec57abf154d52c161fae92db6014f042417d9660679097ae55287041ec52e",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+            "id": "wp-hooks-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+            "id": "wp-i18n-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-i18n-js-after"
+          },
+          "programSHA256": "cf01a621447e67a81629bc28276677c86c48fd72c44cba83a82448574aadfd60",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.2",
+            "id": "swv-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "contact-form-7-js-before"
+          },
+          "programSHA256": "05906aa869833e0cf9bac6b5e963a254ef2fb33ef7382271f531b87b8387c88a",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.2",
+            "id": "contact-form-7-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/simple-share-buttons-adder/js/ssba.js?ver=1760118639",
+            "id": "simple-share-buttons-adder-ssba-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "simple-share-buttons-adder-ssba-js-after"
+          },
+          "programSHA256": "d7840c9958b93cc971b6b9e1a0493bf2866b863c8b8ff0fa497230938cd35b02",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-redirect-script-js-extra"
+          },
+          "programSHA256": "24db9a75dbff745048dffe4aa614cfdc64f8d9afca94e5a309e8d87304f8bee3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wpcf7-redirect/build/assets/frontend-script.js?ver=2c532d7e2be36f6af233",
+            "id": "wpcf7-redirect-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=3.0.1",
+            "id": "hello-theme-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-consent-mode-bc2e26cfa69fcd4a8261.js",
+            "id": "googlesitekit-consent-mode-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js?ver=2.4.20",
+            "id": "dflip-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.1",
+            "id": "elementor-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.1",
+            "id": "elementor-frontend-modules-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+            "id": "jquery-ui-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-extra"
+          },
+          "programSHA256": "3ef9454d54bf59e1167c0fcd4d25285320ed803b7cd25a5d0b9750be188de84b",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-before"
+          },
+          "programSHA256": "ae408e46453b64149291c201559a8026252a7c65ab794620bf57bf1b3d85fdf4",
+          "noncePaths": [
+            "elementorFrontendConfig.nonces.floatingButtonsClickTracking"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/min-js/uael-nav-menu.min.js?ver=1.36.5",
+            "id": "uael-nav-menu-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/jquery-element-resize/jquery_resize.min.js?ver=1.36.5",
+            "id": "uael-element-resize-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/js-cookie/js_cookie.min.js?ver=1.36.5",
+            "id": "uael-cookie-lib-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.1",
+            "id": "e-sticky-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5",
+            "id": "swiper-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "heateor_sss_sharing_js-js-before"
+          },
+          "programSHA256": "2dff0d5c61edba8d51ed2b67983f9c2033cd1754dedf275aaaa57db8e4c4f55c",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/sassy-social-share/public/js/sassy-social-share-public.js?ver=3.3.79",
+            "id": "heateor_sss_sharing_js-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://www.google.com/recaptcha/api.js?render=6LfxONcZAAAAAJ2lHkO0oxd7fcdLb-b9yLRq0Hb8&ver=3.0",
+            "id": "google-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0",
+            "id": "wp-polyfill-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-recaptcha-js-before"
+          },
+          "programSHA256": "43734370e4ff010b7dfc9768c88acdb824dfc6a03f6493ee05da0e0366fd8670",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.2",
+            "id": "wpcf7-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "eael-general-js-extra"
+          },
+          "programSHA256": "0e08122625449232a64e7c6a3e3f79b25d268f9653b643366b2753d9f6fdf1c5",
+          "noncePaths": [
+            "localize.nonce"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.8.3",
+            "id": "eael-general-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-consent-api-js-extra"
+          },
+          "programSHA256": "a6ce2cb46c6b54c7bc941868df378d97ada4e7975a073beb906c3a697bd6ae85",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wp-consent-api/assets/js/wp-consent-api.min.js?ver=1.0.8",
+            "id": "wp-consent-api-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.1",
+            "id": "elementor-pro-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-pro-frontend-js-before"
+          },
+          "programSHA256": "efa53166bae286915d11944fa4c0791bfd364d94b749a56047f6ee58ba7fedf3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-pro-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.1",
+            "id": "pro-elements-handlers-js"
+          }
+        },
+        {
+          "attrs": {
+            "data-cfasync": "false"
+          },
+          "programSHA256": "efa9f7db89dabc742d3084c7f1a1920fcd15bd86c68b18558e8df48586667dc9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "programSHA256": "6febc053e1aec17d36ce5cb8143e20dbab10106ed81f87169d7d1aad2bd7b5dc",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "e61a16bbe8c5e17708897798df40805d67f04954b99a021172c5e5dcbb17c9d3",
+          "noncePaths": []
+        }
+      ]
+    },
+    {
+      "url": "https://kanini.com/careers/open-positions/",
+      "scripts": [
+        {
+          "attrs": {
+            "id": "google_gtagjs-js-consent-mode-data-layer"
+          },
+          "programSHA256": "44bb8831ff00982e0f6a5dcc89df53004adcd16af5ee37220f97887a623083ec",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+            "id": "jquery-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+            "id": "jquery-migrate-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-js-extra"
+          },
+          "programSHA256": "ff13cc7c14b11a80efe6814cadcb5c8df363eed05dfa24fb8d101d3040dc80e3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.5.9",
+            "id": "cookie-law-info-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "cookie-law-info-ccpa-js-extra"
+          },
+          "programSHA256": "db1660ae597abc5374294b90248704edf8513dacda8851a81af7df3f3c9d4137",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/admin/modules/ccpa/assets/js/cookie-law-info-ccpa.js?ver=3.5.9",
+            "id": "cookie-law-info-ccpa-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.32.1",
+            "id": "font-awesome-4-shim-js"
+          }
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-6P6BFM5KL6"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "8efe9d5a0b2ae837959175a5c633e1830f3a42510f664d784aadabb63a05f8e2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "65e04625ee8bf1e900d803a3c8c83b73d7899b4c9e8a6854bb669585c5ae34d9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "1a18d71a46429fb023096f126aad1e09d254f4e028819d5bdd881c1c9c0d4869",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript",
+            "src": "https://crmplus.zoho.in/crm/javascript/zcga.js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://cdn-in.pagesense.io/js/kaninimarketing8600/ae35999531d1419dabbb72c65b68a6c4.js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+          }
+        },
+        {
+          "attrs": {},
+          "programSHA256": "efff58d1d16c3c8b2a50e285ae8e3586839d66662951c0d8d20a67bc77fefdfe",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "b0fe20b1e3b11fa6927bfb3f669773b6444cf4fe6534ff4eb6a7083f415de4b2",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "dd0ec57abf154d52c161fae92db6014f042417d9660679097ae55287041ec52e",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+            "id": "wp-hooks-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+            "id": "wp-i18n-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-i18n-js-after"
+          },
+          "programSHA256": "cf01a621447e67a81629bc28276677c86c48fd72c44cba83a82448574aadfd60",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.2",
+            "id": "swv-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "contact-form-7-js-before"
+          },
+          "programSHA256": "05906aa869833e0cf9bac6b5e963a254ef2fb33ef7382271f531b87b8387c88a",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.2",
+            "id": "contact-form-7-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/simple-share-buttons-adder/js/ssba.js?ver=1760118639",
+            "id": "simple-share-buttons-adder-ssba-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "simple-share-buttons-adder-ssba-js-after"
+          },
+          "programSHA256": "d7840c9958b93cc971b6b9e1a0493bf2866b863c8b8ff0fa497230938cd35b02",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-redirect-script-js-extra"
+          },
+          "programSHA256": "24db9a75dbff745048dffe4aa614cfdc64f8d9afca94e5a309e8d87304f8bee3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wpcf7-redirect/build/assets/frontend-script.js?ver=2c532d7e2be36f6af233",
+            "id": "wpcf7-redirect-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=3.0.1",
+            "id": "hello-theme-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-consent-mode-bc2e26cfa69fcd4a8261.js",
+            "id": "googlesitekit-consent-mode-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js?ver=2.4.20",
+            "id": "dflip-script-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.1",
+            "id": "elementor-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.1",
+            "id": "elementor-frontend-modules-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+            "id": "jquery-ui-core-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-extra"
+          },
+          "programSHA256": "3ef9454d54bf59e1167c0fcd4d25285320ed803b7cd25a5d0b9750be188de84b",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "id": "elementor-frontend-js-before"
+          },
+          "programSHA256": "f188689f8424fb7093656c0f42b81e978176b09677b64244f2b0807e037fb423",
+          "noncePaths": [
+            "elementorFrontendConfig.nonces.floatingButtonsClickTracking"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/min-js/uael-nav-menu.min.js?ver=1.36.5",
+            "id": "uael-nav-menu-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/jquery-element-resize/jquery_resize.min.js?ver=1.36.5",
+            "id": "uael-element-resize-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/js-cookie/js_cookie.min.js?ver=1.36.5",
+            "id": "uael-cookie-lib-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.1",
+            "id": "e-sticky-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "heateor_sss_sharing_js-js-before"
+          },
+          "programSHA256": "2dff0d5c61edba8d51ed2b67983f9c2033cd1754dedf275aaaa57db8e4c4f55c",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/sassy-social-share/public/js/sassy-social-share-public.js?ver=3.3.79",
+            "id": "heateor_sss_sharing_js-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://www.google.com/recaptcha/api.js?render=6LfxONcZAAAAAJ2lHkO0oxd7fcdLb-b9yLRq0Hb8&ver=3.0",
+            "id": "google-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0",
+            "id": "wp-polyfill-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wpcf7-recaptcha-js-before"
+          },
+          "programSHA256": "43734370e4ff010b7dfc9768c88acdb824dfc6a03f6493ee05da0e0366fd8670",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.2",
+            "id": "wpcf7-recaptcha-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "eael-general-js-extra"
+          },
+          "programSHA256": "70d7d7fc9201fb66c84d46b14e2cbb3e1ecd324607640078adff3a67fd1fd271",
+          "noncePaths": [
+            "localize.nonce"
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.8.3",
+            "id": "eael-general-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "wp-consent-api-js-extra"
+          },
+          "programSHA256": "a6ce2cb46c6b54c7bc941868df378d97ada4e7975a073beb906c3a697bd6ae85",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/wp-consent-api/assets/js/wp-consent-api.min.js?ver=1.0.8",
+            "id": "wp-consent-api-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.1",
+            "id": "elementor-pro-webpack-runtime-js"
+          }
+        },
+        {
+          "attrs": {
+            "id": "elementor-pro-frontend-js-before"
+          },
+          "programSHA256": "efa53166bae286915d11944fa4c0791bfd364d94b749a56047f6ee58ba7fedf3",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.1",
+            "id": "elementor-pro-frontend-js"
+          }
+        },
+        {
+          "attrs": {
+            "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.1",
+            "id": "pro-elements-handlers-js"
+          }
+        },
+        {
+          "attrs": {
+            "data-cfasync": "false"
+          },
+          "programSHA256": "efa9f7db89dabc742d3084c7f1a1920fcd15bd86c68b18558e8df48586667dc9",
+          "noncePaths": []
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "programSHA256": "6febc053e1aec17d36ce5cb8143e20dbab10106ed81f87169d7d1aad2bd7b5dc",
+          "noncePaths": []
+        },
+        {
+          "attrs": {},
+          "programSHA256": "e61a16bbe8c5e17708897798df40805d67f04954b99a021172c5e5dcbb17c9d3",
+          "noncePaths": []
+        }
+      ]
+    }
+  ],
+  "detailScripts": [
+    {
+      "attrs": {
+        "id": "google_gtagjs-js-consent-mode-data-layer"
+      },
+      "programSHA256": "44bb8831ff00982e0f6a5dcc89df53004adcd16af5ee37220f97887a623083ec",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "id": "jquery-core-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "id": "jquery-migrate-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "cookie-law-info-js-extra"
+      },
+      "programSHA256": "ff13cc7c14b11a80efe6814cadcb5c8df363eed05dfa24fb8d101d3040dc80e3",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js?ver=3.5.9",
+        "id": "cookie-law-info-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "cookie-law-info-ccpa-js-extra"
+      },
+      "programSHA256": "db1660ae597abc5374294b90248704edf8513dacda8851a81af7df3f3c9d4137",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/cookie-law-info/legacy/admin/modules/ccpa/assets/js/cookie-law-info-ccpa.js?ver=3.5.9",
+        "id": "cookie-law-info-ccpa-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.32.1",
+        "id": "font-awesome-4-shim-js"
+      }
+    },
+    {
+      "attrs": {
+        "async": "",
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-6P6BFM5KL6"
+      }
+    },
+    {
+      "attrs": {},
+      "programSHA256": "8efe9d5a0b2ae837959175a5c633e1830f3a42510f664d784aadabb63a05f8e2",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "65e04625ee8bf1e900d803a3c8c83b73d7899b4c9e8a6854bb669585c5ae34d9",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "1a18d71a46429fb023096f126aad1e09d254f4e028819d5bdd881c1c9c0d4869",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "https://crmplus.zoho.in/crm/javascript/zcga.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://cdn-in.pagesense.io/js/kaninimarketing8600/ae35999531d1419dabbb72c65b68a6c4.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      }
+    },
+    {
+      "attrs": {},
+      "programSHA256": "544aa121d8b2e52d918057d13e64373bf3c71bd9e216774993217c975f3c2939",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "b0fe20b1e3b11fa6927bfb3f669773b6444cf4fe6534ff4eb6a7083f415de4b2",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "dd0ec57abf154d52c161fae92db6014f042417d9660679097ae55287041ec52e",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "id": "wp-hooks-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "id": "wp-i18n-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "wp-i18n-js-after"
+      },
+      "programSHA256": "cf01a621447e67a81629bc28276677c86c48fd72c44cba83a82448574aadfd60",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.2",
+        "id": "swv-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "contact-form-7-js-before"
+      },
+      "programSHA256": "05906aa869833e0cf9bac6b5e963a254ef2fb33ef7382271f531b87b8387c88a",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.2",
+        "id": "contact-form-7-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/simple-share-buttons-adder/js/ssba.js?ver=1760118639",
+        "id": "simple-share-buttons-adder-ssba-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "simple-share-buttons-adder-ssba-js-after"
+      },
+      "programSHA256": "d7840c9958b93cc971b6b9e1a0493bf2866b863c8b8ff0fa497230938cd35b02",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "id": "wpcf7-redirect-script-js-extra"
+      },
+      "programSHA256": "24db9a75dbff745048dffe4aa614cfdc64f8d9afca94e5a309e8d87304f8bee3",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/wpcf7-redirect/build/assets/frontend-script.js?ver=2c532d7e2be36f6af233",
+        "id": "wpcf7-redirect-script-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=3.0.1",
+        "id": "hello-theme-frontend-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/google-site-kit/dist/assets/js/googlesitekit-consent-mode-bc2e26cfa69fcd4a8261.js",
+        "id": "googlesitekit-consent-mode-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js?ver=2.4.20",
+        "id": "dflip-script-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.1",
+        "id": "elementor-webpack-runtime-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.1",
+        "id": "elementor-frontend-modules-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "id": "jquery-ui-core-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "elementor-frontend-js-extra"
+      },
+      "programSHA256": "3ef9454d54bf59e1167c0fcd4d25285320ed803b7cd25a5d0b9750be188de84b",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "id": "elementor-frontend-js-before"
+      },
+      "programSHA256": "1856771a53db7e623bacd73d6c1968027338257b4236475fedb06c6e874a0574",
+      "noncePaths": [
+        "elementorFrontendConfig.nonces.floatingButtonsClickTracking"
+      ]
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.1",
+        "id": "elementor-frontend-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/min-js/uael-nav-menu.min.js?ver=1.36.5",
+        "id": "uael-nav-menu-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/jquery-element-resize/jquery_resize.min.js?ver=1.36.5",
+        "id": "uael-element-resize-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/ultimate-elementor/assets/lib/js-cookie/js_cookie.min.js?ver=1.36.5",
+        "id": "uael-cookie-lib-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.1",
+        "id": "e-sticky-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "heateor_sss_sharing_js-js-before"
+      },
+      "programSHA256": "2dff0d5c61edba8d51ed2b67983f9c2033cd1754dedf275aaaa57db8e4c4f55c",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/sassy-social-share/public/js/sassy-social-share-public.js?ver=3.3.79",
+        "id": "heateor_sss_sharing_js-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://www.google.com/recaptcha/api.js?render=6LfxONcZAAAAAJ2lHkO0oxd7fcdLb-b9yLRq0Hb8&ver=3.0",
+        "id": "google-recaptcha-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0",
+        "id": "wp-polyfill-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "wpcf7-recaptcha-js-before"
+      },
+      "programSHA256": "43734370e4ff010b7dfc9768c88acdb824dfc6a03f6493ee05da0e0366fd8670",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.2",
+        "id": "wpcf7-recaptcha-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "eael-general-js-extra"
+      },
+      "programSHA256": "06d8cf4abfa83118e22b5c79fe35ff3bc43d4690b55c6089f045bdbf6a66f2e8",
+      "noncePaths": [
+        "localize.nonce"
+      ]
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.8.3",
+        "id": "eael-general-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "wp-consent-api-js-extra"
+      },
+      "programSHA256": "a6ce2cb46c6b54c7bc941868df378d97ada4e7975a073beb906c3a697bd6ae85",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/wp-consent-api/assets/js/wp-consent-api.min.js?ver=1.0.8",
+        "id": "wp-consent-api-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.1",
+        "id": "elementor-pro-webpack-runtime-js"
+      }
+    },
+    {
+      "attrs": {
+        "id": "elementor-pro-frontend-js-before"
+      },
+      "programSHA256": "efa53166bae286915d11944fa4c0791bfd364d94b749a56047f6ee58ba7fedf3",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.1",
+        "id": "elementor-pro-frontend-js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://kanini.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.1",
+        "id": "pro-elements-handlers-js"
+      }
+    },
+    {
+      "attrs": {
+        "data-cfasync": "false"
+      },
+      "programSHA256": "efa9f7db89dabc742d3084c7f1a1920fcd15bd86c68b18558e8df48586667dc9",
+      "noncePaths": []
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "programSHA256": "6febc053e1aec17d36ce5cb8143e20dbab10106ed81f87169d7d1aad2bd7b5dc",
+      "noncePaths": []
+    },
+    {
+      "attrs": {},
+      "programSHA256": "e61a16bbe8c5e17708897798df40805d67f04954b99a021172c5e5dcbb17c9d3",
+      "noncePaths": []
+    }
+  ],
+  "detailInlineStyles": [
+    {
+      "attributes": "",
+      "sha256": "823de15cc4c84a379fcc729cdcbbf03c692022a0673139752612c8770702fcef"
+    },
+    {
+      "attributes": " id='wp-emoji-styles-inline-css'",
+      "sha256": "1c3618e94d98275398f9b27959f8ebdab4905167efc081f62550ad7d28e21cf3"
+    },
+    {
+      "attributes": " id='wp-block-library-inline-css'",
+      "sha256": "a141dd9155e2ee77424e6b32c1b03ccb0c4db33b3825bcfe6a8e4919416a87e0"
+    },
+    {
+      "attributes": " id='heateor_sss_frontend_css-inline-css'",
+      "sha256": "b8b9a61fe7ef3564db10570edc90e83afe2b0e8a7ca43ec5cd5dc96fdbe7281b"
+    },
+    {
+      "attributes": "",
+      "sha256": "d8e0db397c33c1e7d055dd7969a727f0f8b43163e568fbcc87fc1cde3397734f"
+    },
+    {
+      "attributes": "",
+      "sha256": "eff8e27a999771b576e34d0caa750bd214593ce76fd6176fed0dad715bdc77be"
+    },
+    {
+      "attributes": "",
+      "sha256": "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972"
+    },
+    {
+      "attributes": " id=\"wp-custom-css\"",
+      "sha256": "861c763d9e67cef84cfeac30d515e222faf4ea23854b06a785ea6ae954e9e630"
+    },
+    {
+      "attributes": "",
+      "sha256": "b8f69143d08f5ca992fb88eb9074bc3551e1af3bcc191d8fa0951bada18bc0f2"
+    },
+    {
+      "attributes": "",
+      "sha256": "b8f69143d08f5ca992fb88eb9074bc3551e1af3bcc191d8fa0951bada18bc0f2"
+    },
+    {
+      "attributes": "",
+      "sha256": "674e3f56576bd2df4ec73d6ea7884bb6beea5eb4a1727784d969a0db2e84b3b8"
+    },
+    {
+      "attributes": "",
+      "sha256": "3cdb8934c06d48d51325e8816fc1b030441daeb53df328aa64d370615e3d7fa2"
+    },
+    {
+      "attributes": "",
+      "sha256": "aa866cb6c51bb4a78c7a5a2f5ce2f8f53fbde6eead82960fa7f071fe11a10842"
+    },
+    {
+      "attributes": "",
+      "sha256": "aa866cb6c51bb4a78c7a5a2f5ce2f8f53fbde6eead82960fa7f071fe11a10842"
+    },
+    {
+      "attributes": "",
+      "sha256": "aa866cb6c51bb4a78c7a5a2f5ce2f8f53fbde6eead82960fa7f071fe11a10842"
+    },
+    {
+      "attributes": "",
+      "sha256": "aa866cb6c51bb4a78c7a5a2f5ce2f8f53fbde6eead82960fa7f071fe11a10842"
+    },
+    {
+      "attributes": "",
+      "sha256": "aa866cb6c51bb4a78c7a5a2f5ce2f8f53fbde6eead82960fa7f071fe11a10842"
+    },
+    {
+      "attributes": " id='global-styles-inline-css'",
+      "sha256": "ab34281b923d7369300f4382708a22a39ee73bfb120c05adc46b6efd160a3c1e"
+    }
+  ],
+  "form": {
+    "url": "https://kanini.zohorecruit.in/forms/3a2d023c9ce7c7496e12431e21083fd712cc716835799856220c8b46c7f12fe5",
+    "bytes": 10070,
+    "sha256": "f62d8ca2af92145f948f40df60c59bca6a0233e61706ac7078a504165c408632"
+  },
+  "formProgram": {
+    "url": "https://static.zohocdn.com/recruit/javascript/new-webform-render.0db630759b17c5413f65dadd6ca0e167.js",
+    "bytes": 2036767,
+    "sha256": "f05e0e7e05ef8ae9b67b0c544ce7ba2436f00d651820f5656792f87c87d8fa5a"
+  },
+  "formAPI": "https://kanini.zohorecruit.in/recruit/v2/public/forms/Leads/2887000006548695",
+  "formId": "2887000006548695",
+  "nativeCompany": "KANINI Software Solutions",
+  "nativeWebsite": "www.KANINI.com",
+  "sourceScopeComplete": false,
+  "browserEquivalenceComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "criteriaFormats": [
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "cont-jder"
+      }
+    },
+    {
+      "tag": "h3",
+      "attrs": {}
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spandesc"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {}
+    },
+    {
+      "tag": "br",
+      "attrs": {}
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spanreq"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-top:0px"
+      }
+    },
+    {
+      "tag": "b",
+      "attrs": {}
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:verdana, sans-serif"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:13.3333px"
+      }
+    },
+    {
+      "tag": "ul",
+      "attrs": {}
+    },
+    {
+      "tag": "li",
+      "attrs": {}
+    },
+    {
+      "tag": "span",
+      "attrs": {}
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:107%; font-family:\"Times New Roman\", serif"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "WordSection1"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "style": "margin:0px 0cm 0.0001pt; text-indent:0cm; text-align:center",
+        "class": "align-center"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "style": "margin-top:8.05pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "colour",
+        "style": "color:rgb(13, 40, 65)"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:Verdana, sans-serif"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.5pt"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "class": "MsoBodyText",
+        "style": "margin:0px 0cm 0.0001pt; text-indent:0cm; line-height:120%"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.3pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.9pt"
+      }
+    },
+    {
+      "tag": "b",
+      "attrs": {
+        "style": ""
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.8pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.85pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.7pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1.25pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1.15pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1.2pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.25pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.15pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.3pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.2pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-0.2pt"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.2pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.75pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.65pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-0.8pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.8pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.75pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.6pt"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "style": "margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:12pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": ""
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Times New Roman\""
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:7pt; font-style:normal; font-variant:normal; font-size-adjust:none; font-weight:normal; font-stretch:normal; line-height:normal"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.05pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-1.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "letter-spacing:-0.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.3pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.95pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.85pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.2pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.05pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.15pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Cambria Math\", serif"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.2pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:12pt; line-height:120%"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.95pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-1.9pt"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "align-left",
+        "style": "margin-left:0cm; text-indent:0cm; margin-top:0px; text-align:left"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.9pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.75pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.7pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.6pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.65pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.35pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; letter-spacing:-0.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1.05pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-0.95pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:10pt; line-height:120%; letter-spacing:-1pt"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "class": "MsoBodyText",
+        "style": "margin:0px 0cm 0.0001pt; text-indent:0cm"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 0.1pt; text-indent:-0.1pt; line-height:18pt; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; font-family:\"Open Sans\", sans-serif; color:black; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; font-family:\"Open Sans\", sans-serif; color:black"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:0.1pt; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:107%; font-family:\"Open Sans\", sans-serif; color:black"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 18pt; text-indent:-18pt",
+        "class": "MsoListParagraphCxSpFirst"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:106%; font-family:Symbol; color:rgb(55, 65, 81)",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font:7pt \"Times New Roman\""
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:106%; font-family:\"Open Sans\", sans-serif; color:rgb(55, 65, 81)",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 18pt; text-indent:-18pt",
+        "class": "MsoListParagraphCxSpMiddle"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:106%; font-family:Symbol",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 18pt; text-indent:-18pt",
+        "class": "MsoListParagraphCxSpLast"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:106%; font-family:\"Open Sans\", sans-serif; color:rgb(52, 53, 65)",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-bottom:0cm; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; line-height:107%; font-family:\"Open Sans\", sans-serif"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 0.1pt"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "background:white"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 0.1pt; line-height:18pt; background:white"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm 0.1pt; line-height:normal; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:12pt; font-family:\"Open Sans\", sans-serif; color:rgb(34, 34, 34)"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "class": "MsoNoSpacing",
+        "style": "margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "highlight",
+        "style": "background-color:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "colour",
+        "style": "color:black"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Open Sans\", sans-serif; background-size:initial"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Open Sans\", sans-serif; border:1pt windowtext; padding:0cm"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-top:0px",
+        "class": "MsoNoSpacing"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "text-indent:-0.1pt; margin-top:0px",
+        "class": "MsoNoSpacing"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:18pt; text-indent:-18pt; margin-top:0px",
+        "class": "MsoNoSpacing"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:Symbol; border:1pt windowtext; padding:0cm"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:7pt; font-style:normal; font-variant:normal; font-weight:normal; font-stretch:normal; line-height:normal"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-bottom:0cm; text-indent:-0.1pt; line-height:18pt; background-size:initial; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "highlight",
+        "style": "background:white; margin-bottom:0cm; text-indent:-0.1pt; line-height:18pt; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Open Sans\", sans-serif"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:0cm; text-indent:-0.1pt; margin-top:0px",
+        "class": "MsoNoSpacing"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; color:black; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; color:black"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; color:black",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:Symbol; color:black",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:Symbol; color:black"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; color:black; background:yellow"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin:0px 0cm 0cm; text-indent:-0.1pt; line-height:18pt; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:\"Open Sans\", sans-serif; border:1pt none windowtext; padding:0cm"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "white-space:pre-wrap; margin-top:0px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "colour",
+        "style": "color:inherit; font-style:inherit; font-variant:inherit; font-weight:inherit; font-stretch:inherit"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:18pt; text-indent:-18pt; white-space:pre-wrap; margin-top:0px",
+        "class": "MsoListParagraphCxSpFirst"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:Symbol"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:18pt; text-indent:-18pt; white-space:pre-wrap; margin-top:0px",
+        "class": "MsoListParagraphCxSpMiddle"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-left:18pt; text-indent:-18pt; white-space:pre-wrap; margin-top:0px",
+        "class": "MsoListParagraphCxSpLast"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "normaltextrun"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Arial\", sans-serif; color:black"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "eop"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Arial\", sans-serif; color:black",
+        "lang": "EN-US"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; background:white"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif; border:none windowtext 1pt; padding:0cm"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:Symbol; border:none windowtext 1pt; padding:0cm"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-family:\"Open Sans\", sans-serif"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "margin-bottom:0cm; text-indent:-0.1pt; line-height:18pt; background:white; margin-top:0px"
+      }
+    }
+  ],
+  "rolePanelSkeletonSHA256": "3e8f08534f6e27d785120bb7401ea1fb6e8c80f0174e2ecc5dc6f830275c28c5"
+}

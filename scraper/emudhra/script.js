@@ -1,8 +1,16 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {readFileSync} from 'node:fs'
+import {createHash} from 'node:crypto'
 
 import { EMUDHRA_CATALOG } from './catalog.js'
 import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+
+const currentCareers = JSON.parse(readFileSync(new URL('./currentCareers20261116.json', import.meta.url), 'utf8'))
+const isReviewedCurrentCareers = (page, contract) => page?.status === 200 && page.url === contract.url
+  && typeof page.html === 'string' && Buffer.byteLength(page.html) === contract.bytes
+  && createHash('sha256').update(page.html).digest('hex') === contract.sha256
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -220,21 +228,23 @@ export const createEmudhraScraper = () => ({
       }
 
       const indiaCareersPage = await fetchVerifiedPage(CAREER_PAGE_URL)
+      const currentCareersWithoutInventory = isReviewedCurrentCareers(indiaCareersPage, currentCareers.india)
 
-      if (Number(indiaCareersPage.status) !== 200 || !hasIndiaCareersSignal(indiaCareersPage.html)) {
+      if (!currentCareersWithoutInventory && (Number(indiaCareersPage.status) !== 200 || !hasIndiaCareersSignal(indiaCareersPage.html))) {
         throw new Error('eMudhra verified India careers page no longer matches the known first-party surface')
       }
 
       const globalCareersPage = await fetchVerifiedPage(GLOBAL_CAREER_PAGE_URL)
 
-      if (Number(globalCareersPage.status) !== 200 || !hasGlobalCareersSignal(globalCareersPage.html)) {
+      if (currentCareersWithoutInventory ? !isReviewedCurrentCareers(globalCareersPage, currentCareers.global)
+        : Number(globalCareersPage.status) !== 200 || !hasGlobalCareersSignal(globalCareersPage.html)) {
         throw new Error('eMudhra verified global careers page no longer matches the known first-party surface')
       }
 
       for (const routeUrl of CHECKED_BROKEN_OPENINGS_URLS) {
         const routePage = await fetchVerifiedPage(routeUrl)
 
-        if (!hasBrokenOpeningsSignal(routePage)) {
+        if (!hasBrokenOpeningsSignal(routePage) || currentCareersWithoutInventory && routePage.url !== routeUrl) {
           throw new Error(`eMudhra verified broken openings route changed: ${routeUrl}`)
         }
       }
@@ -263,6 +273,13 @@ export const createEmudhraScraper = () => ({
         throw new Error('eMudhra verified sitemap changed')
       }
 
+      if (currentCareersWithoutInventory) {
+        if (homepage.url !== HOMEPAGE_URL || sitemapPage.url !== SITEMAP_URL) throw new Error('eMudhra current source identity changed')
+        return attachInventoryEvidence([], {status:'coverage-gap',firstParty:true,listingComplete:false,
+          lifecycleCleanupAllowed:false,surface:CAREER_PAGE_URL,pagesFetched:6 + maps.length - 1,
+          reportedTotal:null,indiaFacetCount:null,verifiedAt:new Date().toISOString(),
+          reason:'current-first-party-careers-no-public-role-inventory;historical-openings-routes-404;renderer-application-and-whole-employer-scope-unknown;zero-vacancies-not-established'})
+      }
       return []
     } finally {
       if (browserSession) {

@@ -43,15 +43,15 @@ test('Parentlane local catalog captures the verified exact-name no-public-jobs s
   assert.equal(provider.companyCareerPage, 'https://www.parentlane.com/aboutus.html')
   assert.equal(provider.verifiedMissingCareersRouteUrl, 'https://www.parentlane.com/careers')
   assert.equal(provider.officialSupportEmail, 'info@parentlane.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'configured-domain-current-parking-employer-identity-unqualified')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'verified-homepage-and-about-page-plus-missing-careers-route',
+    'whole-configured-root-and-exact-native-declared-lander-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-homepage+about-page+404-careers-route+self-signed-tls-return-empty',
+    'complete-root-and-parking-publisher-models+current-employer-and-vacancy-inventory-unverified+no-third-party-parking-execution-or-company-zero',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

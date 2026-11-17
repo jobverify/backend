@@ -1,4 +1,5 @@
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentCuemath } from './currentNative20261117.js'
 
 export const CAREER_PAGE_URL = 'https://tutorhiring.cuemath.com/'
 
@@ -20,7 +21,9 @@ export const hasTutorApplicationSignal = (html) =>
 export const extractJobs = () => []
 
 export const createCuemathScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentCuemath(options)
+    const { fetchText = defaultFetchText } = options
     const html = await fetchText(CAREER_PAGE_URL)
 
     if (!hasTutorApplicationSignal(html)) {

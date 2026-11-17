@@ -75,7 +75,7 @@ const loadManthanModule = async () => {
   }
 }
 
-test('Manthan scraper pins the verified official careers page and extracts the current concrete openings', async () => {
+test('Historical manthan parser fixtures remain pure helpers, separate from current acquisition', async () => {
   const manthan = await loadManthanModule()
 
   assert.equal(manthan.SOURCE, 'manthan')
@@ -138,67 +138,4 @@ test('Manthan scraper pins the verified official careers page and extracts the c
       jobDescription: '10+ years experience | MBA | Bangalore, India',
     },
   ])
-})
-
-test('Manthan run validates the official first-party surface and returns the live inline openings', async () => {
-  const manthan = await loadManthanModule()
-  const requestedUrls = []
-
-  const jobs = await manthan.createManthanScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === manthan.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === manthan.CAREERS_URL) {
-        return { status: 200, url, html: careersHtml }
-      }
-
-      throw new Error(`Unexpected Manthan URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    manthan.HOMEPAGE_URL,
-    manthan.CAREERS_URL,
-  ])
-  assert.equal(jobs.length, 2)
-  assert.equal(jobs[0].source, 'manthan')
-  assert.equal(jobs[0].link, 'https://www.linkedin.com/jobs/view/1592115764/')
-  assert.equal(jobs[1].jobId, '1592111875')
-  assert.equal(typeof jobs[0].scrapedAt, 'string')
-})
-
-test('Manthan scraper fails closed when the official careers page no longer exposes the verified concrete openings', async () => {
-  const manthan = await loadManthanModule()
-
-  await assert.rejects(
-    manthan.createManthanScraper().run({
-      fetchPage: async (url) => {
-        if (url === manthan.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === manthan.CAREERS_URL) {
-          return {
-            status: 200,
-            url,
-            html: `
-              <html>
-                <head><title>Careers &#8211; Manthan</title></head>
-                <body>
-                  <a href="https://manthan.com/contact/">Apply Now</a>
-                </body>
-              </html>
-            `,
-          }
-        }
-
-        throw new Error(`Unexpected Manthan URL: ${url}`)
-      },
-    }),
-    /careers page no longer exposes the verified concrete public openings/i,
-  )
 })

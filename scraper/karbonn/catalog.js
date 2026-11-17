@@ -13,12 +13,12 @@ export const KARBONN_CATALOG = {
   homepageUrl: 'https://www.karbonnmobiles.com/',
   staleCareerRouteUrl: 'https://www.karbonnmobiles.com/careers.html?view=apply',
   companyDomain: 'karbonn.in',
-  atsPlatform: 'official-company-site-no-public-careers',
+  atsPlatform: 'current-configured-domain-product-launch-employer-unqualified',
   countryFilter: 'India',
   paginationStrategy:
-    'verified-homepage-careers-link-plus-subscribe-only-careers-page-plus-stale-route-validation',
+    'literal-current-three-redirect-chain-and-product-landing-opening-closing',
   extractionStrategy:
-    'verified-homepage-careers-link+verified-subscribe-only-careers-page+verified-stale-careers-route-404',
+    'whole-current-product-landing-context+legal-employer-continuity-and-recruitment-inventory-unqualified+company-scope-held',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   dryRunFile: 'karbonn/jobs.json',

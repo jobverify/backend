@@ -97,10 +97,20 @@ export const readInventoryEvidence = (jobs) => (
   Array.isArray(jobs) ? jobs[INVENTORY_EVIDENCE] || null : null
 )
 
+const nativeAuditForbidsCleanup = jobs => {
+  const audit = Object.getOwnPropertyDescriptor(jobs, 'nativeCollectionEvidence')
+  if (!audit || !Object.hasOwn(audit, 'value') || !audit.value
+    || typeof audit.value !== 'object' || Array.isArray(audit.value)) return false
+  const hold = Object.getOwnPropertyDescriptor(audit.value, 'lifecycleCleanupAllowed')
+  return Boolean(hold && Object.hasOwn(hold, 'value') && hold.value === false)
+}
+
 // A complete configured inventory does not override a source's explicit hold.
-// Retain it on inventory evidence so empty arrays stay protected after mapping.
+// Own data audit holds also protect empty arrays and metadata-preserving maps;
+// accessors never execute, and native metadata can only forbid cleanup.
 export const sourceLifecycleCleanupForbidden = jobs => Array.isArray(jobs) && (
   jobs.some(job => job?.lifecycleCleanupAllowed === false || job?.sourceScopeComplete === false)
+  || nativeAuditForbidsCleanup(jobs)
   || jobs[Symbol.for('jobverify.verified-recruitment-observations')]?.lifecycleCleanupAllowed === false
   || readInventoryEvidence(jobs)?.lifecycleCleanupAllowed === false
 )

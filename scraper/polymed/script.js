@@ -1,3 +1,4 @@
+import { runCurrentPolymed } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -77,7 +78,9 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
 })
 
 export const createPolymedScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentPolymed(options)
+    const { fetchText } = options
     const careersHtml = await fetchText(CAREERS_URL)
     if (hasPublicJobBoardSignals(careersHtml)) {
       throw new Error('Polymed public jobs surface detected on the official careers page')

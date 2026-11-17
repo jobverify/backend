@@ -16,6 +16,10 @@ const hash=value=>createHash('sha256').update(value).digest('hex')
 const same=(left,right)=>canonicalNativeRecord(left)===canonicalNativeRecord(right)
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)
 const keys=(value,fields)=>object(value)&&same(Object.keys(value).sort(),[...fields].sort())
+const detailFieldsWithoutSalary=PROFILE.detailFields.filter(name=>!name.startsWith('salary_'))
+// Nov16's own current6069877 payload omits all four salary fields. Preserve
+// that absence as observed; the previously disclosed range is never inferred.
+const currentSalaryOmission=row=>row?.id===6069877&&row.shortcode==='87B3E6ED0F'&&keys(row,detailFieldsWithoutSalary)
 const fail=(message,fields={})=>firstPartyFailure(SOURCE,message,{nativeAuthorityFailure:true,sourceScopeComplete:false,...fields})
 const need=(condition,message)=>{if(!condition)throw fail(message)}
 const ignore=operation=>{try{Promise.resolve(operation()).catch(()=>{})}catch{}}
@@ -174,7 +178,7 @@ function rowShape(row,{detail=false}={}){
  const actual=Object.keys(row??{})
  // Two genuine unhydrated first-page rows omit type. That exact optional
  // listing field never authorizes a full-detail role or inferred criteria.
- need(keys(row,fields)||!detail&&!Object.hasOwn(row,'type')&&keys(row,fields.filter(name=>name!=='type')),'Native complete role schema changed')
+ need(keys(row,fields)||detail&&currentSalaryOmission(row)||!detail&&!Object.hasOwn(row,'type')&&keys(row,fields.filter(name=>name!=='type')),'Native complete role schema changed')
  need(Number.isSafeInteger(row.id)&&row.id>0&&/^[A-F0-9]{10}$/.test(row.shortcode)&&text(row.title)&&row.title.trim(),'Native role identity changed')
  need(typeof row.remote==='boolean'&&typeof row.isInternal==='boolean'&&(row.code===null||text(row.code)),'Native role field type changed')
  need(row.accountUid===PROFILE.account.uid&&text(row.state)&&text(row.approvalStatus)&&text(row.language)&&text(row.workplace),'Native role account or status changed')
@@ -184,7 +188,7 @@ function rowShape(row,{detail=false}={}){
  need(Array.isArray(row.locations)&&row.locations.length>0&&row.locations.length<=32,'Native complete secondary locations changed')
  row.locations.forEach(location=>locationShape(location,true))
  need(text(row.published)&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(row.published)&&Number.isFinite(Date.parse(row.published))&&new Date(row.published).toISOString()===row.published,'Native published date is invalid')
- need(actual.length===fields.length||!detail&&actual.length===fields.length-1,'Native complete field count changed')
+ need(actual.length===fields.length||detail&&currentSalaryOmission(row)||!detail&&actual.length===fields.length-1,'Native complete field count changed')
 }
 export function readSmartStreamListing(body){
  const page=readSmartStreamJSON(body)
@@ -200,14 +204,26 @@ export function readSmartStreamListing(body){
  return page
 }
 function selectedRows(page){
- return PROFILE.roles.map(role=>{
+ const rows=PROFILE.roles.flatMap(role=>{
   const row=page.results.find(candidate=>candidate.id===role.id)
-  need(row&&row.shortcode===role.shortcode&&row.title===role.title,'Reviewed full role is not in current first page')
+  // The observed page is partial. A reviewed candidate sliding off this page
+  // is unobserved; it cannot invalidate another fully qualified role, prove
+  // closure, or authorize a guessed detail request.
+  if(!row){
+   need(!page.results.some(candidate=>candidate.shortcode===role.shortcode),'Reviewed full role ID/shortcode pairing changed')
+   return[]
+  }
+  need(row.shortcode===role.shortcode&&row.title===role.title,'Reviewed full role identity changed in current first page')
   need(india(row),'Native selected role explicit primary/all-secondary India country proof changed')
   need(row.state==='published'&&row.approvalStatus==='approved'&&row.isInternal===false,'Native role is unpublished, unapproved or internal')
-  need(same(row,role.listing),'Reviewed selected native listing criteria changed')
-  return row
+  // Publication is current native data, already calendar-checked by rowShape.
+  // Detail agreement, the observation clock and whole closing reconciliation
+  // still qualify it; every other reviewed listing field remains exact.
+  need(PROFILE.listingFields.filter(name=>name!=='published').every(name=>same(row[name],role.listing[name])),'Reviewed selected native listing criteria changed')
+  return[row]
  })
+ need(rows.length>0,'No reviewed full role observed in current first page')
+ return rows
 }
 export function readSmartStreamDetail(body,row,observedAt){
  const record=readSmartStreamJSON(body)
@@ -219,7 +235,7 @@ export function readSmartStreamDetail(body,row,observedAt){
  need(record.state==='published'&&record.approvalStatus==='approved'&&record.isInternal===false,'Native full role is unpublished, unapproved or internal')
  need(Date.parse(record.published)<=Date.parse(observedAt),'Native published date is in the future')
  const structured=Object.fromEntries(Object.entries(record).filter(([name])=>name.startsWith('salary_')))
- need(same(structured,expected.structuredCriteria),'Reviewed complete native salary criteria changed')
+ need(currentSalaryOmission(record)||same(structured,expected.structuredCriteria),'Reviewed complete native salary criteria changed')
  for(const name of ['description','requirements','benefits']){
   const value=record[name],reviewed=expected.richFields[name]
   need(typeof value==='string'&&Buffer.byteLength(value)===reviewed.bytes&&hash(value)===reviewed.sha256,'Reviewed complete native '+name+' criteria changed')
@@ -262,15 +278,15 @@ export async function runCurrentSmartStream(options={}){
    ...criteria,sourceDescription:combined,jobDescription:combined,sourceDescriptionHTML:combined,sourceDescriptionText:criteria.sourceDescription,
    sourceNativeDescription:record.description,sourceNativeRequirements:record.requirements,sourceNativeBenefits:record.benefits,
    source:SOURCE,company:'SmartStream Technologies',title:record.title,jobId:String(record.id),requisitionId:record.shortcode,
-   sourceUrl:PROFILE.roles[index].landingURL,applyUrl:null,link:null,nativeApplicationURL:null,nativeApplicationActionVerified:false,
-   nativeJobLandingURL:PROFILE.roles[index].landingURL,nativeLandingURLMethod:PROFILE.nativeProtocolReview.landingMethod,
-   nativeDetailAPIProvenance:detailURL(record.shortcode),nativePriorHeadObservation:index===0?PROFILE.priorSingleHeadObservation:null,
+   sourceUrl:PROFILE.roles.find(role=>role.id===record.id&&role.shortcode===record.shortcode).landingURL,applyUrl:null,link:null,nativeApplicationURL:null,nativeApplicationActionVerified:false,
+   nativeJobLandingURL:PROFILE.roles.find(role=>role.id===record.id&&role.shortcode===record.shortcode).landingURL,nativeLandingURLMethod:PROFILE.nativeProtocolReview.landingMethod,
+   nativeDetailAPIProvenance:detailURL(record.shortcode),nativePriorHeadObservation:record.id===PROFILE.roles[0].id?PROFILE.priorSingleHeadObservation:null,
    country:'India',location:[record.location.city,record.location.region,record.location.country].filter(Boolean).join(', '),city:record.location.city,state:record.location.region,
    employmentType:record.type,department:record.department,postingDate:record.published,nativePublished:record.published,closingDate:null,
    nativePublicationDateProvenance:'original-native-published-consumed-by-native-eager-JobPosting-datePosted',nativeFirstEverPublicationUnverified:true,
    sourceNativeListingRecord:rows[index],sourceNativeDetailRecord:record,sourceNativeClosingListingRecord:closingRows[index],sourceNativeClosingDetailRecord:last[index].record,
    nativeEmployerBinding:{method:'current-own-native-legal-organization-and-official-website;historical-corporate-handoff-only',id:openingAccount.id,uid:openingAccount.uid,legalName:openingAccount.name,officialWebsite:openingAccount.url},
-   sourceClosingReconciled:true,nativeCriteriaTextComplete:true,sourceDetailCompleteMeaning:PROFILE.sourceDetailCompleteMeaning,
+   sourceClosingReconciled:true,nativeCriteriaTextComplete:true,sourceDetailCompleteMeaning:currentSalaryOmission(record)?'Complete original native rich criteria; current19-field native record discloses no salary fields; rendered, application and company scope remain unqualified':PROFILE.sourceDetailCompleteMeaning,
    currentCSSCoverage:false,clientDependencyCoverage:false,activationVerified:false,applicationQuestionsCoverage:false,
    sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,currentCorporateBindingVerified:false,
    sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,
@@ -280,6 +296,7 @@ export async function runCurrentSmartStream(options={}){
    advertisedNativeTotal:opening.total,unseenAdvertisedCount:opening.total-opening.results.length,returnedCount:jobs.length,hydratedRecordCount:jobs.length,unhydratedRecordCount:opening.results.length-jobs.length,
    companyIndiaTotal:null,companyGlobalTotal:null,paginationFollowed:false,nextPageDeclared:true,
    originalOpeningPage:opening,originalClosingPage:closing,unhydratedRecords:opening.results.filter(row=>!jobs.some(job=>job.jobId===String(row.id))),
+   unobservedReviewedCandidateIds:PROFILE.roles.filter(role=>!opening.results.some(row=>row.id===role.id)).map(role=>role.id),
    unknownOrForeignCountryRecordCount:opening.results.filter(row=>!india(row)).length,
    unpublishedOrInternalRecordCount:opening.results.filter(row=>row.state!=='published'||row.approvalStatus!=='approved'||row.isInternal).length,
    originalOpeningAccount:openingAccount,originalClosingAccount:lastAccount,nativeDataAuthority:PROFILE.nativeProtocolReview,
@@ -294,7 +311,7 @@ export async function runCurrentSmartStream(options={}){
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
   attachInventoryEvidence(jobs,{status:'coverage-gap',surface:LISTING,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,
    reportedTotal:opening.total,indiaFacetCount:null,pagesFetched:audit.reader.requests,verifiedAt:observedAt,
-   reason:'exact-own-native-data-four-complete-criteria-pairs-and-closing;unvisited-pages-and-undetailed-rows;company-CSS-dependencies-rendering-application-cleanup-held'})
+   reason:'exact-own-native-data-observed-reviewed-complete-criteria-pairs-and-closing;unvisited-pages-and-undetailed-rows;company-CSS-dependencies-rendering-application-cleanup-held'})
   need(Buffer.byteLength(JSON.stringify({jobs,audit}))<=8*1024*1024,'Native output byte budget exceeded')
   reader.check()
   return jobs

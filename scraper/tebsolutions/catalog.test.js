@@ -12,12 +12,12 @@ test('TEB Solutions is registered against its verified first-party no-public-job
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'TEB Solutions')
   assert.equal(provider.companyCareerPage, 'https://tebsolutions.in/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-own-corporate-publisher-recruitment-inventory-unknown')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-page-sitemap-plus-common-careers-route-validation')
+  assert.equal(provider.paginationStrategy, 'own-current-home-and-actually-declared-about-contact-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-page-sitemap+verified-soft-404-careers-routes-return-empty',
+    'whole-current-corporate-structured-and-authored-models+opaque-contacts-raw-and-unqualified+no-corporate-country-or-date-as-role-facts+company-inventory-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

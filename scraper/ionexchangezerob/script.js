@@ -1,3 +1,4 @@
+import { runCurrentZeroB } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -120,7 +121,9 @@ export const hasPublicJobListingSignal = (html) =>
   PUBLIC_JOB_LISTING_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
 
 export const createIonExchangeZeroBScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentZeroB(options)
+    const { fetchText = defaultFetchText } = options
     const homepageHtml = await fetchText(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error('ION EXCHANGE ZERO B verified ZeroB homepage no longer matches the trusted first-party surface')

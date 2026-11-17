@@ -108,7 +108,11 @@ function originalNativeData(page){
  // the Zoho deployment. Keep that finite pair together; unseen assets or a
  // changed program remain unreviewed. The original profile remains readable.
  const programHashes=INLINE_PROGRAM_SHA256.map((hash,index)=>index===2?mapSHA:hash)
- need(scripts.length===6&&programHashes.every((hash,index)=>sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
+ // Nov16's complete literal CDN map is paired to these same declarations;
+ // original carrier syntax, employer and complete criteria remain qualified
+ // independently below. An unseen CDN map still requires review.
+ const reviewedMapSHA=[mapSHA,...(declarationSHA==='e16197c12bc84c66765678777bf38c58a0b96d34cb6e3887438e884f9c68305c'?['9379df00e3d110cbe9d481a45f70764b39f6bbdce8ec0fb3b1693c8e270d5467']:[])]
+ need(scripts.length===6&&programHashes.every((hash,index)=>index===2?reviewedMapSHA.includes(sha(scripts[index].raw??'')):sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
  const script=scripts[5]
  need(!script.inert&&page.head.children.includes(script),'Native data carrier is not active in the owned head')
  let ast;try{ast=parse(script.raw,{ecmaVersion:'latest',sourceType:'script'})}catch{throw failure('Unreviewed native data authority program syntax')}

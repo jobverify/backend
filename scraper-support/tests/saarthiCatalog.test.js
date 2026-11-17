@@ -40,12 +40,12 @@ test('Saarthi local catalog captures the verified first-party marketplace-only e
   assert.equal(provider.companyCareerPage, 'https://joinsaarthi.com/about')
   assert.equal(provider.publicMarketplaceUrl, 'https://www.joinsaarthi.com/')
   assert.equal(provider.companyDomain, 'joinsaarthi.com')
-  assert.equal(provider.atsPlatform, 'official-job-marketplace-no-company-careers')
+  assert.equal(provider.atsPlatform, 'current-own-general-campus-programme-and-third-party-marketplace')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'static-about-page-plus-homepage-marketplace-validation')
+  assert.equal(provider.paginationStrategy, 'current-own-about-campus-programme-and-whole-marketplace-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-about-page+verified-homepage-marketplace-third-party-jobs+no-exact-company-careers-return-empty',
+    'whole-native-campus-ambassador-invitation-and-third-party-job-models+exact-role-employer-country-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -88,7 +88,7 @@ test('Saarthi hydrated local catalog stays script-runner compatible for central 
   assert.equal(provider.companyName, 'Saarthi')
   assert.equal(provider.companyCareerPage, 'https://joinsaarthi.com/about')
   assert.equal(provider.companyDomain, 'joinsaarthi.com')
-  assert.equal(provider.atsPlatform, 'official-job-marketplace-no-company-careers')
+  assert.equal(provider.atsPlatform, 'current-own-general-campus-programme-and-third-party-marketplace')
   assert.match(provider.modulePath, /saarthi[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /saarthi[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')

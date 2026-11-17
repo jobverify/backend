@@ -16,15 +16,15 @@ test('Punt Partners is registered as a verified no-public-careers first-party sc
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-own-corporate-publisher-recruitment-inventory-unknown')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'homepage-plus-team-plus-partners-plus-sitemaps-plus-common-careers-route-validation',
+    'own-current-home-and-actually-declared-team-investor-models-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-team+verified-partners+verified-sitemap-index+verified-page-sitemap+verified-missing-careers-routes-return-empty',
+    'whole-current-corporate-documents-and-hiring-declaration-review+no-guessed-career-routes+role-and-company-inventory-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

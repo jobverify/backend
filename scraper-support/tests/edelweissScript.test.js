@@ -1,275 +1,46 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-const homepageHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Top Finance Company in Mumbai, India | Best in Investment &amp; Advisory Services - Edelweiss Finance</title>
-  </head>
-  <body>
-    <nav>
-      <a href="/edelweisscareers">Careers</a>
-    </nav>
-    <main>
-      <h1>Top Finance Company in Mumbai, India</h1>
-    </main>
-  </body>
-</html>
-`
-
-const informationalCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Careers At Edelweiss</title>
-  </head>
-  <body>
-    <nav>
-      <a href="https://www.edelweissfin.com/">Home</a>
-      <a href="https://www.edelweissfin.com/edelweisscareers">Careers</a>
-    </nav>
-    <main>
-      <h1>CAREERS AT EDELWEISS</h1>
-      <p>
-        A professional environment that nurtures your personal and professional aspirations with
-        equanimity.
-      </p>
-      <h2>LIFE AT EDELWEISS</h2>
-      <p>Want to join the Edelweiss family? Send your CV to GroupTalent.Acquisition@edelweissfin.com</p>
-    </main>
-  </body>
-</html>
-`
-
-const robotsNotFoundHtml = `
-<!doctype html>
-<html>
-  <head><title>404 Not Found</title></head>
-  <body><h1>404 Not Found</h1></body>
-</html>
-`
-
-const sitemapIndexXml = `
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://www.edelweissfin.com/post-sitemap.xml</loc>
-  </sitemap>
-  <sitemap>
-    <loc>https://www.edelweissfin.com/page-sitemap.xml</loc>
-  </sitemap>
-</sitemapindex>
-`
-
-const joinUsLandingHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Join us for a Session for EdelweissPartners App Demo Session Part II on 21st Nov, 2020 at 4.30pm - EdelweissFin</title>
-  </head>
-  <body>
-    <main>
-      <h1>Join us for a Session</h1>
-      <p>Edelweiss event update.</p>
-    </main>
-  </body>
-</html>
-`
-
-const publicJobsHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Edelweiss Jobs</title>
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"JobPosting","title":"Finance Analyst"}
-    </script>
-  </head>
-  <body>
-    <main>
-      <h1>Current Openings</h1>
-      <a href="https://jobs.lever.co/edelweiss/finance-analyst">Apply now</a>
-    </main>
-  </body>
-</html>
-`
-
-const loadModule = async () => {
-  try {
-    return await import('../../scraper/edelweiss/script.js')
-  } catch {
-    assert.fail('Expected Edelweiss scraper module at ../../scraper/edelweiss/script.js')
-  }
-}
-
-test('Edelweiss pins the verified readable homepage, informational careers page, and no-public-job route contract from August 2, 2026', async () => {
-  const edelweiss = await loadModule()
-
-  assert.equal(edelweiss.SOURCE, 'edelweiss')
-  assert.equal(edelweiss.COMPANY, 'Edelweiss')
-  assert.equal(edelweiss.OFFICIAL_BRAND_NAME, 'Edelweiss')
-  assert.equal(edelweiss.VERIFIED_AT, '2026-08-02')
-  assert.equal(edelweiss.ROOT_URL, 'https://www.edelweissfin.com/')
-  assert.equal(edelweiss.CAREERS_URL, 'https://www.edelweissfin.com/edelweisscareers')
-  assert.equal(edelweiss.ROBOTS_URL, 'https://www.edelweissfin.com/robots.txt')
-  assert.equal(edelweiss.SITEMAP_URL, 'https://www.edelweissfin.com/sitemap.xml')
-  assert.equal(edelweiss.SITEMAP_INDEX_URL, 'https://www.edelweissfin.com/sitemap_index.xml')
-  assert.equal(edelweiss.APPLICATION_EMAIL, 'GroupTalent.Acquisition@edelweissfin.com')
-  assert.equal(
-    edelweiss.APPLICATION_URL,
-    'mailto:GroupTalent.Acquisition@edelweissfin.com',
-  )
-  assert.deepEqual(edelweiss.VERIFIED_ROUTE_URLS, [
-    'https://www.edelweissfin.com/',
-    'https://www.edelweissfin.com/edelweisscareers',
-    'https://www.edelweissfin.com/robots.txt',
-    'https://www.edelweissfin.com/sitemap.xml',
-    'https://www.edelweissfin.com/careers',
-    'https://www.edelweissfin.com/career',
-    'https://www.edelweissfin.com/jobs',
-    'https://www.edelweissfin.com/join-us',
-    'https://www.edelweissfin.com/work-with-us',
-  ])
-  assert.equal(edelweiss.hasOfficialHomepageSignal(homepageHtml), true)
-  assert.equal(edelweiss.hasVerifiedInformationalCareersSignal(informationalCareersHtml), true)
-  assert.equal(edelweiss.hasPublicJobListingSignal(informationalCareersHtml), false)
-  assert.equal(edelweiss.hasMissingRobotsSignal({ status: 404, html: robotsNotFoundHtml }), true)
-  assert.equal(
-    edelweiss.hasVerifiedSitemapSignal({
-      status: 200,
-      url: edelweiss.SITEMAP_INDEX_URL,
-      html: sitemapIndexXml,
-    }),
-    true,
-  )
-  assert.equal(
-    edelweiss.isKnownLegacyNoPublicJobRoute({
-      status: 200,
-      url: edelweiss.ROOT_URL,
-      html: homepageHtml,
-    }),
-    true,
-  )
-  assert.equal(
-    edelweiss.isKnownLegacyNoPublicJobRoute({
-      status: 200,
-      url: 'https://www.edelweissfin.com/join-us-for-a-session-for-edelweisspartners-app-demo-session-part-ii-on-21st-nov-2020-at-4-30pm/',
-      html: joinUsLandingHtml,
-    }),
-    true,
-  )
-  assert.equal(edelweiss.hasPublicJobListingSignal(publicJobsHtml), true)
+import {ROOT_URL,CAREERS_URL,run} from '../../scraper/edelweiss/script.js'
+import {readCurrentEdelweiss} from '../../scraper/edelweiss/currentNative20261117.js'
+import {sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/edelweiss/fixtures/native-20261117.json.gz',import.meta.url))))
+const original=url=>fixture.responses.find(r=>r.url===url),body=r=>Buffer.from(r.bodyBase64,'base64').toString()
+function replay(edit=(row,text)=>text){const calls=[],counts=new Map();return {calls,fetchImpl:async(url,init)=>{const row=original(url);assert.ok(row);calls.push(url);assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');assert.equal(init.body,undefined);const n=(counts.get(url)??0)+1;counts.set(url,n);return Object.defineProperty(new Response(edit(row,body(row),n),{status:row.status,headers:row.headers}),'url',{value:row.url})}}}
+test('Edelweiss actual current career article retains the complete general invitation and masked publisher contact without a historical plaintext application address',()=>{
+ const model=readCurrentEdelweiss(body(original(CAREERS_URL)),CAREERS_URL)
+ assert.ok(model.careerText.includes('Want to join the Edelweiss family?'));assert.ok(model.nativeContactObservedHref.includes('*'));assert.notEqual(model.nativeContactObservedHref,'mailto:GroupTalent.Acquisition@edelweissfin.com')
+ assert.equal(model.plaintextHistoricalEmailUsed,false);assert.equal(model.protectedContactDecoded,false);assert.equal(model.contactAddressQualified,false);assert.equal(model.employeeTestimonialsAreVacancies,false)
+ assert.ok(model.wholeCareerArticle&&model.nativeContact.attrs['data-original-string']);assert.equal(model.wholeOriginalHTML,body(original(CAREERS_URL)))
 })
-
-test('Edelweiss returns no jobs only while the verified readable no-public-jobs surface remains stable', async () => {
-  const edelweiss = await loadModule()
-  const requestedUrls = []
-
-  const jobs = await edelweiss.createEdelweissScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === edelweiss.ROOT_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === edelweiss.CAREERS_URL) {
-        return { status: 200, url, html: informationalCareersHtml }
-      }
-
-      if (url === edelweiss.ROBOTS_URL) {
-        return { status: 404, url, html: robotsNotFoundHtml }
-      }
-
-      if (url === edelweiss.SITEMAP_URL) {
-        return { status: 200, url: edelweiss.SITEMAP_INDEX_URL, html: sitemapIndexXml }
-      }
-
-      if (url === 'https://www.edelweissfin.com/join-us') {
-        return {
-          status: 200,
-          url: 'https://www.edelweissfin.com/join-us-for-a-session-for-edelweisspartners-app-demo-session-part-ii-on-21st-nov-2020-at-4-30pm/',
-          html: joinUsLandingHtml,
-        }
-      }
-
-      if (edelweiss.VERIFIED_ROUTE_URLS.slice(4).includes(url)) {
-        return { status: 200, url: edelweiss.ROOT_URL, html: homepageHtml }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, edelweiss.VERIFIED_ROUTE_URLS)
-  assert.deepEqual(jobs, [])
+test('Edelweiss direct nested and array/URI JobPosting additions require acquisition review before any zero-vacancy observation receipt',()=>{
+ for(const model of [{'@type':'JobPosting',title:'A native role'},{'@graph':[{'@type':'JobPosting'}]},[{'@type':['Thing','https://schema.org/JobPosting']}]] ){
+  const text=body(original(CAREERS_URL)).replace('</head>','<script type="application/ld+json">'+JSON.stringify(model)+'</script></head>')
+  assert.throws(()=>readCurrentEdelweiss(text,CAREERS_URL),/JobPosting/)
+ }
 })
-
-test('Edelweiss fails closed when the homepage, careers page, sitemap, or legacy no-public-job routes drift', async () => {
-  const edelweiss = await loadModule()
-
-  await assert.rejects(
-    edelweiss.createEdelweissScraper().run({
-      fetchPage: async (url) => {
-        if (url === edelweiss.ROOT_URL) {
-          return { status: 200, url, html: '<html><body>Unexpected homepage</body></html>' }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified homepage/i,
-  )
-
-  await assert.rejects(
-    edelweiss.createEdelweissScraper().run({
-      fetchPage: async (url) => {
-        if (url === edelweiss.ROOT_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === edelweiss.CAREERS_URL) {
-          return { status: 200, url, html: publicJobsHtml }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /informational careers page|public jobs/i,
-  )
-
-  await assert.rejects(
-    edelweiss.createEdelweissScraper().run({
-      fetchPage: async (url) => {
-        if (url === edelweiss.ROOT_URL) return { status: 200, url, html: homepageHtml }
-        if (url === edelweiss.CAREERS_URL) return { status: 200, url, html: informationalCareersHtml }
-        if (url === edelweiss.ROBOTS_URL) return { status: 404, url, html: robotsNotFoundHtml }
-        if (url === edelweiss.SITEMAP_URL) return { status: 200, url, html: '<xml></xml>' }
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified sitemap route/i,
-  )
-
-  await assert.rejects(
-    edelweiss.createEdelweissScraper().run({
-      fetchPage: async (url) => {
-        if (url === edelweiss.ROOT_URL) return { status: 200, url, html: homepageHtml }
-        if (url === edelweiss.CAREERS_URL) return { status: 200, url, html: informationalCareersHtml }
-        if (url === edelweiss.ROBOTS_URL) return { status: 404, url, html: robotsNotFoundHtml }
-        if (url === edelweiss.SITEMAP_URL) {
-          return { status: 200, url: edelweiss.SITEMAP_INDEX_URL, html: sitemapIndexXml }
-        }
-        if (url === edelweiss.VERIFIED_ROUTE_URLS[4]) {
-          return { status: 200, url, html: publicJobsHtml }
-        }
-        if (edelweiss.VERIFIED_ROUTE_URLS.slice(5).includes(url)) {
-          return { status: 200, url: edelweiss.ROOT_URL, html: homepageHtml }
-        }
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /legacy career-like route changed materially/i,
-  )
+test('Edelweiss whole observed career text and observed contact href changes fail closing reconciliation',async()=>{
+ for(const mode of ['text','contact']){const {fetchImpl}=replay((row,text,n)=>row.url===CAREERS_URL&&n===2?mode==='text'?text.replace('With diverse businesses and role requirements','With changed businesses and role requirements'):text.replace('mailto:Gr*********************@**********in.com','mailto:changed@edelweissfin.com'):text)
+  await assert.rejects(run({fetchImpl}),/Closing.*changed/)
+ }
+})
+test('Edelweiss changing opaque publisher cipher remains retained as unqualified contact data rather than pretending the complete contact model reconciles',async()=>{
+ const {fetchImpl}=replay((row,text,n)=>row.url===CAREERS_URL&&n===2?text.replace(/data-original-string=("[^"]*"|'[^']*')/g,'data-original-string="native-next-cipher"'):text),jobs=await run({fetchImpl}),audit=jobs.nativeCollectionEvidence
+ assert.equal(jobs.length,0);assert.equal(audit.observedRecordCount,1);assert.equal(audit.observedVacancyCount,0);assert.equal(audit.opaqueContactClosingQualified,false);assert.equal(audit.activeApplyVerified,false);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+ assert.notEqual(audit.nativeOpening.career.nativeContact.attrs['data-original-string'],audit.nativeClosing.career.nativeContact.attrs['data-original-string'])
+})
+test('Edelweiss canonical and body-only metadata boundaries remain strict',async()=>{
+ assert.throws(()=>readCurrentEdelweiss(body(original(ROOT_URL)).replace('href="https://www.edelweissfin.com/"','href="https://foreign.invalid/"'),ROOT_URL),/canonical/)
+ let calls=0;await assert.rejects(run({fetchText:async()=>{calls++}}),/Original HTTP metadata/);assert.equal(calls,0)
+})
+test('Edelweiss original403 and202 WAF challenge stop before body reads or alternate-source acquisition',async()=>{
+ for(const status of [403,202]){let calls=0,reads=0
+  await assert.rejects(run({fetchImpl:async url=>{calls++;return {status,url,headers:new Headers(status===202?{'x-amzn-waf-action':'challenge'}:{}),body:{getReader(){reads++;assert.fail('No denied body read')},cancel:async()=>{}}}}}),error=>error.httpStatus===status&&error.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)
+ }
+})
+test('Edelweiss frozen opaque in-flight caller cancellation survives fulfilled and rejected fetches exactly',async()=>{
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'edelweiss-'+mode});let calls=0
+  await assert.rejects(run({signal:controller.signal,fetchImpl:async url=>{calls++;controller.abort(reason);if(mode==='reject')throw Error('transport');return Object.defineProperty(new Response('opaque'),'url',{value:url})}}),error=>error===reason);assert.equal(calls,1)
+ }
 })

@@ -1,3 +1,4 @@
+import {runCurrentPivotrics} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -29,9 +30,6 @@ export const VERIFIED_MISSING_ROUTE_URLS = [
   SITEMAP_URL,
   ...NO_PUBLIC_CAREERS_ROUTE_URLS,
 ]
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /\bcareers?\b/i,
@@ -68,21 +66,6 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\s+/g, ' ')
   .trim()
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,text/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
 export const hasOfficialHomepageSignal = (html) => {
   const rawHtml = String(html ?? '')
   const normalized = normalizeWhitespace(rawHtml).toLowerCase()
@@ -113,35 +96,7 @@ export const isVerifiedMissingRoute = (page) => {
     && normalized.includes('the requested url was not found on this server.')
 }
 
-export const createPivotricsScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Pivotrics verified official homepage no longer matches the known public surface')
-    }
-
-    if (hasPublicJobsSignal(homepage.html)) {
-      throw new Error('Pivotrics homepage now appears to expose a public jobs surface')
-    }
-
-    for (const routeUrl of VERIFIED_MISSING_ROUTE_URLS) {
-      const routePage = await fetchPage(routeUrl)
-
-      if (!isVerifiedMissingRoute(routePage)) {
-        if (routeUrl === ROBOTS_URL || routeUrl === SITEMAP_URL) {
-          throw new Error(
-            `Pivotrics verified missing robots.txt or sitemap surface changed: ${routePage.url || routeUrl}`,
-          )
-        }
-
-        throw new Error(`Pivotrics verified no-public-careers route changed: ${routePage.url || routeUrl}`)
-      }
-    }
-
-    return []
-  },
-})
+export const createPivotricsScraper = () => ({run:runCurrentPivotrics})
 
 export const run = async (options = {}) => createPivotricsScraper().run(options)
 

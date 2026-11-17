@@ -1,7 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { runCurrentMowito } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -28,33 +29,17 @@ export const hasOfficialMowitoSignal = (html) => {
     && INDIA_ADDRESS_PATTERN.test(page)
 }
 
-export const hasPublicJobBoardSignal = (html) => PUBLIC_JOB_BOARD_PATTERN.test(String(html ?? ''))
+export const hasPublicJobBoardSignal = (html) => {
+  const doc = readNativeDocument(String(html ?? ''))
+  const text = doc.nodes(node => node.tag === 'root').map(node => doc.text(node)).join(' ')
+  const activeLinks = doc.nodes(node => node.tag === 'a' && node.attrs.href).map(node => node.attrs.href).join(' ')
+  return PUBLIC_JOB_BOARD_PATTERN.test(text + ' ' + activeLinks)
+}
 
 export const extractSearchResults = () => []
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: 'mowito',
-  timeoutMs: 15000,
-})
-
 export const createMowitoScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-
-    if (!hasOfficialMowitoSignal(homepageHtml)) {
-      throw new Error('Mowito official public surface changed; refusing to assume the verified careers-contact flow still applies')
-    }
-
-    if (hasPublicJobBoardSignal(homepageHtml)) {
-      throw new Error('Mowito public site now appears to expose a public job board')
-    }
-
-    return extractSearchResults(homepageHtml)
-  },
+  run: runCurrentMowito,
 })
 
 export const run = async (options = {}) => createMowitoScraper().run(options)

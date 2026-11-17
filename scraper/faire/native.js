@@ -49,11 +49,10 @@ export function faireAssets(html) {
     .map(node => node.attrs.src).filter(value => {
       try { const url = new URL(value); return url.href.startsWith(ASSETS) && !url.username && !url.password && !url.search && !url.hash } catch { return false }
     })
-  const page = one(urls.filter(url => /\/careers\/openings\/page-[a-f\d]+\.js$/.test(url)), 'current careers page module')
-  // November 10's declared 18522 layout retains JobOpenings -> imported hook ->
-  // employee/consultant public GET data flow checked below. Keep the earlier
-  // reviewed 43927 layout; a new layout still requires review.
-  const shared = one(urls.filter(url => /\/(?:43927|18522)-[a-f\d]+\.js$/.test(url)), 'current shared careers module')
+  const page = one(urls.filter(url => /\/careers\/openings\/page-[a-f\d]+(?:\.[a-z]{2}_[A-Z]{2})?\.js$/.test(url)), 'current careers page module')
+  // The November 16 localized 30770 layout retains the reviewed JobOpenings ->
+  // imported hook -> employee/consultant public GET data flow checked below.
+  const shared = one(urls.filter(url => /\/(?:43927|18522|30770)-[a-f\d]+(?:\.[a-z]{2}_[A-Z]{2})?\.js$/.test(url)), 'current shared careers module')
   return { page, shared }
 }
 
@@ -160,6 +159,7 @@ export async function runNativeFaire(options = {}) {
   requireNative(new Set(identities).size === identities.length, 'Faire: duplicate role identity across native scopes')
   signal.throwIfAborted()
   return attachInventoryEvidence(jobs, { status: 'discovery-only', surface: CAREERS, firstParty: true, listingComplete: false,
+    lifecycleCleanupAllowed: false,
     pagesFetched: 2, reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
     reason: `current-first-party-Faire-EMPLOYMENT-and-CONSULTANT-native-feeds;returned-india-details=${jobs.length};whole-company-scope-unverified` })
 }

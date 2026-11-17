@@ -41,20 +41,20 @@ test('Oxyzo local catalog captures the verified first-party careers board and pa
   assert.equal(provider.officialBrandName, 'Oxyzo Financial Services Ltd')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.homepageUrl, 'https://www.oxyzocareers.in/')
-  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/categories')
+  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/')
   assert.equal(provider.officialCareersPageUrl, 'https://www.oxyzocareers.in/categories')
   assert.equal(provider.jobPagePrefix, 'https://www.oxyzocareers.in/jobs/')
   assert.equal(provider.paginationQueryParam, 'comp-lyh6vd88_page')
   assert.equal(provider.companyDomain, 'oxyzo.in')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-declared-careers-http404-unavailable')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'numbered-query-param-pages-until-empty',
+    'own-corporate-publisher-and-exact-declared-careers-target-metadata-first',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-categories-pages+first-party-job-detail-pages',
+    'current-legal-corporate-publisher+active-declared-careers-target-http404-preserved+no-native-inventory-or-company-zero-proof',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -98,7 +98,7 @@ test('getScraperCatalog exposes Oxyzo as a runnable shared provider without alia
   assert.ok(provider)
   assert.ok(scraper)
   assert.equal(provider.companyName, 'Oxyzo')
-  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/categories')
+  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/')
   assert.equal(Object.prototype.hasOwnProperty.call(companyAliases, 'Oxyzo'), false)
 
   const report = generateCompanyCoverageReport({
@@ -122,9 +122,9 @@ test('Oxyzo hydrated local catalog stays script-runner compatible for central re
 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Oxyzo')
-  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/categories')
+  assert.equal(provider.companyCareerPage, 'https://www.oxyzocareers.in/')
   assert.equal(provider.companyDomain, 'oxyzo.in')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-declared-careers-http404-unavailable')
   assert.match(provider.modulePath, /oxyzo[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /oxyzo[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')

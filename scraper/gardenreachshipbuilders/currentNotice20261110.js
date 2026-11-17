@@ -1,4 +1,6 @@
 import {createHash} from 'node:crypto'
+import {readFileSync} from 'node:fs'
+import {isDeepStrictEqual} from 'node:util'
 import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/boundedDeclaredPublicRead.js'
 import {extractTextFromPdfBuffer} from '../../scraper-support/shared/pdfText.js'
@@ -8,6 +10,7 @@ export const PORTALS=['https://jobapply.in/grse2026/','https://jobapply.in/grse2
 const SOURCE='gardenreachshipbuilders',EMPLOYER='GARDEN REACH SHIPBUILDERS & ENGINEERS LIMITED'
 const clean=x=>decodeNativeEntities(String(x??'')).replace(/\s+/g,' ').trim(),id=x=>clean(x).replace(/\s+/g,'')
 const sha=x=>createHash('sha256').update(x).digest('hex')
+const currentDeployment=JSON.parse(readFileSync(new URL('./currentDeployment20261117.json',import.meta.url)))
 const held=message=>Object.assign(Error('Garden Reach native notice held: '+message),{code:'GRSE_NATIVE_NOTICE_UNQUALIFIED',abortRetries:true,softFailure:true,failureKind:'coverage_gap'})
 const need=(value,message)=>{if(!value)throw held(message)}
 function active(html){
@@ -77,13 +80,34 @@ export function corporateDelegates(html){
  const d=active(html)
  need(d.nodes.some(n=>/^h[1-6]$/.test(n.tag)&&d.text(n)===EMPLOYER),'current active corporate publisher changed')
  const noticeHeading='RECRUITMENT OF JOURNEYMAN & DRIVER (VEHICLE) [EMPLOYMENT NOTIFICATION -2026/05(J&OP)]'
+ let activation=null
+ if(d.nodes.some(n=>n.tag==='div'&&n.attrs.id==='CJO'&&n.attrs.class==='tabcontent active'&&d.text(n).includes(noticeHeading))){
+  // The current server uses `active`; its complete declared programme selects
+  // CJO on DOMContentLoaded and adds the CSS-visible `is-active` class. Bind
+  // that finite activation contract before following any native notice route.
+  const all=[];const visit=n=>{if(['template','noscript'].includes(n.tag))return;all.push(n);for(const child of n.children)if(typeof child!=='string')visit(child)};visit(d.root)
+  const scripts=all.filter(n=>n.tag==='script').map(n=>({attributes:n.attrs,...(n.attrs.src?{}:{sha256:sha(n.raw)})}))
+  const styles=all.filter(n=>n.tag==='style'||n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('stylesheet')).map(n=>({tag:n.tag,attributes:n.attrs,...(n.tag==='style'?{sha256:sha(n.raw)}:{})}))
+  const handlers=all.filter(n=>Object.keys(n.attrs).some(k=>/^on/i.test(k))).map(n=>({tag:n.tag,attributes:n.attrs}))
+  need(isDeepStrictEqual(scripts,currentDeployment.scripts)&&isDeepStrictEqual(styles,currentDeployment.styles)&&isDeepStrictEqual(handlers,currentDeployment.handlers),'current corporate activation programme/style/handler declarations changed')
+  const roots=all.filter(n=>(n.attrs.class??'').split(/\s+/).includes('bucket'))
+  need(roots.length===1&&d.nodes.includes(roots[0])&&isDeepStrictEqual({tag:roots[0].tag,attributes:roots[0].attrs},currentDeployment.root),'current corporate activation root changed')
+  const ownPanels=[],rootNodes=new Set();const walk=n=>{if(['template','noscript'].includes(n.tag))return;rootNodes.add(n);if(['CJO','EAT','OP'].includes(n.attrs.id))ownPanels.push(n.attrs.id);for(const child of n.children)if(typeof child!=='string')walk(child)};walk(roots[0])
+  const buttonNodes=d.nodes.filter(n=>(n.attrs.class??'').split(/\s+/).includes('tablinks'))
+  need(buttonNodes.every(n=>rootNodes.has(n)),'current corporate activation buttons outside native root')
+  const buttons=buttonNodes.map(n=>({tag:n.tag,attributes:n.attrs,text:d.text(n)}))
+  const panels=['CJO','EAT','OP'].map(id=>all.filter(n=>n.attrs.id===id).map(n=>({tag:n.tag,attributes:n.attrs})))
+  need(isDeepStrictEqual(buttons,currentDeployment.buttons)&&isDeepStrictEqual(panels,currentDeployment.panels),'current corporate activation panel/button identity changed')
+  need(isDeepStrictEqual(ownPanels,['CJO','EAT','OP']),'current corporate activation panels outside native root')
+  activation={runtimeSelectedPanel:'CJO',root:currentDeployment.root,buttons,panels,scripts,styles,sourceScopeComplete:false,lifecycleCleanupAllowed:false}
+ }
  // The current corporate page repeats id=CJO for another historical notice.
  // Bind this delegation to its complete own notice heading, not the first ID.
- const sections=d.nodes.filter(n=>n.tag==='div'&&n.attrs.id==='CJO'&&/(?:^|\s)is-active(?:\s|$)/.test(n.attrs.class??'')&&d.text(n).includes(noticeHeading))
+ const sections=d.nodes.filter(n=>n.tag==='div'&&n.attrs.id==='CJO'&&(activation?n.attrs.class==='tabcontent active':/(?:^|\s)is-active(?:\s|$)/.test(n.attrs.class??''))&&d.text(n).includes(noticeHeading))
  need(sections.length===1,'active current corporate jobs section changed')
  const own=new Set(),walk=n=>{if(!d.allowed(n))return;if(n.tag==='a'){const u=url(n.attrs.href,CAREERS);if(u)own.add(u.replace(/\/$/,''))}for(const c of n.children)if(typeof c!=='string')walk(c)};walk(sections[0])
  need(own.has('https://jobapply.in/grse2026'),'active current corporate/native delegation changed')
- return {notificationId:'2026/05(J&OP)',portal:PORTALS[0],recordKind:'corporate-current-notice-delegation'}
+ return {notificationId:'2026/05(J&OP)',portal:PORTALS[0],recordKind:'corporate-current-notice-delegation',...(activation?{corporateActivationModel:activation,reviewedAssets:currentDeployment.assets}:{})}
 }
 export function extractNoticeDetailsFromPdf(pdfText,{notificationId,listingTitle}={}){
  need(typeof pdfText==='string'&&Buffer.byteLength(pdfText)<=4e6,'PDF text missing/oversized')
@@ -101,7 +125,7 @@ export function createCurrentNoticeScraper({asOfDate=new Date().toISOString().sl
   const start=performance.now(),controller=new AbortController(),timeout=new DOMException('Garden Reach source deadline expired','TimeoutError'),timer=setTimeout(()=>controller.abort(timeout),sourceTimeoutMs),combined=signal?AbortSignal.any([signal,controller.signal]):controller.signal
   const check=()=>{signal?.throwIfAborted();if(performance.now()-start>=sourceTimeoutMs&&!controller.signal.aborted)controller.abort(timeout);combined.throwIfAborted()}
   const receipts=[],retained=[],indices=[],activeNotices=[];let observed=null,stage='corporate-delegation',documentObservation=null
-  async function read(target,pdf=false){
+  async function read(target,pdf=false,assetKind=null){
    check();const requestedAt=new Date().toISOString();let transport,p
    try{
     p=await boundedDeclaredPublicRead(target,{fetchImpl:async(...args)=>{const response=await fetchImpl(...args);transport={status:response.status,finalURL:response.url,headers:{'content-type':response.headers.get('content-type'),'content-length':response.headers.get('content-length')}};return response},signal:combined,timeoutMs:Math.min(requestTimeoutMs,Math.max(1,Math.floor(sourceTimeoutMs-(performance.now()-start)))),overflowError:held('native response exceeds16MiB')})
@@ -115,11 +139,13 @@ export function createCurrentNoticeScraper({asOfDate=new Date().toISOString().sl
    receipts.push(packet);if(bytes.length<=2*1024*1024&&retained.length<8)retained.push({...packet,url:target,bodySHA256:packet.bodySHA256,rawBodyBase64:p.bodyBase64})
    if([403,429].includes(p.status)||/<title>[^<]*(?:access denied|just a moment|attention required)/i.test(bytes.toString('utf8')))throw Object.assign(Error(`HTTP ${p.status} native public access denied`),{status:p.status,abortRetries:true})
    need(p.status===200&&p.url===target,'transport status/final URL changed')
-   need((pdf?/^application\/pdf(?:;|$)/i:/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i).test(p.headers['content-type']??''),'native response MIME changed')
+   const mime=assetKind==='javascript'?/^(?:text|application)\/javascript(?:;|$)/i:assetKind==='css'?/^text\/css(?:;|$)/i:pdf?/^application\/pdf(?:;|$)/i:/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i
+   need(mime.test(p.headers['content-type']??''),'native response MIME changed')
    need(pdf?bytes.subarray(0,5).toString()==='%PDF-':bytes.length<=4e6,'native PDF header/HTML body bound changed');check();return bytes
   }
   try{
    check();const delegation=corporateDelegates((await read(CAREERS)).toString('utf8'))
+   if(delegation.reviewedAssets){stage='corporate-activation-assets';for(const asset of delegation.reviewedAssets)need(sha(await read(asset.url,false,asset.kind))===asset.sha256,'reviewed corporate activation asset bytes changed')}
    stage='native-index'
    for(const portal of PORTALS){const notices=extractPortalNotices((await read(portal)).toString('utf8'),{portalIndexUrl:portal});indices.push({portal,notices})}
    const day=date(asOfDate.replace(/^(\d{4})-(\d{2})-(\d{2})$/,(_,y,m,d)=>`${d} ${Object.keys(month).find(k=>k.length===3&&month[k]===+m-1)} ${y}`));need(day,'invalid as-of date')

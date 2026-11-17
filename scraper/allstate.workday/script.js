@@ -1,5 +1,13 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isDeepStrictEqual } from 'node:util'
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import { parse } from 'acorn'
+import { activeHead, activeScripts, extractActiveDescription, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -40,58 +48,6 @@ const stripTags = (value) => normalizeWhitespace(
     .replace(/<[^>]+>/g, ' '),
 )
 
-const extractFirst = (pattern, value, transform = (match) => match[1]) => {
-  const match = pattern.exec(String(value ?? ''))
-  return match ? transform(match) : null
-}
-
-const extractJsonObjectAfterMarker = (value, marker) => {
-  const source = String(value ?? '')
-  const markerIndex = source.indexOf(marker)
-  if (markerIndex < 0) return null
-
-  const start = source.indexOf('{', markerIndex + marker.length)
-  if (start < 0) return null
-
-  let depth = 0
-  let inString = false
-  let escapeNext = false
-
-  for (let index = start; index < source.length; index += 1) {
-    const char = source[index]
-
-    if (inString) {
-      if (escapeNext) {
-        escapeNext = false
-      } else if (char === '\\') {
-        escapeNext = true
-      } else if (char === '"') {
-        inString = false
-      }
-      continue
-    }
-
-    if (char === '"') {
-      inString = true
-      continue
-    }
-
-    if (char === '{') {
-      depth += 1
-      continue
-    }
-
-    if (char === '}') {
-      depth -= 1
-      if (depth === 0) {
-        return source.slice(start, index + 1)
-      }
-    }
-  }
-
-  return null
-}
-
 const parseJson = (value) => {
   if (!value) return null
 
@@ -102,34 +58,44 @@ const parseJson = (value) => {
   }
 }
 
-const defaultFetchText = async (url) => {
+const readNativeResponse = async (response, url, signal) => {
+  signal?.throwIfAborted()
+  if (response.status !== 200 || response.url !== new URL(url).href) {
+    await disposeResponseBody(response, {signal, bestEffort:true})
+    signal?.throwIfAborted()
+    throw Object.assign(new Error(`Allstate native response identity changed: HTTP ${response.status} for ${url}`), {
+      status:response.status, abortRetries:true, lifecycleCleanupAllowed:false, sourceScopeComplete:false,
+    })
+  }
+  const html = await response.text()
+  signal?.throwIfAborted()
+  return html
+}
+
+const defaultFetchText = async (url, {signal} = {}) => {
   const response = await fetch(url, {
+    signal,
+    redirect: 'error',
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
   })
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
+  return readNativeResponse(response, url, signal)
 }
 
-const defaultFetchJsonpText = async (url) => {
+const defaultFetchJsonpText = async (url, {signal} = {}) => {
   const response = await fetch(url, {
+    signal,
+    redirect: 'error',
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'application/javascript,text/javascript,*/*;q=0.9',
     },
   })
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
+  return readNativeResponse(response, url, signal)
 }
 
 const normalizeCountry = (record = {}) => {
@@ -171,41 +137,104 @@ const extractMinimumQualification = (description) => {
   return matched ? normalizeWhitespace(matched[1]) : null
 }
 
-export const hasVerifiedSearchPageSignal = (html = '') => {
-  const page = String(html ?? '')
-  const normalized = normalizeWhitespace(page)
-
-  return /<title>\s*Allstate Job Search \| Jobs Near Me(?: &amp;| &) Remote \| Allstate Careers\s*<\/title>/i.test(page)
-    && normalized.includes('Open Jobs')
-    && normalized.includes('jobsapi-internal.m-cloud.io/api/')
-    && normalized.includes('org_id: "2030"')
-    && normalized.includes('ats_portalid:Workday-MuleAPI-External')
-    && normalized.includes('is_internal:allstate_careers')
-    && normalized.includes('value="India"')
+const need = (condition, message) => { if (!condition) throw new Error(`Allstate ${message}`) }
+const API_BASE = 'https://jobsapi-internal.m-cloud.io/api/'
+const SEARCH_PROGRAM_GRAPH = JSON.parse(readFileSync(new URL('./searchPrograms20261116.json',import.meta.url),'utf8'))
+// Four complete original ready registrations bind the two public widgets and
+// their CWS-presence/widget guards. Calls in an uncalled wrapper or an edited
+// control-flow plan cannot qualify merely because they appear somewhere in AST.
+const SEARCH_PROGRAMS = [
+  '1e32206037ad9a99919cca0a040b8a5c98f2b3353d8b29aab498bd278a18d9a7',
+  '03a9f85a0035c2b2c7447421d21b860a92a6a33877b509ac51f166240c950521',
+  'f54ef74d47718c9bf58544f6adab8860155feafcccd964a373cdfe20c893b816',
+  '6e3041a35e9c4a7e3133aad60aa71ea22419621b44f25aed0d50ee24412505ff',
+]
+const publishedObjects = (scripts, name) => {
+  const values = []
+  for (const script of scripts.filter(s => new RegExp(`\\bvar\\s+${name}\\s*=`).test(s))) {
+    let tree
+    try { tree = parse(script, {ecmaVersion: 'latest'}) } catch { throw new Error(`Allstate ${name} publication program changed`) }
+    for (const statement of tree.body.filter(n => n.type === 'VariableDeclaration')) {
+      for (const declaration of statement.declarations.filter(n => n.id.type === 'Identifier' && n.id.name === name)) {
+        const value = declaration.init?.type === 'ObjectExpression' ? parseJson(script.slice(declaration.init.start, declaration.init.end)) : null
+        need(value && typeof value === 'object' && !Array.isArray(value), `${name} literal native model changed`)
+        values.push(value)
+      }
+    }
+  }
+  return values
 }
+const walk = (node, visit) => {
+  if (!node || typeof node !== 'object') return
+  if (typeof node.type === 'string') visit(node)
+  for (const value of Object.values(node)) {
+    if (Array.isArray(value)) for (const child of value) walk(child, visit)
+    else if (value && typeof value === 'object') walk(value, visit)
+  }
+}
+const isJobsCall = (node, method) => node.type === 'CallExpression'
+  && node.callee.type === 'MemberExpression' && !node.callee.computed && node.callee.property.name === method
+  && node.callee.object.type === 'MemberExpression' && !node.callee.object.computed
+  && node.callee.object.object.name === 'CWS' && node.callee.object.property.name === 'jobs'
 
 export const extractSearchConfiguration = (html = '') => {
-  const page = String(html ?? '')
-  const cwsOptions = parseJson(extractJsonObjectAfterMarker(page, 'var cws_opts = '))
-  const apiBaseUrl = normalizeWhitespace(
-    extractFirst(/CWS\.jobs\.set_api\("([^"]+)"\)/i, page)
-      || cwsOptions?.api,
-  )
-  const organizationId = normalizeWhitespace(
-    extractFirst(/org_id:\s*"([^"]+)"/i, page)
-      || cwsOptions?.org,
-  ) || DEFAULT_ORGANIZATION_ID
-  const limit = Number.parseInt(extractFirst(/limit:\s*(\d+)/i, page), 10) || DEFAULT_PAGE_SIZE
-  const filters = [...String(page).matchAll(/"(ats_portalid:[^"]+|is_internal:[^"]+)"/g)]
-    .map((match) => normalizeWhitespace(match[1]))
-    .filter(Boolean)
-
-  return {
-    apiBaseUrl: apiBaseUrl || 'https://jobsapi-internal.m-cloud.io/api/',
-    organizationId,
-    filters: filters.length ? filters : [...DEFAULT_FILTERS],
-    limit,
+  const doc = readNativeDocument(html), scriptNodes = []
+  const visit = node => {
+    if (typeof node === 'string' || ['template','noscript'].includes(node.tag)) return
+    if (node.tag === 'script') { scriptNodes.push(node); return }
+    for (const child of node.children) visit(child)
   }
+  for (const root of doc.nodes(node => node.tag === 'root')) visit(root)
+  // Include the complete declared script plan, even visually hidden scripts.
+  // An extra computed setter, changed activation attribute or additional client
+  // cannot override the pinned ready callbacks while escaping a dot-call regex.
+  need(isDeepStrictEqual(scriptNodes.map(node => ({attrs:node.attrs,
+    bodySHA256:createHash('sha256').update(node.raw || '').digest('hex')})),SEARCH_PROGRAM_GRAPH),
+  'public search program execution binding changed')
+  const scripts = scriptNodes.filter(node => !node.attrs.src && !Object.hasOwn(node.attrs,'nomodule')
+    && /^(?:|(?:text|application)\/(?:java|ecma)script)$/i.test(node.attrs.type || '')).map(node => node.raw || '')
+  need(isDeepStrictEqual([...new Set(activeHead(html).titles)], ['Allstate Job Search | Jobs Near Me & Remote | Allstate Careers']), 'public job-search title changed')
+  need(doc.nodes(n => /^h[1-6]$/.test(n.tag) && doc.text(n) === 'Open Jobs').length > 0
+    && doc.nodes(n => n.tag === 'input' && n.attrs.name === 'compliment' && n.attrs.value === 'India' && n.attrs['data-facet'] === 'compliment').length === 1,
+  'active India search surface changed')
+  const options = publishedObjects(scripts, 'cws_opts')
+  need(options.length === 1 && options[0].org === DEFAULT_ORGANIZATION_ID && options[0].api === API_BASE, 'declared employer/API binding changed')
+  let apiCalls = 0, orgBindings = 0, facetBindings = 0, limit = DEFAULT_PAGE_SIZE
+  const programs = scripts.filter(s => /CWS\.jobs\.(?:set_api|set_options)\s*\(/.test(s))
+  need(isDeepStrictEqual(programs.map(script => createHash('sha256').update(script).digest('hex')), SEARCH_PROGRAMS),
+    'public search configuration execution binding changed')
+  for (const script of programs) {
+    let tree
+    try { tree = parse(script, {ecmaVersion: 'latest'}) } catch { throw new Error('Allstate public search configuration program changed') }
+    walk(tree, node => {
+      if (isJobsCall(node, 'set_api')) {
+        need(node.arguments.length === 1 && node.arguments[0].type === 'Literal'
+          && normalizeWhitespace(node.arguments[0].value) === API_BASE, 'active jobs API binding changed')
+        apiCalls++
+      }
+      if (isJobsCall(node, 'set_options')) {
+        const object = node.arguments[0]
+        need(node.arguments.length === 1 && object?.type === 'ObjectExpression', 'active search options changed')
+        for (const prop of object.properties) {
+          need(prop.type === 'Property' && !prop.computed && prop.kind === 'init', 'dynamic search options are unqualified')
+          const key = prop.key.name ?? prop.key.value, value = prop.value
+          if (key === 'org_id') { need(value.type === 'Literal' && value.value === DEFAULT_ORGANIZATION_ID, 'active employer binding changed'); orgBindings++ }
+          if (key === 'filters') {
+            need(value.type === 'ArrayExpression' && value.elements.every(n => n?.type === 'Literal')
+              && isDeepStrictEqual(value.elements.map(n => n.value), DEFAULT_FILTERS), 'active Workday facets changed')
+            facetBindings++
+          }
+          if (key === 'limit') { need(value.type === 'Literal' && Number.isSafeInteger(value.value) && value.value > 0, 'declared page size changed'); limit = value.value }
+        }
+      }
+    })
+  }
+  need(apiCalls > 0 && orgBindings > 0 && facetBindings > 0, 'active public API handoff missing')
+  return {apiBaseUrl: API_BASE, organizationId: DEFAULT_ORGANIZATION_ID, filters: [...DEFAULT_FILTERS], limit}
+}
+
+export const hasVerifiedSearchPageSignal = (html = '') => {
+  try { extractSearchConfiguration(html); return true } catch { return false }
 }
 
 export const buildJobsApiUrl = ({
@@ -233,14 +262,14 @@ export const buildJobsApiUrl = ({
   return url.toString()
 }
 
-export const extractJsonpPayload = (value = '') => {
-  const matched = String(value ?? '').match(/^[\w$.]+\(([\s\S]*)\)\s*;?\s*$/)
+export const extractJsonpPayload = (value = '', callbackName = null) => {
+  const matched = String(value ?? '').match(/^([\w$.]+)\(([\s\S]*)\)\s*;?\s*$/)
   if (!matched) {
     throw new Error('Allstate jobs API returned an unexpected JSONP payload')
   }
-
-  const payload = parseJson(matched[1])
-  if (!payload || typeof payload !== 'object') {
+  need(callbackName == null || matched[1] === callbackName, 'jobs API callback changed')
+  const payload = parseJson(matched[2])
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
     throw new Error('Allstate jobs API returned an unreadable JSONP payload')
   }
 
@@ -254,6 +283,7 @@ const mapJob = (record = {}, now = () => new Date().toISOString()) => ({
   location: normalizeLocation(record),
   city: normalizeWhitespace(record.primary_city),
   country: normalizeCountry(record),
+  countryCode: record.primary_country,
   jobId: normalizeWhitespace(record.ref || record.clientid),
   requisitionId: normalizeWhitespace(record.ref || record.clientid),
   link: normalizeWhitespace(record.seo_url || record.url),
@@ -264,6 +294,18 @@ const mapJob = (record = {}, now = () => new Date().toISOString()) => ({
   experienceRequired: extractExperienceRequired(record.description),
   publicExperienceChecked: true,
   jobDescription: stripTags(record.description),
+  sourceDescription: record.description,
+  sourceDescriptionFormat: 'HTML',
+  sourceNativeDetailPayload: structuredClone(record),
+  fullNativeAuthoredRecordAvailable: true,
+  fullNativeAuthoredCriteriaAvailable: true,
+  nativeCriteriaComplete: true,
+  sourceDetailComplete: true,
+  // The employer declares this fixed external Workday feed. Other Allstate
+  // entities and recruiting channels are outside that observed contract.
+  sourceScopeComplete: false,
+  companyInventoryComplete: false,
+  lifecycleCleanupAllowed: false,
   minimumQualification: extractMinimumQualification(record.description),
   preferredQualification: null,
   requiredSkills: [],
@@ -271,62 +313,148 @@ const mapJob = (record = {}, now = () => new Date().toISOString()) => ({
   scrapedAt: now(),
 })
 
+const validateRecord = (record, {allowBlankApplication = false} = {}) => {
+  need(record && typeof record === 'object' && !Array.isArray(record), 'native row is malformed')
+  need(record.company_name === COMPANY && record.scout_orgid === Number(DEFAULT_ORGANIZATION_ID)
+    && record.ats_portalid === 'Workday-MuleAPI-External' && record.is_internal === 'allstate_careers', 'native employer/facet binding changed')
+  need(record.primary_country === 'IN' && record.compliment === 'India', 'native India country fields are missing or contradictory')
+  need(record.entity_status === 'Open' && record.publish_to_cws === 'true' && record.is_posted === 'true' && record.hidden === 'false', 'native publication status is unqualified')
+  need(Number.isSafeInteger(record.id) && record.id > 0 && typeof record.ref === 'string' && /^R\d+$/.test(record.ref)
+    && record.clientid === record.ref && typeof record.title === 'string' && normalizeWhitespace(record.title), 'native posting identity/title is unqualified')
+  need(typeof record.description === 'string' && extractActiveDescription(record.description), 'full native description is missing')
+  let detail, apply
+  try { detail = new URL(record.url) } catch { throw new Error('Allstate native posting URLs are malformed') }
+  need(detail.origin === 'https://www.allstate.jobs' && !detail.username && !detail.password && !detail.search && !detail.hash
+    && new RegExp(`^/job/${record.id}/[^/]+/$`).test(detail.pathname), 'native corporate posting URL identity changed')
+  // An explicitly blank API application link is unresolved, even when an
+  // independently cached detail still advertises a link. Preserve its native
+  // observation and hold that row; never manufacture or carry forward a URL.
+  if (allowBlankApplication && record.seo_url === '') return false
+  try { apply = new URL(record.seo_url) } catch { throw new Error('Allstate native posting URLs are malformed') }
+  need(apply.origin === 'https://allstate.wd5.myworkdayjobs.com' && !apply.username && !apply.password && !apply.search && !apply.hash
+    && /^\/allstate_careers\/job\/[^/]+\/[^/]+\/apply$/.test(apply.pathname)
+    && new RegExp(`_${record.ref}(?:-\\d+)?/apply$`).test(apply.pathname), 'native Workday application identity changed')
+  return true
+}
+
+const verifyDetail = (html, record) => {
+  const models = publishedObjects(activeScripts(html), 'current_job')
+  need(models.length === 1, 'native detail model missing or ambiguous')
+  const model = models[0]
+  validateRecord(model)
+  // The detail template changes date formatting and adds presentation fields;
+  // identity, scope, and authored description must agree exactly with the API.
+  for (const key of ['id','ref','clientid','title','company_name','scout_orgid','ats_portalid','is_internal','primary_country','compliment','url','seo_url','description']) {
+    need(isDeepStrictEqual(model[key], record[key]), `native detail ${key} disagrees with inventory`)
+  }
+  const doc = readNativeDocument(html), descriptions = doc.nodes(n => doc.hasClass(n, 'ejd-desc')).map(n => doc.text(n))
+  // WordPress's published typography filter converts spaced hyphens to dashes.
+  // Compare every word of each visible description, preserving all criteria.
+  const typography = text => text.replace(/[\u2013\u2014]/g, '-')
+  const expected = typography(extractActiveDescription(record.description))
+  need(descriptions.length > 0 && descriptions.every(text => typography(text) === expected), 'complete visible native detail criteria disagree with inventory')
+}
+
+const callerLimit = (value, fallback, name) => {
+  const limit = value ?? fallback
+  need(limit === Infinity || (Number.isSafeInteger(limit) && limit >= 0), `invalid caller ${name}`)
+  return limit
+}
+
 export const createAllstateScraper = ({
   now = () => new Date().toISOString(),
   pageSize = DEFAULT_PAGE_SIZE,
   callbackName = DEFAULT_CALLBACK_NAME,
+  maxPages = 1000,
+  maxJobs = Infinity,
+  signal: configuredSignal,
 } = {}) => ({
   async run({
     fetchText = defaultFetchText,
     fetchJsonpText = defaultFetchJsonpText,
+    signal = configuredSignal,
+    maxPages: runMaxPages = maxPages,
+    maxJobs: runMaxJobs = maxJobs,
   } = {}) {
-    const searchPageHtml = await fetchText(JOBS_SEARCH_URL)
-    if (!hasVerifiedSearchPageSignal(searchPageHtml)) {
-      throw new Error('Allstate verified public job-search page no longer matches the trusted first-party surface')
+    const checkAbort = () => signal?.throwIfAborted()
+    const read = async (fetcher, url) => {
+      checkAbort()
+      try { const text = await fetcher(url, {signal}); checkAbort(); return text }
+      catch (error) { checkAbort(); throw error }
     }
-
-    const config = extractSearchConfiguration(searchPageHtml)
-    const effectivePageSize = Number.isInteger(pageSize) && pageSize > 0
-      ? pageSize
-      : (config.limit || DEFAULT_PAGE_SIZE)
-    const filters = [...config.filters]
-    if (!filters.includes(INDIA_FACET)) {
-      filters.push(INDIA_FACET)
+    checkAbort()
+    const pageCap = callerLimit(runMaxPages, 1000, 'maxPages'), jobCap = callerLimit(runMaxJobs, Infinity, 'maxJobs')
+    need(Number.isSafeInteger(pageSize) && pageSize > 0 && pageSize <= 1000, 'invalid caller pageSize')
+    need(typeof callbackName === 'string' && /^[A-Za-z_$][\w$]*$/.test(callbackName), 'invalid caller callback')
+    let pagesFetched = 0, total = null, snapshotsMatch = false
+    const heldNativeRecords = []
+    const jobs = [], finish = (complete, reason, opening = [], closing = []) => {
+      for (const job of jobs) job.sourceListingComplete = complete
+      attachInventoryEvidence(jobs, {status: complete ? (total === 0 ? 'verified-empty' : 'complete-inventory') : 'coverage-gap',
+        surface: JOBS_SEARCH_URL, firstParty: total !== null, listingComplete: complete, lifecycleCleanupAllowed: false,
+        reportedTotal: total, indiaFacetCount: total, pagesFetched, verifiedAt: now(), reason})
+      if (snapshotsMatch) attachSourceObservationEvidence(jobs, {source:SOURCE,recordKind:'vacancy-rows',
+        observedRecordCount:opening.length,observedVacancyCount:opening.length,sourceScopeComplete:false})
+      Object.defineProperty(jobs, 'nativeCollectionEvidence', {configurable: true, value: {
+        source: SOURCE, configuredFeed: {organizationId: DEFAULT_ORGANIZATION_ID, api: JOBS_API_URL, facets: [...DEFAULT_FILTERS, INDIA_FACET]},
+        ...(snapshotsMatch ? {recordKind:'vacancy-rows',observedRecordCount:opening.length,observedVacancyCount:opening.length} : {}),
+        reportedTotal: total, openingRawRows: structuredClone(opening), closingRawRows: structuredClone(closing),
+        closingRawRowsMatch: snapshotsMatch, heldNativeRecords: structuredClone(heldNativeRecords),
+        sourceScopeComplete: false, companyInventoryComplete: false, lifecycleCleanupAllowed: false,
+      }})
+      return jobs
     }
-
-    const jobs = []
-    const seenJobIds = new Set()
-    let offset = 1
-    let totalHits = Number.POSITIVE_INFINITY
-
-    while (offset <= totalHits) {
-      const jobsApiUrl = buildJobsApiUrl({
-        apiBaseUrl: config.apiBaseUrl,
-        organizationId: config.organizationId,
-        filters,
-        limit: effectivePageSize,
-        offset,
-        callbackName,
-      })
-
-      const payload = extractJsonpPayload(await fetchJsonpText(jobsApiUrl))
-      const records = Array.isArray(payload.queryResult) ? payload.queryResult : []
-      totalHits = Number(payload.totalHits) || 0
-
-      if (records.length === 0) break
-
-      for (const record of records) {
-        const jobId = normalizeWhitespace(record.ref || record.clientid)
-        if (!jobId || seenJobIds.has(jobId)) continue
-        seenJobIds.add(jobId)
-        jobs.push(mapJob(record, now))
-      }
-
-      if (records.length < effectivePageSize) break
-      offset += effectivePageSize
+    if (pageCap === 0 || jobCap === 0) return finish(false, 'caller-zero-cap-no-inventory-proof')
+    const config = extractSearchConfiguration(await read(fetchText, JOBS_SEARCH_URL))
+    const phase = async (opening) => {
+      const rows = [], ids = new Set(), refs = new Set()
+      let phaseTotal = null, page = 0
+      do {
+        if (page >= pageCap) return {rows, complete: false}
+        const offset = page * pageSize + 1
+        const url = buildJobsApiUrl({...config, filters: [...config.filters, INDIA_FACET], limit: pageSize, offset, callbackName})
+        const payload = extractJsonpPayload(await read(fetchJsonpText, url), callbackName)
+        pagesFetched++; page++
+        need(Number.isSafeInteger(payload.totalHits) && payload.totalHits >= 0 && Array.isArray(payload.queryResult), 'native inventory count/rows malformed')
+        if (phaseTotal === null) phaseTotal = payload.totalHits
+        need(payload.totalHits === phaseTotal && (total === null || payload.totalHits === total), 'native inventory total changed')
+        total = phaseTotal
+        const expectedSize = Math.min(pageSize, Math.max(0, phaseTotal - offset + 1))
+        need(payload.queryResult.length === expectedSize, 'native inventory page is truncated or oversized')
+        for (const record of payload.queryResult) {
+          const applicationQualified = validateRecord(record, {allowBlankApplication:true})
+          need(!ids.has(record.id) && !refs.has(record.ref), 'native inventory repeats a posting identity')
+          ids.add(record.id); refs.add(record.ref); rows.push(structuredClone(record))
+          if (opening) {
+            if (!applicationQualified) {
+              heldNativeRecords.push({reason:'native-application-url-empty',nativeRecord:structuredClone(record),
+                applicationQualified:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+              continue
+            }
+            if (jobs.length >= jobCap) return {rows, complete: false}
+            verifyDetail(await read(fetchText, record.url), record)
+            jobs.push(mapJob(record, now))
+          }
+        }
+      } while (rows.length < phaseTotal)
+      need(rows.length === phaseTotal, 'native unique row count disagrees with reported total')
+      return {rows, complete: true}
     }
-
-    return jobs
+    const opening = await phase(true)
+    if (!opening.complete) return finish(false, 'caller-cap-incomplete-configured-India-feed', opening.rows)
+    const closingConfig = extractSearchConfiguration(await read(fetchText, JOBS_SEARCH_URL))
+    need(isDeepStrictEqual(config, closingConfig), 'closing public search configuration changed')
+    const closing = await phase(false)
+    if (!closing.complete) return finish(false, 'caller-cap-incomplete-closing-configured-India-feed', opening.rows, closing.rows)
+    // Compare every authored field, not only mapped jobs, count or IDs. Ordering
+    // may vary for tied publisher sort values, so reconcile by native identity.
+    const byId = rows => [...rows].sort((a,b) => a.id-b.id)
+    need(isDeepStrictEqual(byId(opening.rows), byId(closing.rows)), 'closing full raw inventory rows changed')
+    snapshotsMatch = true
+    checkAbort()
+    return finish(heldNativeRecords.length === 0, heldNativeRecords.length
+      ? 'stable-configured-public-India-feed;native-application-url-empty-ids:'+heldNativeRecords.map(row=>row.nativeRecord.ref).join(',')+';company-scope-unqualified'
+      : 'complete-stable-configured-public-India-Workday-feed;company-scope-unqualified', opening.rows, closing.rows)
   },
 })
 

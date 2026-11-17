@@ -204,20 +204,28 @@ const publisherProfileSHA=html=>{
   {bytes:191410,frameSHA256:'127ab18db6d06f57a856f154e87f3982f561dd7d9c94ec6f843510e0a390c4ee'},
   // November 14: only the three manifest/build ID occurrences changed to
   // 2KTP-RzvGs8LpgTmW4czh. Every fixed tag, style and career factory stays pinned.
-  {bytes:191410,frameSHA256:'972817792972e380e8dd657b70f106757e40a6774e300fbce53f92dc090cfdb4'}].filter(value=>value.bytes===bytes.length)
+  {bytes:191410,frameSHA256:'972817792972e380e8dd657b70f106757e40a6774e300fbce53f92dc090cfdb4'},
+  // November 16: reviewed SSR class/style deployment oY1X2N-ueA57SlznyFxqD;
+  // career factory bytes are unchanged. Both observed responses have the
+  // same fixed page after removing the exact optional Cloudflare beacon.
+  {bytes:191394,frameSHA256:'0797eb3edd0a696674155674abb9097125c0f291666dde7ce35f167c2d72e4b5'},
+  {bytes:191033,frameSHA256:'0797eb3edd0a696674155674abb9097125c0f291666dde7ce35f167c2d72e4b5'}].filter(value=>value.bytes===bytes.length)
  assert(profiles.length>0,'corporate declaration profile changed')
- const shift=bytes.length-188301
- // Exactly two observed direct-body layouts share this fixed1475-byte region.
- // The360-byte beacon and oneLF move around the complete1114-byte inline
- // element. Only this validation copy is reordered; raw HTML/receipt hashes
- // remain original. No general script sort or execution equivalence is used.
+ const currentDeployment=bytes.length===191394||bytes.length===191033
+ const shift=currentDeployment?3093:bytes.length-188301
+ // The reviewed360-byte beacon and oneLF may precede or follow the complete
+ //1114-byte inline element; the November16 response also omits that beacon.
+ // Only this validation copy is normalized; raw HTML/receipt hashes remain
+ // original. No general script sort or execution equivalence is used.
  const regionStart=186812+shift,regionEnd=188287+shift,beaconLength=360,inlineLength=1114
  const beaconSHA='2de28415c6181ca4d754c39f8bd3751c6abdcc147ccb35f367a0675015d522d8'
  const inlineAt=start=>bytes.subarray(start,start+8).toString('ascii')==='<script>'&&bytes.subarray(start+inlineLength-9,start+inlineLength).toString('ascii')==='</script>'
  const firstLayout=inlineAt(regionStart)&&sha(bytes.subarray(regionStart+inlineLength,regionEnd-1))===beaconSHA&&bytes[regionEnd-1]===10
  const secondLayout=sha(bytes.subarray(regionStart,regionStart+beaconLength))===beaconSHA&&bytes[regionStart+beaconLength]===10&&inlineAt(regionStart+beaconLength+1)
- assert(firstLayout||secondLayout,'corporate fixed delivery layout changed')
- const profileBytes=secondLayout?Buffer.concat([bytes.subarray(0,regionStart),bytes.subarray(regionStart+beaconLength+1,regionEnd),bytes.subarray(regionStart,regionStart+beaconLength),bytes.subarray(regionStart+beaconLength,regionStart+beaconLength+1),bytes.subarray(regionEnd)]):bytes
+ const withoutBeacon=currentDeployment&&bytes.length===191033&&inlineAt(regionStart)
+ assert(firstLayout||secondLayout||withoutBeacon,'corporate fixed delivery layout changed')
+ let profileBytes=secondLayout?Buffer.concat([bytes.subarray(0,regionStart),bytes.subarray(regionStart+beaconLength+1,regionEnd),bytes.subarray(regionStart,regionStart+beaconLength),bytes.subarray(regionStart+beaconLength,regionStart+beaconLength+1),bytes.subarray(regionEnd)]):bytes
+ if(currentDeployment&&!withoutBeacon)profileBytes=Buffer.concat([profileBytes.subarray(0,regionStart+inlineLength),profileBytes.subarray(regionEnd)])
  const ranges=[[186991,187007],[187012,187028],[187221,187237]].map(([start,end])=>[start+shift,end+shift])
  const values=ranges.map(([start,end])=>{
   const value=profileBytes.subarray(start,end)

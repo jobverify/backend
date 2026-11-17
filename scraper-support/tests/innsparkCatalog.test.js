@@ -5,17 +5,17 @@ import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 import companyAliases from '../providers/companyAliases.json' with { type: 'json' }
 
-test('Innspark is registered against its verified first-party careers page', () => {
+test('Innspark is registered against its current native CMS candidate and intake surface', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'innspark')
 
   assert.ok(provider, 'Expected Innspark provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Innspark')
-  assert.equal(provider.companyCareerPage, 'https://innspark.in/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.companyCareerPage, 'https://www.innspark.in/career')
+  assert.equal(provider.atsPlatform, 'framer-current-cms-candidates-and-general-intake-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-official-careers-page')
-  assert.equal(provider.extractionStrategy, 'official-careers-page+first-party-apply-form-role-validation')
+  assert.equal(provider.paginationStrategy, 'declared-cms-chunk-observed-subset-and-own-detail-models-opening-closing')
+  assert.equal(provider.extractionStrategy, 'active-own-career+whole-reviewed-framer-programmes+bounded-native-cms-candidates+whole-rendered-details+criteria-application-and-company-scope-held')
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.companyDomain, 'innspark.in')
@@ -41,6 +41,6 @@ test('Innspark matches backlog coverage directly from provider metadata and is r
   assert.ok(scraper, 'Expected buildScrapers() to return the Innspark scraper')
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'innspark')
-  assert.equal(scraper.provider.companyCareerPage, 'https://innspark.in/careers/')
+  assert.equal(scraper.provider.companyCareerPage, 'https://www.innspark.in/career')
   assert.match(scraper.dryRunFile, /innspark[\\/]jobs\.json$/i)
 })

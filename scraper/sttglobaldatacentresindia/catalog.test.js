@@ -10,16 +10,16 @@ test('STT Global Data Centres India Private Limited is registered as a verified 
   assert.ok(provider)
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'STT Global Data Centres India Private Limited')
-  assert.equal(provider.companyCareerPage, 'https://www.sttelemediagdc.com/in-en/about-us/careers')
-  assert.equal(provider.atsPlatform, 'official-company-careers-nonlisting')
+  assert.equal(provider.companyCareerPage, 'https://www.sttgdc.com/in-en/about-us/careers')
+  assert.equal(provider.atsPlatform, 'official-current-native-general-hiring-contact-inventory-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-about-careers-and-contact-validation')
+  assert.equal(provider.paginationStrategy, 'own-home-about-careers-and-complete-declared-career-programme-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-india-homepage+verified-about-page+verified-careers-page+verified-contact-page+email-only-careers-handoff+no-public-job-records-return-empty',
+    'whole-current-legal-publisher-and-exact-general-email-invitation+media-declarations-retained+vacancy-country-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
-  assert.equal(provider.companyDomain, 'sttelemediagdc.com')
+  assert.equal(provider.companyDomain, 'sttgdc.com')
   assert.match(provider.modulePath, /sttglobaldatacentresindia[\\/]script\.js$/i)
 })
 
@@ -41,6 +41,6 @@ test('STT Global Data Centres India Private Limited matches company coverage dir
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'sttglobaldatacentresindia')
-  assert.equal(scraper.provider.companyCareerPage, 'https://www.sttelemediagdc.com/in-en/about-us/careers')
+  assert.equal(scraper.provider.companyCareerPage, 'https://www.sttgdc.com/in-en/about-us/careers')
   assert.match(scraper.dryRunFile, /sttglobaldatacentresindia[\\/]jobs\.json$/i)
 })

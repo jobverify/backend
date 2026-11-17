@@ -1,13 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {runCurrentPropTiger} from './currentNative20261117.js'
 import PROPTIGER_CATALOG from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 export const SOURCE = PROPTIGER_CATALOG.source
 export const COMPANY = PROPTIGER_CATALOG.companyName
@@ -17,25 +14,6 @@ export const PROVIDER_METADATA = PROPTIGER_CATALOG
 export const HOMEPAGE_URL = PROPTIGER_CATALOG.homepageUrl
 export const CAREERS_URL = PROPTIGER_CATALOG.companyCareerPage
 export const RIGHT_OPPORTUNITY_URL = PROPTIGER_CATALOG.officialReachOutFormAction
-
-const normalizeComparableUrl = (value) => {
-  try {
-    const url = new URL(String(value ?? ''), HOMEPAGE_URL)
-    url.hash = ''
-    return url.toString().replace(/\/$/, '')
-  } catch {
-    return String(value ?? '').replace(/\/$/, '')
-  }
-}
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
 export const extractReachOutFormAction = (html = '') => {
   const match = String(html ?? '').match(
@@ -70,27 +48,7 @@ export const hasEmptyRolesSignal = (html = '') => {
     && /Reach out to us/i.test(page)
 }
 
-export const createPropTigerScraper = () => ({
-  async run({
-    fetchText = defaultFetchText,
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasVerifiedCareersSignal(careersHtml)) {
-      throw new Error('Verified careers page changed materially')
-    }
-
-    if (!hasEmptyRolesSignal(careersHtml)) {
-      throw new Error('Verified empty open roles state changed materially')
-    }
-
-    const formAction = extractReachOutFormAction(careersHtml)
-    if (normalizeComparableUrl(formAction) !== normalizeComparableUrl(RIGHT_OPPORTUNITY_URL)) {
-      throw new Error('Verified careers page reach-out form changed materially')
-    }
-
-    return []
-  },
-})
+export const createPropTigerScraper = () => ({run:runCurrentPropTiger})
 
 export const run = async (options = {}) => createPropTigerScraper(options).run(options)
 

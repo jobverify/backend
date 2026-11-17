@@ -1,0 +1,256 @@
+{
+  "source": "rinextechnologies",
+  "provenance": "Actual currently declared own HTTP originals; finite whole executable programme variants, no role country or company inventory completeness claim",
+  "homeTitles": [
+    "Rinex — Skills for your next dimension"
+  ],
+  "careerTitles": [
+    "Careers at RineX — Make learning move"
+  ],
+  "rootDeclarations": [
+    {
+      "tag": "script",
+      "attrs": {
+        "async": "",
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-4HQRRB6WD8"
+      },
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-4HQRRB6WD8"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/assets/rinex-analytics.js"
+      },
+      "url": "https://rinex.ai/assets/rinex-analytics.js"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "type": "module",
+        "crossorigin": "",
+        "src": "/assets/index-career-slug-20261016.js"
+      },
+      "url": "https://rinex.ai/assets/index-career-slug-20261016.js"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "modulepreload",
+        "crossorigin": "",
+        "href": "/assets/ScrollTrigger-O9LLUwPw.js"
+      },
+      "url": "https://rinex.ai/assets/ScrollTrigger-O9LLUwPw.js"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "crossorigin": "",
+        "href": "/assets/index-DmUeT_pe.css"
+      },
+      "url": "https://rinex.ai/assets/index-DmUeT_pe.css"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/assets/section-access.css?v=20261016"
+      },
+      "url": "https://rinex.ai/assets/section-access.css?v=20261016"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/assets/section-access.js?v=20261016-login-audit"
+      },
+      "url": "https://rinex.ai/assets/section-access.js?v=20261016-login-audit"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "defer": "",
+        "src": "/assets/privacy-footer.js?v=20261016-policies"
+      },
+      "url": "https://rinex.ai/assets/privacy-footer.js?v=20261016-policies"
+    }
+  ],
+  "careerDeclarations": [
+    {
+      "tag": "script",
+      "attrs": {
+        "async": "",
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-4HQRRB6WD8"
+      },
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-4HQRRB6WD8"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/assets/rinex-analytics.js"
+      },
+      "url": "https://rinex.ai/assets/rinex-analytics.js"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/legacy/styles.css"
+      },
+      "url": "https://rinex.ai/legacy/styles.css"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/legacy/career.css?v=11"
+      },
+      "url": "https://rinex.ai/legacy/career.css?v=11"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/legacy/site-footer.css?v=3"
+      },
+      "url": "https://rinex.ai/legacy/site-footer.css?v=3"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "type": "module",
+        "crossorigin": "",
+        "src": "/assets/ScrollTrigger-O9LLUwPw.js"
+      },
+      "url": "https://rinex.ai/assets/ScrollTrigger-O9LLUwPw.js"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "type": "module",
+        "crossorigin": "",
+        "src": "/assets/page-motion-FBBKwr8U.js"
+      },
+      "url": "https://rinex.ai/assets/page-motion-FBBKwr8U.js"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "crossorigin": "",
+        "href": "/assets/page-motion-BcPa75c7.css"
+      },
+      "url": "https://rinex.ai/assets/page-motion-BcPa75c7.css"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/legacy/site-footer-slug-20261016.js?v=1"
+      },
+      "url": "https://rinex.ai/legacy/site-footer-slug-20261016.js?v=1"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/legacy/shared-header.js?v=1"
+      },
+      "url": "https://rinex.ai/legacy/shared-header.js?v=1"
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "defer": "",
+        "src": "/assets/privacy-footer.js?v=20261016-policies"
+      },
+      "url": "https://rinex.ai/assets/privacy-footer.js?v=20261016-policies"
+    }
+  ],
+  "mainProgramme": "https://rinex.ai/assets/index-career-slug-20261016.js",
+  "rootAssets": [
+    {
+      "url": "https://rinex.ai/assets/rinex-analytics.js",
+      "kind": "js",
+      "bytes": 1430,
+      "sha256": "58451bdd2cb24d4e61c667be5a28fb182ed00b8e3a3b000750a878da042b1f39"
+    },
+    {
+      "url": "https://rinex.ai/assets/index-career-slug-20261016.js",
+      "kind": "js",
+      "bytes": 259077,
+      "sha256": "b6346f0dbe46d2d9eec2d1960923b12ea04b2c14d86d2d0c8fbef6231acbae47"
+    },
+    {
+      "url": "https://rinex.ai/assets/ScrollTrigger-O9LLUwPw.js",
+      "kind": "js",
+      "bytes": 115584,
+      "sha256": "06b2e4766e04f9843fa66a1c1429cd0503f0de67504d1129e00917cbbe705519"
+    },
+    {
+      "url": "https://rinex.ai/assets/index-DmUeT_pe.css",
+      "kind": "css",
+      "bytes": 42976,
+      "sha256": "d07bde08f5929f50b43a3e3b041f6f4ac3ef6ef7e2b83e801dc1c24c8f9ccddb"
+    },
+    {
+      "url": "https://rinex.ai/assets/section-access.css?v=20261016",
+      "kind": "css",
+      "bytes": 1946,
+      "sha256": "bb2f018a26258a50304e191ec7477a80e604796f90bf63b1a032892f9d24a731"
+    },
+    {
+      "url": "https://rinex.ai/assets/section-access.js?v=20261016-login-audit",
+      "kind": "js",
+      "bytes": 4323,
+      "sha256": "9d1ae9c620be491f89bbc15eb1bb6cae800614e19aeb30276104caaac5de4117"
+    },
+    {
+      "url": "https://rinex.ai/assets/privacy-footer.js?v=20261016-policies",
+      "kind": "js",
+      "bytes": 1316,
+      "sha256": "1cdfa723bbef00ff48b15ebbd6733d1a22d14a112a262c8cad5a90a6c9c44b4d"
+    }
+  ],
+  "careerAssets": [
+    {
+      "url": "https://rinex.ai/legacy/styles.css",
+      "kind": "css",
+      "bytes": 17722,
+      "sha256": "031a1bb9a2ba8d27e884ec79e90135627c37a1d9b97f890cdb61bdf0bfd2313e"
+    },
+    {
+      "url": "https://rinex.ai/legacy/career.css?v=11",
+      "kind": "css",
+      "bytes": 5177,
+      "sha256": "8aa025cd3830c18f3d24bcab9c09ce9ba6ee03485726657cb4f14b86de05edfe"
+    },
+    {
+      "url": "https://rinex.ai/legacy/site-footer.css?v=3",
+      "kind": "css",
+      "bytes": 2611,
+      "sha256": "0207acdbab0fae68121e42666c944752d1a90c3b94a8f5d4173c3363a772a557"
+    },
+    {
+      "url": "https://rinex.ai/assets/page-motion-FBBKwr8U.js",
+      "kind": "js",
+      "bytes": 5072,
+      "sha256": "11074bcb1c1401febd3b32e80754638711e142d3c54c60288ef4eafe204af284"
+    },
+    {
+      "url": "https://rinex.ai/assets/page-motion-BcPa75c7.css",
+      "kind": "css",
+      "bytes": 13272,
+      "sha256": "cddd4d52705b7992264250848a03c74acffdb511f3312607b98bc5f4f4307e9d"
+    },
+    {
+      "url": "https://rinex.ai/legacy/site-footer-slug-20261016.js?v=1",
+      "kind": "js",
+      "bytes": 1620,
+      "sha256": "631adefb42642cd0a4f9db10d3bbcde2104c3b02e5ec3ff36599b98b7674f744"
+    },
+    {
+      "url": "https://rinex.ai/legacy/shared-header.js?v=1",
+      "kind": "js",
+      "bytes": 616,
+      "sha256": "740899a961f4f3badc6ce2468a5ac6cf8b4a61a8fac49a249fef32256ee4b790"
+    }
+  ]
+}

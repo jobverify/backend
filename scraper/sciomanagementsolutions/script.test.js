@@ -31,7 +31,7 @@ test('SCIO sentinel pins the current canonical placeholder shells', async () => 
 
   assert.equal(scio.SOURCE, 'sciomanagementsolutions')
   assert.equal(scio.COMPANY, 'SCIO Management Solutions')
-  assert.equal(scio.CAREERS_URL, 'https://scioms.com/careers.php')
+  assert.equal(scio.CAREERS_URL, 'https://scioms.com/careers')
   assert.equal(scio.APPLY_URL, 'https://scioms.com/apply-now.php')
   assert.equal(scio.VERIFIED_ON, '2026-08-14')
 
@@ -54,74 +54,10 @@ test('SCIO sentinel detects real public job signals once positions or job routes
   assert.equal(scio.hasPublicJobListingsSignal('<div>Job ID: SCIO-101</div>'), true)
 })
 
-test('SCIO sentinel returns [] while the canonical careers and apply routes stay on the verified placeholder shell', async () => {
-  const scio = await loadScioModule()
-  const requested = []
 
-  const jobs = await scio.createScioManagementSolutionsScraper().run({
-    fetchText: async (url) => {
-      requested.push(url)
-      if (url === scio.CAREERS_URL) return placeholderShellHtml
-      if (url === scio.APPLY_URL) return placeholderShellHtml
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
 
-  assert.deepEqual(requested, [scio.CAREERS_URL, scio.APPLY_URL])
-  assert.deepEqual(jobs, [])
-})
 
-test('SCIO falls back to the lenient transport when direct HTTP parsing breaks', async () => {
-  const scio = await loadScioModule()
-  const protocolError = new TypeError('fetch failed')
-  protocolError.cause = new Error(
-    'Response does not match the HTTP/1.1 protocol (Invalid header value char)',
-  )
 
-  const requested = []
-  const jobs = await scio.createScioManagementSolutionsScraper().run({
-    fetchText: async () => {
-      throw protocolError
-    },
-    fetchLenientText: async (url) => {
-      requested.push(url)
-      if (url === scio.CAREERS_URL) return placeholderShellHtml
-      if (url === scio.APPLY_URL) return placeholderShellHtml
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
 
-  assert.deepEqual(requested, [scio.CAREERS_URL, scio.APPLY_URL])
-  assert.deepEqual(jobs, [])
-})
 
-test('SCIO sentinel fails closed when the verified shell drifts or positions appear', async () => {
-  const scio = await loadScioModule()
-
-  await assert.rejects(
-    scio.createScioManagementSolutionsScraper().run({
-      fetchText: async (url) => {
-        if (url === scio.CAREERS_URL) {
-          return '<html><body><h1>SCIO Careers</h1></body></html>'
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified SCIO Management Solutions careers shell/i,
-  )
-
-  await assert.rejects(
-    scio.createScioManagementSolutionsScraper().run({
-      fetchText: async (url) => {
-        if (url === scio.CAREERS_URL) return placeholderShellHtml
-        if (url === scio.APPLY_URL) {
-          return '<html><body><h1>Current Openings</h1><a href="/job/associate-coding">Associate, Coding</a></body></html>'
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /exposes public positions/i,
-  )
-})
+test('Current acquisition rejects historical body-only fetchText fixtures without returning an empty inventory',async()=>{const source=await loadScioModule();let calls=0;await assert.rejects(source.createScioManagementSolutionsScraper().run({fetchText:async()=>{calls++;return placeholderShellHtml}}),/metadata-aware fetchImpl/);assert.equal(calls,0)})

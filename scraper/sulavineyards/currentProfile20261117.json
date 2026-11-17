@@ -1,0 +1,293 @@
+{
+  "source": "sulavineyards",
+  "careers": "https://sulavineyards.com/careers.php",
+  "short": "https://hr1.to//48353d",
+  "board": "https://career.hrone.cloud/career-portal?appId=MHZzWpATk5uSVkWo1EwlhxzjgIG1VZ3pIZYpNVctJxMlUQo18qUoCm-17Y6BMlv4l0Cqdw6PNgHEZKAACmWo7upw3Rwo24m2v5XmXqZ2XGYc1Q2nq54JyLnImKiiIoss&dc=sula&rqt=m8jH4bpBQbccEU8MZpSP5Q&cc=Bi-hrtIvl_-OOFM0lxy-HQ",
+  "title": "Sula Vineyards History in Producing the Best Wines in India",
+  "careersPrograms": [
+    {
+      "attrs": {
+        "src": "./js/preload.js",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-M4811KJ16M"
+      }
+    },
+    {
+      "attrs": {
+        "defer": "",
+        "src": "./js/bootstrap.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "https://www.googletagmanager.com/gtag/js?id=AW-953583214"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "cdcaf423f9211939aa7360700710c8b244638270df19f065efd0c39bd62e8a68"
+    },
+    {
+      "attrs": {
+        "async": "",
+        "src": "https://www.googletagmanager.com/gtag/js?id=AW-16608026548"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "b90c2d38f078d497a91f76dcb5b44c2387974cc43673f044e83f42fb7a3d4b43"
+    },
+    {
+      "attrs": {},
+      "sha256": "fb08bd4cccb9fd496ccecc33cdf1803bd1edca2e7bd6ade5a4e9513c7f56501b"
+    },
+    {
+      "attrs": {},
+      "sha256": "60aa4d9bc60fae9b5daf0a3904e89875a919bcdc811aad88d45d3ab1e850772b"
+    },
+    {
+      "attrs": {
+        "src": "./js/lazyload.min.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "e8a27a0cb981a59892e5a5b906a23bce27537e217d8d95277711b3c90d5c12b5"
+    },
+    {
+      "attrs": {},
+      "sha256": "aeeff662cf17ea35c5e2b725f7f094f0fe889e0ecad5e8dcd2347dcc07fbe9e1"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "sha256": "135977dfdc98efcec0dccbbbc16481c4216913828550ec780ce0d84abdec4686"
+    },
+    {
+      "attrs": {
+        "src": "./js/jquery.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "./js/ageVerifyPopup.js",
+        "type": "text/javascript"
+      }
+    },
+    {
+      "attrs": {
+        "src": "./js/jquery.rwdImageMaps.min.js",
+        "type": "text/javascript"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "c966b095a0fc23b3cde9fd03b9db1ca36ff40768ca5c99910892f3f139e16b7f"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "sha256": "b8045e2a0c2eec0669d8910864e6e3c3de17c91d702a2dd9a0701ebc2b662ad6"
+    },
+    {
+      "attrs": {},
+      "sha256": "5faac9d3dba2de225869f5618f57e47dafb0e057f8397208f18177e5baba60d2"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "js/vendor/jquery-migrate.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "js/vendor/plugins/trx_addons/js/trx_addons.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "js/__scripts.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "js/custom/custom.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "9a0accf3336023d944492023573bbb74145db2bb90fa90bc4cc0710383a27af7"
+    },
+    {
+      "attrs": {
+        "type": "module",
+        "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+        "integrity": "sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==",
+        "data-cf-beacon": "{\"version\":\"2024.11.0\",\"token\":\"aadfe73ebea94aadb5a73e284c89c7bf\",\"r\":1,\"spa\":2}",
+        "crossorigin": "anonymous"
+      }
+    }
+  ],
+  "boardPrograms": [
+    {
+      "attrs": {
+        "src": "assets/js/gtm-new.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gtm-old.js"
+      }
+    },
+    {
+      "attrs": {
+        "defer": "",
+        "src": "https://kit.fontawesome.com/b34d1b554b.js",
+        "crossorigin": "anonymous"
+      }
+    },
+    {
+      "attrs": {
+        "async": "",
+        "src": "https://www.googletagmanager.com/gtag/js?id=G-Q65Q7BLF7W"
+      }
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gtag-analytics.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "runtime.e1dcfa1dbf970e90.js",
+        "type": "module"
+      }
+    },
+    {
+      "attrs": {
+        "src": "polyfills.1775e8de9462958a.js",
+        "type": "module"
+      }
+    },
+    {
+      "attrs": {
+        "src": "scripts.705375c1c28b87d9.js",
+        "defer": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "main.e3fa9a0389ba5822.js",
+        "type": "module"
+      }
+    }
+  ],
+  "boardBases": [
+    {
+      "href": "/"
+    }
+  ],
+  "clients": [
+    {
+      "url": "https://career.hrone.cloud/runtime.e1dcfa1dbf970e90.js",
+      "bytes": 4650,
+      "sha256": "ddc1d3667d9ad72ab38134d73379d0359259b2aa803ba081188e2c2dbbf9b091"
+    },
+    {
+      "url": "https://career.hrone.cloud/main.e3fa9a0389ba5822.js",
+      "bytes": 1151297,
+      "sha256": "4aebf4ef03b5bac04fc771cec5c053f472bafa371861f04607821da3923d9ada"
+    },
+    {
+      "url": "https://career.hrone.cloud/1020.5da02bbdf228dacf.js",
+      "bytes": 1444285,
+      "sha256": "153f719692b0bd3a3d65b804d4c9eca6950e0d20f12af7bfe7b26f0241091336"
+    },
+    {
+      "url": "https://career.hrone.cloud/common.a09584e8df2a41e7.js",
+      "bytes": 15482,
+      "sha256": "d0e0133bb56dd9a8a7b402fc23632192743309e924573daeadf15ffb9e68eadf"
+    }
+  ],
+  "preview": "https://gateway.app.hrone.cloud/api/external/public/referral/CareerPortal/m8jH4bpBQbccEU8MZpSP5Q/Bi-hrtIvl_-OOFM0lxy-HQ",
+  "listing": "https://gateway.app.hrone.cloud/api/external/public/referral/CareerPosition/Details",
+  "params": {
+    "appId": "MHZzWpATk5uSVkWo1EwlhxzjgIG1VZ3pIZYpNVctJxMlUQo18qUoCm-17Y6BMlv4l0Cqdw6PNgHEZKAACmWo7upw3Rwo24m2v5XmXqZ2XGYc1Q2nq54JyLnImKiiIoss",
+    "dc": "sula",
+    "rqt": "m8jH4bpBQbccEU8MZpSP5Q",
+    "cc": "Bi-hrtIvl_-OOFM0lxy-HQ"
+  },
+  "requestTemplate": {
+    "departmentCode": "",
+    "companyCode": "",
+    "careerPortalType": "",
+    "jobTitle": "",
+    "employmentType": "",
+    "seniorityName": "",
+    "jobFunction": "",
+    "company": "",
+    "businessUnitCode": "",
+    "department": "",
+    "subDepartment": "",
+    "gradeCode": "",
+    "designationCode": "",
+    "levelCode": "",
+    "branchCode": "",
+    "subBranchCode": "",
+    "regionCode": "",
+    "locationId": "",
+    "experience": "",
+    "qualification": "",
+    "skillsName": "",
+    "urgentOpening": "",
+    "jobPosted": "",
+    "isShortUrl": false,
+    "pagination": {
+      "pageNumber": 1,
+      "pageSize": 15
+    },
+    "nationality": "",
+    "preferredLocationId": ""
+  },
+  "defaultListingRequest": {
+    "departmentCode": "",
+    "companyCode": "Bi-hrtIvl_-OOFM0lxy-HQ",
+    "careerPortalType": "m8jH4bpBQbccEU8MZpSP5Q",
+    "jobTitle": "",
+    "employmentType": "",
+    "seniorityName": "",
+    "jobFunction": "",
+    "company": "",
+    "businessUnitCode": "",
+    "department": "",
+    "subDepartment": "",
+    "gradeCode": "",
+    "designationCode": "",
+    "levelCode": "",
+    "branchCode": "",
+    "subBranchCode": "",
+    "regionCode": "",
+    "locationId": "",
+    "experience": "",
+    "qualification": "",
+    "skillsName": "",
+    "urgentOpening": "",
+    "jobPosted": "0",
+    "isShortUrl": false,
+    "pagination": {
+      "pageNumber": 1,
+      "pageSize": 15
+    },
+    "nationality": "",
+    "preferredLocationId": ""
+  }
+}

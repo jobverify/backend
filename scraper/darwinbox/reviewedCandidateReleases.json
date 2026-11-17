@@ -12,5 +12,20 @@
   "runtimePath": "/ms/candidatev2/runtime.aef58315a4bbce97.js",
   "observedRuntimeSha256": "b8eae8b2458b71aea3a04df441bf9d2407a26dcfcbb3e35677188354398fed30",
   "runtimeValidation": "The exact full-shell digest pins the runtime declaration. Runtime bytes are retained review evidence; the scraper continues to fetch and hash only the main client.",
-  "evidence": "test/test-data/darwinbox-current-client-20261105.json.gz"
+  "evidence": "test/test-data/darwinbox-current-client-20261105.json.gz",
+  "additionalReleases": [
+    {
+      "reviewedAt": "2026-11-16",
+      "sources": {
+        "keyence": "https://keyence.darwinbox.in",
+        "perfios": "https://perfios.darwinbox.in"
+      },
+      "clientPath": "/ms/candidatev2/main.aad4e9f12624d60f.js",
+      "clientSha256": "7d18a53b8cde72423e953eee67317dd245113c4ed0078dbfa65376d04354cfe1",
+      "rendererSha256": "f7407527dde48b65875a103038251af5ff7b5da89f2c64ffbff6d6479f5c0625",
+      "rendererReview": "Prior renderer pin deliberately retained. The current shell changes an unreviewed scripts bundle and removes a beacon; it must remain unreviewed-native-candidate-shell with incomplete scope and cleanup forbidden.",
+      "clientReview": "All eight previously reviewed company/group/listing/detail read and transform methods retain their complete AST after minifier-local identifier renaming. Only the exact current main bytes and these two exact employer origins are admitted.",
+      "evidence": "test/test-data/darwinbox-current-client-20261116.json.gz"
+    }
+  ]
 }

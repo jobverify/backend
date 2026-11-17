@@ -98,6 +98,16 @@ const parseCards = html => {
   const cards = elements(listing, tag => attr(tag, 'class').split(/\s+/).includes('job-list-item'))
   const allCards = elements(visible, tag => attr(tag, 'class').split(/\s+/).includes('job-list-item'))
   const links = [...visible.matchAll(/<a\b[^>]*>/gi)].filter(match => /viewDetails\d+\.html/i.test(attr(match[0], 'href')))
+  // The current server-rendered portal can publish its normal jobs section
+  // with no cards. Recognize that complete page separately from a truncated
+  // response or broken card extraction; it still supplies no authoritative
+  // total or empty declaration and therefore cannot authorize stale cleanup.
+  if (!cards.length && !allCards.length && !links.length && !hiddenJobIds(visible).length && !listing.trim()
+    && /<html\b/i.test(visible) && /<body\b/i.test(visible) && /<\/body>\s*<\/html>\s*$/i.test(visible)) {
+    const sections = elements(visible, tag => attr(tag, 'id') === 'x-section-3')
+    if (sections.length === 1 && />\s*Hot Jobs\s*</i.test(sections[0].inner)
+      && elements(sections[0].inner, tag => attr(tag, 'id') === 'job-openings').length === 1) return []
+  }
   if (!cards.length || cards.length !== allCards.length || cards.length !== links.length || cards.length !== hiddenJobIds(visible).length) throw new Error('Innoval incomplete public job inventory: cards, IDs and detail links disagree')
   const seen = new Set()
   return cards.map(card => {
@@ -147,6 +157,11 @@ export const createInnovalDigitalSolutionsScraper = ({ now = () => new Date().to
     const portal = await fetchPage([...targets][0])
     if (portal.status !== 200 || portal.url !== CAREERS_URL || !portalIdentity(portal.html)) throw new Error('Innoval verified careers portal handoff changed materially')
     const cards = parseCards(portal.html)
+    if (!cards.length) return attachInventoryEvidence([], {
+      status: 'discovery-only', surface: CAREERS_URL, firstParty: true, listingComplete: false,
+      pagesFetched: 1, reportedTotal: null, indiaFacetCount: null, verifiedAt: now(),
+      reason: 'official-careers-handoff-native-listing-empty-inventory-unqualified',
+    })
     const details = await mapWithConcurrency(cards, 3, async card => mapDetail(card, await getPage(fetchPage, card.url)))
     const jobs = details.filter((job, index) => cards[index].country === 'India' && job.closingDate >= now().slice(0, 10))
       .map(job => ({ ...job, source: SOURCE, link: job.applyUrl, scrapedAt: now() }))

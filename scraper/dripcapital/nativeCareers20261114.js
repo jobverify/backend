@@ -8,9 +8,11 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 import {buildHttpError} from '../../scraper-support/utils/fetch.js'
 
 const profile = JSON.parse(readFileSync(new URL('./currentNativeProfile20261114.json', import.meta.url), 'utf8'))
+const currentProfile = JSON.parse(readFileSync(new URL('./currentNativeProfile20261116.json', import.meta.url), 'utf8'))
+const currentCorporateEntities = JSON.parse(readFileSync(new URL('./currentCorporate20261116.json', import.meta.url), 'utf8')).originalEntities
 const sha = value => createHash('sha256').update(value).digest('hex')
 const same = (left, right) => JSON.stringify(left) === JSON.stringify(right)
-export const DRIP_NATIVE_LIMITS = Object.freeze({maxRequests: 16, maxPages: 6, maxDetails: 8,
+export const DRIP_NATIVE_LIMITS = Object.freeze({maxRequests: 16, maxPages: 6, maxDetails: 10,
   sourceTimeoutMs: 45000, requestTimeoutMs: 15000, maxEntityBytes: 4000000, maxAggregateBytes: 24000000})
 const failure = message => Object.assign(new Error('Drip Capital native text coverage gap: ' + message), {
   name: 'DripCapitalNativeCoverageError', softFailure: true, failureKind: 'coverage_gap',
@@ -32,7 +34,7 @@ const utf8 = raw => {
 // BOM, encoding or text normalization participates in this admission.
 const admitEntity = (raw, contract) => {
   if (!contract.segments) {
-    need(raw.length === contract.originalEntityBytes && sha(raw) === contract.originalEntitySHA256, 'Unreviewed complete corporate entity')
+    need([contract, ...(contract === profile.corporate ? currentCorporateEntities : [])].some(entity => raw.length === entity.originalEntityBytes && sha(raw) === entity.originalEntitySHA256), 'Unreviewed complete corporate entity')
     return utf8(raw)
   }
   let cursor = 0
@@ -81,7 +83,7 @@ const corporateDeclaration = html => {
   need(link.attrs.href === profile.declaredViewJobsURL, 'Changed corporate native handoff')
   return link.attrs.href
 }
-const boardRecords = html => {
+const boardRecords = (html, selectedProfile = profile) => {
   const {doc, text} = document(html)
   need(same(activeHead(html).titles, ['Drip Capital jobs | Drip Capital openings | Drip Capital careers']), 'Changed native board publisher title')
   need(doc.text(one(doc.nodes(node => node.tag === 'h1' && doc.text(node) === 'Jobs at Drip Capital'), 'native employer heading')) === 'Jobs at Drip Capital', 'Changed native board employer')
@@ -95,7 +97,7 @@ const boardRecords = html => {
   const advertised = text.match(/View\s+(\d+)\s+Openings/)
   need(advertised && Number(advertised[1]) === cards.length && new Set(cards.map(card => card.href)).size === cards.length, 'Incomplete or duplicate native advertised cohort')
   need(!doc.nodes(node => node.tag === 'a' && (/\bnext\b/i.test(node.attrs.rel ?? '') || /^(?:Next|Next page)$/i.test(doc.text(node)))).length, 'Unreviewed native pagination')
-  need(same(cards, profile.advertisedCards), 'Changed native card identity, country or inventory')
+  need(same(cards, selectedProfile.advertisedCards), 'Changed native card identity, country or inventory')
   return cards
 }
 const detailRecord = (entity, expected) => {
@@ -211,13 +213,19 @@ export const createNativeDripCapitalScraper = (defaults = {}) => ({
       const declared = corporateDeclaration(admitEntity(openingCorporate.raw, profile.corporate))
       await read(profile.recruiterboxURL, 'redirect-opening', 301)
       const openingBoard = await read(profile.boardURL, 'board-opening')
-      audit.openingCards = boardRecords(admitEntity(openingBoard.raw, profile.board))
+      let selectedProfile, boardHTML, originalFailure
+      for (const candidate of [profile, currentProfile]) {
+        try { boardHTML = admitEntity(openingBoard.raw, candidate.board); selectedProfile = candidate; break }
+        catch (error) { if (error?.name !== 'DripCapitalNativeCoverageError') throw error; originalFailure ??= error }
+      }
+      if (!selectedProfile) throw originalFailure
+      audit.openingCards = boardRecords(boardHTML, selectedProfile)
       audit.observedRecordCount = audit.openingCards.length; audit.observedVacancyCount = audit.openingCards.length
       audit.explicitOutOfCountryRecords = audit.openingCards.filter(card => !same(card.countries, ['India']))
       const india = audit.openingCards.filter(card => same(card.countries, ['India']))
-      need(india.length > 0 && india.length * 2 <= limits.maxDetails && same(india.map(card => card.url), profile.roles.map(role => role.url)), 'Current India scope cannot be fully paired within original detail cap')
-      for (const role of profile.roles) audit.openingRecords.push(detailRecord(await read(role.url, 'detail-opening'), role))
-      for (const role of profile.roles) {
+      need(india.length > 0 && india.length * 2 <= limits.maxDetails && same(india.map(card => card.url), selectedProfile.roles.map(role => role.url)), 'Current India scope cannot be fully paired within original detail cap')
+      for (const role of selectedProfile.roles) audit.openingRecords.push(detailRecord(await read(role.url, 'detail-opening'), role))
+      for (const role of selectedProfile.roles) {
         const record = detailRecord(await read(role.url, 'detail-closing'), role)
         audit.closingRecords.push(record)
         const opened = audit.openingRecords.find(row => row.id === role.id)
@@ -228,7 +236,7 @@ export const createNativeDripCapitalScraper = (defaults = {}) => ({
       need(audit.closingCorporateHandoffEqual, 'Corporate handoff changed on closing')
       await read(profile.recruiterboxURL, 'redirect-closing', 301)
       const closingBoard = await read(profile.boardURL, 'board-closing')
-      audit.closingCards = boardRecords(admitEntity(closingBoard.raw, profile.board))
+      audit.closingCards = boardRecords(admitEntity(closingBoard.raw, selectedProfile.board), selectedProfile)
       audit.closingInventoryEqual = same(audit.openingCards, audit.closingCards)
       need(audit.closingInventoryEqual, 'Native advertised records changed on closing')
       caller?.throwIfAborted(); source.throwIfAborted()
@@ -249,7 +257,7 @@ export const createNativeDripCapitalScraper = (defaults = {}) => ({
       attachInventoryEvidence(jobs, {status: 'coverage-gap', surface: profile.corporateURL, firstParty: true,
         listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: audit.discoveryResponses,
         reportedTotal: null, indiaFacetCount: null, verifiedAt: audit.completedAt,
-        reason: 'Finite advertised5native records closed;4India original text pairs; application, external activation and whole-company scope held.'})
+        reason: `Finite advertised${audit.openingCards.length}native records closed;${jobs.length}India original text pairs; application, external activation and whole-company scope held.`})
       return jobs
     } catch (error) {
       caller?.throwIfAborted()

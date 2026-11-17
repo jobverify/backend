@@ -63,15 +63,15 @@ test('Falabella local catalog captures the verified first-party redirect, career
     'https://falabella.airavirtual.com/offer_info/B673kVNCinevRIVb5luq?fbrefresh=STPm1B6TRvQvIzI8&id=1678396020',
   )
   assert.equal(FALABELLA_CATALOG.verifiedListingJobCount, 1899)
-  assert.equal(FALABELLA_CATALOG.atsPlatform, 'first-party-bff-job-api')
+  assert.equal(FALABELLA_CATALOG.atsPlatform, 'official-corporate-declared-recruitment-http404-inventory-unavailable')
   assert.equal(FALABELLA_CATALOG.countryFilter, 'Global')
   assert.equal(
     FALABELLA_CATALOG.paginationStrategy,
-    'single-public-external-offers-feed',
+    'literal-regional-corporate-redirect-and-active-native-handoff',
   )
   assert.equal(
     FALABELLA_CATALOG.extractionStrategy,
-    'verified-careers-redirect+verified-careers-shell+verified-public-bundle-client+verified-external-offers-api+airavirtual-apply-handoff',
+    'active-owned-corporate-recruitment-declaration+observed-native404+closing-unproven+company-scope-held',
   )
   assert.equal(FALABELLA_CATALOG.parser, 'custom-script')
   assert.equal(FALABELLA_CATALOG.normalizationProfile, 'engineering-default')

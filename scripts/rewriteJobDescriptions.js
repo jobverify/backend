@@ -13,13 +13,14 @@ import { summarizeRewriteCapacity } from '../rewriting/capacity.js';
 import { formatRewriteReport } from '../rewriting/reporting.js';
 import { CORRECTION_MODES } from '../rewriting/correctionPolicy.js';
 import { createProgressLogger } from './lib/progressLogger.js';
+import { loadPipelineJobFilter } from '../src/pipeline/jobScope.js';
 
 const apply = process.argv.includes('--apply');
 const shard = Number(process.env.JOB_DESCRIPTION_REWRITE_SHARD || 0);
 const shardCount = Number(process.env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || 1);
 const queueAsOf = process.env.JOB_DESCRIPTION_REWRITE_QUEUE_AS_OF || new Date().toISOString();
 if (!Number.isFinite(Date.parse(queueAsOf))) throw new Error('Invalid rewrite queue cutoff');
-const query = rewriteQueueQuery(new Date(queueAsOf), { shard, shardCount });
+let query = rewriteQueueQuery(new Date(queueAsOf), { shard, shardCount });
 const shardSuffix = shardCount > 1 || process.env.JOB_DESCRIPTION_REWRITE_SHARD !== undefined ? `-${shard}` : '';
 const mode = process.env.JOB_DESCRIPTION_REWRITE_MODE || 'off';
 const gpuLayers = rewriteGpuLayers(process.env.JOB_DESCRIPTION_REWRITE_GPU_LAYERS || 0);
@@ -70,6 +71,8 @@ try {
     configureMongoDns();
     setPhase('connect');
     await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: Math.max(1, Math.min(15000, deadline - Date.now())) });
+    query = rewriteQueueQuery(new Date(queueAsOf), { shard, shardCount,
+      jobFilter: await loadPipelineJobFilter('rewrite') });
     setPhase('count_queue');
     summary.queued = await Job.countDocuments(query).maxTimeMS(15000);
     if (!apply || !summary.queued) summary.reason = apply ? 'empty_queue' : 'read_only_preview';

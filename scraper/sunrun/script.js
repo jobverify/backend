@@ -6,6 +6,7 @@ import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEv
 import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
 import { workdayRequestScheduler } from '../../scraper-support/myworkday/requestScheduler.js'
 import { parseRetryAfterHeader } from '../../scraper-support/utils/fetch.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 
 export const SOURCE = 'sunrun'
 export const COMPANY = 'Sunrun'
@@ -153,6 +154,7 @@ async function verifyHandoff(fetchPage) {
   }
   const board = await fetchPage(BOARD_URL)
   if (knownMaintenance(board.url)) throw maintenanceFailure(BOARD_URL, board.url, board.status)
+  await requireNativeHttpResponse(board, BOARD_URL, { context: 'Sunrun native inventory: native public board HTTP identity unavailable' })
   if (board.status !== 200 || board.url !== BOARD_URL || typeof board.html !== 'string'
     || !/<\/html>/i.test(board.html) || !/tenant:\s*"sunrun"/.test(board.html)
     || !/siteId:\s*"Sunrun_Careers"/.test(board.html) || !/isExternal:\s*true/.test(board.html)) {
@@ -264,15 +266,13 @@ export const createSunrunScraper = (defaults = {}) => ({
           if ([response.url, redirectUrl].some(knownMaintenance)) {
             throw maintenanceFailure(url, response.url, response.status, redirectUrl)
           }
-          if (response.url !== url) fail('native response URL mismatch: ' + response.url)
+          if (response.url !== url) await requireNativeHttpResponse(response, url, { context: 'Sunrun native inventory: native response URL mismatch', signal })
           const transient = response.status === 429 || response.status >= 500 && response.status <= 599
           if (transient) {
             scheduler.recordRateLimit(url, parseRetryAfterHeader(response.headers?.get?.('retry-after')) ?? 1000 * (attempt + 1))
             if (attempt < 2) { await response.body?.cancel(); continue }
           }
-          if (response.status !== 200) throw Object.assign(Error('Sunrun native inventory: native HTTP ' + response.status + ' at ' + url),
-            { requestedUrl: url, responseUrl: response.url, httpStatus: response.status, abortRetries: true,
-              softFailure: transient, upstreamOutage: transient, failureKind: transient ? 'network_or_timeout' : 'parser_or_contract_error' })
+          await requireNativeHttpResponse(response, url, { context: 'Sunrun native inventory', signal })
           return await response.json()
         } finally { release() }
       }
@@ -284,6 +284,7 @@ export const createSunrunScraper = (defaults = {}) => ({
       const redirectUrl = location ? new URL(location, url).href : null
       if ([response.url, redirectUrl].some(knownMaintenance)) throw maintenanceFailure(url, response.url, response.status, redirectUrl)
       if (signal.aborted) throw signal.reason
+      await requireNativeHttpResponse(response, url, { context: 'Sunrun native inventory: public page HTTP identity unavailable', signal })
       return { url: response.url, status: response.status, html: await response.text() }
     })
 

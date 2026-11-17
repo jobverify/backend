@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { runReviewedThirdWaveDarwinboxInventory } from './nativeInventory.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -200,7 +201,16 @@ const nativeSpec = {
 nativeSpec.review = JSON.parse(readFileSync(new URL('./reviewedNativeScope.json', import.meta.url), 'utf8'))
 
 export const createStanPlusScraper = (defaults = {}) => ({
-  run: (options = {}) => runReviewedThirdWaveDarwinboxInventory(nativeSpec, { ...defaults, ...options }),
+  run: (options = {}) => {
+    const settings = { ...defaults, ...options }, fetchImpl = settings.fetchImpl ?? globalThis.fetch
+    return runReviewedThirdWaveDarwinboxInventory(nativeSpec, { ...settings, fetchImpl: async (url, init) => {
+      const response = await fetchImpl(url, init)
+      if (String(url).startsWith(nativeSpec.origin + '/ms/candidateapi/'))
+        await requireNativeHttpResponse(response, String(url), { context: 'StanPlus native API',
+          signal: init.signal, callerSignal: settings.signal ?? null })
+      return response
+    } })
+  },
 })
 
 export const run = async (options = {}) => createStanPlusScraper().run(options)

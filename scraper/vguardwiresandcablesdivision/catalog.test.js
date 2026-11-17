@@ -12,12 +12,12 @@ test('V-Guard Wires & Cables Division is registered against its verified first-p
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'V-Guard Wires & Cables Division')
   assert.equal(provider.companyCareerPage, 'https://www.vguard.in/careers/apply-now')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-native-declared-darwinbox-metadata-shell')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-apply-now-handoff-plus-official-ats-list-and-detail-pages')
+  assert.equal(provider.paginationStrategy, 'own-home-apply-now-and-current-exact-declared-native-board-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-apply-now-handoff+official-ats-listings+official-ats-detail-pages',
+    'whole-current-corporate-and-metadata-board-models+division-employer-criteria-country-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

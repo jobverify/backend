@@ -5,6 +5,9 @@ import { buildHttpError } from './fetch.js'
 const text = value => typeof value === 'string' ? value.trim() : ''
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 const shortRegionNames = new Intl.DisplayNames(['en'], { type: 'region', style: 'short' })
+// Workable still publishes the former English country label for ISO TR. Keep
+// aliases paired with their explicit code so they cannot resolve contradictions.
+const countryAliases = new Map([['TR', new Set(['turkey'])]])
 const fail = message => { throw Object.assign(new Error('Workable public inventory ' + message), {
   name: 'WorkableInventoryContractError', failureKind: 'parser_or_contract_error', abortRetries: true,
 }) }
@@ -73,8 +76,9 @@ const validateLocation = location => {
     || typeof location.countryCode !== 'string' || !/^[A-Z]{2}$/.test(location.countryCode) || !text(location.country)
     || /^(?:unknown|global|anywhere|worldwide|remote|multiple)$/i.test(location.country)
     || ['ZZ', 'EU', 'UN', 'XA', 'XB', 'QO'].includes(location.countryCode) || regionNames.of(location.countryCode) === location.countryCode
-    || ![regionNames.of(location.countryCode), shortRegionNames.of(location.countryCode)]
+    || !([regionNames.of(location.countryCode), shortRegionNames.of(location.countryCode)]
       .some(name => name.toLowerCase() === text(location.country).toLowerCase())
+      || countryAliases.get(location.countryCode)?.has(text(location.country).toLowerCase()))
     || ((location.countryCode === 'IN') !== /^india$/i.test(location.country))) fail('country/location scope is missing or contradictory')
   for (const key of ['city', 'region']) {
     if (location[key] != null && typeof location[key] !== 'string') fail('location fields are malformed')

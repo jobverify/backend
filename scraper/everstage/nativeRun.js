@@ -9,6 +9,10 @@ export const EMBED='https://ats.rippling.com/embed/everstage/jobs?s=https%3A%2F%
 const need=(ok,message)=>{if(!ok)throw Error('Everstage native: '+message)}
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 const plain=v=>typeof v==='string'&&v.length>0&&v.length<1000&&v.trim()===v&&!/[<>\u0000-\u001f]/.test(v)
+// This currently published role has one authored trailing ASCII space in the
+// listing, detail, application, title and Open Graph metadata. Preserve that
+// raw identity everywhere; only its rendered/public display title is trimmed.
+const roleTitle=row=>row.id==='1145846f-d627-4e0b-b386-401ea5e0fa7c'&&row.name==='BDR/ Senior BDR (Outbound, US Market) '?row.name.slice(0,-1):row.name
 const closed=/\b(?:this (?:job|position|role) is (?:no longer available|closed)|(?:we are )?no longer accepting applications|(?:job|position|role) has (?:been (?:closed|filled)|expired))\b/i
 const foreign=/\b(?:United States|USA|United Kingdom|Australia|France|Germany|Canada|Singapore|Israel|Portugal|Brazil|Philippines|Mexico|New York|Sydney|Paris|London|Tokyo|California)\b/i
 const hash=v=>createHash('sha256').update(v).digest('hex')
@@ -69,7 +73,7 @@ function listing(html,maxRecords){
  need(v.page===0&&v.pageSize===20&&v.totalPages===1&&Number.isInteger(v.totalItems)&&v.totalItems>0&&v.totalItems<=20&&v.totalItems<=maxRecords&&Array.isArray(v.items)&&v.items.length===v.totalItems,'Native pagination/total/empty contract changed; company zero unknown')
  const grouped=new Map(),seenLocations=new Set()
  for(const row of v.items){
-  envelope(row);need(uuid.test(row.id)&&plain(row.name)&&row.url===BOARD+'/'+row.id&&row.language==='en-US'&&plain(row.department?.name)&&Array.isArray(row.locations)&&row.locations.length>0,'Native listing role identity missing/mismatch')
+  envelope(row);need(uuid.test(row.id)&&plain(roleTitle(row))&&row.url===BOARD+'/'+row.id&&row.language==='en-US'&&plain(row.department?.name)&&Array.isArray(row.locations)&&row.locations.length>0,'Native listing role identity missing/mismatch')
   const prior=grouped.get(row.id),identity={id:row.id,name:row.name,url:row.url,language:row.language,department:row.department}
   if(prior)need(same(prior.identity,identity),'Native duplicate job title/identity contradiction')
   const entry=prior||{identity,locations:[],rows:[],india:null}
@@ -79,7 +83,7 @@ function listing(html,maxRecords){
  }
  const expected=[...grouped.values()].map(r=>'https://ats.rippling.com/en-US/everstage/jobs/'+r.identity.id).sort(),links=[...new Set(d.nodes(n=>n.tag==='a'&&n.attrs.href?.startsWith('https://ats.rippling.com/en-US/everstage/jobs/')).map(n=>n.attrs.href))].sort()
  need(same(expected,links),'Native listing links/data cross-surface identity mismatch')
- for(const row of grouped.values()){const anchors=d.nodes(n=>n.tag==='a'&&n.attrs.href==='https://ats.rippling.com/en-US/everstage/jobs/'+row.identity.id);need(anchors.some(n=>d.text(n)===row.identity.name)&&anchors.every(n=>[row.identity.name,'View job'].includes(d.text(n))),'Native listing rendered title/data contradiction')}
+ for(const row of grouped.values()){const anchors=d.nodes(n=>n.tag==='a'&&n.attrs.href==='https://ats.rippling.com/en-US/everstage/jobs/'+row.identity.id),title=roleTitle(row.identity);need(anchors.some(n=>d.text(n)===title)&&anchors.every(n=>[title,'View job'].includes(d.text(n))),'Native listing rendered title/data contradiction')}
  return{items:v.items,groups:[...grouped.values()],query:q.queryKey,pagination:{page:v.page,pageSize:v.pageSize,totalItems:v.totalItems,totalPages:v.totalPages}}
 }
 function deadlines(values,now){
@@ -147,7 +151,7 @@ export async function runNativeEverstage(options={}){
   const fields=['uuid','name','description','workLocations','department','employmentType','createdOn','activeJobApplication','url','companyName','unlistedFromSearch','jsonLd','validThrough','closingDate','deadline','deadline_at']
   need(fields.every(k=>same(j[k],application.a.jobPost[k])),'Native application job identity/full JD/date configuration contradiction')
   const applicationClient=await client(application.d,'apply'),locations=row.locations.map(l=>l.name),full=[company,role].filter(Boolean).join('\n\n')
-  jobs.push({source:'everstage',company:'Everstage',jobId:j.uuid,title:j.name,country:'India',city:row.locations[0].city,state:row.locations[0].state,location:locations.join(' / '),locations,sourceUrl,applyUrl,link:sourceUrl,
+  jobs.push({source:'everstage',company:'Everstage',jobId:j.uuid,title:roleTitle(row.identity),country:'India',city:row.locations[0].city,state:row.locations[0].state,location:locations.join(' / '),locations,sourceUrl,applyUrl,link:sourceUrl,
    jobDescription:full,sourceDescription:full,nativeDescriptionHtml:{...j.description},nativeContentSections:Object.entries(j.description).map(([key,html])=>({key,html,text:extractActiveDescription(html)})),nativeJobPost:j,nativeListingRecords:row.rows,nativeLocations:row.locations,nativeEmployer:j.companyName,nativeLegalEmployer:null,nativeCreatedOn:j.createdOn,nativePublicationDate:null,nativeClosingDate:closingDate,postedAt:null,postingDate:null,closingDate,...(closingDate?{sourceClosingDateIsExact:true}:{}),
    nativeEmploymentType:j.employmentType,employmentType:j.employmentType?.id??null,department:j.department.name,sourceDetailComplete:true,sourceDetailStatus:'complete',applicationAccess:'anonymous-public-advertised-native-application-entry-with-job-config-and-executable-client',applicationSubmitted:false,sourcePostingStatusEvidence:'current-native-listed-nontest-public-role+active-apply-control+matching-native-application-config',sourceListingComplete:false,sourceScopeComplete:false,sourceGlobalJobCount:null,sourceIndiaJobCount:null,sourceObservedNativeLocationRows:list.items.length,sourceObservedNativeUniqueJobs:list.groups.length,sourceObservedNativeIndiaJobs:selected.length,sourceOfficialBinding:{...binding,officialURL:CAREERS,checkedAt:now},sourceNativeListingTerminalEvidence:list.pagination,nativeExecutableClients:{role:roleClient,application:applicationClient},scrapedAt:now})
  }

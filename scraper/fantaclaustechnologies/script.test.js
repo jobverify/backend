@@ -198,141 +198,14 @@ test('fantaclaustechnologies scraper recognizes the verified redirect, homepage,
   )
 })
 
-test('fantaclaustechnologies scraper extracts the two verified public openings only', () => {
-  const jobs = extractPublicJobs(careersHtml)
-
-  assert.equal(jobs.length, 2)
-
-  assert.deepEqual(jobs[0], {
-    title: 'AI Development Engineer',
-    company: 'Fantaclaus Technologies',
-    department: null,
-    location: 'Gurugram, India',
-    city: 'Gurugram',
-    country: 'India',
-    jobId: 'fantaclaustechnologies-ai-development-engineer',
-    requisitionId: null,
-    sourceUrl: 'https://inteligenai.com/careers/',
-    applyUrl: 'https://forms.gle/DUeAiQoUSxfhQAbf6',
-    employmentType: 'Full-Time',
-    experienceRequired: null,
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: 'Gurugram | Full-Time About the Role: We are looking for smart, curious freshers to join as AI Development Engineers. Compensation: 8-12 LPA (Fixed) Eligibility Criteria: B.Tech (2025 or 2026 pass-out) JEE Main Common Rank List (CRL) Rank under 50,000.',
-  })
-
-  assert.equal(jobs[1].title, 'Campus Recruitment Drive 2027')
-  assert.equal(jobs[1].location, 'India')
-  assert.equal(jobs[1].city, null)
-  assert.equal(jobs[1].country, 'India')
-  assert.equal(jobs[1].jobId, 'fantaclaustechnologies-campus-recruitment-drive-2027')
-  assert.equal(jobs[1].applyUrl, 'https://forms.gle/urWAQBkX49cXbiYu9')
-  assert.equal(jobs[1].employmentType, null)
-  assert.match(jobs[1].jobDescription, /4th Campus Recruitment Drive/i)
-  assert.match(jobs[1].jobDescription, /placement cells/i)
+test('FantaClaus bare-city legacy sample cannot establish publisher-owned vacancy/country or turn a campus programme into an India job', () => {
+  assert.throws(() => extractPublicJobs(careersHtml), /Fantaclaus|native|publisher|document/i)
 })
 
-test('fantaclaustechnologies scraper runs end to end and fails closed on drift', async () => {
-  const requestedUrls = []
-
-  const jobs = await createFantaclausTechnologiesScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === LEGAL_HOME_URL) {
-        return { status: 200, url, html: legalRedirectHtml }
-      }
-
-      if (url === HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === SITEMAP_URL) {
-        return { status: 200, url, html: pageSitemapXml }
-      }
-
-      if (CAREERS_ALIAS_URLS.includes(url)) {
-        return { status: 200, url: CAREERS_URL, html: careersHtml }
-      }
-
-      if (url === CAREERS_URL) {
-        return { status: 200, url, html: careersHtml }
-      }
-
-      if (MISSING_ROUTE_URLS.includes(url)) {
-        return { status: 404, url, html: missingRouteHtml }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.equal(jobs.length, 2)
-  assert.deepEqual(requestedUrls, [
-    LEGAL_HOME_URL,
-    HOMEPAGE_URL,
-    SITEMAP_URL,
-    ...CAREERS_ALIAS_URLS,
-    CAREERS_URL,
-    ...MISSING_ROUTE_URLS,
-  ])
-  assert.equal(jobs[0].source, 'fantaclaustechnologies')
-  assert.equal(jobs[0].link, 'https://forms.gle/DUeAiQoUSxfhQAbf6')
-  assert.equal(jobs[0].companyCareerPage, 'https://inteligenai.com/careers/')
-  assert.equal(jobs[0].companyDomain, 'inteligenai.com')
-  assert.equal(jobs[0].atsPlatform, 'official-company-careers')
-  assert.match(jobs[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
-
-  await assert.rejects(
-    createFantaclausTechnologiesScraper().run({
-      fetchPage: async (url) => {
-        if (url === LEGAL_HOME_URL) {
-          return { status: 200, url, html: '<html><body>placeholder</body></html>' }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /legal redirect/i,
-  )
-
-  await assert.rejects(
-    createFantaclausTechnologiesScraper().run({
-      fetchPage: async (url) => {
-        if (url === LEGAL_HOME_URL) {
-          return { status: 200, url, html: legalRedirectHtml }
-        }
-
-        if (url === HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === SITEMAP_URL) {
-          return { status: 200, url, html: pageSitemapXml }
-        }
-
-        if (CAREERS_ALIAS_URLS.includes(url)) {
-          return { status: 200, url: CAREERS_URL, html: careersHtml }
-        }
-
-        if (url === CAREERS_URL) {
-          return {
-            status: 200,
-            url,
-            html: careersHtml.replace('Campus Recruitment Drive 2027', 'Unexpected Opening'),
-          }
-        }
-
-        if (MISSING_ROUTE_URLS.includes(url)) {
-          return { status: 404, url, html: missingRouteHtml }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /careers page|unexpected public opening|public openings changed materially/i,
-  )
+test('FantaClaus current acquisition requires original HTTP and does not invoke metadata-free callbacks', async () => {
+  let reads = 0
+  await assert.rejects(createFantaclausTechnologiesScraper().run({fetchPage:async()=>{
+    reads++; return {status:200,url:CAREERS_URL,html:careersHtml}
+  }}), /original HTTP metadata/i)
+  assert.equal(reads, 0)
 })

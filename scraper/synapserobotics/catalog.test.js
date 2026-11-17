@@ -27,12 +27,12 @@ test('Synapse Robotics is registered as a verified first-party route-fallback se
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, HOMEPAGE_URL)
   assert.deepEqual(provider.alternateCareerPages, CHECKED_ROUTE_URLS)
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-configured-education-publisher-recruitment-inventory-unknown')
   assert.equal(provider.countryFilter, 'United States')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-checked-first-party-route-fallbacks')
+  assert.equal(provider.paginationStrategy, 'exact-current-configured-homepage-whole-raw-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-first-party-route-shell-fallbacks+no-public-job-signals',
+    'whole-current-education-publisher-and-declarations+no-legacy-guessed-route-probes+employer-vacancy-country-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

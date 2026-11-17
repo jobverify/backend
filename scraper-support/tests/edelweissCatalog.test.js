@@ -44,15 +44,15 @@ test('Edelweiss local catalog captures the verified readable first-party careers
     EDELWEISS_CATALOG.applicationUrl,
     'mailto:GroupTalent.Acquisition@edelweissfin.com',
   )
-  assert.equal(EDELWEISS_CATALOG.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(EDELWEISS_CATALOG.atsPlatform, 'official-company-general-cv-intake-with-unqualified-vacancy-inventory')
   assert.equal(EDELWEISS_CATALOG.countryFilter, 'India')
   assert.equal(
     EDELWEISS_CATALOG.paginationStrategy,
-    'verified-homepage-plus-informational-careers-page-plus-legacy-no-public-job-routes',
+    'current-own-home-and-career-model-opening-closing-reconciliation-with-native-http-admission',
   )
   assert.equal(
     EDELWEISS_CATALOG.extractionStrategy,
-    'verified-first-party-homepage+verified-informational-careers-page-email-resume-handoff-without-public-listings+verified-legacy-no-public-job-routes-return-empty',
+    'current-first-party-career-general-cv-model+protected-contact-and-inventory-holds+observed-denial-preserved',
   )
   assert.equal(EDELWEISS_CATALOG.parser, 'custom-script')
   assert.equal(EDELWEISS_CATALOG.normalizationProfile, 'engineering-default')

@@ -1,0 +1,12 @@
+{
+  "root": "https://www.nexval.ai/",
+  "redirect": {
+    "status": 307,
+    "location": "/en"
+  },
+  "current": "https://www.nexval.ai/en",
+  "currentTitles": [
+    "Nexval.ai | AI-Powered Mortgage Underwriting & Document Intelligence"
+  ],
+  "canonical": "https://www.nexval.ai/en"
+}

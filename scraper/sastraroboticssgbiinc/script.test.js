@@ -1,383 +1,54 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-const SOURCE = 'sastraroboticssgbiinc'
-const COMPANY = 'Sastra Robotics-SGBI INC'
-const HOMEPAGE_URL = 'https://sgbi.us/'
-const CAREERS_URL = 'https://sgbi.us/career/'
-const SITEMAP_INDEX_URL = 'https://sgbi.us/sitemap_index.xml'
-const JOBS_SITEMAP_URL = 'https://sgbi.us/awsm_job_openings-sitemap.xml'
-
-const EXPECTED_PUBLIC_OPENINGS = [
-  {
-    roleId: '5639',
-    title: 'FULL STACK DEVELOPER',
-    detailUrl: 'https://sgbi.us/careers/full-stack-developer-2/',
-    categories: ['Software'],
-    employmentType: 'Full Time',
-    locationTerm: 'Cochin',
-    experienceLine: '5+ years of experience building production web applications.',
-    requiredSkills: [
-      'Proficiency in Python, React, HTML, and SQL.',
-      'Strong debugging and code review practices.',
-    ],
-  },
-  {
-    roleId: '5278',
-    title: 'Embedded Software Engineer',
-    detailUrl: 'https://sgbi.us/careers/embedded-software-engineer/',
-    categories: ['Embedded'],
-    employmentType: 'Full Time',
-    locationTerm: 'India',
-    experienceLine: '1.6 years of embedded software development experience.',
-    requiredSkills: [
-      'Experience with RTOS and Cortex-M platforms.',
-      'Hands-on debugging for UART, SPI, Ethernet, and CAN.',
-    ],
-  },
-  {
-    roleId: '4514',
-    title: 'Technical Content Writer',
-    detailUrl: 'https://sgbi.us/careers/technical-content-writer/',
-    categories: ['Marketing'],
-    employmentType: 'Full Time',
-    locationTerm: 'Cochin',
-    experienceLine: '2+ years of technical writing experience.',
-    requiredSkills: [
-      'Ability to translate robotics workflows into clear product content.',
-      'Strong editorial review and stakeholder collaboration.',
-    ],
-  },
-  {
-    roleId: '4081',
-    title: 'Quality Engineer',
-    detailUrl: 'https://sgbi.us/careers/quality-engineer/',
-    categories: ['Mechanical'],
-    employmentType: 'Full Time',
-    locationTerm: 'Cochin',
-    experienceLine: '3+ years of quality engineering experience.',
-    requiredSkills: [
-      'Experience with process audits and corrective actions.',
-      'Comfort working with multidisciplinary robotics teams.',
-    ],
-  },
-  {
-    roleId: '3963',
-    title: 'Fitter Machinist',
-    detailUrl: 'https://sgbi.us/careers/job-summary/',
-    categories: ['Mechanical'],
-    employmentType: 'Internship',
-    locationTerm: 'Cochin',
-    experienceLine: '0-1 years of machining workshop exposure.',
-    requiredSkills: [
-      'Ability to support assembly and fabrication tasks.',
-      'Comfort reading mechanical drawings and instructions.',
-    ],
-  },
-  {
-    roleId: '3863',
-    title: 'Full Stack Developer',
-    detailUrl: 'https://sgbi.us/careers/full-stack-developer/',
-    categories: ['Information Technology (IT)'],
-    employmentType: 'Full Time',
-    locationTerm: 'Cochin',
-    experienceLine: '4+ years of full-stack software development experience.',
-    requiredSkills: [
-      'Strong React and backend API development skills.',
-      'Comfort collaborating with QA and product teams.',
-    ],
-  },
-  {
-    roleId: '3678',
-    title: 'Business Development Executive',
-    detailUrl: 'https://sgbi.us/careers/inside-sales-executive/',
-    categories: ['Sales'],
-    employmentType: 'Full Time',
-    locationTerm: 'Cochin',
-    experienceLine: '3+ years of B2B inside sales experience.',
-    requiredSkills: [
-      'Strong verbal and written communication skills.',
-      'Ability to manage outbound prospecting and CRM hygiene.',
-    ],
-  },
-]
-
-const loadSastraModule = async () => import('./script.js')
-
-const HOMEPAGE_HTML = `
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>Robotic Testing Solutions for Real Devices | SGBI</title>
-    <link rel="canonical" href="https://sgbi.us/" />
-    <meta name="description" content="SGBI delivers robotic testing solutions for real devices, helping teams automate testing for mobile apps, POS systems, and smart devices efficiently." />
-  </head>
-  <body>
-    <nav>
-      <a href="https://sgbi.us/career/">Career</a>
-    </nav>
-    <main>
-      <h1>Quality Testing made Faster &amp; Accurate with Real Robots</h1>
-      <p>Trusted by industry leaders for robotic testing automation.</p>
-    </main>
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Corporation","name":"SGBI","legalName":"SGBI Inc","email":"contact@sgbi.us"}
-    </script>
-  </body>
-</html>
-`
-
-const SITEMAP_INDEX_XML = `
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap><loc>https://sgbi.us/page-sitemap.xml</loc></sitemap>
-  <sitemap><loc>https://sgbi.us/awsm_job_openings-sitemap.xml</loc></sitemap>
-</sitemapindex>
-`
-
-const JOBS_SITEMAP_XML = `
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sgbi.us/careers/</loc></url>
-  ${EXPECTED_PUBLIC_OPENINGS.map((opening) => `<url><loc>${opening.detailUrl}</loc></url>`).join('\n')}
-</urlset>
-`
-
-const CAREERS_HTML = `
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>Robotic Test Automation Careers | AI Robotics Jobs at SGBI</title>
-    <link rel="canonical" href="https://sgbi.us/career/" />
-    <meta name="description" content="Explore robotic test automation careers at SGBI. Join our AI-powered robotics team and build innovative automation testing solutions." />
-    <link rel="stylesheet" id="awsm-jobs-style-css" href="https://sgbi.us/wp-content/plugins/wp-job-openings/assets/css/style.min.css" />
-  </head>
-  <body>
-    <h1>Life at SGBI</h1>
-    <h2>Career Opportunities</h2>
-    <p>Join our AI-powered robotics team and build innovative automation testing solutions.</p>
-    <div class="awsm-job-wrap">
-      <div class="awsm-job-listings awsm-lists" data-listings="${EXPECTED_PUBLIC_OPENINGS.length}">
-        ${EXPECTED_PUBLIC_OPENINGS.map((opening) => `
-          <div class="awsm-job-listing-item awsm-list-item" id="awsm-list-item-${opening.roleId}">
-            <div class="awsm-job-item">
-              <div class="awsm-list-left-col">
-                <h2 class="awsm-job-post-title">
-                  <a href="${opening.detailUrl}">${opening.title.replace(/&/g, '&#038;')}</a>
-                </h2>
-                <div class="awsm-job-specification-wrapper">
-                  <div class="awsm-job-specification-item awsm-job-specification-job-category">
-                    ${opening.categories.map((category) => `<span class="awsm-job-specification-term">${category}</span>`).join(' ')}
-                  </div>
-                  <div class="awsm-job-specification-item awsm-job-specification-job-type">
-                    <span class="awsm-job-specification-term">${opening.employmentType}</span>
-                  </div>
-                  <div class="awsm-job-specification-item awsm-job-specification-job-location">
-                    <span class="awsm-job-specification-term">${opening.locationTerm}</span>
-                  </div>
-                </div>
-                <div class="awsm-job-more-container">
-                  <a class="awsm-job-more" href="${opening.detailUrl}">More Details <span></span></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        `).join('\n')}
-      </div>
-    </div>
-    <footer>
-      <a href="mailto:contact@sgbi.us">contact@sgbi.us</a>
-      <div>SGBI Inc</div>
-    </footer>
-  </body>
-</html>
-`
-
-const createDetailHtml = (opening) => `
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>${opening.title.replace(/&/g, '&amp;')} | SGBI</title>
-    <link rel="canonical" href="${opening.detailUrl}" />
-  </head>
-  <body>
-    <div class="awsm-job-content">
-      <h1 class="awsm-jobs-single-title">${opening.title.replace(/&/g, '&#038;')}</h1>
-      <div class="awsm-job-specifications-container">
-        <div class="awsm-job-specification-item awsm-job-specification-job-category">
-          <span class="awsm-job-specification-label"><strong>Job Category: </strong></span>
-          ${opening.categories.map((category) => `<span class="awsm-job-specification-term">${category}</span>`).join(' ')}
-        </div>
-        <div class="awsm-job-specification-item awsm-job-specification-job-type">
-          <span class="awsm-job-specification-label"><strong>Job Type: </strong></span>
-          <span class="awsm-job-specification-term">${opening.employmentType}</span>
-        </div>
-        <div class="awsm-job-specification-item awsm-job-specification-job-location">
-          <span class="awsm-job-specification-label"><strong>Job Location: </strong></span>
-          <span class="awsm-job-specification-term">${opening.locationTerm}</span>
-        </div>
-      </div>
-      <div class="awsm-job-entry-content entry-content">
-        <p>SGBI builds robotic testing automation products for real-world devices.</p>
-        <h3>Requirements</h3>
-        <ul>
-          <li>${opening.experienceLine}</li>
-          ${opening.requiredSkills.map((skill) => `<li>${skill}</li>`).join('')}
-        </ul>
-      </div><!-- .awsm-job-entry-content -->
-    </div>
-    <div class="awsm-job-form">
-      <h2>Apply for this position</h2>
-      <form id="awsm-application-form">
-        <input id="awsm-applicant-name" />
-        <input id="awsm-applicant-email" />
-        <input id="awsm-applicant-phone" />
-        <label>Upload CV/Resume</label>
-      </form>
-    </div>
-  </body>
-</html>
-`
-
-test('Sastra Robotics-SGBI INC scraper recognizes the verified homepage, sitemap index, jobs sitemap, and careers page', async () => {
-  const sastra = await loadSastraModule()
-
-  assert.equal(sastra.SOURCE, SOURCE)
-  assert.equal(sastra.COMPANY, COMPANY)
-  assert.equal(sastra.HOMEPAGE_URL, HOMEPAGE_URL)
-  assert.equal(sastra.CAREERS_URL, CAREERS_URL)
-  assert.equal(sastra.SITEMAP_INDEX_URL, SITEMAP_INDEX_URL)
-  assert.equal(sastra.JOBS_SITEMAP_URL, JOBS_SITEMAP_URL)
-  assert.equal(sastra.hasOfficialHomepageSignal(HOMEPAGE_HTML), true)
-  assert.equal(sastra.hasVerifiedSitemapIndexSignal(SITEMAP_INDEX_XML), true)
-  assert.equal(sastra.hasVerifiedJobsSitemapSignal(JOBS_SITEMAP_XML), true)
-  assert.equal(sastra.hasOfficialCareersSignal(CAREERS_HTML), true)
+import {run} from './script.js'
+import {sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261117.json.gz',import.meta.url))))
+const row=url=>fixture.responses.find(r=>(r.url??r.finalUrl)===url),body=r=>Buffer.from(r.bodyBase64,'base64').toString()
+function replay(edit=(r,text)=>text){const counts=new Map(),calls=[];return {calls,fetchImpl:async(url,init)=>{const r=row(url);assert.ok(r,'No actual source original for '+url);assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');assert.equal(init.body,undefined);const n=(counts.get(url)??0)+1;counts.set(url,n);calls.push(url);return Object.defineProperty(new Response(edit(r,body(r),n),{status:r.status,headers:r.headers}),'url',{value:r.url??r.finalUrl})}}}
+import {HOMEPAGE_URL,CAREERS_URL,readCurrentSgbi,readCurrentSgbiListing,readCurrentSgbiDetail} from './currentNative20261117.js'
+const openingModel=()=>readCurrentSgbiListing(readCurrentSgbi(body(row(CAREERS_URL)),CAREERS_URL)),card=id=>openingModel().cards.find(c=>c.roleId===id),detail=id=>{const c=card(id);return readCurrentSgbiDetail(readCurrentSgbi(body(row(c.detailUrl)),c.detailUrl),c)}
+test('SGBI full native criteria/schema and all application fields retain literal job country and historical native dates without corporate country inference',()=>{
+ const india=detail('5278'),cochin=detail('5639');assert.equal(india.country,'India');assert.equal(cochin.country,null);assert.equal(cochin.location,'Cochin');assert.equal(india.postingDate,'2025-08-02T04:23:54+00:00');assert.equal(india.closingDate,null)
+ assert.ok(india.jobDescription.includes('32-bit microcontrollers'));assert.ok(india.jobDescription.includes('By using this form'));assert.ok(india.sourceNativeApplicationFields.some(n=>n.tag==='textarea'));assert.ok(india.sourceNativeApplicationFields.some(n=>n.attrs.name==='awsm_nonce'));assert.equal(india.wholeNativePublicConfiguration.job_id,'5278');assert.equal(india.publicApplicationEligibilityQualified,false)
+ assert.ok(cochin.wholeNativeJobPosting.description.includes('About Company'));assert.ok(cochin.wholeNativeDescription);assert.ok(cochin.wholeOriginalHTML.length>100000)
+})
+test('SGBI complete actual source cohort is dynamic rather than seven frozen role titles or IDs',()=>{
+ const m=readCurrentSgbi(body(row(CAREERS_URL)),CAREERS_URL),listing=readCurrentSgbiListing(m),first=listing.cards[0].wholeNativeCard,html=body(row(CAREERS_URL)),at=html.indexOf('id="awsm-list-item-'+listing.cards[0].roleId+'"');assert.ok(at>0);assert.ok(first)
+ const changed=html.replace('id="awsm-list-item-5639"','id="awsm-list-item-9001"');assert.equal(readCurrentSgbiListing(readCurrentSgbi(changed,CAREERS_URL)).cards[0].roleId,'9001');assert.equal(listing.cards.length,7)
+})
+test('SGBI native employer, ID, country agreement and complete rendered/structured eligibility remain mandatory',()=>{
+ const c=card('5278'),html=body(row(c.detailUrl))
+ for(const mutate of [s=>s.replace('"name":"SGBI"','"name":"Other Employer"'),s=>s.replace('name="awsm_job_id" value="5278"','name="awsm_job_id" value="9001"'),s=>s.replace('"address":"India"','"address":"United States"'),s=>s.replace('Worked on 32-bit microcontrollers','Worked on 64-bit microcontrollers')])assert.throws(()=>readCurrentSgbiDetail(readCurrentSgbi(mutate(html),c.detailUrl),c),/identity|locations disagree|criteria disagree/)
+ const home=body(row(HOMEPAGE_URL));assert.throws(()=>readCurrentSgbi(home.replace('href="https://sgbi.us/"','href="https://foreign.invalid/"'),HOMEPAGE_URL),/canonical/)
+})
+test('SGBI full closing native role criteria and application constraints reject changed native authored requirements',async()=>{
+ const {fetchImpl}=replay((r,text,n)=>r.url.endsWith('/embedded-software-engineer/')&&n===2?text.replaceAll('Worked on 32-bit microcontrollers','Worked on 64-bit microcontrollers'):text);await assert.rejects(run({fetchImpl}),/Closing complete native role/)
+})
+test('SGBI closing app field change cannot publish stale native eligibility and positive result retains unknown company scope',async()=>{
+ const {fetchImpl}=replay((r,text,n)=>r.url.endsWith('/embedded-software-engineer/')&&n===2?text.replace('accept=".pdf, .doc, .docx"','accept=".pdf"'):text);await assert.rejects(run({fetchImpl}),/form contract|Closing/)
+ const jobs=await run(replay());assert.equal(jobs.length,1);assert.equal(sourceLifecycleCleanupForbidden(jobs),true);assert.equal(jobs[0].remoteStatus,null);assert.equal(jobs.nativeCollectionEvidence.companyIndiaTotal,null)
 })
 
-test('Sastra Robotics-SGBI INC scraper extracts the seven verified role cards and detail metadata', async () => {
-  const sastra = await loadSastraModule()
-
-  assert.deepEqual(
-    sastra.extractCurrentRoleCards(CAREERS_HTML),
-    EXPECTED_PUBLIC_OPENINGS.map(({ roleId, title, detailUrl }) => ({ roleId, title, detailUrl })),
-  )
-
-  const detail = sastra.extractDetailPage({
-    title: EXPECTED_PUBLIC_OPENINGS[0].title,
-    detailUrl: EXPECTED_PUBLIC_OPENINGS[0].detailUrl,
-    html: createDetailHtml(EXPECTED_PUBLIC_OPENINGS[0]),
-  })
-
-  assert.deepEqual(detail, {
-    title: 'FULL STACK DEVELOPER',
-    department: 'Software',
-    location: 'Cochin, India',
-    city: 'Cochin',
-    country: 'India',
-    employmentType: 'Full Time',
-    applyUrl: 'https://sgbi.us/careers/full-stack-developer-2/',
-    experienceRequired: '5+ years',
-    requiredSkills: [
-      EXPECTED_PUBLIC_OPENINGS[0].experienceLine,
-      ...EXPECTED_PUBLIC_OPENINGS[0].requiredSkills,
-    ],
-    jobDescription: [
-      'SGBI builds robotic testing automation products for real-world devices.',
-      'Requirements',
-      EXPECTED_PUBLIC_OPENINGS[0].experienceLine,
-      ...EXPECTED_PUBLIC_OPENINGS[0].requiredSkills,
-    ].join('\n'),
-  })
+test('SGBI original403 and202 WAF priority preserve native denial before any body read without alternate requests',async()=>{
+ for(const status of [403,202]){let calls=0,reads=0;await assert.rejects(run({fetchImpl:async url=>{calls++;return {status,url,headers:new Headers(status===202?{'x-amzn-waf-action':'challenge'}:{}),body:{getReader(){reads++;assert.fail('No denied entity consumption')},cancel:async()=>{}}}}}),e=>e.httpStatus===status&&e.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)}
+})
+test('SGBI body-only callback cannot qualify native acquisition and fulfilled/rejected opaque caller abort keeps exact frozen owner reason',async()=>{
+ let calls=0;await assert.rejects(run({fetchText:async()=>{calls++;assert.fail('Body-only callback must not run')}}),/Original HTTP metadata/);assert.equal(calls,0)
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'SGBI-'+mode});await assert.rejects(run({signal:controller.signal,fetchImpl:async url=>{controller.abort(reason);if(mode==='reject')throw Error('transport');return Object.defineProperty(new Response('opaque'),'url',{value:url})}}),e=>e===reason)}
 })
 
-test('Sastra Robotics-SGBI INC scraper run() validates the first-party surface and returns the seven current jobs', async () => {
-  const sastra = await loadSastraModule()
-  const fetchCounts = new Map()
-
-  const fetchPage = async (url) => {
-    fetchCounts.set(url, (fetchCounts.get(url) || 0) + 1)
-
-    if (url === HOMEPAGE_URL) return { status: 200, url, html: HOMEPAGE_HTML }
-    if (url === SITEMAP_INDEX_URL) return { status: 200, url, html: SITEMAP_INDEX_XML }
-    if (url === JOBS_SITEMAP_URL) return { status: 200, url, html: JOBS_SITEMAP_XML }
-    if (url === CAREERS_URL) return { status: 200, url, html: CAREERS_HTML }
-
-    const opening = EXPECTED_PUBLIC_OPENINGS.find((item) => item.detailUrl === url)
-    if (opening) return { status: 200, url, html: createDetailHtml(opening) }
-
-    throw new Error(`Unexpected URL ${url}`)
-  }
-
-  const jobs = await sastra.createSastraRoboticsSgbiIncScraper({
-    now: () => '2026-07-11T03:00:00.000Z',
-  }).run({ fetchPage })
-
-  assert.equal(jobs.length, 7)
-  assert.deepEqual(jobs[0], {
-    title: 'FULL STACK DEVELOPER',
-    company: COMPANY,
-    department: 'Software',
-    location: 'Cochin, India',
-    city: 'Cochin',
-    country: 'India',
-    jobId: 'sastraroboticssgbiinc-5639',
-    requisitionId: '5639',
-    sourceUrl: 'https://sgbi.us/careers/full-stack-developer-2/',
-    applyUrl: 'https://sgbi.us/careers/full-stack-developer-2/',
-    employmentType: 'Full Time',
-    experienceRequired: '5+ years',
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [
-      '5+ years of experience building production web applications.',
-      'Proficiency in Python, React, HTML, and SQL.',
-      'Strong debugging and code review practices.',
-    ],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: [
-      'SGBI builds robotic testing automation products for real-world devices.',
-      'Requirements',
-      '5+ years of experience building production web applications.',
-      'Proficiency in Python, React, HTML, and SQL.',
-      'Strong debugging and code review practices.',
-    ].join('\n'),
-    remoteStatus: 'On-site',
-    source: SOURCE,
-    link: 'https://sgbi.us/careers/full-stack-developer-2/',
-    scrapedAt: '2026-07-11T03:00:00.000Z',
-    companyCareerPage: CAREERS_URL,
-    companyDomain: 'sgbi.us',
-    atsPlatform: 'official-company-careers',
-  })
-  assert.equal(fetchCounts.get(HOMEPAGE_URL), 1)
-  assert.equal(fetchCounts.get(SITEMAP_INDEX_URL), 1)
-  assert.equal(fetchCounts.get(JOBS_SITEMAP_URL), 1)
-  assert.equal(fetchCounts.get(CAREERS_URL), 1)
-  assert.equal(EXPECTED_PUBLIC_OPENINGS.every((opening) => fetchCounts.get(opening.detailUrl) === 1), true)
+test('SGBI newly published closing or applicant qualification schema fields require native review before emitting a role',()=>{
+ const c=card('5278'),html=body(row(c.detailUrl))
+ for(const [key,value] of [['validThrough','2026-11-01T00:00:00Z'],['qualifications','A newly published mandatory certification'],['applicantLocationRequirements',{'@type':'Country',name:'United States'}]]){const changed=html.replace('"datePosted":',JSON.stringify(key)+':'+JSON.stringify(value)+',"datePosted":');assert.notEqual(changed,html);assert.throws(()=>readCurrentSgbiDetail(readCurrentSgbi(changed,c.detailUrl),c),/schema field|unreviewed/i)}
 })
 
-test('Sastra Robotics-SGBI INC scraper fails closed when the verified public role cards drift', async () => {
-  const sastra = await loadSastraModule()
-  const driftedCareersHtml = CAREERS_HTML.replace(
-    'Business Development Executive',
-    'Senior Business Development Executive',
-  )
+test('SGBI target relationship is explicit in current own legal organization and Sastra copyright rather than social handles',()=>{
+ const html=body(row(HOMEPAGE_URL)),m=readCurrentSgbi(html,HOMEPAGE_URL);assert.equal(m.nativeSastraRelationship.nativeLegalName,'SGBI Inc');assert.ok(m.nativeSastraRelationship.nativeOrganizationDescription.includes('began in 2013 with Sastra Robotics.'));assert.ok(m.nativeSastraRelationship.nativeCopyrightText.includes('SGBI Inc | Sastra Robotics | All Right Reserved'));assert.equal(m.nativeSastraRelationship.relationshipQualified,true)
+ assert.throws(()=>readCurrentSgbi(html.replaceAll('SGBI Inc | Sastra Robotics | All Right Reserved','SGBI Inc | Other Group | All Right Reserved'),HOMEPAGE_URL),/Sastra.*relationship|relationship.*Sastra/i)
+})
 
-  await assert.rejects(
-    sastra.createSastraRoboticsSgbiIncScraper().run({
-      fetchPage: async (url) => {
-        if (url === HOMEPAGE_URL) return { status: 200, url, html: HOMEPAGE_HTML }
-        if (url === SITEMAP_INDEX_URL) return { status: 200, url, html: SITEMAP_INDEX_XML }
-        if (url === JOBS_SITEMAP_URL) return { status: 200, url, html: JOBS_SITEMAP_XML }
-        if (url === CAREERS_URL) return { status: 200, url, html: driftedCareersHtml }
-
-        const opening = EXPECTED_PUBLIC_OPENINGS.find((item) => item.detailUrl === url)
-        if (opening) return { status: 200, url, html: createDetailHtml(opening) }
-
-        throw new Error(`Unexpected URL ${url}`)
-      },
-    }),
-    /current public openings changed materially/i,
-  )
+test('SGBI unreviewed nested native location or employer qualification fields cannot be ignored',()=>{
+ const c=card('5278'),html=body(row(c.detailUrl));for(const [before,after]of [['"address":"India"','"address":"India","addressCountry":"United States"'],['"sameAs":"https:\\/\\/sgbi.us"','"sameAs":"https:\\/\\/sgbi.us","qualifications":"New mandatory credential"']]){const changed=html.replace(before,after);assert.notEqual(changed,html);assert.throws(()=>readCurrentSgbiDetail(readCurrentSgbi(changed,c.detailUrl),c),/schema field|unreviewed/i)}
 })

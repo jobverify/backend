@@ -1,23 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { readFileSync } from 'node:fs'
-import * as scraper from './script.js'
-import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
-
-const fixture = name => readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')
-
-test('Petrus current product app validates its complete public route module before returning zero', async () => {
-  const home = fixture('petrus-home.html')
-  const fetched = []
-  const jobs = await scraper.run({ fetchPage: async url => { fetched.push(url); return url === scraper.HOMEPAGE_URL ? {status:200,url,html:home} : {status:404,url,html:fixture('petrus-route-404.html')} }, fetchText: async url => { fetched.push(url); return fixture('petrus-current-client.js') } })
-  assert.deepEqual(jobs, [])
-  assert.ok(fetched.some(url => url.endsWith('/assets/index-Ma6WJLuf.js')))
-  await assert.rejects(scraper.run({ fetchPage: async url => ({status:200,url,html:home}), fetchText: async () => fixture('petrus-current-client.js') + 'JobPosting Current Openings' }), /route bundle|client/)
-})
-
-
-test('Petrus absence of hiring routes remains discovery-only for company inventory', async () => {
-  const jobs = await scraper.run({fetchPage:async url => url === scraper.HOMEPAGE_URL ? {status:200,url,html:fixture('petrus-home.html')} : {status:404,url,html:fixture('petrus-route-404.html')},fetchText:async () => fixture('petrus-current-client.js')})
-  assert.equal(readInventoryEvidence(jobs)?.status, 'discovery-only')
-  assert.equal(readInventoryEvidence(jobs)?.listingComplete, false)
-})
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import * as source from './script.js'
+const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/current-native-20261117.json.gz',import.meta.url)))),html=i=>Buffer.from(fixture.originals[i].bodyBase64,'base64').toString()
+test('Petrus current original shell declares the captured actual product module',()=>{assert.ok(html(0).includes('/assets/index-CPUbk7Ng.js'));assert.ok(html(1).includes('Petrus Technologies'));assert.ok(html(1).includes('path:"/about-us"'));assert.ok(html(1).includes('path:"/contact-us"'))})
+test('Petrus historical product callbacks cannot trigger six guessed job paths',async()=>{let calls=0;await assert.rejects(source.run({fetchPage:async()=>{calls++;return{status:200,html:html(0)}},fetchText:async()=>html(1)}),/metadata|unsupported/);assert.equal(calls,0)})

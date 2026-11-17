@@ -14,6 +14,11 @@ export const PROFILE=Object.freeze({
  feedURL:'https://boards-api.greenhouse.io/v1/boards/cribl/jobs?content=true',
  moduleId:656347,roleModuleId:468325,
 })
+const reviewedAssets=[PROFILE,Object.freeze({
+ assetURL:'https://cribl.io/_next/static/immutable/chunks/23x-uopl6z22m.js',
+ assetSHA256:'7c53cc99b00b1477ea70db7a16492ead72ca0d0f25ac4dbf79910c39307179ca',
+ factorySHA256:'ca62a45efbf00c5f8a950662e73f81058a112654b3db2fdc16b7e226a70fcd0b',
+})]
 export const sha256=bytes=>createHash('sha256').update(bytes).digest('hex')
 export const requireNative=(ok,reason)=>{if(!ok)throw failure('Cribl native contract: '+reason,'CRIBL_NATIVE_PROOF')}
 const norm=value=>String(value??'').replace(/\s+/g,' ').trim()
@@ -41,15 +46,15 @@ export function flightDocument(html){
   }
  }
  requireNative(parts.length>0,'active literal Flight packets unavailable')
- const stream=Buffer.from(parts.join('')),models=new Map(),imports=new Map(),texts=new Map(),seen=new Set();let at=0
+ const stream=Buffer.from(parts.join('')),models=new Map(),imports=new Map(),texts=new Map(),seen=new Set(),asyncStreams=new Map();let at=0
  while(at<stream.length){
   if(stream[at]===10||stream[at]===13){at++;continue}
   const colon=stream.indexOf(58,at)
   requireNative(colon>=at&&colon-at<16,'invalid Flight frame identity')
   const id=decode(stream.subarray(at,colon));requireNative(/^[a-f0-9]*$/.test(id),'invalid Flight frame identity')
   at=colon+1
-  if(id){requireNative(!seen.has(id),'duplicate Flight frame');seen.add(id)}
   if(stream[at]===84){
+   requireNative(!seen.has(id),'duplicate Flight frame');seen.add(id)
    const comma=stream.indexOf(44,at+1),lengthText=decode(stream.subarray(at+1,comma))
    requireNative(id&&comma>at+1&&/^[a-f0-9]{1,8}$/.test(lengthText),'invalid Flight text length')
    const length=parseInt(lengthText,16),end=comma+1+length
@@ -59,9 +64,15 @@ export function flightDocument(html){
   let end=stream.indexOf(10,at);if(end<0)end=stream.length
   const row=decode(stream.subarray(at,end));at=end+1
   if(!id)continue
+  // React Flight uses the same ID for an async iterable's X start and C close.
+  // These control frames cannot supply or overwrite job models/imports/text.
+  if(row==='X'){requireNative(!seen.has(id),'duplicate Flight frame');seen.add(id);asyncStreams.set(id,false);continue}
+  if(row==='C'){requireNative(asyncStreams.get(id)===false,'invalid Flight stream close');asyncStreams.set(id,true);continue}
+  requireNative(!seen.has(id),'duplicate Flight frame');seen.add(id)
   if(row.startsWith('I'))imports.set(id,JSON.parse(row.slice(1)))
   else if(/^[\[{\"]/.test(row)||['null','true','false'].includes(row))models.set(id,JSON.parse(row))
  }
+ requireNative([...asyncStreams.values()].every(Boolean),'unclosed Flight stream')
  requireNative(models.has('0'),'Flight root unavailable')
  const resolve=(value,chain=new Set(),depth=0)=>{
   requireNative(depth<128,'Flight model depth exceeded')
@@ -84,6 +95,14 @@ export function flightDocument(html){
  const visit=(value,depth=0)=>{
   requireNative(depth<256,'Flight tree depth exceeded')
   if(typeof value==='string'){
+   const outlinedMap=/^\$Q([a-f0-9]+)$/.exec(value)
+   if(outlinedMap){
+    const key=outlinedMap[1],entries=models.get(key)
+    requireNative(Array.isArray(entries)&&entries.every(entry=>Array.isArray(entry)&&entry.length===2&&typeof entry[0]==='string')
+     &&new Set(entries.map(entry=>entry[0])).size===entries.length,'invalid Flight outlined map')
+    if(!visited.has(key)){visited.add(key);visit(entries,depth+1)}
+    return
+   }
    const match=/^\$(?:@|L)?([a-f0-9]+)$/.exec(value)
    if(match&&models.has(match[1])&&!visited.has(match[1])){visited.add(match[1]);visit(models.get(match[1]),depth+1)}
    return
@@ -110,13 +129,17 @@ export function primaryDeclaration(html){
  requireNative(doc.nodes(n=>n.tag==='section'&&n.attrs.id==='open-roles').length===1,'active open-roles section unavailable')
  const bound=elements.filter(v=>v[3].sectionId==='open-roles')
  requireNative(bound.length===1,'ambiguous open-roles component')
- const binding=imports.get(bound[0][1].slice(2)),path=new URL(PROFILE.assetURL).pathname
- requireNative(Array.isArray(binding)&&binding[0]===PROFILE.moduleId&&binding[2]==='default'&&Array.isArray(binding[1])&&binding[1].includes(path),'reviewed native component binding changed')
+ const binding=imports.get(bound[0][1].slice(2))
+ requireNative(Array.isArray(binding)&&binding[0]===PROFILE.moduleId&&binding[2]==='default'&&Array.isArray(binding[1]),'reviewed native component binding changed')
+ const paths=parsed.resolve(binding[1]),assets=reviewedAssets.filter(asset=>paths.includes(new URL(asset.assetURL).pathname))
+ requireNative(assets.length===1,'reviewed native component binding changed')
+ const asset=assets[0],path=new URL(asset.assetURL).pathname
  requireNative(doc.nodes(n=>n.tag==='script'&&executable(n)&&n.attrs.src===path).length===1,'reviewed component not actively declared')
- return {moduleId:binding[0],assetURL:PROFILE.assetURL,componentReference:bound[0][1],sectionId:'open-roles'}
+ return {moduleId:binding[0],assetURL:asset.assetURL,componentReference:bound[0][1],sectionId:'open-roles'}
 }
 export function reviewedAsset(bytes){
- requireNative(sha256(bytes)===PROFILE.assetSHA256,'reviewed current component changed')
+ const asset=reviewedAssets.find(asset=>sha256(bytes)===asset.assetSHA256)
+ requireNative(asset,'reviewed current component changed')
  const source=decode(bytes),ast=parse(source,{ecmaVersion:'latest',sourceType:'script'}),matches=[],stack=[ast]
  while(stack.length){
   const node=stack.pop()
@@ -125,8 +148,8 @@ export function reviewedAsset(bytes){
  }
  requireNative(matches.length===1,'native module factory ambiguous')
  const factory=source.slice(matches[0].start,matches[0].end)
- requireNative(sha256(Buffer.from(factory))===PROFILE.factorySHA256&&factory.includes(PROFILE.feedURL)&&factory.includes('"/job-detail/".concat('),'reviewed literal native contract changed')
- return {assetSHA256:PROFILE.assetSHA256,factorySHA256:PROFILE.factorySHA256,feedURL:PROFILE.feedURL,roleRoute:'/job-detail/<native-id>'}
+ requireNative(sha256(Buffer.from(factory))===asset.factorySHA256&&factory.includes(PROFILE.feedURL)&&factory.includes('"/job-detail/".concat('),'reviewed literal native contract changed')
+ return {assetSHA256:asset.assetSHA256,factorySHA256:asset.factorySHA256,feedURL:PROFILE.feedURL,roleRoute:'/job-detail/<native-id>'}
 }
 export const roleURL=id=>'https://cribl.io/job-detail/'+id
 export function nativeCollection(body){

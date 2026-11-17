@@ -33,12 +33,12 @@ test('RS Software India local catalog captures the verified first-party join-tea
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.homepageUrl, 'https://www.rssoftware.com/')
   assert.equal(provider.companyCareerPage, 'https://www.rssoftware.com/home/jointeam')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-rssoftware-ai-role-details-country-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-first-party-careers-page')
+  assert.equal(provider.paginationStrategy, 'current-own-home-jointeam-role-details-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-join-team-page+same-page-apply-surface',
+    'whole-current-rssoftware-ai-native-role-criteria-date-header-and-form-binding+work-country-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

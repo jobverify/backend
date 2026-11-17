@@ -1,4 +1,7 @@
-﻿import path from 'node:path'
+import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
+import {runCurrentOmninos} from './currentNative20261117.js'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 export const SOURCE = 'omninossolutions'
@@ -16,10 +19,10 @@ export const PROVIDER_METADATA = {
   modulePath: '../../scraper/omninossolutions/script.js',
   homepageUrl: HOMEPAGE_URL,
   companyCareerPage: CAREERS_URL,
-  atsPlatform: 'official-first-party-role-cards',
+  atsPlatform: 'configured-domain-comingsoon-employer-unqualified',
   countryFilter: 'India',
-  paginationStrategy: 'single-page-role-card-list',
-  extractionStrategy: 'verified-first-party-current-openings-page+same-page-role-cards',
+  paginationStrategy: 'whole-generic-publisher-opening-closing',
+  extractionStrategy: 'current-configured-domain-carrier+publisher-employer-inventory-unqualified+company-scope-held',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   companyDomain: 'omninos.in',
@@ -49,37 +52,7 @@ export const extractRoles = (html = '') =>
     }))
     .filter((job) => job.title && job.location)
 
-export const run = async ({
-  fetchText = async (url) => {
-    const response = await fetch(url)
-    if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`)
-    return response.text()
-  },
-  now = () => new Date().toISOString(),
-} = {}) => {
-  const careersHtml = await fetchText(CAREERS_URL)
-  if (!hasOfficialCareersSignal(careersHtml)) {
-    throw new Error('Omninos Solutions verified current openings page changed materially')
-  }
-
-  const roles = extractRoles(careersHtml)
-  if (!roles.length) {
-    throw new Error('Omninos Solutions current openings page no longer exposes trusted public role cards')
-  }
-
-  return roles.map((role) => ({
-    title: role.title,
-    company: COMPANY,
-    location: role.location,
-    country: 'India',
-    sourceUrl: CAREERS_URL,
-    applyUrl: CAREERS_URL,
-    link: CAREERS_URL,
-    source: SOURCE,
-    scrapedAt: now(),
-    publicExperienceChecked: true,
-  }))
-}
+export const run = async (options={}) => runCurrentOmninos(options)
 
 export const runStandalone = async ({
   argv = process.argv,
@@ -87,11 +60,15 @@ export const runStandalone = async ({
   now,
   saveToFile,
   saveToDB,
+  ...sourceOptions
 } = {}) => {
   const jobs = await run({
+    ...sourceOptions,
     ...(fetchText ? { fetchText } : {}),
     ...(now ? { now } : {}),
   })
+
+  if (readInventoryEvidence(jobs)?.listingComplete !== true) throw firstPartyFailure(SOURCE,'current inventory remains unqualified; standalone persistence held')
 
   if (argv.includes('--dry-run')) {
     const writeJobsToFile = saveToFile

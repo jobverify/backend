@@ -1,3 +1,4 @@
+import { runCurrentJuzGo } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -22,7 +23,7 @@ export const CAREERS_ROUTE_URLS = [
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
-const CAREER_LIKE_LINK_PATTERN = /href=["']https?:\/\/www\.juzgodigital\.com\/(?:careers?|jobs?|join-us)(?:[\/#?][^"']*)?["']|href=["']\/(?:careers?|jobs?|join-us)(?:[\/#?][^"']*)?["']|href=["']\.\/(?:careers?|jobs?|join-us)(?:[\/#?][^"']*)?["']/i
+const CAREER_LIKE_LINK_PATTERN = /href=["']https?:\/\/www\.juzgodigital\.com\/(?:careers?|jobs?|join-us)(?:[/#?][^"']*)?["']|href=["']\/(?:careers?|jobs?|join-us)(?:[/#?][^"']*)?["']|href=["']\.\/(?:careers?|jobs?|join-us)(?:[/#?][^"']*)?["']/i
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
   /\bcurrent openings\b/i,
@@ -107,7 +108,9 @@ export const isVerifiedBlockedCareersRoute = (page = {}) => {
 }
 
 export const createJuzGoDigitalScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentJuzGo(options)
+    const { fetchPage = defaultFetchPage } = options
     const homepage = await fetchPage(HOMEPAGE_URL)
 
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {

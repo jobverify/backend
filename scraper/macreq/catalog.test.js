@@ -11,13 +11,13 @@ test('Macreq Manufacturing Services Private Ltd is registered as an exact-name a
   assert.ok(provider, 'Expected Macreq provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Macreq Manufacturing Services Private Ltd')
-  assert.equal(provider.companyCareerPage, 'https://macreq.com/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.companyCareerPage, 'https://macreq.com/')
+  assert.equal(provider.atsPlatform, 'official-current-root-http404-inventory-unavailable')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-official-careers-page-plus-career-alias-and-page-sitemap-validation')
+  assert.equal(provider.paginationStrategy, 'single-configured-native-root-metadata-first-stop-on-http404')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-about-page+verified-contact-page+verified-privacy-page+verified-careers-page+verified-career-alias+verified-page-sitemap+shared-apply-form-zero-jobs',
+    'actual-configured-root-http404-preserved+employer-native-hiring-and-company-scope-unqualified+no-guessed-alternate-routes',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -44,6 +44,6 @@ test('Macreq Manufacturing Services Private Ltd resolves from provider metadata 
   assert.ok(scraper, 'Expected buildScrapers() to return the Macreq scraper')
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'macreq')
-  assert.equal(scraper.provider.companyCareerPage, 'https://macreq.com/careers/')
+  assert.equal(scraper.provider.companyCareerPage, 'https://macreq.com/')
   assert.match(scraper.dryRunFile, /macreq[\\/]jobs\.json$/i)
 })

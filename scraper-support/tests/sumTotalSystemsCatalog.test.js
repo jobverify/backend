@@ -50,15 +50,15 @@ test('SumTotal Systems local catalog captures the verified redirect to generic C
     'https://cornerstone.csod.com/ux/ats/careersite/2/home?c=cornerstone',
   )
   assert.equal(provider.upstreamCompanyName, 'Cornerstone')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-own-redirect-and-generic-parent-recruitment-shell')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'verified-exact-name-redirect-plus-generic-cornerstone-careers-skip',
+    'exact-own-root308-declared-parent-home-careers-product-and-anonymous-ats-shell-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-sumtotal-root-and-about-redirects+verified-generic-cornerstone-careers-without-sumtotal-specific-jobs-return-empty',
+    'whole-current-target-parent-relationship-and-generic-parent-handoff+original-redirect-challenge-guard+target-role-employer-country-criteria-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

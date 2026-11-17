@@ -26,7 +26,7 @@ const homepageHtml = `
 </html>
 `
 
-test('Digiledge validates the official public site before returning no listings', async () => {
+test('Digiledge retains its historical homepage signal helpers', async () => {
   const digiledge = await loadDigiledgeModule()
 
   assert.equal(digiledge.HOMEPAGE_URL, 'https://digiledge.in/')
@@ -34,18 +34,8 @@ test('Digiledge validates the official public site before returning no listings'
   assert.equal(digiledge.hasPublicJobBoardSignal(homepageHtml), false)
 })
 
-test('Digiledge returns an empty set when no public careers surface exists on the official site', async () => {
+// Absence of a link in a supplied homepage body cannot prove a company empty.
+test('Digiledge requires original HTTP metadata for its current native redirect chain', async () => {
   const digiledge = await loadDigiledgeModule()
-  const requestedUrls = []
-
-  const jobs = await digiledge.createDigiledgeScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === digiledge.HOMEPAGE_URL) return homepageHtml
-      throw new Error(`Unexpected Digiledge fixture URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [digiledge.HOMEPAGE_URL])
-  assert.deepEqual(jobs, [])
+  await assert.rejects(digiledge.createDigiledgeScraper().run({ fetchText: async () => homepageHtml }), /original HTTP metadata|body-only/i)
 })

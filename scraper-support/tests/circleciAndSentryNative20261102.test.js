@@ -203,5 +203,7 @@ test('CircleCI rejects wrong own native detail role identity', async t => {
   await assert.rejects(exercise(t, 'circleci', { change: f => { makeIndia('circleci', f); f.detailChange = detail => { detail.id = 999 } } }))
 })
 test('CircleCI closing required-response question drift cannot certify earlier role detail', async t => {
-  await assert.rejects(exercise(t, 'circleci', { change: f => { makeIndia('circleci', f) }, closingDetailChange: body => { body.questions.push({ label: 'Do you hold the required licence?', required: true, fields: [{ type: 'input_text', name: 'question_99990001' }] }) } }))
+  // This assertion covers the source's closing protocol. A separate fresh
+  // recruitment recovery can return held records after that protocol rejects.
+  await assert.rejects(exercise(t, 'circleci', { change: f => { makeIndia('circleci', f) }, closingDetailChange: body => { body.questions.push({ label: 'Do you hold the required licence?', required: true, fields: [{ type: 'input_text', name: 'question_99990001' }] }) }, options: { softFailureRecovery: false } }))
 })

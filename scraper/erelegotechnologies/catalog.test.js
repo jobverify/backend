@@ -12,12 +12,12 @@ test('eReleGo Technologies is registered as a verified first-party zero-job scra
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'eReleGo Technologies')
   assert.equal(provider.companyCareerPage, 'https://erelego.com/career/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-company-general-recruitment-invitation')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-page-plus-redirect-and-missing-route-validation')
+  assert.equal(provider.paginationStrategy, 'current-home-and-complete-career-landing-model-opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-email-only-careers-page+verified-careers-alias-redirects+verified-missing-jobs-routes-return-empty',
+    'current-first-party-career-models+general-protected-cv-invitation+unknown-vacancy-and-company-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

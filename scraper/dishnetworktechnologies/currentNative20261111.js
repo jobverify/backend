@@ -287,7 +287,8 @@ function detail(html, row, at) {
   'native application identity changed')
   need(job.posted_date === listed.posted_date && posting.datePosted === job.posted_date, 'native original publication changed')
   publicationDate(job.posted_date)
-  const expiry = nativeDate(posting.validThrough)
+  const expiry = typeof posting.validThrough === 'string' && posting.validThrough.endsWith('+0000')
+    ? publicationDate(posting.validThrough) : nativeDate(posting.validThrough)
   need(!expiry.iso || Date.parse(expiry.iso) > Date.parse(at), 'native schema availability expired')
   return { title: job.title, company: EMPLOYER, source: 'dishnetworktechnologies', sourceConfiguredCompanyName: 'DISH Network Technologies',
     jobId: job.slug, requisitionId: job.req_id, sourceUrl: roleURL(job), nativeCanonicalUrl: canonical,

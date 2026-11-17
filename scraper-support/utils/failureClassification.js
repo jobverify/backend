@@ -27,6 +27,18 @@ const getErrorText = (error = {}) => {
   return parts.filter(value => value != null && value !== '').join(' ')
 }
 
+const classifyStructuredHttpFailure = error => {
+  const seen = new Set()
+  for (let current = error; current && typeof current === 'object' && !seen.has(current) && seen.size < 8; current = current.cause) {
+    seen.add(current)
+    const status = Number(current.status ?? current.statusCode ?? current.httpStatus ?? current.response?.status)
+    if ([401, 402, 403, 406, 407, 429, 451].includes(status)) return 'blocked_or_access_denied'
+    if (status === 202) return 'upstream_response_pending'
+    if (status >= 500 && status <= 599) return 'network_or_timeout'
+  }
+  return null
+}
+
 const BLOCKED_OR_ACCESS_DENIED_PATTERN =
   /http[\s_:-]*(?:401|402|403|406|407|429|451)\b|http[\s_:-]*405\b.*icims\.com|\b403\b|forbidden|blocked html|blocked response|captcha|challenge|human verification|please enable cookies|verify (?:you are )?human|unauthorized|access denied|too many requests|authorizationtoken/i
 
@@ -61,10 +73,11 @@ export const classifyScraperError = (error = {}) => {
   }
 
   if (error.softFailure === true) {
+    const httpFailureKind = error.failureKind ? null : classifyStructuredHttpFailure(error)
     return {
       softFailure: true,
-      upstreamOutage: error.upstreamOutage === true,
-      failureKind: error.failureKind || (error.upstreamOutage === true ? 'upstream_outage' : 'soft_failure'),
+      upstreamOutage: httpFailureKind !== null || error.upstreamOutage === true,
+      failureKind: error.failureKind || httpFailureKind || (error.upstreamOutage === true ? 'upstream_outage' : 'soft_failure'),
     }
   }
 

@@ -1,6 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
+import {readFileSync} from 'node:fs'
+import {isDeepStrictEqual} from 'node:util'
 import {createBoundedPublicCareerTransport} from '../../scraper-support/utils/boundedPublicCareerTransport.js'
 import {readNativeDocument,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
 import {nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
@@ -18,6 +20,9 @@ export const KEKA_IDENTIFIER = '228f83f5-48b3-474a-b753-4fce2be7524f'
 export const KEKA_INFO_URL = `${KEKA_BOARD_URL}api/organization/default/careerportalinfo`
 export const KEKA_JOBS_URL = `${KEKA_BOARD_URL}api/embedjobs/default/active/${KEKA_IDENTIFIER}`
 const ASSET_ROOT = 'https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/'
+const currentModule=JSON.parse(readFileSync(new URL('./reviewedModule20261117.json',import.meta.url),'utf8'))
+const bodySHA=value=>createHash('sha256').update(value).digest('hex')
+const isCurrentJobsModule=chunk=>Buffer.byteLength(chunk)===currentModule.chunk.bytes&&bodySHA(chunk)===currentModule.chunk.sha256
 const clean = value => String(value ?? '').replace(/<[^>]+>/g, ' ')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
   .replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"')
@@ -49,8 +54,8 @@ export const resolveJobsChunkUrl = main => {
 // Reviewed 2026-11-05: this exact declared module fetches the account's complete
 // active array and renders its description/location fields. Never execute it or
 // grant account identity to isolated endpoint strings in comments/unused code.
-export const hasVerifiedKekaJobsChunk = chunk => createHash('sha256').update(chunk).digest('hex')
-  === 'a472be8a949a7c2accb6791e14739bfef6ecc102b7e1011f01a213ce4541193a'
+export const hasVerifiedKekaJobsChunk = chunk => bodySHA(chunk)
+  === 'a472be8a949a7c2accb6791e14739bfef6ecc102b7e1011f01a213ce4541193a'||isCurrentJobsModule(chunk)
 
 function nativeInventory(payload,observedAt){
   if (!Array.isArray(payload)) throw new Error('Amber invalid Keka inventory: expected a complete jobs array')
@@ -114,6 +119,7 @@ export const createAmberstudentScraper = (configuration={}) => ({
     if(cap!=null&&(!Number.isSafeInteger(cap)||cap<0))throw Error('Amber invalid result limit')
     const observedAt=new Date((options.now||(()=>new Date().toISOString()))()).toISOString(),failures=[]
     let jobs=[],inventory={total:null,unknownCountryIds:[],countryConflictIds:[]},reads=0,firstParty=false
+    let nativeOpeningInventory=null,nativeClosingInventory=null
     const finish=()=>{
       if(inventory.total!==null)attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',
         observedRecordCount:inventory.total,observedVacancyCount:inventory.total,sourceScopeComplete:false,
@@ -125,6 +131,10 @@ export const createAmberstudentScraper = (configuration={}) => ({
         sourceScopeComplete:false,lifecycleCleanupAllowed:false,unresolved:['company-recruitment-scope-unverified',
           ...(inventory.unknownCountryIds.length?['native-country-unproven']:[]),...(inventory.countryConflictIds.length?['native-country-conflicts']:[]),
           ...(failures.length?['closing-native-context-unqualified']:[]),...(cap!=null?['caller-result-limit']:[])]}})
+      Object.defineProperty(jobs,'nativeCollectionEvidence',{configurable:true,value:{...jobs.nativeCollectionEvidence,source:SOURCE,
+        nativeOpeningInventory,nativeClosingInventory,closingFullNativeInventoryMatch:Boolean(nativeOpeningInventory&&nativeClosingInventory
+          &&isDeepStrictEqual(nativeOpeningInventory,nativeClosingInventory)),unknownCountryIds:inventory.unknownCountryIds,
+        countryConflictIds:inventory.countryConflictIds,failures,sourceScopeComplete:false,lifecycleCleanupAllowed:false}})
       return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_URL,firstParty,pagesFetched:reads,
         listingComplete:false,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,reason:'current-native-India-positives;company-scope-unverified'})
     }
@@ -137,21 +147,29 @@ export const createAmberstudentScraper = (configuration={}) => ({
       const opening=readNativeDocument(await io.fetchText(JOB_OPENING_URL))
       const mains=opening.nodes(n=>n.tag==='script'&&new RegExp('^'+escaped(ASSET_ROOT)+'js/main\\.[a-f0-9]+\\.desktop\\.js$').test(n.attrs.src||''))
       if(mains.length!==1)throw Error('Amber current jobs route has no verified first-party asset handoff')
-      const mainURL=mains[0].attrs.src,chunkURL=resolveJobsChunkUrl(await io.fetchScript(mainURL))
-      if(!hasVerifiedKekaJobsChunk(await io.fetchScript(chunkURL)))throw Error('Amber current jobs module no longer binds the verified Keka tenant')
-      return {mainURL,chunkURL}
+      const mainURL=mains[0].attrs.src,main=await io.fetchScript(mainURL),chunkURL=resolveJobsChunkUrl(main),chunk=await io.fetchScript(chunkURL)
+      if(!hasVerifiedKekaJobsChunk(chunk))throw Error('Amber current jobs module no longer binds the verified Keka tenant')
+      const currentProfile=isCurrentJobsModule(chunk)
+      if(currentProfile&&(mainURL!==currentModule.main.requestedURL||Buffer.byteLength(main)!==currentModule.main.bytes
+        ||bodySHA(main)!==currentModule.main.sha256||chunkURL!==currentModule.chunk.requestedURL))throw Error('Amber current native module tuple profile changed')
+      return {mainURL,chunkURL,...(currentProfile?{currentProfile:true,mainSHA256:bodySHA(main),chunkSHA256:bodySHA(chunk),browserEquivalenceComplete:false}:{})}
     }
     try{
       const opening=await context();firstParty=true
       const info=await io.fetchJson(KEKA_INFO_URL)
       if(info?.name!=='amber'||info?.shortName!=='amber'||info?.careersPortalDomain!=='amberstudent.keka.com')throw Error('Amber Keka tenant identity is unverified')
       const payload=await io.fetchJson(KEKA_JOBS_URL);reads++
+      nativeOpeningInventory=structuredClone(payload)
       inventory=nativeInventory(payload,observedAt)
       jobs=(cap==null?inventory.jobs:inventory.jobs.slice(0,cap)).map(job=>({...job,scrapedAt:observedAt,nativeAccount:structuredClone(info),
         sourceNativeContract:{...opening,identifier:KEKA_IDENTIFIER,accountURL:KEKA_INFO_URL,inventoryURL:KEKA_JOBS_URL}}))
       const closingPayload=await io.fetchJson(KEKA_JOBS_URL);reads++
+      nativeClosingInventory=structuredClone(closingPayload)
       const closing=nativeInventory(closingPayload,observedAt),closingInfo=await io.fetchJson(KEKA_INFO_URL),closingContext=await context()
       if(JSON.stringify(info)!==JSON.stringify(closingInfo)||JSON.stringify(opening)!==JSON.stringify(closingContext))throw Error('Amber current account or route changed at closing')
+      if(opening.currentProfile&&!isDeepStrictEqual(payload,closingPayload)){
+        jobs=[];throw Error('Amber closing full native inventory model changed')
+      }
       const sameIds=payload.length===closingPayload.length&&payload.every(row=>closingPayload.some(other=>other.id===row.id))
       if(!sameIds)throw Error('Amber native closing inventory changed')
       const accepted=new Map(closing.jobs.map(job=>[job.jobId,job]))

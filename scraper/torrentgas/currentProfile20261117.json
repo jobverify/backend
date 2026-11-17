@@ -1,0 +1,185 @@
+{
+  "source": "torrentgas",
+  "root": "https://careers.torrentgas.com/",
+  "home": "https://careers.torrentgas.com/User/Home",
+  "login": "https://careers.torrentgas.com/User/Account/Login",
+  "title": "Careers - Torrent Gas",
+  "homePrograms": [
+    {
+      "attrs": {
+        "src": "/js/jquery.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/js/helpers.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/js/config.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/js/menu.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/sweetalert2/sweetalert2.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/jquery/jquery.validate.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/jquery/jquery.validate.unobtrusive.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/js/exceljs.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/js/FileSaver.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/DevExpressCSS/js/dx.all.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/js/main.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/select2/select2.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/js/bootstrap.bundle.min.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "f52934602fca43fe40dad66b3d52afe474f5e1426ac1694628ce9889ec7de1cf"
+    }
+  ],
+  "loginPrograms": [
+    {
+      "attrs": {
+        "src": "/js/jquery.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/js/helpers.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/js/config.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/js/menu.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/sweetalert2/sweetalert2.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/jquery/jquery.validate.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/jquery/jquery.validate.unobtrusive.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/js/exceljs.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/libs/js/FileSaver.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/DevExpressCSS/js/dx.all.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/js/main.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/assets/vendor/select2/select2.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/lib/jquery-validation/dist/jquery.validate.min.js"
+      }
+    },
+    {
+      "attrs": {
+        "src": "/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "3be3fe72bf082cb6a4cd81d4e580e0943d2649010b5a8f1ee0da05b805206d34"
+    },
+    {
+      "attrs": {
+        "src": "/js/bootstrap.bundle.min.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "f52934602fca43fe40dad66b3d52afe474f5e1426ac1694628ce9889ec7de1cf"
+    }
+  ],
+  "clients": [
+    {
+      "url": "https://careers.torrentgas.com/assets/js/main.js",
+      "bytes": 21587,
+      "sha256": "ce51b12ef0b5ba0576077cc51dfe1d317601aa5ed6c39a772397df9433d1fe26"
+    },
+    {
+      "url": "https://careers.torrentgas.com/assets/js/config.js",
+      "bytes": 3483,
+      "sha256": "319d29dfd1b65d99c6e66fc7003b1d5dbec1a5921e00799e818d7858d9bd6e2d"
+    }
+  ]
+}

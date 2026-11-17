@@ -1,0 +1,33 @@
+{
+  "source": "smarthealthglobaltechnologies",
+  "provenance": "Actual currently declared own HTTP originals; finite whole executable programme variants, no role country or company inventory completeness claim",
+  "pages": [
+    {
+      "url": "https://smarthealthglobal.in/",
+      "titles": [
+        "Smart Health Global"
+      ],
+      "sha256": "4eabaa21aab9696f8befaaca69055774e11b4fe1001d3aaca534feaad0a362e3"
+    },
+    {
+      "url": "https://shgtechnologies.com/",
+      "titles": [
+        "SHG Technologies - Home"
+      ],
+      "sha256": "efee6247a400349e68a69aa51b623cf452980cc433b5b4fbb40d79b6d6f8d6cf"
+    },
+    {
+      "url": "https://shgtechnologies.com/about-us",
+      "titles": [
+        "SHG Technologies -"
+      ],
+      "sha256": "5bb7be8f74d3ce6fea7735ae24470ff17e6c7b7423a4f49b4628dd6435d81159"
+    }
+  ],
+  "programme": {
+    "url": "https://shgtechnologies.com/static/assets/js/script.js",
+    "kind": "js",
+    "bytes": 9545,
+    "sha256": "f6599cfcd105727db31e77b23b15daabd841061814b9da78374ba12888bb12db"
+  }
+}

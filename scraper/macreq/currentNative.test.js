@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {run} from './script.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261117.json.gz',import.meta.url)))),HOME='https://macreq.com/'
+test('Macreq current actual root404 retains native HTTP status and unknown inventory without alternate probes',async()=>{const r=fixture.responses[0],calls=[];await assert.rejects(run({fetchImpl:async(url,init)=>{calls.push(url);assert.equal(init.method,'GET');return Object.defineProperty(new Response(Buffer.from(r.bodyBase64,'base64'),{status:r.status,headers:r.headers}),'url',{value:r.url??url})}}),e=>e.httpStatus===404&&e.recruitmentObservations.sourceScopeComplete===false&&e.recruitmentObservations.lifecycleCleanupAllowed===false&&e.recruitmentObservations.companyIndiaTotal===null);assert.deepEqual(calls,[HOME])})
+test('Macreq a future200 generic homepage cannot manufacture an empty company inventory',async()=>{await assert.rejects(run({fetchImpl:async url=>Object.defineProperty(new Response('<html><title>Macreq</title></html>',{status:200,headers:{'content-type':'text/html'}}),'url',{value:url})}),/native.*review|unreviewed|qualification/i)})
+test('Macreq exact frozen opaque caller abort reasons survive entry and in-flight responses',async()=>{for(const before of [true,false]){const c=new AbortController(),reason=Object.freeze({owner:'caller',before});let calls=0;if(before)c.abort(reason);await assert.rejects(run({signal:c.signal,maxJobs:before?0:undefined,fetchText:before?()=>{}:undefined,fetchImpl:async url=>{calls++;c.abort(reason);return {status:404,url,headers:new Headers(),body:null}}}),e=>e===reason);assert.equal(calls,before?0:1)}})
+test('Macreq denied root body is never awaited before preserving HTTP403',async()=>{await assert.rejects(run({fetchImpl:async url=>({status:403,url,headers:new Headers({'content-type':'text/html'}),body:{cancel:()=>Promise.resolve(),getReader(){throw Error('denied body read')}}})}),e=>e.httpStatus===403&&e.recruitmentObservations.originalResponses[0].status===403)})

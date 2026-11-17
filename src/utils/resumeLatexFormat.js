@@ -109,7 +109,7 @@ export function buildResumeLatexGrammar(allowedLinks = [], pagination = {}, { in
   const structuralCommands = new Set([...sectionCommands, 'resumeSubHeadingListStart', 'resumeSubHeadingListEnd', 'resumeItemListStart', 'resumeItemListEnd',
     'resumeSubheading', 'resumeSubSubheading', 'resumeProjectHeading', 'resumeItem', 'resumeSubItem', 'classesList', 'item',
     'Huge', 'huge', 'LARGE', 'Large', 'large', 'scshape']);
-  if (pagination.exact) for (const command of ['newpage', 'pagebreak']) structuralCommands.add(command);
+  if (typeof pagination.exact === 'boolean') for (const command of ['newpage', 'pagebreak']) structuralCommands.add(command);
   const twoPages = pagination.exact && pagination.targetPages === 2;
   const content = `text | symbol | command | environment | item-list${targets.length ? ' | hyperlink' : ''}`;
   const scopedHeaders = headerChoices.length > 0 && layout?.sections?.length > 0

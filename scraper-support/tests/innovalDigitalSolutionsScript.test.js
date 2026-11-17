@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFile } from 'node:fs/promises'
+import { gunzipSync } from 'node:zlib'
 
 import { createInnovalDigitalSolutionsScraper } from '../../scraper/innovaldigitalsolutions/script.js'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
+import { inventoryCleanupOptions } from '../utils/scraperOutcome.js'
 
 const companyUrl = 'https://www.ivldsp.com/company/?tab=careers'
 const portalUrl = 'https://career.ivldsp.in/portal/'
@@ -95,6 +97,34 @@ test('Innoval rejects an unsupported pagination control instead of claiming comp
 test('Innoval does not turn a zero-card parser result into a verified empty inventory', async () => {
   const portal = '<title>Career | Innoval Digital Solutions Pvt Ltd</title><img alt="Innoval Digital Solutions"><h2>Hot Jobs</h2><div id="job-openings"></div>'
   await assert.rejects((await makeHarness({ portal })).run(), /incomplete public job inventory/i)
+})
+
+const currentEmptyPortal = async () => gunzipSync(await readFile(new URL('../../scraper/innovaldigitalsolutions/fixtures/native-empty-listing-20261116.html.gz', import.meta.url))).toString('utf8')
+
+test('Innoval retains the current complete page with an empty native jobs section as incomplete evidence', async () => {
+  const harness = await makeHarness({ portal: await currentEmptyPortal() })
+  const jobs = await harness.run()
+  assert.equal(jobs.length, 0)
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence.status, 'discovery-only')
+  assert.equal(evidence.firstParty, true)
+  assert.equal(evidence.listingComplete, false)
+  assert.equal(evidence.indiaFacetCount, null)
+  assert.equal(evidence.reportedTotal, null)
+  assert.match(evidence.reason, /empty.*unqualified/)
+  assert.deepEqual(inventoryCleanupOptions({ inventoryEvidence: evidence }), { replaceExisting: false })
+  assert.equal(harness.calls.filter(url => /viewDetails/.test(url)).length, 0)
+})
+
+test('Innoval still rejects truncated, loading or contradictory empty listings', async () => {
+  const portal = await currentEmptyPortal()
+  for (const broken of [
+    portal.slice(0, portal.indexOf('</body>')),
+    portal.replace('id="x-section-3"', 'id="unrelated-section"'),
+    portal.replace(/(<div id="job-openings"[^>]*>)/, '$1<p>Loading jobs</p>'),
+    portal.replace('</body>', '<input type="hidden" name="id_job" value="112"></body>'),
+    portal.replace('</body>', '<a href="viewDetails112.html">Role</a></body>'),
+  ]) await assert.rejects((await makeHarness({ portal: broken })).run(), /incomplete public job inventory/i)
 })
 test('Innoval rejects detail identity mismatches and missing descriptions', async () => {
   const detail = await fixture('detail-112.html')

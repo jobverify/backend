@@ -24,7 +24,7 @@ const loadEkaSoftwareModule = async () => {
   }
 }
 
-test('Eka Software local catalog captures the verified Quoreka no-public-jobs sentinel surface', async () => {
+test('Eka Software local catalog captures the current declared Quoreka native observation contract and retains dated evidence', async () => {
   const { EKA_SOFTWARE_CATALOG } = await loadCatalogModule()
   const ekaSoftware = await loadEkaSoftwareModule()
 
@@ -45,15 +45,15 @@ test('Eka Software local catalog captures the verified Quoreka no-public-jobs se
     'https://quoreka.com/work-with-us',
     'https://quoreka.com/current-openings',
   ])
-  assert.equal(EKA_SOFTWARE_CATALOG.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(EKA_SOFTWARE_CATALOG.atsPlatform, 'freshteam')
   assert.equal(EKA_SOFTWARE_CATALOG.countryFilter, 'India')
   assert.equal(
     EKA_SOFTWARE_CATALOG.paginationStrategy,
-    'homepage-plus-careers-page-plus-sitemap-and-adjacent-route-validation',
+    'declared-freshteam-full-list-own-role-and-public-form-opening-closing-reconciliation',
   )
   assert.equal(
     EKA_SOFTWARE_CATALOG.extractionStrategy,
-    'verified-homepage+verified-first-party-careers-page+verified-single-sitemap-careers-route+missing-adjacent-jobs-routes-return-empty',
+    'current-first-party-recruitment-declarations+whole-native-tenant-models+Quoreka-observations-with-Eka-employer-and-inventory-holds',
   )
   assert.equal(EKA_SOFTWARE_CATALOG.parser, 'custom-script')
   assert.equal(EKA_SOFTWARE_CATALOG.normalizationProfile, 'engineering-default')

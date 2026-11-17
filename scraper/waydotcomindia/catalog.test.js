@@ -16,12 +16,12 @@ test('Way Dot Com India Private Limited is registered as a verified first-party 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-native-careers-access-denied')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-first-party-careers-page-plus-detail-pages')
+  assert.equal(provider.paginationStrategy, 'one-exact-configured-current-careers-request-stop-on-denial')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-page+inline-job-cards+same-domain-detail-pages+mailto-apply',
+    'original-http-status-and-employer-url-identity+no-legacy-jobs-json-or-body-only-fallback+native-inventory-unknown',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

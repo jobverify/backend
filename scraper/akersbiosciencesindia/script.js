@@ -1,3 +1,4 @@
+import {runCurrentAkers} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -28,12 +29,6 @@ export const MISSING_JOB_ROUTE_URLS = [
   'https://akersbio.com/jobs',
   'https://akersbio.com/openings',
 ]
-const PARKED_DOMAIN_DESTINATION_URL =
-  'https://www.hugedomains.com/domain_profile.cfm?d=akersbiosciences.com'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
   /\bcurrent openings\b/i,
@@ -74,56 +69,6 @@ const extractTitle = (html = '') => {
   const match = String(html ?? '').match(/<title[^>]*>([\s\S]*?)<\/title>/i)
   return normalizeWhitespace(match?.[1])
 }
-
-const isConnectTimeoutError = (error) => {
-  const causeCode = String(error?.cause?.code ?? '')
-  const causeMessage = String(error?.cause?.message ?? '')
-  const message = String(error?.message ?? error ?? '')
-
-  return /UND_ERR_CONNECT_TIMEOUT/i.test(causeCode)
-    || /\bconnect timeout(?: error)?\b/i.test(causeMessage)
-    || /\bconnect timeout(?: error)?\b/i.test(message)
-}
-
-export const createFetchPage = ({ fetchImpl = fetch } = {}) => async (url) => {
-  const fetchResponse = (targetUrl, redirect = 'follow') => fetchImpl(targetUrl, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect,
-  })
-
-  let response
-
-  try {
-    response = await fetchResponse(url)
-  } catch (error) {
-    if (!isConnectTimeoutError(error) || !PARKED_ROUTE_URLS.includes(url)) throw error
-
-    const fallbackUrl = new URL(url)
-    fallbackUrl.protocol = 'http:'
-    const redirectResponse = await fetchResponse(fallbackUrl.href, 'manual')
-    const redirectUrl = new URL(redirectResponse.headers.get('location') ?? '', fallbackUrl).href
-
-    if (
-      [301, 302, 303, 307, 308].includes(redirectResponse.status)
-      && redirectUrl === PARKED_DOMAIN_DESTINATION_URL
-    ) {
-      response = await fetchResponse(redirectUrl)
-    } else {
-      response = redirectResponse
-    }
-  }
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-const defaultFetchPage = createFetchPage()
 
 export const hasPublicJobsSignal = (html = '') =>
   PUBLIC_JOBS_SIGNAL_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
@@ -182,47 +127,7 @@ export const isMissingJobRoute = (page = {}) => {
     && !hasPublicJobsSignal(html)
 }
 
-export const createAkersBiosciencesIndiaScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    for (const url of PARKED_ROUTE_URLS) {
-      const page = await fetchPage(url)
-
-      if (hasPublicJobsSignal(page.html)) {
-        throw new Error(`Akers Biosciences India parked exact-name domain route now appears to expose public jobs: ${url}`)
-      }
-
-      if (!hasVerifiedParkedSurface(page.html)) {
-        throw new Error(`Akers Biosciences India verified parked exact-name domain surface changed: ${url}`)
-      }
-    }
-
-    for (const url of OFFICIAL_SURFACE_URLS) {
-      const page = await fetchPage(url)
-
-      if (hasPublicJobsSignal(page.html)) {
-        throw new Error(`Akers Biosciences India official canonical host route now appears to expose public jobs: ${url}`)
-      }
-
-      if (!hasVerifiedOfficialSurface(page)) {
-        throw new Error(`Akers Biosciences India official canonical host surface changed: ${url}`)
-      }
-    }
-
-    for (const url of MISSING_JOB_ROUTE_URLS) {
-      const page = await fetchPage(url)
-
-      if (hasPublicJobsSignal(page.html)) {
-        throw new Error(`Akers Biosciences India missing canonical jobs route now appears to expose public jobs: ${url}`)
-      }
-
-      if (!isMissingJobRoute(page)) {
-        throw new Error(`Akers Biosciences India verified missing canonical jobs route changed: ${url}`)
-      }
-    }
-
-    return []
-  },
-})
+export const createAkersBiosciencesIndiaScraper = () => ({run:runCurrentAkers})
 
 export const run = async (options = {}) => createAkersBiosciencesIndiaScraper().run(options)
 

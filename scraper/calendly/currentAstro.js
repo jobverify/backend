@@ -26,6 +26,21 @@ const DEPLOYMENTS = {
   island: '1502b8d03b5ae609bc1afab6baa01dc044e315bc49408192feadfcd9574e4969',
   components: '542c5b4a4de0e62f24335fe1b522dcb4dd753d9276a816330b39d40f369a109e',
  },
+  // Nov17: unchanged publisher text, links and island props; exact build
+  // relinks and static image metadata were reviewed against Nov14, including
+  // all 18 changed dependency pairs. Native inventory/criteria stay unpinned.
+  '9032655e44fbe71ad56259acc36d9037ef676412401366ffae553acb81b800b9': {
+    index: '9359172f5fc1fad2603723234fdf3194d3a44c58f1e75cb32635d518b6ea8604',
+    island: 'd5e64487e93acdfa81b710002ef916a17222d398699400d1dd78c3d94bfb87eb',
+    components: 'a30c2c1825cc376ce2526651c3f421e0a381637be823a05aa8f0c6a3653c1677',
+  },
+  // A separately captured concurrent declaration retains Nov14 dependencies
+  // and components; only the static thumbnail table and island relink differ.
+  b874ded46402f78dfb78b362be51441eae77b68cb9359b3ebe850a4312425e2f: {
+    index: 'a982cb89a2ce00e2dd98909dd3b81c02961cc2e045b649786c2eae5b5c0c9a58',
+    island: '7fbf2a35d77a2e13d2e04f4223342f676b5614bc7417da51f7c4a2ab0c631e42',
+    components: '542c5b4a4de0e62f24335fe1b522dcb4dd753d9276a816330b39d40f369a109e',
+  },
 }
 const sha = value => createHash('sha256').update(value).digest('hex')
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)

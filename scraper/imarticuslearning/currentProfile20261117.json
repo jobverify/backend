@@ -1,0 +1,20 @@
+{
+  "source": "imarticuslearning",
+  "root": "https://imarticus.org/",
+  "entry": "https://imarticus.org/careers/",
+  "services": "https://imarticus.org/careers-services/",
+  "article": "https://imarticus.org/building-careers-of-the-future-with-imarticus-rise/",
+  "rootTitles": [],
+  "articleTitles": [
+    "Build your dream career with Imarticus Rise"
+  ],
+  "rootCanonical": [],
+  "articleCanonical": [
+    {
+      "rel": "canonical",
+      "href": "https://imarticus.org/building-careers-of-the-future-with-imarticus-rise/",
+      "data-next-head": ""
+    }
+  ],
+  "articleProgrammeGraphSHA256": "f72bf60e103f2c408c712ef6ae310fdea05868bd475a3b1e0824573820c8e138"
+}

@@ -6,7 +6,7 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Digiledge as a verified empty-board script provider with official metadata', () => {
+test('getScraperCatalog registers Digiledge with its configured corporate source metadata', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'digiledge')
 
   assert.ok(provider)

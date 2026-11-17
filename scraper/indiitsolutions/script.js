@@ -1,19 +1,10 @@
+import {runCurrentIndiIt} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-
-import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import INDI_IT_SOLUTIONS_CATALOG from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const shouldUseBrowserFallback = (error) =>
-  /HTTP (?:403|429)\b|fetch failed|timed out|timeout|could not connect|und_err_connect_timeout|ssl\/tls secure channel|econnreset|unable to/i
-    .test(String(error?.message ?? error ?? ''))
 
 export const PROVIDER_METADATA = INDI_IT_SOLUTIONS_CATALOG
 export const SOURCE = PROVIDER_METADATA.source
@@ -23,16 +14,6 @@ export const OFFICIAL_CAREERS_URL = PROVIDER_METADATA.officialCareersPageUrl
 export const SHARED_APPLY_URL = new URL('#Career', OFFICIAL_CAREERS_URL).toString()
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  attempts: 1,
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/&nbsp;/gi, ' ')
@@ -70,9 +51,9 @@ export const extractOpportunityCards = (html = '') => {
 
     roles.push({
       title,
-      location: 'India',
+      location: null,
       city: null,
-      country: 'India',
+      country: null,
       experienceRequired,
       vacancies,
       applyUrl,
@@ -106,9 +87,9 @@ export const extractOpportunityCards = (html = '') => {
 
     roles.push({
       title,
-      location: 'India',
+      location: null,
       city: null,
-      country: 'India',
+      country: null,
       experienceRequired,
       vacancies,
       applyUrl: SHARED_APPLY_URL,
@@ -120,88 +101,7 @@ export const extractOpportunityCards = (html = '') => {
   return roles
 }
 
-export const createIndiItSolutionsScraper = ({
-  now = () => new Date().toISOString(),
-} = {}) => ({
-  async run({ fetchText = defaultFetchText, fetchBrowserText } = {}) {
-    let browserSession = null
-
-    const getBrowserSession = async () => {
-      if (!browserSession) {
-        browserSession = await createBrowserFetchSession({
-          userAgent: USER_AGENT,
-          settleTimeMs: 4000,
-        })
-      }
-
-      return browserSession
-    }
-
-    const browserTextFetcher = fetchBrowserText || (async (url) => {
-      const session = await getBrowserSession()
-      const page = await session.fetchPage(url)
-
-      if (![200, 304].includes(page.status)) {
-        throw new Error(`HTTP ${page.status} for ${url}`)
-      }
-
-      return page.html
-    })
-
-    const fetchTextWithBrowserFallback = async (url) => {
-      try {
-        return await fetchText(url)
-      } catch (error) {
-        if (!shouldUseBrowserFallback(error)) {
-          throw error
-        }
-
-        return browserTextFetcher(url)
-      }
-    }
-
-    try {
-      const careersHtml = await fetchTextWithBrowserFallback(OFFICIAL_CAREERS_URL)
-
-      if (!hasOfficialIndiItCareerSignals(careersHtml)) {
-        throw new Error('INDI IT SOLUTIONS verified first-party career page no longer matches the verified public surface')
-      }
-
-      const roles = extractOpportunityCards(careersHtml)
-      if (roles.length === 0) {
-        throw new Error('INDI IT SOLUTIONS verified career page no longer exposes the opportunity cards')
-      }
-
-      return roles.map((role) => ({
-        title: role.title,
-        company: COMPANY_NAME,
-        department: null,
-        location: role.location,
-        city: role.city,
-        country: role.country,
-        jobId: role.jobId,
-        requisitionId: null,
-        sourceUrl: role.sourceUrl,
-        applyUrl: role.applyUrl,
-        employmentType: null,
-        experienceRequired: role.experienceRequired,
-        minimumQualification: null,
-        preferredQualification: null,
-        requiredSkills: [],
-        postingDate: null,
-        closingDate: null,
-        jobDescription: role.vacancies,
-        source: SOURCE,
-        link: role.applyUrl,
-        scrapedAt: now(),
-      }))
-    } finally {
-      if (browserSession) {
-        await browserSession.close().catch(() => {})
-      }
-    }
-  },
-})
+export const createIndiItSolutionsScraper = () => ({run:runCurrentIndiIt})
 
 export const run = async (options = {}) => createIndiItSolutionsScraper(options).run(options)
 

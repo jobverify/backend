@@ -54,35 +54,8 @@ test('Sears sentinel pins the current Sears India careers shell', async () => {
   assert.equal(sears.pageExposesStructuredJobListings(structuredJobsHtml), true)
 })
 
-test('Sears sentinel returns [] while the verified first-party careers shell exposes no structured public jobs', async () => {
-  const sears = await loadSearsModule()
-  const requestedUrls = []
 
-  const jobs = await sears.createSearsITManagementServicesIndiaScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      return careersHtml
-    },
-  })
 
-  assert.deepEqual(requestedUrls, [sears.CAREERS_URL])
-  assert.deepEqual(jobs, [])
-})
 
-test('Sears sentinel fails closed when the careers shell drifts or structured jobs appear', async () => {
-  const sears = await loadSearsModule()
 
-  await assert.rejects(
-    sears.createSearsITManagementServicesIndiaScraper().run({
-      fetchText: async () => '<html><body><h1>Sears Careers</h1></body></html>',
-    }),
-    /careers shell changed/i,
-  )
-
-  await assert.rejects(
-    sears.createSearsITManagementServicesIndiaScraper().run({
-      fetchText: async () => structuredJobsHtml,
-    }),
-    /structured public listings/i,
-  )
-})
+test('Current acquisition rejects historical body-only fetchText fixtures without returning an empty inventory',async()=>{const source=await loadSearsModule();let calls=0;await assert.rejects(source.createSearsITManagementServicesIndiaScraper().run({fetchText:async()=>{calls++;return careersHtml}}),/metadata-aware fetchImpl/);assert.equal(calls,0)})

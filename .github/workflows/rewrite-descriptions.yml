@@ -25,6 +25,7 @@ jobs:
       actions: write
     runs-on: ubuntu-24.04
     outputs:
+      pipeline_id: ${{ steps.claim.outputs.pipeline_id }}
       matrix: ${{ steps.plan.outputs.matrix }}
       shard_count: ${{ steps.plan.outputs.shard_count }}
       max_parallel: ${{ steps.plan.outputs.max_parallel }}
@@ -63,6 +64,7 @@ jobs:
           bash -n scripts/portableRewriteRuntime.sh
           node --test test/descriptionRewriteWorkflow.test.js test/jobDescriptionPartitioning.test.js test/jobDescriptionPlanCli.test.js test/descriptionRewriteReporting.test.js test/jobDescriptionReport20261105.test.js test/jobDescriptionPortableRuntime.test.js test/jobDescriptionNativeDiagnostics.test.js test/jobDescriptionWorkerHealth.test.js test/jobDescriptionReadiness20261116.test.js test/jobDescriptionPreflight.test.js test/jobDescriptionReadinessReporting.test.js
       - name: Claim pipeline stage
+        id: claim
         run: node scripts/pipelineGithub.js register
         env:
           GH_TOKEN: ${{ github.token }}
@@ -160,6 +162,7 @@ jobs:
     timeout-minutes: 350
     env:
       JOB_DESCRIPTION_REWRITE_MODE: 'publish'
+      PIPELINE_ID: ${{ needs.register.outputs.pipeline_id }}
       JOB_DESCRIPTION_REWRITE_SHARD: ${{ matrix.shard }}
       JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ needs.register.outputs.shard_count }}
       JOB_DESCRIPTION_REWRITE_QUEUE_AS_OF: ${{ needs.register.outputs.queue_as_of }}

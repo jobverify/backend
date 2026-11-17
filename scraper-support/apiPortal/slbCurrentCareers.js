@@ -4,11 +4,16 @@ import {nativeFailureDiagnostics} from '../shared/nativeFailureDiagnostics.js'
 import {setTimeout as sleep} from 'node:timers/promises'
 import {readNativeDocument,decodeNativeEntities} from '../utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../utils/inventoryEvidence.js'
+import {clientScriptDeclarations} from '../utils/reviewedClientProgram.js'
 
 export const SLB_CURRENT_SURFACE='slb-current-public-coveo'
 export const SLB_INDEX='https://careers.slb.com/job-listing'
 export const SLB_CLIENT='https://careers.slb.com/static/js/js-atomic-job-listing-search.js'
 export const SLB_CLIENT_SHA256='b883fef66869f8c96c18b5272a1b51f651b0f62e814f7e09d8bfe2d3157e9aa9'
+// Exact current original moves its search-state assignment ahead of the URL
+// update. Every other byte, native source/query and declaration is unchanged.
+const SLB_CLIENT_20261117_SHA256='128f5870dd0b12c85e74b640e70e0830461cfe996220c2f6075471f42d2038be'
+const SLB_CLIENT_20261117_URL=SLB_CLIENT+'?639304140100000000'
 export const SLB_COLLECTION=Symbol.for('jobverify.slb-current-collection-audit')
 const OBSERVATIONS=Symbol.for('jobverify.verified-recruitment-observations')
 const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -25,11 +30,22 @@ export function slbRoleURL(value){
  return url
 }
 
+function declaredSlbSearchClientURL(html){
+ const clients=clientScriptDeclarations(html).filter(node=>{
+  if(!node.attrs.src)return false
+  const url=new URL(node.attrs.src,SLB_INDEX)
+  return url.origin==='https://careers.slb.com'&&url.pathname==='/static/js/js-atomic-job-listing-search.js'
+ })
+ const url=new URL(one(clients,'active published search client').attrs.src,SLB_INDEX).href
+ check([SLB_CLIENT,SLB_CLIENT_20261117_URL].includes(url),'published search client URL changed')
+ return url
+}
+
 export function readSlbSearchConfiguration(html,client){
- check(sha(client)===SLB_CLIENT_SHA256,'current published search client changed')
+ const clientURL=declaredSlbSearchClientURL(html)
+ check(sha(client)===(clientURL===SLB_CLIENT?SLB_CLIENT_SHA256:SLB_CLIENT_20261117_SHA256),'current published search client changed')
  const doc=readNativeDocument(html)
  check(doc.nodes(n=>n.tag==='title'&&/SLB Careers/.test(decodeNativeEntities(n.raw||''))).length>0,'current SLB publisher identity unavailable')
- check(doc.nodes(n=>n.tag==='script'&&n.attrs.src&&new URL(n.attrs.src,SLB_INDEX).href===SLB_CLIENT).length===1,'search client is not actively advertised')
  check(doc.nodes(n=>n.tag==='atomic-facet'&&n.attrs.field==='country').length===1,'native country facet unavailable')
  const field=id=>one(doc.nodes(n=>n.tag==='input'&&n.attrs.id===id),'public '+id).attrs.value
  const config={organizationId:field('organizationId'),accessToken:field('accessToken'),searchHub:field('searchHub'),source:field('searchsource')}
@@ -119,7 +135,7 @@ export async function runCurrentSlbCareers({provider,fetchImpl=globalThis.fetch,
   }catch(error){await disposeResponseReader(reader,{signal,bestEffort:true});throw error}finally{reader.releaseLock()}
   const text=Buffer.concat(chunks).toString('utf8');requests.push({url,sha256:sha(text),bytes:size});return format==='json'?JSON.parse(text):text
  }
- async function currentAccount(){const html=await read(SLB_INDEX),client=await read(SLB_CLIENT,'script');return readSlbSearchConfiguration(html,client)}
+ async function currentAccount(){const html=await read(SLB_INDEX),clientURL=declaredSlbSearchClientURL(html),client=await read(clientURL,'script');return {...readSlbSearchConfiguration(html,client),clientURL,clientSHA256:sha(client)}}
  async function inventory(account){
   const rows=[],identities=new Set();let total=null
   for(let offset=0;offset<500;offset+=50){
@@ -135,7 +151,7 @@ export async function runCurrentSlbCareers({provider,fetchImpl=globalThis.fetch,
  }
  const openingAccount=await currentAccount(),opening=await inventory(openingAccount)
  const accountProof={organizationId:openingAccount.organizationId,searchHub:openingAccount.searchHub,source:openingAccount.source,
-  publisherURL:SLB_INDEX,clientURL:SLB_CLIENT,clientSHA256:SLB_CLIENT_SHA256,publicSearchKeySHA256:sha(openingAccount.accessToken)}
+  publisherURL:SLB_INDEX,clientURL:openingAccount.clientURL,clientSHA256:openingAccount.clientSHA256,publicSearchKeySHA256:sha(openingAccount.accessToken)}
  for(const row of opening.rows.slice(0,maxJobs)){
   const identity=slbListingIdentity(row)
   try{
@@ -158,7 +174,7 @@ export async function runCurrentSlbCareers({provider,fetchImpl=globalThis.fetch,
  let closing=null,closingTransportUnavailable=false
  try{
   const closingAccount=await currentAccount()
-  check(['organizationId','searchHub','source'].every(field=>closingAccount[field]===openingAccount[field]),'current company account changed at closing')
+  check(['organizationId','searchHub','source','clientURL','clientSHA256'].every(field=>closingAccount[field]===openingAccount[field]),'current company account changed at closing')
   closing=await inventory(closingAccount)
  }catch(error){signal.throwIfAborted();closingTransportUnavailable=lastReadTransportFailure;failures.push({stage:'current-native-closing-inventory',message:nativeFailureDiagnostics(error).message})}
  const closingById=new Map((closing?.rows||[]).map(row=>[slbListingIdentity(row).id,row])),accepted=[]

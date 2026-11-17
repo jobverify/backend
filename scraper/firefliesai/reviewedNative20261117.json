@@ -1,0 +1,2097 @@
+{
+  "source": "firefliesai",
+  "reviewedAt": "2026-11-16T20:12:15.486Z",
+  "homepageTitle": "Fireflies.ai | AI Teammate to transcribe, summarize, analyze meetings, Real time AI note taker",
+  "boardURL": "https://jobs.gem.com/fireflies",
+  "apiURL": "https://jobs.gem.com/api/public/graphql",
+  "boardId": "RXh0ZXJuYWxKb2JCb2FyZDoyMDM4OA==",
+  "nativeTeam": "Fireflies",
+  "clients": [
+    {
+      "url": "https://static.gem.com/scripts/jobBoards.B5ggHaX_.v2.min.js",
+      "sha256": "75731bae0f748c19d21929a6223ee9cc40f3e18e26205f20031f27c23470a391",
+      "bytes": 7920
+    },
+    {
+      "url": "https://static.gem.com/scripts/ExternalJobBoardList.C5r8LlvQ.v2.min.js",
+      "sha256": "724a218dfb34fb64dce6c83981ffc2f25d1baf691c926b8ddb7aaafd86b7c51c",
+      "bytes": 1870
+    },
+    {
+      "url": "https://static.gem.com/scripts/graphql.CsnHCEqJ.v2.min.js",
+      "sha256": "3edfcfe4652283994908923489fe412f2ab33721cf8ec41e3666528b5c62d171",
+      "bytes": 1483371
+    },
+    {
+      "url": "https://static.gem.com/scripts/HoverableProfileCardPopover.jYvBLsk-.v2.min.js",
+      "sha256": "e8593a9d414917887cd7804e3695a8e597c6811b6a89e08799c4d107af05d00f",
+      "bytes": 6581692
+    },
+    {
+      "url": "https://static.gem.com/scripts/PublicQuestionFragment.CAnxQbcl.v2.min.js",
+      "sha256": "9b62f49f8a53860b650c336d14f7b0dfbc1c8c302fc5c855f9511b60f877d1be",
+      "bytes": 41021
+    },
+    {
+      "url": "https://static.gem.com/scripts/DemographicSurveyFormContent.AIgC_qbC.v2.min.js",
+      "sha256": "b5e391bdffcb4714e226576623e8f0a3ae48459ca1f34e85bf303110b54d78de",
+      "bytes": 14858
+    }
+  ],
+  "list": {
+    "request": {
+      "operationName": "JobBoardList",
+      "query": "query JobBoardList($boardId: String!) {\n    oatsExternalJobPostings(boardId: $boardId) {\n      jobPostings {\n        id\n        extId\n        title\n        locations {\n          id\n          name\n          city\n          isoCountry\n          isRemote\n          extId\n        }\n        job {\n          id\n          department {\n            id\n            name\n            extId\n          }\n          locationType\n          employmentType\n        }\n      }\n    }\n    oatsExternalJobPostingsFilters(boardId: $boardId) {\n      type\n      displayName\n      rawValue\n      value\n      count\n    }\n    jobBoardExternal(vanityUrlPath: $boardId) {\n      id\n      teamDisplayName\n      descriptionHtml\n      pageTitle\n    }\n  }\n",
+      "variables": {
+        "boardId": "fireflies"
+      }
+    },
+    "model": {
+      "data": {
+        "oatsExternalJobPostings": {
+          "jobPostings": [
+            {
+              "id": "T2F0c0pvYlBvc3Q6NTAxNzkz",
+              "extId": "am9icG9zdDpbjKpnmgYy_Uzpsi4aSuWg",
+              "title": "Product Designer",
+              "locations": [
+                {
+                  "id": "32947",
+                  "name": "Manila",
+                  "city": "Manila",
+                  "isoCountry": "PHL",
+                  "isRemote": false,
+                  "extId": "bG9jOl1qLqetbfjlj3gDiqOw8w0"
+                },
+                {
+                  "id": "32950",
+                  "name": "Toronto",
+                  "city": "Toronto",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOoNgxVT9dl1kWfbtPDJbs_c"
+                },
+                {
+                  "id": "32951",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false,
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM"
+                },
+                {
+                  "id": "32952",
+                  "name": "Sao Paolo",
+                  "city": "Sao Paulo",
+                  "isoCountry": "BRA",
+                  "isRemote": false,
+                  "extId": "bG9jOrYgYHhnoMdiWFOQzuVQ7f8"
+                },
+                {
+                  "id": "32953",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false,
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc"
+                },
+                {
+                  "id": "32954",
+                  "name": "Jakarta",
+                  "city": "Jakarta Special Capital Region",
+                  "isoCountry": "IDN",
+                  "isRemote": false,
+                  "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "34604",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false,
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjozMTA2OTA=",
+                "department": {
+                  "id": "30327",
+                  "name": "Design",
+                  "extId": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6NzY0ODUy",
+              "extId": "am9icG9zdDojvHhc3atSmcjpxRw6drRQ",
+              "title": "Full stack Engineer",
+              "locations": [
+                {
+                  "id": "32947",
+                  "name": "Manila",
+                  "city": "Manila",
+                  "isoCountry": "PHL",
+                  "isRemote": false,
+                  "extId": "bG9jOl1qLqetbfjlj3gDiqOw8w0"
+                },
+                {
+                  "id": "32949",
+                  "name": "Ho Chi Minh",
+                  "city": "Ho Chi Minh City",
+                  "isoCountry": "VNM",
+                  "isRemote": true,
+                  "extId": "bG9jOgkLVF0GIRDSKAvzigxkeWY"
+                },
+                {
+                  "id": "32951",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false,
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM"
+                },
+                {
+                  "id": "32952",
+                  "name": "Sao Paolo",
+                  "city": "Sao Paulo",
+                  "isoCountry": "BRA",
+                  "isRemote": false,
+                  "extId": "bG9jOrYgYHhnoMdiWFOQzuVQ7f8"
+                },
+                {
+                  "id": "32953",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false,
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc"
+                },
+                {
+                  "id": "32954",
+                  "name": "Jakarta",
+                  "city": "Jakarta Special Capital Region",
+                  "isoCountry": "IDN",
+                  "isRemote": false,
+                  "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "32956",
+                  "name": "Lagos Lagoon",
+                  "city": "Lagos Lagoon",
+                  "isoCountry": "NGA",
+                  "isRemote": true,
+                  "extId": "bG9jOkmwScPNKe_mg1RMTwhR4oA"
+                },
+                {
+                  "id": "34587",
+                  "name": "Singapore",
+                  "city": "Singapore",
+                  "isoCountry": "SGP",
+                  "isRemote": false,
+                  "extId": "bG9jOuB8iOd-VgwOamto_uqZlcs"
+                },
+                {
+                  "id": "34588",
+                  "name": "Dubai",
+                  "city": "Dubai",
+                  "isoCountry": "ARE",
+                  "isRemote": false,
+                  "extId": "bG9jOi8ewk--C5_uAVX128Uoqis"
+                },
+                {
+                  "id": "34591",
+                  "name": "Cairo",
+                  "city": "Cairo",
+                  "isoCountry": "EGY",
+                  "isRemote": false,
+                  "extId": "bG9jOkdQZpwtoxXK44mdGNWvvV0"
+                },
+                {
+                  "id": "34592",
+                  "name": "Taipei",
+                  "city": "Taipei City",
+                  "isoCountry": "TWN",
+                  "isRemote": false,
+                  "extId": "bG9jOrrAucken9qNOiGdPde7x48"
+                },
+                {
+                  "id": "34601",
+                  "name": "Mexico",
+                  "city": "Mexico",
+                  "isoCountry": "MEX",
+                  "isRemote": false,
+                  "extId": "bG9jOrMA94s1SN0iZFevMYdcwuQ"
+                },
+                {
+                  "id": "34604",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false,
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo0NTE5MDk=",
+                "department": {
+                  "id": "30364",
+                  "name": "Engineering",
+                  "extId": "ZGVwdDqAo3yhYQP7twsFLZipUvox"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6NTc1MTQ5Ng==",
+              "extId": "am9icG9zdDpUriPN15EyqJJ2a1cmJIKY",
+              "title": "Security Engineer",
+              "locations": [
+                {
+                  "id": "34605",
+                  "name": "Vancouver",
+                  "city": "Vancouver",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOrY_TDY_LoNEyEfShRjLZrQ"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo0ODIzNDgw",
+                "department": {
+                  "id": "30364",
+                  "name": "Engineering",
+                  "extId": "ZGVwdDqAo3yhYQP7twsFLZipUvox"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6NzUxMjU1Nw==",
+              "extId": "am9icG9zdDqoRPquwrfd5SK93NlTlh3z",
+              "title": "Mobile App Designer",
+              "locations": [
+                {
+                  "id": "30796",
+                  "name": "Mumbai",
+                  "city": "Mumbai",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY"
+                },
+                {
+                  "id": "32951",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false,
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM"
+                },
+                {
+                  "id": "32953",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false,
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc"
+                },
+                {
+                  "id": "34588",
+                  "name": "Dubai",
+                  "city": "Dubai",
+                  "isoCountry": "ARE",
+                  "isRemote": false,
+                  "extId": "bG9jOi8ewk--C5_uAVX128Uoqis"
+                },
+                {
+                  "id": "34602",
+                  "name": "Madrid",
+                  "city": "Madrid",
+                  "isoCountry": "ESP",
+                  "isRemote": false,
+                  "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8"
+                },
+                {
+                  "id": "57771",
+                  "name": "Bengaluru",
+                  "city": "Bengaluru",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo2NTYyMjYw",
+                "department": {
+                  "id": "30327",
+                  "name": "Design",
+                  "extId": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6NzU5NjAwNQ==",
+              "extId": "am9icG9zdDrk4OxCcKOBK_tPvCPLPx9L",
+              "title": "Talent Acquisition & Sourcing Specialist",
+              "locations": [
+                {
+                  "id": "32947",
+                  "name": "Manila",
+                  "city": "Manila",
+                  "isoCountry": "PHL",
+                  "isRemote": false,
+                  "extId": "bG9jOl1qLqetbfjlj3gDiqOw8w0"
+                },
+                {
+                  "id": "32949",
+                  "name": "Ho Chi Minh",
+                  "city": "Ho Chi Minh City",
+                  "isoCountry": "VNM",
+                  "isRemote": true,
+                  "extId": "bG9jOgkLVF0GIRDSKAvzigxkeWY"
+                },
+                {
+                  "id": "32951",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false,
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM"
+                },
+                {
+                  "id": "32953",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false,
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc"
+                },
+                {
+                  "id": "32954",
+                  "name": "Jakarta",
+                  "city": "Jakarta Special Capital Region",
+                  "isoCountry": "IDN",
+                  "isRemote": false,
+                  "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "34604",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false,
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58"
+                },
+                {
+                  "id": "44820",
+                  "name": "Canada",
+                  "city": "Canada",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOpx_suA_ZKGOGVDXsRrperc"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo2NjA4Nzgx",
+                "department": {
+                  "id": "30365",
+                  "name": "HR",
+                  "extId": "ZGVwdDq2_13JcomKJlJ0ZBD1oA9V"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6NzY0MDAwMg==",
+              "extId": "am9icG9zdDptyObi1Yz6T1u_jaXCawiA",
+              "title": "Creative Marketing Designer",
+              "locations": [
+                {
+                  "id": "30796",
+                  "name": "Mumbai",
+                  "city": "Mumbai",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY"
+                },
+                {
+                  "id": "32948",
+                  "name": "Chennai",
+                  "city": "Chennai",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOmQuW8R1oZrLBlvCo4hrdbo"
+                },
+                {
+                  "id": "32949",
+                  "name": "Ho Chi Minh",
+                  "city": "Ho Chi Minh City",
+                  "isoCountry": "VNM",
+                  "isRemote": true,
+                  "extId": "bG9jOgkLVF0GIRDSKAvzigxkeWY"
+                },
+                {
+                  "id": "32953",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false,
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc"
+                },
+                {
+                  "id": "32954",
+                  "name": "Jakarta",
+                  "city": "Jakarta Special Capital Region",
+                  "isoCountry": "IDN",
+                  "isRemote": false,
+                  "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "32956",
+                  "name": "Lagos Lagoon",
+                  "city": "Lagos Lagoon",
+                  "isoCountry": "NGA",
+                  "isRemote": true,
+                  "extId": "bG9jOkmwScPNKe_mg1RMTwhR4oA"
+                },
+                {
+                  "id": "34587",
+                  "name": "Singapore",
+                  "city": "Singapore",
+                  "isoCountry": "SGP",
+                  "isRemote": false,
+                  "extId": "bG9jOuB8iOd-VgwOamto_uqZlcs"
+                },
+                {
+                  "id": "34588",
+                  "name": "Dubai",
+                  "city": "Dubai",
+                  "isoCountry": "ARE",
+                  "isRemote": false,
+                  "extId": "bG9jOi8ewk--C5_uAVX128Uoqis"
+                },
+                {
+                  "id": "34589",
+                  "name": "Karachi",
+                  "city": "Karachi",
+                  "isoCountry": "PAK",
+                  "isRemote": false,
+                  "extId": "bG9jOtq7C_Dx3WAjC6N4dt8OVws"
+                },
+                {
+                  "id": "34590",
+                  "name": "Lahore",
+                  "city": "Lahore",
+                  "isoCountry": "PAK",
+                  "isRemote": false,
+                  "extId": "bG9jOptVmcdfOBchdvYr1ZrgDZY"
+                },
+                {
+                  "id": "34591",
+                  "name": "Cairo",
+                  "city": "Cairo",
+                  "isoCountry": "EGY",
+                  "isRemote": false,
+                  "extId": "bG9jOkdQZpwtoxXK44mdGNWvvV0"
+                },
+                {
+                  "id": "34593",
+                  "name": "Durham",
+                  "city": "Durham",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOoZhdgcmJcDxdeMh-zl3QY8"
+                },
+                {
+                  "id": "34594",
+                  "name": "Kuala Lumpur",
+                  "city": "Kuala Lumpur",
+                  "isoCountry": "MYS",
+                  "isRemote": false,
+                  "extId": "bG9jOrK1VEgOikl7heFKWDwW1p8"
+                },
+                {
+                  "id": "34595",
+                  "name": "Gurugram",
+                  "city": "Gurugram",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOr1lKHj0zZkcKs0P4KiawDs"
+                },
+                {
+                  "id": "34596",
+                  "name": "Istanbul",
+                  "city": "Byzantium",
+                  "isoCountry": "TUR",
+                  "isRemote": false,
+                  "extId": "bG9jOkiGP8oVtSi7eko4h2mrilQ"
+                },
+                {
+                  "id": "34600",
+                  "name": "Pune",
+                  "city": "Pune City",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOmculTpBeu-Ler5LY-778m0"
+                },
+                {
+                  "id": "34601",
+                  "name": "Mexico",
+                  "city": "Mexico",
+                  "isoCountry": "MEX",
+                  "isRemote": false,
+                  "extId": "bG9jOrMA94s1SN0iZFevMYdcwuQ"
+                },
+                {
+                  "id": "34602",
+                  "name": "Madrid",
+                  "city": "Madrid",
+                  "isoCountry": "ESP",
+                  "isRemote": false,
+                  "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8"
+                },
+                {
+                  "id": "34603",
+                  "name": "Dhaka",
+                  "city": "Dhaka",
+                  "isoCountry": "BGD",
+                  "isRemote": false,
+                  "extId": "bG9jOqTj-A-F4LQkC3jTQjnJfyg"
+                },
+                {
+                  "id": "34604",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false,
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58"
+                },
+                {
+                  "id": "34606",
+                  "name": "Ohio",
+                  "city": "Ohio",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOqRn2PT3VM8zW4XEVrmKYEY"
+                },
+                {
+                  "id": "42079",
+                  "name": "Raleigh",
+                  "city": "Raleigh",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOrFXgOxMdMTiad-R6mZEQRI"
+                },
+                {
+                  "id": "42081",
+                  "name": "Houston",
+                  "city": "Houston",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOmVBczJGTZUwUO0A-DmuvkU"
+                },
+                {
+                  "id": "42082",
+                  "name": "Alabama",
+                  "city": "Birmingham",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOq3_lvF3OX3x1YGdGA1IvOc"
+                },
+                {
+                  "id": "44581",
+                  "name": "Australia",
+                  "city": "Australia",
+                  "isoCountry": "AUS",
+                  "isRemote": false,
+                  "extId": "bG9jOm49L2OcPijwHrIJz53LmTM"
+                },
+                {
+                  "id": "44820",
+                  "name": "Canada",
+                  "city": "Canada",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOpx_suA_ZKGOGVDXsRrperc"
+                },
+                {
+                  "id": "57771",
+                  "name": "Bengaluru",
+                  "city": "Bengaluru",
+                  "isoCountry": "IND",
+                  "isRemote": false,
+                  "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g"
+                },
+                {
+                  "id": "69210",
+                  "name": "India",
+                  "city": "",
+                  "isoCountry": "IND",
+                  "isRemote": true,
+                  "extId": "bG9jOtSTnyt84cS6Ylm-WneCbic"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo2NjQyMzgw",
+                "department": {
+                  "id": "30327",
+                  "name": "Design",
+                  "extId": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6Nzc1MTcwOQ==",
+              "extId": "am9icG9zdDrCmu8IRAw-wFaU4rsG4NWF",
+              "title": "AI-Native Performance Marketer",
+              "locations": [
+                {
+                  "id": "32947",
+                  "name": "Manila",
+                  "city": "Manila",
+                  "isoCountry": "PHL",
+                  "isRemote": false,
+                  "extId": "bG9jOl1qLqetbfjlj3gDiqOw8w0"
+                },
+                {
+                  "id": "32950",
+                  "name": "Toronto",
+                  "city": "Toronto",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOoNgxVT9dl1kWfbtPDJbs_c"
+                },
+                {
+                  "id": "32951",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false,
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM"
+                },
+                {
+                  "id": "32952",
+                  "name": "Sao Paolo",
+                  "city": "Sao Paulo",
+                  "isoCountry": "BRA",
+                  "isRemote": false,
+                  "extId": "bG9jOrYgYHhnoMdiWFOQzuVQ7f8"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "34587",
+                  "name": "Singapore",
+                  "city": "Singapore",
+                  "isoCountry": "SGP",
+                  "isRemote": false,
+                  "extId": "bG9jOuB8iOd-VgwOamto_uqZlcs"
+                },
+                {
+                  "id": "34604",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false,
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58"
+                },
+                {
+                  "id": "34605",
+                  "name": "Vancouver",
+                  "city": "Vancouver",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOrY_TDY_LoNEyEfShRjLZrQ"
+                },
+                {
+                  "id": "44820",
+                  "name": "Canada",
+                  "city": "Canada",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOpx_suA_ZKGOGVDXsRrperc"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo2NzA2MjE4",
+                "department": {
+                  "id": "30367",
+                  "name": "Marketing",
+                  "extId": "ZGVwdDo7nsovOyzSlMiaFK0n-CmR"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            },
+            {
+              "id": "T2F0c0pvYlBvc3Q6ODQ4NDA3NA==",
+              "extId": "am9icG9zdDrImDw5djP8irE6yxjJQwrA",
+              "title": "Creative Director",
+              "locations": [
+                {
+                  "id": "32950",
+                  "name": "Toronto",
+                  "city": "Toronto",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOoNgxVT9dl1kWfbtPDJbs_c"
+                },
+                {
+                  "id": "32952",
+                  "name": "Sao Paolo",
+                  "city": "Sao Paulo",
+                  "isoCountry": "BRA",
+                  "isRemote": false,
+                  "extId": "bG9jOrYgYHhnoMdiWFOQzuVQ7f8"
+                },
+                {
+                  "id": "32955",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false,
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs"
+                },
+                {
+                  "id": "34586",
+                  "name": "London",
+                  "city": "London",
+                  "isoCountry": "GBR",
+                  "isRemote": false,
+                  "extId": "bG9jOkjITUi7vtFm0fahyvAKcHA"
+                },
+                {
+                  "id": "34597",
+                  "name": "Manchester",
+                  "city": "Manchester",
+                  "isoCountry": "GBR",
+                  "isRemote": false,
+                  "extId": "bG9jOqdP8OeHGu_PGr1SVvVjta8"
+                },
+                {
+                  "id": "34598",
+                  "name": "Liverpool",
+                  "city": "Liverpool",
+                  "isoCountry": "GBR",
+                  "isRemote": false,
+                  "extId": "bG9jOpLsRzK8bunr9Hb56HmWjpM"
+                },
+                {
+                  "id": "34599",
+                  "name": "Melbourne",
+                  "city": "Melbourne",
+                  "isoCountry": "AUS",
+                  "isRemote": false,
+                  "extId": "bG9jOoTqzbBaY1Dze36vmBVyrwU"
+                },
+                {
+                  "id": "34601",
+                  "name": "Mexico",
+                  "city": "Mexico",
+                  "isoCountry": "MEX",
+                  "isRemote": false,
+                  "extId": "bG9jOrMA94s1SN0iZFevMYdcwuQ"
+                },
+                {
+                  "id": "34605",
+                  "name": "Vancouver",
+                  "city": "Vancouver",
+                  "isoCountry": "CAN",
+                  "isRemote": false,
+                  "extId": "bG9jOrY_TDY_LoNEyEfShRjLZrQ"
+                },
+                {
+                  "id": "39031",
+                  "name": "New York",
+                  "city": "New York",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOgoc3sb0fkbSlwnV_MdK79E"
+                },
+                {
+                  "id": "39032",
+                  "name": "Chicago, USA",
+                  "city": "Chicago",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOlXUxaD-uUev9dUyJvxSAzQ"
+                },
+                {
+                  "id": "42078",
+                  "name": "Texas",
+                  "city": "Austin",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOnoSWPqCTpmd8qdfTgJNvRA"
+                },
+                {
+                  "id": "42083",
+                  "name": "North Carolina",
+                  "city": "Raleigh",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOoehlY3WheJEnOvaRuOlbZ4"
+                },
+                {
+                  "id": "44579",
+                  "name": "USA",
+                  "city": "United States",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOj6lFtcZrjA4u4EAAaVzOwU"
+                },
+                {
+                  "id": "44580",
+                  "name": "UK",
+                  "city": "UK",
+                  "isoCountry": "GBR",
+                  "isRemote": false,
+                  "extId": "bG9jOjmMjRtbAhOOCB5zAGM6FKI"
+                },
+                {
+                  "id": "44581",
+                  "name": "Australia",
+                  "city": "Australia",
+                  "isoCountry": "AUS",
+                  "isRemote": false,
+                  "extId": "bG9jOm49L2OcPijwHrIJz53LmTM"
+                },
+                {
+                  "id": "55846",
+                  "name": "San Francisco",
+                  "city": "San Francisco",
+                  "isoCountry": "USA",
+                  "isRemote": false,
+                  "extId": "bG9jOpOyS9-2tWyZd04q9peqBHE"
+                }
+              ],
+              "job": {
+                "id": "T2F0c0pvYjo3MTQ0ODgz",
+                "department": {
+                  "id": "30367",
+                  "name": "Marketing",
+                  "extId": "ZGVwdDo7nsovOyzSlMiaFK0n-CmR"
+                },
+                "locationType": "REMOTE",
+                "employmentType": "FULL_TIME"
+              }
+            }
+          ]
+        },
+        "oatsExternalJobPostingsFilters": [
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Design",
+            "rawValue": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0",
+            "value": "1__ZGVwdDpq_hScjgWrt_T7l3ABR6L0",
+            "count": 3
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Sales",
+            "rawValue": "ZGVwdDqCqLhfJz3PfuXnyIeGld2G",
+            "value": "1__ZGVwdDqCqLhfJz3PfuXnyIeGld2G",
+            "count": 0
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Product",
+            "rawValue": "ZGVwdDru2IgSZkVu9ey65lyRg4pf",
+            "value": "1__ZGVwdDru2IgSZkVu9ey65lyRg4pf",
+            "count": 0
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Customer Success",
+            "rawValue": "ZGVwdDpADmOt0usIZT1EhE-_m4D7",
+            "value": "1__ZGVwdDpADmOt0usIZT1EhE-_m4D7",
+            "count": 0
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Engineering",
+            "rawValue": "ZGVwdDqAo3yhYQP7twsFLZipUvox",
+            "value": "1__ZGVwdDqAo3yhYQP7twsFLZipUvox",
+            "count": 2
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Operations",
+            "rawValue": "ZGVwdDpWCMuJgAqNAZYAPFYOaXd3",
+            "value": "1__ZGVwdDpWCMuJgAqNAZYAPFYOaXd3",
+            "count": 0
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Marketing",
+            "rawValue": "ZGVwdDo7nsovOyzSlMiaFK0n-CmR",
+            "value": "1__ZGVwdDo7nsovOyzSlMiaFK0n-CmR",
+            "count": 2
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "Customer Support",
+            "rawValue": "ZGVwdDr6MywoOApVKN4bsESUNAag",
+            "value": "1__ZGVwdDr6MywoOApVKN4bsESUNAag",
+            "count": 0
+          },
+          {
+            "type": "DEPARTMENT",
+            "displayName": "HR",
+            "rawValue": "ZGVwdDq2_13JcomKJlJ0ZBD1oA9V",
+            "value": "1__ZGVwdDq2_13JcomKJlJ0ZBD1oA9V",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Lisbon",
+            "rawValue": "bG9jOuLu4e31x5LStpHY3_1OuEM",
+            "value": "2__bG9jOuLu4e31x5LStpHY3_1OuEM",
+            "count": 5
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Jakarta",
+            "rawValue": "bG9jOjCf-iYDEOlVsDmjmw4r584",
+            "value": "2__bG9jOjCf-iYDEOlVsDmjmw4r584",
+            "count": 4
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Cape town",
+            "rawValue": "bG9jOm1JJnTlqF_qgLPZj1SqcGs",
+            "value": "2__bG9jOm1JJnTlqF_qgLPZj1SqcGs",
+            "count": 5
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Texas",
+            "rawValue": "bG9jOnoSWPqCTpmd8qdfTgJNvRA",
+            "value": "2__bG9jOnoSWPqCTpmd8qdfTgJNvRA",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Raleigh",
+            "rawValue": "bG9jOrFXgOxMdMTiad-R6mZEQRI",
+            "value": "2__bG9jOrFXgOxMdMTiad-R6mZEQRI",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "London",
+            "rawValue": "bG9jOkjITUi7vtFm0fahyvAKcHA",
+            "value": "2__bG9jOkjITUi7vtFm0fahyvAKcHA",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Dubai",
+            "rawValue": "bG9jOi8ewk--C5_uAVX128Uoqis",
+            "value": "2__bG9jOi8ewk--C5_uAVX128Uoqis",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Karachi",
+            "rawValue": "bG9jOtq7C_Dx3WAjC6N4dt8OVws",
+            "value": "2__bG9jOtq7C_Dx3WAjC6N4dt8OVws",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Lahore",
+            "rawValue": "bG9jOptVmcdfOBchdvYr1ZrgDZY",
+            "value": "2__bG9jOptVmcdfOBchdvYr1ZrgDZY",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Durham",
+            "rawValue": "bG9jOoZhdgcmJcDxdeMh-zl3QY8",
+            "value": "2__bG9jOoZhdgcmJcDxdeMh-zl3QY8",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Kuala Lumpur",
+            "rawValue": "bG9jOrK1VEgOikl7heFKWDwW1p8",
+            "value": "2__bG9jOrK1VEgOikl7heFKWDwW1p8",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Gurugram",
+            "rawValue": "bG9jOr1lKHj0zZkcKs0P4KiawDs",
+            "value": "2__bG9jOr1lKHj0zZkcKs0P4KiawDs",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Istanbul",
+            "rawValue": "bG9jOkiGP8oVtSi7eko4h2mrilQ",
+            "value": "2__bG9jOkiGP8oVtSi7eko4h2mrilQ",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Manchester",
+            "rawValue": "bG9jOqdP8OeHGu_PGr1SVvVjta8",
+            "value": "2__bG9jOqdP8OeHGu_PGr1SVvVjta8",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Liverpool",
+            "rawValue": "bG9jOpLsRzK8bunr9Hb56HmWjpM",
+            "value": "2__bG9jOpLsRzK8bunr9Hb56HmWjpM",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Melbourne",
+            "rawValue": "bG9jOoTqzbBaY1Dze36vmBVyrwU",
+            "value": "2__bG9jOoTqzbBaY1Dze36vmBVyrwU",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Pune",
+            "rawValue": "bG9jOmculTpBeu-Ler5LY-778m0",
+            "value": "2__bG9jOmculTpBeu-Ler5LY-778m0",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Mexico",
+            "rawValue": "bG9jOrMA94s1SN0iZFevMYdcwuQ",
+            "value": "2__bG9jOrMA94s1SN0iZFevMYdcwuQ",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Madrid",
+            "rawValue": "bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+            "value": "2__bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+            "count": 2
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Dhaka",
+            "rawValue": "bG9jOqTj-A-F4LQkC3jTQjnJfyg",
+            "value": "2__bG9jOqTj-A-F4LQkC3jTQjnJfyg",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Budapest",
+            "rawValue": "bG9jOgghBbrgDCtKThOr06MoJ58",
+            "value": "2__bG9jOgghBbrgDCtKThOr06MoJ58",
+            "count": 4
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Vancouver",
+            "rawValue": "bG9jOrY_TDY_LoNEyEfShRjLZrQ",
+            "value": "2__bG9jOrY_TDY_LoNEyEfShRjLZrQ",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Ohio",
+            "rawValue": "bG9jOqRn2PT3VM8zW4XEVrmKYEY",
+            "value": "2__bG9jOqRn2PT3VM8zW4XEVrmKYEY",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "New York",
+            "rawValue": "bG9jOgoc3sb0fkbSlwnV_MdK79E",
+            "value": "2__bG9jOgoc3sb0fkbSlwnV_MdK79E",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Wisconsin",
+            "rawValue": "bG9jOg98BFlm0IYv00andy5N3OU",
+            "value": "2__bG9jOg98BFlm0IYv00andy5N3OU",
+            "count": 0
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Houston",
+            "rawValue": "bG9jOmVBczJGTZUwUO0A-DmuvkU",
+            "value": "2__bG9jOmVBczJGTZUwUO0A-DmuvkU",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Alabama",
+            "rawValue": "bG9jOq3_lvF3OX3x1YGdGA1IvOc",
+            "value": "2__bG9jOq3_lvF3OX3x1YGdGA1IvOc",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "North Carolina",
+            "rawValue": "bG9jOoehlY3WheJEnOvaRuOlbZ4",
+            "value": "2__bG9jOoehlY3WheJEnOvaRuOlbZ4",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "USA",
+            "rawValue": "bG9jOj6lFtcZrjA4u4EAAaVzOwU",
+            "value": "2__bG9jOj6lFtcZrjA4u4EAAaVzOwU",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Canada",
+            "rawValue": "bG9jOpx_suA_ZKGOGVDXsRrperc",
+            "value": "2__bG9jOpx_suA_ZKGOGVDXsRrperc",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "UK",
+            "rawValue": "bG9jOjmMjRtbAhOOCB5zAGM6FKI",
+            "value": "2__bG9jOjmMjRtbAhOOCB5zAGM6FKI",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Australia",
+            "rawValue": "bG9jOm49L2OcPijwHrIJz53LmTM",
+            "value": "2__bG9jOm49L2OcPijwHrIJz53LmTM",
+            "count": 2
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Cairo",
+            "rawValue": "bG9jOkdQZpwtoxXK44mdGNWvvV0",
+            "value": "2__bG9jOkdQZpwtoxXK44mdGNWvvV0",
+            "count": 2
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Chennai",
+            "rawValue": "bG9jOmQuW8R1oZrLBlvCo4hrdbo",
+            "value": "2__bG9jOmQuW8R1oZrLBlvCo4hrdbo",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Chicago, USA",
+            "rawValue": "bG9jOlXUxaD-uUev9dUyJvxSAzQ",
+            "value": "2__bG9jOlXUxaD-uUev9dUyJvxSAzQ",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Manila",
+            "rawValue": "bG9jOl1qLqetbfjlj3gDiqOw8w0",
+            "value": "2__bG9jOl1qLqetbfjlj3gDiqOw8w0",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Sao Paolo",
+            "rawValue": "bG9jOrYgYHhnoMdiWFOQzuVQ7f8",
+            "value": "2__bG9jOrYgYHhnoMdiWFOQzuVQ7f8",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Singapore",
+            "rawValue": "bG9jOuB8iOd-VgwOamto_uqZlcs",
+            "value": "2__bG9jOuB8iOd-VgwOamto_uqZlcs",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Taipei",
+            "rawValue": "bG9jOrrAucken9qNOiGdPde7x48",
+            "value": "2__bG9jOrrAucken9qNOiGdPde7x48",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Toronto",
+            "rawValue": "bG9jOoNgxVT9dl1kWfbtPDJbs_c",
+            "value": "2__bG9jOoNgxVT9dl1kWfbtPDJbs_c",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Mumbai",
+            "rawValue": "bG9jOr6StJAT-Oma3GYgn_lolDY",
+            "value": "2__bG9jOr6StJAT-Oma3GYgn_lolDY",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Ho Chi Minh",
+            "rawValue": "bG9jOgkLVF0GIRDSKAvzigxkeWY",
+            "value": "2__bG9jOgkLVF0GIRDSKAvzigxkeWY",
+            "count": 3
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Lagos Lagoon",
+            "rawValue": "bG9jOkmwScPNKe_mg1RMTwhR4oA",
+            "value": "2__bG9jOkmwScPNKe_mg1RMTwhR4oA",
+            "count": 2
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "San Francisco",
+            "rawValue": "bG9jOpOyS9-2tWyZd04q9peqBHE",
+            "value": "2__bG9jOpOyS9-2tWyZd04q9peqBHE",
+            "count": 1
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Buenos Aires",
+            "rawValue": "bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+            "value": "2__bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+            "count": 4
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "Bengaluru",
+            "rawValue": "bG9jOgYACQtS8Y_YXuh5usC1i5g",
+            "value": "2__bG9jOgYACQtS8Y_YXuh5usC1i5g",
+            "count": 2
+          },
+          {
+            "type": "LOCATION_CITY",
+            "displayName": "India",
+            "rawValue": "bG9jOtSTnyt84cS6Ylm-WneCbic",
+            "value": "2__bG9jOtSTnyt84cS6Ylm-WneCbic",
+            "count": 1
+          }
+        ],
+        "jobBoardExternal": {
+          "id": "RXh0ZXJuYWxKb2JCb2FyZDoyMDM4OA==",
+          "teamDisplayName": "Fireflies",
+          "descriptionHtml": "<h4><br></h4>",
+          "pageTitle": "Fireflies Careers"
+        }
+      }
+    },
+    "bodySHA256": "36500ebdaf9dbbcbdf40eca12888153b75c9d91f990a3850670e0cdc4d001c40"
+  },
+  "roles": [
+    {
+      "request": {
+        "operationName": "ExternalJobPosting",
+        "query": "fragment PublicQuestionFragment on PublicOatsQuestion {\n    extId\n    answerType\n    displayType\n    fileType\n    text\n    description\n    isRequired\n    options {\n      extId\n      value\n    }\n    numericRatingRange\n  }\n\nfragment PublicDemographicQuestionFragment on PublicOatsDemographicSurveyQuestion {\n    extId\n    answerType\n    displayType\n    text\n    description\n    options {\n      extId\n      value\n    }\n  }\n\nquery ExternalJobPosting($boardId: String!, $extId: String!) {\n    oatsExternalJobPosting(boardId: $boardId, extId: $extId) {\n      id\n      title\n      descriptionHtml\n      extId\n      startDateTs\n      firstPublishedTsSec\n      companyLogo\n      companyUrl\n      isApplicationFormHidden\n      applicationFormTemplate {\n        id\n        includeEeoc\n        eeocConfig {\n          includeRaceXGender\n          includeVeteranStatus\n          includeDisabilityStatus\n        }\n      }\n      isUnlistedExternally\n      locations {\n        id\n        extId\n        name\n        city\n        isoCountry\n        isRemote\n      }\n      job {\n        id\n        locationType\n        employmentType\n        requisitionId\n        teamDisplayName\n        department {\n          id\n          extId\n          name\n        }\n        locations {\n          id\n          extId\n          name\n          city\n          isoCountry\n          isRemote\n        }\n      }\n      jobPostSectionHtml {\n        introHtml\n        outroHtml\n      }\n      compensationHtml\n    }\n    oatsJobPostFieldsAndQuestions(\n      jobBoardVanityPath: $boardId\n      jobPostExtId: $extId\n    ) {\n      fields {\n        fieldType\n        isRequired\n      }\n      questions {\n        ...PublicQuestionFragment\n      }\n      demographicSurvey {\n        extId\n        surveyType\n        questions {\n          ...PublicDemographicQuestionFragment\n        }\n      }\n    }\n  }\n",
+        "variables": {
+          "boardId": "fireflies",
+          "extId": "am9icG9zdDqoRPquwrfd5SK93NlTlh3z"
+        }
+      },
+      "model": {
+        "data": {
+          "oatsExternalJobPosting": {
+            "id": "T2F0c0pvYlBvc3Q6NzUxMjU1Nw==",
+            "title": "Mobile App Designer",
+            "descriptionHtml": "<div><a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(18, 100, 163);\">Fireflies.ai</a> is the leading AI teammate for meetings, trusted by more than 20 million users across over 500,000 organizations, from fast-growing startups to Fortune 500 enterprises. Fireflies captures knowledge, automates repetitive work, and helps teams become more productive before, during, and after every meeting.</div><div><br></div><div>Fireflies has achieved unicorn status with a valuation exceeding $1 billion. In 2024, Ramp recognized Fireflies as the sixth most popular AI platform by number of paying customers, alongside companies including OpenAI, Midjourney, and Anthropic. There is a good chance you have already seen Fireflies quietly powering one of your recent meetings.</div><div><br></div><div>We're looking for <strong>Product Designers/Builders</strong> excited to design <strong>AI-first experiences for mobile and wearable devices.</strong></div><div><br></div><h3><strong>Design at Fireflies</strong></h3><div><br></div><h4><strong>Builders</strong></h4><div>We’re looking for designers who can design, ship, and think like a PM. People who can spot opportunities, shape the problem, plan the specs, and own the outcome.</div><div><br></div><h4><strong>Curious</strong></h4><div>We're excited by designers who are curious, experiment often, and help define new interaction patterns that make AI intuitive, trustworthy, and genuinely useful.</div><div><br></div><h4><strong>Craft</strong></h4><div>We value people who put efforts into every interaction, animation, transition, piece of copy, and small detail that contributes to how the product feels. We believe thoughtful craftsmanship creates products people enjoy coming back to.</div><div><br></div><h4><strong>Collaboration</strong></h4><div>Our best work comes from close collaboration between design, engineering, and product. We believe great ideas can come from anyone, and the strongest products are shaped together like that.</div><div><br></div><h4><strong>Users</strong></h4><div>We spend time with customers, understand how they work, and use those insights to shape every product decision. Building products people love starts with understanding the people we're building for.</div><div><br></div><h4><strong>Simplicity</strong></h4><div>Software gets complicated quickly. We value people who can find ways to remove effort, reduce noise, and make complex functionality or information presented in a simpler manner.</div><div><br></div><h4><strong>Judgment</strong></h4><div>There’s no single process for great design. We value people who ask good questions, comes with great design taste, and know when to explore or ship.</div><div><br></div><h3><strong>What you'll do</strong></h3><ul><li class=\"\">Own product surfaces end to end, from identifying opportunities to shipping polished experiences that people love.</li><li class=\"\">Design beautiful mobile experiences for iOS and Android, considering mobile interaction patterns, device ergonomics, touch targets, navigation, and the constraints of smaller screens.</li><li class=\"\">Build and ship prototypes, experiments, and production-ready experiences using AI tools like Claude Code, Codex, Cursor, and whatever comes next.</li><li class=\"\">Improve Fireflies every day by spotting friction, refining workflows, and fixing the small details that make the product feel exceptional.</li><li class=\"\">Collaborate closely with engineers and product managers to turn ideas into thoughtful, high quality product experiences.</li><li class=\"\">Talk to customers regularly, develop a deep understanding of how they work, and turn those insights into better product decisions.</li><li class=\"\">Raise the quality bar across interaction design, visual design, motion, copy, and overall product craft.</li></ul><div><br></div><div><br></div><h3><strong>What we're looking for</strong></h3><ul><li class=\"\">3+ years of experience designing, building, and shipping mobile apps that customers love.</li><li class=\"\">Strong understanding of mobile design principles and ergonomics, with familiarity with Apple’s Human Interface Guidelines and Google’s Material Design.</li><li class=\"\">A portfolio that shows product thinking, interaction design, and visual craft.</li><li class=\"\">Curiosity to explore new ideas, challenge assumptions, and rethink how AI changes the way people interact with software.</li><li class=\"\">A product builder mindset with a desire to own experiences from concept to continuous improvement.</li><li class=\"\">Curiosity about AI and excitement for designing products that don't yet have established patterns.</li><li class=\"\">An eye for detail and a relentless drive to improve the product, even when no one asks.</li></ul><div><br></div><h2><br></h2><h3><strong>Values that are important to us</strong></h3><ul><li class=\"\">You take initiative and improve things without waiting to be asked.</li><li class=\"\">You care deeply about quality and the details that make software feel effortless.</li><li class=\"\">You use tools to automate repetitive work so you can spend more time solving meaningful problems.</li><li class=\"\">You invest in getting better every week, whether that's design, AI, or how you work.</li><li class=\"\">You communicate openly, give thoughtful feedback, and care more about finding the best answer than being right.</li><li class=\"\">You have an internal compass and take accountability &amp; initiative.</li><li class=\"\">Take a look at our <a href=\"https://www.notion.so/Culture-Employee-Value-Proposition-780ae904ede24bc792c088c4495f599f?pvs=21\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(215, 108, 201);\">culture document</a></li></ul><div><br></div><h3><strong>Hiring Process:</strong></h3><ul><li class=\"\">Screening/ Portfolio gathering round ( HR &amp; Recruiting Lead)</li><li class=\"\">Role Expectations &amp; clarity round (Design Lead)</li><li class=\"\">Design Assignment</li><li class=\"\">Culture Round (HR &amp; Recruiting Lead)</li><li class=\"\">Final Round (CEO)</li></ul><h2><br></h2><h3><strong>Perks and benefits:</strong></h3><ul><li class=\"\">Competitive compensation</li><li class=\"\">Work remotely anywhere in your respective country</li><li class=\"\">Ability to move laterally within a team and grow rapidly</li><li class=\"\">Paid time off and flexible leave policy</li><li class=\"\">No boss culture</li><li class=\"\">Flexible working hours</li><li class=\"\">LGBTQ+ friendly</li><li class=\"\">Company offsites</li><li class=\"\">Tech reimbursements</li></ul><div><br></div><h2><br></h2><h3><strong>About </strong><a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(18, 100, 163);\"><strong>Fireflies.ai</strong></a></h3><div><br></div><div><strong>At </strong><a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(18, 100, 163);\">Fireflies.ai</a>, we are changing how teams use AI in their daily work. Our culture champions security, innovation, customer experience, and growth. Backed by $19 million from investors including Canaan and Khosla Ventures, plus angels from Slack, Facebook, Dropbox, Amazon, and Salesforce, Fireflies is driven by a global team of more than 100 people across over 20 countries and every time zone. We are building a world-class, global-first company, and we use our own product to do it.</div><div><br></div><div><a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(18, 100, 163);\">Fireflies.ai</a> is an equal opportunity employer. We strongly value diversity because our team is stronger with different perspectives and experiences. We do not discriminate based on race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, disability status, or any other protected characteristic.</div><div><br></div>",
+            "extId": "am9icG9zdDqoRPquwrfd5SK93NlTlh3z",
+            "startDateTs": null,
+            "firstPublishedTsSec": 1786457279,
+            "companyLogo": null,
+            "companyUrl": null,
+            "isApplicationFormHidden": false,
+            "applicationFormTemplate": {
+              "id": 61585,
+              "includeEeoc": false,
+              "eeocConfig": {
+                "includeRaceXGender": true,
+                "includeVeteranStatus": false,
+                "includeDisabilityStatus": false
+              }
+            },
+            "isUnlistedExternally": false,
+            "locations": [
+              {
+                "id": "34588",
+                "extId": "bG9jOi8ewk--C5_uAVX128Uoqis",
+                "name": "Dubai",
+                "city": "Dubai",
+                "isoCountry": "ARE",
+                "isRemote": false
+              },
+              {
+                "id": "32951",
+                "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM",
+                "name": "Lisbon",
+                "city": "Lisbon",
+                "isoCountry": "PRT",
+                "isRemote": false
+              },
+              {
+                "id": "32953",
+                "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+                "name": "Buenos Aires",
+                "city": "Buenos Aires",
+                "isoCountry": "ARG",
+                "isRemote": false
+              },
+              {
+                "id": "34602",
+                "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+                "name": "Madrid",
+                "city": "Madrid",
+                "isoCountry": "ESP",
+                "isRemote": false
+              },
+              {
+                "id": "57771",
+                "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g",
+                "name": "Bengaluru",
+                "city": "Bengaluru",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "30796",
+                "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY",
+                "name": "Mumbai",
+                "city": "Mumbai",
+                "isoCountry": "IND",
+                "isRemote": false
+              }
+            ],
+            "job": {
+              "id": "T2F0c0pvYjo2NTYyMjYw",
+              "locationType": "REMOTE",
+              "employmentType": "FULL_TIME",
+              "requisitionId": "R58",
+              "teamDisplayName": "Fireflies",
+              "department": {
+                "id": "30327",
+                "extId": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0",
+                "name": "Design"
+              },
+              "locations": [
+                {
+                  "id": "30796",
+                  "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY",
+                  "name": "Mumbai",
+                  "city": "Mumbai",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "32951",
+                  "extId": "bG9jOuLu4e31x5LStpHY3_1OuEM",
+                  "name": "Lisbon",
+                  "city": "Lisbon",
+                  "isoCountry": "PRT",
+                  "isRemote": false
+                },
+                {
+                  "id": "32953",
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false
+                },
+                {
+                  "id": "34588",
+                  "extId": "bG9jOi8ewk--C5_uAVX128Uoqis",
+                  "name": "Dubai",
+                  "city": "Dubai",
+                  "isoCountry": "ARE",
+                  "isRemote": false
+                },
+                {
+                  "id": "34602",
+                  "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+                  "name": "Madrid",
+                  "city": "Madrid",
+                  "isoCountry": "ESP",
+                  "isRemote": false
+                },
+                {
+                  "id": "57771",
+                  "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g",
+                  "name": "Bengaluru",
+                  "city": "Bengaluru",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                }
+              ]
+            },
+            "jobPostSectionHtml": {
+              "introHtml": null,
+              "outroHtml": null
+            },
+            "compensationHtml": null
+          },
+          "oatsJobPostFieldsAndQuestions": {
+            "fields": [
+              {
+                "fieldType": "FIRST_NAME",
+                "isRequired": true
+              },
+              {
+                "fieldType": "LAST_NAME",
+                "isRequired": true
+              },
+              {
+                "fieldType": "EMAIL",
+                "isRequired": true
+              },
+              {
+                "fieldType": "LINKEDIN_URL",
+                "isRequired": false
+              },
+              {
+                "fieldType": "RESUME",
+                "isRequired": true
+              }
+            ],
+            "questions": [
+              {
+                "extId": "cXVlczrbsWo8LxSh-Nj_hREWgVgC",
+                "answerType": "SHORT_TEXT",
+                "displayType": null,
+                "fileType": null,
+                "text": "Portfolio Link",
+                "description": null,
+                "isRequired": false,
+                "options": null,
+                "numericRatingRange": null
+              }
+            ],
+            "demographicSurvey": null
+          }
+        }
+      },
+      "bodySHA256": "2d4b860b2a0c7ac69db6a17fe209ebc8caee02e476f4f8c2d98ad9a4f69924b9"
+    },
+    {
+      "request": {
+        "operationName": "ExternalJobPosting",
+        "query": "fragment PublicQuestionFragment on PublicOatsQuestion {\n    extId\n    answerType\n    displayType\n    fileType\n    text\n    description\n    isRequired\n    options {\n      extId\n      value\n    }\n    numericRatingRange\n  }\n\nfragment PublicDemographicQuestionFragment on PublicOatsDemographicSurveyQuestion {\n    extId\n    answerType\n    displayType\n    text\n    description\n    options {\n      extId\n      value\n    }\n  }\n\nquery ExternalJobPosting($boardId: String!, $extId: String!) {\n    oatsExternalJobPosting(boardId: $boardId, extId: $extId) {\n      id\n      title\n      descriptionHtml\n      extId\n      startDateTs\n      firstPublishedTsSec\n      companyLogo\n      companyUrl\n      isApplicationFormHidden\n      applicationFormTemplate {\n        id\n        includeEeoc\n        eeocConfig {\n          includeRaceXGender\n          includeVeteranStatus\n          includeDisabilityStatus\n        }\n      }\n      isUnlistedExternally\n      locations {\n        id\n        extId\n        name\n        city\n        isoCountry\n        isRemote\n      }\n      job {\n        id\n        locationType\n        employmentType\n        requisitionId\n        teamDisplayName\n        department {\n          id\n          extId\n          name\n        }\n        locations {\n          id\n          extId\n          name\n          city\n          isoCountry\n          isRemote\n        }\n      }\n      jobPostSectionHtml {\n        introHtml\n        outroHtml\n      }\n      compensationHtml\n    }\n    oatsJobPostFieldsAndQuestions(\n      jobBoardVanityPath: $boardId\n      jobPostExtId: $extId\n    ) {\n      fields {\n        fieldType\n        isRequired\n      }\n      questions {\n        ...PublicQuestionFragment\n      }\n      demographicSurvey {\n        extId\n        surveyType\n        questions {\n          ...PublicDemographicQuestionFragment\n        }\n      }\n    }\n  }\n",
+        "variables": {
+          "boardId": "fireflies",
+          "extId": "am9icG9zdDptyObi1Yz6T1u_jaXCawiA"
+        }
+      },
+      "model": {
+        "data": {
+          "oatsExternalJobPosting": {
+            "id": "T2F0c0pvYlBvc3Q6NzY0MDAwMg==",
+            "title": "Creative Marketing Designer",
+            "descriptionHtml": "<div><a href=\"http://fireflies.ai/\" rel=\"noopener noreferrer\" target=\"_blank\">Fireflies.ai</a> is the leading AI teammate for meetings, trusted by more than 20 million users across over 500,000 organizations, from fast-growing startups to Fortune 500 enterprises. Fireflies captures knowledge, automates repetitive work, and helps teams become more productive before, during, and after every meeting.</div><div><br></div><div>Fireflies has achieved unicorn status with a valuation exceeding $1 billion. In 2024, Ramp recognized Fireflies as the sixth most popular AI platform by number of paying customers, alongside companies including OpenAI, Midjourney, and Anthropic. There is a good chance you have already seen Fireflies quietly powering one of your recent meetings.</div><div><br></div><div>We're hiring an <strong>Ad Designer</strong> to become the dedicated creative engine behind our Meta, Instagram, and social ad output. Today, ad turnaround runs through founders and the design lead directly — every cricket-sponsorship creative, every carousel, every quick test. We want that to change: <strong>someone who can own the full loop from \"here's an insight\" to \"here are 10 variations live and being tested,\" in hours, not days.</strong></div><div><br></div><div>This isn't a \"make it look nice\" role. It's for someone who thinks like a marketer first — who can sit inside Meta Ads Manager, form a real opinion about why an ad is or isn't working, and turn that opinion into the next creative before being asked.</div><div><br></div><h2>What you'll do:</h2><h2><br></h2><ul><li class=\"\">Design high-performing ad creative for Meta, Instagram, and other paid social channels — statics, carousels, and short-form video assets</li><li class=\"\">Take one working ad and rapidly produce <strong>10+ variations</strong> (copy, colour, format, hook) to keep testing and scaling what performs</li><li class=\"\">Handle basic video clipping - repurposing raw founder/event/product footage into short-form social and ad-ready clips</li><li class=\"\">Live inside <strong>Meta Ads Manager</strong>: track performance, study competitors and industry trends, and use that data to decide what to design next</li><li class=\"\">Turn around carousels and quick-test creative in <strong>hours, not days</strong> - speed is part of the job, not a nice-to-have</li><li class=\"\">Partner directly with founders and the marketing/design team on messaging, testing hypotheses, and creative direction</li><li class=\"\">Own visual execution end-to-end, concept to shipped ad , without needing a designer to be looped in on every asset</li><li class=\"\">Build a reusable system of ad templates and winning formats so output scales without reinventing each brief</li></ul><div><br></div><h2>Who we're looking for:</h2><h2><br></h2><ul><li class=\"\"><strong>You think like a marketer who designs, not a designer who makes ads look nice.</strong> You have a real opinion on what copy will land, what colours will work, what visual stops the scroll, and what makes a value prop instantly understandable.</li><li class=\"\">A portfolio or reel that shows <strong>live, shipped ad creative</strong> - ideally with a sense of what performed and why, not just concept work</li><li class=\"\">Strong graphic design fundamentals: layout, colour, typography, and an instinct for what gets attention on Meta/IG</li><li class=\"\">Comfort with basic video editing/clipping for short-form social and ad placements</li><li class=\"\">A bias for speed and iteration - you'd rather ship 10 variants of something that's already working today than polish one thing for a week</li><li class=\"\">Real experience close to performance advertising - you've run ad accounts yourself, or worked tightly enough with founders/marketers to understand what the data is telling you</li><li class=\"\">Ability to work quickly, communicate clearly over Slack, and overlap with <strong>US Pacific or European working hours</strong></li></ul><div><br></div><div><strong>Strong plus:</strong> You've personally run or scaled an ad account, an Instagram page, or a creator/brand page from scratch — we'd rather see that than an agency résumé. We're also widening our aperture beyond typical SaaS design: backgrounds in luxury, fashion, entertainment, sports, hospitality, or agency work are all welcome. Portfolio beats pedigree.</div><div><br></div><h2>How to apply</h2><h2><br></h2><div>Send us:</div><ul><li class=\"\">Your <strong>portfolio or reel</strong> of ad creative</li><li class=\"\"><strong>One ad you designed that performed well</strong> - and your read on why it worked</li><li class=\"\">Your typical turnaround time for a quick-turn carousel or ad variation set</li></ul><div><br></div><h2>What matters to us:</h2><h2><br></h2><ul><li class=\"\">You're a strong communicator and contribute positively to the team</li><li class=\"\">You take ownership and have an internal compass</li><li class=\"\">You value candid feedback and overcommunication</li><li class=\"\">You care about quality and design, while keeping things simple</li><li class=\"\">You measure your impact and look for ways to improve and automate</li><li class=\"\">You're comfortable working in a fast-moving environment and getting a little better every week</li><li class=\"\">You're customer-focused and care about the end result, not just the output</li><li class=\"\">You value fast, incremental ways of working</li></ul><div><br></div><div><br></div><h2>Perks &amp; benefits:</h2><h2><br></h2><ul><li class=\"\">Competitive compensation</li><li class=\"\">Work remotely from anywhere in your respective country</li><li class=\"\">Flexible working hours</li><li class=\"\">Paid time off and flexible leave policy</li><li class=\"\">Ability to move laterally within the team and grow quickly</li><li class=\"\">No-boss culture</li><li class=\"\">LGBTQ+ friendly workplace</li><li class=\"\">Company offsites</li><li class=\"\">Tech reimbursements</li></ul><div><br></div><h2>About <a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\">Fireflies.ai</a>:</h2><h2><br></h2><div>At <a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\">Fireflies.ai</a>, we're changing how teams use AI in their daily work. Our culture is built around security, innovation, customer experience, and growth. Backed by $19M from investors including Canaan and Khosla Ventures, along with angels from Slack, Facebook, Dropbox, Amazon, and Salesforce, Fireflies is a global team of 100+ people across 20+ countries and every time zone. We're building a global-first company and use our own product every day to help us work better.</div><div><a href=\"http://Fireflies.ai\" rel=\"noopener noreferrer\" target=\"_blank\">Fireflies.ai</a> is an equal opportunity employer. We value diversity because our team is stronger when people with different perspectives and experiences can do their best work. We do not discriminate based on race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, disability status, or any other protected characteristic.</div><div><br></div>",
+            "extId": "am9icG9zdDptyObi1Yz6T1u_jaXCawiA",
+            "startDateTs": null,
+            "firstPublishedTsSec": 1788456805,
+            "companyLogo": null,
+            "companyUrl": null,
+            "isApplicationFormHidden": false,
+            "applicationFormTemplate": {
+              "id": 63872,
+              "includeEeoc": false,
+              "eeocConfig": {
+                "includeRaceXGender": true,
+                "includeVeteranStatus": false,
+                "includeDisabilityStatus": false
+              }
+            },
+            "isUnlistedExternally": false,
+            "locations": [
+              {
+                "id": "30796",
+                "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY",
+                "name": "Mumbai",
+                "city": "Mumbai",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "32948",
+                "extId": "bG9jOmQuW8R1oZrLBlvCo4hrdbo",
+                "name": "Chennai",
+                "city": "Chennai",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "32949",
+                "extId": "bG9jOgkLVF0GIRDSKAvzigxkeWY",
+                "name": "Ho Chi Minh",
+                "city": "Ho Chi Minh City",
+                "isoCountry": "VNM",
+                "isRemote": true
+              },
+              {
+                "id": "32953",
+                "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+                "name": "Buenos Aires",
+                "city": "Buenos Aires",
+                "isoCountry": "ARG",
+                "isRemote": false
+              },
+              {
+                "id": "32954",
+                "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584",
+                "name": "Jakarta",
+                "city": "Jakarta Special Capital Region",
+                "isoCountry": "IDN",
+                "isRemote": false
+              },
+              {
+                "id": "32955",
+                "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs",
+                "name": "Cape town",
+                "city": "Cape Town",
+                "isoCountry": "ZAF",
+                "isRemote": false
+              },
+              {
+                "id": "32956",
+                "extId": "bG9jOkmwScPNKe_mg1RMTwhR4oA",
+                "name": "Lagos Lagoon",
+                "city": "Lagos Lagoon",
+                "isoCountry": "NGA",
+                "isRemote": true
+              },
+              {
+                "id": "34587",
+                "extId": "bG9jOuB8iOd-VgwOamto_uqZlcs",
+                "name": "Singapore",
+                "city": "Singapore",
+                "isoCountry": "SGP",
+                "isRemote": false
+              },
+              {
+                "id": "34588",
+                "extId": "bG9jOi8ewk--C5_uAVX128Uoqis",
+                "name": "Dubai",
+                "city": "Dubai",
+                "isoCountry": "ARE",
+                "isRemote": false
+              },
+              {
+                "id": "34589",
+                "extId": "bG9jOtq7C_Dx3WAjC6N4dt8OVws",
+                "name": "Karachi",
+                "city": "Karachi",
+                "isoCountry": "PAK",
+                "isRemote": false
+              },
+              {
+                "id": "34590",
+                "extId": "bG9jOptVmcdfOBchdvYr1ZrgDZY",
+                "name": "Lahore",
+                "city": "Lahore",
+                "isoCountry": "PAK",
+                "isRemote": false
+              },
+              {
+                "id": "34591",
+                "extId": "bG9jOkdQZpwtoxXK44mdGNWvvV0",
+                "name": "Cairo",
+                "city": "Cairo",
+                "isoCountry": "EGY",
+                "isRemote": false
+              },
+              {
+                "id": "34593",
+                "extId": "bG9jOoZhdgcmJcDxdeMh-zl3QY8",
+                "name": "Durham",
+                "city": "Durham",
+                "isoCountry": "USA",
+                "isRemote": false
+              },
+              {
+                "id": "34594",
+                "extId": "bG9jOrK1VEgOikl7heFKWDwW1p8",
+                "name": "Kuala Lumpur",
+                "city": "Kuala Lumpur",
+                "isoCountry": "MYS",
+                "isRemote": false
+              },
+              {
+                "id": "34595",
+                "extId": "bG9jOr1lKHj0zZkcKs0P4KiawDs",
+                "name": "Gurugram",
+                "city": "Gurugram",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "34596",
+                "extId": "bG9jOkiGP8oVtSi7eko4h2mrilQ",
+                "name": "Istanbul",
+                "city": "Byzantium",
+                "isoCountry": "TUR",
+                "isRemote": false
+              },
+              {
+                "id": "34600",
+                "extId": "bG9jOmculTpBeu-Ler5LY-778m0",
+                "name": "Pune",
+                "city": "Pune City",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "34601",
+                "extId": "bG9jOrMA94s1SN0iZFevMYdcwuQ",
+                "name": "Mexico",
+                "city": "Mexico",
+                "isoCountry": "MEX",
+                "isRemote": false
+              },
+              {
+                "id": "34602",
+                "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+                "name": "Madrid",
+                "city": "Madrid",
+                "isoCountry": "ESP",
+                "isRemote": false
+              },
+              {
+                "id": "34603",
+                "extId": "bG9jOqTj-A-F4LQkC3jTQjnJfyg",
+                "name": "Dhaka",
+                "city": "Dhaka",
+                "isoCountry": "BGD",
+                "isRemote": false
+              },
+              {
+                "id": "34604",
+                "extId": "bG9jOgghBbrgDCtKThOr06MoJ58",
+                "name": "Budapest",
+                "city": "Budapest",
+                "isoCountry": "HUN",
+                "isRemote": false
+              },
+              {
+                "id": "34606",
+                "extId": "bG9jOqRn2PT3VM8zW4XEVrmKYEY",
+                "name": "Ohio",
+                "city": "Ohio",
+                "isoCountry": "USA",
+                "isRemote": false
+              },
+              {
+                "id": "42079",
+                "extId": "bG9jOrFXgOxMdMTiad-R6mZEQRI",
+                "name": "Raleigh",
+                "city": "Raleigh",
+                "isoCountry": "USA",
+                "isRemote": false
+              },
+              {
+                "id": "42081",
+                "extId": "bG9jOmVBczJGTZUwUO0A-DmuvkU",
+                "name": "Houston",
+                "city": "Houston",
+                "isoCountry": "USA",
+                "isRemote": false
+              },
+              {
+                "id": "42082",
+                "extId": "bG9jOq3_lvF3OX3x1YGdGA1IvOc",
+                "name": "Alabama",
+                "city": "Birmingham",
+                "isoCountry": "USA",
+                "isRemote": false
+              },
+              {
+                "id": "44581",
+                "extId": "bG9jOm49L2OcPijwHrIJz53LmTM",
+                "name": "Australia",
+                "city": "Australia",
+                "isoCountry": "AUS",
+                "isRemote": false
+              },
+              {
+                "id": "44820",
+                "extId": "bG9jOpx_suA_ZKGOGVDXsRrperc",
+                "name": "Canada",
+                "city": "Canada",
+                "isoCountry": "CAN",
+                "isRemote": false
+              },
+              {
+                "id": "57771",
+                "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g",
+                "name": "Bengaluru",
+                "city": "Bengaluru",
+                "isoCountry": "IND",
+                "isRemote": false
+              },
+              {
+                "id": "69210",
+                "extId": "bG9jOtSTnyt84cS6Ylm-WneCbic",
+                "name": "India",
+                "city": "",
+                "isoCountry": "IND",
+                "isRemote": true
+              }
+            ],
+            "job": {
+              "id": "T2F0c0pvYjo2NjQyMzgw",
+              "locationType": "REMOTE",
+              "employmentType": "FULL_TIME",
+              "requisitionId": "R62",
+              "teamDisplayName": "Fireflies",
+              "department": {
+                "id": "30327",
+                "extId": "ZGVwdDpq_hScjgWrt_T7l3ABR6L0",
+                "name": "Design"
+              },
+              "locations": [
+                {
+                  "id": "30796",
+                  "extId": "bG9jOr6StJAT-Oma3GYgn_lolDY",
+                  "name": "Mumbai",
+                  "city": "Mumbai",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "32948",
+                  "extId": "bG9jOmQuW8R1oZrLBlvCo4hrdbo",
+                  "name": "Chennai",
+                  "city": "Chennai",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "32949",
+                  "extId": "bG9jOgkLVF0GIRDSKAvzigxkeWY",
+                  "name": "Ho Chi Minh",
+                  "city": "Ho Chi Minh City",
+                  "isoCountry": "VNM",
+                  "isRemote": true
+                },
+                {
+                  "id": "32953",
+                  "extId": "bG9jOs-_SG0jgJFl4N1dH4CF3uc",
+                  "name": "Buenos Aires",
+                  "city": "Buenos Aires",
+                  "isoCountry": "ARG",
+                  "isRemote": false
+                },
+                {
+                  "id": "32954",
+                  "extId": "bG9jOjCf-iYDEOlVsDmjmw4r584",
+                  "name": "Jakarta",
+                  "city": "Jakarta Special Capital Region",
+                  "isoCountry": "IDN",
+                  "isRemote": false
+                },
+                {
+                  "id": "32955",
+                  "extId": "bG9jOm1JJnTlqF_qgLPZj1SqcGs",
+                  "name": "Cape town",
+                  "city": "Cape Town",
+                  "isoCountry": "ZAF",
+                  "isRemote": false
+                },
+                {
+                  "id": "32956",
+                  "extId": "bG9jOkmwScPNKe_mg1RMTwhR4oA",
+                  "name": "Lagos Lagoon",
+                  "city": "Lagos Lagoon",
+                  "isoCountry": "NGA",
+                  "isRemote": true
+                },
+                {
+                  "id": "34587",
+                  "extId": "bG9jOuB8iOd-VgwOamto_uqZlcs",
+                  "name": "Singapore",
+                  "city": "Singapore",
+                  "isoCountry": "SGP",
+                  "isRemote": false
+                },
+                {
+                  "id": "34588",
+                  "extId": "bG9jOi8ewk--C5_uAVX128Uoqis",
+                  "name": "Dubai",
+                  "city": "Dubai",
+                  "isoCountry": "ARE",
+                  "isRemote": false
+                },
+                {
+                  "id": "34589",
+                  "extId": "bG9jOtq7C_Dx3WAjC6N4dt8OVws",
+                  "name": "Karachi",
+                  "city": "Karachi",
+                  "isoCountry": "PAK",
+                  "isRemote": false
+                },
+                {
+                  "id": "34590",
+                  "extId": "bG9jOptVmcdfOBchdvYr1ZrgDZY",
+                  "name": "Lahore",
+                  "city": "Lahore",
+                  "isoCountry": "PAK",
+                  "isRemote": false
+                },
+                {
+                  "id": "34591",
+                  "extId": "bG9jOkdQZpwtoxXK44mdGNWvvV0",
+                  "name": "Cairo",
+                  "city": "Cairo",
+                  "isoCountry": "EGY",
+                  "isRemote": false
+                },
+                {
+                  "id": "34593",
+                  "extId": "bG9jOoZhdgcmJcDxdeMh-zl3QY8",
+                  "name": "Durham",
+                  "city": "Durham",
+                  "isoCountry": "USA",
+                  "isRemote": false
+                },
+                {
+                  "id": "34594",
+                  "extId": "bG9jOrK1VEgOikl7heFKWDwW1p8",
+                  "name": "Kuala Lumpur",
+                  "city": "Kuala Lumpur",
+                  "isoCountry": "MYS",
+                  "isRemote": false
+                },
+                {
+                  "id": "34595",
+                  "extId": "bG9jOr1lKHj0zZkcKs0P4KiawDs",
+                  "name": "Gurugram",
+                  "city": "Gurugram",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "34596",
+                  "extId": "bG9jOkiGP8oVtSi7eko4h2mrilQ",
+                  "name": "Istanbul",
+                  "city": "Byzantium",
+                  "isoCountry": "TUR",
+                  "isRemote": false
+                },
+                {
+                  "id": "34600",
+                  "extId": "bG9jOmculTpBeu-Ler5LY-778m0",
+                  "name": "Pune",
+                  "city": "Pune City",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "34601",
+                  "extId": "bG9jOrMA94s1SN0iZFevMYdcwuQ",
+                  "name": "Mexico",
+                  "city": "Mexico",
+                  "isoCountry": "MEX",
+                  "isRemote": false
+                },
+                {
+                  "id": "34602",
+                  "extId": "bG9jOn4VyDVBaOAtXiw1D6NYKU8",
+                  "name": "Madrid",
+                  "city": "Madrid",
+                  "isoCountry": "ESP",
+                  "isRemote": false
+                },
+                {
+                  "id": "34603",
+                  "extId": "bG9jOqTj-A-F4LQkC3jTQjnJfyg",
+                  "name": "Dhaka",
+                  "city": "Dhaka",
+                  "isoCountry": "BGD",
+                  "isRemote": false
+                },
+                {
+                  "id": "34604",
+                  "extId": "bG9jOgghBbrgDCtKThOr06MoJ58",
+                  "name": "Budapest",
+                  "city": "Budapest",
+                  "isoCountry": "HUN",
+                  "isRemote": false
+                },
+                {
+                  "id": "34606",
+                  "extId": "bG9jOqRn2PT3VM8zW4XEVrmKYEY",
+                  "name": "Ohio",
+                  "city": "Ohio",
+                  "isoCountry": "USA",
+                  "isRemote": false
+                },
+                {
+                  "id": "42079",
+                  "extId": "bG9jOrFXgOxMdMTiad-R6mZEQRI",
+                  "name": "Raleigh",
+                  "city": "Raleigh",
+                  "isoCountry": "USA",
+                  "isRemote": false
+                },
+                {
+                  "id": "42081",
+                  "extId": "bG9jOmVBczJGTZUwUO0A-DmuvkU",
+                  "name": "Houston",
+                  "city": "Houston",
+                  "isoCountry": "USA",
+                  "isRemote": false
+                },
+                {
+                  "id": "42082",
+                  "extId": "bG9jOq3_lvF3OX3x1YGdGA1IvOc",
+                  "name": "Alabama",
+                  "city": "Birmingham",
+                  "isoCountry": "USA",
+                  "isRemote": false
+                },
+                {
+                  "id": "44581",
+                  "extId": "bG9jOm49L2OcPijwHrIJz53LmTM",
+                  "name": "Australia",
+                  "city": "Australia",
+                  "isoCountry": "AUS",
+                  "isRemote": false
+                },
+                {
+                  "id": "44820",
+                  "extId": "bG9jOpx_suA_ZKGOGVDXsRrperc",
+                  "name": "Canada",
+                  "city": "Canada",
+                  "isoCountry": "CAN",
+                  "isRemote": false
+                },
+                {
+                  "id": "57771",
+                  "extId": "bG9jOgYACQtS8Y_YXuh5usC1i5g",
+                  "name": "Bengaluru",
+                  "city": "Bengaluru",
+                  "isoCountry": "IND",
+                  "isRemote": false
+                },
+                {
+                  "id": "69210",
+                  "extId": "bG9jOtSTnyt84cS6Ylm-WneCbic",
+                  "name": "India",
+                  "city": "",
+                  "isoCountry": "IND",
+                  "isRemote": true
+                }
+              ]
+            },
+            "jobPostSectionHtml": {
+              "introHtml": null,
+              "outroHtml": null
+            },
+            "compensationHtml": null
+          },
+          "oatsJobPostFieldsAndQuestions": {
+            "fields": [
+              {
+                "fieldType": "FIRST_NAME",
+                "isRequired": true
+              },
+              {
+                "fieldType": "LAST_NAME",
+                "isRequired": true
+              },
+              {
+                "fieldType": "EMAIL",
+                "isRequired": true
+              },
+              {
+                "fieldType": "LINKEDIN_URL",
+                "isRequired": true
+              },
+              {
+                "fieldType": "RESUME",
+                "isRequired": true
+              }
+            ],
+            "questions": [],
+            "demographicSurvey": null
+          }
+        }
+      },
+      "bodySHA256": "0a4459c372fb01f305bf8a87c50de39693e04c92ec828ef47b2224795a1038ca"
+    }
+  ],
+  "publicPages": [
+    {
+      "url": "https://jobs.gem.com/fireflies/am9icG9zdDqoRPquwrfd5SK93NlTlh3z",
+      "nonceNeutralSHA256": "dd944ae8ebbae3982643ca59cde5d52696884a9d13fc6e02f8c043d507d3cfcf",
+      "title": "Mobile App Designer"
+    },
+    {
+      "url": "https://jobs.gem.com/fireflies/am9icG9zdDqoRPquwrfd5SK93NlTlh3z/application",
+      "nonceNeutralSHA256": "dd944ae8ebbae3982643ca59cde5d52696884a9d13fc6e02f8c043d507d3cfcf",
+      "title": "Mobile App Designer"
+    },
+    {
+      "url": "https://jobs.gem.com/fireflies/am9icG9zdDptyObi1Yz6T1u_jaXCawiA",
+      "nonceNeutralSHA256": "971ab7b2eb4fa19c3abfe6728cf2a4edc4d21a591ffb20d3ac8df0ea7ae71ffd",
+      "title": "Creative Marketing Designer"
+    },
+    {
+      "url": "https://jobs.gem.com/fireflies/am9icG9zdDptyObi1Yz6T1u_jaXCawiA/application",
+      "nonceNeutralSHA256": "971ab7b2eb4fa19c3abfe6728cf2a4edc4d21a591ffb20d3ac8df0ea7ae71ffd",
+      "title": "Creative Marketing Designer"
+    }
+  ],
+  "fixtureSHA256": "de8369a47e7f8d7bdd573c762cd5f54d3c1a3dbd3fb661f6c35ec9718e8ff46f",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "publicCarrierSHA256": "d663a73a9719953e441ad465316c0c5cfa923408f244b5174d8908fb63885a1c"
+}

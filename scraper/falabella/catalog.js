@@ -27,11 +27,11 @@ export const FALABELLA_CATALOG = {
   verifiedSampleOfferInfoUrl:
     'https://falabella.airavirtual.com/offer_info/B673kVNCinevRIVb5luq?fbrefresh=STPm1B6TRvQvIzI8&id=1678396020',
   verifiedListingJobCount: 1899,
-  atsPlatform: 'first-party-bff-job-api',
+  atsPlatform: 'official-corporate-declared-recruitment-http404-inventory-unavailable',
   countryFilter: 'Global',
-  paginationStrategy: 'single-public-external-offers-feed',
+  paginationStrategy: 'literal-regional-corporate-redirect-and-active-native-handoff',
   extractionStrategy:
-    'verified-careers-redirect+verified-careers-shell+verified-public-bundle-client+verified-external-offers-api+airavirtual-apply-handoff',
+    'active-owned-corporate-recruitment-declaration+observed-native404+closing-unproven+company-scope-held',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   verifiedOn: '2026-07-15',

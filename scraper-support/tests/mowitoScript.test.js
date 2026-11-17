@@ -32,7 +32,7 @@ const homepageHtml = `
 </html>
 `
 
-test('Mowito validates the official careers contact surface before returning no listings', async () => {
+test('Mowito retains its historical corporate contact signal helpers', async () => {
   const mowito = await loadMowitoModule()
 
   assert.equal(mowito.HOMEPAGE_URL, 'https://www.mowito.ai/')
@@ -40,29 +40,14 @@ test('Mowito validates the official careers contact surface before returning no 
   assert.equal(mowito.hasPublicJobBoardSignal(homepageHtml), false)
 })
 
-test('Mowito returns an empty result set when the official site exposes only careers contact signals', async () => {
+// The employer actually delegates Careers to LinkedIn. Its inventory remains
+// unknown until original HTTP acquisition succeeds; a body is not empty proof.
+test('Mowito rejects body-only career-contact pages rather than declaring empty', async () => {
   const mowito = await loadMowitoModule()
-  const requestedUrls = []
-
-  const jobs = await mowito.createMowitoScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === mowito.HOMEPAGE_URL) return homepageHtml
-      throw new Error(`Unexpected Mowito fixture URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [mowito.HOMEPAGE_URL])
-  assert.deepEqual(jobs, [])
+  await assert.rejects(mowito.createMowitoScraper().run({ fetchText: async () => homepageHtml }), /original HTTP metadata|body-only/i)
 })
 
-test('Mowito throws when the homepage no longer matches the verified official surface', async () => {
+test('Mowito retains the historical official-surface negative check', async () => {
   const mowito = await loadMowitoModule()
-
-  await assert.rejects(
-    mowito.createMowitoScraper().run({
-      fetchText: async () => '<html><body><h1>Unexpected page</h1></body></html>',
-    }),
-    /official public surface/i,
-  )
+  assert.equal(mowito.hasOfficialMowitoSignal('<html><body><h1>Unexpected page</h1></body></html>'), false)
 })

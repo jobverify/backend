@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { hydrateProviderCatalogEntry } from '../providers/index.js'
+import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const molModulePath = path.resolve(currentDir, '../../scraper/molinformationprocessingservicesindia/script.js')
@@ -139,6 +140,10 @@ test('Mol Information Processing Services India validates the first-party handof
   })
 
   assert.deepEqual(requestedPages, ['https://www.mol-it.com/careers/'])
+  assert.equal(readInventoryEvidence(jobs)?.status, 'complete-inventory')
+  assert.equal(readInventoryEvidence(jobs)?.listingComplete, true)
+  assert.equal(readInventoryEvidence(jobs)?.reportedTotal, 2)
+  assert.equal(readInventoryEvidence(jobs)?.indiaFacetCount, 2)
   assert.deepEqual(jobs, [
     {
       title: 'Associate Manager - Project Delivery',
@@ -201,4 +206,33 @@ test('Mol Information Processing Services India fails closed when the verified c
     }),
     /verified official careers page/i,
   )
+})
+
+test('MOL-IT keeps the native verified-empty receipt after company normalization', async () => {
+  const mol = await loadScriptModule()
+  const jobs = await mol.createMolInformationProcessingServicesIndiaScraper().run({
+    fetchText: async () => officialCareersHtml,
+    fetchListingPage: async () => ({ job_counts: 0, data: [] }),
+  })
+  assert.deepEqual(jobs, [])
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence?.status, 'verified-empty')
+  assert.equal(evidence?.listingComplete, true)
+  assert.equal(evidence?.reportedTotal, 0)
+  assert.equal(evidence?.indiaFacetCount, 0)
+  assert.equal(evidence?.surface, 'https://molit.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main')
+})
+
+test('MOL-IT keeps a capped native inventory incomplete after company normalization', async () => {
+  const mol = await loadScriptModule()
+  const jobs = await mol.createMolInformationProcessingServicesIndiaScraper({ maxJobs: 1 }).run({
+    fetchText: async () => officialCareersHtml,
+    fetchListingPage: async () => listingPayload,
+  })
+  assert.equal(jobs.length, 1)
+  assert.equal(jobs[0].sourceListingComplete, false)
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence?.status, 'discovery-only')
+  assert.equal(evidence?.listingComplete, false)
+  assert.equal(evidence?.reportedTotal, 2)
 })

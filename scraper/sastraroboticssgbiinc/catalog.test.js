@@ -16,15 +16,15 @@ test('Sastra Robotics-SGBI INC is registered against the verified first-party ca
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'awsm-current-native-role-details-company-scope-held')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'homepage-plus-sitemap-index-plus-jobs-sitemap-plus-first-party-careers-page-plus-detail-pages',
+    'current-own-home-career-dynamic-card-details-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-sitemap-index+verified-jobs-sitemap+verified-first-party-careers-page+inline-awsm-role-cards+detail-page-inline-apply-form',
+    'active-own-sgbi-sastra-relationship+whole-role-schema-criteria-form-binding+explicit-country-only+native-dates-retained+company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

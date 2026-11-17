@@ -7,18 +7,18 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Saal AI as an official-careers Darwinbox script provider', () => {
+test('getScraperCatalog includes Saal AI as an current own career-handoff script provider with unknown inventory', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'saalai')
 
   assert.ok(provider)
   assert.equal(provider.companyName, 'Saal AI')
   assert.equal(provider.adapter, 'script')
-  assert.equal(provider.atsPlatform, 'darwinbox')
-  assert.equal(provider.companyCareerPage, 'https://saal.ai/careers/')
+  assert.equal(provider.atsPlatform, 'official-current-native-career-handoff-inventory-unqualified')
+  assert.equal(provider.companyCareerPage, 'https://www.saal.ai/en/company/')
   assert.equal(provider.companyDomain, 'saal.ai')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'browser-session-darwinbox-pagination')
-  assert.equal(provider.extractionStrategy, 'official-careers-handoff+darwinbox-listing-api')
+  assert.equal(provider.paginationStrategy, 'own-home-robots-declared-sitemap-and-current-company-opening-closing')
+  assert.equal(provider.extractionStrategy, 'whole-native-corporate-career-and-crawl-models+exact-unread-linkedin-handoff+country-criteria-application-and-company-inventory-unqualified')
   assert.equal(provider.parser, 'custom-script')
   assert.match(provider.modulePath, /saalai[\\/]script\.js$/i)
 })

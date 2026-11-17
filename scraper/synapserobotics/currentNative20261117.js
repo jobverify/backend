@@ -1,0 +1,13 @@
+import {readFileSync} from 'node:fs'
+import {isDeepStrictEqual} from 'node:util'
+import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {createCurrentReader,need} from './currentRead20261117.js'
+const SOURCE='synapserobotics',HOME='https://synapserobotics.ai/',profile=JSON.parse(readFileSync(new URL('./reviewedCurrent20261117.json',import.meta.url))),holds=['current-robotics-coding-education-publisher-is-not-employer-vacancy-inventory','student-enrolment-member-labs-camps-newsletter-and-tutor-controls-not-employment-records','role-country-fullcriteria-application-legal-employer-and-company-scope-unqualified','external-rendering-media-and-education-programme-dependencies-not-employer-inventory-proof']
+export async function runCurrentSynapse(options={}){
+ const io=createCurrentReader(options,[[HOME,'html']],{maxReads:2})
+ try{
+  const acquire=async()=>{const page=await io.read(HOME),doc=readNativeDocument(page.text);need(page.sha256===profile.documents[0].sha256&&isDeepStrictEqual(activeHead(page.text).titles,profile.documents[0].titles)&&!doc.nodes(n=>n.tag==='base').length,'complete reviewed education publisher/inline-programme profile changed');return{url:HOME,body:page.text}}
+  const opening=await acquire(),closing=await acquire();need(isDeepStrictEqual(opening,closing),'whole raw education publisher/programme closing changed');io.check();const jobs=attachInventoryEvidence([],{status:'discovery-only',surface:HOME,firstParty:true,listingComplete:false,pagesFetched:io.stats().requests,reportedTotal:null,indiaFacetCount:null,lifecycleCleanupAllowed:false,verifiedAt:new Date().toISOString(),reason:holds.join('; ')});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,observedEmployerVacancyCount:null,companyGlobalTotal:null,companyIndiaTotal:null,fullNativeClosingEqual:true,originalModels:{opening,closing},holds,acquisition:io.stats()},configurable:true});io.check();return jobs
+ }catch(error){options.signal?.throwIfAborted();if(error&&typeof error==='object'&&Object.isExtensible(error))Object.defineProperty(error,'nativeCollectionEvidence',{value:{source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,failedAcquisition:true,acquisition:io.stats()},configurable:true});options.signal?.throwIfAborted();if(!Number.isInteger(error?.status)&&!Number.isInteger(error?.httpStatus))io.check();throw error}finally{io.close();options.signal?.throwIfAborted()}
+}

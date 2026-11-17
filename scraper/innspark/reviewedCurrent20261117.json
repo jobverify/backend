@@ -1,0 +1,66 @@
+{
+  "source": "innspark",
+  "documents": [
+    {
+      "url": "https://www.innspark.in/",
+      "bytes": 906043,
+      "sha256": "720520836d309efcb87d25e6c2ebabb708ba54e19a6d1985dec631a21b0bb930",
+      "kind": "html"
+    },
+    {
+      "url": "https://www.innspark.in/career",
+      "bytes": 538424,
+      "sha256": "c0054f3865bfb878566e5d60abe6c4211703dd536b879f0c4da2a8877d498634",
+      "kind": "html"
+    },
+    {
+      "url": "https://framerusercontent.com/sites/1sNZZx0WfiICxcFLjma7xv/script_main.Dyt6DksR.mjs",
+      "bytes": 17228,
+      "sha256": "e6eb36431ae1a515b99027c5638c1b9dee7f472f7788bc92f507438a8fbe7e38",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://framerusercontent.com/sites/1sNZZx0WfiICxcFLjma7xv/4_X7vlnVGJ2bWOyArA9rr_MWPdXGBX9zwD51TMnq5zQ.DrcRtC1_.mjs",
+      "bytes": 58386,
+      "sha256": "d6af0cab4239692ba62f4673530393ad476fe0f0c446dea09acc608db04ffb55",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://framerusercontent.com/sites/1sNZZx0WfiICxcFLjma7xv/EdVuX-7_hahRaziy3NEtJ08I0_1kobAWWgxzSVnoFC0.DlYZUUPv.mjs",
+      "bytes": 520704,
+      "sha256": "3ce8c6133922b7f3a00d0ba6c7c6a9f5294dfb6b71ed98c2d8aa6d60dd92fe41",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://framerusercontent.com/sites/1sNZZx0WfiICxcFLjma7xv/xW96XXhgHOLSEMDe3dJb8xkExgdNcA2x1NG1s4dU4AQ.CaSL5VhP.mjs",
+      "bytes": 195,
+      "sha256": "9b487f3ed9c70d8cb8b9485e4598a47e2b4c7cbfa55cb5dbd9a63cf889133e13",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://framerusercontent.com/sites/1sNZZx0WfiICxcFLjma7xv/MqSzg3MfP.F-JLS5vz.mjs",
+      "bytes": 34142,
+      "sha256": "32b35d3684386435365dd779141315e91861c44d677b22265dd653bf3e7ee241",
+      "kind": "javascript"
+    }
+  ],
+  "redirects": [
+    {
+      "url": "https://innspark.in/",
+      "status": 308,
+      "location": "https://www.innspark.in/",
+      "sha256": "7cd8e4ed86e7efcc53cedb9298d564cec101c4a08df6588e884dce517a645a64",
+      "bytes": 60
+    }
+  ],
+  "nativeBinaryCarriers": [
+    {
+      "url": "https://framerusercontent.com/cms/3q19XMF2L4qLhO4NFltI/1XM9PfmR3wNWleE93xzC/MqSzg3MfP-chunk-default-0.framercms",
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://framerusercontent.com/cms/3q19XMF2L4qLhO4NFltI/1XM9PfmR3wNWleE93xzC/MqSzg3MfP-indexes-default-0.framercms",
+      "mime": "application/javascript"
+    }
+  ]
+}

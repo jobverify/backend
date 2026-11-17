@@ -152,6 +152,7 @@ export const JobSchema = new Schema(
     branches: { type: [String], default: [] },
     requiredSkills: { type: [String], default: [] },
     source: { type: String },
+    firstSeenPipelineId: { type: String, select: false },
     sourceUrl: {
       type: String,
       validate: {
@@ -278,6 +279,7 @@ JobSchema.index({ status: 1, isPublicIndia: 1, companyKey: 1, sortDate: -1, _id:
 JobSchema.index({ status: 1, isPublicIndia: 1, locationKeys: 1, sortDate: -1, _id: -1 });
 JobSchema.index({ status: 1, isPublicIndia: 1, companyKey: 1, locationKeys: 1, sortDate: -1, _id: -1 });
 JobSchema.index({ source: 1, status: 1, missedScrapeCount: 1 });
+JobSchema.index({ firstSeenPipelineId: 1, _id: 1 });
 JobSchema.index({ source: 1, status: 1, lastSeenAt: 1 });
 JobSchema.index({ applicationUrlIsGeneric: 1, applyUrl: 1 }, {
   name: 'shared_application_surface',

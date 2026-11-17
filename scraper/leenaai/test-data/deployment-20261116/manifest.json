@@ -1,0 +1,26 @@
+{
+  "leena": {
+    "requestedURL": "https://leena.ai/careers",
+    "url": "https://leena.ai/careers",
+    "status": 200,
+    "capturedAt": "2026-11-16T16:37:38.890Z",
+    "bytes": 191394,
+    "sha256": "73ab9579e0f250efe9c6dd8aea839f1ff95f1aba1b4954b9602fa66030b3f8dc"
+  },
+  "leena-second": {
+    "requestedURL": "https://leena.ai/careers",
+    "url": "https://leena.ai/careers",
+    "status": 200,
+    "capturedAt": "2026-11-16T16:43:51.484Z",
+    "bytes": 191033,
+    "sha256": "0f7925312a168e170bc9f6a65b5c7dddfb94ecdc166a860e8ceabf126ea8d984"
+  },
+  "leena-client": {
+    "requestedURL": "https://leena.ai/_next/static/chunks/pages/careers-899cb3bac7400f27.js",
+    "url": "https://leena.ai/_next/static/chunks/pages/careers-899cb3bac7400f27.js",
+    "status": 200,
+    "capturedAt": "2026-11-16T16:43:51.714Z",
+    "bytes": 112859,
+    "sha256": "378ca87d08ba1705fd9e81af142fc3fff753867c101d712bf1705768861b2842"
+  }
+}

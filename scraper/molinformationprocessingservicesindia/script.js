@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { mapJobsWithInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 import { MOL_INFORMATION_PROCESSING_SERVICES_INDIA_CATALOG } from './catalog.js'
 
@@ -109,7 +110,7 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
   timeoutMs: 15000,
 })
 
-const normalizeDarwinboxJobs = (jobs = [], scrapedAt) => jobs.map((job) => {
+const normalizeDarwinboxJobs = (jobs = [], scrapedAt) => mapJobsWithInventoryEvidence(jobs, (job) => {
   const locationDetails = parseIndiaLocation(job.location)
 
   return {

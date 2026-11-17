@@ -1,11 +1,8 @@
-﻿import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentPena4 } from './currentNative20261117.js'
 
 export const SOURCE = 'pena4techsolutions'
 export const COMPANY = 'Pena4 Tech Solutions'
 export const JOBS_URL = 'https://www.pena4.com/jobs.php'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 export const PROVIDER_METADATA = {
   source: SOURCE,
@@ -31,15 +28,6 @@ export const PROVIDER_METADATA = {
 const normalizeWhitespace = (value) => String(value ?? '').replace(/\s+/g, ' ').trim()
 const stripHtmlComments = (value) => String(value ?? '').replace(/<!--[\s\S]*?-->/g, ' ')
 const stripHtml = (value) => normalizeWhitespace(String(value ?? '').replace(/<[^>]+>/g, ' '))
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
 export const hasOfficialJobsPageSignal = (html) => {
   const page = stripHtmlComments(html)
@@ -69,7 +57,7 @@ export const extractJobCards = (html) => {
 
     cards.push({
       title,
-      location: 'India',
+      location: null,
       employmentType: /full time and part time/i.test(section) ? 'Full Time or Part Time' : null,
       remoteType: /100%\s*remote/i.test(section) ? 'Remote' : null,
       sourceUrl: JOBS_URL,
@@ -81,25 +69,5 @@ export const extractJobCards = (html) => {
   return cards
 }
 
-export const run = async ({ fetchText = defaultFetchText, now = () => new Date().toISOString() } = {}) => {
-  const page = await fetchText(JOBS_URL)
-
-  if (!hasOfficialJobsPageSignal(page)) {
-    throw new Error('Pena4 Tech Solutions verified first-party jobs page changed materially')
-  }
-
-  const jobs = extractJobCards(page)
-  if (!jobs.length) {
-    throw new Error('Pena4 Tech Solutions verified first-party jobs page no longer exposes trusted openings')
-  }
-
-  return jobs.map((job) => ({
-    ...job,
-    company: COMPANY,
-    country: 'India',
-    link: job.applyUrl || job.sourceUrl,
-    source: SOURCE,
-    scrapedAt: now(),
-  }))
-}
+export const run = (options = {}) => runCurrentPena4(options)
 

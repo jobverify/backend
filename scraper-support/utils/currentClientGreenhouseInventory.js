@@ -77,7 +77,48 @@ function verifyNitroBinding(html, config) {
   const title = document.nodes(node => node.tag === 'title').map(node => node.raw).join(' ')
   requireNative(config.nativeEmployerNames.every(name => title.includes(name)), 'native employer alias is no longer advertised by the primary page')
   const matches = []
-  for (const script of document.nodes(node => executable(node) && !node.attrs.src && node.raw?.includes('NPRL.registerScript'))) {
+  // Visual hiding does not stop a script from executing. Walk the original
+  // parsed tree separately, retaining hidden/CSS-hidden script declarations.
+  // Template and noscript contents cannot register a board with scripting on.
+  const scripts = []
+  const visit = node => {
+    if (typeof node === 'string' || ['template', 'noscript'].includes(node.tag)) return
+    if (node.tag === 'script') {
+      requireNative(!node.nativeTagUnqualified, 'unqualified native script declaration')
+      scripts.push(node)
+      return
+    }
+    for (const child of node.children) visit(child)
+  }
+  for (const root of document.nodes(node => node.tag === 'root')) visit(root)
+  const greenhouseURL = value => {
+    try {
+      const hostname = new URL(value, config.careersURL).hostname.replace(/\.$/, '')
+      return hostname === 'greenhouse.io' || hostname.endsWith('.greenhouse.io')
+    } catch { return false }
+  }
+  const externalSources = node => ['src', 'href', 'xlink:href'].filter(key => node.attrs[key]).map(key => node.attrs[key])
+  const direct = scripts.filter(node => externalSources(node).some(greenhouseURL))
+  if (direct.length) {
+    const heading = config.directEmbedHeading, script = direct[0]
+    requireNative(heading && direct.length === 1 && executable(script)
+      && canonical(script.attrs) === canonical({src: config.embedURL}), 'unreviewed direct native embed binding')
+    const placements = document.nodes(node => node.children?.some(child => typeof child !== 'string' && child.attrs.id === 'grnhse_app'))
+      .filter(parent => {
+        const siblings = parent.children.filter(child => typeof child !== 'string')
+        const index = siblings.findIndex(child => child.attrs.id === 'grnhse_app')
+        const prior = siblings[index - 1]
+        return siblings[index + 1] === script && prior?.tag === 'h2' && prior.attrs.id === heading.id
+          && document.text(prior) === heading.text
+      })
+    requireNative(placements.length === 1 && document.nodes(node => node.attrs.id === heading.id).length === 1
+      && visible.nodes(node => node.tag === 'h2'
+      && node.attrs.id === heading.id && visible.text(node) === heading.text).length === 1,
+    'native direct embed placement heading or container changed')
+    matches.push({kind: 'current-primary-direct-Greenhouse-embed', nativeEmbedURL: config.embedURL,
+      loaderPlacementHeading: {...heading}, registrationElementSHA256: sha(canonical(script.attrs))})
+  }
+  for (const script of scripts.filter(node => executable(node) && externalSources(node).length === 0 && node.raw?.includes('NPRL.registerScript'))) {
     let ast
     try { ast = parse(script.raw, { ecmaVersion: 'latest', sourceType: 'script' }) } catch { requireNative(false, 'loader JavaScript cannot be statically read') }
     // Only direct top-level calls qualify. Comments, strings, templates, dormant
@@ -88,7 +129,7 @@ function verifyNitroBinding(html, config) {
         || call.callee.computed || call.callee.optional || call.callee.object.name !== 'NPRL'
         || call.callee.property.name !== 'registerScript') continue
       const [target, id, encoded] = call.arguments
-      if (target?.type !== 'Literal' || typeof target.value !== 'string' || !target.value.includes('greenhouse.io')) continue
+      if (target?.type !== 'Literal' || typeof target.value !== 'string' || !greenhouseURL(target.value)) continue
       requireNative(call.arguments.length === 3 && id?.type === 'Literal' && typeof id.value === 'string'
         && encoded?.type === 'Literal' && typeof encoded.value === 'string', 'loader binding arguments are unknown')
       requireNative(target.value === config.embedURL, 'current loader binding names another native account')

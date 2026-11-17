@@ -41,65 +41,11 @@ test('Innspark helpers recognize the verified careers and apply surfaces', async
   ])
 })
 
-test('Innspark run falls back to a tolerant HTTP parser when the live first-party pages return the broken HTTP/1.1 response shape', async () => {
-  const innspark = await loadModule()
-  const requestedPrimaryUrls = []
-  const requestedTolerantUrls = []
-
-  const jobs = await innspark.createInnsparkScraper().run({
-    fetchText: async (url) => {
-      requestedPrimaryUrls.push(url)
-      throw new TypeError('fetch failed | Response does not match the HTTP/1.1 protocol (Missing expected CR after header value)')
-    },
-    fetchProtocolTolerantText: async (url) => {
-      requestedTolerantUrls.push(url)
-      if (url === innspark.CAREERS_URL) return careersHtml
-      if (url === innspark.APPLY_URL) return applyHtml
-      throw new Error(`Unexpected tolerant URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedPrimaryUrls, [
-    innspark.CAREERS_URL,
-    innspark.APPLY_URL,
-  ])
-  assert.deepEqual(requestedTolerantUrls, [
-    innspark.CAREERS_URL,
-    innspark.APPLY_URL,
-  ])
-  assert.equal(jobs.length, 11)
-  assert.equal(jobs[0].source, 'innspark')
-  assert.equal(jobs[0].link, innspark.APPLY_URL)
-  assert.equal(jobs[0].company, 'Innspark')
+test('Innspark legacy callbacks cannot establish current HTTP or vacancy authority',async()=>{
+ const source=await loadModule();let calls=0
+ await assert.rejects(source.run({fetchText:async()=>{calls++;return careersHtml},fetchProtocolTolerantText:async()=>applyHtml}),/unsupported metadata-free/);assert.equal(calls,0)
 })
-
-test('Innspark aborts retries when the verified first-party surface still breaks HTTP parsing after fallback', async () => {
-  const innspark = await loadModule()
-  const requestedUrls = []
-  const protocolError = new TypeError('fetch failed')
-  protocolError.cause = new Error(
-    'Response does not match the HTTP/1.1 protocol (Missing expected CR after header value)',
-  )
-
-  await assert.rejects(
-    innspark.createInnsparkScraper().run({
-      fetchText: async () => {
-        throw protocolError
-      },
-      fetchProtocolTolerantText: async (url) => {
-        requestedUrls.push(url)
-        throw protocolError
-      },
-    }),
-    (error) => {
-      assert.match(error.message, /Innspark verified careers page currently returns a broken HTTP\/1\.1 response/i)
-      assert.equal(error.abortRetries, true)
-      assert.equal(error.softFailure, true)
-      assert.equal(error.upstreamOutage, true)
-      assert.equal(error.failureKind, 'network_or_timeout')
-      return true
-    },
-  )
-
-  assert.deepEqual(requestedUrls, [innspark.CAREERS_URL])
+test('Innspark frozen caller cancellation precedes all transports',async()=>{
+ const source=await loadModule(),owner=new AbortController(),reason=Object.freeze({owner:'innspark'});owner.abort(reason)
+ await assert.rejects(source.run({signal:owner.signal,fetchImpl:async()=>assert.fail('unexpected fetch')}),e=>e===reason)
 })

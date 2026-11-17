@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import {runCurrentGmmco} from './currentHandoff20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -60,7 +61,7 @@ export const hasOfficialGmmcoCareersSignals = (html = '') => {
   const page = String(html ?? '')
   const text = normalizeWhitespace(page) || ''
 
-  return extractTitle(page) === 'Job Openings at Gmmco | Build Your Career with Us'
+  return ['Job Openings at Gmmco | Build Your Career with Us','Job Openings at GMMCO | Build Your Career with Us'].includes(extractTitle(page))
     && text.includes("Join us in shaping India's future")
     && text.includes('VIEW JOB OPENINGS')
     && text.includes('Great Place To Work')
@@ -79,12 +80,17 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
 export const createGmmcoScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   now = () => new Date().toISOString(),
+  ...currentConfiguration
 } = {}) => ({
   async run({
     maxPages = config.maxPages,
     fetchText = defaultFetchText,
     fetchListingPage,
+    signal,
+    ...currentOverrides
   } = {}) {
+    if(currentConfiguration.fetchImpl||currentOverrides.fetchImpl||fetchText===defaultFetchText&&fetchListingPage==null)
+      return runCurrentGmmco({...currentConfiguration,...currentOverrides,signal})
     const careersHtml = await fetchText(OFFICIAL_CAREERS_URL)
 
     if (!hasOfficialGmmcoCareersSignals(careersHtml)) {
@@ -105,7 +111,7 @@ export const createGmmcoScraper = ({
   },
 })
 
-export const run = async (options = {}) => createGmmcoScraper().run(options)
+export const run = async (options = {}) => createGmmcoScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

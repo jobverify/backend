@@ -1,0 +1,25 @@
+{
+  "source": "karbonn",
+  "redirects": [
+    {
+      "url": "https://www.karbonnmobiles.com/",
+      "status": 301,
+      "location": "https://karbonn.in"
+    },
+    {
+      "url": "https://karbonn.in/",
+      "status": 301,
+      "location": "http://Karbonnr-bel.com"
+    },
+    {
+      "url": "http://karbonnr-bel.com/",
+      "status": 301,
+      "location": "https://karbonnr-bel.com/"
+    }
+  ],
+  "landing": "https://karbonnr-bel.com/",
+  "landingTitles": [
+    "Karbonn — Kamaal Koming | Just Rebel"
+  ],
+  "productJoinHandoff": "https://www.amazon.in/dp/B0HMRVGQLQ"
+}

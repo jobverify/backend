@@ -8,6 +8,30 @@ import { requestPasswordReset } from '../src/controllers/authController.js';
 const secret = 'relay-test-secret-with-at-least-32-characters';
 const resetLink = `https://jobverify.test/reset-password#token=${'a'.repeat(64)}`;
 
+test('public password reset never sends mail or creates a token for an unregistered address', async t => {
+  relayEnvironment(t);
+  t.mock.method(User, 'findOne', async filter => {
+    assert.deepEqual(filter, { email: 'missing@example.com' });
+    return null;
+  });
+  const reserve = t.mock.method(User, 'findOneAndUpdate', async () => null);
+  const relay = t.mock.method(globalThis, 'fetch', async () => Response.json({ success: true }));
+  const smtp = t.mock.method(nodemailer, 'createTransport', () => ({ sendMail: async () => ({}) }));
+  const response = {
+    status(code) { this.statusCode = code; return this; },
+    json(body) { this.body = body; return this; },
+  };
+
+  await requestPasswordReset({ body: { email: ' MISSING@example.com ' } }, response);
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(response.body.success, true);
+  assert.match(response.body.message, /if an account exists/i);
+  assert.equal(reserve.mock.callCount(), 0);
+  assert.equal(relay.mock.callCount(), 0);
+  assert.equal(smtp.mock.callCount(), 0);
+});
+
 function relayEnvironment(t, overrides = {}) {
   const previous = { ...process.env };
   t.after(() => { process.env = previous; });

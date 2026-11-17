@@ -11,12 +11,12 @@ test('Mikuni India Private Limited is registered against its official first-part
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Mikuni India Private Limited')
   assert.equal(provider.companyCareerPage, 'https://mikuni.co.in/open-positions-linked-with-naukri-portal/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-vacancy-publication-grid-company-scope-held')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-page-plus-application-form-validation')
+  assert.equal(provider.paginationStrategy, 'own-declared-vacancy-application-pages-and-full-publication-dtos-programme-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-first-party-careers-page+verified-application-form-return-empty',
+    'whole-current-no-posts-grid-and-empty-application-widget+full-published-dtos-retained+native-company-country-and-application-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

@@ -1,0 +1,30 @@
+{
+  "reviewedOn": "2026-11-17",
+  "scope": "Exact native redirect and declared education/learner programmes; no employer inventory proof",
+  "documents": [
+    {
+      "url": "https://skill-lync.com/careers/jobs",
+      "sha256": "f323a65c61122546e7f910891dfdff4f7f3c9215885982bb61b39fa1039763e0",
+      "status": 301,
+      "location": "/"
+    },
+    {
+      "url": "https://static.skill-lync.com/sl/v1/sl.js",
+      "sha256": "eb0dfc79d5b245dc005aaa945b4a105759de8200a8fad42a696259d3a4a1f123",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://skill-lync.com/_astro/LeadForm.astro_astro_type_script_index_0_lang.C4qEgkrq.js",
+      "sha256": "bd98c7aa696fd149a2ec4a7dbb53fee3e06d873f71c1ac5965f4f2777094221d",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://skill-lync.com/_astro/TalkDialog.astro_astro_type_script_index_0_lang.DxFjRvUc.js",
+      "sha256": "765f3e784d5e0ad754ea3e4723fa2c6b682bb6199e4e25bdbf33fd35ca08665a",
+      "status": 200,
+      "location": null
+    }
+  ]
+}

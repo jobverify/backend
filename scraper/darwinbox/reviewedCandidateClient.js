@@ -7,10 +7,12 @@ const current = JSON.parse(readFileSync(new URL('./reviewedCandidateReleases.jso
 // A known client in a changed shell still leaves scope incomplete in the caller.
 export function selectReviewedCandidateClient(spec, scripts) {
   const releases = [spec.review]
-  if (current.sources[spec.source] === spec.origin) releases.push({
-    clientUrl: spec.origin + current.clientPath,
-    clientSha256: current.clientSha256,
-    rendererSha256: current.rendererSha256,
-  })
+  for (const release of [current, ...(current.additionalReleases || [])]) {
+    if (release.sources[spec.source] === spec.origin) releases.push({
+      clientUrl: spec.origin + release.clientPath,
+      clientSha256: release.clientSha256,
+      rendererSha256: release.rendererSha256,
+    })
+  }
   return releases.find(release => scripts.includes(release.clientUrl))
 }

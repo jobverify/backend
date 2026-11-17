@@ -1,12 +1,10 @@
+import {runCurrentNative} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { TOPCODER_INDIA_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 export { PROVIDER_METADATA }
 export const SOURCE = PROVIDER_METADATA.source
@@ -39,49 +37,6 @@ const normalizeWhitespace = (value) => {
 }
 
 const normalizeText = (value) => normalizeWhitespace(value)?.toLowerCase() || ''
-
-const normalizeComparableUrl = (value) => {
-  try {
-    const url = new URL(String(value ?? ''))
-    url.hash = ''
-    return url.toString().replace(/\/$/, '')
-  } catch {
-    return String(value ?? '').replace(/\/$/, '')
-  }
-}
-
-const sameUrl = (left, right) => normalizeComparableUrl(left) === normalizeComparableUrl(right)
-
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
 
 export const hasOfficialHomepageSignal = (html = '') => {
   const text = normalizeText(html)
@@ -131,57 +86,7 @@ export const pageExposesExactNameEmployerJobs = (html = '') => {
     )
 }
 
-export const createTopcoderIndiaScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (
-      Number(homepage.status) !== 200
-      || !sameUrl(homepage.url, HOMEPAGE_URL)
-      || pageExposesExactNameEmployerJobs(homepage.html)
-      || !hasOfficialHomepageSignal(homepage.html)
-    ) {
-      throw new Error('Topcoder India verified first-party homepage changed materially')
-    }
-
-    const gigLandingPage = await fetchPage(CAREERS_URL)
-    if (pageExposesExactNameEmployerJobs(gigLandingPage.html)) {
-      throw new Error('Topcoder India exact-name employer jobs surface now appears on the verified first-party pages')
-    }
-    if (
-      Number(gigLandingPage.status) !== 200
-      || !sameUrl(gigLandingPage.url, CAREERS_URL)
-      || !hasGigWorkLandingSignal(gigLandingPage.html)
-    ) {
-      throw new Error('Topcoder India verified gig landing page changed materially')
-    }
-
-    const gigProgramPage = await fetchPage(GIG_PROGRAM_URL)
-    if (pageExposesExactNameEmployerJobs(gigProgramPage.html)) {
-      throw new Error('Topcoder India exact-name employer jobs surface now appears on the verified first-party pages')
-    }
-    if (
-      Number(gigProgramPage.status) !== 200
-      || !sameUrl(gigProgramPage.url, GIG_PROGRAM_URL)
-      || !hasGigProgramSignal(gigProgramPage.html)
-    ) {
-      throw new Error('Topcoder India verified gig program page changed materially')
-    }
-
-    const gigResourcesPage = await fetchPage(GIG_RESOURCES_URL)
-    if (pageExposesExactNameEmployerJobs(gigResourcesPage.html)) {
-      throw new Error('Topcoder India exact-name employer jobs surface now appears on the verified first-party pages')
-    }
-    if (
-      Number(gigResourcesPage.status) !== 200
-      || !sameUrl(gigResourcesPage.url, GIG_RESOURCES_URL)
-      || !hasGigTransferSignal(gigResourcesPage.html)
-    ) {
-      throw new Error('Topcoder India verified gig resources page changed materially')
-    }
-
-    return []
-  },
-})
+export const createTopcoderIndiaScraper = () => ({run:runCurrentNative})
 
 export const run = async (options = {}) => createTopcoderIndiaScraper().run(options)
 

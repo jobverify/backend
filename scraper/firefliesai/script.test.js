@@ -139,48 +139,11 @@ test('Fireflies.ai accepts the current Gem board bundle pattern and updated vani
   )
 })
 
-test('Fireflies.ai run uses the updated Gem board contract and returns current India jobs', async () => {
-  const graphqlOperations = []
-
-  const jobs = await createFirefliesAiScraper({
-    now: () => '2026-08-02T04:35:00.000Z',
-  }).run({
-    fetchPage: async (url) => {
-      if (url === HOMEPAGE_URL) return { status: 200, url, html: homepageHtml }
-      if (url === CAREERS_URL) return { status: 200, url: GEM_BOARD_URL, html: currentGemBoardHtml }
-      throw new Error(`Unexpected page URL: ${url}`)
-    },
-    fetchGraphql: async (body) => {
-      graphqlOperations.push(body)
-
-      if (body.operationName === 'JobBoardList') return listPayload
-      if (body.operationName === 'ExternalJobPostingQuery') return detailPayload
-
-      throw new Error(`Unexpected operation: ${body.operationName}`)
-    },
-  })
-
-  assert.equal(graphqlOperations.length, 2)
-  assert.match(graphqlOperations[0].query, /jobBoardExternal\(vanityUrlPath:\s*\$boardId\)/)
-  assert.equal(jobs.length, 1)
-  assert.deepEqual(
-    {
-      title: jobs[0].title,
-      location: jobs[0].location,
-      city: jobs[0].city,
-      requisitionId: jobs[0].requisitionId,
-      employmentType: jobs[0].employmentType,
-      link: jobs[0].link,
-      scrapedAt: jobs[0].scrapedAt,
-    },
-    {
-      title: 'Machine Learning Engineer',
-      location: 'Bangalore, India',
-      city: 'Bangalore',
-      requisitionId: 'REQ-1',
-      employmentType: 'Full-time',
-      link: 'https://jobs.gem.com/fireflies/role-1/application',
-      scrapedAt: '2026-08-02T04:35:00.000Z',
-    },
-  )
+test('Fireflies current acquisition cannot qualify metadata-free legacy page/GraphQL callbacks', async () => {
+  let reads = 0
+  await assert.rejects(createFirefliesAiScraper().run({
+    fetchPage: async () => { reads++; return {status:200, url:HOMEPAGE_URL, html:homepageHtml} },
+    fetchGraphql: async () => { reads++; return listPayload },
+  }), /original HTTP metadata/i)
+  assert.equal(reads, 0)
 })

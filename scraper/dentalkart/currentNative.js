@@ -32,15 +32,20 @@ function programProfile(owned){
   'a533eddbdc786bb9005f6a8750fe7472c391e1e957abd888d7d5d34b78670a9a':'014c397d0ed8d76f5277c690e3f41ece944a41dd9202cc766f636ba7f380df97',
  }[declarationSHA]
  need(mapSHA,'Native program declarations require review')
+ // Nov16 preserves the same declarations and bootstrap. Zoho changed only
+ // its literal CDN inventory/deployment paths; admit that complete reviewed
+ // map with its original declarations, never an arbitrary replacement.
+ const reviewedMapSHA=[mapSHA,...(declarationSHA==='a533eddbdc786bb9005f6a8750fe7472c391e1e957abd888d7d5d34b78670a9a'?['66c0332e7206d4ab43ece27e9f39ab936698d663cef95aef32a100c870fbd189']:[])]
  const inline=scripts.filter(node=>!node.attrs.src),hashes=['9ca9fd935c85d2a1e5fd42d6bf83f0be088278a232d6d5d77c458ba096c1cecc','21d75b390eafe069af969e64b88bb7625e3cf8edc1981b08434bc90dca5b05f7',mapSHA,'3d432e36401cc9bde326d9d3db94aa66fb5d67f6879885bf9a43a7ba844874e5','f4d0d7cebb48af8a675430918947ce5e300262a9f8ba4035d0ae1d8c5834ff6b']
- need(inline.length===6&&hashes.every((hash,index)=>sha(inline[index].raw)===hash),'Native inline program requires review')
+ need(inline.length===6&&hashes.every((hash,index)=>index===2?reviewedMapSHA.includes(sha(inline[index].raw)):sha(inline[index].raw)===hash),'Native inline program requires review')
  need(owned.head.children.includes(inline[5]),'Native bootstrap owner changed')
  const ast=parse(inline[5].raw,{ecmaVersion:'latest'}),binding=ast.body[0]?.declarations?.[1]
  need(binding?.id?.name==='csrfToken'&&binding.init?.type==='Literal'&&typeof binding.init.value==='string','Native bootstrap token binding changed')
  binding.init={type:'ReviewedLiteralData',binding:'csrfToken'}
  need(sha(astText(ast))==='49f13e4d8eb9ddd80b63fe4126e5baf01a210d34088c08eb337cd13f84922e0f','Native bootstrap structure requires review')
+ return sha(inline[2].raw)
 }
-function readOriginalHiddenInputs(html,owned){
+function readOriginalHiddenInputs(html,owned,cdnMapSHA){
  const tags=[...html.matchAll(/<input(?=[\t\n\f\r />])(?:[^>"']|"[^"]*"|'[^']*')*>/gi)],nodes=owned.nodes.filter(node=>node.tag==='input'),result={}
  need(tags.length===4&&nodes.length===4,'Additional or missing native hidden input')
  for(let index=0;index<tags.length;index++){
@@ -50,15 +55,18 @@ function readOriginalHiddenInputs(html,owned){
   need(owned.body.children.includes(node)&&node.attrs.id===attrs.id&&node.attrs.type==='hidden','Native hidden record owner changed')
   result[attrs.id]=decodeHTML(attrs.value)
  }
- need(sha(result.pageJson)==='30cc758dfa3242402141fe79a1864eb83e746c88a4a2a6c8ecfa850c99e9e8bb'&&sha(result.moduleMeta)==='f565854c41b2dab30c13e2ecd9a300d0b0553f980b7e09f2795fb92f764f09fe','Native hidden schema/template requires review')
+ // The Nov16 schema adds one literal Work_Experience pick-list option,
+ // "2-4 years". Keep that complete metadata version paired to its CDN map.
+ const moduleMetaSHA=cdnMapSHA==='66c0332e7206d4ab43ece27e9f39ab936698d663cef95aef32a100c870fbd189'?'84b6435ece05894eaa4ef046f1d143f4d28a609f6ccae9bfceb6f92f41999e89':'f565854c41b2dab30c13e2ecd9a300d0b0553f980b7e09f2795fb92f764f09fe'
+ need(sha(result.pageJson)==='30cc758dfa3242402141fe79a1864eb83e746c88a4a2a6c8ecfa850c99e9e8bb'&&sha(result.moduleMeta)===moduleMetaSHA,'Native hidden schema/template requires review')
  return result
 }
 export function readCurrentBoard(html){
  const owned=readOwnedCurrentDocument(html,{failure,title:'Jobs at VASA Denticity Limited',canonical:BOARD_URL,stylesheetFragment:true,eventPrograms:[]})
- programProfile(owned)
+ const cdnMapSHA=programProfile(owned)
  const mounts=owned.nodes.filter(node=>node.attrs.id==='career-website-main')
  need(mounts.length===1&&owned.body.children.includes(mounts[0])&&!mounts[0].inert,'Native career mount owner changed')
- const hidden=readOriginalHiddenInputs(html,owned),records=JSON.parse(hidden.jobs),meta=JSON.parse(hidden.meta)
+ const hidden=readOriginalHiddenInputs(html,owned,cdnMapSHA),records=JSON.parse(hidden.jobs),meta=JSON.parse(hidden.meta)
  need(meta.list_url===BOARD_URL&&meta.page_name==='Careers'&&meta.source==='CareerSite'&&meta.employee_portal===false&&meta.portal_user?.is_loggedin===false,'Native portal authority changed')
  need(meta.org_info?.company_name===legal&&meta.org_info.website==='www.dentalkart.com'&&meta.org_info.id==='178824000000335830'&&meta.page_id==='178824000000433935','Native employer/page identity changed')
  need(Array.isArray(records)&&records.length<=1000,'Native record array changed')

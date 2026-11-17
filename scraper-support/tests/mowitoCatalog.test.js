@@ -7,7 +7,7 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Mowito as a verified careers-contact zero-jobs provider', () => {
+test('getScraperCatalog registers Mowito with its configured corporate source metadata', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'mowito')
 
   assert.ok(provider)

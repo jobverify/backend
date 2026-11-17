@@ -143,123 +143,13 @@ test('Eka Software scraper constants stay pinned to the verified Quoreka homepag
   )
 })
 
-test('Eka Software sentinel returns [] only while the verified Quoreka no-public-jobs surface remains unchanged', async () => {
-  const ekaSoftware = await loadEkaSoftwareModule()
-  const requestedUrls = []
-
-  const jobs = await ekaSoftware.createEkaSoftwareScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === ekaSoftware.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === ekaSoftware.CAREERS_PAGE_URL) {
-        return { status: 200, url, html: careersHtml }
-      }
-
-      if (url === ekaSoftware.SITEMAP_URL) {
-        return { status: 200, url, html: sitemapXml }
-      }
-
-      if (ekaSoftware.NO_PUBLIC_JOB_ROUTE_URLS.includes(url)) {
-        return { status: 404, url, html: missingRouteHtml }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    ekaSoftware.HOMEPAGE_URL,
-    ekaSoftware.CAREERS_PAGE_URL,
-    ekaSoftware.SITEMAP_URL,
-    ...ekaSoftware.NO_PUBLIC_JOB_ROUTE_URLS,
-  ])
-  assert.deepEqual(jobs, [])
+test('Eka legacy body-only sentinel cannot certify current recruitment inventory',async()=>{
+ const m=await loadEkaSoftwareModule();let calls=0
+ await assert.rejects(m.createEkaSoftwareScraper().run({fetchPage:async url=>{calls++;return {status:url===m.HOMEPAGE_URL||url===m.CAREERS_PAGE_URL||url===m.SITEMAP_URL?200:404,url,html:url===m.HOMEPAGE_URL?homepageHtml:url===m.CAREERS_PAGE_URL?careersHtml:url===m.SITEMAP_URL?sitemapXml:missingRouteHtml}}}),/original HTTP metadata|body-only/i)
+ assert.equal(calls,0)
 })
-
-test('Eka Software sentinel fails closed when the homepage, careers page, sitemap, or missing routes drift into public jobs', async () => {
-  const ekaSoftware = await loadEkaSoftwareModule()
-
-  await assert.rejects(
-    ekaSoftware.createEkaSoftwareScraper().run({
-      fetchPage: async (url) => {
-        if (url === ekaSoftware.HOMEPAGE_URL) {
-          return { status: 200, url, html: '<html><body><h1>Unexpected homepage</h1></body></html>' }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /official homepage/i,
-  )
-
-  await assert.rejects(
-    ekaSoftware.createEkaSoftwareScraper().run({
-      fetchPage: async (url) => {
-        if (url === ekaSoftware.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === ekaSoftware.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: publicJobsCareersHtml }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /careers page changed materially or now exposes public jobs/i,
-  )
-
-  await assert.rejects(
-    ekaSoftware.createEkaSoftwareScraper().run({
-      fetchPage: async (url) => {
-        if (url === ekaSoftware.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === ekaSoftware.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: careersHtml }
-        }
-
-        if (url === ekaSoftware.SITEMAP_URL) {
-          return { status: 200, url, html: driftedSitemapXml }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /sitemap career route set/i,
-  )
-
-  await assert.rejects(
-    ekaSoftware.createEkaSoftwareScraper().run({
-      fetchPage: async (url) => {
-        if (url === ekaSoftware.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === ekaSoftware.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: careersHtml }
-        }
-
-        if (url === ekaSoftware.SITEMAP_URL) {
-          return { status: 200, url, html: sitemapXml }
-        }
-
-        if (url === ekaSoftware.NO_PUBLIC_JOB_ROUTE_URLS[0]) {
-          return { status: 200, url, html: publicJobsCareersHtml }
-        }
-
-        if (ekaSoftware.NO_PUBLIC_JOB_ROUTE_URLS.slice(1).includes(url)) {
-          return { status: 404, url, html: missingRouteHtml }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /no-public-job route changed materially or now exposes public jobs/i,
-  )
+test('dated Eka pure sentinel helpers still distinguish a public role and missing route without publishing a company zero',async()=>{
+ const m=await loadEkaSoftwareModule();assert.equal(m.hasPublicJobListingSignal(publicJobsCareersHtml),true)
+ assert.equal(m.hasOfficialCareersSignal(publicJobsCareersHtml),false)
+ assert.equal(m.isVerifiedMissingPublicJobRoute({status:200,url:m.NO_PUBLIC_JOB_ROUTE_URLS[0],html:publicJobsCareersHtml},m.NO_PUBLIC_JOB_ROUTE_URLS[0]),false)
 })

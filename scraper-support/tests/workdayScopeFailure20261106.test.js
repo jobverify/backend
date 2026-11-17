@@ -82,7 +82,7 @@ for (const source of ['caeinc', 'telstra']) test('Workday preserves the original
 for (const status of [429, 503]) test('Workday preserves synthetic detail HTTP ' + status + ' and its upstream status', async t => {
   await rejectsKind(exercise(t, captured('caeinc'), () => new Response('Synthetic upstream control', {
     status, headers: { 'retry-after': '0', 'content-type': 'text/plain' },
-  })), 'network_or_timeout', error => error.jobsApiHttpStatus === status && error.upstreamOutage === true)
+  })), status === 429 ? 'blocked_or_access_denied' : 'network_or_timeout', error => error.jobsApiHttpStatus === status && error.upstreamOutage === true)
 })
 test('Workday preserves a synthetic scope transport failure', async t => {
   await rejectsKind(exercise(t, captured('caeinc'), () => { throw new TypeError('fetch failed', { cause: Object.assign(new Error('Synthetic DNS failure'), { code: 'ENOTFOUND' }) }) }), 'network_or_timeout')

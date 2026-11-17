@@ -1,0 +1,20 @@
+{
+  "source": "pocketfm",
+  "reviewedAt": "2026-11-16T20:47:04.562Z",
+  "parent": {
+    "url": "https://pocketfm.com/_next/static/chunks/3q0o4sc327_v9.js",
+    "sha256": "1cae36b036e89787defb41939f231e2017003d2283fbd5656a963fd02d0f6b78",
+    "bytes": 16217,
+    "programSHA256": "92fd3ed887868cd98336afa4f80adca6848434213e8b18cebf14de4c2c71a441"
+  },
+  "footer": {
+    "url": "https://pocketfm.com/_next/static/chunks/163mtopasvko5.js",
+    "sha256": "7ad14d7ac768a1b13212bf8b26ba9be1dfc38719c208d8ab70093c12583e3316",
+    "bytes": 15228,
+    "programSHA256": "554a4637c39dd9cf3d68f1cb04559c8fdcff81e1a43694b3ee46d3a5f5901f7b"
+  },
+  "review": "Exact new whole parent/footer originals. Current module registration is flattened and strict directives are added; parent framework dependency references also change190809to151836. This is a finite reviewed current handoff, not a claim of whole-browser semantic equivalence. Critical loader512169still targets516114 and native footer retains exacthttps://jobs.lever.co/pocketfm. Original AST differences remain in artifact review. No runtime normalization for these compiler differences.",
+  "browserEquivalenceComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

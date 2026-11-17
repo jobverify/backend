@@ -1,6 +1,7 @@
+import {runCurrentPetrus} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -17,9 +18,6 @@ export const PUBLIC_JOB_ROUTE_URLS = [
   'https://www.petrustechnologies.com/jobs',
   'https://www.petrustechnologies.com/jobs/',
 ]
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const BUNDLE_REQUIRED_SIGNALS = [
   "'about-us':",
@@ -61,20 +59,6 @@ const BUNDLE_PUBLIC_JOBS_SIGNAL_PATTERNS = [
   ...PUBLIC_JOBS_SIGNAL_PATTERNS,
 ]
 
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
 const normalizeText = (value) =>
   String(value ?? '')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -88,38 +72,6 @@ const normalizeText = (value) =>
     .replace(/\u00a0/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'application/javascript,text/javascript,text/html,text/plain;q=0.9,*/*;q=0.8',
-    },
-    signal: createTimeoutSignal(15000),
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
 
 export const hasOfficialShellSignal = (html = '') => {
   const page = String(html ?? '')
@@ -200,85 +152,7 @@ export const hasVerifiedCurrentClientSignal = (client = '') => {
     && !/JobPosting|\bupload resume\b|\bwe are hiring\b/i.test(text)
 }
 
-const runCurrentProductApplication = async (homepage, fetchPage, fetchText) => {
-  if (homepage.url !== HOMEPAGE_URL || hasPublicJobsSignal(homepage.html)) {
-    throw new Error('Petrus current product homepage identity changed materially')
-  }
-  const clientPath = extractCurrentClientPath(homepage.html)
-  const client = await fetchText(new URL(clientPath, HOMEPAGE_URL).toString())
-  if (!hasVerifiedCurrentClientSignal(client)) {
-    throw new Error('Petrus current public route bundle changed materially or now exposes public jobs')
-  }
-  for (const url of PUBLIC_JOB_ROUTE_URLS) {
-    const page = await fetchPage(url)
-    const verifiedMissing = Number(page.status) === 404 && String(page.html).trim() === '404 Not Found'
-    const verifiedShell = Number(page.status) === 200
-      && hasCurrentProductShellSignal(page.html)
-      && extractCurrentClientPath(page.html) === clientPath
-      && !hasPublicJobsSignal(page.html)
-    if (page.url !== url || (!verifiedMissing && !verifiedShell)) {
-      throw new Error('Petrus current public-job route changed materially: ' + url)
-    }
-  }
-  return attachInventoryEvidence([], {
-      status: 'discovery-only', surface: HOMEPAGE_URL, firstParty: true, listingComplete: false,
-      pagesFetched: 8, reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
-      reason: "Petrus public website has no verified hiring route; complete company job inventory is unverified.",
-    })
-}
-
-export const createPetrusTechnologiesPvtLtdScraper = () => ({
-  async run({
-    fetchPage = defaultFetchPage,
-    fetchText = defaultFetchText,
-  } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (Number(homepage.status) === 200 && hasCurrentProductShellSignal(homepage.html)) {
-      return runCurrentProductApplication(homepage, fetchPage, fetchText)
-    }
-    if (homepage.status !== 200 || !hasOfficialShellSignal(homepage.html)) {
-      throw new Error('Petrus Technologies Pvt Ltd verified official shell no longer matches the trusted first-party surface')
-    }
-
-    if (hasPublicJobsSignal(homepage.html)) {
-      throw new Error('Petrus Technologies Pvt Ltd homepage shell now appears to expose public jobs')
-    }
-
-    const componentScriptPath = extractComponentScriptPath(homepage.html)
-    if (!componentScriptPath) {
-      throw new Error('Petrus Technologies Pvt Ltd homepage shell no longer exposes the verified route bundle')
-    }
-
-    const bundleUrl = new URL(componentScriptPath, HOMEPAGE_URL).toString()
-    const bundleText = await fetchText(bundleUrl)
-    if (!hasVerifiedBundleSignal(bundleText) || hasBundlePublicJobsSignal(bundleText)) {
-      throw new Error('Petrus Technologies Pvt Ltd route bundle changed materially or now exposes public jobs')
-    }
-
-    const aboutComponent = await fetchText(ABOUT_COMPONENT_URL)
-    if (!hasAboutComponentSignal(aboutComponent) || hasPublicJobsSignal(aboutComponent)) {
-      throw new Error('Petrus Technologies Pvt Ltd about component no longer matches the verified zero-job Petrus identity surface')
-    }
-
-    const contactComponent = await fetchText(CONTACT_COMPONENT_URL)
-    if (!hasContactComponentSignal(contactComponent) || hasPublicJobsSignal(contactComponent)) {
-      throw new Error('Petrus Technologies Pvt Ltd contact component no longer matches the verified first-party contact surface')
-    }
-
-    for (const routeUrl of PUBLIC_JOB_ROUTE_URLS) {
-      const routePage = await fetchPage(routeUrl)
-      if (!isVerifiedPublicJobShell(routePage)) {
-        throw new Error(`Petrus Technologies Pvt Ltd public-job route changed materially or now exposes jobs: ${routeUrl}`)
-      }
-    }
-
-    return attachInventoryEvidence([], {
-      status: 'discovery-only', surface: HOMEPAGE_URL, firstParty: true, listingComplete: false,
-      pagesFetched: 10, reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
-      reason: "Petrus public website has no verified hiring route; complete company job inventory is unverified.",
-    })
-  },
-})
+export const createPetrusTechnologiesPvtLtdScraper = () => ({run:runCurrentPetrus})
 
 export const run = async (options = {}) => createPetrusTechnologiesPvtLtdScraper().run(options)
 

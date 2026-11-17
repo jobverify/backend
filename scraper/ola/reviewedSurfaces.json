@@ -269,6 +269,56 @@
       "url": "https://olacareers.turbohire.co/40.1af7bfd47915c32dfaf3.chunk.js",
       "sha256": "e48ec3a5e9c59c7711126b6ca2bd33fbd8d37b04c5e692945118d1da9d2e7f41",
       "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/38.3bfdd6d56a857d3bea5d.chunk.js",
+      "sha256": "8aaa89d590858b9dfeb854e04bb4d888e2555e6274bbeca6c67d3cfca79146ff",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/14.7e262e2081727fd99ad1.chunk.js",
+      "sha256": "33c137c304abd945bc985318982307629bb3d84ca5e536f0e1b64b9732f10d0e",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/17.b43c0c94060116649b1a.chunk.js",
+      "sha256": "15cb4b26906e7aa3399af7b463a941c6de7b112728983296527c97abc1827351",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/main.5f065d4faaf108848aaa.chunk.js",
+      "sha256": "57aa65682fc53311d61bfdcac4238c6f1aa0cea6e329ca0770ef843e92d4dd0c",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+      "sha256": "f0b406873741adf14d0c8924a7f550871207904a76ff3ef19c98937c8b552153",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+      "sha256": "4b1f77ff7270bbd648649ccc60a5602a093689f5e466be2fc829035304b88934",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/25.4ff0b38bbe5de31b81f0.chunk.js",
+      "sha256": "d2bdfa2712cb37cde483316a4f5bde60b6ac1e79b954ba3d1a8d5c68ee2bf77b",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/40.f0b04cd9a1b43375cd22.chunk.js",
+      "sha256": "b9dd2f5a6835485f2f548c668f1f86f9a783efee58b9b36afcf059488874257d",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.8204eede4e126b73a90b.js",
+      "sha256": "3a6be591e4f1414ae61661b1cd4f51f004cf30c3890a1435453457eb9afd413a",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js",
+      "sha256": "c7403c9aa92a627e0dc5df2c2b141a4c969fd28732a469dd5ced0be59d9423d0",
+      "kind": "js"
     }
   ],
   "surfaces": {
@@ -605,6 +655,46 @@
         "https://olacareers.turbohire.co/38.fd875f34fad3e1170ec0.chunk.js",
         "https://olacareers.turbohire.co/64.b3a35e72c0970daa52b0.chunk.js",
         "https://olacareers.turbohire.co/40.1af7bfd47915c32dfaf3.chunk.js"
+      ],
+      "companyScopeUnqualified": true
+    },
+    {
+      "scriptURLs": [
+        "https://olacareers.turbohire.co/runtime-main.8204eede4e126b73a90b.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.5f065d4faaf108848aaa.chunk.js"
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.8204eede4e126b73a90b.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.5f065d4faaf108848aaa.chunk.js"
+      ],
+      "assetURLs": [
+        "https://olacareers.turbohire.co/38.3bfdd6d56a857d3bea5d.chunk.js",
+        "https://olacareers.turbohire.co/14.7e262e2081727fd99ad1.chunk.js",
+        "https://olacareers.turbohire.co/17.b43c0c94060116649b1a.chunk.js",
+        "https://olacareers.turbohire.co/main.5f065d4faaf108848aaa.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/25.4ff0b38bbe5de31b81f0.chunk.js",
+        "https://olacareers.turbohire.co/40.f0b04cd9a1b43375cd22.chunk.js",
+        "https://olacareers.turbohire.co/runtime-main.8204eede4e126b73a90b.js",
+        "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js"
       ],
       "companyScopeUnqualified": true
     }

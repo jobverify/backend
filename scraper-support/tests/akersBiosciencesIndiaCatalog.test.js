@@ -30,7 +30,7 @@ const loadAkersModule = async () => {
   }
 }
 
-test('Akers Biosciences India local catalog captures the verified parked exact-name host and current official-host no-public-jobs sentinel state', async () => {
+test('Akers Biosciences India local catalog retains dated observations and current configured-host access denial', async () => {
   const { AKERS_BIOSCIENCES_INDIA_CATALOG } = await loadCatalogModule()
   const akers = await loadAkersModule()
 
@@ -46,16 +46,16 @@ test('Akers Biosciences India local catalog captures the verified parked exact-n
   )
   assert.equal(
     AKERS_BIOSCIENCES_INDIA_CATALOG.atsPlatform,
-    'official-company-site-no-public-careers',
+    'configured-canonical-host-access-denied-inventory-unavailable',
   )
   assert.equal(AKERS_BIOSCIENCES_INDIA_CATALOG.countryFilter, 'India')
   assert.equal(
     AKERS_BIOSCIENCES_INDIA_CATALOG.paginationStrategy,
-    'verified-parked-exact-name-domain-plus-official-host-missing-job-route-validation',
+    'single-current-configured-root-metadata-first-denial',
   )
   assert.equal(
     AKERS_BIOSCIENCES_INDIA_CATALOG.extractionStrategy,
-    'verified-parked-exact-name-domain+official-host-no-public-job-routes-return-empty',
+    'current-configured-root-http403+original-denial-metadata-retained+company-inventory-unknown',
   )
   assert.equal(AKERS_BIOSCIENCES_INDIA_CATALOG.parser, 'custom-script')
   assert.equal(AKERS_BIOSCIENCES_INDIA_CATALOG.normalizationProfile, 'engineering-default')

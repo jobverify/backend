@@ -14,7 +14,7 @@ const scriptsHTML = urls => urls.map(url => `<script src="${escapeAttribute(url)
 test('reviewed TurboHire snapshots retain fingerprints instead of raw Google API keys', () => {
   for (const [path, count] of [
     ['../../scraper/purplle/reviewedTurboHireShell.json', 1],
-    ['../../scraper/ola/reviewedSurfaces.json', 3],
+    ['../../scraper/ola/reviewedSurfaces.json', 4],
   ]) {
     const text = readFileSync(new URL(path, import.meta.url), 'utf8')
     assert.equal(/AIza[A-Za-z0-9_-]{35}/.test(text), false, `${path} contains a raw Google API key`)

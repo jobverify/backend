@@ -1,5 +1,13 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
+
+const assertHeldNoJobs = jobs => {
+  assert.deepEqual(jobs, [])
+  assert.equal(readInventoryEvidence(jobs).status, 'coverage-gap')
+  assert.equal(readInventoryEvidence(jobs).reportedTotal, null)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs), true)
+}
 
 const loadPrepinstaModule = async () => {
   try {
@@ -137,7 +145,7 @@ test('PrepInsta scraper returns no jobs while the official Wellfound board stays
     prepinsta.CAREERS_URL,
     prepinsta.PUBLIC_JOBS_URL,
   ])
-  assert.deepEqual(jobs, [])
+  assertHeldNoJobs(jobs)
 })
 
 test('PrepInsta scraper returns no jobs while the Saturday, August 15, 2026 Cloudflare security check blocks the Wellfound board', async () => {
@@ -168,7 +176,7 @@ test('PrepInsta scraper returns no jobs while the Saturday, August 15, 2026 Clou
     prepinsta.CAREERS_URL,
     prepinsta.PUBLIC_JOBS_URL,
   ])
-  assert.deepEqual(jobs, [])
+  assertHeldNoJobs(jobs)
 })
 
 test('PrepInsta scraper returns no jobs while the public Wellfound board is reachable and empty', async () => {
@@ -199,10 +207,10 @@ test('PrepInsta scraper returns no jobs while the public Wellfound board is reac
     prepinsta.CAREERS_URL,
     prepinsta.PUBLIC_JOBS_URL,
   ])
-  assert.deepEqual(jobs, [])
+  assertHeldNoJobs(jobs)
 })
 
-test('PrepInsta scraper keeps the verified empty-board sentinel when the official careers page times out but the public Wellfound board is still readable and empty', async () => {
+test('PrepInsta legacy callback retains an inventory hold when corporate access times out and the old native empty message is readable', async () => {
   const prepinsta = await loadPrepinstaModule()
   const requestedUrls = []
 
@@ -228,10 +236,10 @@ test('PrepInsta scraper keeps the verified empty-board sentinel when the officia
     prepinsta.CAREERS_URL,
     prepinsta.PUBLIC_JOBS_URL,
   ])
-  assert.deepEqual(jobs, [])
+  assertHeldNoJobs(jobs)
 })
 
-test('PrepInsta scraper preserves the same-day verified empty-board sentinel when both the careers page and Wellfound handoff are timeout-blocked', async () => {
+test('PrepInsta legacy callback keeps inventory unknown and cleanup forbidden when both routes time out', async () => {
   const prepinsta = await loadPrepinstaModule()
   const requestedUrls = []
 
@@ -248,7 +256,7 @@ test('PrepInsta scraper preserves the same-day verified empty-board sentinel whe
     prepinsta.CAREERS_URL,
     prepinsta.PUBLIC_JOBS_URL,
   ])
-  assert.deepEqual(jobs, [])
+  assertHeldNoJobs(jobs)
 })
 
 test('PrepInsta scraper fails closed when the verified careers handoff changes', async () => {

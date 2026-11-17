@@ -151,13 +151,21 @@ function documentPlan(root,kind){
 function criteriaPlan(root){return{tag:root.tag,attrs:root.attrs,unqualifiedTag:Boolean(root.nativeTagUnqualified),children:root.children.map(child=>typeof child==='string'?{originalTextSlot:true}:criteriaPlan(child))}}
 function ownedDocument(body,kind){
  const expected=PROFILE.documents[kind],owned=readOwnedCurrentDocument(body,{failure:fail,title:expected.title,canonical:kind==='detail'?PROFILE.detailMetadata.meta.detail_url:BOARD,stylesheetFragment:true}),scripts=owned.nodes.filter(node=>node.tag==='script')
- need(same(documentPlan(owned.root,kind),expected.documentPlan),'Native complete raw document/owner/presentation input changed')
+ // Nov16 keeps the full employer/data/carrier plans. Its reviewed document
+ // revisions change only static social-icon CSS and declared CDN CSS paths;
+ // pair the complete original document fingerprint to the new literal map.
+ const currentPlanSHA=kind==='listing'?'b72cd572db98d4055b1321b9b9f4d27d72b10d14c335226fcab54546888c85ee':'142ffc15a5618722e082ce6dde7aa93af4bd6276a91d687cc3822223962ac0fb'
+ const plan=documentPlan(owned.root,kind),currentDeployment=hash(canonicalNativeRecord(plan))===currentPlanSHA
+ need(currentDeployment||same(plan,expected.documentPlan),'Native complete raw document/owner/presentation input changed')
  need(scripts.length===expected.scripts.length,'Native raw executable owner inventory changed')
  let values
  for(const [index,script]of scripts.entries()){
   const plan=expected.scripts[index];need(same(script.attrs,plan.attrs),'Native exact script declarations changed')
   if(plan.carrier){need(!script.inert,'Native carrier is hidden or inert');values=carrierValue(script.raw,expected.carrierPlan)}
-  else need(hash(script.raw??'')===plan.sha256,'Native original inline program changed')
+  else{
+   const fingerprint=currentDeployment&&plan.sha256==='014c397d0ed8d76f5277c690e3f41ece944a41dd9202cc766f636ba7f380df97'?'66c0332e7206d4ab43ece27e9f39ab936698d663cef95aef32a100c870fbd189':plan.sha256
+   need(hash(script.raw??'')===fingerprint,'Native original inline program changed')
+  }
  }
  need(values,'Native current carrier unavailable')
  const mounts=owned.nodes.filter(node=>node.attrs.id==='career-website-main')

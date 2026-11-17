@@ -21,7 +21,7 @@ const loadArchiesCatalog = async () => {
   }
 }
 
-test('Archies catalog captures the verified first-party no-public-jobs storefront surface', async () => {
+test('Archies catalog captures the verified first-party current corporate observation contract and retains dated evidence', async () => {
   const { ARCHIES_CATALOG } = await loadArchiesCatalog()
   const provider = hydrateProviderCatalogEntry(ARCHIES_CATALOG)
 
@@ -31,15 +31,15 @@ test('Archies catalog captures the verified first-party no-public-jobs storefron
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, 'https://archiesonline.com/')
   assert.equal(provider.companyDomain, 'archiesonline.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-storefront-with-unqualified-native-recruitment-inventory')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'verified-homepage-plus-crawl-surface-plus-common-careers-route-404-validation',
+    'current-homepage-and-declared-about-corporate-model-opening-closing-reconciliation',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-robots-and-page-sitemap-without-careers+verified-missing-common-careers-routes-return-empty',
+    'current-first-party-storefront+declared-about-and-full-corporate-models+unknown-vacancy-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

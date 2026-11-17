@@ -5,6 +5,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import RAPID7_INDIA_CATALOG from './catalog.js'
+import {runCurrentRapid7} from './currentHeld20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -180,10 +181,14 @@ export const createRapid7IndiaScraper = ({
   now = () => new Date().toISOString(),
   maxPages = 1,
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
+  ...currentConfiguration
 } = {}) => ({
   async run({
     fetchText = defaultFetchText,
+    ...currentOverrides
   } = {}) {
+    if(currentConfiguration.fetchImpl||currentOverrides.fetchImpl||fetchText===defaultFetchText)
+      return runCurrentRapid7({...currentConfiguration,...currentOverrides},extractJobCardsFromSearchPage)
     const scrapedAt = now()
     const jobs = []
     const seenJobIds = new Set()

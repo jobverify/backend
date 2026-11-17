@@ -1,0 +1,18 @@
+{
+  "source": "amberstudent",
+  "reviewedAt": "2026-11-16T20:53:46.956Z",
+  "main": {
+    "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/main.fe14c54fc4a4bf11.desktop.js",
+    "bytes": 1373810,
+    "sha256": "5596181cbbadb1a70e48eb131b0b6ff4874cb6f521f9ee0be57b9eda0c7ef99e"
+  },
+  "chunk": {
+    "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/5004.f78f49d67ba53ae3.desktop.js",
+    "bytes": 34481,
+    "sha256": "446081f7792572d7f171bc318ff3fbb51c7b4cce24232d13428f1a4823c4114c"
+  },
+  "proof": "Complete34481-byte current chunk equals whole34469-byte original after removing the single AboutUs menu literal property ,redirect:!0. Only one AST Property was added; exact Keka tenant, native fetch/filter/render and per-role link logic unchanged. Whole browser/dependency equivalence is not certified.",
+  "sourceScopeComplete": false,
+  "browserEquivalenceComplete": false,
+  "lifecycleCleanupAllowed": false
+}

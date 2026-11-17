@@ -8,6 +8,9 @@ import profile from './reviewedPublicContract20261113.json' with { type: 'json' 
 import currentProfile from './reviewedPublicContract20261114.json' with { type: 'json' }
 
 const HOME = 'https://www.vahan.co/'
+const CURRENT_HOME = 'https://www.vahan.ai/'
+const contractHome = contract => contract.officialHome || HOME
+const contractCareers = contract => contractHome(contract) + 'careers/'
 export const VAHAN_CAREERS = HOME + 'careers/'
 const SOURCE = 'vahan'
 const norm = value => decodeHTML(String(value || '')).replace(/\s+/g, ' ').trim()
@@ -54,7 +57,7 @@ const unstyledPath = (tree, target) => {
   return path && path.every(node => !Object.hasOwn(node.attrs, 'style'))
 }
 
-function documentBindings(tree, kind) {
+function documentBindings(tree, kind, contract) {
   const nodes = all(tree, () => true), parents = new Map()
   need(!nodes.some(node => node.tag === 'base'), 'unreviewed document base changes native URL authority')
   need(!nodes.some(node => Object.keys(node.attrs).some(name => /^on/i.test(name))),
@@ -65,7 +68,7 @@ function documentBindings(tree, kind) {
   const critical = nodes.filter(node => kind === 'role'
     ? ['jr-title', 'jr-meta', 'jr-pill', 'jr-body', 'jr-form'].some(name => cls(node, name))
     : kind === 'listing' ? cls(node, 'jobs') || cls(node, 'role-select') || Object.hasOwn(node.attrs, 'data-filter')
-      : node.tag === 'a' && ['/careers/', VAHAN_CAREERS].includes(node.attrs.href))
+      : node.tag === 'a' && ['/careers/', contractCareers(contract)].includes(node.attrs.href))
   const protectedNodes = new Set()
   for (const node of critical) {
     for (const child of all(node, () => true)) protectedNodes.add(child)
@@ -80,21 +83,21 @@ function documentBindings(tree, kind) {
     || triggers.some(name => Object.hasOwn(node.attrs, name))), 'unreviewed decorative client binding to native criteria or application')
 }
 
-function employer(document) {
+function employer(document, contract) {
   const scripts = document.nodes(node => node.tag === 'script' && node.attrs.type === 'application/ld+json')
   need(scripts.length === 1, 'employer identity missing or ambiguous')
   let value
   try { value = JSON.parse(scripts[0].raw) } catch { need(false, 'employer identity malformed') }
   need(value['@type'] === 'Organization' && value.name === 'Vahan'
-    && value.legalName === 'Vahan Technologies India Pvt. Ltd.' && value.url === 'https://www.vahan.co',
+    && value.legalName === 'Vahan Technologies India Pvt. Ltd.' && value.url === contractHome(contract).slice(0, -1),
   'employer identity changed')
 }
 
 function documentIdentity(html, url, kind, styles, contract) {
   const original = readNativeDocument(html), tree = root(original)
-  documentBindings(tree, kind)
+  documentBindings(tree, kind, contract)
   const document = project(html, styles)
-  employer(original)
+  employer(original, contract)
   const canonical = document.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical')
   need(canonical.length === 1 && canonical[0].attrs.href === url, 'canonical URL identity changed')
   // The current deployment adds only a literal scrollbar-gutter rule in head.
@@ -141,7 +144,7 @@ function documentIdentity(html, url, kind, styles, contract) {
 }
 
 function listing(html, styles, contract) {
-  const { document, tree } = documentIdentity(html, VAHAN_CAREERS, 'listing', styles, contract)
+  const { document, tree } = documentIdentity(html, contractCareers(contract), 'listing', styles, contract)
   need(activeHead(html).titles.includes('Vahan — Careers'), 'current employer careers title changed')
   const filters = document.nodes(node => node.tag === 'select' && node.attrs['data-filter'])
   need(filters.length === 3 && ['department', 'type', 'location'].every(name => filters.some(node => {
@@ -158,8 +161,8 @@ function listing(html, styles, contract) {
     const metadata = document.text(one(all(card, node => cls(node, 'job-loc') && !node.inert), 'visible role card location missing'))
     const application = one(all(card, node => node.tag === 'a' && cls(node, 'job-apply') && !node.inert), 'visible native role handoff missing')
     const match = metadata.match(/^(.+) · (Full-time|Internship|Part-time)$/)
-    const url = new URL(application.attrs.href, HOME)
-    need(title && match && url.origin === HOME.slice(0, -1) && /^\/careers\/[a-z0-9-]+\/$/.test(url.pathname)
+    const url = new URL(application.attrs.href, contractHome(contract))
+    need(title && match && url.origin === contractHome(contract).slice(0, -1) && /^\/careers\/[a-z0-9-]+\/$/.test(url.pathname)
       && !url.search && !url.hash && !url.username && !url.password, 'native own-role identity changed')
     const group = one(all(container, node => cls(node, 'job-group') && all(node, child => child === card).length), 'role department missing')
     const department = document.text(one(all(group, node => cls(node, 'job-group-title') && !node.inert), 'visible department title missing'))
@@ -170,8 +173,8 @@ function listing(html, styles, contract) {
   'duplicate, hidden or unsupported employer role inventory')
   const roleLinks = document.nodes(node => node.tag === 'a' && node.attrs.href && /\/careers\//.test(node.attrs.href))
   for (const link of roleLinks) {
-    const url = new URL(link.attrs.href, HOME)
-    need(url.href === VAHAN_CAREERS || rows.some(row => row.url === url.href), 'unaccounted employer role or continuation')
+    const url = new URL(link.attrs.href, contractHome(contract))
+    need(url.href === contractCareers(contract) || rows.some(row => row.url === url.href), 'unaccounted employer role or continuation')
   }
   return rows
 }
@@ -230,7 +233,7 @@ function role(html, row, styles, contract) {
     .map(node => norm(authored(node))).join(' ')
   need(substantive.length >= 200 && !/\b(?:no longer accepting applications|this (?:role|position) is closed)\b/i.test(full),
     'full substantive authored criteria unavailable or closed')
-  return { source: SOURCE, company: 'Vahan', companyDomain: 'vahan.co', companyCareerPage: VAHAN_CAREERS,
+  return { source: SOURCE, company: 'Vahan', companyDomain: new URL(contractHome(contract)).hostname.replace(/^www\./, ''), companyCareerPage: contractCareers(contract),
     jobId: row.id, requisitionId: row.id, title: row.title, department: row.department,
     location: row.location + ', India', country: 'India', employmentType: row.employmentType,
     sourceNativeLocation: meta.split(' · ')[1], sourceUrl: row.url, detailUrl: row.url,
@@ -244,6 +247,7 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
   callerSignal?.throwIfAborted()
   const controller = new AbortController()
   const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(120000), ...(callerSignal ? [callerSignal] : [])])
+  let activeHome = HOME
   const audit = { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: 0, observedVacancyCount: 0,
     sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null, lifecycleCleanupAllowed: false,
     sourceListingComplete: false, responses: [], closingStable: false }
@@ -260,6 +264,17 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     const response = await wait(Promise.resolve().then(() => fetchImpl(url, { method: 'GET', redirect: 'manual', signal: requestSignal,
       headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'text/html,text/css,application/javascript' } })), requestSignal)
     requestSignal.throwIfAborted()
+    if (url === HOME && response.status === 301) {
+      need(response.url === HOME && !response.redirected && response.headers.get('location') === CURRENT_HOME,
+        'unreviewed permanent corporate redirect authority')
+      const redirectBody = await wait(response.text(), requestSignal)
+      requestSignal.throwIfAborted()
+      need(Buffer.byteLength(redirectBody) <= 1024, 'corporate redirect body exceeds reviewed bound')
+      audit.responses.push({url:HOME,status:301,location:CURRENT_HOME,bytes:Buffer.byteLength(redirectBody),sha256:hash(redirectBody)})
+      activeHome = CURRENT_HOME
+      return read(CURRENT_HOME)
+    }
+    need(url !== HOME || activeHome === HOME, 'corporate redirect changed during closing')
     need(response.status === 200 && response.url === url, 'public HTTP/final URL identity changed (' + response.status + '): ' + url)
     const html = await wait(response.text(), requestSignal)
     requestSignal.throwIfAborted()
@@ -285,11 +300,14 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     return result
   }
   try {
-    const home = await read(HOME), openingHtml = await read(VAHAN_CAREERS), contract = selectContract(home, openingHtml)
+    const home = await read(HOME), careersURL = activeHome + 'careers/', openingHtml = await read(careersURL)
+    const contract = {...selectContract(home, openingHtml),officialHome:activeHome}
+    audit.nativeCorporateHome = activeHome
+    audit.nativeCorporateCareers = careersURL
     const verifyAssets = async () => {
       const assets = {}
       for (const [path, sha] of Object.entries(contract.assets)) {
-        assets[path] = await read(new URL(path, HOME).href)
+        assets[path] = await read(new URL(path, activeHome).href)
         need(hash(assets[path]) === sha, path.endsWith('.css') ? 'unreviewed criteria stylesheet contract' : 'unreviewed shared public client contract')
       }
       return assets
@@ -297,7 +315,7 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     const assets = await verifyAssets()
     const styles = Object.entries(assets).filter(([path]) => path.endsWith('.css')).map(([, body]) => body).join('\n')
     const bindHome = html => {
-      const { document } = documentIdentity(html, HOME, 'home', styles, contract)
+      const { document } = documentIdentity(html, contractHome(contract), 'home', styles, contract)
       need(document.nodes(node => node.tag === 'a' && node.attrs.href === '/careers/' && document.text(node) === 'Careers').length > 0,
         'current corporate employer careers handoff missing')
     }
@@ -308,11 +326,11 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     if (opening.length) {
       jobs = await details(opening, styles, contract)
       bindHome(await read(HOME))
-      const closing = listing(await read(VAHAN_CAREERS), styles, contract)
+      const closing = listing(await read(careersURL), styles, contract)
       need(fingerprint(opening) === fingerprint(closing), 'closing inventory changed')
       const closingJobs = await details(closing, styles, contract)
       need(JSON.stringify(jobs) === JSON.stringify(closingJobs), 'closing full authored criteria changed')
-      need(fingerprint(opening) === fingerprint(listing(await read(VAHAN_CAREERS), styles, contract)), 'final closing inventory changed after role details')
+      need(fingerprint(opening) === fingerprint(listing(await read(careersURL), styles, contract)), 'final closing inventory changed after role details')
       await verifyAssets()
       complete = audit.closingStable = true
     }
@@ -324,7 +342,7 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     jobs = jobs.map(job => ({ ...job, scrapedAt: verifiedAt }))
     attachSourceObservationEvidence(jobs, audit)
     Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: audit, configurable: true })
-    attachInventoryEvidence(jobs, { status: complete ? 'complete-inventory' : 'coverage-gap', surface: VAHAN_CAREERS,
+    attachInventoryEvidence(jobs, { status: complete ? 'complete-inventory' : 'coverage-gap', surface: careersURL,
       firstParty: true, listingComplete: complete, lifecycleCleanupAllowed: false, pagesFetched: audit.responses.length,
       reportedTotal: null, indiaFacetCount: null, verifiedAt,
       reason: complete ? 'current first-party employer HTML board and full authored criteria reconciled;whole-company-scope-unverified;cleanup-forbidden'

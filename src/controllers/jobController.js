@@ -719,6 +719,7 @@ export const normalizeResponseJob = (job) => {
     classification: _classification,
     postClassification: _postClassification,
     batchEligibility: _batchEligibility,
+    firstSeenPipelineId: _firstSeenPipelineId,
     sourceDescription: _sourceDescription,
     sourceContentHash: _sourceContentHash,
     sourceContentHashVersion: _sourceContentHashVersion,

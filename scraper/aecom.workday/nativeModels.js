@@ -45,8 +45,10 @@ export function readRole(model,listing,now){
  validateListing(listing)
  need(model&&typeof model==='object'&&model.guid===listing.guid&&model.id===listing.id&&model.reqid===listing.reqid,'role GUID or requisition differs')
  for(const key of common){
-  // Solr omits empty job_function; the own JSON explicitly retains "".
-  if(key==='job_function'&&!Object.hasOwn(listing,key)&&model[key]==='')continue
+  // Solr omits these empty optional fields; the own JSON retains literal "".
+  // Keep both raw models: null, nonempty/type conflicts and closing field
+  // presence changes still fail their existing full-model checks.
+  if(['job_function','job_type','job_category'].includes(key)&&!Object.hasOwn(listing,key)&&model[key]==='')continue
   need(isDeepStrictEqual(model[key],listing[key]),'role '+key+' differs from own listing')
  }
  need(model.company==='AECOM'&&model.company_ac==='AECOM'&&model.company_canonical_microsite===BOARD&&model.company_canonical_microsite_exact===BOARD,'role employer identity differs')

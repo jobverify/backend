@@ -1,6 +1,7 @@
+import {runCurrentDrytis} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -20,9 +21,6 @@ export const NO_PUBLIC_CAREERS_ROUTE_URLS = [
   'https://drytis.com/join-us',
   'https://drytis.com/work-with-us',
 ]
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
@@ -74,22 +72,6 @@ const hasCurrentShellOrganizationSignal = (html) => {
     && /"url"\s*:\s*"https:\/\/drytis\.com\/"/i.test(page)
     && normalized.includes('solutions pricing about blog')
     && /https:\/\/studio\.drytis\.ai\/login/i.test(page)
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    redirect: 'follow',
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.7',
-    },
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
 }
 
 const hasOctober2026Identity = (html) => {
@@ -290,102 +272,7 @@ export const hasVerifiedEmptyCareersLanding = (html) => {
     && !hasPublicJobsSignal(openingCheck)
 }
 
-export const createDrytisScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('DRYTIS verified homepage no longer matches the known first-party surface')
-    }
-    if (hasPublicJobsSignal(homepage.html)) {
-      throw new Error('DRYTIS homepage now appears to expose a public jobs surface')
-    }
-
-    const about = await fetchPage(ABOUT_URL)
-    if (about.status !== 200 || !hasOfficialAboutSignal(about.html)) {
-      throw new Error('DRYTIS verified about page no longer matches the known first-party surface')
-    }
-    if (hasPublicJobsSignal(about.html)) {
-      throw new Error('DRYTIS about page now appears to expose a public jobs surface')
-    }
-
-    const privacy = await fetchPage(PRIVACY_URL)
-    if (privacy.status === 404) {
-      if (!isVerifiedMissingCareerRoute(privacy)) {
-        throw new Error('DRYTIS verified privacy page no longer matches the known first-party surface')
-      }
-    } else if (privacy.status !== 200 || !hasOfficialPrivacySignal(privacy.html)) {
-      throw new Error('DRYTIS verified privacy page no longer matches the known first-party surface')
-    }
-    if (privacy.status === 200 && hasPublicJobsSignal(privacy.html)) {
-      throw new Error('DRYTIS privacy page now appears to expose a public jobs surface')
-    }
-
-    const terms = await fetchPage(TERMS_URL)
-    if (terms.status === 404) {
-      if (!isVerifiedMissingCareerRoute(terms)) {
-        throw new Error('DRYTIS verified terms page no longer matches the known first-party surface')
-      }
-    } else if (terms.status !== 200 || !hasOfficialTermsSignal(terms.html)) {
-      throw new Error('DRYTIS verified terms page no longer matches the known first-party surface')
-    }
-    if (terms.status === 200 && hasPublicJobsSignal(terms.html)) {
-      throw new Error('DRYTIS terms page now appears to expose a public jobs surface')
-    }
-
-    const engineers = await fetchPage(ENGINEERS_URL)
-    if (engineers.status === 404) {
-      if (!isVerifiedMissingCareerRoute(engineers)) {
-        throw new Error('DRYTIS verified engineers page no longer matches the known first-party surface')
-      }
-    } else if (engineers.status !== 200 || !hasOfficialEngineersSignal(engineers.html)) {
-      throw new Error('DRYTIS verified engineers page no longer matches the known first-party surface')
-    }
-    if (engineers.status === 200 && hasPublicJobsSignal(engineers.html)) {
-      throw new Error('DRYTIS engineers page now appears to expose a public jobs surface')
-    }
-
-    const sitemap = await fetchPage(SITEMAP_URL)
-    if (sitemap.status === 404) {
-      if (!isVerifiedMissingCareerRoute(sitemap)) {
-        throw new Error('DRYTIS verified sitemap no longer matches the known careers-free surface')
-      }
-    } else if (sitemap.status !== 200 || sitemapHasUnexpectedCareerLikeUrl(sitemap.html)) {
-      throw new Error('DRYTIS verified sitemap no longer matches the known careers-free surface')
-    }
-
-    let hasUnpublishableCareersLanding = false
-    let hasExplicitlyEmptyCareersLanding = false
-    for (const routeUrl of NO_PUBLIC_CAREERS_ROUTE_URLS) {
-      const routePage = await fetchPage(routeUrl)
-      if (routeUrl === 'https://drytis.com/careers' && routePage.status === 200 && (hasVerifiedUnpublishableCareersLanding(routePage.html) || hasVerifiedEmptyCareersLanding(routePage.html))) {
-        hasUnpublishableCareersLanding = true
-        const landingUrl = new URL(routePage.url || routeUrl)
-        if (landingUrl.origin !== new URL(HOMEPAGE_URL).origin || !/^\/careers\/?$/.test(landingUrl.pathname)) {
-          throw new Error('DRYTIS careers landing left the verified first-party route')
-        }
-        hasExplicitlyEmptyCareersLanding = hasVerifiedEmptyCareersLanding(routePage.html)
-        continue
-      }
-
-      if (!isVerifiedMissingCareerRoute(routePage)) {
-        throw new Error(`DRYTIS verified no-public-careers route changed: ${routePage.url || routeUrl}`)
-      }
-    }
-
-    return attachInventoryEvidence([], {
-      status: hasExplicitlyEmptyCareersLanding ? 'verified-empty' : 'discovery-only',
-      surface: 'https://drytis.com/careers/', firstParty: true,
-      listingComplete: hasExplicitlyEmptyCareersLanding,
-      pagesFetched: 6 + NO_PUBLIC_CAREERS_ROUTE_URLS.length,
-      reportedTotal: hasExplicitlyEmptyCareersLanding ? 0 : null,
-      indiaFacetCount: hasExplicitlyEmptyCareersLanding ? 0 : null,
-      verifiedAt: new Date().toISOString(),
-      reason: hasExplicitlyEmptyCareersLanding ? 'First-party careers landing explicitly states No open roles right now.'
-        : hasUnpublishableCareersLanding ? 'DRYTIS careers landing is discovery-only without explicit current empty inventory.'
-          : 'DRYTIS has no verified public listing inventory.',
-    })
-  },
-})
+export const createDrytisScraper = () => ({run:runCurrentDrytis})
 
 export const run = async (options = {}) => createDrytisScraper().run(options)
 

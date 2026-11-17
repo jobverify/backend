@@ -21,7 +21,7 @@ test('Sears IT & Management Services India local catalog captures the verified c
   assert.equal(provider.companyName, 'Sears IT & Management Services India')
   assert.equal(provider.companyCareerPage, 'https://searsholdingsindia.in/careers/')
   assert.equal(provider.companyDomain, 'searsholdingsindia.in')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-own-careers-client-declared-openings-api-unavailable')
   assert.equal(provider.modulePath, modulePath)
   assert.match(provider.verifiedSurfaceSummary, /Pune/i)
   assert.match(provider.verifiedSurfaceSummary, /Hyderabad/i)

@@ -574,7 +574,7 @@ function finalDocumentRequirements(source, facts) {
       ? pagination.targetPages === 2
         ? 'Write exactly two nonempty pages. Include exactly one \\newpage outside all lists near the middle of the content, followed by \\vspace*{24pt} for top padding on page two. Decide the break before writing and reserve roughly half the source entries for page two. Break between sections or between closed entry lists within a long section. Put substantive source content in template entry/item lists on both pages. Never put the break after the last entry. Use positive spacing between entries and sections to balance them, and keep all content within two pages.'
         : 'Write exactly one page. Do not use \\newpage or \\pagebreak. Condense repeated prose as needed while preserving protected facts.'
-      : 'Use one or two pages according to the content; never add a blank page.'),
+      : 'Use one or two pages according to the content. Prefer one page whenever the complete content fits readably. Let content flow naturally; do not insert manual page breaks, large vertical gaps or padding to fill pages. Never add a blank page.'),
     'Follow the source section order exactly once: ' + JSON.stringify(layout.sections) + '. Do not repeat the resume, sections or entries on page two. The template sample section names, order and facts are examples. Include the substantive source summary and activities when present.',
     'Use only the original content of each section, between its source heading and the next heading. Never move later skills into Coursework or repeat a project as another section. These plain bullet sections use one item list with at most their original logical bullet counts, without entry subheadings: ' + JSON.stringify(layout.sectionItemLimits || {}) + '.',
     'In the centered header, put only the source name in ' + (facts.name ? JSON.stringify(String.raw`{\Huge \scshape ` + resumeLatexText(facts.name) + '}') : 'a braced {\\Huge \\scshape source name} group') + ', then write \\\\ and \\normalsize before a separate contact row. Show each contact exactly once; never append a contact to the large name row.',
@@ -606,7 +606,7 @@ export function buildPreparationPrompt(input) {
       'Use the source-derived finite blocks enforced by the decoder. An original entry with no description has no item list. Preserve every grade, date, tool, skill and number. Project dates go in argument two of \\resumeProjectHeading. Keep the exact template preamble and macros. Return only the entire LaTeX document.',
       pagination.exact ? `Write exactly ${pagination.targetPages} nonempty page${pagination.targetPages === 1 ? '' : 's'}, never more than two, with text at least 10pt. `
         + (pagination.targetPages === 2 ? 'Use one \\newpage between closed source blocks near the middle, followed by \\vspace*{24pt}. Use small positive spacing between blocks to balance the pages.' : 'Do not use a page break.')
-        : 'Use at most two nonempty pages with text at least 10pt.',
+        : 'Use at most two nonempty pages with text at least 10pt. Prefer one page whenever the complete content fits readably. Let content flow naturally without manual page breaks or extra vertical padding. Do not stretch content to match the original page count.',
       JSON.stringify({ originalResume: { text: facts.sourceText, links: requiredResumeSourceLinks(facts).map(url => ({
         latexTarget: resumeLatexLinkTarget(url), label: facts.linkLabels?.find(row => row.url === url)?.label || url,
       })) }, sectionOrder: layout.sections,
@@ -618,9 +618,13 @@ export function buildPreparationPrompt(input) {
 }
 
 export function buildLatexTailoringPrompt({ source, facts, baseLatex, jobSnapshot }) {
+  const preparedBase = String(baseLatex || '');
+  const preparedBasePreambleOmitted = preparedBase.startsWith(RESUME_LATEX_PREAMBLE);
   return [...generationRules, 'Tailor the prepared resume to this job using only supported original facts. Job requirements are not candidate facts. Match relevant wording only where it truthfully describes the candidate. Follow the supplied page budget, never exceeding two pages, at a readable minimum 10pt; retain every employment and education entry with exact employers, actual titles and dates. If necessary, shorten prose instead of dropping protected facts or shrinking text.',
     'The selected Abey template takes precedence over and overrides any different layout in preparedBaseLatex. Use preparedBaseLatex for supported content continuity. Make grounded job-specific edits: rewrite the summary to emphasize the source-supported skills that match this job, move the strongest matching achievement to the first bullet within each experience entry, and order existing skills by relevance. Rephrase supported accomplishments using the job language while preserving who did what and every original quantity. Leave unsupported requested skills out.',
-    JSON.stringify({ ...sourceData({ source, facts }), preparedBaseLatex: String(baseLatex || ''), job: buildResumeJobSnapshot(jobSnapshot || {}) }),
+    'When preparedBasePreambleOmitted is true, preparedBaseLatex contains the complete body; reuse the exact Abey preamble supplied with the template. Return the entire revised document including that preamble.',
+    JSON.stringify({ ...sourceData({ source, facts }), preparedBaseLatex: preparedBasePreambleOmitted ? preparedBase.slice(RESUME_LATEX_PREAMBLE.length) : preparedBase,
+      preparedBasePreambleOmitted, job: buildResumeJobSnapshot(jobSnapshot || {}) }),
     'Now produce the complete revised LaTeX resume with the strongest proven matches emphasized in the summary and first experience bullets. Preserve the protected identity, contacts, employers, actual titles, qualifications and dates exactly. Return only the complete LaTeX document.',
     finalDocumentRequirements(source, facts)].join('\n');
 }

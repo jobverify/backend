@@ -11,7 +11,7 @@ export async function runNativeCorteva(options={}){
  if(maxPages!==Infinity)throw RangeError('Corteva native finite page cap cannot establish complete channel proof')
  const io=transport(options),{control}=io;let observed=0
  const finish=jobs=>{
-  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,pagesFetched:io.originals.filter(p=>p.requestedURL.startsWith(PORTAL+'api/pcsx/search?')).length,reason:maxJobs===0?'caller-zero-cap-no-inventory-proof':'native-india-channel-observations-not-company-inventory'})
+  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:io.originals.filter(p=>p.requestedURL.startsWith(PORTAL+'api/pcsx/search?')).length,reason:maxJobs===0?'caller-zero-cap-no-inventory-proof':observed===0?'no-qualified-India-rows-in-observed-channel-not-company-inventory':'native-india-channel-observations-not-company-inventory'})
   attachSourceObservationEvidence(jobs,{source:'corteva',recordKind:'vacancy-rows',observedRecordCount:observed,observedVacancyCount:observed,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   const retained=io.originals.map(p=>Object.freeze({...p,headers:Object.freeze({...p.headers}),requestHeaders:Object.freeze({...p.requestHeaders})}))
   Object.defineProperty(jobs,ORIGINALS,{value:Object.freeze({source:'corteva',nativeOriginalResponses:Object.freeze(retained),sourceScopeComplete:false,lifecycleCleanupAllowed:false})})
@@ -39,7 +39,7 @@ export async function runNativeCorteva(options={}){
    need(rows.length===total,'incomplete worldwide search window')
    return{rows,models,total,india:rows.filter(indiaCandidate)}
   }
-  const openingListing=await listings();need(openingListing.india.length>0,'no qualified India rows; zero does not certify company inventory')
+  const openingListing=await listings()
   const details=async rows=>{
    const result=[]
    for(const row of rows){

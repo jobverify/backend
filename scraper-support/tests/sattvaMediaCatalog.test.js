@@ -40,18 +40,18 @@ test('Sattva Media local catalog captures the verified first-party Sattva career
   assert.equal(provider.companyCareerPage, 'https://www.sattva.co.in/join-us/careers/')
   assert.equal(provider.homepageUrl, 'https://www.sattva.co.in/join-us/')
   assert.equal(provider.officialCareersPageUrl, 'https://www.sattva.co.in/join-us/careers/')
-  assert.equal(provider.officialJobsBoardUrl, 'https://sattva-talent.freshteam.com/jobs')
+  assert.equal(provider.officialJobsBoardUrl, 'https://careers.kula.ai/sattva')
   assert.equal(
     provider.detailUrlPattern,
-    'https://sattva-talent.freshteam.com/jobs/{opaque_id}/{slug}',
+    'https://careers.kula.ai/sattva/{id}-{slug}',
   )
   assert.equal(provider.companyDomain, 'sattva.co.in')
-  assert.equal(provider.atsPlatform, 'freshteam')
+  assert.equal(provider.atsPlatform, 'current-own-declared-kula-full-native-role-and-form-observations')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'official-careers-page-plus-public-freshteam-board')
+  assert.equal(provider.paginationStrategy, 'current-own-careers-legal-publisher-unfiltered-api-and-all-own-role-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-join-us-page+verified-careers-page-cta+public-freshteam-board+detail-page-apply-surface',
+    'whole-native-api-flight-role-criteria-offices-application-and-programme-models+ongoing-intake-distinguished+conditional-application-browser-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

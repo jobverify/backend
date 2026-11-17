@@ -14,13 +14,13 @@ test('Rinex Technologies is registered against the verified same-domain job page
   assert.ok(provider, 'Expected Rinex Technologies provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Rinex Technologies')
-  assert.equal(provider.companyCareerPage, 'https://rinex.ai/career')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.companyCareerPage, 'https://rinex.ai/career.html')
+  assert.equal(provider.atsPlatform, 'current-own-native-careers-role-and-email-draft-application')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-shell-plus-main-bundle-plus-same-domain-job-pages')
+  assert.equal(provider.paginationStrategy, 'current-own-home-declared-careers-and-complete-role-application-programmes-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage-shell+verified-main-jobs-bundle+bundle-discovered-same-domain-job-pages+external-apply-links',
+    'whole-current-authored-role-criteria-application-and-programme-models+student-placement-distinguished+role-employer-country-browser-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -51,6 +51,6 @@ test('Rinex Technologies backlog rows resolve through the alias map and buildScr
   assert.ok(scraper, 'Expected buildScrapers() to return the Rinex Technologies scraper')
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'rinextechnologies')
-  assert.equal(scraper.provider.companyCareerPage, 'https://rinex.ai/career')
+  assert.equal(scraper.provider.companyCareerPage, 'https://rinex.ai/career.html')
   assert.match(scraper.dryRunFile, /rinextechnologies[\\/]jobs\.json$/i)
 })

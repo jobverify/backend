@@ -78,7 +78,7 @@ const careersPageHtml = `
 </html>
 `
 
-test('Logic Fruit Technologies scraper validates the official careers surface and extracts unique public openings', async () => {
+test('Logic Fruit retains the historical legacy presentation parser contract', async () => {
   const logicFruit = await loadLogicFruitModule()
 
   assert.equal(logicFruit.SOURCE, 'logicfruittechnologies')
@@ -155,113 +155,20 @@ test('Logic Fruit Technologies scraper validates the official careers surface an
   ])
 })
 
-test('Logic Fruit Technologies run decorates the official openings with shared scraper metadata', async () => {
+// The legacy parser above is a historical presentation contract. Current
+// acquisition is covered by original HTTP replays in the source directory;
+// a supplied body cannot restore obsolete country/date/application inference.
+test('Logic Fruit current acquisition rejects body-only historical listing and API callbacks', async () => {
   const logicFruit = await loadLogicFruitModule()
-
-  const requestedUrls = []
-  const jobs = await logicFruit.createLogicFruitTechnologiesScraper({
-    now: () => '2026-08-03T00:00:00.000Z',
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      return careersPageHtml
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [logicFruit.CAREERS_URL])
-  assert.equal(jobs.length, 8)
-  assert.equal(jobs[0].company, 'Logic Fruit Technologies')
-  assert.equal(jobs[0].source, 'logicfruittechnologies')
-  assert.equal(jobs[0].country, 'India')
-  assert.equal(jobs[0].link, jobs[0].sourceUrl)
-  assert.equal(jobs[0].applyUrl, jobs[0].sourceUrl)
-  assert.equal(jobs[0].scrapedAt, '2026-08-03T00:00:00.000Z')
-  assert.notEqual(jobs[0].jobId, jobs[1].jobId)
+  for (const options of [
+    { fetchText: async () => careersPageHtml },
+    { fetchText: async () => careersPageHtml, fetchJson: async () => ({ success: true, count: 0, data: [] }) },
+  ]) {
+    await assert.rejects(logicFruit.createLogicFruitTechnologiesScraper().run(options), /original HTTP metadata|body-only/i)
+  }
 })
 
-test('Logic Fruit Technologies accepts the current first-party careers app only while its opening CTA remains non-listing', async () => {
+test('Logic Fruit historical parser still fails closed on a changed legacy surface', async () => {
   const logicFruit = await loadLogicFruitModule()
-  const homepage = `
-    <html><head>
-      <title>Logic Fruit Technologies | Semiconductor Systems Solutions Company</title>
-      <script type="module" crossorigin src="/assets/index-current.js"></script>
-    </head><body><div id="root"></div></body></html>
-  `
-  const bundle = 'label:`Career`,page:`career`,href:`/careers`; Build your Career with Opportunities to Learn, Grow, and Make an Impact; drop in your resume. We’ll get back to you in a flash!; href:`#`,onClick:e=>e.preventDefault(),children:`CURRENT OPENING`'
-  const requestedUrls = []
-  const jobs = await logicFruit.createLogicFruitTechnologiesScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === logicFruit.CAREERS_URL) throw new Error(`HTTP 404 for ${url}`)
-      if (url === logicFruit.HOMEPAGE_URL) return homepage
-      if (url === 'https://www.logic-fruit.com/assets/index-current.js') return bundle
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(jobs, [])
-  assert.deepEqual(requestedUrls, [
-    logicFruit.CAREERS_URL,
-    logicFruit.HOMEPAGE_URL,
-    'https://www.logic-fruit.com/assets/index-current.js',
-  ])
-  await assert.rejects(
-    logicFruit.createLogicFruitTechnologiesScraper().run({
-      fetchText: async (url) => {
-        if (url === logicFruit.CAREERS_URL) throw new Error(`HTTP 404 for ${url}`)
-        if (url === logicFruit.HOMEPAGE_URL) return homepage
-        return bundle.replace('href:`#`', 'href:`/jobs`')
-      },
-    }),
-    /careers app changed materially/i,
-  )
-})
-
-test('Logic Fruit Technologies fails closed when the verified public openings surface changes', async () => {
-  const logicFruit = await loadLogicFruitModule()
-
-  await assert.rejects(
-    logicFruit.createLogicFruitTechnologiesScraper().run({
-      fetchText: async () => '<html><body><h1>Jobs</h1></body></html>',
-    }),
-    /verified official public careers surface/i,
-  )
-})
-
-const currentJobsHomepage = '<html><head><title>Logic Fruit Technologies | Hardware, Software, AI &amp; Robotics for Mission-Critical Systems</title></head><body><div id="root"></div><script type="module" src="/assets/index-current.js"></script><script type="application/ld+json">{"@type":"Organization","name":"Logic Fruit Technologies","url":"https://www.logic-fruit.com"}</script></body></html>'
-const currentJobsBundle = 'const Y="https://api.logic-fruit.com/api"; async getJobs(e={}){return fetch(Y+"/jobs")} label:`Career`,page:`career`,href:`/careers`; href:`/career/jobs-current-opening/`,children:`CURRENT OPENINGS`'
-const migrateFetchText = async (url) => {
-  if (url.includes('/career/jobs-current-opening/')) throw new Error('HTTP 404 for ' + url)
-  return url.endsWith('.js') ? currentJobsBundle : currentJobsHomepage
-}
-
-test('Logic Fruit follows the current verified jobs API after the obsolete WordPress route closes', async () => {
-  const logicfruit = await loadLogicFruitModule()
-  const jobs = await logicfruit.createLogicFruitTechnologiesScraper({ now: () => '2026-10-03T00:00:00Z' }).run({
-    fetchText: migrateFetchText,
-    fetchJson: async (url) => {
-      assert.equal(url, 'https://api.logic-fruit.com/api/jobs')
-      return { success: true, count: 3, data: [
-        { id: 'active', entityType: 'job', slug: 'rf-architect', title: 'RF Architect', location: 'Gurugram/Bengaluru', status: 'published', type: 'Full-Time', department: 'Engineering', experience: '8-12 Years', description: 'Design radios.', responsibilities: 'Review systems.', qualifications: 'Engineering degree', skills: ['RF'], workMode: 'On-site', createdAt: '2026-09-18T00:00:00Z' },
-        { id: 'draft', entityType: 'job', slug: 'draft', title: 'Draft opening', location: 'Gurugram', status: 'draft' },
-        { id: 'foreign', entityType: 'job', slug: 'foreign', title: 'US opening', location: 'Boston', status: 'published' },
-      ] }
-    },
-  })
-  assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].title, 'RF Architect')
-  assert.equal(jobs[0].country, 'India')
-  assert.equal(jobs[0].sourceUrl, 'https://www.logic-fruit.com/jobs-current-opening/rf-architect/')
-  assert.equal(jobs[0].employmentType, 'Full-time')
-  assert.equal(jobs[0].experienceRequired, '8-12 Years')
-  assert.deepEqual(jobs[0].requiredSkills, ['RF'])
-  assert.match(jobs[0].jobDescription, /Review systems/)
-})
-
-test('Logic Fruit refuses incomplete public API results instead of returning partial or empty jobs', async () => {
-  const logicfruit = await loadLogicFruitModule()
-  await assert.rejects(logicfruit.createLogicFruitTechnologiesScraper().run({
-    fetchText: migrateFetchText,
-    fetchJson: async () => ({ success: true, count: 7, data: [] }),
-  }), /jobs feed changed|incomplete/i)
+  assert.throws(() => logicFruit.extractOpenings('<html><body><h1>Jobs</h1></body></html>'), /verified official public careers surface/i)
 })

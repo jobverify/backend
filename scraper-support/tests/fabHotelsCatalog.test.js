@@ -25,7 +25,7 @@ const loadScriptModule = async () => {
   }
 }
 
-test('FabHotels local catalog captures the verified first-party careers listing and detail contract', async () => {
+test('FabHotels local catalog retains its dated historical provider metadata', async () => {
   const { FAB_HOTELS_CATALOG } = await loadCatalogModule()
   const fabHotels = await loadScriptModule()
   const provider = hydrateProviderCatalogEntry(FAB_HOTELS_CATALOG)

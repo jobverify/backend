@@ -1,3 +1,4 @@
+import { runCurrentIBall } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -105,7 +106,9 @@ export const hasOfficialNewsCenterSignal = (html) => {
 }
 
 export const createIBallScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentIBall(options)
+    const { fetchPage = defaultFetchPage } = options
     const homepage = await fetchPage(HOMEPAGE_URL)
     if (!homepage.ok || !hasOfficialHomepageSignal(homepage.text) || hasPublicJobsSignal(homepage.text)) {
       throw new Error('The official iBall homepage no longer matches the verified public surface')

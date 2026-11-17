@@ -1,5 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {runCurrentFireflies} from './currentNative20261117.js'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 
@@ -392,47 +393,7 @@ const decorateJob = (job, scrapedAt) => ({
 })
 
 export const createFirefliesAiScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({
-    fetchPage = defaultFetchPage,
-    fetchGraphql = defaultFetchGraphql,
-  } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (
-      homepage.status !== 200
-      || normalizeUrl(homepage.url) !== HOMEPAGE_URL
-      || !hasOfficialHomepageSignal(homepage.html)
-    ) {
-      throw new Error('Fireflies.ai homepage no longer matches the verified official homepage')
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (!hasOfficialGemBoardSignal(careersPage)) {
-      throw new Error('Fireflies.ai Gem board shell no longer matches the verified careers redirect surface')
-    }
-
-    const listPayload = await fetchGraphql(buildListRequestBody())
-    if (!hasValidJobBoardListPayload(listPayload)) {
-      throw new Error('Fireflies.ai public job board list payload no longer matches the verified Gem contract')
-    }
-
-    const stubs = extractIndiaJobStubs(listPayload)
-    const jobs = []
-
-    for (const stub of stubs) {
-      const detailPayload = await fetchGraphql(buildDetailRequestBody(stub.extId))
-      jobs.push(buildJobFromDetail(stub, detailPayload))
-    }
-
-    const scrapedAt = now()
-
-    return jobs
-      .sort((left, right) => {
-        const leftTime = left.postingDate ? Date.parse(left.postingDate) : 0
-        const rightTime = right.postingDate ? Date.parse(right.postingDate) : 0
-        return rightTime - leftTime
-      })
-      .map((job) => decorateJob(job, scrapedAt))
-  },
+  run: options => runCurrentFireflies({now,...options}),
 })
 
 export const run = async (options = {}) => createFirefliesAiScraper().run(options)

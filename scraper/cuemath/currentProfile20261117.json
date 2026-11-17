@@ -1,0 +1,42 @@
+{
+  "reviewedOn": "2026-11-17",
+  "root": "https://tutorhiring.cuemath.com/",
+  "programs": [
+    {
+      "attrs": {
+        "defer": "",
+        "src": "https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js",
+        "integrity": "sha384-VpKMdU+TlpggHFip46tJ/xkFUs8NFBwLqUMo3+3uiu411lU6eUQYsHVU+JFpA5ja",
+        "crossorigin": "anonymous"
+      }
+    },
+    {
+      "attrs": {
+        "defer": "",
+        "src": "https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js",
+        "integrity": "sha384-VNiKRUXp0MmglFfqDwkfuk+Y78C3WTJShdKSaFwOacLR3UmamxHIJLBTD3BadIXD",
+        "crossorigin": "anonymous"
+      }
+    },
+    {
+      "attrs": {
+        "defer": "",
+        "src": "/coach-signup/app.js"
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "abbdb628dc70e13d667c98bbb7668f45d7cb24434f1e90c43b2e0d8a56b0dde1"
+    },
+    {
+      "attrs": {},
+      "sha256": "215f258f2b8f588448e119b414c9f43ed4b01bc095bc699764c87c6dc8c1ce08"
+    }
+  ],
+  "apply": "https://tutorhiring.cuemath.com/apply",
+  "client": {
+    "url": "https://tutorhiring.cuemath.com/coach-signup/app.js",
+    "bytes": 147846,
+    "sha256": "65675c702b44f78ee5d26f2e061dccae60d6632ac099f2eba6bc52259d6211cd"
+  }
+}

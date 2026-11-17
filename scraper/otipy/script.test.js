@@ -1,27 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-
-import {
-  HOMEPAGE_URL,
-  defaultFetchPage,
-} from './script.js'
-
-test('Otipy default fetch is bounded by a timeout signal', async () => {
-  let capturedInit = null
-
-  const page = await defaultFetchPage(HOMEPAGE_URL, {
-    timeoutMs: 25,
-    fetchImpl: async (url, init) => {
-      capturedInit = init
-      return {
-        status: 403,
-        url,
-        text: async () => '<html><body>Access is restricted</body></html>',
-      }
-    },
-  })
-
-  assert.equal(page.status, 403)
-  assert.equal(page.url, HOMEPAGE_URL)
-  assert.equal(capturedInit.signal instanceof AbortSignal, true)
-})
+import {HOMEPAGE_URL,defaultFetchPage} from './script.js'
+test('Otipy bounded default fetch retains original successful HTTP metadata and request ownership',async()=>{let init;const page=await defaultFetchPage(HOMEPAGE_URL,{timeoutMs:1000,fetchImpl:async(url,options)=>{init=options;return Object.defineProperty(new Response('<html>Unqualified publisher</html>',{headers:{'content-type':'text/html'}}),'url',{value:url})}});assert.equal(page.status,200);assert.equal(page.url,HOMEPAGE_URL);assert.equal(page.body,'<html>Unqualified publisher</html>');assert.ok(init.signal instanceof AbortSignal);assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit')})
+test('Otipy bounded default fetch rejects its native deadline and does not read stale results',async()=>{await assert.rejects(defaultFetchPage(HOMEPAGE_URL,{timeoutMs:10,fetchImpl:async(url,init)=>new Promise((resolve,reject)=>{init.signal.addEventListener('abort',()=>reject(init.signal.reason),{once:true})})}),e=>e.name==='TimeoutError')})
+test('Otipy default helper preserves exact pre-aborted caller ownership before route checks',async()=>{const c=new AbortController(),reason=Object.freeze({owner:'caller'});c.abort(reason);await assert.rejects(defaultFetchPage('https://unadmitted.invalid/',{signal:c.signal}),e=>e===reason)})

@@ -12,7 +12,7 @@ const loadIgtSolutionsCatalogModule = async () => {
   }
 }
 
-test('IGT Solutions catalog captures the verified no-public-jobs first-party surface from August 2, 2026', async () => {
+test('IGT Solutions catalog describes current candidate intake and preserves dated historical evidence', async () => {
   const { IGT_SOLUTIONS_CATALOG } = await loadIgtSolutionsCatalogModule()
   const provider = hydrateProviderCatalogEntry(IGT_SOLUTIONS_CATALOG)
 
@@ -21,14 +21,14 @@ test('IGT Solutions catalog captures the verified no-public-jobs first-party sur
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, 'https://atain.com/careers/')
   assert.equal(provider.companyDomain, 'atain.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-careers-with-general-candidate-intake')
   assert.equal(
     provider.paginationStrategy,
-    'verified-careers-page-plus-join-form-and-legacy-board-unavailable-validation',
+    'current-homepage-careers-and-join-intake-opening-closing-reconciliation',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-careers-page+verified-join-form+verified-legacy-board-unavailable-return-empty',
+    'current-first-party-recruitment-chain+complete-native-intake-and-program-models+inventory-unavailable-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -57,7 +57,7 @@ test('IGT Solutions backlog row matches directly from the local catalog metadata
   )
 })
 
-test('getScraperCatalog includes IGT Solutions as a verified no-public-jobs provider', () => {
+test('getScraperCatalog includes IGT Solutions current first-party candidate intake', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'igtsolutions')
 
   assert.ok(provider)
@@ -65,7 +65,7 @@ test('getScraperCatalog includes IGT Solutions as a verified no-public-jobs prov
   assert.equal(provider.companyName, 'IGT Solutions')
   assert.equal(provider.companyCareerPage, 'https://atain.com/careers/')
   assert.equal(provider.companyDomain, 'atain.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-careers-with-general-candidate-intake')
   assert.match(provider.modulePath, /igtsolutions[\\/]script\.js$/i)
 })
 
@@ -75,6 +75,6 @@ test('buildScrapers exposes a runnable IGT Solutions scraper without changing th
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'igtsolutions')
-  assert.equal(scraper.provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(scraper.provider.atsPlatform, 'official-company-careers-with-general-candidate-intake')
   assert.match(scraper.dryRunFile, /igtsolutions[\\/]jobs\.json$/i)
 })

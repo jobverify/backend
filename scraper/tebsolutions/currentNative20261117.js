@@ -1,0 +1,36 @@
+import {isDeepStrictEqual} from 'node:util'
+import {createCurrentNativeReader} from '../../scraper-support/native-sources/boundedCurrentNativeRead20261106.js'
+import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
+import {readLiteralModel} from '../../scraper-support/native-sources/literalModel.js'
+import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+export const SOURCE='tebsolutions',HOMEPAGE_URL='https://tebsolutions.in/',ABOUT_URL=HOMEPAGE_URL+'about-us/',CONTACT_URL=HOMEPAGE_URL+'contact-us/'
+const need=(ok,message)=>{if(!ok)throw firstPartyFailure(SOURCE,message)},one=(rows,label)=>{need(rows.length===1,'Expected one current native '+label);return rows[0]}
+const titles=new Map([[HOMEPAGE_URL,'TEB Solutions | Web Design & Digital Marketing Agency in Roorkee'],[ABOUT_URL,'About Us | TEB Solutions - Web Design & Digital Marketing Roorkee'],[CONTACT_URL,'Contact Us | TEB Solutions Roorkee & Uttarakhand']])
+const jobType=v=>Array.isArray(v)?v.some(jobType):typeof v==='string'&&/(?:^|[/#:])JobPosting$/i.test(v),hasJob=v=>!!v&&typeof v==='object'&&(jobType(v['@type'])||Object.values(v).some(hasJob))
+export function readCurrentTeb(page){
+ const doc=readNativeDocument(page.body),title=one(activeHead(page.body).titles,'TEB title'),canonical=one(doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'),'canonical').attrs.href,body=one(doc.nodes(n=>n.tag==='body'),'full authored body')
+ need(title===titles.get(page.url)&&canonical===page.url&&!doc.nodes(n=>n.tag==='base').length,'Current TEB publisher title/canonical/base changed')
+ const structured=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json').map(n=>readLiteralModel(n.raw).value);need(!structured.some(hasJob),'New authoritative JobPosting requires native vacancy review')
+ const links=doc.nodes(n=>n.tag==='a').map(n=>({attrs:structuredClone(n.attrs),text:doc.text(n)})),hiring=links.filter(n=>{try{return /\/(?:careers?|jobs?|vacancies|openings?|join-us|work-with-us)(?:\/|$)/i.test(new URL(n.attrs.href??'',page.url).pathname)||/\b(?:careers?|job openings?|current openings?|open positions?|vacancies|join our team|apply now)\b/i.test(n.text)}catch{return false}});need(hiring.length===0,'New authored hiring declaration requires native acquisition review')
+ need(links.some(n=>n.attrs.href==='/about-us/')&&links.some(n=>n.attrs.href==='/contact-us/'),'Current own About/Contact declarations changed')
+ if(page.url===HOMEPAGE_URL){const graph=structured.flatMap(v=>v['@graph']??[v]);need(graph.some(v=>v['@type']==='Organization'&&v.name==='TEB Solutions'&&v.url==='https://tebsolutions.in')&&graph.some(v=>v['@type']==='LocalBusiness'&&v.name==='TEB Solutions'),'Current own native TEB publisher identity changed')}
+ return {url:page.url,title,canonical,structured,wholeOriginalHTML:page.body,wholeAuthoredBody:structuredClone(body),wholeAuthoredText:doc.text(body),links,hiringDeclarations:hiring,nativeDates:doc.nodes(n=>n.tag==='time').map(n=>({attrs:structuredClone(n.attrs),text:doc.text(n)})),programmeDeclarations:doc.nodes(n=>n.tag==='script').map(n=>({attrs:structuredClone(n.attrs),body:n.raw??''})),corporateCountryIsRoleCountry:false,corporateDatesAreJobDates:false,nativeInventoryQualified:false}
+}
+export async function runCurrentNative(options={}){
+ options.signal?.throwIfAborted();need(options.maxJobs===undefined||Number.isSafeInteger(options.maxJobs)&&options.maxJobs>0,'Invalid output limit; company native inventory is unknown')
+ const reader=createCurrentNativeReader(options,{source:SOURCE,admitted:[[HOMEPAGE_URL,'html']],learnedURL:(url,kind)=>kind==='html'&&[ABOUT_URL,CONTACT_URL].includes(url)});let opening,closing
+ async function authority(){const home=readCurrentTeb(await reader.read(HOMEPAGE_URL));reader.allow(ABOUT_URL,'html');reader.allow(CONTACT_URL,'html');return {home,about:readCurrentTeb(await reader.read(ABOUT_URL)),contact:readCurrentTeb(await reader.read(CONTACT_URL))}}
+ // This text/identity comparison makes no claim about opaque contact values,
+ // browser execution or complete DOM equality. All original fields are retained.
+ const reviewedCorporateText=m=>Object.values(m).map(v=>({url:v.url,title:v.title,canonical:v.canonical,structured:v.structured,wholeAuthoredText:v.wholeAuthoredText,hiringDeclarations:v.hiringDeclarations,nativeDates:v.nativeDates}))
+ try{
+  opening=await authority();closing=await authority();need(isDeepStrictEqual(reviewedCorporateText(opening),reviewedCorporateText(closing)),'Closing reviewed corporate text/identity/hiring model changed');reader.check()
+  const jobs=[],summary={source:SOURCE,recordKind:'hiring-signals',observedRecordCount:0,observedVacancyCount:0,sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null};attachSourceObservationEvidence(jobs,summary)
+  const audit={...summary,nativeOpening:opening,nativeClosing:closing,observations:[],reviewedCorporateTextClosingReconciled:true,wholeRawPublisherOpeningClosingReconciled:false,entireDOMClosingReconciled:false,opaqueCorporateContactsClosingQualified:false,nativeInventoryQualified:false,lifecycleCleanupAllowed:false,companyIndiaZeroProven:false,companyGlobalZeroProven:false,corporateCountryIsRoleCountry:false,corporateDatesAreJobDates:false,publicApplicationEligibilityQualified:false,applicationInteractions:0,protectedContactsDecoded:false,programmesExecuted:false,guessedCareerRouteRequests:0,sourceNativeRequests:reader.stats().requests,originalResponses:reader.stats().receipts,holds:['current-own-home-about-contact-corporate-content-is-not-a-vacancy-inventory','corporate-India-address-corporate-dates-and-customer-enquiry-forms-are-not-role-country-criteria-or-applications','unexecuted-browser-programmes-opaque-contacts-whole-DOM-and-other-company-native-inventory-remain-unknown']}
+  need(Buffer.byteLength(JSON.stringify(audit))<=24*1024*1024,'Native output evidence byte ceiling exceeded');Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
+  const result=attachInventoryEvidence(jobs,{status:'coverage-gap',surface:HOMEPAGE_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reader.stats().requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:new Date().toISOString(),reason:'current-native-corporate-cohort-retained;no-observed-hiring-record-and-company-inventory-unknown'});reader.check();return result
+ }catch(error){options.signal?.throwIfAborted();try{if(error&&typeof error==='object'){Object.defineProperty(error,'recruitmentObservations',{value:{source:SOURCE,nativeOpening:opening,nativeClosing:closing,originalResponses:reader.stats().receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false,companyIndiaTotal:null,companyGlobalTotal:null},configurable:true});Object.defineProperty(error,'abortRetries',{value:true,configurable:true})}}catch{}options.signal?.throwIfAborted();throw error}
+ finally{reader.close();options.signal?.throwIfAborted()}
+}

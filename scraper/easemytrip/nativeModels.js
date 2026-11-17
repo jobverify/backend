@@ -9,12 +9,14 @@ export const SOURCE='easemytrip',COMPANY='EaseMyTrip',HOME='https://www.easemytr
 export const APPLICATION='https://docs.google.com/forms/d/e/1FAIpQLScn5D94mZ3r3hq7hpv9OQfxmPFWuM6wzq5eWpTx8citbCqWLQ/viewform'
 export const need=(v,m)=>{if(!v)throw Object.assign(Error('EaseMyTrip native: '+m),{abortRetries:true})},hash=v=>createHash('sha256').update(v).digest('hex'),equal=isDeepStrictEqual
 const one=(rows,label)=>{need(rows.length===1,'one '+label+' required');return rows[0]},cls=(n,c)=>(n.attrs.class||'').split(/\s+/).includes(c),clean=s=>s.replace(/\s+/g,' ').trim()
+const HOMEPAGE_TITLES=new Set(['EaseMyTrip.com - Book Flights, Hotels, Holidays, Bus & Train Tickets','EaseMyTrip : Book Flights, Hotels, Trains, Bus & Holidays'])
+const OFFICE_TITLES=new Set(['EaseMyTrip Contact details','EaseMyTrip Customer Care Number & Contact Details'])
 export const tree=n=>typeof n==='string'?n:{tag:n.tag,attrs:{...n.attrs},children:n.children.map(tree),...(n.raw===undefined?{}:{raw:n.raw})}
 const walk=(n,p)=>[...(p(n)?[n]:[]),...n.children.filter(c=>typeof c!=='string').flatMap(c=>walk(c,p))],unhidden=n=>typeof n==='string'?decodeNativeEntities(n):['script','style'].includes(n.tag)?'':n.children.map(unhidden).join(' ')
 const semantic=n=>Object.keys(n.attrs).some(k=>/^on|country|region|worksite|location|address/i.test(k)||['itemprop','itemtype','itemscope','property'].includes(k))
 function foreign(text){const words=text.match(/[A-Za-z]+/g)||[];for(let i=0;i<words.length;i++)for(let n=1;n<=6&&i+n<=words.length;n++){const value=words.slice(i,i+n).join(' ');if(value.length<4&&!/^(?:US|USA|UK|UAE)$/.test(value))continue;const country=nativeCountryName(value)||({USA:'United States',UAE:'United Arab Emirates'})[value];if(country&&country!=='India')return true}return false}
 export function readHome(html){
- const d=readNativeDocument(html),head=activeHead(html),bases=d.nodes(n=>n.tag==='base').map(n=>({...n.attrs}));need(equal(head.titles,['EaseMyTrip.com - Book Flights, Hotels, Holidays, Bus & Train Tickets'])&&bases.length<=1&&bases.every(b=>equal(b,{href:'/'})),'official homepage identity/base changed')
+ const d=readNativeDocument(html),head=activeHead(html),bases=d.nodes(n=>n.tag==='base').map(n=>({...n.attrs}));need(head.titles.length===1&&HOMEPAGE_TITLES.has(head.titles[0])&&bases.length<=1&&bases.every(b=>equal(b,{href:'/'})),'official homepage identity/base changed')
  const links=d.nodes(n=>n.tag==='a'&&n.attrs.href===CAREERS&&/^CURRENT OPENINGS\b/i.test(d.text(n)))
  return {title:head.titles[0],bases,careersURL:CAREERS,currentHandoff:links.length>0,links:links.map(tree)}
 }
@@ -51,7 +53,7 @@ export function readCareers(html){
  return {context:{title,headMetadata:structuredClone(head.metas),publicationStyles:{inlineStyles,externalStyles},containingAncestors,hiringRegion:tree(hero),hiringStatement:'Come & Join EaseMyTrip',departments:structuredClone(departments),rendererSHA256,publisherProgramsExecuted:false,applicationURL:APPLICATION,applicationIsGeneric:true},roles:structuredClone(roles),nativeProgram:script.raw,nativeProgramSHA256:hash(script.raw),nativeScript:tree(script)}
 }
 export function readOffices(html){
- const d=readNativeDocument(html),v=readVisibleNativeDocument(html,{strict:true});need(equal(activeHead(html).titles,['EaseMyTrip Contact details'])&&!d.nodes(n=>n.tag==='base').length,'current owned office publisher identity changed')
+ const d=readNativeDocument(html),v=readVisibleNativeDocument(html,{strict:true}),titles=activeHead(html).titles;need(titles.length===1&&OFFICE_TITLES.has(titles[0])&&!d.nodes(n=>n.tag==='base').length,'current owned office publisher identity changed')
  need(equal(d.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical').map(n=>n.attrs.href),[CONTACT]),'owned office canonical identity changed')
  const universe=one(d.nodes(n=>cls(n,'bgbx')),'whole office universe'),projected=one(v.nodes(n=>cls(n,'bgbx')),'visible whole office universe');need(clean(unhidden(universe))===d.text(universe)&&d.text(universe)===v.text(projected),'hidden native office-country context')
  need(!walk(universe,n=>semantic(n)||['script','style','iframe','form','template','noscript','textarea','object','embed','svg'].includes(n.tag)).length,'unreviewed office metadata/delegation')
@@ -61,7 +63,7 @@ export function readOffices(html){
  need(!foreign(d.text(india))&&!walk(india,n=>['alt','title','aria-label'].some(k=>foreign(n.attrs[k]||''))).length,'competing India office-country context')
  const allOffices=regions.flatMap(region=>walk(region,n=>cls(n,'addbx')).map(card=>({regionHeading:one(walk(region,n=>cls(n,'mn-title')),'office region heading').children.map(unhidden).join(' ').replace(/\s+/g,' ').trim(),label:d.text(one(walk(card,n=>cls(n,'adttl')),'own office label')),address:d.text(one(walk(card,n=>n.tag==='address'),'whole own office address')),card:tree(card),inIndia:region===india})))
  need(allOffices.length>0&&allOffices.length<=40&&allOffices.every(o=>o.label&&o.address),'incomplete native office universe')
- return {title:'EaseMyTrip Contact details',canonical:CONTACT,indiaCountryHeading:'Our Offices Within India',universe:tree(universe),containingAncestors:ancestors,offices:allOffices,cityDictionaryUsed:false,exactCampusEstablished:false}
+ return {title:titles[0],canonical:CONTACT,indiaCountryHeading:'Our Offices Within India',universe:tree(universe),containingAncestors:ancestors,offices:allOffices,cityDictionaryUsed:false,exactCampusEstablished:false}
 }
 function fragment(html){
  need(typeof html==='string','native criterion missing');const d=readNativeDocument(html),root=one(d.nodes(n=>n.tag==='root'),'criterion root');need(!walk(root,n=>!['root','b','strong','em','i','u','br'].includes(n.tag)||Object.keys(n.attrs).length>0).length,'hidden, delegated or unreviewed native criterion markup');need(clean(unhidden(root))===d.text(root),'hidden native criterion');return d.text(root)

@@ -2,6 +2,7 @@ import {createHash} from 'node:crypto'
 import {readFileSync} from 'node:fs'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {TURBOHIRE_CURRENT_PUBLIC_CLIENT} from '../../scraper-support/utils/turboHirePublicClient.js'
+import {matchesCurrentNaviBoard,currentNaviBoardProfile} from './currentBoard20261117.js'
 
 // Navi independently declares the same exact November 6 stage2 program
 // already reviewed for Britannia. Employer binding remains Navi-specific;
@@ -26,7 +27,8 @@ export const verifyNaviPublicClient=async({boardHTML,fetchScript,fetchCurrentAss
  'declared public main client is missing, ambiguous or inert')
  const url=new URL(main[0].attrs.src,origin)
  if(url.href===currentProfile.mainURL){
-  requireClient(sha(boardHTML)===currentProfile.boardBodySHA256,'current complete public shell/declarations changed')
+  const currentBrand=matchesCurrentNaviBoard(boardHTML)
+  requireClient(sha(boardHTML)===currentProfile.boardBodySHA256||currentBrand,'current complete public shell/declarations changed')
   requireClient(typeof fetchCurrentAsset==='function','original current asset entity reader is required')
   const entities=[];let currentMain
   for(const asset of currentProfile.assets){
@@ -43,7 +45,8 @@ export const verifyNaviPublicClient=async({boardHTML,fetchScript,fetchCurrentAss
    &&currentMain.includes('CAREER_PAGE:"CareerPage"'),'current reviewed public GUID service/API binding changed')
   return{url:url.href,sha256:sha(currentMain),apiBaseURL:currentProfile.apiBaseURL,
    detailProtocol:currentProfile.detailProtocol,fieldVisibility:currentProfile.fieldVisibility,
-   profileSHA256:sha(currentProfileBytes),boardBodySHA256:currentProfile.boardBodySHA256,
+   profileSHA256:sha(currentProfileBytes),boardBodySHA256:sha(boardHTML),
+   nativeEmployerLabel:currentBrand?currentNaviBoardProfile.nativeEmployerLabel:'NAVI TECHNOLOGIES LIMITED',
    programReviewSHA256:currentProfile.programReviewSHA256,assetEntities:entities}
  }
  const client=clients.find(value=>url.href===origin+value.path)

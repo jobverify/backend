@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentKanini } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -101,8 +102,11 @@ export const hasZeroJobsSignal = (html) => {
     && normalized.includes("we're sorry. we were not able to find a match.")
 }
 
-export const createKaniniScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+export const createKaniniScraper = (defaults = {}) => ({
+  async run(options = {}) {
+    const settings = { ...defaults, ...options }
+    const { fetchText = defaultFetchText } = settings
+    if (settings.fetchImpl || fetchText === defaultFetchText) return runCurrentKanini(settings)
     const homepageHtml = await fetchText(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error('KANINI verified official homepage no longer matches the known public surface')

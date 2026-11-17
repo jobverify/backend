@@ -53,23 +53,61 @@ export const nativeFetch=async(url,{signal,metadata=false}={})=>{
 }
 
 export const API='https://pragyarefrigeration.in/wp-json/wp/v2/pages?slug=careers'
-const titleText=value=>norm(value).replace(/\s*:\s*-*\s*$/,'')
-const cards=(html,pageId)=>{
- const doc=visible(html),root=one(doc.nodes(n=>n.attrs['data-elementor-type']==='wp-page'&&n.attrs['data-elementor-id']===String(pageId)),'published careers page carrier'),parents=parentsOf(root),heading=one(within(root,n=>n.tag==='h3'&&doc.text(n)==='Open positions'),'native Open positions heading')
+const titleText=value=>norm(value).replace(/\s*:\s*[-\u2013\u2014]*\s*$/,'')
+const criterionValue=(values,label)=>{
+ if(values.length!==1)return null
+ const value=norm(values[0].replace(label,''))
+ return /[\p{L}\p{N}]/u.test(value)&&!/^(?:n\/?a|tbd|not specified|to be (?:confirmed|determined))$/i.test(value)?value:null
+}
+const criteriaFields=(qual,exp,duties)=>{
+ const qualification=criterionValue(qual,/^Qualification\s*:\s*/i),experience=criterionValue(exp,/^Experience\s*:\s*/i),responsibilities=criterionValue(duties,/^(?:Roll|Role)\s*:\s*/i)
+ return {qualification,experience,complete:Boolean(qualification&&experience&&responsibilities)}
+}
+const plainCards=(doc,pageId,fragment)=>{
+ const root=fragment?one(doc.nodes(n=>n.tag==='root'),'published API careers fragment')
+  :one(doc.nodes(n=>n.attrs.id==='post-'+pageId),'published WordPress careers page carrier')
+ if(!fragment)need(root.tag==='article'&&cls(root,'page')&&cls(root,'status-publish')&&cls(root,'post-'+pageId),'published WordPress careers page carrier identity')
+ const body=fragment?root:one(within(root,n=>n.tag==='div'&&n.attrs.class==='container container--prose prose'),'published WordPress careers prose carrier')
+ const heading=one(within(body,n=>n.tag==='h3'&&doc.text(n)==='Open positions'),'native Open positions heading')
+ const application=one(within(body,n=>n.tag==='h3'&&doc.text(n)==='Apply now'),'native application boundary carrier')
+ const first=body.children.indexOf(heading),last=body.children.indexOf(application)
+ need(first>=0&&last>first,'published plain careers section binding')
+ const span=body.children.slice(first+1,last)
+ need(span.every(node=>typeof node==='string'?!norm(node):['h3','p'].includes(node.tag)&&!node.inert),'unreviewed plain role section carrier')
+ const nodes=span.filter(node=>typeof node!=='string'),result=[],seen=new Set()
+ need(nodes.length>0&&nodes[0].tag==='h3','unsupported empty native role section')
+ for(let index=0;index<nodes.length;){
+  const titleNode=nodes[index++],paragraphs=[]
+  while(index<nodes.length&&nodes[index].tag==='p')paragraphs.push(nodes[index++])
+  need(titleNode.tag==='h3'&&paragraphs.length>0,'plain role heading/criteria boundary')
+  const criteria=[titleNode,...paragraphs].flatMap(node=>allRaw(node,()=>true))
+  need(criteria.every(node=>['h3','p','strong','b','em','br'].includes(node.tag)&&!node.inert&&Object.keys(node.attrs).length===0),'hidden or executable plain criterion carrier')
+  const title=titleText(doc.text(titleNode)),values=paragraphs.map(node=>doc.text(node)),label=pattern=>values.filter(value=>pattern.test(value))
+  const qual=label(/^Qualification\s*:/i),exp=label(/^Experience\s*:/i),duties=label(/^(?:Roll|Role)\s*:/i)
+  need(title&&!seen.has(title)&&qual.length<=1&&exp.length<=1&&duties.length<=1,'ambiguous plain native role fields');seen.add(title)
+  const locations=label(/^(?:Work |Job )?Location\s*:/i).map(value=>value.replace(/^(?:Work |Job )?Location\s*:\s*/i,'')),countries=label(/^Country\s*:/i).map(value=>value.replace(/^Country\s*:\s*/i,''))
+  result.push({title,carrierId:null,text:norm([doc.text(titleNode),...values].join(' ')),...criteriaFields(qual,exp,duties),geo:geography(locations,countries)})
+ }
+ return result
+}
+const cards=(html,pageId,{fragment=false}={})=>{
+ const doc=visible(html),carriers=doc.nodes(n=>n.attrs['data-elementor-type']==='wp-page'&&n.attrs['data-elementor-id']===String(pageId))
+ if(carriers.length===0)return plainCards(doc,pageId,fragment)
+ const root=one(carriers,'published careers page carrier'),parents=parentsOf(root),heading=one(within(root,n=>n.tag==='h3'&&doc.text(n)==='Open positions'),'native Open positions heading')
  let header=heading;while(header&&!cls(header,'e-parent'))header=parents.get(header);need(header,'native openings section binding')
  const siblings=parents.get(header)?.children.filter(c=>typeof c!=='string'&&!c.inert)||[],group=siblings[siblings.indexOf(header)+1];need(group&&cls(group,'e-parent'),'native role group following openings heading')
  const columns=within(group,n=>cls(n,'e-child')&&within(n,c=>c.tag==='h3').length===1),seen=new Map(),result=[]
  need(columns.length>0,'unsupported empty native role section')
  for(const column of columns){const title=titleText(doc.text(one(within(column,n=>n.tag==='h3'),'native role heading'))),paragraphs=within(column,n=>n.tag==='p').map(n=>doc.text(n)),label=pattern=>paragraphs.filter(value=>pattern.test(value)),qual=label(/^Qualification\s*:/i),exp=label(/^Experience\s*:/i),duties=label(/^(?:Roll|Role)\s*:/i),locations=label(/^(?:Work |Job )?Location\s*:/i).map(value=>value.replace(/^(?:Work |Job )?Location\s*:\s*/i,'')),countries=label(/^Country\s*:/i).map(value=>value.replace(/^Country\s*:\s*/i,'')),geo=geography(locations,countries),text=doc.text(column)
   need(title&&qual.length<=1&&exp.length<=1&&duties.length<=1,'ambiguous native role fields');if(seen.has(title)){need(seen.get(title)===text,'ambiguous duplicate role title with conflicting native text');continue}seen.set(title,text)
-  result.push({title,carrierId:column.attrs['data-id']||null,text,qualification:qual[0]?.replace(/^Qualification\s*:\s*/i,'')||null,experience:exp[0]?.replace(/^Experience\s*:\s*/i,'')||null,complete:qual.length===1&&exp.length===1&&duties.length===1,geo})
+  result.push({title,carrierId:column.attrs['data-id']||null,text,...criteriaFields(qual,exp,duties),geo})
  }
  return result
 }
 export const isVerifiedCareersPage=page=>Boolean(page&&page.type==='page'&&page.status==='publish'&&page.slug==='careers'&&Number.isInteger(page.id)&&page.link===SURFACE&&typeof page.content?.rendered==='string')
 export const extractJobs=(payload,{html}={})=>{
  need(Array.isArray(payload)&&payload.length===1&&isVerifiedCareersPage(payload[0]),'published careers API page identity')
- const page=payload[0],apiCards=cards(page.content.rendered,page.id)
+ const page=payload[0],apiCards=cards(page.content.rendered,page.id,{fragment:true})
  if(html){const head=canonical(html,SURFACE);need(head.titles.length===1&&/Pragya Refrigeration/i.test(head.titles[0]),'official careers employer identity');const shown=cards(html,page.id);need(shown.length===apiCards.length&&shown.every((row,index)=>row.title===apiCards[index].title&&row.carrierId===apiCards[index].carrierId&&row.text===apiCards[index].text),'published API/rendered role identity or content contradiction')}
  return apiCards.map(card=>role({title:card.title,location:html?card.geo.location:null,country:html?card.geo.country:null,sourceUrl:SURFACE,applyUrl:SURFACE,experienceRequired:card.experience,minimumQualification:card.qualification,jobDescription:html&&card.complete?card.text:null,rawNativeRoleEvidence:{identityQualified:true,nativePageId:page.id,nativeRoleTitle:card.title,nativeCarrierId:card.carrierId,nativePageDate:page.date??null,nativePageModified:page.modified??null,nativeGeography:card.geo,unqualifiedNativeDescription:html&&card.complete?null:card.text,nativeVisibleRoleCorroborated:Boolean(html),applicationRoleIdentityQualified:false,applicationSubmissionQualified:false,exactLegalEmployerQualified:false,rawDateQualification:'WordPress page creation/modification dates are not role posting dates'}}))
 }

@@ -3,18 +3,18 @@ import test from 'node:test'
 
 import { buildScrapers, getScraperCatalog } from '../../scraper-support/providers/index.js'
 
-test('Peer Robotics is registered against the verified first-party about-page hiring handoff', () => {
+test('Peer Robotics registers its current own Notion careers handoff and retains dated prior evidence', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'peerrobotics')
 
   assert.ok(provider)
   assert.equal(provider.companyName, 'Peer Robotics')
-  assert.equal(provider.companyCareerPage, 'https://peerrobotics.ai/about')
-  assert.equal(provider.atsPlatform, 'wellfound')
+  assert.equal(provider.companyCareerPage, 'https://careers.peerrobotics.ai/')
+  assert.equal(provider.atsPlatform, 'official-company-public-notion-careers-handoff')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'first-party-about-hiring-handoff-plus-readable-wellfound-board')
+  assert.equal(provider.paginationStrategy, 'current-home-company-careers-opening-closing-model-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-about-hiring-handoff+verified-wellfound-public-board-listing-extraction',
+    'current-first-party-company-hiring-handoff+public-notion-bootstrap-model+explicit-unqualified-native-inventory',
   )
   assert.equal(provider.companyDomain, 'peerrobotics.ai')
   assert.equal(provider.verifiedOn, '2026-08-15')

@@ -114,6 +114,7 @@ export async function runCurrentKpit(options={}){
  options.signal?.throwIfAborted()
  need(!(options.fetchText||options.fetchPage||options.fetchJson),'original current HTTP bytes/metadata required')
  const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8'))
+ const currentReview=JSON.parse(fs.readFileSync(new URL('./currentDocuments20261116.json',import.meta.url),'utf8')),currentDocuments=currentReview.documents
  const duration=options.sourceDeadlineMs??180000,interval=options.requestIntervalMs??500
  need(Number.isSafeInteger(duration)&&duration>0&&duration<=180000,'invalid bounded source deadline')
  need(Number.isSafeInteger(interval)&&interval>=0&&interval<=60000&&(interval>=500||options.fetchImpl),'invalid native host pacing')
@@ -143,8 +144,9 @@ export async function runCurrentKpit(options={}){
    let text
    if(profile.documents.includes(url)){
     try{text=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw problem('native document original UTF8 unavailable')}
-    need(bytes.length===expected.bytes&&sha(normalizeCurrentKpitDocument(text,url))===expected.normalizedSHA256,'whole current native document, criteria, controls or client declaration changed')
-   }else need(bytes.length===expected.bytes&&sha(bytes)===expected.sha256,'whole current native model/program/style/redirect changed '+url)
+    const normalizedSHA256=sha(normalizeCurrentKpitDocument(text,url)),variants=[expected,...(currentDocuments[url]?[currentDocuments[url]]:[])]
+    need(variants.some(variant=>bytes.length===variant.bytes&&normalizedSHA256===variant.normalizedSHA256),'whole current native document, criteria, controls or client declaration changed')
+   }else need([expected,...(currentReview.packets?.[url]?[currentReview.packets[url]]:[])].some(variant=>bytes.length===variant.bytes&&sha(bytes)===variant.sha256),'whole current native model/program/style/redirect changed '+url)
    signal.throwIfAborted();return{packet,text:()=>text??new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}
   }catch(error){if(!signal.aborted)controller.abort(error);throw error}
  }

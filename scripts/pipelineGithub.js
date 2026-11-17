@@ -23,7 +23,7 @@ try {
     if(process.env.GITHUB_REF_NAME!==process.env.PIPELINE_DEFAULT_BRANCH)throw new Error('Production pipelines run only on the repository default branch.');
     let id=process.env.PIPELINE_ID,dispatchToken=process.env.PIPELINE_DISPATCH_TOKEN;
     if(!id) {
-      const options={configuration:directConfiguration(key),target:'github',origin:'github',
+      const options={configuration:directConfiguration(key,await savedPipelineConfiguration()),target:'github',origin:'github',
         repo:process.env.GITHUB_REPOSITORY,ref:process.env.GITHUB_REF_NAME,sha:process.env.GITHUB_SHA,initialRunId:Number(process.env.GITHUB_RUN_ID)};
       let run;
       if(key==='scraper'&&process.env.GITHUB_EVENT_NAME==='schedule') {

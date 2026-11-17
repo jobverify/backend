@@ -12,12 +12,12 @@ test('DRYTIS is registered as a verified first-party no-public-careers sentinel 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'DRYTIS')
   assert.equal(provider.companyCareerPage, 'https://drytis.com/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-careers-with-unqualified-native-inventory')
   assert.equal(provider.countryFilter, 'United States')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-about-privacy-terms-engineers-sitemap-and-missing-routes-validation')
+  assert.equal(provider.paginationStrategy, 'current-declared-careers-and-whole-own-programme-opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-about-page+verified-privacy-page+verified-terms-page+verified-engineers-route-without-public-jobs+verified-sitemap-without-careers-routes+verified-missing-routes-return-empty',
+    'current-first-party-careers-and-own-programmes+literal-advertised-empty-newsletter+unknown-company-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

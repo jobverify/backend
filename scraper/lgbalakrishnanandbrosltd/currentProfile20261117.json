@@ -1,0 +1,52 @@
+{
+  "configuredRoot": "https://www.lgb.co.in/",
+  "rootRedirect": {
+    "status": 301,
+    "location": "https://lgb.co.in/"
+  },
+  "root": "https://lgb.co.in/",
+  "rootTitles": [
+    "Home - L.G.Balakrishnan & Bros Ltd"
+  ],
+  "listing": "https://connectgate.lgbportal.co.in/careers/",
+  "listingTitles": [
+    "LGB Careers"
+  ],
+  "detailTitles": [
+    "LGB Careers | Job Apply"
+  ],
+  "programmes": [
+    {
+      "url": "https://connectgate.lgbportal.co.in/careers/static_files/career_files/scripts/scripts.js?v1.2",
+      "attrs": {
+        "src": "/careers/static_files/career_files/scripts/scripts.js?v1.2"
+      },
+      "bytes": 1145,
+      "sha256": "be921cc60b85651d6b73157718652f35b78606b19cc293194cac5d9bb26252f0"
+    },
+    {
+      "url": "https://connectgate.lgbportal.co.in/careers/static_files/career_files/scripts/components/upload-resume.js?10",
+      "attrs": {
+        "src": "/careers/static_files/career_files/scripts/components/upload-resume.js?10"
+      },
+      "bytes": 7740,
+      "sha256": "2d6992bdba7b872930108da0e73715c783a9aea2f5f32b32382f4a2d2eb374f0"
+    },
+    {
+      "url": "https://connectgate.lgbportal.co.in/careers/static_files/career_files/scripts/components/tags.js?v1.2",
+      "attrs": {
+        "src": "/careers/static_files/career_files/scripts/components/tags.js?v1.2"
+      },
+      "bytes": 2092,
+      "sha256": "664e239c835e80cd28553181281f25d7fe0e3d2b4e1ed9d4b930c4ab55f75364"
+    },
+    {
+      "url": "https://connectgate.lgbportal.co.in/careers/static_files/career_files/scripts/pages/job-search.js?v1.2",
+      "attrs": {
+        "src": "/careers/static_files/career_files/scripts/pages/job-search.js?v1.2"
+      },
+      "bytes": 1883,
+      "sha256": "ce35d901febf68d5a18938048c9e9135fcbcf3dcaadaaae90ebefcd79ba2ee0d"
+    }
+  ]
+}

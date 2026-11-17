@@ -24,6 +24,12 @@ const fail = message => {
 }
 const explicitCountry = location => {
   const parts = location.split(',').map(clean), last = parts.at(-1)
+  // Ericsson currently publishes this untranslated country label. Both its
+  // country token and visible name identify Taiwan; the standardized field
+  // must still corroborate TW. Unknown or conflicting tokens stay invalid.
+  const translatedCountry = last === ':COMMON_COUNTRY_TWN:Taiwan' ? 'TW' : null
+  if (/:COMMON_COUNTRY_/i.test(location) && (!translatedCountry
+    || /:COMMON_COUNTRY_/i.test(parts.slice(0, -1).join(',')))) fail('unrecognized native country token')
   const parenthetical = /\(([A-Za-z][A-Za-z ]+)\)$/.exec(location)
   const namedSuffix = parenthetical && names.get(clean(parenthetical[1]).toLowerCase())
   const countryPrefix = /^([A-Za-z][A-Za-z ]+) - .+/.exec(location)
@@ -49,7 +55,7 @@ const explicitCountry = location => {
   // standardized field supplies an ISO suffix; raw labels require a name or
   // an unambiguous three-component country-code position.
   const finalCountry = names.get(last.toLowerCase()) || (parts.length >= 3 && codes.has(last.toUpperCase()) ? last.toUpperCase() : null)
-  const supplied = [namedSuffix, namedPrefix, namedRemote, commaCountry, postalCountry, finalCountry].filter(Boolean)
+  const supplied = [translatedCountry, namedSuffix, namedPrefix, namedRemote, commaCountry, postalCountry, finalCountry].filter(Boolean)
   if (new Set(supplied).size > 1) fail('contradictory explicit native country')
   return supplied[0] || null
 }

@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { runReviewedDarwinboxInventory } from '../keyence/nativeInventory.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -134,7 +135,16 @@ const nativeSpec = {
 nativeSpec.review = JSON.parse(readFileSync(new URL('./reviewedNativeScope.json', import.meta.url), 'utf8'))
 
 export const createDataPatternsScraper = (defaults = {}) => ({
-  run: (options = {}) => runReviewedDarwinboxInventory(nativeSpec, { ...defaults, ...options }),
+  run: (options = {}) => {
+    const settings = { ...defaults, ...options }, fetchImpl = settings.fetchImpl ?? globalThis.fetch
+    return runReviewedDarwinboxInventory(nativeSpec, { ...settings, fetchImpl: async (url, init) => {
+      const response = await fetchImpl(url, init)
+      if (String(url).startsWith(nativeSpec.origin + '/ms/candidateapi/'))
+        await requireNativeHttpResponse(response, String(url), { context: 'Data Patterns native API',
+          signal: init.signal, callerSignal: settings.signal ?? null })
+      return response
+    } })
+  },
 })
 
 export const run = async (options = {}) => createDataPatternsScraper().run(options)

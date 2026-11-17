@@ -1,13 +1,11 @@
+import { runCurrentSattva } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import { SATTVA_MEDIA_CATALOG } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const config = loadConfig(currentDir)
 
 export const SOURCE = SATTVA_MEDIA_CATALOG.source
 export const COMPANY_NAME = SATTVA_MEDIA_CATALOG.companyName
@@ -22,8 +20,9 @@ export const VERIFIED_ON = SATTVA_MEDIA_CATALOG.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = SATTVA_MEDIA_CATALOG.verifiedSurfaceSummary
 export const PROVIDER_METADATA = SATTVA_MEDIA_CATALOG
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+// Historical Freshteam formats remain pure fixture helpers, never current acquisition routes.
+const HISTORICAL_FRESHTEAM_BOARD_URL = 'https://sattva-talent.freshteam.com/jobs'
+const HISTORICAL_FRESHTEAM_DETAIL_PATTERN = HISTORICAL_FRESHTEAM_BOARD_URL + '/{opaque_id}/{slug}'
 
 const INDIA_LOCATION_PATTERN =
   /\b(india|new delhi|delhi|gurgaon|gurugram|bangalore|bengaluru|mumbai|pune|hyderabad|chennai|noida)\b/i
@@ -63,7 +62,7 @@ const firstMatch = (source, patterns) => {
   return null
 }
 
-const toAbsoluteUrl = (value, baseUrl = LISTING_URL) => {
+const toAbsoluteUrl = (value, baseUrl = HISTORICAL_FRESHTEAM_BOARD_URL) => {
   if (!value) return null
 
   try {
@@ -154,17 +153,8 @@ export const hasBlockedFirstPartyAccessSignal = (html = '') => {
     && /cloudflare/i.test(normalized)
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
 export const buildDetailUrl = (opaqueId, slug) =>
-  DETAIL_URL_PATTERN
+  HISTORICAL_FRESHTEAM_DETAIL_PATTERN
     .replace('{opaque_id}', opaqueId)
     .replace('{slug}', slug)
 
@@ -201,7 +191,7 @@ export const extractListingCards = (html) => {
   const listings = []
 
   for (const anchorMatch of String(html ?? '').matchAll(/<a[^>]+href="([^"]*\/jobs\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
-    const detailUrl = toAbsoluteUrl(anchorMatch[1], LISTING_URL)
+    const detailUrl = toAbsoluteUrl(anchorMatch[1], HISTORICAL_FRESHTEAM_BOARD_URL)
     const anchorHtml = String(anchorMatch[2] ?? '')
     const spanValues = [...anchorHtml.matchAll(/<span[^>]*>([\s\S]*?)<\/span>/gi)]
       .map((match) => normalizeWhitespace(match[1]))
@@ -274,57 +264,9 @@ export const extractJobDetail = (html, listing = {}) => {
   }
 }
 
-const isIndiaLikeLocation = (value) => INDIA_LOCATION_PATTERN.test(normalizeWhitespace(value) || '')
-
-export const createSattvaMediaScraper = ({
-  maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
-} = {}) => ({
-  async run(options = {}) {
-    const fetchText = options.fetchText || defaultFetchText
-    const now = options.now || (() => new Date().toISOString())
-    const joinUsHtml = await fetchText(JOIN_US_URL)
-    const joinUsBlocked = hasBlockedFirstPartyAccessSignal(joinUsHtml)
-
-    if (!hasOfficialJoinUsLandingSignal(joinUsHtml) && !joinUsBlocked) {
-      throw new Error('The verified Sattva join-us landing page no longer matches the trusted public surface')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    const careersBlocked = hasBlockedFirstPartyAccessSignal(careersHtml)
-
-    if (!hasOfficialCareersPageSignal(careersHtml) && !careersBlocked) {
-      throw new Error('The verified Sattva careers page no longer matches the trusted public surface')
-    }
-
-    const listingUrl = hasOfficialCareersPageSignal(careersHtml)
-      ? (extractFreshteamJobsUrl(careersHtml) || LISTING_URL)
-      : LISTING_URL
-    if (listingUrl !== LISTING_URL) {
-      throw new Error('The verified Sattva careers page no longer points to the expected Freshteam board')
-    }
-
-    const listingHtml = await fetchText(listingUrl)
-    if (!hasOfficialJobsBoardSignal(listingHtml)) {
-      throw new Error('The verified Sattva Freshteam board no longer matches the trusted public surface')
-    }
-
-    const indiaListings = extractListingCards(listingHtml)
-      .filter((listing) => isIndiaLikeLocation(listing.locationHint))
-    const selectedListings = Number.isInteger(maxJobs) ? indiaListings.slice(0, maxJobs) : indiaListings
-    const jobs = []
-
-    for (const listing of selectedListings) {
-      const detailHtml = await fetchText(listing.detailUrl)
-      jobs.push({
-        ...extractJobDetail(detailHtml, listing),
-        source: SOURCE,
-        link: listing.detailUrl,
-        scrapedAt: now(),
-      })
-    }
-
-    return jobs.filter((job) => job.country === COUNTRY_FILTER)
-  },
+// Historical format parsers above are pure helpers; every runtime caller uses the current native contract.
+export const createSattvaMediaScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentSattva({...defaults, ...options}),
 })
 
 export const run = async (options = {}) => createSattvaMediaScraper().run(options)

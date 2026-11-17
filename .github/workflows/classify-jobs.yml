@@ -76,6 +76,7 @@ jobs:
       CLASSIFICATION_BUDGET_SECONDS: '18000'
       CLASSIFICATION_CONCURRENCY: '4'
       POST_SCRAPE_CLASSIFICATION_MODE: 'policy'
+      PIPELINE_ID: ${{ needs.register.outputs.pipeline_id }}
       GLICLASS_CPU_THREADS: '4'
       GLICLASS_MODEL_DIRECTORY: '.cache/gliclass-model'
       HF_HOME: '${{ github.workspace }}/.cache/gliclass-hub'

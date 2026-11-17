@@ -78,7 +78,11 @@ function representation(page,label){
 }
 function staticPin(page,label,referenceLabel=label){
  representation(page,label);const pin=PROFILE.wholeCarriers.find(row=>row.label===referenceLabel)
- need(pin&&page.bytes.length===pin.bytes&&sha(page.bytes)===pin.sha256,'Reviewed native static carrier changed')
+ // Nov16's complete generic shell changes only the HiBob deployment and
+ // runtime/main asset revisions. It still carries no role or application
+ // authority; native feed/form data are independently qualified below.
+ const currentShell=referenceLabel==='board'&&page.bytes.length===1342&&sha(page.bytes)==='49f0449b6d21924bb2da621f9601ecc6a3cce4f89d575bc49b5a7fdf4f680d89'
+ need(currentShell||pin&&page.bytes.length===pin.bytes&&sha(page.bytes)===pin.sha256,'Reviewed native static carrier changed')
 }
 export function readSapiensBoard(page){staticPin(page,'board');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),roleSSRQualified:false}}
 export function readSapiensClient(page){staticPin(page,'client');const value=readSapiensStrictJSON(page.text);need(same(value,PROFILE.nativeClient)&&value.companyName===COMPANY&&value.isPublished===true&&value.isBobCareerSite===true,'Own native tenant/company publication changed');return value}

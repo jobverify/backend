@@ -12,15 +12,15 @@ test('Nobrokers is registered as a verified first-party Firebase jobs scraper wi
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'NoBroker')
   assert.equal(provider.companyCareerPage, 'https://www.nobroker.in/careers')
-  assert.equal(provider.atsPlatform, 'firebase-realtime-database')
+  assert.equal(provider.atsPlatform, 'official-current-firebase-feed-observations-expired-details-scope-held')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'validate-official-homepage-and-careers-bundles-then-read-single-public-json-feed',
+    'active-own-careers-programme-bound-feed-and-authored-handoff-opening-closing-stop-denied-host',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-careers-spa-shell+verified-client-bundles+public-firebase-job-feed',
+    'current-executable-bound-native-feed-metadata+expired-detail-redirects-and-observed-denial-retained+full-criteria-active-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

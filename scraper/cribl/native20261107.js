@@ -38,7 +38,24 @@ export const createCriblScraper=(defaults={})=>({run:async(options={})=>{
  const own=async listing=>{
   const url=roleURL(listing.id),first=await read(url,'html',{allowRoleRedirect:true})
   requireNative(first.packet.status===308,'current own route no longer declares reviewed canonical handoff')
-  const canonical=await read(url+'/')
+  let canonical
+  try{canonical=await read(url+'/')}
+  catch(error){
+   settings.signal?.throwIfAborted()
+   const receipt=activeReceipt?.response,canonicalURL=url+'/'
+   if(errorValue(error,'code')==='CRIBL_RESPONSE_IDENTITY'&&errorValue(error,'status')===404){
+    throw annotateFailure(error,{failureKind:'parser_or_contract_error',softFailure:false,upstreamOutage:false})
+   }
+   if(errorValue(error,'status')===404&&errorValue(error,'requestUrl')===canonicalURL&&errorValue(error,'finalUrl')===canonicalURL
+    &&receipt?.status===404&&receipt.url===canonicalURL&&receipt.bodyComplete===true){
+    const observation=observations.get(String(listing.id))
+    observation.nativeAvailability={status:'unavailable',reason:'native-canonical-role-http-404',sourceURL:canonicalURL}
+    observation.issues.push('native-canonical-role-http-404')
+    throw annotateFailure(error,{code:'CRIBL_NATIVE_ROLE_UNAVAILABLE',softFailure:true,upstreamOutage:false,
+     failureKind:'coverage_gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+   }
+   throw error
+  }
   const parsed=ownRole(canonical.packet.body,listing);control.check()
   return {...parsed,url:url+'/',bodySHA256:canonical.packet.bodySHA256}
  }
@@ -59,7 +76,7 @@ export const createCriblScraper=(defaults={})=>({run:async(options={})=>{
  }}
  const collect=async()=>{
   const primary=await read(PROFILE.primaryURL);const declaration=primaryDeclaration(primary.packet.body);control.check()
-  const asset=await read(PROFILE.assetURL,'gzip-script');const contract=reviewedAsset(asset.raw);control.check()
+  const asset=await read(declaration.assetURL,'gzip-script');const contract=reviewedAsset(asset.raw);control.check()
   const feed=await read(PROFILE.feedURL,'json'),collection=nativeCollection(feed.packet.body);control.check()
   // Preserve the complete listing model before own-route reads or filtering.
   for(const listing of collection.jobs){

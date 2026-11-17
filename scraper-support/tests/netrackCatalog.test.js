@@ -37,7 +37,7 @@ test('Netrack local catalog captures the verified informational-pages-plus-missi
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.homepageUrl, 'https://www.netrackindia.com/en')
   assert.equal(provider.companyCareerPage, 'https://www.netrackindia.com/en')
-  assert.equal(provider.contactUrl, 'https://www.netrackindia.com/en/contact-0')
+  assert.equal(provider.contactUrl, 'https://www.netrackindia.com/en/contact')
   assert.equal(provider.teamUrl, 'https://www.netrackindia.com/en/about-us/about-company/team')
   assert.deepEqual(provider.blockedRouteUrls, [
     'https://www.netrackindia.com/en',
@@ -49,15 +49,15 @@ test('Netrack local catalog captures the verified informational-pages-plus-missi
     'https://www.netrackindia.com/jobs',
   ])
   assert.equal(provider.companyDomain, 'netrackindia.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-corporate-recruitment-inventory-unqualified')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'verified-first-party-informational-pages-plus-missing-common-careers-route-validation',
+    'active-own-home-current-contact-team-and-about-whole-models-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-informational-pages+missing-common-hiring-routes+no-trustworthy-public-jobs-surface-return-empty',
+    'whole-current-own-corporate-and-enquiry-models+unknown-native-hiring-inventory+no-role-country-or-company-zero-inference',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -101,7 +101,7 @@ test('Netrack hydrated local catalog stays script-runner compatible for central 
   assert.equal(provider.companyName, 'Netrack')
   assert.equal(provider.companyCareerPage, 'https://www.netrackindia.com/en')
   assert.equal(provider.companyDomain, 'netrackindia.com')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-corporate-recruitment-inventory-unqualified')
   assert.match(provider.modulePath, /netrack[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /netrack[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')

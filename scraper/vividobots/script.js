@@ -1,8 +1,7 @@
+import {runCurrentNative} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -12,9 +11,6 @@ export const HOMEPAGE_URL = 'https://www.vividobots.com/'
 export const CAREERS_URL = 'https://www.vividobots.com/careers'
 export const JOB_APPLICATION_URL = 'https://www.vividobots.com/job-application'
 export const AROOPA_FORM_ID = '690c91a7a673722dcf6999cc'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const HOMEPAGE_SIGNALS = [
   /<title>\s*Vividobots:\s*High-Rise Robotic Cleaning\s*<\/title>/i,
@@ -120,78 +116,7 @@ export const pageExposesPublicJobListings = (html) => {
   // markets "job openings" there without exposing public listings in the visible body.
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const findErrorInChain = (error, predicate) => {
-  const seen = new Set()
-  let current = error
-
-  while (current && !seen.has(current)) {
-    seen.add(current)
-    if (predicate(current)) return current
-    current = current?.cause
-  }
-
-  return null
-}
-
-const hasHttpStatus = (error, status) =>
-  Boolean(findErrorInChain(error, (candidate) => Number(candidate?.status) === status))
-
-export const createVividobotsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    let homepageHtml
-    try {
-      homepageHtml = await fetchText(HOMEPAGE_URL)
-    } catch (error) {
-      if (hasHttpStatus(error, 403)) {
-        return attachInventoryEvidence([], {
-          status: 'discovery-only',
-          surface: HOMEPAGE_URL,
-          firstParty: true,
-          listingComplete: false,
-          pagesFetched: 0,
-          reportedTotal: null,
-          indiaFacetCount: null,
-          verifiedAt: now(),
-          reason: 'Vividobots official homepage blocks public access with HTTP 403; current candidate-portal inventory cannot be verified.',
-        })
-      }
-
-      throw error
-    }
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('The Vividobots official homepage no longer matches the verified first-party surface')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('The Vividobots careers page no longer matches the verified candidate-portal surface')
-    }
-
-    if (extractRegisterUrl(careersHtml) !== JOB_APPLICATION_URL || pageExposesPublicJobListings(careersHtml)) {
-      throw new Error('The Vividobots careers page no longer matches the verified candidate-portal sentinel')
-    }
-
-    const jobApplicationHtml = await fetchText(JOB_APPLICATION_URL)
-    if (!hasOfficialJobApplicationSignal(jobApplicationHtml)) {
-      throw new Error('The Vividobots job-application page no longer matches the verified first-party application surface')
-    }
-
-    if (pageExposesPublicJobListings(jobApplicationHtml)) {
-      throw new Error('The Vividobots job-application page appears to expose public job listings')
-    }
-
-    return []
-  },
-})
+export const createVividobotsScraper = () => ({run:runCurrentNative})
 
 export const run = async (options = {}) => createVividobotsScraper().run(options)
 

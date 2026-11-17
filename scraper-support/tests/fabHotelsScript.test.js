@@ -222,7 +222,7 @@ const loadFabHotelsModule = async () => {
   }
 }
 
-test('FabHotels scraper constants and helpers stay pinned to the verified first-party careers contract from July 15, 2026', async () => {
+test('FabHotels retains its historical July 15 presentation parser contract', async () => {
   const fabHotels = await loadFabHotelsModule()
 
   assert.equal(fabHotels.SOURCE, 'fabhotels')
@@ -280,119 +280,14 @@ test('FabHotels scraper constants and helpers stay pinned to the verified first-
   )
 })
 
-test('FabHotels run verifies the homepage and careers list, then decorates same-domain detail jobs with first-party email apply', async () => {
+// Historical parser helpers remain below their original verification date.
+// Current source-directory tests replay complete original native HTTP inputs.
+test('FabHotels current acquisition rejects body-only historical role lists and city-inferred eligibility', async () => {
   const fabHotels = await loadFabHotelsModule()
-  const requestedUrls = []
-
-  const jobs = await fabHotels.createFabHotelsScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === fabHotels.HOMEPAGE_URL) return homepageHtml
-      if (url === fabHotels.CAREERS_URL) return careersHtml
-      if (url === 'https://www.fabhotels.com/careers/FS-TECH-P1') return backendDetailHtml
-      if (url === 'https://www.fabhotels.com/careers/CS-B2B-P1') return corporateSalesDetailHtml
-      if (url === 'https://www.fabhotels.com/careers/BA-RP-P1') return businessAnalystDetailHtml
-
-      throw new Error(`Unexpected FabHotels URL: ${url}`)
-    },
-    now: () => FIXED_SCRAPED_AT,
-    maxJobs: 3,
-  })
-
-  assert.deepEqual(requestedUrls, [
-    fabHotels.HOMEPAGE_URL,
-    fabHotels.CAREERS_URL,
-    'https://www.fabhotels.com/careers/FS-TECH-P1',
-    'https://www.fabhotels.com/careers/CS-B2B-P1',
-    'https://www.fabhotels.com/careers/BA-RP-P1',
-  ])
-  assert.equal(jobs.length, 3)
-  assert.deepEqual(jobs[0], {
-    title: 'Backend/ Full Stack Developer',
-    company: 'FabHotels',
-    department: 'Technology',
-    location: 'Gurgaon, India',
-    city: 'Gurgaon',
-    state: 'Haryana',
-    country: 'India',
-    jobId: 'FS-TECH-P1',
-    requisitionId: 'FS-TECH-P1',
-    sourceUrl: 'https://www.fabhotels.com/careers/FS-TECH-P1',
-    applyUrl: 'mailto:jobs@fabhotels.com',
-    employmentType: null,
-    experienceRequired: '2-4 Years',
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [
-      'Design APIs, DB, Queues, monitoring for micro services.',
-      'Writing, deploying and managing micro services.',
-      'B.E./B.Tech (CS)/ MTECH from tier-I engineering institutes or universities with 2-4 years of work experience.',
-      'Must have experience in Java+ Angular/React',
-    ],
-    postingDate: null,
-    closingDate: null,
-    jobDescription:
-      'Job Role: Design APIs, DB, Queues, monitoring for micro services. Writing, deploying and managing micro services. Experience: B.E./B.Tech (CS)/ MTECH from tier-I engineering institutes or universities with 2-4 years of work experience. Must have experience in Java+ Angular/React If you have similar experience then please share your updated CV at jobs@fabhotels.com',
-    source: 'fabhotels',
-    link: 'mailto:jobs@fabhotels.com',
-    scrapedAt: FIXED_SCRAPED_AT,
-  })
-  assert.equal(jobs[1].title, 'Agent/Sr. Executive/AM- Corporate Sales')
-  assert.equal(jobs[1].location, 'Bangalore, Chennai, Mumbai, India')
-  assert.equal(jobs[1].city, 'Bangalore')
-  assert.equal(jobs[1].state, 'Karnataka')
-  assert.equal(jobs[2].title, 'Business Analyst - Growth')
-  assert.equal(jobs[2].location, 'Gurgaon, India')
-  assert.equal(jobs[2].city, 'Gurgaon')
-  assert.equal(jobs[2].state, 'Haryana')
+  await assert.rejects(fabHotels.createFabHotelsScraper().run({ fetchText: async () => careersHtml }), /original HTTP metadata|body-only/i)
 })
 
-test('FabHotels fails closed when the verified homepage, careers list, or detail apply surface drifts materially', async () => {
+test('FabHotels historical detail parser still rejects changed application copy', async () => {
   const fabHotels = await loadFabHotelsModule()
-
-  await assert.rejects(
-    fabHotels.createFabHotelsScraper().run({
-      fetchText: async (url) => {
-        if (url === fabHotels.HOMEPAGE_URL) {
-          return '<html><head><title>Placeholder</title></head><body>Welcome</body></html>'
-        }
-
-        throw new Error(`Unexpected FabHotels URL: ${url}`)
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    fabHotels.createFabHotelsScraper().run({
-      fetchText: async (url) => {
-        if (url === fabHotels.HOMEPAGE_URL) return homepageHtml
-        if (url === fabHotels.CAREERS_URL) {
-          return invalidCareersHtml
-        }
-
-        throw new Error(`Unexpected FabHotels URL: ${url}`)
-      },
-    }),
-    /verified careers listing surface/i,
-  )
-
-  await assert.rejects(
-    fabHotels.createFabHotelsScraper().run({
-      fetchText: async (url) => {
-        if (url === fabHotels.HOMEPAGE_URL) return homepageHtml
-        if (url === fabHotels.CAREERS_URL) return careersHtml
-        if (url === 'https://www.fabhotels.com/careers/FS-TECH-P1') return invalidDetailHtml
-        if (url === 'https://www.fabhotels.com/careers/CS-B2B-P1') return corporateSalesDetailHtml
-        if (url === 'https://www.fabhotels.com/careers/BA-RP-P1') return businessAnalystDetailHtml
-        if (url === 'https://www.fabhotels.com/careers/TT-TA-P4') return corporateSalesDetailHtml
-        if (url === 'https://www.fabhotels.com/careers/UX-DD-P1') return uxDesignerDetailHtml
-        if (url === 'https://www.fabhotels.com/careers/TA-SA-P1') return travelAgentSalesDetailHtml
-
-        throw new Error(`Unexpected FabHotels URL: ${url}`)
-      },
-    }),
-    /verified role detail surface/i,
-  )
+  assert.throws(() => fabHotels.extractJobDetail(invalidDetailHtml, 'https://www.fabhotels.com/careers/FS-TECH-P1'), /verified role detail surface/i)
 })

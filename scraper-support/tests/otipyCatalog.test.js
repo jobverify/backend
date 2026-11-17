@@ -38,12 +38,12 @@ test('Otipy local catalog captures the verified blocked first-party public-surfa
   assert.equal(provider.companyCareerPage, 'https://otipy.com/careers')
   assert.equal(provider.companyDomain, 'otipy.com')
   assert.equal(provider.officialJobsPageUrl, 'https://otipy.com/jobs')
-  assert.equal(provider.atsPlatform, 'official-company-site-blocked-no-public-careers')
+  assert.equal(provider.atsPlatform, 'configured-current-root-native-connection-timeout-inventory-unknown')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-and-careers-route-blocked-surface-validation')
+  assert.equal(provider.paginationStrategy, 'one-exact-configured-root-native-transport-attempt-without-retry')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage-tls-mismatch+verified-careers-tls-mismatch+verified-jobs-tls-mismatch-return-empty',
+    'original-typeerror-connect-timeout-cause-retained+no-http-entity-alternatehost-or-verified-empty-inventory-invented',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

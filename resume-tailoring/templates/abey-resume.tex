@@ -64,7 +64,7 @@
 \newcommand{\resumeProjectHeading}[2]{
   \item
   \begin{tabularx}{\linewidth}{X@{\extracolsep{\fill}}r}
-    \small #1 & \textbf{\small #2} \\
+    \textbf{\small #1} & \textbf{\small #2} \\
   \end{tabularx}\vspace{-7pt}
 }
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -77,6 +77,9 @@
 \newcommand{\sbullet}[1][.5]{\textbullet}
 \newcommand{\faLinkedinSquare}{\faLinkedin}
 \renewcommand{\faExternalLink}{\faIcon{external-link-alt}}
+% Keep the trailing arrow inside every clickable link, including generated links.
+\NewCommandCopy{\resumeOriginalHref}{\href}
+\renewcommand{\href}[3][]{\resumeOriginalHref[#1]{#2}{#3\nobreak\hspace{0.2em}{\small\faExternalLink}}}
 \begin{document}
 % Sample body demonstrates formatting only; it supplies no candidate facts.
 \vspace*{18pt}

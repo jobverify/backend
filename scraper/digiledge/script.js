@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentDigiledge } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -18,29 +18,8 @@ export const hasOfficialDigiledgeSignal = (html) => BRAND_PATTERN.test(String(ht
 
 export const hasPublicJobBoardSignal = (html) => PUBLIC_JOB_BOARD_PATTERN.test(String(html ?? ''))
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: 'digiledge',
-  timeoutMs: 15000,
-})
-
 export const createDigiledgeScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-
-    if (!hasOfficialDigiledgeSignal(homepageHtml)) {
-      throw new Error('Digiledge official public site changed; refusing to assume no public listings')
-    }
-
-    if (hasPublicJobBoardSignal(homepageHtml)) {
-      throw new Error('Digiledge public site now appears to expose job listings')
-    }
-
-    return []
-  },
+  run: runCurrentDigiledge,
 })
 
 export const run = async (options = {}) => createDigiledgeScraper().run(options)

@@ -1,333 +1,57 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-const homepageHtml = `
-  <!doctype html>
-  <html data-wf-domain="peerrobotics.ai" lang="en">
-    <head>
-      <title>Peer Robotics | Collaborative Mobile Robots</title>
-    </head>
-    <body>
-      <h1>designed to work with humans</h1>
-      <p>enabling automation using collaborative mobile robots</p>
-      <p>Shaping the future of automation, with human-centric robots</p>
-      <p>Peer Robotics transforms manufacturing through intelligent mobile robots that learn directly from humans.</p>
-      <footer>© 2025 Peer Robotics. All rights reserved.</footer>
-    </body>
-  </html>
-`
-
-const aboutHtml = `
-  <!doctype html>
-  <html data-wf-domain="peerrobotics.ai" lang="en">
-    <head>
-      <title>About Peer Robotics | Revolutionizing the Robotics Industry</title>
-      <meta
-        name="description"
-        content="Learn about Peer Robotics and our mission to revolutionize the robotics industry. Explore our team, expertise, and commitment to innovation."
-      >
-    </head>
-    <body>
-      <section>
-        <h2>What we do</h2>
-        <h3>innovating a manufacturing future together</h3>
-        <p>
-          At Peer Robotics, we&#x27;re revolutionizing manufacturing with our deep understanding of the industry&#x27;s core challenges.
-        </p>
-      </section>
-      <section class="section-hire">
-        <h4>We’re hiring</h4>
-        <p>Our team is growing fast and we’re always looking for smart people.</p>
-        <a href="https://wellfound.com/company/peer-robotics/jobs">View jobs</a>
-      </section>
-      <section class="section-faq">
-        <h2>faq<span>s</span></h2>
-        <p>Where is Peer Robotics based out of?</p>
-        <p>We are headquartered out of the USA with our R&amp;D center in India.</p>
-      </section>
-      <footer>© 2025 Peer Robotics. All rights reserved.</footer>
-    </body>
-  </html>
-`
-
-const wellfoundChallengeHtml = `
-  <html lang="en">
-    <head>
-      <title>wellfound.com</title>
-    </head>
-    <body style="margin:0">
-      <p id="cmsg">Please enable JS and disable any ad blocker</p>
-      <script src="https://ct.captcha-delivery.com/c.js"></script>
-    </body>
-  </html>
-`
-
-const currentWellfoundChallengeHtml = `
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="robots" content="noindex, nofollow" />
-      <title>Security Check | Wellfound</title>
-    </head>
-    <body>
-      <h1>Security Check</h1>
-      <p>Before you continue, please verify your request.</p>
-      <p>Enable JavaScript and cookies to continue</p>
-      <div>Cloudflare Ray ID: a2b63193396b9bed</div>
-      <script>
-        window._cf_chl_opt = { cZone: 'wellfound.com' }
-      </script>
-      <script src="/cdn-cgi/challenge-platform/h/b/orchestrate/chl_page/v1"></script>
-    </body>
-  </html>
-`
-
-const accessibleWellfoundBoardHtml = `
-  <html>
-    <head><title>Jobs at Peer Robotics: Explore current Opportunities</title></head>
-    <body>
-      <p>Peer Robotics</p>
-      <p>View 1 job</p>
-      <h1>Jobs at Peer Robotics</h1>
-      <a href="https://wellfound.com/jobs/4457983-senior-hardware-systems-engineer">
-        Senior Hardware Systems Engineer
-      </a>
-      <p>Engineering</p>
-      <p>In office • Khed Shivapur</p>
-      <p>₹10L – ₹30L • No equity</p>
-      <p>3 years of exp</p>
-      <p>Full Time</p>
-      <p>
-        Safety PLC integration, including personnel detection, e-stop,
-        velocity/position monitoring, safety stop, restart/recovery behavior,
-        and PLC-to-robot communication.
-      </p>
-    </body>
-  </html>
-`
-
-const loadPeerRoboticsModule = async () => {
-  try {
-    return await import('../../scraper/peerrobotics/script.js')
-  } catch {
-    assert.fail('Expected Peer Robotics scraper module at ../../scraper/peerrobotics/script.js')
-  }
-}
-
-test('Peer Robotics validates the verified homepage, about-page hiring handoff, and current Wellfound challenge gate', async () => {
-  const peerRobotics = await loadPeerRoboticsModule()
-
-  assert.equal(peerRobotics.SOURCE, 'peerrobotics')
-  assert.equal(peerRobotics.COMPANY, 'Peer Robotics')
-  assert.equal(peerRobotics.HOMEPAGE_URL, 'https://peerrobotics.ai/')
-  assert.equal(peerRobotics.ABOUT_URL, 'https://peerrobotics.ai/about')
-  assert.equal(peerRobotics.WELLFOUND_JOBS_URL, 'https://wellfound.com/company/peer-robotics/jobs')
-  assert.equal(peerRobotics.VERIFIED_ON, '2026-08-15')
-  assert.equal(peerRobotics.hasOfficialHomepageSignal(homepageHtml), true)
-  assert.equal(peerRobotics.hasOfficialAboutSignal(aboutHtml), true)
-  assert.equal(
-    peerRobotics.extractWellfoundJobsUrl(aboutHtml),
-    'https://wellfound.com/company/peer-robotics/jobs',
-  )
-  assert.equal(
-    peerRobotics.isVerifiedWellfoundChallenge({
-      status: 403,
-      url: 'https://wellfound.com/company/peer-robotics/jobs',
-      headers: {},
-      html: wellfoundChallengeHtml,
-    }),
-    true,
-  )
-  assert.equal(
-    peerRobotics.isVerifiedWellfoundChallenge({
-      status: 403,
-      url: 'https://wellfound.com/company/peer-robotics/jobs',
-      headers: {
-        server: 'cloudflare',
-        'cf-mitigated': 'challenge',
-      },
-      html: currentWellfoundChallengeHtml,
-    }),
-    true,
-  )
-  assert.equal(
-    peerRobotics.hasAccessibleWellfoundJobsSignal({
-      status: 200,
-      url: 'https://wellfound.com/company/peer-robotics/jobs',
-      html: accessibleWellfoundBoardHtml,
-    }),
-    true,
-  )
+import {SOURCE,COMPANY,HOMEPAGE_URL,COMPANY_URL,CAREERS_URL,createPeerRoboticsScraper,run} from '../../scraper/peerrobotics/script.js'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
+import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/peerrobotics/fixtures/native-20261117.json.gz',import.meta.url))))
+const body=row=>Buffer.from(row.bodyBase64,'base64').toString(),original=url=>fixture.requests.find(row=>row.url===url)
+function replay(edit=(row,text)=>text){const calls=[],counts=new Map();return {calls,fetchImpl:async(url,init)=>{const row=original(String(url));assert.ok(row,'Only actual own native path '+url);calls.push(String(url));assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');assert.equal(init.body,undefined);const count=(counts.get(String(url))??0)+1;counts.set(String(url),count);return Object.defineProperty(new Response(edit(row,body(row),count),{status:row.status,headers:row.headers}),'url',{value:row.url})}}}
+test('Peer Robotics current exports and factory use the verified current own company and Notion careers routes',()=>{
+ assert.equal(SOURCE,'peerrobotics');assert.equal(COMPANY,'Peer Robotics');assert.equal(HOMEPAGE_URL,'https://www.peerrobotics.ai/');assert.equal(COMPANY_URL,HOMEPAGE_URL+'company');assert.equal(CAREERS_URL,'https://careers.peerrobotics.ai/');assert.equal(typeof createPeerRoboticsScraper().run,'function')
 })
-
-test('Peer Robotics returns no jobs while the verified Wellfound board remains challenge-gated', async () => {
-  const peerRobotics = await loadPeerRoboticsModule()
-  const requestedUrls = []
-
-  const jobs = await peerRobotics.createPeerRoboticsScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === peerRobotics.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === peerRobotics.ABOUT_URL) {
-        return { status: 200, url, html: aboutHtml }
-      }
-
-      if (url === peerRobotics.WELLFOUND_JOBS_URL) {
-        return {
-          status: 403,
-          url,
-          headers: {
-            server: 'cloudflare',
-            'cf-mitigated': 'challenge',
-          },
-          html: currentWellfoundChallengeHtml,
-        }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    peerRobotics.HOMEPAGE_URL,
-    peerRobotics.ABOUT_URL,
-    peerRobotics.WELLFOUND_JOBS_URL,
-  ])
-  assert.deepEqual(jobs, [])
+test('Peer Robotics observes one employer hiring signal and zero bound vacancies while native and company inventory stay unknown',async()=>{
+ const {calls,fetchImpl}=replay(),jobs=await createPeerRoboticsScraper({fetchImpl}).run({maxJobs:1}),audit=jobs.nativeCollectionEvidence,inventory=readInventoryEvidence(jobs),summary=readSourceObservationEvidence(jobs,SOURCE)
+ assert.equal(calls.length,6);assert.equal(jobs.length,0);assert.equal(summary.recordKind,'hiring-signals');assert.equal(summary.observedRecordCount,1);assert.equal(summary.observedVacancyCount,0)
+ assert.equal(inventory.status,'coverage-gap');assert.equal(inventory.listingComplete,false);assert.equal(inventory.reportedTotal,null);assert.equal(inventory.indiaFacetCount,null);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+ assert.equal(audit.companyIndiaZeroProven,false);assert.equal(audit.companyGlobalTotal,null);assert.equal(audit.companyIndiaTotal,null);assert.equal(audit.lifecycleCleanupAllowed,false);assert.equal(audit.activeApplyVerified,false)
+ assert.equal(audit.observations[0].country,null);assert.equal(audit.observations[0].jobId,null);assert.equal(audit.observations[0].criteria,null);assert.equal(audit.observations[0].applyUrl,null);assert.equal(audit.legacyWellfoundFallbackUsed,false);assert.equal(audit.legacyCityCountryInferenceUsed,false)
+ assert.ok(calls.every(url=>!url.includes('wellfound')&&!url.includes('/api/')&&!url.includes('/mcp/')))
 })
-
-test('Peer Robotics returns the live public Wellfound job when the board is readable', async () => {
-  const peerRobotics = await loadPeerRoboticsModule()
-  const requestedUrls = []
-
-  const jobs = await peerRobotics.createPeerRoboticsScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === peerRobotics.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === peerRobotics.ABOUT_URL) {
-        return { status: 200, url, html: aboutHtml }
-      }
-
-      if (url === peerRobotics.WELLFOUND_JOBS_URL) {
-        return {
-          status: 200,
-          url,
-          html: accessibleWellfoundBoardHtml,
-        }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    peerRobotics.HOMEPAGE_URL,
-    peerRobotics.ABOUT_URL,
-    peerRobotics.WELLFOUND_JOBS_URL,
-  ])
-  assert.deepEqual(
-    jobs.map((job) => ({
-      title: job.title,
-      location: job.location,
-      city: job.city,
-      country: job.country,
-      department: job.department,
-      employmentType: job.employmentType,
-      experienceRequired: job.experienceRequired,
-      remoteStatus: job.remoteStatus,
-      sourceUrl: job.sourceUrl,
-      applyUrl: job.applyUrl,
-      link: job.link,
-    })),
-    [
-      {
-        title: 'Senior Hardware Systems Engineer',
-        location: 'Khed Shivapur, India',
-        city: 'Khed Shivapur',
-        country: 'India',
-        department: 'Engineering',
-        employmentType: 'Full Time',
-        experienceRequired: '3 years of exp',
-        remoteStatus: 'On-site',
-        sourceUrl: 'https://wellfound.com/jobs/4457983-senior-hardware-systems-engineer',
-        applyUrl: 'https://wellfound.com/jobs/4457983-senior-hardware-systems-engineer',
-        link: 'https://wellfound.com/jobs/4457983-senior-hardware-systems-engineer',
-      },
-    ],
-  )
+test('Peer Robotics whole current hiring and Notion closing models include passive copy, literal metadata, full shell and programmes',async()=>{
+ for(const mode of ['hiring','theme','programme','passive']){
+  const {fetchImpl}=replay((row,text,count)=>count!==2?text:mode==='hiring'&&row.url===COMPANY_URL?text.replace('Our team is growing fast','Our team has changed eligibility'):row.url===CAREERS_URL?mode==='theme'?text.replace('{"mode":"light"}','{"mode":"dark"}'):mode==='programme'?text.replace('window.__webStartTime=','window.PEER_PASSIVE_CHANGE=true;window.__webStartTime='):mode==='passive'?text.replace('</body>','<aside>New native requirement</aside></body>'):text:text)
+  await assert.rejects(run({fetchImpl}),/Closing.*native.*changed/i,mode)
+ }
 })
-
-test('Peer Robotics fails closed when the verified homepage, hiring handoff, or challenge gate drifts', async () => {
-  const peerRobotics = await loadPeerRoboticsModule()
-
-  await assert.rejects(
-    peerRobotics.createPeerRoboticsScraper().run({
-      fetchPage: async (url) => {
-        if (url === peerRobotics.HOMEPAGE_URL) {
-          return { status: 200, url, html: '<html><body>Placeholder</body></html>' }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /official homepage/i,
-  )
-
-  await assert.rejects(
-    peerRobotics.createPeerRoboticsScraper().run({
-      fetchPage: async (url) => {
-        if (url === peerRobotics.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === peerRobotics.ABOUT_URL) {
-          return {
-            status: 200,
-            url,
-            html: aboutHtml.replace(
-              'https://wellfound.com/company/peer-robotics/jobs',
-              'https://wellfound.com/company/peer-robotics',
-            ),
-          }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /hiring handoff/i,
-  )
-
-  await assert.rejects(
-    peerRobotics.createPeerRoboticsScraper().run({
-      fetchPage: async (url) => {
-        if (url === peerRobotics.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === peerRobotics.ABOUT_URL) {
-          return { status: 200, url, html: aboutHtml }
-        }
-
-        if (url === peerRobotics.WELLFOUND_JOBS_URL) {
-          return {
-            status: 200,
-            url,
-            html: '<html><head><title>Peer Robotics Jobs</title></head><body><h1>Open Roles</h1></body></html>',
-          }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified public jobs board/i,
-  )
+test('Peer Robotics current structured employer and exact response authority remain mandatory',async()=>{
+ for(const mode of ['employer','canonical','response']){
+  const {fetchImpl}=replay((row,text)=>row.url===HOMEPAGE_URL?mode==='employer'?text.replace('"name": "Peer Robotics"','"name": "Other Robotics"'):mode==='canonical'?text.replace('href="https://www.peerrobotics.ai" rel="canonical"','href="https://foreign.invalid/" rel="canonical"'):text:text)
+  if(mode==='response')await assert.rejects(run({fetchImpl:async()=>Object.defineProperty(new Response('foreign',{headers:{'content-type':'text/html'}}),'url',{value:'https://foreign.invalid/'})}),error=>error.failureKind==='parser_or_contract_error')
+  else await assert.rejects(run({fetchImpl}),/employer|canonical/i)
+ }
+})
+test('Peer Robotics current declared page metadata cannot be promoted to vacancy country or criteria',async()=>{
+ const {fetchImpl}=replay((row,text)=>row.url===COMPANY_URL?text.replace('Our team is growing fast','Our team is growing fast in India'):text),jobs=await run({fetchImpl})
+ assert.equal(jobs.length,0);assert.equal(jobs.nativeCollectionEvidence.observations[0].country,null);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+})
+test('Peer Robotics refuses body-only callbacks without issuing a native request',async()=>{
+ let calls=0
+ await assert.rejects(run({fetchText:async()=>{calls++}}),/Original HTTP metadata/);assert.equal(calls,0)
+})
+test('Peer Robotics frozen opaque caller pre-abort precedes callbacks and invalid output limits',async()=>{
+ const controller=new AbortController(),reason=Object.freeze({owner:'peer-preabort'});controller.abort(reason);let calls=0
+ await assert.rejects(run({signal:controller.signal,maxJobs:0,fetchText:async()=>{calls++}}),error=>error===reason);assert.equal(calls,0)
+})
+test('Peer Robotics fulfilled and rejected in-flight cancellation retain the exact frozen caller reason',async()=>{
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'peer-inflight-'+mode});let calls=0
+  const fetchImpl=async url=>{calls++;controller.abort(reason);if(mode==='reject')throw Error('masked transport failure');return Object.defineProperty(new Response('not a model',{headers:{'content-type':'text/html'}}),'url',{value:String(url)})}
+  await assert.rejects(run({signal:controller.signal,fetchImpl}),error=>error===reason);assert.equal(calls,1)
+ }
+})
+test('Peer Robotics current native202 WAF challenge stops before body acquisition and never calls a replacement source',async()=>{
+ let calls=0,reads=0
+ const fetchImpl=async url=>{calls++;return {status:202,url:String(url),headers:new Headers({'content-type':'text/html','x-amzn-waf-action':'challenge'}),body:{getReader(){reads++;assert.fail('No challenge body consumption')},cancel:async()=>{}}}}
+ await assert.rejects(run({fetchImpl}),error=>error.httpStatus===202&&error.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)
 })

@@ -12,7 +12,7 @@ test('getScraperCatalog includes the Electrosteel Castings scraper with official
 
   assert.ok(electrosteel)
   assert.equal(electrosteel.adapter, 'script')
-  assert.equal(electrosteel.atsPlatform, 'official-company-careers')
+  assert.equal(electrosteel.atsPlatform, 'official-company-campus-programme-and-general-enquiry')
   assert.match(electrosteel.companyCareerPage, /electrosteel\.com\/career\/?$/i)
   assert.equal(electrosteel.companyDomain, 'electrosteel.com')
 })
@@ -25,5 +25,5 @@ test('buildScrapers exposes a runnable Electrosteel Castings scraper without cha
   assert.equal(typeof electrosteel.run, 'function')
   assert.match(electrosteel.dryRunFile, /electrosteelcastings[\\/]jobs\.json$/)
   assert.equal(electrosteel.provider.source, 'electrosteelcastings')
-  assert.equal(electrosteel.provider.atsPlatform, 'official-company-careers')
+  assert.equal(electrosteel.provider.atsPlatform, 'official-company-campus-programme-and-general-enquiry')
 })

@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto'
 import { document } from '../../scraper-support/shared/rmkNativePairHtml.js'
-import { publicPayloads, mapBirlaRole } from '../adityabirlagroup/nativeJobs.js'
+import { publicPayloads, mapBirlaRole } from './nativeRole.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 

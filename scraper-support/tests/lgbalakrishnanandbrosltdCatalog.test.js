@@ -11,13 +11,13 @@ test('L.G.Balakrishnan & Bros Ltd is registered as a verified first-party candid
   assert.ok(provider, 'Expected L.G.Balakrishnan & Bros Ltd provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'L.G.Balakrishnan & Bros Ltd')
-  assert.equal(provider.companyCareerPage, 'https://careers.lgbportal.co.in/')
-  assert.equal(provider.atsPlatform, 'official-first-party-candidate-portal')
+  assert.equal(provider.companyCareerPage, 'https://connectgate.lgbportal.co.in/careers/')
+  assert.equal(provider.atsPlatform, 'official-current-native-candidate-portal-country-application-scope-held')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-first-party-careers-portal')
+  assert.equal(provider.paginationStrategy, 'literal-own-root301-and-active-current-portal-native-rows-full-details-programmes-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-first-party-careers-portal+inline-job-cards+apply-links',
+    'whole-current-own-native-vacancy-rows-and-criteria+native-ids-and-full-forms-retained+country-browser-application-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -46,6 +46,6 @@ test('L.G.Balakrishnan & Bros Ltd is runnable through the scraper provider catal
   assert.ok(scraper, 'Expected buildScrapers() to return the L.G.Balakrishnan & Bros Ltd scraper')
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'lgbalakrishnanandbrosltd')
-  assert.equal(scraper.provider.companyCareerPage, 'https://careers.lgbportal.co.in/')
+  assert.equal(scraper.provider.companyCareerPage, 'https://connectgate.lgbportal.co.in/careers/')
   assert.match(scraper.dryRunFile, /lgbalakrishnanandbrosltd[\\/]jobs\.json$/i)
 })

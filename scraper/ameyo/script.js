@@ -9,6 +9,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import { AMEYO_CATALOG } from './catalog.js'
+import {runCurrentAmeyo} from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -173,12 +174,17 @@ export const hasExpectedHomepageOutageSignal = ({ status, url, html } = {}) =>
 export const createAmeyoScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   now = () => new Date().toISOString(),
+  ...currentConfiguration
 } = {}) => ({
   async run({
     fetchPage = defaultFetchPage,
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
+    signal,
+    ...currentOverrides
   } = {}) {
+    if(currentConfiguration.fetchImpl||currentOverrides.fetchImpl||fetchPage===defaultFetchPage&&fetchText===defaultFetchText&&fetchJson===defaultFetchJson)
+      return runCurrentAmeyo({...currentConfiguration,...currentOverrides,signal})
     let homepagePage, homepageTimedOut = false
     try {
       homepagePage = await fetchPage(HOMEPAGE_URL)
@@ -224,7 +230,7 @@ export const createAmeyoScraper = ({
   },
 })
 
-export const run = async (options = {}) => createAmeyoScraper().run(options)
+export const run = async (options = {}) => createAmeyoScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

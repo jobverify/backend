@@ -1,0 +1,1076 @@
+{
+  "source": "quadeye",
+  "reviewedAt": "2026-11-16T21:08:07.817Z",
+  "origin": "https://www.quadeye.com",
+  "listingURL": "https://www.quadeye.com/jobs",
+  "inventoryURL": "https://www.quadeye.com/api/zoho-recruit/job-openings",
+  "plan": {
+    "listing": {
+      "scripts": [
+        {
+          "src": "/_next/static/chunks/27jktro2p5rq9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/11oof8oxnxiv9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/15dsczv2ev902.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/turbopack-1jg10u_lvowd0.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2228ow89um_7z.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2mju1wibq836k.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/0xu7x-kwcf_ve.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/26djl_eqnrhx2.js",
+          "id": "_R_",
+          "async": ""
+        }
+      ],
+      "styles": [
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/0xm280obzpfg3.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/1j3ndkocngmd8.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/3utde5b04i6b1.css",
+          "data-precedence": "next"
+        }
+      ],
+      "imports": [
+        [
+          19216,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "ReduxProvider"
+        ],
+        [
+          22016,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          ""
+        ],
+        [
+          22352,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          27201,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "IconMark"
+        ],
+        [
+          28679,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          37457,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "LoadingBoundaryProvider"
+        ],
+        [
+          51514,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          5766,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Toaster"
+        ],
+        [
+          5789,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          60021,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          66308,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "/_next/static/chunks/0xu7x-kwcf_ve.js",
+            "/_next/static/chunks/1e13u0qxlbtiy.js"
+          ],
+          "default"
+        ],
+        [
+          68027,
+          [],
+          "default",
+          1
+        ],
+        [
+          85437,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Image"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "MetadataBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "OutletBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "ViewportBoundary"
+        ]
+      ],
+      "bootstrapSHA256": [
+        "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+      ],
+      "flightPrograms": [
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/2228ow89um_7z.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/2mju1wibq836k.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/0xu7x-kwcf_ve.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ]
+      ]
+    },
+    "detail": {
+      "scripts": [
+        {
+          "src": "/_next/static/chunks/27jktro2p5rq9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/11oof8oxnxiv9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/15dsczv2ev902.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/turbopack-1jg10u_lvowd0.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2228ow89um_7z.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2mju1wibq836k.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3obtsu337u7qq.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/26djl_eqnrhx2.js",
+          "id": "_R_",
+          "async": ""
+        }
+      ],
+      "styles": [
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/0xm280obzpfg3.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/1j3ndkocngmd8.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/3utde5b04i6b1.css",
+          "data-precedence": "next"
+        }
+      ],
+      "imports": [
+        [
+          19216,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "ReduxProvider"
+        ],
+        [
+          22016,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          ""
+        ],
+        [
+          22352,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          27201,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "IconMark"
+        ],
+        [
+          28679,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          37457,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "LoadingBoundaryProvider"
+        ],
+        [
+          49730,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "/_next/static/chunks/3obtsu337u7qq.js",
+            "/_next/static/chunks/1e13u0qxlbtiy.js"
+          ],
+          "default"
+        ],
+        [
+          51514,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          5766,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Toaster"
+        ],
+        [
+          5789,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          60021,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          68027,
+          [],
+          "default",
+          1
+        ],
+        [
+          85437,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Image"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "MetadataBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "OutletBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "ViewportBoundary"
+        ]
+      ],
+      "bootstrapSHA256": [
+        "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+      ],
+      "flightPrograms": [
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/2228ow89um_7z.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/2mju1wibq836k.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/3obtsu337u7qq.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ]
+      ]
+    },
+    "application": {
+      "scripts": [
+        {
+          "src": "/_next/static/chunks/27jktro2p5rq9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/11oof8oxnxiv9.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/15dsczv2ev902.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/turbopack-1jg10u_lvowd0.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2228ow89um_7z.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/2mju1wibq836k.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/40vnpj-77_vg-.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+          "async": ""
+        },
+        {
+          "src": "/_next/static/chunks/26djl_eqnrhx2.js",
+          "id": "_R_",
+          "async": ""
+        }
+      ],
+      "styles": [
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/0xm280obzpfg3.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/1j3ndkocngmd8.css",
+          "data-precedence": "next"
+        },
+        {
+          "rel": "stylesheet",
+          "href": "/_next/static/chunks/3utde5b04i6b1.css",
+          "data-precedence": "next"
+        }
+      ],
+      "imports": [
+        [
+          12533,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "/_next/static/chunks/40vnpj-77_vg-.js",
+            "/_next/static/chunks/1e13u0qxlbtiy.js"
+          ],
+          "default"
+        ],
+        [
+          19216,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "ReduxProvider"
+        ],
+        [
+          22016,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          ""
+        ],
+        [
+          22352,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          27201,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "IconMark"
+        ],
+        [
+          28679,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          37457,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          39756,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "LoadingBoundaryProvider"
+        ],
+        [
+          51514,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          5766,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Toaster"
+        ],
+        [
+          5789,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "default"
+        ],
+        [
+          60021,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "default"
+        ],
+        [
+          68027,
+          [],
+          "default",
+          1
+        ],
+        [
+          85437,
+          [
+            "/_next/static/chunks/2mju1wibq836k.js",
+            "/_next/static/chunks/3k9u1_bjjw0vx.js"
+          ],
+          "Image"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "MetadataBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "OutletBoundary"
+        ],
+        [
+          97367,
+          [
+            "/_next/static/chunks/3jrpv10u_89z6.js",
+            "/_next/static/chunks/2228ow89um_7z.js"
+          ],
+          "ViewportBoundary"
+        ]
+      ],
+      "bootstrapSHA256": [
+        "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+      ],
+      "flightPrograms": [
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/3jrpv10u_89z6.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/2228ow89um_7z.js",
+            "async": true
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/2mju1wibq836k.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/3k9u1_bjjw0vx.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-0",
+          {
+            "src": "/_next/static/chunks/40vnpj-77_vg-.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ],
+        [
+          "$",
+          "script",
+          "script-1",
+          {
+            "src": "/_next/static/chunks/1e13u0qxlbtiy.js",
+            "async": true,
+            "nonce": "$undefined"
+          }
+        ]
+      ]
+    }
+  },
+  "assets": [
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/27jktro2p5rq9.js",
+      "bytes": 44414,
+      "sha256": "5261101892e2476e4346e19e86fd5f19cbcf7c765ff76e92eb9cefcc86b6db6a",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/11oof8oxnxiv9.js",
+      "bytes": 141598,
+      "sha256": "99ee2ec21d7a29359b32cd6350fe05b7281b238567adf9067aa9bc257537d480",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/15dsczv2ev902.js",
+      "bytes": 226354,
+      "sha256": "5e08fb1cc75d5660182f7f932e48ce246758cba2ef3909560bdfb79af2089e88",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/turbopack-1jg10u_lvowd0.js",
+      "bytes": 10580,
+      "sha256": "414cd83cf682b578062fa416ea0a14f9fa146bbde2df99fe4899aa8cdbe17d8a",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/3jrpv10u_89z6.js",
+      "bytes": 3677,
+      "sha256": "dac183eda3f5f09aeac8766360a7eabe35d1c46a481eee4d7925c5e7579a2a10",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/2228ow89um_7z.js",
+      "bytes": 54647,
+      "sha256": "2b8e779e1b1bc0774e8df41a0b3bff6d4a23c17403012c626543b78b01909d2c",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/2mju1wibq836k.js",
+      "bytes": 89399,
+      "sha256": "83723d2fbc41880dfe50ef40f544b075f509b7e7c41a0c9afe6018ef0f83a96f",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/3k9u1_bjjw0vx.js",
+      "bytes": 77204,
+      "sha256": "7be03d2e05ed81a3d5f4a3bdba38c295875a985e1211502ff130b35e88149937",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/0xu7x-kwcf_ve.js",
+      "bytes": 23325,
+      "sha256": "7b67e0839c4e11ffa6618adec95ef601705040f7398bb6cfa7635054815012e2",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/1e13u0qxlbtiy.js",
+      "bytes": 120817,
+      "sha256": "0e3c50189dae1b4bfcff6c8880bf6d8a2160aa8e180f37793f8c63bc6d32b019",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/26djl_eqnrhx2.js",
+      "bytes": 33680,
+      "sha256": "de8f7e73686775251a6bae1fafdbc020137d27042ab78156d0547a88aab17337",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/0xm280obzpfg3.css",
+      "bytes": 64304,
+      "sha256": "77097591dcae52176ac510c02f7e3d39993e5b093571d70b08ef90b1550b589b",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/1j3ndkocngmd8.css",
+      "bytes": 124211,
+      "sha256": "7096f782e9551f3c33e5a5bbb88189d612faf3a4f0bdb2ce0d8aff303682bb7f",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/3utde5b04i6b1.css",
+      "bytes": 24834,
+      "sha256": "d898846084270b7ce1cdb4525a05da44df2255a043aca1d81b469501037c90e4",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/3obtsu337u7qq.js",
+      "bytes": 11497,
+      "sha256": "7fad4975e62431e6ff473ae4474b2f768b8115c8a782b8e485d345e8b7c1799e",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.quadeye.com/_next/static/chunks/40vnpj-77_vg-.js",
+      "bytes": 13095,
+      "sha256": "e1b8e46c525b64ca564d66010559eba8e8b1c41d7eb31622a3933d1095b656c3",
+      "kind": "js"
+    }
+  ],
+  "allowedNativeFields": [
+    "$approval",
+    "$approval_state",
+    "$approved",
+    "$currency_symbol",
+    "$editable",
+    "$followed",
+    "$internal_publish_url",
+    "$job_mailbox",
+    "$process_flow",
+    "$state",
+    "Account_Manager",
+    "Assigned_Recruiter",
+    "Assigned_Recruiters",
+    "Associated_Tags",
+    "City",
+    "Client_Name",
+    "Country",
+    "Created_By",
+    "Created_Time",
+    "Date_Closed",
+    "Date_Opened",
+    "Designation",
+    "Industry",
+    "Internal_Apply__s",
+    "Internal_Referral__s",
+    "Is_Attachment_Present",
+    "Is_Hot_Job_Opening",
+    "Is_Locked",
+    "Job_Description",
+    "Job_Location",
+    "Job_Opening_ID",
+    "Job_Opening_Name",
+    "Job_Opening_Status",
+    "Job_Type",
+    "Keep_on_Career_Site",
+    "Last_Activity_Time",
+    "Modified_By",
+    "Modified_Time",
+    "No_of_Candidates_Associated",
+    "No_of_Candidates_Hired",
+    "Number_of_Positions",
+    "Pipeline__s",
+    "Posting_Title",
+    "Publish",
+    "Required_Skills",
+    "Salary",
+    "State",
+    "Sub_Users",
+    "Target_Date",
+    "Work_Experience",
+    "Zip_Code",
+    "id"
+  ],
+  "application": {
+    "fields": [
+      {
+        "name": "firstName",
+        "type": "text",
+        "label": "First Name*",
+        "validatedRequired": true
+      },
+      {
+        "name": "lastName",
+        "type": "text",
+        "label": "Middle Name & Last Name*",
+        "validatedRequired": true
+      },
+      {
+        "name": "personalEmail",
+        "type": "email",
+        "label": "Personal Email*",
+        "validatedRequired": true
+      },
+      {
+        "name": "officialEmail",
+        "type": "email",
+        "label": "Official Email*",
+        "validatedRequired": false
+      },
+      {
+        "name": "mobile",
+        "type": "tel",
+        "label": "Mobile",
+        "validatedRequired": false
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City*",
+        "validatedRequired": false
+      },
+      {
+        "name": "zipCode",
+        "type": "text",
+        "label": "Zip/Postal Code*",
+        "validatedRequired": false
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country*",
+        "validatedRequired": false
+      },
+      {
+        "name": "address",
+        "type": "textarea",
+        "label": "Address*",
+        "validatedRequired": false
+      },
+      {
+        "name": "cv",
+        "type": "file",
+        "label": "Resume / CV",
+        "validatedRequired": false,
+        "accept": ".pdf,.doc,.docx,.jpg,.jpeg,.png"
+      }
+    ],
+    "transportFields": [
+      "FullName",
+      "EmailID",
+      "PhoneNo",
+      "CompanyName",
+      "EnquiryType",
+      "EnquiryFor",
+      "PageName",
+      "Message",
+      "Attachment"
+    ],
+    "enquiryType": "Job Application",
+    "enquiryFor": "Jobs Page",
+    "labelAndValidatorRequirednessMismatch": true,
+    "submissionPerformed": false
+  },
+  "review": "Entire current14 executable and3stylesheet originals pinned. Literal active Flight imports and external declarations are finite per listing/detail/application route. Critical typed chain is listing module66308?API81088?detail49730?application12533. Dynamic native IDs/counts/criteria come from complete current first-party API and matching native JobPosting, with no company/global scope or whole-browser equivalence claim.",
+  "sourceScopeComplete": false,
+  "browserEquivalenceComplete": false,
+  "lifecycleCleanupAllowed": false
+}

@@ -1,0 +1,458 @@
+{
+  "reviewedAt": "2026-11-17",
+  "source": "gardenreachshipbuilders",
+  "scripts": [
+    {
+      "attributes": {
+        "src": "../components/assets/js/header.js",
+        "defer": ""
+      }
+    },
+    {
+      "attributes": {
+        "src": "../components/swiper/swiper-bundle.min.js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../jquery.js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../components/assets/js/footer.js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../components/assets/js/cookie.js",
+        "defer": ""
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-connection/dist/tracks-callablesdfd5.js?minify=false&ver=a96178e4d62fb695caa0",
+        "id": "jp-tracks-functions-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.mindeba.js?ver=6.5.1",
+        "id": "eael-general-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/uploads/essential-addons-elementor/eael-905c2b.js?ver=1670419548",
+        "id": "eael-90-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/theme.mine485.js?ver=3.3.6",
+        "id": "oceanwp-main-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/drop-down-mobile-menu.mine485.js?ver=3.3.6",
+        "id": "oceanwp-drop-down-mobile-menu-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/drop-down-search.mine485.js?ver=3.3.6",
+        "id": "oceanwp-drop-down-search-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/vendors/magnific-popup.mine485.js?ver=3.3.6",
+        "id": "ow-magnific-popup-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/ow-lightbox.mine485.js?ver=3.3.6",
+        "id": "oceanwp-lightbox-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/vendors/flickity.pkgd.mine485.js?ver=3.3.6",
+        "id": "ow-flickity-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/ow-slider.mine485.js?ver=3.3.6",
+        "id": "oceanwp-slider-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/scroll-effect.mine485.js?ver=3.3.6",
+        "id": "oceanwp-scroll-effect-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/scroll-top.mine485.js?ver=3.3.6",
+        "id": "oceanwp-scroll-top-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/themes/oceanwp/assets/js/select.mine485.js?ver=3.3.6",
+        "id": "oceanwp-select-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-lazy-images/dist/intersection-observer05bd.js?minify=false&ver=83ec8aa758f883d6da14",
+        "id": "jetpack-lazy-images-polyfill-intersectionobserver-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/jetpack/jetpack_vendor/automattic/jetpack-lazy-images/dist/lazy-images62e3.js?minify=false&ver=8767d0da914b289bd862",
+        "id": "jetpack-lazy-images-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/prevent-xss-vulnerability/assets/js/script-2.0.1.min68b3.js?ver=1",
+        "id": "prevent-xss-vulnerability-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/bdthemes-prime-slider-lite/assets/js/bdt-uikit.mincf1b.js?ver=3.2",
+        "id": "bdt-uikit-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor/assets/js/webpack.runtime.min9086.js?ver=3.33.2",
+        "id": "elementor-webpack-runtime-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor/assets/js/frontend-modules.min9086.js?ver=3.33.2",
+        "id": "elementor-frontend-modules-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min05da.js?ver=4.0.2",
+        "id": "elementor-waypoints-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/bdthemes-prime-slider-lite/assets/js/prime-slider-site.min55a0.js?ver=3.2.0",
+        "id": "prime-slider-site-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min9086.js?ver=3.33.2",
+        "id": "elementor-pro-webpack-runtime-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor-pro/assets/js/frontend.min9086.js?ver=3.33.2",
+        "id": "elementor-pro-frontend-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "../wp-content/plugins/elementor-pro/assets/js/elements-handlers.min9086.js?ver=3.33.2",
+        "id": "pro-elements-handlers-js"
+      }
+    },
+    {
+      "attributes": {
+        "src": "assets/js/index.js?v=20261113-1",
+        "defer": ""
+      }
+    }
+  ],
+  "styles": [
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "../styles.css"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "bdt-uikit-css",
+        "href": "../wp-content/plugins/bdthemes-prime-slider-lite/assets/css/bdt-uikitcf1b.css?ver=3.2",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "prime-slider-site-css",
+        "href": "../wp-content/plugins/bdthemes-prime-slider-lite/assets/css/prime-slider-site55a0.css?ver=3.2.0",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "font-awesome-css",
+        "href": "../wp-content/themes/oceanwp/assets/fonts/fontawesome/css/all.min9e0b.css?ver=5.15.1",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "simple-line-icons-css",
+        "href": "../wp-content/themes/oceanwp/assets/css/third/simple-line-icons.min8d5a.css?ver=2.4.0",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "oceanwp-style-css",
+        "href": "../wp-content/themes/oceanwp/assets/css/style.mine485.css?ver=3.3.6",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-icons-css",
+        "href": "../wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min91ce.css?ver=5.16.0",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-frontend-css",
+        "href": "../wp-content/plugins/elementor/assets/css/frontend-lite.min9086.css?ver=3.33.2",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-pro-css",
+        "href": "../wp-content/plugins/elementor-pro/assets/css/frontend-lite.min9086.css?ver=3.33.2",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "tablepress-default-css",
+        "href": "../wp-content/plugins/tablepress/css/default.mind50e.css?ver=1.14",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "eael-general-css",
+        "href": "../wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.mindeba.css?ver=6.5.1",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "oe-widgets-style-css",
+        "href": "../wp-content/plugins/ocean-extra/assets/css/widgets6a4d.css?ver=6.1.1",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "crossorigin": "anonymous",
+        "rel": "stylesheet",
+        "id": "google-fonts-1-css",
+        "href": "https://fonts.googleapis.com/css?family=Noto Sans%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CNoto Sans+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&display=auto&ver=6.1.1",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-icons-shared-0-css",
+        "href": "../wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min52d5.css?ver=5.15.3",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-icons-fa-solid-css",
+        "href": "../wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min52d5.css?ver=5.15.3",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "id": "elementor-icons-fa-brands-css",
+        "href": "../wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min52d5.css?ver=5.15.3",
+        "media": "all"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "assets/css/index.css"
+      }
+    },
+    {
+      "tag": "style",
+      "attributes": {},
+      "sha256": "df54ff8e7cf5e3c205fd7d9be923b9001cfbd4706ee30a753ecdc2e44095349e"
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "../components/swiper/swiper-bundle.min.css"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "../components/assets/css/header.css"
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "rel": "stylesheet",
+        "href": "../components/assets/css/footer.css"
+      }
+    }
+  ],
+  "handlers": [],
+  "root": {
+    "tag": "div",
+    "attributes": {
+      "class": "bucket",
+      "tabindex": "0"
+    }
+  },
+  "buttons": [
+    {
+      "tag": "button",
+      "attributes": {
+        "tabindex": "0",
+        "class": "tablinks active",
+        "type": "button",
+        "data-tab-target": "CJO",
+        "aria-controls": "CJO",
+        "aria-selected": "true",
+        "data-event-id": "event-el-1",
+        "title": "Current Job Openings"
+      },
+      "text": "Current Job Openings"
+    },
+    {
+      "tag": "button",
+      "attributes": {
+        "tabindex": "0",
+        "class": "tablinks",
+        "type": "button",
+        "data-tab-target": "EAT",
+        "aria-controls": "EAT",
+        "aria-selected": "false",
+        "data-event-id": "event-el-2",
+        "title": "Engagement of Apprentices and Trainee"
+      },
+      "text": "Engagement of Apprentices and Trainee"
+    },
+    {
+      "tag": "button",
+      "attributes": {
+        "tabindex": "0",
+        "class": "tablinks",
+        "type": "button",
+        "data-tab-target": "OP",
+        "aria-controls": "OP",
+        "aria-selected": "false",
+        "data-event-id": "event-el-3",
+        "title": "Other Positions"
+      },
+      "text": "Other Positions"
+    }
+  ],
+  "panels": [
+    [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "CJO",
+          "class": "tabcontent active",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "EAT",
+          "class": "tabcontent",
+          "tabindex": "0"
+        }
+      }
+    ],
+    [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "OP",
+          "class": "tabcontent",
+          "tabindex": "0"
+        }
+      }
+    ]
+  ],
+  "assets": [
+    {
+      "url": "https://www.grse.in/career/assets/js/index.js?v=20261113-1",
+      "sha256": "f4f091533ad90cf67765bbbea23c64c8d5accd7916717206f037a07390f49db6",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://www.grse.in/career/assets/css/index.css",
+      "sha256": "99ef93186dfe446ee5f154e21d76a955b1f3db27e232d9d158d8e282adb3e4c8",
+      "kind": "css"
+    }
+  ],
+  "review": "Exact complete current declarations and literal native program: on DOMContentLoaded choose first unique.bucket; bind unique CJO/EAT/OP panels, reviewed three buttons; showTab(CJO) toggles is-active and removes inline display. CSS .tabcontent display:none and .tabcontent.is-active display:block. This permits acquisition of the currently authored notice carrier only; grouped notice is never an individual vacancy or country proof."
+}
