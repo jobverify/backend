@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "backend",
+  "main": "dist/worker.js",
+  "compatibility_date": "2026-11-10",
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
+  "no_bundle": true,
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [{ "pattern": "api.jobverify.in", "custom_domain": true }],
+  "durable_objects": {
+    "bindings": [{ "name": "API", "class_name": "JobverifyApi" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["JobverifyApi"] }],
+  "triggers": { "crons": ["* * * * *"] },
+  "vars": {
+    "NODE_ENV": "production",
+    "TRUST_PROXY": "1",
+    "CORS_ORIGIN": "https://www.jobverify.in,https://jobverify.in",
+    "FRONTEND_ORIGIN": "https://www.jobverify.in",
+    "PUBLIC_API_ORIGIN": "https://api.jobverify.in",
+    "AUTH_COOKIE_SAME_SITE": "lax",
+    "PIPELINE_LOCAL_ENABLED": "false",
+    "JOB_VERIFICATION_ENABLED": "false",
+    "AUTO_APPLY_ENABLED": "false",
+    "SCRAPER_SCHEDULER_ENABLED": "false",
+    "CLOUDFLARE_MAINTENANCE_ENABLED": "false",
+    "TELEGRAM_ENABLED": "false",
+    "TELEGRAM_BOT_USERNAME": "jobverify_alert_bot"
+  },
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 }
+}
+

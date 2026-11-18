@@ -1,0 +1,27 @@
+{
+  "name": "jobverify-cloudflare-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "check": "npm run lint && npm test && npm run build && wrangler deploy --dry-run",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "test": "node --test test/platform.test.js test/pipelineDownload.test.js",
+    "test:runtime": "npm run build && node --test test/runtime.test.js",
+    "lint": "node ../../node_modules/eslint/bin/eslint.js ."
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "wrangler": "4.158.0"
+  },
+  "engines": {
+    "node": ">=24.14.0 <25"
+  },
+  "overrides": {
+    "undici": "^7.30.2"
+  },
+  "dependencies": {
+    "@zip.js/zip.js": "2.25.0"
+  }
+}

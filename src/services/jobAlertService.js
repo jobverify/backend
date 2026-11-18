@@ -260,7 +260,7 @@ export const queueJobAlertsForJobs = async (jobs = []) => {
 };
 
 let recoveryInProgress = false;
-export const recoverQueuedJobAlerts = async () => {
+export const recoverQueuedJobAlerts = async ({ maxDeliveries = Infinity, deadline = Infinity } = {}) => {
   if (recoveryInProgress) return;
   recoveryInProgress = true;
   try {
@@ -268,16 +268,19 @@ export const recoverQueuedJobAlerts = async () => {
     await cleanupSentDeliveries();
     const dueAt = new Date();
     let cursor;
+    let visited = 0;
     // Read bounded pages, but drain the due backlog during this scheduled run.
     // The cursor also advances past deferred/retried rows without looping on them.
-    while (true) {
+    while (visited < maxDeliveries && Date.now() < deadline) {
+      const pageLimit = Math.min(RECOVERY_LIMIT, maxDeliveries - visited);
       const filter = claimFilter(dueAt);
       if (cursor) filter.$and.push({ $or: [
         { createdAt: { $gt: cursor.createdAt } },
         { createdAt: cursor.createdAt, _id: { $gt: cursor._id } },
       ] });
-      const deliveries = await JobAlertDelivery.find(filter).sort({ createdAt: 1, _id: 1 }).limit(RECOVERY_LIMIT).populate("user").populate("job").lean().exec();
+      const deliveries = await JobAlertDelivery.find(filter).sort({ createdAt: 1, _id: 1 }).limit(pageLimit).populate("user").populate("job").lean().exec();
       if (!deliveries.length) break;
+      visited += deliveries.length;
       cursor = deliveries[deliveries.length - 1];
       const grouped = new Map();
       for (const delivery of deliveries) {
@@ -289,8 +292,11 @@ export const recoverQueuedJobAlerts = async () => {
         if (!grouped.has(key)) grouped.set(key, []);
         grouped.get(key).push({ delivery, job: delivery.job });
       }
-      for (const records of grouped.values()) await processRecords(records[0].delivery.user, records);
-      if (deliveries.length < RECOVERY_LIMIT) break;
+      for (const records of grouped.values()) {
+        if (Date.now() >= deadline) break;
+        await processRecords(records[0].delivery.user, records);
+      }
+      if (deliveries.length < pageLimit) break;
     }
   } finally {
     recoveryInProgress = false;

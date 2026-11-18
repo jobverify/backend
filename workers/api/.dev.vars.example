@@ -1,0 +1,8 @@
+# Local test secrets only. Copy to .dev.vars; never commit that file.
+MONGO_URI="mongodb+srv://USER:PASSWORD@CLUSTER/jobverify?retryWrites=true&w=majority"
+JWT_SECRET="replace-with-existing-production-secret-for-migration"
+EMAIL_RELAY_URL="https://YOUR-EXISTING-EMAIL-RELAY.workers.dev"
+EMAIL_RELAY_SECRET="replace-with-your-existing-relay-secret"
+TURNSTILE_SECRET_KEY="replace-with-your-turnstile-secret"
+TURNSTILE_ALLOWED_HOSTNAMES="www.jobverify.in,jobverify.in"
+TURNSTILE_EXPECTED_ACTION="login"
