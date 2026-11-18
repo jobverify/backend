@@ -14,6 +14,7 @@ import { PUBLIC_JOB_TYPES } from '../src/utils/publicJobTypeLabel.js'
 import { JOB_DATASET_LIFECYCLE_VERSION } from '../src/services/jobDatasetSummaryService.js'
 import { buildPublishableJobPostedAtCutoff } from '../src/utils/jobLifecycle.js'
 import { buildAggregateHiringSignalFilter } from '../src/utils/jobListingEvidence.js'
+import { buildExcludedJobTitleFilter } from '../src/utils/jobTitleEligibility.js'
 import { buildMissingSourceDescriptionFilter } from '../src/utils/jobSourceContent.js'
 import { ACCESS_ROLES, PLAN_IDS } from '../src/constants/accessPlans.js'
 import {
@@ -121,7 +122,7 @@ const assertMatchesPublicJobScope = (scope, expectedFilters = {}, { publicVisibi
   assert.deepEqual(stripPublishedDateScope(scope), {
     ...expectedFilters,
     isPublicIndia: true,
-    $nor: [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter()],
+    $nor: [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter(), buildExcludedJobTitleFilter()],
   })
   if (publicVisibility) {
     const [dates, category] = scope.$expr?.$and || []

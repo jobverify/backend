@@ -1,5 +1,6 @@
 import { filterIndiaJobs } from './indiaLocationFilter.js'
 import { isAggregateHiringSignalJob } from '../../src/utils/jobListingEvidence.js'
+import { isJobTitleExcludedFromPublishing } from '../../src/utils/jobTitleEligibility.js'
 import { resolveJobPublicationDate } from '../../src/utils/jobPublicationDate.js'
 import { readNativeRoleAvailability } from './sourceAvailability.js'
 import {
@@ -46,6 +47,10 @@ export const analyzePublishableJobs = (jobs = [], { now = new Date() } = {}) => 
     }
     if (isAggregateHiringSignalJob(job)) {
       filterCounts.nonJob += 1
+      return false
+    }
+    if (isJobTitleExcludedFromPublishing(job?.title)) {
+      filterCounts.excludedTitle = (filterCounts.excludedTitle || 0) + 1
       return false
     }
     const applicationUrl = job?.applyUrl || job?.link || job?.sourceUrl

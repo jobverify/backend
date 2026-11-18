@@ -3,6 +3,25 @@ import test from 'node:test'
 
 import { analyzePublishableJobs } from '../utils/publishableJobMetrics.js'
 
+test('publishing excludes the requested title terms regardless of case or position', () => {
+  const titles = ['Sales Engineer', 'PreSales Consultant', 'Product MANAGER', 'hr Business Partner', 'Engineer (HR)', 'Digital MARKETING Specialist', 'Account Executive', 'eXeCuTiVe Assistant']
+  const jobs = titles.map((title, index) => ({ title, jobId: `excluded-${index}`, location: 'India', applyUrl: `https://example.test/jobs/${index}` }))
+  const result = analyzePublishableJobs(jobs)
+
+  assert.deepEqual(result.eligibleJobs, [])
+  assert.equal(result.filterCounts.excludedTitle, 8)
+  assert.equal(result.indiaJobs.length, 8)
+})
+
+test('publishing checks titles only and does not match HR inside unrelated words', () => {
+  const titles = ['Software Engineer', 'Senior Engineer', 'Chrome Engineer', 'Threading Engineer', 'Thrift Platform Engineer']
+  const jobs = titles.map((title, index) => ({ title, jobId: `allowed-${index}`, location: 'India', applyUrl: `https://example.test/jobs/${index}`,
+    description: 'Work with sales, your manager, HR, marketing and the executive team.' }))
+  const result = analyzePublishableJobs(jobs)
+
+  assert.deepEqual(result.eligibleJobs.map(job => job.title), titles)
+})
+
 test('missing employer descriptions remain eligible without substituting display text for source content', () => {
   const empty = [undefined, null, '', ' \n\t\u00a0\u200b', '<p>&nbsp;<br></p>', '<!-- vacancy --><style>body{color:red}</style><script>ignored()</script>', '&#160;&#xA0;', '<br>'.repeat(10000), '<script>' + 'ignored();'.repeat(10000) + '</script>']
   const jobs = empty.map((sourceDescription, index) => ({

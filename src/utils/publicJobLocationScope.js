@@ -5,6 +5,7 @@
 
 import { normalizeCity } from "../../scraper-support/utils/cityNormalizer.js";
 import { buildAggregateHiringSignalFilter } from "./jobListingEvidence.js";
+import { buildExcludedJobTitleFilter } from "./jobTitleEligibility.js";
 import { buildMissingSourceDescriptionFilter } from "./jobSourceContent.js";
 import { CANONICAL_CITIES } from "../../scraper-support/utils/cities.js";
 import {
@@ -303,7 +304,7 @@ export const buildPublicJobLifecycleDateScope = (
 
 export const buildPublicJobLocationScope = (now = new Date(), options = {}) => ({
   isPublicIndia: true,
-  $nor: [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter()],
+  $nor: [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter(), buildExcludedJobTitleFilter()],
   ...buildPublicJobLifecycleDateScope(now, options),
 });
 
@@ -314,5 +315,5 @@ export const applyPublicJobLocationScope = (
 ) => ({
   ...filters,
   ...buildPublicJobLocationScope(now, options),
-  $nor: [...(filters.$nor || []), buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter()],
+  $nor: [...(filters.$nor || []), buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter(), buildExcludedJobTitleFilter()],
 });

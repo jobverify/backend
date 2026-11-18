@@ -7,6 +7,13 @@
   "no_bundle": true,
   "workers_dev": true,
   "preview_urls": false,
+  "dev": { "host": "localhost" },
+  "secrets": {
+    "required": [
+      "MONGO_URI", "JWT_SECRET", "EMAIL_RELAY_URL", "EMAIL_RELAY_SECRET",
+      "TURNSTILE_SECRET_KEY", "TURNSTILE_ALLOWED_HOSTNAMES", "TURNSTILE_EXPECTED_ACTION"
+    ]
+  },
   "routes": [{ "pattern": "api.jobverify.in", "custom_domain": true }],
   "durable_objects": {
     "bindings": [{ "name": "API", "class_name": "JobverifyApi" }]
@@ -23,11 +30,11 @@
     "PIPELINE_LOCAL_ENABLED": "false",
     "JOB_VERIFICATION_ENABLED": "false",
     "AUTO_APPLY_ENABLED": "false",
-    "SCRAPER_SCHEDULER_ENABLED": "false",
-    "CLOUDFLARE_MAINTENANCE_ENABLED": "false",
-    "TELEGRAM_ENABLED": "false",
+    "SCRAPER_SCHEDULER_ENABLED": "true",
+    "CLOUDFLARE_MAINTENANCE_ENABLED": "true",
+    "TELEGRAM_ENABLED": "true",
     "TELEGRAM_BOT_USERNAME": "jobverify_alert_bot"
   },
-  "observability": { "enabled": true, "head_sampling_rate": 0.1 }
+  "observability": { "enabled": true, "head_sampling_rate": 0.1, "redact_query_string": true }
 }
 

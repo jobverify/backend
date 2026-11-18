@@ -19,6 +19,7 @@ test('Cloudflare runtime boots the real API and handles unavailable MongoDB safe
     persist: false, logLevel: 'error', envFiles: [],
     experimental: { disableExperimentalWarning: true, disableDevRegistry: true, watch: false },
     vars: {
+      CLOUDFLARE_MAINTENANCE_ENABLED: 'false', TELEGRAM_ENABLED: 'false', SCRAPER_SCHEDULER_ENABLED: 'false',
       MONGO_URI: 'mongodb://runtime-test-user:runtime-test-password@127.0.0.1:1/test?tls=true',
       JWT_SECRET: 'runtime-test-only-secret-at-least-32-characters',
       EMAIL_RELAY_URL: 'https://relay.example.test', EMAIL_RELAY_SECRET: 'runtime-test-relay-secret-at-least-32-characters',
@@ -26,26 +27,35 @@ test('Cloudflare runtime boots the real API and handles unavailable MongoDB safe
     },
   });
   t.after(() => worker.stop());
+  const fetchApi = (path, options) => worker.fetch(`http://127.0.0.1:18913${path}`, { redirect: 'manual', ...options });
 
-  const health = await worker.fetch('/health');
-  assert.equal(health.status, 200);
+  // dev.host keeps local requests on loopback rather than substituting the
+  // production custom domain before the Worker enforces HTTPS.
+  const health = await fetchApi('/health');
+  assert.equal(health.status, 200, `Unexpected local redirect: ${health.headers.get('location')}`);
   assert.equal((await health.json()).status, 'ok');
 
-  const preflight = await worker.fetch('/api/site-settings', {
+  const preflight = await fetchApi('/api/site-settings', {
     method: 'OPTIONS', headers: { Origin: 'https://www.jobverify.in', 'Access-Control-Request-Method': 'GET' },
   });
   assert.equal(preflight.status, 204);
   assert.equal(preflight.headers.get('access-control-allow-origin'), 'https://www.jobverify.in');
   assert.equal(preflight.headers.get('access-control-allow-credentials'), 'true');
 
-  const untrusted = await worker.fetch('/api/site-settings', {
+  const untrusted = await fetchApi('/api/site-settings', {
     method: 'OPTIONS', headers: { Origin: 'https://attacker.example', 'Access-Control-Request-Method': 'GET' },
   });
   assert.equal(untrusted.headers.get('access-control-allow-origin'), null);
 
-  const unavailable = await worker.fetch('/api/site-settings');
+  const unavailable = await fetchApi('/api/site-settings', {
+    headers: { Origin: 'https://www.jobverify.in' },
+  });
   assert.equal(unavailable.status, 503);
   assert.equal(unavailable.headers.get('cache-control'), 'no-store');
+  assert.equal(unavailable.headers.get('access-control-allow-origin'), 'https://www.jobverify.in');
+  assert.equal(unavailable.headers.get('access-control-allow-credentials'), 'true');
+  assert.equal(unavailable.headers.get('retry-after'), '30');
+  assert.equal(unavailable.headers.get('x-content-type-options'), 'nosniff');
   assert.equal((await unavailable.json()).message, 'The API is temporarily unavailable.');
 });
 

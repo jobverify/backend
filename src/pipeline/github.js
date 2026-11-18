@@ -27,7 +27,7 @@ export async function githubRequest(repo,endpoint,{token=process.env.GITHUB_PAT,
   if(!token||!/^[-\w.]+\/[-\w.]+$/.test(repo||''))throw pipelineError('Configure GITHUB_REPO and GITHUB_PAT with Actions read/write access.',503);
   let response;
   try { response=await fetch(`https://api.github.com/repos/${repo}${endpoint}`,{method,
-    headers:{Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'},
+    headers:{Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'Jobverify'},
     ...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)}); }
   catch { throw pipelineError('GitHub could not be reached. Refresh status to reconcile the run.',502); }
   if(!response.ok) {

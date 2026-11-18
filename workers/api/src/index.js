@@ -1,6 +1,6 @@
 import { DurableObject } from 'cloudflare:workers';
 import { httpServerHandler } from 'cloudflare:node';
-import { forwardClientRequest, validateWorkerConfiguration } from './config.js';
+import { createUnavailableResponse, forwardClientRequest, redirectInsecureRequest, validateWorkerConfiguration } from './config.js';
 import { loadMaintenanceTasks, runMaintenance } from './maintenance.js';
 import { bindPipelineDownloads, PIPELINE_FILE_PATH, pipelineFileResponse } from '../adapters/pipelineDownload.js';
 
@@ -75,9 +75,7 @@ export class JobverifyApi extends DurableObject {
       return await this.handler.fetch(request, this.environment, this.ctx);
     } catch (error) {
       console.error(JSON.stringify({ event: 'api_unavailable', name: error?.name || 'Error' }));
-      return new Response(JSON.stringify({ success: false, message: 'The API is temporarily unavailable.' }), {
-        status: 503, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'Retry-After': '30' },
-      });
+      return createUnavailableResponse(request, this.environment);
     }
   }
 
@@ -94,10 +92,17 @@ export class JobverifyApi extends DurableObject {
 
 const api = env => env.API.get(env.API.idFromName('jobverify-api-v1'));
 export default {
-  fetch(request, env) {
+  async fetch(request, env) {
+    const redirect = redirectInsecureRequest(request);
+    if (redirect) return redirect;
     // File fetching is available only through the private DO binding.
     if (new URL(request.url).pathname === PIPELINE_FILE_PATH) return new Response(null, { status: 404 });
-    return api(env).fetch(forwardClientRequest(request));
+    try {
+      return await api(env).fetch(forwardClientRequest(request));
+    } catch (error) {
+      console.error(JSON.stringify({ event: 'api_forward_unavailable', name: error?.name || 'Error' }));
+      return createUnavailableResponse(request, env);
+    }
   },
   async scheduled(event, env) {
     if (env.CLOUDFLARE_MAINTENANCE_ENABLED === 'true') await api(env).maintain(event.scheduledTime);

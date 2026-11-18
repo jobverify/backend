@@ -136,7 +136,7 @@ test('summary reference time remains bound to its query when aggregation crosses
   assert.equal(mongoose.connection.host, '127.0.0.1')
   await Job.collection.deleteMany({})
   await JobDatasetSummary.collection.deleteMany({})
-  await saveToDB([input('summary-month-boundary', { postingDate: '2026-09-21T00:00:00.000Z' })],
+  await saveToDB([input('summary-month-boundary', { postingDate: '2026-07-21T00:00:00.000Z' })],
     'local-public-expiry', { ...options, now: before })
   const original = Job.aggregate
   let snapshot
