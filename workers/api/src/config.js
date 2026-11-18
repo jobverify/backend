@@ -27,3 +27,36 @@ export function forwardClientRequest(request) {
   headers.set('x-forwarded-proto', new URL(request.url).protocol.replace(':', ''));
   return new Request(request, { headers });
 }
+
+export function redirectInsecureRequest(request) {
+  const url = new URL(request.url);
+  // workerd's local test/development server uses loopback HTTP.
+  if (url.protocol !== 'http:' || ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) return null;
+  url.protocol = 'https:';
+  return new Response(null, {
+    status: 308, headers: { Location: url.toString(), 'Cache-Control': 'no-store' },
+  });
+}
+
+export function createUnavailableResponse(request, env = {}) {
+  const headers = new Headers({
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store', 'Retry-After': '30', Vary: 'Origin',
+    'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'no-referrer',
+    'Content-Security-Policy': "default-src 'none';base-uri 'none';frame-ancestors 'none';form-action 'self'",
+  });
+  if (new URL(request.url).protocol === 'https:') {
+    headers.set('Strict-Transport-Security', 'max-age=15552000; includeSubDomains; preload');
+  }
+  const origin = request.headers.get('Origin');
+  const allowedOrigins = String(env.CORS_ORIGIN || '').split(',').map(value => value.trim());
+  if (origin && allowedOrigins.includes(origin)) {
+    headers.set('Access-Control-Allow-Origin', origin);
+    headers.set('Access-Control-Allow-Credentials', 'true');
+    headers.set('Access-Control-Expose-Headers', 'Retry-After');
+  }
+  return new Response(JSON.stringify({ success: false, message: 'The API is temporarily unavailable.' }), {
+    status: 503, headers,
+  });
+}

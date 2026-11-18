@@ -44,7 +44,7 @@ npx wrangler login
 
 ## 2. Configure the Worker before changing DNS
 
-Review `wrangler.jsonc`. Initial settings deliberately disable maintenance, Telegram sending and scraper scheduling, so previewing cannot send production alerts or start pipelines. Keep those disabled until cutover.
+Review `wrangler.jsonc`. The production configuration now enables maintenance, Telegram sending and the saved scraper schedule after the owner confirmed Render is stopped. For a new migration or isolated preview, first set `CLOUDFLARE_MAINTENANCE_ENABLED`, `TELEGRAM_ENABLED` and `SCRAPER_SCHEDULER_ENABLED` to `false`; keep those disabled until cutover. The runtime tests explicitly disable all three and use fake credentials.
 
 Set the three Turnstile values from your existing deployment. `TURNSTILE_EXPECTED_ACTION` must match your frontend's actual widget action; do not guess it. You may put the hostname list and action in `vars`; keep the secret key a secret binding.
 
@@ -52,13 +52,7 @@ The build does not inline `.env`. Backend configuration comes from Worker variab
 
 The Worker is named `backend` in the `jobverify` account subdomain, so its initial deployment URL is `https://backend.jobverify.workers.dev`.
 
-First create the Worker without any production domain attached:
-
-```powershell
-npm run deploy
-```
-
-Until required bindings are configured, requests return 503. This initial deployment has no production DNS effect. Then add the required secrets (each command prompts for the value):
+For a new account, remove the production custom-domain route before the first deployment. Add the required secrets first (each command prompts for the value; Wrangler can create the Worker when adding its first secret). The required-secret deployment guard prevents publishing without these bindings:
 
 ```powershell
 npx wrangler secret put MONGO_URI
@@ -69,6 +63,8 @@ npx wrangler secret put TURNSTILE_SECRET_KEY
 npx wrangler secret put TURNSTILE_ALLOWED_HOSTNAMES
 npx wrangler secret put TURNSTILE_EXPECTED_ACTION
 ```
+
+Then run `npm run deploy` and complete the checks below before attaching the production domain.
 
 Email delivery uses your existing HTTPS Gmail relay (`workers/gmail-relay`) on this target. SMTP environment variables are not used. Deploy/configure the relay first if it is not already working. Keep the relay origin and shared secret consistent on both sides.
 
@@ -124,10 +120,11 @@ Change the following values in `wrangler.jsonc`, then run `npm run deploy`:
 
 ```json
 "CLOUDFLARE_MAINTENANCE_ENABLED": "true",
-"TELEGRAM_ENABLED": "true"
+"TELEGRAM_ENABLED": "true",
+"SCRAPER_SCHEDULER_ENABLED": "true"
 ```
 
-Only set `SCRAPER_SCHEDULER_ENABLED=true` if you want the API to start scheduled pipelines, after transferring the GitHub credentials and verifying pipeline settings. Keep the three Node-only feature flags false.
+The saved API scraper schedule was active by default on the old production Render service. The existing GitHub scraper workflow accepts dispatches and has no separate timer. Restoring `SCRAPER_SCHEDULER_ENABLED=true` therefore resumes that saved schedule. MongoDB leases and unique schedule slots protect overlapping ticks; GitHub retains the actual scraper execution. Keep the three Node-only feature flags false.
 
 If your existing Telegram webhook is already `https://api.jobverify.in/api/integrations/telegram/webhook` and the bot/secret are unchanged, its URL does not change. If it uses a Render hostname, re-register it with Telegram's `setWebhook`, setting the same `secret_token` as `TELEGRAM_WEBHOOK_SECRET`. Run this from a private local terminal or your existing webhook setup tooling: never paste a bot-token URL into a public ticket, browser screenshot or repository.
 
@@ -151,7 +148,7 @@ Production API cutover completed on November 17, 2026. The Cloudflare zone is Ac
 
 Live requests to `https://api.jobverify.in/health`, `/ready`, `/api/site-settings`, and `/api/jobs/snapshot` returned 200 over verified HTTPS. A Playwright browser smoke test loaded `https://www.jobverify.in/jobs`, rendered 12 job cards, and navigated to page 2, which rendered another 12 cards. Site settings, metadata, snapshots and both list-page requests returned 200, with no browser console warnings or errors. Account inspection showed only the zero-cost Cloudflare Free Plan.
 
-Cloudflare maintenance, Telegram sending, and scraper scheduling remain disabled on this Worker. Keep the old Render service explicitly stopped before enabling background processing. Signed-in user sessions and integration delivery still need their controlled cutover checks; the public browser smoke test does not establish those.
+At this initial cutover, Cloudflare maintenance, Telegram sending, and scraper scheduling were disabled. On November 18 the owner confirmed Render is stopped and authorized resuming these jobs; the current Wrangler configuration enables all three. Signed-in user sessions and individual integration deliveries are separate from the public browser smoke test.
 
 Two existing API tests fail in this working tree: `app.test.js` expects 404 but receives 401 for a retired billing endpoint, and `siteSettings.test.js` expects 403 but receives 401 for an admin request. Both failures were reproduced with the original, pre-migration alert implementation. They are not fixed by this migration. The live deployment checks establish production Atlas connectivity. Actual user sessions, integration delivery, enabled background processing and CPU usage under production traffic still require the cutover checks above.
 
@@ -161,4 +158,25 @@ The production Worker now supports the existing admin logs/artifacts download bu
 
 Validation passed: 12 Worker platform/download tests, 14 existing Node archive tests, two local workerd runtime tests, lint, build and deployment dry run. A temporary Worker on the same free account streamed a complete 129 MiB generated payload in a ZIP. The received payload size, ZIP directory, manifest and CRC32 were independently verified. A real Description Rewrite GitHub artifact (46,394 bytes, three entries) also downloaded successfully and passed CRC32 verification. The temporary Worker and its Durable Object namespace were removed after verification.
 
-Production version `aa6b94ae-b268-403c-95a1-1442b3c1d617` is deployed to `backend.jobverify.workers.dev` and `api.jobverify.in`. Live health, database readiness, site settings, job snapshot and job-list requests returned 200. The private file route returned 404; an unauthenticated admin archive request returned 401. All 18 production secret bindings are retained, background flags remain disabled, and account inspection still shows only the zero-cost Cloudflare Free Plan. A signed-in browser retry remains the final owner check for the admin download button.
+Production version `aa6b94ae-b268-403c-95a1-1442b3c1d617` was deployed to `backend.jobverify.workers.dev` and `api.jobverify.in`. Live health, database readiness, site settings, job snapshot and job-list requests returned 200. The private file route returned 404; an unauthenticated admin archive request returned 401. All 18 production secret bindings were retained, background flags remained disabled, and account inspection showed only the zero-cost Cloudflare Free Plan. A signed-in browser retry remains the final owner check for the admin download button.
+
+## Security and ongoing operation
+
+- The Cloudflare zone requires TLS 1.2 or newer and redirects HTTP to HTTPS. The Worker also sends a 308 redirect on public HTTP addresses, including `backend.jobverify.workers.dev`, preserving POST semantics and the destination path/query. Only loopback development hosts are exempt.
+- `dev.host=localhost` keeps Wrangler's local HTTP server on a loopback origin instead of substituting the production custom domain, preventing local redirect loops.
+- `secrets.required` declares the seven core API secrets already checked at startup. Wrangler refuses deployment when these inherited secrets are missing, protecting the working release. Optional integration bindings remain configured separately. Secret values never belong in this repository.
+- Worker logs retain 10% sampling and remove URL query strings. Application diagnostics use route templates and safe error categories. Authentication, database and request-body values must not be logged. Free Workers Logs currently retain logs for three days; review errors promptly.
+- API initialization, database and forwarding failures return sanitized, uncached 503 responses with `Retry-After: 30`. Existing frontend origins receive credentialed CORS headers even during an outage; unrelated origins receive no CORS allowance.
+- The existing CORS allowlist, CSRF checks, authentication, bounded JSON/resume uploads, application rate limits, MongoDB TLS validation and private archive route remain the API controls. Avoid blanket browser challenges or cache-everything rules on authenticated API endpoints and webhooks.
+- Git deployments track `jobverify/backend` on `main`, root `workers/api`, with preview builds disabled. Build caching is enabled in Cloudflare Builds to reuse npm's package cache while retaining reproducible `npm ci` installs and the lint/test/build/dry-run gate.
+- After deployment check `/health`, `/ready`, `/api/site-settings`, `/api/jobs?limit=1`, trusted/untrusted CORS preflight, both HTTP redirects, and the public denial of `/__jobverify_pipeline_file`. Readiness must return 200 before considering a release healthy. Keep the previous version ID for rollback; Worker rollback does not restore database contents.
+- The existing minute Cron Trigger now runs the owner-approved maintenance, queued-alert recovery and saved scraper schedule. The old Render instance is stopped. Existing task checkpoints, MongoDB leases, delivery receipts, schedule windows and the personal-alert limit of five records per pass remain in force. Disable all three business flags before restarting processing on another host.
+- Review request/CPU errors, Durable Object usage and the daily free quotas in the Cloudflare dashboard. Storage, paid placement, extra tracing/export services and paid upgrades are unnecessary for this deployment. Preserve the free subscription.
+
+Cloudflare documentation: [TLS policy](https://developers.cloudflare.com/ssl/edge-certificates/additional-options/minimum-tls/), [required secrets](https://developers.cloudflare.com/workers/configuration/secrets/), [log settings](https://developers.cloudflare.com/workers/wrangler/configuration/), [free log retention](https://developers.cloudflare.com/workers/observability/logs/workers-logs/), and [build caching](https://developers.cloudflare.com/workers/ci-cd/builds/build-caching/).
+
+### Operations deployment verified on November 18, 2026
+
+Worker version `bb378088-e657-4556-92a7-a890923295cb` enables the approved maintenance, Telegram delivery and saved scraper schedule. A natural minute Cron invocation on this version completed with outcome `ok`, no exceptions and no reported maintenance task failures. No manual test messages or scraper dispatches were sent. The temporary live-log stream used for verification was removed.
+
+Validation passed: 16 Worker tests, two local workerd runtime checks, 11 existing scheduler/bounded-alert regression tests, lint, bundle and deployment dry run. Both production hosts returned 200 for health, database readiness, settings and job listing; the private download route returned 404. Trusted frontend preflight passed, untrusted origins received no CORS permission, and HTTP redirected to HTTPS on both hosts. All 18 production secret bindings were retained. TLS 1.2, HTTPS redirects, query-string redaction, 10% log sampling and build caching were read back from Cloudflare. The subscription remained Cloudflare Free Plan at zero cost.
