@@ -1,0 +1,67 @@
+{
+  "reviewedAt": "2026-11-19",
+  "main": "/main-BEJHN4PW.js",
+  "resources": [
+    [
+      "main-BEJHN4PW.js",
+      "b130b6d4aebfc1afacc1dd522397ddc31fb140ee406c88974309b888c7341f0b"
+    ],
+    [
+      "chunk-N34OXFNA.js",
+      "28a13a1908ad1f63d907489db84711dd5c6a95a3e79a8b5983594440c2ec259f"
+    ],
+    [
+      "chunk-ZBDYQLTJ.js",
+      "a37a6f82729064f11766236814ccb7f84f80d79256fd963c6b38099939126d0d"
+    ],
+    [
+      "chunk-3ULFDRIO.js",
+      "3e57f1b8e60438a9fc8dd17faa42dce88e73d9cd6465a059561f52808732eb88"
+    ],
+    [
+      "chunk-35PWERET.js",
+      "eb589c2c652d8036357dbaa85574720d504fba92b3d9797873e4e8fcdea24e6a"
+    ],
+    [
+      "chunk-VYZQJ4UY.js",
+      "0ab3ab05474b39d15f6181d8aa40e327b599d8f73598dd5fc8692f655f81f4d2"
+    ],
+    [
+      "chunk-I2PIHQMX.js",
+      "8764d4b2a7950c45c254064a188fdb5d64ecc3ba1b768eb8cdd3160d44bead53"
+    ],
+    [
+      "chunk-B6U2FXCK.js",
+      "f2fbac1695128c77b961005f454a6d5ee6473e9929f62e3f3ca6b81d185d2a03"
+    ],
+    [
+      "chunk-DNWKJZCE.js",
+      "a44d67197fe0d2c5e8671897fafa43ead4af09b10c20cdafa512d3ba7b1fbf35"
+    ]
+  ],
+  "activation": {
+    "count": 10,
+    "slots": {
+      "0": 0,
+      "4": 3,
+      "5": 4
+    },
+    "frames": {
+      "0": "fc4cbf6b00f98404545a9cacf9da5401e2613d6fe6865aca8f223049dbbaadd3",
+      "3": "797a183cf35aaf4b223c417d7c635035560425f28e1532f54131ff3408f16044",
+      "4": "fcc97bc58b0f5a1a89f2cb12e01f08a1d786adba483088e507b123f67014f4f2"
+    },
+    "hydrationFrames": {
+      "https://gcore.com/careers": "f46c32149783a26470fce285c33dd35262553051f1c41312cd0060ce37a2b571",
+      "https://gcore.com/open-positions": "fd8c0f298394eb448c25a1b02fa4f2198edd471d22a0178ddf302169507a2c15"
+    },
+    "carriers": {
+      "https://gcore.com/careers": [
+        "a981fa4f10d8dc9a3fbd6847000d2e6085ed20b7a25d8cd8be7c127f47e45c6d"
+      ],
+      "https://gcore.com/open-positions": [
+        "801b89b6e1b75c9b566e2f04fbc3656a0315f24920b0ca987d34af6004bb5f6f"
+      ]
+    }
+  }
+}

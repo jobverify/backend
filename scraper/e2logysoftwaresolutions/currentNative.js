@@ -98,6 +98,7 @@ function originalNativeData(page){
   '7ee717b715910c42f12efb0d5a77b17fa0201b74ba6f008089d155bbe037ef15':INLINE_PROGRAM_SHA256[2],
   '8464e63a74fe56cba930917b413ca26ab453d46f0001fea1c7579296552a5e0a':'c63ab7f71866c1089db6945e4e90d2fdcb0b419e919b3e84b0690e5772a77c99',
   'e16197c12bc84c66765678777bf38c58a0b96d34cb6e3887438e884f9c68305c':'652e311ad823df25a17b6a85077d3def127f58a632f18534467dc09d449536a3',
+  'c6c414f66fbee18eeaa351996703f27d8d2f1697dd54c876aa147d8ece52c4c0':'031b9feaf148e867b0165b061eee8703a496270d09f8b3da790109a597f60219',
  }[declarationSHA]
  need(mapSHA,'Native program declaration authority changed')
  // Count every inline script, including an unexpected MIME type or escaped
@@ -112,6 +113,10 @@ function originalNativeData(page){
  // original carrier syntax, employer and complete criteria remain qualified
  // independently below. An unseen CDN map still requires review.
  const reviewedMapSHA=[mapSHA,...(declarationSHA==='e16197c12bc84c66765678777bf38c58a0b96d34cb6e3887438e884f9c68305c'?['9379df00e3d110cbe9d481a45f70764b39f6bbdce8ec0fb3b1693c8e270d5467']:[])]
+ // Nov19's original responses pair three changed CDN declarations with the
+ // complete Nov16 map. Its only non-map AST changes are four CDN build paths;
+ // the four other fixed inline programs and the criteria-carrier AST are
+ // unchanged. This finite data-reading profile does not certify activation.
  need(scripts.length===6&&programHashes.every((hash,index)=>index===2?reviewedMapSHA.includes(sha(scripts[index].raw??'')):sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
  const script=scripts[5]
  need(!script.inert&&page.head.children.includes(script),'Native data carrier is not active in the owned head')
@@ -174,6 +179,15 @@ export function extractCurrentDetail(html,listing){
  const lines=nativeLines(visibleRoot),authored=authoredNativeLines(rawRoot),description=lines.join('\n')
  need(comparable(description)===comparable(authored.join('\n')),'Native criteria content is hidden or incomplete')
  need(description.length>1000,'Native full description incomplete')
+ need(!/\b(?:this (?:position|role|job) is (?:closed|filled)|no longer accepting applications|applications (?:are )?closed)\b/i.test(description),'Native role is explicitly closed')
+ const employerKey=value=>clean(value).toLowerCase().replace(/[^a-z0-9]/g,'')
+ const employerNames=new Set([BRAND,'E2logy Software Solutions'].map(employerKey))
+ for(const line of lines){
+  for(const match of line.matchAll(/\b(?:work(?:place)?\s+country|job\s+country|country)\s*:\s*([^.;]+)/gi))
+   need(nativeCountryName(match[1].trim())===country,'Native criteria country contradicts its job location')
+  for(const match of line.matchAll(/\b(?:employer|hiring\s+(?:company|organization))\s*:\s*([^;]+)/gi))
+   need(employerNames.has(employerKey(match[1])),'Native criteria employer contradicts its publisher')
+ }
  const opened=nativeDate(record.Date_Opened,{required:true})
  return {jobId:record.id,requisitionId:null,title:record.Posting_Title,company:'E2logy Software Solutions',department:record.Industry,
   city:record.City,state:record.State??null,location,country,sourceCountryScopeUnresolved:false,sourceUrl:listing.sourceUrl,applyUrl:listing.sourceUrl,

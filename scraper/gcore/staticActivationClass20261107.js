@@ -25,10 +25,11 @@ const charcode=(value,raw)=>Number.isSafeInteger(value)&&/^[1-9]\d{1,2}$/.test(r
  &&(value>=65&&value<=90||value>=97&&value<=122)
 const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 const weekdays=['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
-const cookieSuffix=(value,raw)=>{
- if(!rawString(value,raw,"'")||value.length!==58)return false
+const cookieSuffix=(value,raw,secure=false)=>{
+ if(!rawString(value,raw,"'")||value.length!==(secure?66:58))return false
  const expiry=/expires=([^;]*)/i.exec(value)
- if(!expiry||sha(value.replace(/(expires=)[^;]*/i,'$1<COOKIE-DATE>'))!=='f74e8e3932d68e4ded1eaa6bb84f9a4ba2026b22c132d9eec5541f547e6d0e49')return false
+ const suffix=secure?sha(';expires=<COOKIE-DATE>;path=/; SameSite=Lax; Secure;'):'f74e8e3932d68e4ded1eaa6bb84f9a4ba2026b22c132d9eec5541f547e6d0e49'
+ if(!expiry||sha(value.replace(/(expires=)[^;]*/i,'$1<COOKIE-DATE>'))!==suffix)return false
  // Exact observed cookie-date spelling, not vacancy publication chronology.
  const m=/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{2}):(\d{2}):(\d{2}) GMT$/.exec(expiry[1])
  if(!m)return false
@@ -48,14 +49,15 @@ const formats={
  3:[charcode,charcode],
  4:[cookieSuffix,fallback,hex32,timestamp],
 }
-function sourceFrame(text,slot){
+export function sourceFrame(text,slot,{cookieSecure=false}={}){
  if(typeof text!=='string')return null
  const ast=parse(text,{ecmaVersion:'latest',sourceType:'script'})
  const spans=paths[slot].map((path,index)=>{
   const node=path.split('.').reduce((n,key)=>n?.[key],ast)
   if(node?.type!=='Literal'||!Number.isInteger(node.start)||!Number.isInteger(node.end)
    ||node.start<0||node.end<=node.start||node.end>text.length
-   ||!formats[slot][index](node.value,text.slice(node.start,node.end)))return null
+   ||!(Number(slot)===4&&index===0&&cookieSecure?cookieSuffix(node.value,text.slice(node.start,node.end),true)
+    :formats[slot][index](node.value,text.slice(node.start,node.end))))return null
   return{start:node.start,end:node.end,marker:'<PASSIVE-LITERAL-'+index+':'+typeof node.value+'>'}
  })
  if(spans.some(span=>span===null))return null

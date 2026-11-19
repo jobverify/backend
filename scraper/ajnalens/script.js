@@ -188,8 +188,12 @@ export const extractOpenPositions = (html) => {
 }
 
 const CURRENT_CAREERS = 'https://www.ajnalens.com/careers'
-const CURRENT_CLIENT = 'https://www.ajnalens.com/_next/static/chunks/86b08c738e2cae78.js'
-const CURRENT_CLIENT_SHA = 'b882e3907ad51be3410791ec95004ce4605991f51870244d467454f019a3a2bb'
+const CURRENT_CLIENTS = new Map([
+  ['https://www.ajnalens.com/_next/static/chunks/86b08c738e2cae78.js','b882e3907ad51be3410791ec95004ce4605991f51870244d467454f019a3a2bb'],
+  // Current complete program still maps only title/experience and sends the
+  // general Apply action to #contactus. No role criteria or countries added.
+  ['https://www.ajnalens.com/_next/static/chunks/9ae02a466e00eb50.js','b699404ad5eeca58b10ae551b44d5f8790e56981e2c2f950f989f289f8ecf156'],
+])
 const needCurrent = (ok, why) => { if (!ok) throw Error('AjnaLens current native: ' + why) }
 const boundedPage = (reader, url, signal) => {
   signal?.throwIfAborted()
@@ -214,11 +218,13 @@ const observeCurrentCareers = async (initial, reader, callerSignal) => {
     const roles = extractEmbeddedRoles(activeScripts(page.html).join('\n'))
     needCurrent(roles.length > 0 && roles.length <= 100 && roles.every(role => doc.nodes(node => node.tag === 'h6' && doc.text(node) === role.title).length === 1),
       'current active opening titles and native IDs disagree')
-    needCurrent(doc.nodes(node => node.tag === 'script' && node.attrs.src === new URL(CURRENT_CLIENT).pathname
-      && !Object.hasOwn(node.attrs, 'nomodule')).length === 1, 'current public openings client missing')
-    const client = await boundedPage(reader, CURRENT_CLIENT, signal)
-    needCurrent(client.status === 200 && client.url === CURRENT_CLIENT
-      && createHash('sha256').update(client.html).digest('hex') === CURRENT_CLIENT_SHA, 'unreviewed title-only public client contract')
+    const declared=doc.nodes(node => node.tag === 'script' && node.attrs.src
+      && CURRENT_CLIENTS.has(new URL(node.attrs.src,CURRENT_CAREERS).href)
+      && !Object.hasOwn(node.attrs, 'nomodule') && ['', 'module', 'text/javascript', 'application/javascript'].includes(node.attrs.type||''))
+    needCurrent(declared.length === 1, 'current public openings client missing')
+    const clientURL=new URL(declared[0].attrs.src,CURRENT_CAREERS).href,client = await boundedPage(reader, clientURL, signal)
+    needCurrent(client.status === 200 && client.url === clientURL
+      && createHash('sha256').update(client.html).digest('hex') === CURRENT_CLIENTS.get(clientURL), 'unreviewed title-only public client contract')
     // Module75219 maps only title/experience and scrolls Apply Now to #contactus.
     // Neither a workplace country nor full per-role criteria is published there.
     return roles.map(role => ({ jobId: role.id, title: role.title, experience: role.experience,

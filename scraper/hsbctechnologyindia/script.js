@@ -5,6 +5,7 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {eightfoldDocument,parseEightfoldJson} from '../../scraper-support/utils/recruitmentEightfoldData.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/boundedDeclaredPublicRead.js'
 
 const OFFICIAL='https://www.hsbc.com/careers/find-a-job'
 const ORIGIN='https://portal.careers.hsbc.com'
@@ -183,15 +184,27 @@ function roleOf(page,job,insights,row,renderer,now){
 
 export default async function run(options={}){
  const now=options.now||new Date().toISOString();need(Number.isFinite(Date.parse(now)),'invalid observation time')
- const signal=AbortSignal.any([...(options.signal?[options.signal]:[]),AbortSignal.timeout(240000)])
+ const caller=options.signal;caller?.throwIfAborted()
+ const sourceTimeoutMs=options.sourceTimeoutMs??240000,requestTimeoutMs=options.requestTimeoutMs??20000
+ need(Number.isSafeInteger(sourceTimeoutMs)&&sourceTimeoutMs>0&&sourceTimeoutMs<=240000
+  &&Number.isSafeInteger(requestTimeoutMs)&&requestTimeoutMs>0&&requestTimeoutMs<=20000,'invalid native acquisition deadline')
+ const started=performance.now(),controller=new AbortController()
+ const timeout=new DOMException('HSBC native source deadline exceeded','TimeoutError')
+ const timer=setTimeout(()=>controller.abort(timeout),sourceTimeoutMs)
+ const signal=caller?AbortSignal.any([caller,controller.signal]):controller.signal
+ const check=()=>{caller?.throwIfAborted();if(performance.now()-started>=sourceTimeoutMs)controller.abort(timeout);signal.throwIfAborted()}
  const receipts=[];let requests=0
  const read=async url=>{
-  signal.throwIfAborted();need(++requests<=60,'native request budget reached')
-  const response=await (options.fetchImpl||globalThis.fetch)(url,{redirect:'manual',credentials:'omit',signal:AbortSignal.any([signal,AbortSignal.timeout(20000)]),headers:{Accept:'text/html,application/json,*/*','User-Agent':'Mozilla/5.0'}})
-  const html=await response.text();signal.throwIfAborted()
-  need(response.status===200&&response.url===url&&Buffer.byteLength(html)<=4*1024*1024,'current native GET identity/status changed')
-  const page={url,status:response.status,html};receipts.push({...page,sha256:sha(html)});return page
+  check();need(++requests<=60,'native request budget reached')
+  const packet=await boundedDeclaredPublicRead(url,{signal,fetchImpl:(target,init)=>(options.fetchImpl||globalThis.fetch)(target,{...init,credentials:'omit',headers:{Accept:'text/html,application/json,*/*','User-Agent':'Mozilla/5.0'}}),
+   timeoutMs:Math.min(requestTimeoutMs,Math.max(1,Math.ceil(sourceTimeoutMs-(performance.now()-started)))),overflowError:Error('HSBC native response byte limit exceeded')})
+  check()
+  const bytes=Buffer.from(packet.bodyBase64,'base64'),html=new TextDecoder('utf-8',{fatal:true}).decode(bytes)
+  receipts.push({url,status:packet.status,finalURL:packet.url,headers:packet.headers,html,sha256:sha(bytes),bodyBytes:bytes.length})
+  need(packet.status===200&&packet.url===url&&bytes.length<=4*1024*1024,'current native GET identity/status changed')
+  check();return{url,status:packet.status,html}
  }
+ try{
  const official=await read(OFFICIAL),handoff=handoffOf(official),board=await read(handoff),opening=modelOf(board)
  need(sha((await read(opening.rendererURL)).html)===RENDERER,'native renderer criteria contract changed')
  const selectedPage=await read(SELECTED),selected=selectedOf(selectedPage,opening.rendererURL)
@@ -227,7 +240,14 @@ export default async function run(options={}){
  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{nativeRecords:observations,heldRecords:held,receipts,reportedSelectedTotal:selected.model.count,selectedRowsObserved:selected.model.positions.length,
   selectorScope:'India + Technology observations; whole-company source scope unqualified',sourceScopeComplete:false,lifecycleCleanupAllowed:false}})
  attachSourceObservationEvidence(jobs,{source:'hsbctechnologyindia',recordKind:'vacancy-rows',observedRecordCount:observations.length,observedVacancyCount:observations.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
+ check()
  return attachInventoryEvidence(jobs,{status:'discovery-only',surface:SELECTED,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,
   reason:'current corporate portal; own full role/typed country/legal employer/custom application criteria; incomplete company scope'})
+ }catch(error){
+  caller?.throwIfAborted()
+  let failure=error;try{check()}catch(expired){failure=expired}
+  if(failure&&typeof failure==='object'&&Object.isExtensible(failure))failure.nativeCollectionEvidence={receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false,companyGlobalTotal:null,companyIndiaTotal:null}
+  throw failure
+ }finally{clearTimeout(timer);controller.abort()}
 }
 export {run}

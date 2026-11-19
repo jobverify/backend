@@ -431,10 +431,11 @@ test('Paninian India scraper returns the verified first-party openings through t
 
   assert.deepEqual(requestedUrls, [
     paninian.HOMEPAGE_URL,
-    ...paninian.HOMEPAGE_ALIAS_URLS,
     paninian.CAREERS_URL,
     paninian.OPEN_POSITIONS_URL,
-    ...paninian.MISSING_ROUTE_URLS,
+    paninian.OPEN_POSITIONS_URL,
+    paninian.CAREERS_URL,
+    paninian.HOMEPAGE_URL,
   ])
   assert.equal(jobs.length, 18)
   assert.equal(jobs[0].company, 'Paninian India')

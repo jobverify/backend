@@ -4,6 +4,7 @@ import {parse} from 'acorn'
 import {decodeHTML} from 'entities'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {CURRENT_BUNDLE,CURRENT_BUNDLE_SHA,currentPublisherSHA} from './currentPublisher20261118.js'
 
 // Reviewed as data, never evaluated. This profile covers the current career
 // factory's public feed and its error-only Workable fallback, not a browser.
@@ -243,8 +244,9 @@ const publisherProfileSHA=html=>{
 }
 
 export const validateCurrentPublisher=(html,bundle)=>{
- const corporateProfileSHA256=publisherProfileSHA(html)
- assert(sha(bundle)===BUNDLE_SHA,'career factory whole-program profile changed')
+ const current=sha(bundle)===CURRENT_BUNDLE_SHA
+ const corporateProfileSHA256=current?currentPublisherSHA(html):publisherProfileSHA(html)
+ assert(sha(bundle)===(current?CURRENT_BUNDLE_SHA:BUNDLE_SHA),'career factory whole-program profile changed')
  let tree
  try{tree=parse(bundle,{ecmaVersion:'latest',sourceType:'script'})}catch{fail('career factory AST changed')}
  const nodes=[];const walk=value=>{
@@ -253,12 +255,13 @@ export const validateCurrentPublisher=(html,bundle)=>{
   for(const [key,child]of Object.entries(value))if(key!=='start'&&key!=='end'){if(Array.isArray(child))child.forEach(walk);else if(child&&typeof child==='object')walk(child)}
  };walk(tree)
  const node=(start,end,type)=>nodes.find(n=>n.start===start&&n.end===end&&n.type===type)
- const fetchCall=node(77993,78002,'CallExpression')
+ const shift=current?-7719:0,fetchCall=node(77993+shift,78002+shift,'CallExpression')
  assert(fetchCall?.callee.type==='Identifier'&&fetchCall.callee.name==='fetch'&&fetchCall.arguments.length===1,'current public feed call changed')
- assert(node(77865,78257,'ArrowFunctionExpression')&&node(89729,91736,'ArrowFunctionExpression')&&node(90788,91125,'LogicalExpression'),'current role component/error fallback changed')
+ assert(node(77865+shift,78257+shift,'ArrowFunctionExpression')&&node(current?79628:89729,current?81635:91736,'ArrowFunctionExpression')
+  &&node(current?80687:90788,current?81024:91125,'LogicalExpression'),'current role component/error fallback changed')
  // Whole fingerprint also pins both literal URI definitions, the hook effect,
  // tab registry, public rendering, and error-only window.open; no execution.
- return {profile:'leena-careers-899cb3bac7400f27',corporateSHA256:sha(html),corporateReferenceSHA256:HTML_SHA,corporateProfileSHA256,bundleSHA256:sha(bundle),browserEquivalenceClaimed:false}
+ return {profile:current?'leena-careers-15090a0f10f8bc12':'leena-careers-899cb3bac7400f27',corporateSHA256:sha(html),corporateReferenceSHA256:current?'aa1e0339dec3d3e2e57e7a7d5aee20fd7e4fe0dd53a79b85c348357e0554f48f':HTML_SHA,corporateProfileSHA256,bundleSHA256:sha(bundle),browserEquivalenceClaimed:false}
 }
 
 const dispose=body=>{try{const pending=body?.cancel?.();pending?.catch?.(()=>{})}catch{}}
@@ -362,9 +365,9 @@ export const runCurrentOrLegacy=async({fetchImpl=globalThis.fetch,fetchText,sign
   // Default/current transport cannot dispatch an unreviewed publisher to the
   // historical text-injection path, or fetch outside the pinned native route.
   // Explicit legacy fetchText fixtures retain their existing compatibility.
-  if(typeof fetchText!=='function'){assert(bundleURL===BUNDLE,'unreviewed current publisher/bundle profile');publisherProfileSHA(corporate.body)}
+  if(typeof fetchText!=='function'){assert([BUNDLE,CURRENT_BUNDLE].includes(bundleURL),'unreviewed current publisher/bundle profile');if(bundleURL===CURRENT_BUNDLE)currentPublisherSHA(corporate.body);else publisherProfileSHA(corporate.body)}
   const bundle=await read(bundleURL)
-  if(bundleURL!==BUNDLE){assert(typeof fetchText==='function'&&typeof legacy==='function','unreviewed legacy career profile');check();return await legacy(corporate.body,bundle.body)}
+  if(![BUNDLE,CURRENT_BUNDLE].includes(bundleURL)){assert(typeof fetchText==='function'&&typeof legacy==='function','unreviewed legacy career profile');check();return await legacy(corporate.body,bundle.body)}
   const profile=validateCurrentPublisher(corporate.body,bundle.body)
   const observedAt=now();assert(typeof observedAt==='string'&&Number.isFinite(Date.parse(observedAt)),'observation clock changed')
   const openingFeed=await read(FEED,true),discovery=decodeDiscoveryFeed(openingFeed.payload)
@@ -386,7 +389,7 @@ export const runCurrentOrLegacy=async({fetchImpl=globalThis.fetch,fetchText,sign
    }
   }
   for(const row of discovery.india){check();const entry=await collect(row);opening.push(entry);if(entry.job)jobs.push(entry.job);else held.push({discovery:row,...entry})}
-  const closingCorporate=await read(CAREERS),closingBundle=await read(BUNDLE)
+  const closingCorporate=await read(CAREERS),closingBundle=await read(bundleURL)
   const closingProfile=validateCurrentPublisher(closingCorporate.body,closingBundle.body)
   assert(closingProfile.corporateProfileSHA256===profile.corporateProfileSHA256&&closingBundle.body===bundle.body,'publisher changed during collection')
   const closingFeed=await read(FEED,true);decodeDiscoveryFeed(closingFeed.payload)

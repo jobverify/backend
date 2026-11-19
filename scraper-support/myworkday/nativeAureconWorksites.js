@@ -14,6 +14,28 @@ export const AURECON_CONTACT_TARGET='https://www.aurecongroup.com/content/static
 const BOARD_KEY='https://aurecongroup.wd3.myworkdayjobs.com/aurecon'
 const MAIN_SHA='6dcc8d8b84abd7bdc23425ff584791df465d58ffcf8d70c2974d0b46999ba99a'
 const CONTACT_SHA='efb133e47525c56636a8a00f8150ba9a61d2ecabc03028aeda19fc40387482f1'
+// Each reviewed deployment has its own complete original request sequence.
+// The November build split the native contact model constants/sanitizer from
+// the contact component. Pin those explicit imports before using that model.
+const currentMain='https://www.aurecongroup.com/content/static/index.20261116.1.js'
+const profiles=[
+ {main:AURECON_MAIN,steps:[
+  {url:AURECON_MAIN,sha256:MAIN_SHA},
+  {url:AURECON_CONTACT_MODULE,location:AURECON_CONTACT_TARGET},
+  {url:AURECON_CONTACT_TARGET,sha256:CONTACT_SHA},
+ ]},
+ {main:currentMain,steps:[
+  {url:currentMain,sha256:'d494885b5f39398405f6d9f73cf39540b7a332e8c721ed6e7977e75b0fe89d41'},
+  {url:'https://www.aurecongroup.com/content/static/ContactUsPageD1OZtVsm.js',location:'https://www.aurecongroup.com/content/static/contactuspaged1oztvsm.js'},
+  {url:'https://www.aurecongroup.com/content/static/contactuspaged1oztvsm.js',sha256:'2bdf93c7324cd4837fbdde75f6b27f5292a48d62a70b022cd0197970cf256877'},
+  {url:'https://www.aurecongroup.com/content/static/constantsD2LeT1o5.js',location:'https://www.aurecongroup.com/content/static/constantsd2let1o5.js'},
+  {url:'https://www.aurecongroup.com/content/static/constantsd2let1o5.js',sha256:'73aeb9cad8d1aa1eb97ecac811a986edf05a844733ed49bc2588b5504fed2203'},
+  {url:'https://www.aurecongroup.com/content/static/sanatiseStringXxxJfhmd.js',location:'https://www.aurecongroup.com/content/static/sanatisestringxxxjfhmd.js'},
+  {url:'https://www.aurecongroup.com/content/static/sanatisestringxxxjfhmd.js',sha256:'90212c08b4ebf081b38a17ffc21cdc6584b56c82e6c18bed2bf87b253c5c2e47'},
+ ]},
+]
+export const AURECON_REVIEWED_CLIENT_URLS=Object.freeze([...new Set(profiles.flatMap(p=>p.steps.map(s=>s.url)))])
+export const AURECON_CLIENT_REDIRECTS=Object.freeze(Object.fromEntries(profiles.flatMap(p=>p.steps.filter(s=>s.location).map(s=>[s.url,s.location]))))
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const jsonHash=value=>hash(JSON.stringify(value)),key=value=>value.trim().toLowerCase()
 const requireProof=(ok,reason)=>{if(!ok)throw Object.assign(Error('Invalid current Aurecon worksite proof: '+reason),{abortRetries:true,failureKind:'parser_or_contract_error'})}
@@ -44,15 +66,18 @@ const checkResponse=(row,url,inAttempt,{javascript=false,sha256=null}={})=>{
   &&(!sha256||row.sha256===sha256)
   &&(javascript?/^(?:text|application)\/(?:x-)?(?:javascript|ecmascript)(?:\s*;|$)/i:/^(?:text\/html|application\/xhtml\+xml)(?:\s*;|$)/i).test(row.contentType||''),'response identity, body, type or current receipt: '+url)
 }
+const checkClientResponse=(row,step,inAttempt)=>{
+ if(step.location){
+  // Keep the original redirect separate; its target never impersonates a 200
+  // response from the authored mixed-case import URL.
+  requireProof(row?.url===step.url&&row.status===301&&row.location===step.location
+   &&row.body===null&&row.sha256===null&&inAttempt(row.fetchedAt),'declared contact module redirect')
+ }else checkResponse(row,step.url,inAttempt,{javascript:true,sha256:step.sha256})
+}
 const clients=(proof,inAttempt)=>{
- const rows=proof?.clientResponses
- requireProof(Array.isArray(rows)&&rows.length===3,'declared current clients')
- checkResponse(rows[0],AURECON_MAIN,inAttempt,{javascript:true,sha256:MAIN_SHA})
- // The original module request and its exact same-origin lower-case redirect
- // are separate receipts. Never invent an original 200 or substitute its body.
- requireProof(rows[1]?.url===AURECON_CONTACT_MODULE&&rows[1].status===301&&rows[1].location===AURECON_CONTACT_TARGET
-  &&rows[1].body===null&&rows[1].sha256===null&&inAttempt(rows[1].fetchedAt),'declared contact module redirect')
- checkResponse(rows[2],AURECON_CONTACT_TARGET,inAttempt,{javascript:true,sha256:CONTACT_SHA})
+ const rows=proof?.clientResponses,profile=profiles.find(p=>p.main===rows?.[0]?.url)
+ requireProof(profile&&Array.isArray(rows)&&rows.length===profile.steps.length,'declared current clients')
+ rows.forEach((row,index)=>checkClientResponse(row,profile.steps[index],inAttempt))
  return rows.map(({body,...receipt})=>structuredClone(receipt))
 }
 const publisherDocument=(html,mountId,mainBody=null)=>{
@@ -61,12 +86,13 @@ const publisherDocument=(html,mountId,mainBody=null)=>{
  const all=document.nodes(n=>n.tag==='root')[0]
  const ids=[];const walk=n=>{if(typeof n!=='object')return;if(n.attrs?.id===mountId)ids.push(n);for(const c of n.children||[])walk(c)};walk(all)
  requireProof(ids.length===1&&visible.nodes(n=>n.attrs.id===mountId).length===1,'single active '+mountId+' mount')
- const declarations=clientScriptDeclarations(html).filter(n=>n.attrs.src&&new URL(n.attrs.src,AURECON_CAREERS).href===AURECON_MAIN)
+ const declarations=clientScriptDeclarations(html).filter(n=>n.attrs.src&&profiles.some(p=>new URL(n.attrs.src,AURECON_CAREERS).href===p.main))
  requireProof(declarations.length===1&&declarations[0].attrs.type==='module','current declared module')
- if(mainBody!==null)requireProof(matchesAuthoredIntegrity({scriptIntegrity:declarations[0].attrs.integrity??''},Buffer.from(mainBody).toString('base64')),'authored main-module integrity')
+ const profile=profiles.find(p=>p.main===new URL(declarations[0].attrs.src,AURECON_CAREERS).href)
+ if(mainBody!==null)requireProof(hash(mainBody)===profile.steps[0].sha256&&matchesAuthoredIntegrity({scriptIntegrity:declarations[0].attrs.integrity??''},Buffer.from(mainBody).toString('base64')),'authored main-module integrity')
  const canonical=document.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical')
  requireProof(canonical.length===1,'single canonical publisher page')
- return{document,all,canonical:canonical[0].attrs.href}
+ return{document,all,canonical:canonical[0].attrs.href,profile}
 }
 const model=(document,id)=>{
  const all=[];const visit=n=>{if(typeof n!=='object')return;if(n.attrs?.id===id)all.push(n);for(const c of n.children||[])visit(c)}
@@ -84,17 +110,10 @@ const model=(document,id)=>{
 // inventory proof; the complete attempt/receipt validator still runs below.
 export function nextAureconClientRequest(corporateResponse,clientResponses=[]){
  checkResponse(corporateResponse,AURECON_CAREERS,()=>true)
- const d=publisherDocument(corporateResponse.body,'subpage',clientResponses[0]?.body??null)
- requireProof(d.canonical===AURECON_CAREERS&&Array.isArray(clientResponses)&&clientResponses.length<=3,'current careers client request chain')
- if(!clientResponses.length)return AURECON_MAIN
- checkResponse(clientResponses[0],AURECON_MAIN,()=>true,{javascript:true,sha256:MAIN_SHA})
- if(clientResponses.length===1)return AURECON_CONTACT_MODULE
- const redirect=clientResponses[1]
- requireProof(redirect?.url===AURECON_CONTACT_MODULE&&redirect.status===301&&redirect.location===AURECON_CONTACT_TARGET
-  &&redirect.body===null&&redirect.sha256===null,'original current module redirect before target request')
- if(clientResponses.length===2)return AURECON_CONTACT_TARGET
- checkResponse(clientResponses[2],AURECON_CONTACT_TARGET,()=>true,{javascript:true,sha256:CONTACT_SHA})
- return null
+ const d=publisherDocument(corporateResponse.body,'subpage',clientResponses[0]?.body??null),steps=d.profile.steps
+ requireProof(d.canonical===AURECON_CAREERS&&Array.isArray(clientResponses)&&clientResponses.length<=steps.length,'current careers client request chain')
+ clientResponses.forEach((row,index)=>checkClientResponse(row,steps[index],()=>true))
+ return steps[clientResponses.length]?.url??null
 }
 
 // Pinned programs were inspected as data: header-links-data -> HeaderLinks ->

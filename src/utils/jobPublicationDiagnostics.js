@@ -1,4 +1,5 @@
 import { buildAggregateHiringSignalFilter } from './jobListingEvidence.js';
+import { buildExcludedJobTitleFilter } from './jobTitleEligibility.js';
 import { buildMissingSourceDescriptionFilter } from './jobSourceContent.js';
 import { buildPublicJobLifecycleDateScope } from './publicJobLocationScope.js';
 import { applyPublicJobVisibility } from './publicJobVisibility.js';
@@ -21,6 +22,7 @@ export function buildPublicationDiagnosticPipeline({ sources, siteSettings = {},
     unclassified_job_type: { $expr: { $in: [PUBLIC_JOB_TYPE_EXPRESSION, PUBLIC_JOB_TYPES] } },
     missing_source_description: { $nor: [buildMissingSourceDescriptionFilter()] },
     aggregate_hiring_signal: { $nor: [buildAggregateHiringSignalFilter()] },
+    excluded_job_title: { $nor: [buildExcludedJobTitleFilter()] },
     outside_publication_window_or_closed: buildPublicJobLifecycleDateScope(now),
   };
   if (siteSettings.experiencedJobsEnabled === false) {

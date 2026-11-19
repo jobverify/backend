@@ -324,17 +324,17 @@ export const rewriteWhenReady = async (probe, processQueue) => probe?.ready === 
   qualityStopped: true, stopReason: 'readiness_rejected', reason: 'model_quality_unavailable',
 };
 
-export const rewriteQueueQuery = (now = new Date(), { shard = 0, shardCount = 1, jobFilter = {} } = {}) => {
+export const rewriteQueueQuery = (now = new Date(), { shard = 0, shardCount = 1, jobFilter = {}, reprocessCompleted = false } = {}) => {
   return { status: 'active', sourceContentHash: { $type: 'string' },
   ...rewriteShardFilter(shard, shardCount),
   ...(Object.keys(jobFilter).length ? { $and: [jobFilter] } : {}),
-  $or: [
+  ...(!reprocessCompleted ? { $or: [
     { 'descriptionRewrite.status': 'pending', 'descriptionRewrite.attempts': { $lt: 3 } },
     { 'descriptionRewrite.status': 'failed', 'descriptionRewrite.attempts': { $lt: 3 },
       'descriptionRewrite.nextAttemptAt': { $type: 'date', $lte: now } },
     { 'descriptionRewrite.status': 'failed', 'descriptionRewrite.policyVersion': { $type: 'string', $ne: REWRITE_MODEL.policyVersion } },
     sourceCopyRetryQuery(),
-  ],
+  ] } : {}),
   };
 };
 
@@ -388,13 +388,13 @@ export const rewriteProgress = summary => {
 
 /** The caller supplies a Mongo update boundary; source/filter fields never enter these updates. */
 export const rewriteCandidates = async (jobs, { client, update, deadline, signal, concurrency = 1, onResult = () => {},
-  onRejection = () => {}, onFragmentRejection = () => {} } = {}) => {
+  reprocessCompleted = false, onRejection = () => {}, onFragmentRejection = () => {} } = {}) => {
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > MAX_REWRITE_CONCURRENCY) throw new Error('Rewrite concurrency must be between one and ' + MAX_REWRITE_CONCURRENCY);
   const stats = { attempted: 0, published: 0, failed: 0, skipped: 0, queueRepairs: 0, staleSources: 0, concurrentChanges: 0,
     sourceFallbackDescriptions: 0, sourceFallbackBlocks: 0, interruptedAttempts: 0, interrupted: false, peakConcurrency: 0 };
   const processJob = async job => {
     if (signal?.aborted || Date.now() >= deadline) { stats.interrupted = true; return; }
-    const reconciled = await reconcileRewriteCandidate(job, { update });
+    const reconciled = await reconcileRewriteCandidate(job, { update, reprocessCompleted });
     if (reconciled.kind === 'stale') { stats.staleSources++; return; }
     if (reconciled.kind === 'conflict') { stats.concurrentChanges++; return; }
     if (reconciled.repaired) stats.queueRepairs++;

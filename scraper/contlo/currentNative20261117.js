@@ -9,8 +9,12 @@ import{check,detailModel}from'./currentModels20261117.js'
 const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
 export async function runCurrentContlo(options={}){
  options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(p=>p.url),...profile.clients.map(p=>p.url),profile.api]),io=currentTransport({...options,label:'Contlo',allowedURL:url=>allowed.has(url)}),verifiedAt=new Date().toISOString()
+ let selectedCorporate=null
  try{const acquire=async()=>{
-   const corporate=[];for(const expected of profile.corporate){const p=await io.read(expected.url);check(p.bodySHA256===expected.sha256&&p.bodyBytes===expected.bytes,'whole finite current corporate deployment');const d=readNativeDocument(p.text);check(equal(activeHead(p.text).titles,[expected.title]),'effective current corporate title');corporate.push({url:p.url,fullNativeHTML:p.text})
+   const first=await io.read(profile.corporate[0].url),versions=[profile.corporate,...(profile.corporateVersions||[]).map(version=>version.corporate)]
+   const coherent=versions.find(version=>version[0].sha256===first.bodySHA256&&version[0].bytes===first.bodyBytes)
+   check(coherent&&(!selectedCorporate||coherent===selectedCorporate),'whole finite current corporate deployment');selectedCorporate=coherent
+   const corporate=[];for(const [index,expected] of coherent.entries()){const p=index===0?first:await io.read(expected.url);check(p.bodySHA256===expected.sha256&&p.bodyBytes===expected.bytes,'whole finite current corporate deployment');const d=readNativeDocument(p.text);check(equal(activeHead(p.text).titles,[expected.title]),'effective current corporate title');corporate.push({url:p.url,fullNativeHTML:p.text})
     if(expected.url===profile.corporate[0].url)check(d.nodes(n=>n.tag==='a'&&n.attrs.href==='/careers'&&d.text(n)==='Careers').length===1,'active own Careers handoff')
     else{const carrier=d.nodes(n=>n.tag==='div'&&n.attrs['data-outrely-jobs']);check(carrier.length===1&&carrier[0].attrs['data-outrely-jobs']==='contlo'&&!carrier[0].attrs['data-department']&&!carrier[0].attrs['data-limit'],'unique active whole native workspace embed without filtering')}
    }

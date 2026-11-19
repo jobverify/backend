@@ -3,7 +3,7 @@ import { decodeHTML } from 'entities'
 import { readNativeDocument, readNativeAttributeTokens, extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { findExplicitNativeClosure } from '../../scraper-support/utils/sourceAvailability.js'
-import { nativeLocationCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
+import { nativeCountryName, nativeLocationCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
 
 export const AVAAMO_CAREERS_URL = 'https://avaamo.ai/career'
 export const AVAAMO_COLLECTION_EVIDENCE = Symbol.for('jobverify.avaamo.current-collection')
@@ -214,6 +214,12 @@ export function parseAvaamoDetail(html, listing, { check = () => {} } = {}) {
   if (section.heading || section.nodes.length) sections.push(section)
   const sourceSections = sections.map(section => ({ heading: section.heading, html: section.nodes.map(serialize).join(''), text: section.nodes.map(node => doc.text(node)).join('\n\n') }))
   const sourceDescription = sourceSections.map(section => [section.heading, section.text].filter(Boolean).join('\n\n')).join('\n\n')
+  if (explicitAvaamoCountry(listing.location) === 'India') for (const line of sourceDescription.split(/\n+/).map(norm)) {
+    const country = /^(?:(?:workplace|work|job)\s+)?country\s*:\s*(.+)$/i.exec(line)
+    if (country) need(nativeCountryName(country[1]) === 'India', 'full native criteria country conflict')
+    const employer = /^(?:hiring organization|legal employer|employer|company)\s*:\s*(.+)$/i.exec(line)
+    if (employer) need(['Avaamo', 'Avaamo, Inc.'].includes(employer[1]), 'full native criteria employer conflict')
+  }
   const requirements = sourceSections.filter(section => /^(?:(?:minimum|preferred|basic|essential|desired)\s+)?(?:qualifications|requirements|skills)|^(?:non-technical|technical) skills/i.test(section.heading || ''))
   const criteria = sourceSections.filter(section => !/^About Avaamo$/i.test(section.heading || ''))
     .map(section => section.text.replace(/^Location:[^\n]*(?:\n|$)/i, '')).join('\n')
@@ -230,9 +236,19 @@ export function parseAvaamoDetail(html, listing, { check = () => {} } = {}) {
   }
 }
 
-// Country fields come only from explicit native country text, never from cities,
-// travel destinations, company addresses or the request's server country header.
+const reviewedWorkplaces = {
+  'Bangalore': { city: 'Bengaluru', references: ['https://bengaluruurban.nic.in/en/history/'] },
+  'Bengaluru, Koramangala': { city: 'Bengaluru', references: ['https://bengaluruurban.nic.in/en/history/'] },
+  'Bangalore or Pune (remote)': { city: null, references: ['https://bengaluruurban.nic.in/en/history/', 'https://pune.gov.in/en/'] },
+  'Bangalore or Mumbai': { city: null, references: ['https://bengaluruurban.nic.in/en/history/', 'https://mumbaicity.gov.in/en/'] },
+}
+// These whole role-scoped labels are finite geographic qualifications. Foreign
+// alternatives, travel destinations, company addresses and server-country
+// headers cannot supply the vacancy country.
+export const avaamoWorkplaceEvidence = location => Object.hasOwn(reviewedWorkplaces, norm(location))
+  ? { kind: 'reviewed-whole-native-workplace-geography', label: norm(location), country: 'India', ...reviewedWorkplaces[norm(location)] } : null
 export function explicitAvaamoCountry(location) {
+  if (avaamoWorkplaceEvidence(location)) return 'India'
   const value = norm(location).replace(/\s*\((?:remote|hybrid|on-site)\)\s*$/i, '')
   if (/^IND$/i.test(value)) return 'India'
   if (/^(?:United States(?: of America)?|USA|U\.S\.)$/i.test(value) || /,\s*United States(?: of America)?$/i.test(value)) return 'United States'

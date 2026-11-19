@@ -1,10 +1,23 @@
 import { createHash } from 'node:crypto';
 import { getSourceDescription } from './jobSourceContent.js';
 
-export const BATCH_ELIGIBILITY_VERSION = 'academic-batches-v1';
+export const BATCH_ELIGIBILITY_VERSION = 'academic-batches-v2';
 export const validBatchYear = value => Number.isInteger(value) && value >= 1900 && value <= 2199;
 export const batchYears = values => [...new Set((Array.isArray(values) ? values : []).filter(validBatchYear))].sort((a, b) => a - b);
 export const batchMaximum = job => validBatchYear(job?.eligibleBatchRange?.maxYear) ? job.eligibleBatchRange.maxYear : null;
+
+// "Graduate" in a role/degree name does not make nearby recruitment or
+// legislation dates graduation years. Keep candidate graduation predicates
+// even when ordinary date qualifiers separate the verb from its year.
+export const hasGraduationYearEvidence = value => {
+  const text = String(value ?? '');
+  return /\b(?:19|20|21)\d{2}\b/.test(text)
+    && (/\b(?:batches|batch|cohorts?|class\s+of|graduat(?:ion|ing|ed|es)|pass[- ]?outs?)\b/i.test(text)
+      || /\b(?:19|20|21)\d{2}\s+graduate\b/i.test(text)
+      || /\bgraduate\s+(?:(?:of|in|from|year|batch|only)\s+)*(?:19|20|21)\d{2}\b/i.test(text)
+      || /\bgraduate\s+(?:of|in|from|by|during|before|after|with|on|between)\b[^.!?;\n]{0,80}\b(?:19|20|21)\d{2}\b/i.test(text)
+      || /\b(?:who|to|will|must|should|shall|may|can|you|candidates?|applicants?|students?)\s+(?:(?:not|never|only|successfully)\s+){0,2}graduate\b[^.!?;\n]{0,80}\b(?:19|20|21)\d{2}\b/i.test(text));
+};
 
 export function graduationAnchor(now = new Date()) {
   const parts = new Intl.DateTimeFormat('en', { timeZone: 'Asia/Kolkata', year: 'numeric', month: 'numeric' }).formatToParts(now);

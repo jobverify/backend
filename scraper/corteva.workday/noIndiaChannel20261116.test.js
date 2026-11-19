@@ -40,8 +40,8 @@ test('Corteva reconciles a channel with no India rows without claiming a complet
  assert.equal(audits[0].IndiaObservations,0)
  assert.equal(audits[0].sourceScopeComplete,false)
  assert.equal(audits[0].lifecycleCleanupAllowed,false)
- assert.equal(fixture.calls.length,18)
- assert.equal(readCortevaOriginalResponses(jobs).length,18)
+ assert.equal(fixture.calls.length,16)
+ assert.equal(readCortevaOriginalResponses(jobs).length,16)
  assert.equal(readSourceObservationEvidence(jobs,'corteva').companyIndiaTotal,null)
 })
 for(const[variant,change]of[

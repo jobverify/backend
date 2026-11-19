@@ -13,12 +13,15 @@ const STYLES = {
   '/_next/static/css/f19dbbf993f3b973.css': '728cc0b90a816cae17b95f62b714d614bcf52262f039769d31bd7993e575a0c3',
   '/_next/static/css/3ad56064251c9581.css': 'a10da25a72f0559457d817f97847fc27656e842a86fd4247c2ac2ea7d6debec3',
   '/_next/static/css/c37ef131e7ddc94a.css': 'db762ed4e21b623e2b3d7544d8f517c03ada2234d125d8e4a60968383615ce09',
+  '/_next/static/css/d5216807d843bf9d.css': 'aee4440b8342fb8ed61da1d3e56e669a9cdee16f3082fad83578402e2c773548',
 }
-// The current base CSS changes only two TechWall CTA spacing rules. Keep exact
-// full-byte hashes and paired ordered declarations; never normalize CSS at run time.
+// Finite base CSS releases alter TechWall CTA spacing and the enquiry modal.
+// Keep full-byte hashes and paired ordered declarations, applying every rule
+// to the visible reader; never normalize or strip CSS at run time.
 const STYLE_PROFILES = [
   ['/_next/static/css/8ac2af147fdd4582.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
   ['/_next/static/css/c37ef131e7ddc94a.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
+  ['/_next/static/css/d5216807d843bf9d.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
 ]
 const sha = value => createHash('sha256').update(value).digest('hex')
 const text = value => typeof value === 'string' ? value.replace(/\s+/gu, ' ').trim() : ''

@@ -74,7 +74,12 @@ test('the full native own-role requirements are mandatory before recruiter biogr
   const end = fixture.detail.indexOf('<div class="bkg--white career-details--additional">', start)
   assert(start > 0 && end > start)
   const truncated = fixture.detail.slice(0, start) + '<div class="career-details-item--content"><p>Job description</p></div></section></div>' + fixture.detail.slice(end)
-  await assert.rejects(exercise({ detail: truncated }), /description|criteria|content/i)
+  const jobs = await exercise({ detail: truncated })
+  assert.equal(jobs.length, 0)
+  assert.equal(jobs.nativeCollectionEvidence.incompleteDetails, 1)
+  assert.equal(jobs.nativeCollectionEvidence.detailObservations[0].sourceDetailComplete, false)
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed, false)
 })
 
 test('a current native HTTP denial never becomes an empty successful result', async () => {
@@ -87,7 +92,7 @@ test('a hidden corporate delegation cannot authorize the shared group board', as
 })
 
 test('an empty or unrelated current employer response cannot become a verified zero', async () => {
-  const empty = fixture.employerPage.replace(/href="\/career-details\?[^\"]*"/g, 'href="#"')
+  const empty = fixture.employerPage.replace(/href="\/career-details\?[^"]*"/g, 'href="#"')
   await assert.rejects(exercise({ employerPage: empty }), /inventory|roles|cards/i)
   await assert.rejects(exercise({ employerPage: '<html><body>Other employer</body></html>' }), /inventory|form|identity/i)
 })

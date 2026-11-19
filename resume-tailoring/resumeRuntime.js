@@ -113,7 +113,7 @@ function monitorModelProgress({ fetchImpl, deadline, signal, onDiagnostic, stage
   timer.unref?.();
   return () => { clearInterval(timer); stopped.abort(); };
 }
-export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, paginationRepair = false, paginationBreakIds, preparationPlan, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {}, onUsage = () => {} } = {}) {
+export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, paginationRepair = false, paginationBreakIds, preparationPlan, tailoringPlan, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {}, onUsage = () => {} } = {}) {
   if (preparationPlan && !comparison && !paginationRepair) {
     const choice = await generateResumeText(preparationPlan.prompt, { fetchImpl, deadline, signal: parentSignal,
       paginationRepair: true, pagination, paginationBreakIds: preparationPlan.candidates.map(candidate => candidate.id),
@@ -124,10 +124,11 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   // Replace only our complete trusted instruction block. The actual template
   // follows as the assistant prefix; source/repair JSON and audit evidence stay
   // intact, including any template-looking text supplied by a candidate.
-  const json = comparison || paginationRepair;
+  const editPlan = !comparison && !paginationRepair ? tailoringPlan : null;
+  const json = comparison || paginationRepair || Boolean(editPlan);
   const stage = comparison ? 'comparing' : paginationRepair ? 'repairing' : 'generating';
-  const messages = [{ role: 'user', content: json ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
-  const outputLimit = comparison ? RESUME_MODEL.comparisonOutputTokens : paginationRepair ? PAGINATION_REPAIR_MAX_TOKENS : RESUME_MODEL.maxOutputTokens;
+  const messages = [{ role: 'user', content: editPlan ? editPlan.prompt : json ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
+  const outputLimit = comparison ? RESUME_MODEL.comparisonOutputTokens : paginationRepair ? PAGINATION_REPAIR_MAX_TOKENS : editPlan ? editPlan.maxTokens : RESUME_MODEL.maxOutputTokens;
   const request = async (endpoint, body) => {
     const timeout = AbortSignal.timeout(remainingBudget(deadline, RESUME_WORKER_BUDGET_MS));
     const signal = parentSignal ? AbortSignal.any([parentSignal, timeout]) : timeout;
@@ -165,8 +166,8 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   try {
     payload = json
       ? await request('/v1/chat/completions', { messages, chat_template_kwargs: chatTemplateKwargs, temperature: 0, max_tokens: maxTokens, stream: false,
-        response_format: { type: 'json_schema', json_schema: { name: comparison ? 'resume_source_comparison' : 'resume_pagination_repair', strict: true,
-          schema: comparison ? comparisonSchema : paginationRepairSchema(pagination, paginationBreakIds) } } })
+        response_format: { type: 'json_schema', json_schema: { name: comparison ? 'resume_source_comparison' : editPlan ? 'resume_tailoring_edits' : 'resume_pagination_repair', strict: true,
+          schema: comparison ? comparisonSchema : editPlan ? editPlan.schema : paginationRepairSchema(pagination, paginationBreakIds) } } })
       : await request('/completion', { prompt: fullPrompt, temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0,
         presence_penalty: 1.5, n_predict: maxTokens, stream: false,
         grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, includeHeader: false, sectionTitles, layout, headerChoices }) });
@@ -182,5 +183,5 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   }
   onUsage(usage);
   if (!complete || typeof content !== 'string') throw resumeFailure('model_output_incomplete');
-  return prefix + content;
+  return editPlan ? editPlan.apply(content) : prefix + content;
 }

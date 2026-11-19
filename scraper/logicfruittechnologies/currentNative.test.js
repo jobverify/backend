@@ -6,7 +6,7 @@ import {run} from './script.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 
-const captures=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261117.json.gz',import.meta.url))))
+const captures=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-qualified-20261119.json.gz',import.meta.url))))
 const HOME='https://www.logic-fruit.com/',MAIN=HOME+'assets/index-CAHOli87.js',LIST='https://api.logic-fruit.com/api/jobs?status=published'
 const listing=JSON.parse(Buffer.from(captures.find(r=>r.requestedUrl===LIST).bodyBase64,'base64'))
 const detail='https://api.logic-fruit.com/api/jobs/'+listing.data[0].slug
@@ -21,20 +21,22 @@ function replay(change=()=>{}){
  }
  return {fetchImpl,calls}
 }
-test('current public published feed retains nine whole reconciled observations and no inferred India jobs',async t=>{
+test('current public published feed retains nine whole reconciled roles with exact native geography and renderer proof',async t=>{
  const transport=replay();t.mock.method(globalThis,'fetch',transport.fetchImpl)
  const jobs=await run({fetchImpl:transport.fetchImpl,now:'2026-11-17T00:00:00Z'})
- assert.deepEqual(jobs,[])
+ assert.equal(jobs.length,9)
+ assert.ok(jobs.every(job=>job.country==='India'&&job.sourceDetailComplete&&job.sourceURLHTTPStatus===404))
  assert.deepEqual(readSourceObservationEvidence(jobs,'logicfruittechnologies'),{source:'logicfruittechnologies',recordKind:'vacancy-rows',observedRecordCount:9,observedVacancyCount:9,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
- assert.equal(readInventoryEvidence(jobs).status,'coverage-gap');assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+ assert.equal(readInventoryEvidence(jobs).status,'discovery-only');assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
  const evidence=jobs.nativeCollectionEvidence
  assert.equal(evidence.wholeObservedNativeBoardClosingReconciled,true);assert.equal(evidence.companyIndiaZeroProven,false)
- assert.equal(evidence.activeApplyVerified,false);assert.equal(evidence.renderedInventoryBindingVerified,false)
- assert.equal(evidence.observations.length,9);assert.equal(evidence.originalResponses.length,24)
+ assert.equal(evidence.activeApplyVerified,false);assert.equal(evidence.renderedInventoryBindingVerified,true)
+ assert.equal(evidence.activeOwnApplicationFormVerified,true)
+ assert.equal(evidence.observations.length,9);assert.equal(evidence.originalResponses.length,48)
  for(const row of evidence.observations){
-  assert.equal(row.country,null);assert.equal(row.applicationURL,null);assert.equal(row.publicationDate,null)
-  assert.ok(row.qualificationIssues.includes('native-role-country-unpublished'))
-  assert.ok(row.qualificationIssues.includes('whole-rendered-criteria-and-intake-unverified'))
+  assert.equal(row.country,'India');assert.ok(row.applicationURL.startsWith(HOME+'jobs-current-opening/'));assert.equal(row.publicationDate,null)
+  assert.ok(row.qualificationIssues.includes('company-inventory-scope-unverified'))
+  assert.ok(row.qualificationIssues.includes('legal-employer-and-backend-submission-unverified'))
   assert.deepEqual(row.nativeOpeningRecord,row.nativeClosingRecord);assert.deepEqual(row.ownOpeningModel,row.ownClosingModel)
   assert.deepEqual(row.nativeOpeningRecord,row.ownOpeningModel.data)
   assert.equal(Object.hasOwn(row.nativeOpeningRecord,'country'),false)

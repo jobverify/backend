@@ -36,16 +36,16 @@ export const rewriteSnapshotFilter = job => ({
 });
 
 /** Repair queue metadata only when the stored source independently verifies it. */
-export const reconcileRewriteCandidate = async (job, { update, now = new Date() } = {}) => {
+export const reconcileRewriteCandidate = async (job, { update, now = new Date(), reprocessCompleted = false } = {}) => {
   const input = buildRewriteInput(job);
   const sourceCopyRetry = isSourceCopyRetry(job);
-  if (job.status !== 'active' || (!['pending', 'failed'].includes(job.descriptionRewrite?.status) && !sourceCopyRetry)
+  if (job.status !== 'active' || (!reprocessCompleted && !['pending', 'failed'].includes(job.descriptionRewrite?.status) && !sourceCopyRetry)
     || input.inputHash !== job.sourceContentHash) return { kind: 'stale' };
-  const changedPolicy = job.descriptionRewrite.status === 'failed'
+  const changedPolicy = job.descriptionRewrite?.status === 'failed'
     && typeof job.descriptionRewrite.policyVersion === 'string'
     && job.descriptionRewrite.policyVersion !== REWRITE_MODEL.policyVersion;
   const eligible = input.eligible && input.sourceQuality?.ok !== false;
-  if (eligible && job.descriptionRewrite.inputHash === input.inputHash && !changedPolicy && !sourceCopyRetry) {
+  if (!reprocessCompleted && eligible && job.descriptionRewrite.inputHash === input.inputHash && !changedPolicy && !sourceCopyRetry) {
     return { kind: 'ready', job, input, repaired: false };
   }
 

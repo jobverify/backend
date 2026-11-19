@@ -76,7 +76,10 @@ function validateApplication(doc,form,match,postId){
 }
 export function parseJobs(rows,locations,teams,details,now){
  check(locations.every(l=>typeof l.name==='string'&&typeof l.slug==='string'),'Invalid office taxonomy')
- const known=new Map([[13,['Ahmedabad','ahmedabad']],[14,['Pune','pune']]])
+ // These are exact current publisher taxonomy identities. Remote is only a
+ // workplace label; USA supplies its own country and never inherits India
+ // from the separately corroborated Ahmedabad/Pune corporate offices.
+ const known=new Map([[13,['Ahmedabad','ahmedabad']],[14,['Pune','pune']],[15,['USA','usa']],[140,['Remote','remote']]])
  for(const l of locations)check(known.has(l.id)&&l.name===known.get(l.id)[0]&&l.slug===known.get(l.id)[1],'Unknown or conflicting native office')
  check(teams.every(t=>typeof t.name==='string'&&typeof t.slug==='string'),'Invalid native team taxonomy')
  const urls=new Set();return rows.map((row,index)=>{
@@ -84,7 +87,11 @@ export function parseJobs(rows,locations,teams,details,now){
   check(row.status==null||row.status==='publish','Non-public native status')
   for(const key of['country','countryCode','country_code','employer','company'])check(row[key]==null,'New native country/employer field requires qualification')
   check(Array.isArray(row.job_location)&&row.job_location.length>0&&new Set(row.job_location).size===row.job_location.length,'Missing/duplicate office scope')
-  const cities=row.job_location.map(id=>{const l=locations.find(l=>l.id===id);check(l&&known.has(id),'Unresolved role location');return l.name})
+  const labels=row.job_location.map(id=>{const l=locations.find(l=>l.id===id);check(l&&known.has(id),'Unresolved role location');return l.name})
+  const india=row.job_location.every(id=>id===13||id===14)
+  const usa=row.job_location.includes(15)&&row.job_location.every(id=>id===15||id===140)
+  check(india||usa||row.job_location.length===1&&row.job_location[0]===140,'Conflicting native role country taxonomy')
+  const country=india?'India':usa?'United States':null,cities=india?labels:[]
   check(Array.isArray(row.team)&&row.team.length>0&&new Set(row.team).size===row.team.length&&row.team.every(id=>teams.some(t=>t.id===id)),'Unknown/duplicate role team')
   check(typeof row.link==='string'&&/^https:\/\/www\.crestdata\.ai\/jobs\/[a-z0-9-]+\/$/.test(row.link)&&!urls.has(row.link),'Invalid/duplicate native URL');urls.add(row.link)
   const postedAt=date(row.date,now),titleDoc=readNativeDocument(row.title.rendered),title=titleDoc.nodes(n=>n.tag==='root').map(n=>titleDoc.text(n)).join('')
@@ -92,11 +99,20 @@ export function parseJobs(rows,locations,teams,details,now){
   const api=content(readNativeDocument(row.content.rendered),row.id),doc=readNativeDocument(details[index]),page=content(doc,row.id)
   canonical(doc,row.link)
   const meta=name=>one(doc.nodes(n=>n.tag==='meta'&&n.attrs.property===name),'native '+name).attrs.content
-  check(meta('og:title')===title+' - Crest Data'&&meta('og:url')===row.link,'Native page title/URL mismatch')
+  // The two current US posts publish authored SEO titles distinct from their
+  // feed/visible headings. Qualify those exact triples, not arbitrary aliases.
+  const seoTitles=new Map([
+   [54783,['Solutions Consultant – IT Security','Solutions Consultant - IT Security','Solutions Consultant – IT Security | California']],
+   [54777,['Cybersecurity Sales Specialist','Cybersecurity Sales Specialist','SMB & Mid-Market Cybersecurity Sales Specialist']],
+  ]),reviewed=seoTitles.get(row.id),ogTitle=meta('og:title')
+  const reviewedTitle=usa&&reviewed&&title===reviewed[0]&&page.title===reviewed[1]&&ogTitle===reviewed[2]
+  check((ogTitle===title+' - Crest Data'||reviewedTitle)&&meta('og:url')===row.link,'Native page title/URL mismatch')
   check(api.title===page.title&&api.title.length>0&&api.location===page.location&&api.jd===page.jd,'Native detail/feed mismatch')
-  check(page.location===cities.join('/'),'Native title office/taxonomy disagreement')
+  const foreignLabels=new Map([['15','California, USA'],['15,140','Central U.S. – Remote'],['140','Remote']])
+  const expectedLocation=india?cities.join('/'):foreignLabels.get([...row.job_location].sort((a,b)=>a-b).join(','))
+  check(page.location===expectedLocation,'Native title office/taxonomy disagreement')
   const position=/^No\. Of Positions\s*:\s*(\d+)\s+Location\s*:\s*([^]+?)\s+(?:Experience\s*:|Job Description\s*:|Role Overview\s*:|Required qualification\s*:)/i.exec(page.jd)
-  check(position&&Number(position[1])>0&&position[2].trim()===cities.join('/'),'Native vacancy/description location mismatch')
+  check(position&&Number(position[1])>0&&position[2].trim()===page.location,'Native vacancy/description location mismatch')
   const forms=descendants(page.root,n=>n.tag==='form').filter(f=>descendants(f,n=>n.tag==='input'&&n.attrs.name==='_wpcf7_container_post'&&n.attrs.value===String(row.id)).length)
   const form=one(forms,'job-bound public application form'),inputs=descendants(form,n=>n.tag==='input'&&n.attrs.name==='_wpcf7_container_post')
   check(inputs.length===1&&inputs[0].attrs.value===String(row.id),'Conflicting native application post ID')
@@ -104,6 +120,6 @@ export function parseJobs(rows,locations,teams,details,now){
   check(match&&match[1]===new URL(row.link).pathname&&match[4]===String(row.id)&&form.attrs.method?.toLowerCase()==='post','Native application identity mismatch')
   validateApplication(doc,form,match,row.id)
   const jd=description(page.jd)
-  return{jobId:String(row.id),title,company:'Crest Data Systems',source:'crestdatasystems',sourceURL:row.link,sourceUrl:row.link,url:row.link,applyUrl:new URL(action,BASE).href,location:cities.map(c=>c+', India').join('; '),locations:cities.map(c=>c+', India'),city:cities.length===1?cities[0]:null,country:'India',postedAt,postedAtPrecision:'day',nativePostedAt:row.date,nativePostedAtTimezone:null,nativeCountry:null,nativeLegalEmployer:null,nativeBrand:'Crest Data',nativeDetailTitle:page.title,nativeTitleDiscrepancy:title!==page.title,nativeLocation:page.location,nativeLocationIds:row.job_location,nativeTeamIds:row.team,nativeOpenPositions:Number(position[1]),sourceCountryEvidence:'Native exact office taxonomy corroborated by current corporate India office addresses; native country absent',sourceDescription:jd,description:jd,sourceDetailComplete:!!jd,sourceDetailStatus:jd?'complete':'missing-content',sourceListingComplete:false,sourceScopeComplete:false,scrapedAt:now}
+  return{jobId:String(row.id),title,company:'Crest Data Systems',source:'crestdatasystems',sourceURL:row.link,sourceUrl:row.link,url:row.link,applyUrl:new URL(action,BASE).href,location:india?cities.map(c=>c+', India').join('; '):page.location,locations:india?cities.map(c=>c+', India'):[page.location],city:cities.length===1?cities[0]:null,country,postedAt,postedAtPrecision:'day',nativePostedAt:row.date,nativePostedAtTimezone:null,nativeCountry:usa?'USA':null,nativeLegalEmployer:null,nativeBrand:'Crest Data',nativeDetailTitle:page.title,nativeTitleDiscrepancy:title!==page.title,nativeLocation:page.location,nativeLocationIds:row.job_location,nativeTeamIds:row.team,nativeOpenPositions:Number(position[1]),sourceCountryEvidence:india?'Native exact office taxonomy corroborated by current corporate India office addresses; native country absent':usa?'Exact native USA taxonomy and matching role-owned country labels':'Native Remote label supplies no country',sourceCountryScopeUnresolved:country===null,sourceDescription:jd,description:jd,sourceDetailComplete:!!jd,sourceDetailStatus:jd?'complete':'missing-content',sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,scrapedAt:now}
  })
 }

@@ -6,8 +6,15 @@ import{nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
 import{currentKaniniTransport}from'./currentTransport20261117.js'
 import{check,sha,norm,corporate,cards,detail,application}from'./currentModels20261117.js'
 const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
+// Exact current public form revision. Its complete HTML changes only four
+// versioned Zoho CSS/script declarations; native form ID and public API stay
+// unchanged. Keep both complete runtime bodies pinned and all questions held
+// to the existing full native schema and closing checks.
+const currentForm={bytes:10070,sha256:'223a1ced48129dacbd41e4742c65a7e608852d7c64a30c42078bb610ece5771d',program:{
+ url:'https://static.zohocdn.com/recruit/javascript/new-webform-render.5e1789cf0193bff12e8805c3fd83a57f.js',
+ bytes:2046159,sha256:'0dc9cb788835fae70d207e1c56b871073064dce2ccb96315d7fa483ad485699e'}}
 export async function runCurrentKanini(options={}){
- options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(c=>c.url),profile.form.url,profile.formProgram.url,profile.formAPI])
+ options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(c=>c.url),profile.form.url,profile.formProgram.url,currentForm.program.url,profile.formAPI])
  const io=currentKaniniTransport({...options,allowedRequest:(url,method,body)=>method==='POST'?url===profile.listingClient.endpoint&&/^search=&location=&action=get_all_jobs&page=(?:[1-9]|1\d|20)&limit=12$/.test(body):allowed.has(url)}),verifiedAt=new Date().toISOString()
  const exact=async(entry,kind)=>{const p=await io.read(entry.url,kind);check(p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'whole exact native form/client original');return p}
  const round=async()=>{
@@ -23,7 +30,9 @@ export async function runCurrentKanini(options={}){
   for(let page=1;page<=20;page++){const body=profile.listingClient.bodyPrefix+page+profile.listingClient.bodySuffix,p=await io.read(profile.listingClient.endpoint,'html',body),batch=cards(p.text);pages.push({page,body,html:p.text});for(const row of batch){check(!ids.has(row.id),'unique native role across whole pagination');ids.add(row.id);rows.push(row)}if(!batch.length){terminal=true;break}}
   check(terminal,'actual native terminal response not reached');const details=[]
   for(const row of rows){if(nativeCountryName(row.country)!=='India')continue;allowed.add(row.url);const p=await io.read(row.url);details.push(detail(p.text,row,profile))}
-  await exact(profile.form,'html');await exact(profile.formProgram,'js');const form=application((await io.read(profile.formAPI,'json')).value,profile)
+  const formPage=await io.read(profile.form.url,'html'),current=formPage.bodyBytes===currentForm.bytes&&formPage.bodySHA256===currentForm.sha256
+  check(current||formPage.bodyBytes===profile.form.bytes&&formPage.bodySHA256===profile.form.sha256,'whole exact native form original')
+  await exact(current?currentForm.program:profile.formProgram,'js');const form=application((await io.read(profile.formAPI,'json')).value,profile)
   return{rows,pages,details,application:form}
  }
  try{

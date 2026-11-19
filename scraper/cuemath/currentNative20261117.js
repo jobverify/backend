@@ -15,7 +15,7 @@ export async function runCurrentCuemath(options={}){
    check(equal(clientScriptDeclarations(page.text).map(n=>({attrs:n.attrs,...(n.attrs.src?{}:{sha256:sha(n.raw??'')})})),profile.programs),'whole current executable declaration graph')
    const config=doc.nodes(n=>n.tag==='script'&&n.attrs.id==='apply-config'&&n.attrs.type==='application/json');check(config.length===1,'active whole application config')
    const applicationConfig=JSON.parse(config[0].raw);check(applicationConfig.mode==='landing'&&applicationConfig.dev===false&&Array.isArray(applicationConfig.openRegions)&&Array.isArray(applicationConfig.degrees),'current native public screening config model')
-   const client=await io.read(profile.client.url,'js');check(client.bodySHA256===profile.client.sha256&&client.bodyBytes===profile.client.bytes,'whole reviewed current screening program')
+   const client=await io.read(profile.client.url,'js');check([profile.client,...(profile.reviewedClientVersions||[])].some(version=>client.bodySHA256===version.sha256&&client.bodyBytes===version.bytes),'whole reviewed current screening program')
    io.checkpoint();return{redirect:{url:redirect.url,status:redirect.status,location:redirect.location,html:redirect.text},url:page.url,fullNativeHTML:page.text,programs:profile.programs,applicationConfig,wholeClientSHA256:client.bodySHA256}
   },opening=await acquire(),closing=await acquire(),applicationModel=model=>({...model,redirect:{url:model.redirect.url,status:model.redirect.status,location:model.redirect.location}})
   check(equal(applicationModel(opening),applicationModel(closing)),'full native application/config/program/passive intake context changed at closing');io.checkpoint()

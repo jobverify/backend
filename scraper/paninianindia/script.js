@@ -2,6 +2,10 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
+import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
+import { nativeText, nativeLines } from '../../scraper-support/native-sources/firstPartyNativeHtml.js'
+import { createFirstPartyDocumentReader, firstPartyFailure } from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -43,9 +47,6 @@ export const EXPECTED_JOB_TITLES = [
   'Structural Engineer',
   'UX Developer',
 ]
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 16)))
@@ -91,43 +92,14 @@ const normalizeUrl = (value) => {
   }
 }
 
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
 const normalizeLocation = (value) => {
   const normalized = normalizeWhitespace(value)
     ?.replace(/\s*\/\s*/g, ' / ')
     ?.replace(/\s*,\s*/g, ', ')
 
-  if (!normalized) return null
-  if (/, \bIndia\b/i.test(normalized)) return normalized
+  if (!['Hyderabad', 'Bangalore', 'Hyderabad / Bangalore'].includes(normalized)) {
+    throw new Error('Paninian India native job location requires geography review')
+  }
   return `${normalized}, India`
 }
 
@@ -135,8 +107,7 @@ const extractPrimaryCity = (location) => {
   const normalized = normalizeWhitespace(location)?.replace(/,\s*India$/i, '')
   if (!normalized) return null
 
-  const firstToken = normalized.split('/')[0]?.trim()
-  return normalizeCity(firstToken || normalized)
+  return normalized.includes('/') ? null : normalizeCity(normalized)
 }
 
 const extractExperienceRequired = (value) => {
@@ -163,30 +134,28 @@ const normalizeSkill = (value) => normalizeWhitespace(
 )
 
 export const extractApplyEmail = (html) => {
-  const match = String(html ?? '').match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)
-  return match ? match[0].toLowerCase() : null
+  const document = readVisibleNativeDocument(String(html ?? ''), { strict: true })
+  const emails = new Set()
+  const walk = (node, ancestors = []) => {
+    if (node.inert || ['header', 'footer', 'nav', 'script', 'style', 'template', 'noscript'].includes(node.tag)) return
+    if (node.tag === 'a' && /^mailto:/i.test(node.attrs.href || '')) {
+      const address = node.attrs.href.slice(7).toLowerCase()
+      const context = ancestors.findLast(parent => /^(?:p|h[1-6])$/.test(parent.tag))
+      if (/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(address)
+        && normalizeText(nativeText(node)) === address
+        && context && /\bemail us at\b/i.test(nativeText(context))) emails.add(address)
+    }
+    for (const child of node.children) if (typeof child !== 'string') walk(child, [...ancestors, node])
+  }
+  for (const root of document.nodes(node => node.tag === 'root')) walk(root)
+  return emails.size === 1 ? [...emails][0] : null
 }
 
-export const extractRichTextSegments = (html) => [...String(html ?? '').matchAll(
-  /<div[^>]+data-testid=["']richTextElement["'][^>]*>\s*<h([1-6])[^>]*class=["'][^"']*\bwixui-rich-text__text\b[^"']*["'][^>]*>([\s\S]*?)<\/h\1>\s*<\/div>/gi,
-)]
-  .map((match) => {
-    const lines = decodeHtmlEntities(match[2])
-      .replace(/<br\b[^>]*\/?>/gi, '\n')
-      .replace(/<\/?(?:span|a|strong|em|p|div|section|article)\b[^>]*>/gi, ' ')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/\r/g, '')
-      .split('\n')
-      .map((line) => normalizeWhitespace(line))
-      .filter(Boolean)
-
-    return {
-      html: match[2],
-      lines,
-      text: normalizeWhitespace(lines.join(' ')),
-    }
-  })
-  .filter((segment) => segment.text)
+export const extractRichTextSegments = html => readVisibleNativeDocument(String(html ?? ''), { strict: true })
+  .nodes(node => node.tag === 'div' && node.attrs['data-testid'] === 'richTextElement')
+  .flatMap(node => node.children.filter(child => typeof child !== 'string' && !child.inert && /^h[1-6]$/.test(child.tag)))
+  .map(node => ({ lines: nativeLines(node), text: normalizeWhitespace(nativeText(node)) }))
+  .filter(segment => segment.text)
 
 export const hasOfficialHomepageSignal = (html) => {
   const page = String(html ?? '')
@@ -252,13 +221,6 @@ export const isVerifiedMissingRoute = ({ status, html }) => {
     && !hasOfficialOpenPositionsSignal(page)
 }
 
-const buildJobDescription = ({ minimumQualification, experienceRequired, requiredSkills }) => normalizeWhitespace([
-  minimumQualification ? `Minimum qualification: ${minimumQualification}.` : null,
-  experienceRequired ? `Experience: ${experienceRequired}.` : null,
-  requiredSkills.length ? `Skills: ${requiredSkills.join('; ')}.` : null,
-  `Apply via ${SHARED_APPLY_EMAIL}.`,
-].filter(Boolean).join(' ')) || null
-
 const buildRoleFromSegments = ({ titleSegment, locationSegment, qualificationSegment, skillsSegment }) => {
   const title = normalizeWhitespace(titleSegment?.text)
   const location = normalizeLocation(locationSegment?.text)
@@ -277,6 +239,12 @@ const buildRoleFromSegments = ({ titleSegment, locationSegment, qualificationSeg
     throw new Error(`Paninian India could not normalize a stable job identifier for ${title}`)
   }
 
+  const nativeRoleRecord = { title, location: normalizeWhitespace(locationSegment.text),
+    qualification: normalizeWhitespace(qualificationSegment.text), skills: [...skillsSegment.lines] }
+  const sourceDescription = [nativeRoleRecord.qualification, ...nativeRoleRecord.skills].join('\n')
+  if (/\b(?:this (?:role|position|job) is (?:closed|filled)|no longer accepting applications|applications (?:are )?closed)\b/i.test(sourceDescription)) {
+    throw new Error('Paninian India native role is explicitly closed')
+  }
   return {
     title,
     department: null,
@@ -285,7 +253,9 @@ const buildRoleFromSegments = ({ titleSegment, locationSegment, qualificationSeg
     state: null,
     country: 'India',
     jobId,
-    requisitionId: jobId,
+    requisitionId: null,
+    sourceNativeJobId: null,
+    jobIdentifierProvenance: 'derived source and native title; no native requisition identifier exposed',
     sourceUrl: OPEN_POSITIONS_URL,
     applyUrl: SHARED_APPLY_URL,
     employmentType: null,
@@ -296,11 +266,20 @@ const buildRoleFromSegments = ({ titleSegment, locationSegment, qualificationSeg
     requiredSkills,
     postingDate: null,
     closingDate: null,
-    jobDescription: buildJobDescription({
-      minimumQualification,
-      experienceRequired,
-      requiredSkills,
-    }),
+    jobDescription: sourceDescription,
+    sourceDescription,
+    nativeRoleRecord,
+    legalEmployer: null,
+    nativeEmployerDisplayName: 'Paninian Aerospace',
+    sourceDetailComplete: true,
+    sourceScopeComplete: false,
+    sourceListingComplete: false,
+    lifecycleCleanupAllowed: false,
+    sourceApplicationHandoff: 'active recruiting paragraph and matching mailto anchor on linked first-party careers page',
+    applicationVisited: false,
+    applicationSubmitted: false,
+    sourceGeographyEvidence: { kind: 'finite-whole-native-city-label', nativeLocation: nativeRoleRecord.location,
+      references: ['https://hyderabad.telangana.gov.in/', 'https://bengaluruurban.nic.in/en/history/'] },
     remoteStatus: null,
   }
 }
@@ -398,66 +377,61 @@ const normalizeScrapedAt = (value) => {
 }
 
 export const createPaninianIndiaScraper = ({ now = () => new Date() } = {}) => ({
-  async run({ fetchPage = defaultFetchPage, now: overrideNow } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Paninian India verified official homepage no longer matches the trusted first-party surface')
+  async run(options = {}) {
+    const adapted = { ...options }
+    // Preserve the historical structured HTML callback. It must still provide
+    // its real status and final URL; a body-only callback is never admitted.
+    if (options.fetchPage) adapted.fetchPage = async (url, init) => {
+      const page = await options.fetchPage(url, init)
+      if (typeof page?.html !== 'string') return page
+      if (!Number.isInteger(page.status) || typeof page.url !== 'string') throw firstPartyFailure(SOURCE, 'Missing structured callback response metadata')
+      return { ...page, body: page.html, headers: page.headers ?? { 'content-type': 'text/html' } }
     }
-
-    if (!hasVerifiedCareersLink(homepage.html)) {
-      throw new Error('Paninian India homepage no longer links to the verified first-party careers landing page')
-    }
-
-    for (const aliasUrl of HOMEPAGE_ALIAS_URLS) {
-      const aliasPage = await fetchPage(aliasUrl)
-
-      if (!isVerifiedHomepageAlias(aliasPage)) {
-        throw new Error('Paninian India official company domain aliases changed materially')
+    const reader = createFirstPartyDocumentReader(adapted, { source: SOURCE, urls: [HOMEPAGE_URL, CAREERS_URL, OPEN_POSITIONS_URL] })
+    const failure = message => firstPartyFailure(SOURCE, message)
+    const read = async (url, closing = false) => {
+      try { return (await reader.read(url)).body } catch (error) {
+        if (closing && !options.signal?.aborted) throw failure('Closing reconciliation failed: ' + error.message)
+        throw error
       }
     }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-
-    if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
-      throw new Error('Paninian India verified first-party careers landing page no longer matches the trusted surface')
+    const authority = (homepage, careers, closing = false) => {
+      const prefix = closing ? 'Closing reconciliation: ' : ''
+      if (!hasOfficialHomepageSignal(homepage) || !hasVerifiedCareersLink(homepage)) throw failure(prefix + 'verified official homepage changed')
+      if (!hasOfficialCareersSignal(careers)) throw failure(prefix + 'verified careers landing page changed')
+      if (!hasVerifiedOpenPositionsLink(careers)) throw failure(prefix + 'careers landing page no longer links to verified positions')
+      if (extractApplyEmail(careers) !== SHARED_APPLY_EMAIL) throw failure(prefix + 'active recruiting handoff changed')
     }
-
-    if (!hasVerifiedOpenPositionsLink(careersPage.html)) {
-      throw new Error('Paninian India careers landing page no longer links to the verified first-party open positions page')
-    }
-
-    if (extractApplyEmail(careersPage.html) !== SHARED_APPLY_EMAIL) {
-      throw new Error('Paninian India careers landing page no longer exposes the verified shared apply email')
-    }
-
-    const openPositionsPage = await fetchPage(OPEN_POSITIONS_URL)
-
-    if (openPositionsPage.status !== 200 || !hasOfficialOpenPositionsSignal(openPositionsPage.html)) {
-      throw new Error('Paninian India verified open positions page no longer matches the trusted first-party surface')
-    }
-
-    for (const missingRouteUrl of MISSING_ROUTE_URLS) {
-      const missingRoute = await fetchPage(missingRouteUrl)
-
-      if (!isVerifiedMissingRoute(missingRoute)) {
-        throw new Error('Paninian India missing canonical careers routes changed materially')
+    try {
+      const homepage = await read(HOMEPAGE_URL), careers = await read(CAREERS_URL)
+      authority(homepage, careers)
+      const jobs = extractPublicJobs(await read(OPEN_POSITIONS_URL))
+      const closingJobs = extractPublicJobs(await read(OPEN_POSITIONS_URL, true))
+      if (JSON.stringify(jobs.map(job => job.nativeRoleRecord)) !== JSON.stringify(closingJobs.map(job => job.nativeRoleRecord))) {
+        throw failure('Closing reconciliation changed native role criteria')
       }
-    }
-
-    const scrapedAt = normalizeScrapedAt((overrideNow || now)())
-    const jobs = extractPublicJobs(openPositionsPage.html)
-
-    return jobs.map((job) => ({
-      ...job,
-      company: COMPANY,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt,
-      companyCareerPage: OPEN_POSITIONS_URL,
-      companyDomain: COMPANY_DOMAIN,
-      atsPlatform: 'official-company-careers',
-    }))
+      const closingCareers = await read(CAREERS_URL, true), closingHome = await read(HOMEPAGE_URL, true)
+      authority(closingHome, closingCareers, true)
+      const scrapedAt = normalizeScrapedAt((options.now || now)())
+      const selected = options.maxJobs == null ? jobs : jobs.slice(0, options.maxJobs)
+      if (options.maxJobs != null && (!Number.isSafeInteger(options.maxJobs) || options.maxJobs < 1)) throw RangeError('Invalid Paninian maxJobs')
+      const output = selected.map(job => ({ ...job, company: COMPANY, source: SOURCE,
+        link: job.applyUrl, scrapedAt, companyCareerPage: OPEN_POSITIONS_URL, companyDomain: COMPANY_DOMAIN,
+        atsPlatform: 'official-company-careers', nativeRoleClosingReconciled: true }))
+      Object.defineProperty(output, 'nativeCollectionEvidence', { value: {
+        ...reader.stats(), nativeInventoryCount: jobs.length, nativeRoles: jobs.map(job => job.nativeRoleRecord),
+        closingNativeRoles: closingJobs.map(job => job.nativeRoleRecord), nativeEmployerDisplayName: 'Paninian Aerospace',
+        companyScopeComplete: false, lifecycleCleanupAllowed: false, activeEmailHandoffVerified: true,
+        applicationSubmitted: false, legalEmployerQualified: false,
+      }, configurable: true })
+      return attachInventoryEvidence(output, { status: 'discovery-only', surface: OPEN_POSITIONS_URL,
+        firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+        pagesFetched: reader.stats().requests, reportedTotal: jobs.length, indiaFacetCount: jobs.length,
+        verifiedAt: scrapedAt, reason: 'Current linked native grid and active recruiting mailto reconciled; company-wide inventory scope unproven' })
+    } catch (error) {
+      if (error && typeof error === 'object' && !options.signal?.aborted) error.nativeCollectionEvidence = reader.stats()
+      throw error
+    } finally { reader.close() }
   },
 })
 

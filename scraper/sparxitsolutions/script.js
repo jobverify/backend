@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { hasCurrentSparxClient, runCurrentSparx } from './currentNative.js'
 
 import { SPARX_IT_SOLUTIONS_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -125,11 +126,11 @@ export const createSparxItSolutionsScraper = ({
   maxJobs = null,
   now: defaultNow = () => new Date().toISOString(),
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    now = defaultNow,
-  } = {}) {
+  async run(options = {}) {
+    const fetchText = options.fetchText || defaultFetchText
+    const now = options.now || defaultNow
     const careersHtml = await fetchText(CAREERS_URL)
+    if (hasCurrentSparxClient(careersHtml)) return runCurrentSparx({ ...options, now, maxJobs: options.maxJobs ?? maxJobs })
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('The verified SPARX IT Solutions careers accordion changed materially')
     }

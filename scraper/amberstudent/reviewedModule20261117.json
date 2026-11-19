@@ -14,5 +14,24 @@
   "proof": "Complete34481-byte current chunk equals whole34469-byte original after removing the single AboutUs menu literal property ,redirect:!0. Only one AST Property was added; exact Keka tenant, native fetch/filter/render and per-role link logic unchanged. Whole browser/dependency equivalence is not certified.",
   "sourceScopeComplete": false,
   "browserEquivalenceComplete": false,
-  "lifecycleCleanupAllowed": false
+  "lifecycleCleanupAllowed": false,
+  "alternatives": [
+    {
+      "reviewedAt": "2026-11-19",
+      "main": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/main.482ddd784a97e607.desktop.js",
+        "bytes": 1416076,
+        "sha256": "5cc6434eac85a3c936f5e75df8af018118f31950e86fb25fc2e7d9de0509d2a1"
+      },
+      "chunk": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/5004.f78f49d67ba53ae3.desktop.js",
+        "bytes": 34481,
+        "sha256": "446081f7792572d7f171bc318ff3fbb51c7b4cce24232d13428f1a4823c4114c"
+      },
+      "proof": "Current first-party job-opening document declares this exact whole main. Its complete Jobs route loader and resolved chunk remain unchanged, and the complete Jobs executable is byte-identical to the previous reviewed Keka client. Other main modules changed; no browser, dependency or company-scope equivalence is asserted. Retain the coherent whole URL/byte/hash tuple and native opening/closing checks.",
+      "browserEquivalenceComplete": false,
+      "sourceScopeComplete": false,
+      "lifecycleCleanupAllowed": false
+    }
+  ]
 }

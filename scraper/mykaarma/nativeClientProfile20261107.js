@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs'
 import {nativeError} from './nativeTransport20261107.js'
 const deployment=JSON.parse(readFileSync(new URL('./reviewedDeployment20261113.json',import.meta.url),'utf8'))
 const currentDeployment=JSON.parse(readFileSync(new URL('./reviewedDeployment20261117.json',import.meta.url),'utf8'))
+const november18Deployment=JSON.parse(readFileSync(new URL('./reviewedDeployment20261118.json',import.meta.url),'utf8'))
 export const ASSETS={
  "https://ats.us1.rippling.com/_next/static/chunks/393-a9f2d9d9df16aac4.js": "d4782623ee67e8df8adaa33bbb973193eb1e1153c6259d5502050ae7b1860be8",
  "https://ats.us1.rippling.com/_next/static/chunks/716-108148d7f6b0637e.js": "2422fa6338ccad3a754dd44af3437727a7abfe0cc6ddf17242b4673686f3cd87",
@@ -13,7 +14,7 @@ export const ASSETS={
  "https://ats.us1.rippling.com/_next/static/chunks/pages/%5BjobBoardSlug%5D/jobs-349eb53a50b15de1.js": "de2ee247d2187f319c6f228db7388ddb1e22feeebe898c737bb64997a26f0051",
  "https://static-assets.ripplingcdn.com/ats/embeds/job-board.v1.js": "ccbb518a08c80678c93c6028fc38579edc3edf0da0b03fd34a5d6834186aa6a2"
 }
-Object.assign(ASSETS,deployment.assets,currentDeployment.assets)
+Object.assign(ASSETS,deployment.assets,currentDeployment.assets,november18Deployment.assets)
 const documents={
  "embed": [
   {
@@ -786,9 +787,12 @@ const DECLARATION_ATTRIBUTES={"embed":[[{"tag":"script","attrs":{"crossorigin":"
 // November 17 appends one finite build/app/application tuple. Complete AST
 // review found only paired Sentry debug literals and manifest relinking;
 // original whole-byte hashes and declaration tuples stay exact at runtime.
+// November 18 appends the reviewed telemetry/upload-error and listing-display
+// release. Query, identity, native-model and passive-context checks stay exact;
+// every new program is pinned in full, including the changed telemetry.
 for(const kind of ['embed','role','application']){
- documents[kind].push(...deployment.documents[kind],...currentDeployment.documents[kind])
- DECLARATION_ATTRIBUTES[kind].push(...deployment.attributes[kind],...currentDeployment.attributes[kind])
+ documents[kind].push(...deployment.documents[kind],...currentDeployment.documents[kind],...november18Deployment.documents[kind])
+ DECLARATION_ATTRIBUTES[kind].push(...deployment.attributes[kind],...currentDeployment.attributes[kind],...november18Deployment.attributes[kind])
 }
 const attributeSignature=nodes=>nodes.filter(n=>['script','style'].includes(n.tag)).map(n=>({tag:n.tag,attrs:Object.fromEntries(Object.entries(n.attrs).sort(([a],[b])=>a.localeCompare(b)))})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)))
 export function qualifyDocument(document,kind){

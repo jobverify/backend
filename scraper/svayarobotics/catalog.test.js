@@ -11,17 +11,17 @@ test('Svaya Robotics is registered against the verified first-party openings sur
   assert.ok(provider)
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Svaya Robotics')
-  assert.equal(provider.companyCareerPage, 'https://www.svayatt.co.in/blank-24')
+  assert.equal(provider.companyCareerPage, 'https://svayarobotics.com/careers/')
   assert.equal(provider.atsPlatform, 'official-company-careers')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-and-open-positions-validation')
+  assert.equal(provider.paginationStrategy, 'bounded-own-homepage-careers-and-role-pages-with-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-homepage-alias+verified-careers-page+verified-open-positions-grid+verified-missing-routes+mailto-apply',
+    'verified-own-employer-homepage+native-careers-role-links+full-native-role-criteria+whole-declared-client-and-stylesheet-verification+native-candidate-form+closing-reconciliation',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(provider.companyDomain, 'svayatt.co.in')
+  assert.equal(provider.companyDomain, 'svayarobotics.com')
   assert.match(provider.modulePath, /svayarobotics[\\/]script\.js$/i)
   assert.equal(Object.prototype.hasOwnProperty.call(companyAliases, 'Svaya Robotics'), false)
 })
@@ -44,6 +44,6 @@ test('Svaya Robotics matches company coverage directly from provider metadata an
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'svayarobotics')
-  assert.equal(scraper.provider.companyCareerPage, 'https://www.svayatt.co.in/blank-24')
+  assert.equal(scraper.provider.companyCareerPage, 'https://svayarobotics.com/careers/')
   assert.match(scraper.dryRunFile, /svayarobotics[\\/]jobs\.json$/i)
 })

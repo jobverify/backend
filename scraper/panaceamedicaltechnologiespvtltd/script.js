@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -129,7 +131,7 @@ const extractSectionLines = (lines, startPattern, endPatterns) => {
 
 // Validate the entire published location, including every place in a list.
 // A city substring cannot establish India scope when other location tokens remain.
-const INDIA_LOCATION_ATOM = String.raw`(?:Malur(?:\s*\(Kolar District\)\s*25\s*Km\s+from\s+Bangalore)?|Whitefield(?:\s*(?:,|-)\s*|\s+)(?:Bangalore|Bengaluru)|Bangalore|Bengaluru|Hyderabad|Jaipur|Punjab|Himachal Pradesh|Jammu\s*&\s*Kashmir|Pune|Mumbai|Chennai|Delhi)`
+const INDIA_LOCATION_ATOM = String.raw`(?:Malur(?:_Karnataka|\s*\(Kolar District\)\s*25\s*Km\s+from\s+Bangalore)?|Whitefield(?:\s*(?:,|-)\s*|\s+)(?:Bangalore|Bengaluru)|Bangalore|Bengaluru|Hyderabad|Jaipur|Punjab|Himachal Pradesh|Jammu\s*&\s*Kashmir|Pune|Mumbai|Chennai|Delhi)`
 const INDIA_LOCATION_PATTERN = new RegExp(
   String.raw`^(?:India|All(?:\s+Over)?\s+India|${INDIA_LOCATION_ATOM}(?:\s*(?:/|,)\s*${INDIA_LOCATION_ATOM})*(?:\s*,\s*India)?)$`,
   'i',
@@ -152,7 +154,7 @@ const parseLocation = (value) => {
     return { location, city: null, state: null, locations: [location] }
   }
 
-  if (/\bMalur\b/i.test(location)) {
+  if (/^Malur_Karnataka$|\bMalur\b/i.test(location)) {
     return { location, city: 'Malur', state: 'Karnataka', locations: [location] }
   }
 
@@ -362,7 +364,8 @@ export const createPanaceaMedicalTechnologiesScraper = ({
 } = {}) => ({
   async run({ fetchText = defaultFetchText, now: overrideNow, signal } = {}) {
     signal?.throwIfAborted()
-    const read = async url => { signal?.throwIfAborted(); const value = await fetchText(url, { signal }); signal?.throwIfAborted(); return value }
+    const nativeResponses = []
+    const read = async url => { signal?.throwIfAborted(); const value = await fetchText(url, { signal }); signal?.throwIfAborted(); nativeResponses.push({ url, html: value }); return value }
     const homepageHtml = await read(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error(HOMEPAGE_ERROR)
@@ -408,7 +411,7 @@ export const createPanaceaMedicalTechnologiesScraper = ({
       throw new Error('Panacea incomplete or duplicate counted inventory')
     }
 
-    const jobs = []
+    const jobs = [], nativeDetails = []
 
     for (const summary of uniqueSummaries) {
       let detail = {}
@@ -416,13 +419,15 @@ export const createPanaceaMedicalTechnologiesScraper = ({
       if (summary.detailUrl) {
         const detailHtml = await read(summary.detailUrl)
         detail = extractJobDetail(detailHtml)
+        nativeDetails.push({ sourceUrl: summary.detailUrl, detail })
         if (!detail.detailTitle || toTitleKey(detail.detailTitle) !== toTitleKey(summary.title) || !detail.jobDescription || detail.jobDescription.length < 40) {
           throw new Error('Panacea incomplete or mismatched public job detail')
         }
       }
 
       const jobLocation = detail.location || summary.location || ''
-      if (!INDIA_LOCATION_PATTERN.test(normalizeWhitespace(jobLocation) || '')) throw new Error('Panacea unverified India job location scope')
+      const nativeLocations = [summary.location, detail.location].map(normalizeWhitespace).filter(Boolean)
+      if (!nativeLocations.length || nativeLocations.some(location => !INDIA_LOCATION_PATTERN.test(location))) throw new Error('Panacea unverified India job location scope')
       const locationFields = parseLocation(jobLocation)
       const jobId = summary.listingJobId
       if (!/^\d+$/.test(jobId || '') || extractApplyJobId(summary.applyUrl) !== jobId || jobs.some(job => job.jobId === jobId)) throw new Error('Panacea invalid or duplicate listing identity')
@@ -460,10 +465,22 @@ export const createPanaceaMedicalTechnologiesScraper = ({
         companyCareerPage: CAREERS_URL,
         companyDomain: COMPANY_DOMAIN,
         atsPlatform: 'official-first-party-careers-portal',
+        sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false,
       })
     }
 
-    return jobs
+    attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
+      observedRecordCount: uniqueSummaries.length, observedVacancyCount: uniqueSummaries.length,
+      sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: {
+      source: SOURCE, nativeOpeningSummaries: uniqueSummaries, nativeDetails, nativeResponses,
+      nativeReportedTotal: expectedCount, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+      companyGlobalTotal: null, companyIndiaTotal: null,
+    } })
+    return attachInventoryEvidence(jobs, { status: 'discovery-only', surface: CAREERS_URL,
+      firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+      pagesFetched: nativeResponses.length, reportedTotal: expectedCount, indiaFacetCount: null,
+      verifiedAt: (overrideNow || now)(), reason: 'counted-native-listing-and-full-details-retained;closing-and-company-wide-coverage-unverified' })
   },
 })
 

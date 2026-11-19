@@ -46,6 +46,7 @@ export function readCdotListing(html){
  const header=one(raw.nodes(n=>n.tag==='tr'&&raw.nodes(c=>c.tag==='th',n).length===6,rawTable),'native table header')
  const columns=raw.nodes(n=>['td','th'].includes(n.tag),header).map(n=>raw.text(n))
  need(same(columns,['S_No','Post','Opening Date','Closing Date','Advertisement','Application Format']),'native table fields changed')
+ const unqualifiedRows=[]
  const body=one(within(table,n=>n.tag==='tbody'),'native table body'),rows=within(body,n=>n.tag==='tr'&&n!==header).map(row=>{
   const cells=within(row,n=>['td','th'].includes(n.tag));need(cells.length===6,'unreviewed native role fields')
   const title=d.text(cells[1]),openingLabel=d.text(cells[2]),closingLabel=d.text(cells[3])
@@ -53,16 +54,27 @@ export function readCdotListing(html){
   const opening=localDate(openingLabel),closing=localDate(closingLabel)
   need(opening.date+'T'+opening.time<=closing.date+'T'+closing.time,'application window reversed')
   const advert=one(within(cells[4],n=>n.tag==='a'&&n.attrs.href),'declared native PDF'),apply=one(within(cells[5],n=>n.tag==='a'&&n.attrs.href),'declared application advertisement')
-  const sourceUrl=new URL(advert.attrs.href,CURRENT_OPENINGS_URL).href,own=application(new URL(apply.attrs.href,CURRENT_OPENINGS_URL).href)
+  const sourceUrl=new URL(advert.attrs.href,CURRENT_OPENINGS_URL).href,applyUrl=new URL(apply.attrs.href,CURRENT_OPENINGS_URL).href
   need(isAdvertisementURL(sourceUrl),'advertisement outside the declared official PDF surface')
+  // This separately declared portal has no reviewed advertisement-ID/criteria
+  // contract. Retain its complete table record without admitting it as a job
+  // or preventing an independent, supported advertisement from being read.
+  if(applyUrl==='https://paid-internship.cdot.in/'){
+   unqualifiedRows.push({title,jobId:null,nativeApplicationAdvertisementID:null,sourceUrl,applyUrl,
+    recordKind:'unqualified-recruitment-record',reason:'separate-internship-portal-contract-unreviewed',
+    sourceApplicationOpeningLabel:openingLabel,sourceApplicationClosingLabel:closingLabel,
+    attrs:structuredClone(row.attrs),cells:cells.map(n=>({attrs:structuredClone(n.attrs),text:d.text(n),tree:tree(n)})),tree:tree(row)})
+   return null
+  }
+  const own=application(applyUrl)
   return {title,jobId:SOURCE+'-'+own.id,nativeApplicationAdvertisementID:own.id,sourceUrl,applyUrl:own.url,
    sourceApplicationOpeningLabel:openingLabel,sourceApplicationClosingLabel:closingLabel,applicationOpeningDate:opening.date,
    applicationOpeningTimeLocal:opening.time,closingDate:closing.date,applicationClosingTimeLocal:closing.time,
    applicationDateTimezone:null,attrs:structuredClone(row.attrs),cells:cells.map(n=>({attrs:structuredClone(n.attrs),text:d.text(n),tree:tree(n)})),tree:tree(row)}
- })
- if(rows.length===0)throw Object.assign(Error('C-DOT native: native empty inventory cannot establish company absence'),{code:'CDOT_EMPTY_INVENTORY_UNPROVEN',softFailure:true,upstreamOutage:false,failureKind:'coverage_gap',abortRetries:true,partial:true,nativeObservedRecordCount:0,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false})
+ }).filter(Boolean)
+ if(rows.length===0&&unqualifiedRows.length===0)throw Object.assign(Error('C-DOT native: native empty inventory cannot establish company absence'),{code:'CDOT_EMPTY_INVENTORY_UNPROVEN',softFailure:true,upstreamOutage:false,failureKind:'coverage_gap',abortRetries:true,partial:true,nativeObservedRecordCount:0,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false})
  need(new Set(rows.map(r=>r.jobId)).size===rows.length&&new Set(rows.map(r=>r.sourceUrl)).size===rows.length,'ambiguous duplicate advertisement/post identity')
- return {identity:{title:head.titles[0],publisher:'Centre for Development of Telematics',metas:head.metas},schemas,table:{attrs:table.attrs,columns,tree:tree(table)},rows}
+ return {identity:{title:head.titles[0],publisher:'Centre for Development of Telematics',metas:head.metas},schemas,table:{attrs:table.attrs,columns,tree:tree(table)},rows,unqualifiedRows}
 }
 export function makeListingObservation(row,page,clock){
  return {title:row.title,company:COMPANY,source:SOURCE,jobId:row.jobId,requisitionId:null,nativeApplicationAdvertisementID:row.nativeApplicationAdvertisementID,

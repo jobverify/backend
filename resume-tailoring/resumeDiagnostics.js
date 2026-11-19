@@ -11,6 +11,7 @@ export const RESUME_COMPILER_REASONS = Object.freeze({
 
 // Public Actions logs must never contain candidate data or raw exception text.
 const failures = {
+  tailoring_plan_invalid: 'The tailored resume edit plan was invalid. Please retry generation.',
   processing_failed: 'Resume processing failed. Your previous successful version is unchanged. Please retry.',
   source_invalid: 'The resume contains unreadable text or unsupported characters. Please upload a readable source document.',
   model_timeout: 'The resume model reached its time limit. Please retry.',
@@ -60,12 +61,12 @@ export function safeResumeDiagnostic(event = {}) {
   const result = { stage: stages.has(event.stage) ? event.stage : 'worker', code: codes.has(event.code) ? event.code : 'processing_failed' };
   if (result.stage === 'latex' && result.code === 'latex_invalid' && typeof event.reason === 'string' && Object.hasOwn(RESUME_LATEX_REASONS, event.reason)) result.reason = event.reason;
   if (result.stage === 'compiling' && result.code === 'compiler_failed' && typeof event.reason === 'string' && Object.hasOwn(RESUME_COMPILER_REASONS, event.reason)) result.reason = event.reason;
-  for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'processedTokens', 'outputTokens', 'pageCount', 'targetPages', 'sourceBlockCount', 'estimatedSeconds', 'remainingSeconds']) {
+  for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'processedTokens', 'outputTokens', 'pageCount', 'targetPages', 'sourceBlockCount', 'editSlotCount', 'estimatedSeconds', 'remainingSeconds']) {
     if (typeof event[key] === 'number' && Number.isFinite(event[key]) && event[key] >= 0 && event[key] <= 1000000) result[key] = Math.round(event[key] * 100) / 100;
   }
   if (event.policyVersion === 'abey-pagination-v2') result.policyVersion = event.policyVersion;
   if (['base', 'tailored'].includes(event.mode)) result.mode = event.mode;
-  if (['pagination', 'document'].includes(event.repairKind)) result.repairKind = event.repairKind;
+  if (['pagination', 'document', 'edits'].includes(event.repairKind)) result.repairKind = event.repairKind;
   if (result.stage === 'validating' && result.code === 'factual_validation_failed' && event.issueCounts && typeof event.issueCounts === 'object') {
     const counts = {};
     for (const key of fidelityIssueTypes) {

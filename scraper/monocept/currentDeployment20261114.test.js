@@ -66,7 +66,9 @@ test('registered current native route retains six full India roles and one unrea
  assert.equal(readInventoryEvidence(jobs).listingComplete,false);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
  const assessment=assessSoftFailureAcquisition(provider,jobs)
  assert.equal(assessment.indiaJobs,6);assert.equal(assessment.eligibleJobs,0)
- assert.equal(assessment.filterCounts.old,6)
+ // Publication filters record the first rejection. Title exclusions may run
+ // before age, while every one of these six historical jobs stays ineligible.
+ assert.equal(assessment.filterCounts.old+(assessment.filterCounts.excludedTitle||0),6)
 })
 
 for(const url of fixture.clientURLs)test('whole current client bytes remain pinned: '+new URL(url).pathname,()=>{

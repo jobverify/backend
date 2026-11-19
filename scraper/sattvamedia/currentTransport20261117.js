@@ -3,11 +3,13 @@ import{setTimeout as delay}from'node:timers/promises'
 import{requireNativeHttpResponse}from'../../scraper-support/shared/nativeHttpResponse.js'
 import{disposeResponseBody,disposeResponseReader}from'../../scraper-support/shared/responseBodyDisposal.js'
 import{isHttpAccessChallenge}from'../../scraper-support/utils/fetch.js'
-export function currentTransport({label,allowedURL,fetchImpl:injectedFetch,signal:callerSignal,requestIntervalMs=1000,timeoutMs=180000,...legacyOptions}={}){
+// Leave one minute within the300s runner for abort/processing. This source
+// reconciles about140 paced reads; mandatory resource pauses also consume time.
+export function currentTransport({label,allowedURL,fetchImpl:injectedFetch,signal:callerSignal,requestIntervalMs=1000,timeoutMs=240000,...legacyOptions}={}){
  callerSignal?.throwIfAborted()
  const fetchImpl=injectedFetch??globalThis.fetch
  if(!injectedFetch&&['fetchPage','fetchText','fetchJson','fetchProtocolTolerantText','fetchBrowserText','probeUrl'].some(key=>legacyOptions[key]!=null))throw Object.assign(Error('Unsupported legacy recruitment transport; original HTTP fetchImpl required'),{failureKind:'parser_or_contract_error',abortRetries:true,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
- if(typeof label!=='string'||typeof allowedURL!=='function'||!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>180000||!Number.isSafeInteger(requestIntervalMs)||requestIntervalMs<0||requestIntervalMs<1000&&fetchImpl===globalThis.fetch)throw Error('Current source transport limits invalid')
+ if(typeof label!=='string'||typeof allowedURL!=='function'||!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>240000||!Number.isSafeInteger(requestIntervalMs)||requestIntervalMs<0||requestIntervalMs<1000&&fetchImpl===globalThis.fetch)throw Error('Current source transport limits invalid')
  const owner=new AbortController(),deadline=performance.now()+timeoutMs,timeout=new DOMException(label+' source deadline exceeded','TimeoutError'),timer=setTimeout(()=>owner.abort(timeout),timeoutMs),signal=callerSignal?AbortSignal.any([callerSignal,owner.signal]):owner.signal,receipts=[],prior=new Map();let requests=0,total=0
  const checkpoint=()=>{callerSignal?.throwIfAborted();if(performance.now()>=deadline&&!owner.signal.aborted)owner.abort(timeout);signal.throwIfAborted()}
  const race=async(pending,abortSignal)=>{let listener;try{return await Promise.race([pending,new Promise((_,reject)=>{listener=()=>reject(abortSignal.reason);abortSignal.addEventListener('abort',listener,{once:true});if(abortSignal.aborted)listener()})])}finally{if(listener)abortSignal.removeEventListener('abort',listener)}}

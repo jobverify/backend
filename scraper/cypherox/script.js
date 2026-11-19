@@ -29,7 +29,8 @@ const normalizeWhitespace = (value) => {
   return normalized || null
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
+  signal,
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -135,15 +136,21 @@ export const extractJobsFromStructuredData = (html = '', { scrapedAt } = {}) => 
 export const createCypheroxScraper = ({
   now: defaultNow = () => new Date().toISOString(),
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    now = defaultNow,
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+  async run(options = {}) {
+    const { fetchText = defaultFetchText, now = defaultNow } = options
+    options.signal?.throwIfAborted()
+    const careersHtml = await fetchText(CAREERS_URL, { signal: options.signal })
+    options.signal?.throwIfAborted()
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('The verified Cypherox careers page no longer matches the trusted first-party surface')
     }
 
+    // The current native cards must satisfy their full contract even when an
+    // alternate metadata feed is added to the same document.
+    if (/\bcareer-area-block-wrap\b/.test(careersHtml)) {
+      const { runCurrentCypheroxCards } = await import('./currentCards20261119.js')
+      return runCurrentCypheroxCards({ ...options, now })
+    }
     const jobs = extractJobsFromStructuredData(careersHtml, {
       scrapedAt: now(),
     })

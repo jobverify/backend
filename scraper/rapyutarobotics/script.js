@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { hasCurrentRapyutaClient, runCurrentRapyuta } from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -132,6 +133,8 @@ export const createRapyutaRoboticsScraper = ({
     const fetchJson = options.fetchJson || defaultFetchJson
 
     const careersHtml = await fetchText(CAREERS_URL)
+    if (hasCurrentRapyutaClient(careersHtml)) return runCurrentRapyuta({ ...options,
+      maxJobs: options.maxJobs ?? maxJobs, now: options.now || (() => normalizeScrapedAt(now())) })
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Rapyuta Robotics official careers handoff changed; refusing to guess the public jobs feed')
     }

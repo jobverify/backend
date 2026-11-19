@@ -125,7 +125,10 @@ export async function runCurrentCoralogix(options = {}) {
   const representative = opening.find(row => nativeCountry(row) === 'India')
   if (representative) {
     const roleUrl = new URL(representative.url_active_page)
-    need(roleUrl.origin === 'https://coralogix.com' && roleUrl.pathname.startsWith('/careers/co/') && !roleUrl.search && !roleUrl.hash, 'first-party role identity changed')
+    // The current first-party link appends only this navigation-context flag.
+    // Preserve the original declared URL; no arbitrary query or redirect is accepted.
+    need(roleUrl.origin === 'https://coralogix.com' && roleUrl.pathname.startsWith('/careers/co/')
+      && ['', '?isComingFromApp=true'].includes(roleUrl.search) && !roleUrl.hash, 'first-party role identity changed')
     const html = await read(roleUrl.href)
     one(script(html, DETAIL_CLIENT), 'current full criteria client')
     need(hash(await read(DETAIL_CLIENT)) === SHA[DETAIL_CLIENT], 'unreviewed full criteria client contract')

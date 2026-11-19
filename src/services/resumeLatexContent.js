@@ -623,8 +623,9 @@ export function buildLatexTailoringPrompt({ source, facts, baseLatex, jobSnapsho
   return [...generationRules, 'Tailor the prepared resume to this job using only supported original facts. Job requirements are not candidate facts. Match relevant wording only where it truthfully describes the candidate. Follow the supplied page budget, never exceeding two pages, at a readable minimum 10pt; retain every employment and education entry with exact employers, actual titles and dates. If necessary, shorten prose instead of dropping protected facts or shrinking text.',
     'The selected Abey template takes precedence over and overrides any different layout in preparedBaseLatex. Use preparedBaseLatex for supported content continuity. Make grounded job-specific edits: rewrite the summary to emphasize the source-supported skills that match this job, move the strongest matching achievement to the first bullet within each experience entry, and order existing skills by relevance. Rephrase supported accomplishments using the job language while preserving who did what and every original quantity. Leave unsupported requested skills out.',
     'When preparedBasePreambleOmitted is true, preparedBaseLatex contains the complete body; reuse the exact Abey preamble supplied with the template. Return the entire revised document including that preamble.',
+    'In job.duplicateFields, each value names another job field with identical full content. Read that content once; all distinct requirements remain supplied.',
     JSON.stringify({ ...sourceData({ source, facts }), preparedBaseLatex: preparedBasePreambleOmitted ? preparedBase.slice(RESUME_LATEX_PREAMBLE.length) : preparedBase,
-      preparedBasePreambleOmitted, job: buildResumeJobSnapshot(jobSnapshot || {}) }),
+      preparedBasePreambleOmitted, job: buildResumeJobPromptSnapshot(jobSnapshot || {}) }),
     'Now produce the complete revised LaTeX resume with the strongest proven matches emphasized in the summary and first experience bullets. Preserve the protected identity, contacts, employers, actual titles, qualifications and dates exactly. Return only the complete LaTeX document.',
     finalDocumentRequirements(source, facts)].join('\n');
 }
@@ -802,6 +803,22 @@ export function buildResumeJobSnapshot(job = {}) {
   for (const field of jobFields) if (field !== 'source' && publicJob[field] !== undefined && publicJob[field] !== null) snapshot[field] = stableValue(publicJob[field]);
   if (Array.isArray(job.jobSkills)) snapshot.jobSkills = job.jobSkills.map(skill => ({ canonicalName: skill.canonicalName, required: Boolean(skill.required), preferred: Boolean(skill.preferred) })).filter(skill => typeof skill.canonicalName === 'string');
   return snapshot;
+}
+
+// Prompt-only, lossless deduplication. Stored snapshots and their hashes retain
+// every original field; aliases with different content must remain distinct.
+export function buildResumeJobPromptSnapshot(job) {
+  const snapshot = buildResumeJobSnapshot(job);
+  const seen = new Map(), duplicateFields = {};
+  for (const field of ['description', 'sourceDescription', 'jobDescription', 'requirements', 'responsibilities', 'qualifications',
+    'minimumQualification', 'preferredQualification', 'experienceRequired', 'sourceExperienceRequired']) {
+    const value = snapshot[field];
+    if (value === undefined || value === null || value === '') continue;
+    const key = JSON.stringify(value);
+    if (seen.has(key)) { duplicateFields[field] = seen.get(key); delete snapshot[field]; }
+    else seen.set(key, field);
+  }
+  return Object.keys(duplicateFields).length ? { ...snapshot, duplicateFields } : snapshot;
 }
 
 export function resumeJobHash(job) {

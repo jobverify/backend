@@ -4,6 +4,7 @@ import test from "node:test";
 import Job from "../src/models/Job.js";
 import User from "../src/models/User.js";
 import { buildAggregateHiringSignalFilter } from "../src/utils/jobListingEvidence.js";
+import { buildExcludedJobTitleFilter } from "../src/utils/jobTitleEligibility.js";
 import { buildMissingSourceDescriptionFilter } from "../src/utils/jobSourceContent.js";
 import { PUBLIC_JOB_TYPE_EXPRESSION } from "../src/utils/publicJobType.js";
 import { PUBLIC_JOB_TYPES } from "../src/utils/publicJobTypeLabel.js";
@@ -43,9 +44,9 @@ const assertHasPublicSavedJobScope = (scope) => {
     { $gt: ['$closingDate', PUBLIC_SCOPE_NOW] },
   ] });
   assert.deepEqual(postedLowerBound, { $gte: [
-    { $ifNull: ['$postedAt', PUBLIC_SCOPE_NOW] }, new Date('2026-09-25T00:00:00.000Z'),
+    { $ifNull: ['$postedAt', PUBLIC_SCOPE_NOW] }, new Date('2026-07-25T00:00:00.000Z'),
   ] });
-  assert.deepEqual(scope.$nor, [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter()]);
+  assert.deepEqual(scope.$nor, [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter(), buildExcludedJobTitleFilter()]);
 };
 
 test("user schema stores saved job references", () => {

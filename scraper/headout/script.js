@@ -5,6 +5,7 @@ import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 import { HEADOUT_CATALOG } from './catalog.js'
+import {CURRENT_HEADOUT_CLIENT,runCurrentHeadout} from './currentAshby.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -287,7 +288,8 @@ export const extractIndiaJobsFromGreenhousePayload = (
     })
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url, options = {}) => fetchTextWithRetry(url, {
+  signal: options.signal,
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -297,6 +299,7 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
 })
 
 const defaultFetchJson = (url, options = {}) => fetchJsonWithRetry(url, {
+  signal: options.signal,
   method: options.method,
   headers: {
     'User-Agent': USER_AGENT,
@@ -315,18 +318,31 @@ export const createHeadoutScraper = ({
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
     now = () => new Date().toISOString(),
+    signal,
+    timeoutMs = 180000,
   } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+    if(!Number.isSafeInteger(timeoutMs)||timeoutMs<=0||timeoutMs>300000)throw Error('Headout invalid bounded deadline')
+    const scopedSignal=AbortSignal.any([AbortSignal.timeout(timeoutMs),...(signal?[signal]:[])])
+    const read=(reader,url,options={})=>new Promise((resolve,reject)=>{
+      const abort=()=>{scopedSignal.removeEventListener('abort',abort);reject(scopedSignal.reason)}
+      scopedSignal.addEventListener('abort',abort,{once:true})
+      if(scopedSignal.aborted){abort();return}
+      Promise.resolve().then(()=>{scopedSignal.throwIfAborted();return reader(url,{...options,signal:scopedSignal})})
+        .then(value=>{scopedSignal.removeEventListener('abort',abort);scopedSignal.throwIfAborted();resolve(value)},error=>{scopedSignal.removeEventListener('abort',abort);reject(error)}).catch(reject)
+    })
+    const textAt=(url,options)=>read(fetchText,url,options),jsonAt=(url,options)=>read(fetchJson,url,options)
+    const careersHtml = await textAt(CAREERS_URL)
 
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Headout careers page no longer matches the verified first-party surface')
     }
 
     const candidateLoaderUrls = extractCandidateLoaderScriptUrls(careersHtml)
+    if(candidateLoaderUrls.includes(CURRENT_HEADOUT_CLIENT))return runCurrentHeadout({careersHtml,fetchText:textAt,fetchJson:jsonAt,signal:scopedSignal,maxJobs})
     let verifiedLoaderFound = false
 
     for (const loaderUrl of candidateLoaderUrls) {
-      const loaderText = await fetchText(loaderUrl)
+      const loaderText = await textAt(loaderUrl)
       if (hasVerifiedOpenRolesLoaderSignal(loaderText)) {
         verifiedLoaderFound = true
         break
@@ -341,7 +357,7 @@ export const createHeadoutScraper = ({
 
     for (const boardSlug of GREENHOUSE_BOARD_SLUGS) {
       const boardJobs = extractIndiaJobsFromGreenhousePayload(
-        await fetchJson(buildGreenhouseJobsApiUrl(boardSlug), { method: 'GET' }),
+        await jsonAt(buildGreenhouseJobsApiUrl(boardSlug), { method: 'GET' }),
         {
           boardSlug,
           scrapedAt: now(),

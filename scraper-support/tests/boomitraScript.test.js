@@ -1,56 +1,10 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-
-const loadBoomitra = async () => import('../../scraper/boomitra/script.js')
-
-const careersHtml = `
-<!doctype html>
-<html><head>
-  <title>Boomitra</title>
-  <link rel="canonical" href="https://boomitra.com/careers/" />
-</head><body>
-  <h1>Careers at Boomitra</h1>
-  <p>See job openings</p>
-  <p>Explore our open roles</p>
-  <h2>Full Stack Developer (Bangalore, India)</h2>
-  <a href="https://boomitra.com/wp-content/uploads/2025/04/Full-Stack-Developer.pdf">Learn more and apply</a>
-  <p>To apply, email careers@boomitra.com</p>
-</body></html>`
-
-test('Boomitra maps the exact verified first-party role', async () => {
-  const boomitra = await loadBoomitra()
-  assert.equal(boomitra.hasVerifiedCareersPageSignal(careersHtml), true)
-  assert.deepEqual(boomitra.extractSearchResults(careersHtml)[0], {
-    title: 'Full Stack Developer',
-    company: 'Boomitra',
-    department: null,
-    location: 'Bangalore, India',
-    city: 'Bangalore',
-    state: null,
-    country: 'India',
-    jobId: 'full-stack-developer-2025-04',
-    requisitionId: null,
-    sourceUrl: boomitra.ROLE_URL,
-    applyUrl: 'mailto:careers@boomitra.com',
-    employmentType: null,
-    experienceRequired: '2-4 years',
-    minimumQualification: "Bachelor's or Master's Degree in Computer Science or Engineering",
-    preferredQualification: null,
-    requiredSkills: ['Node.js', 'Express.js', 'JavaScript', 'TypeScript', 'React.js', 'Next.js'],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: 'Full Stack Developer (Bangalore, India) Learn more and apply To apply, email careers@boomitra.com',
-  })
-})
-
-test('Boomitra fails closed when the exact first-party surface drifts', async () => {
-  const boomitra = await loadBoomitra()
-  await assert.rejects(
-    boomitra.createBoomitraScraper().run({ fetchText: async () => careersHtml.replace('Boomitra', 'Different Company') }),
-    /verified first-party careers page/i,
-  )
-  assert.equal(
-    boomitra.hasVerifiedCareersPageSignal(careersHtml.replace('Full Stack Developer', 'Product Manager')),
-    false,
-  )
-})
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {SOURCE,COMPANY,CAREERS_URL,createBoomitraScraper,run} from '../../scraper/boomitra/script.js'
+const f=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/boomitra/fixtures/native-20261119.json.gz',import.meta.url))))
+globalThis.fetch=async()=>{throw Error('Source factory tests prohibit physical network')}
+test('boomitra current source factory retains exact publisher identity',()=>{assert.equal(SOURCE,'boomitra');assert.equal(COMPANY,'Boomitra');assert.equal(CAREERS_URL,'https://boomitra.com/careers/')})
+test('boomitra factory keeps source-backed country, criteria and company coverage boundaries',async()=>{const original=Object.getOwnPropertyDescriptor(performance,'now');let clock=0;Object.defineProperty(performance,'now',{value:()=>clock,configurable:true});try{const jobs=await createBoomitraScraper().run({fetchImpl:async url=>{clock+=501;const r=f.responses.find(r=>r.requestedUrl===url);assert.ok(r,url);return Object.defineProperty(new Response(Buffer.from(r.bodyBase64,'base64'),{status:r.status,headers:r.headers}),'url',{value:r.finalUrl??url})}}),a=jobs.nativeCollectionEvidence;assert.equal(jobs.length,1);assert.equal(a.observedVacancyCount,1);assert.equal(a.companyIndiaTotal,null);assert.equal(a.lifecycleCleanupAllowed,false);assert.equal(a.sourceScopeComplete,false);if(SOURCE==='boomitra'){assert.equal(jobs[0].country,'India');assert.ok(jobs[0].jobDescription.includes('Knowledge of blockchain'));assert.equal(jobs[0].jobId,null);assert.equal(jobs[0].postingDate,null)}else assert.ok(a.observations.every(r=>r.country===null&&r.fullPublishedCriteriaRetained))}finally{if(original)Object.defineProperty(performance,'now',original);else delete performance.now}})
+test('boomitra default run cannot use historical body-only callbacks or overwrite exact caller abort',async()=>{await assert.rejects(run({fetchText:async()=>'<html>body-only</html>'}),/metadata/);const c=new AbortController(),reason=Object.freeze({caller:'opaque'});c.abort(reason);await assert.rejects(run({signal:c.signal,maxJobs:0,fetchText:()=>{}}),e=>e===reason);await assert.rejects(run({fetchImpl:async url=>({status:403,url,headers:new Headers({'content-type':'text/html'}),body:null})}),e=>e.httpStatus===403)})

@@ -4,8 +4,11 @@ import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.j
 const origin='https://tensorgo.com'
 // Reviewed deployments retain all 228 module bodies and the same careers
 // dependencies below. Whole main programs remain individually pinned, including
-// the November 16 deployment; an unreviewed runtime cannot inherit this proof.
+// the November 16 and 19 deployments. The latter changes only its license
+// filename and the unrelated chunk715 map; all228 module bodies and all six
+// careers chunks remain byte-identical. An unknown runtime inherits no proof.
 const mainProfiles=new Map([
+ [origin+'/static/js/main.91ac0e8a.js','7db975ce1873d574ff0283fd3762c5f13e6d097b6341cbbc95a7abd07779b6e9'],
  [origin+'/static/js/main.dd1b2abe.js','a165b5c21362147cdc53a3aac49f8ecb35e178ceb4305355a089fc427208b2e1'],
  [origin+'/static/js/main.e95187a2.js','96283e041ebb4d7b3d04f511161fefe1fcda30f8da6a9f1322734e0aca33e4ef'],
  [origin+'/static/js/main.6656caca.js','b2497e802e95270963df2b881cd8536834f42da3220be5f0bc6380ff3e23d20d'],

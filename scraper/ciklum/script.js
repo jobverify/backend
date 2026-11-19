@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { CIKLUM_CATALOG } from './catalog.js'
+import { runCurrentNativeCiklum } from './currentNative20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -317,7 +318,7 @@ export const createCiklumScraper = ({
   },
 })
 
-export const run = async (options = {}) => createCiklumScraper(options).run(options)
+export const run = async (options = {}) => runCurrentNativeCiklum(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

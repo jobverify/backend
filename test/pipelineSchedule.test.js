@@ -51,3 +51,15 @@ test('GitHub rejection retains its status and workflow permission guidance', asy
   await assert.rejects(githubRequest('owner/repo', '/contents/.github/workflows/scraper.yml', { token: 'test', method: 'PUT', body: {} }), error =>
     error.githubStatus === 403 && error.githubMessage === 'Resource not accessible by personal access token');
 });
+
+test('GitHub status reads work when the runtime supplies no default User-Agent', async t => {
+  t.mock.method(globalThis, 'fetch', async (_url, options) => {
+    if (!new Headers(options.headers).get('user-agent')?.trim()) {
+      return new Response('Request forbidden by administrative rules. Please make sure your request has a User-Agent header.', { status: 403 });
+    }
+    return Response.json({ id: 31, status: 'completed', conclusion: 'success' });
+  });
+  assert.deepEqual(await githubRequest('owner/repo', '/actions/runs/31', { token: 'test' }), {
+    id: 31, status: 'completed', conclusion: 'success',
+  });
+});

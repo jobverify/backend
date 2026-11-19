@@ -163,7 +163,10 @@ const validateAshbyInventory = (payload, records, provider) => {
     if (!nativeText(record.id) || !/^[a-z0-9][a-z0-9._-]{0,255}$/i.test(record.id) || identities.has(record.id)) fail('missing or repeated native identity')
     identities.add(record.id)
     if (!record.isListed) continue
-    if (!nativeText(record.title)) fail('missing title')
+    if (record.title != null && typeof record.title !== 'string') fail('non-string title')
+    // A publisher can expose an active draft with no title. Keep validating
+    // its identity and geography, but retain other jobs with incomplete scope.
+    if (!nativeText(record.title)) reasons.push('native-active-title-unavailable')
     for (const [field, suffix] of [['jobUrl', ''], ['applyUrl', '/application']]) {
       if (!nativeText(record[field])) fail('non-string application identity')
       let url
@@ -252,7 +255,11 @@ export const createPublishingGapAtsScraper = (provider) => ({
         nativeReasons = validateAshbyInventory(payload, records, provider)
       }
     }
-    const active = records.filter((record) => record?.isListed !== false)
+    const rejectedRecords = kind === 'ashby' ? records
+      .filter(record => record.isListed && !nativeText(record.title))
+      .map(record => ({ jobId: record.id, reason: 'native-active-title-unavailable' })) : []
+    const active = records.filter((record) => record?.isListed !== false
+      && !(kind === 'ashby' && !nativeText(record.title)))
     if (active.some((record) => !record?.id || !(record.title || record.text))) {
       throw new Error(`[${provider.source}] Malformed ${kind} inventory record`)
     }
@@ -263,6 +270,7 @@ export const createPublishingGapAtsScraper = (provider) => ({
     // selection. These models are evidence, not a declared vacancy total.
     const nativeCollectionEvidence = structuredClone({
       source: provider.source, nativeRecords: originalRecords, nativePayload: originalPayload,
+      ...(rejectedRecords.length ? { rejectedRecords, lifecycleCleanupAllowed: false } : {}),
       ...(countryAudit ? { nativeCountryReconciliation: {
         proofs: countryAudit.proofs, failures: countryAudit.failures,
       } } : {}),
@@ -346,7 +354,8 @@ export const createPublishingGapAtsScraper = (provider) => ({
       listingComplete,
       pagesFetched: (innerEvidence?.pagesFetched ?? 1) + (countryAudit?.pagesFetched || 0),
       reportedTotal: innerEvidence?.reportedTotal ?? (kind === 'greenhouse' ? null : records.length),
-      indiaFacetCount: nativeReasons.some(reason => /location-scope-unresolved|location-unmapped/.test(reason)) ? null : located.length,
+      indiaFacetCount: rejectedRecords.length || nativeReasons.some(reason => /location-scope-unresolved|location-unmapped/.test(reason)) ? null : located.length,
+      ...(rejectedRecords.length ? { lifecycleCleanupAllowed: false } : {}),
       verifiedAt: new Date().toISOString(),
       reason: (listingComplete ? `${kind}-public-posting-api-complete-single-response`
         : `${kind}-public-posting-api-incomplete:${incompleteReasons.join(';')}`)

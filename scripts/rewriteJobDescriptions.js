@@ -13,7 +13,7 @@ import { summarizeRewriteCapacity } from '../rewriting/capacity.js';
 import { formatRewriteReport } from '../rewriting/reporting.js';
 import { CORRECTION_MODES } from '../rewriting/correctionPolicy.js';
 import { createProgressLogger } from './lib/progressLogger.js';
-import { loadPipelineJobFilter } from '../src/pipeline/jobScope.js';
+import { loadPipelineProcessingOptions } from '../src/pipeline/jobScope.js';
 
 const apply = process.argv.includes('--apply');
 const shard = Number(process.env.JOB_DESCRIPTION_REWRITE_SHARD || 0);
@@ -71,8 +71,8 @@ try {
     configureMongoDns();
     setPhase('connect');
     await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: Math.max(1, Math.min(15000, deadline - Date.now())) });
-    query = rewriteQueueQuery(new Date(queueAsOf), { shard, shardCount,
-      jobFilter: await loadPipelineJobFilter('rewrite') });
+    const processingOptions = await loadPipelineProcessingOptions('rewrite');
+    query = rewriteQueueQuery(new Date(queueAsOf), { shard, shardCount, ...processingOptions });
     setPhase('count_queue');
     summary.queued = await Job.countDocuments(query).maxTimeMS(15000);
     if (!apply || !summary.queued) summary.reason = apply ? 'empty_queue' : 'read_only_preview';
@@ -103,7 +103,8 @@ try {
         Object.assign(summary, await rewriteWhenReady(summary.workerProbe, async () => {
         setPhase('process_queue');
         jobs = rewriteQueuePages(Job, query, { pageSize: 8, deadline, signal });
-        return rewriteCandidates(jobs, { client: createRewriteClient({ ...worker, correctionMode, planCacheDir: '.cache/description-rewrites' }), deadline, signal, concurrency: worker.parallelism, onRejection, onFragmentRejection,
+        return rewriteCandidates(jobs, { ...processingOptions, client: createRewriteClient({ ...worker, correctionMode,
+          planCacheDir: processingOptions.reprocessCompleted ? undefined : '.cache/description-rewrites' }), deadline, signal, concurrency: worker.parallelism, onRejection, onFragmentRejection,
           update: async (filter, update) => {
             try { return await Job.updateOne(filter, update, { runValidators: true, maxTimeMS: 15000 }); }
             catch (error) { error.rewritePhase = 'update_job'; throw error; }

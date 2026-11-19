@@ -4,6 +4,7 @@ import {nativeText,clean} from '../../scraper-support/native-sources/firstPartyN
 import {readOwnedCurrentDocument,readOriginalNativeCriteria} from '../../scraper-support/native-sources/currentNativeCriteria20261106.js'
 import {collectCurrentOriginalRecords,canonicalNativeRecord} from '../../scraper-support/native-sources/collectCurrentOriginalRecords20261106.js'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
+import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 
 export const CAREERS_URL='https://www.finolexpipes.com/career/'
 export const CLIENT_URL='https://www.finolexpipes.com/site/templates/assets/js/career-new.js'
@@ -11,6 +12,15 @@ export const LISTING_URL='https://www.finolexpipes.com/apis/joblist/'
 const failure=message=>firstPartyFailure('finolexindustrieslimited',message,{nativeAuthorityFailure:true})
 const need=(value,message)=>{if(!value)throw failure(message)},sha=value=>createHash('sha256').update(value).digest('hex')
 const clientHash='ddfe91383900854f5fa237eb3979378914c91f8dabd1f8a5bfafdccd4cab14c5'
+// These complete native city/state pairs identify Indian states, independently
+// of the employer's address. Unknown, mixed and foreign labels stay unresolved.
+// State authority: https://www.india.gov.in/directory/contact-directory/state-uts
+const nativeGeography=new Map([
+ [JSON.stringify(['Pune','Maharashtra']),'Pune'],
+ [JSON.stringify(['Masar, Gujarat','Gujarat']),'Masar'],
+ [JSON.stringify(['Badhalwadi','Maharashtra']),'Badhalwadi'],
+ [JSON.stringify(['FIL Vendor Site','Maharashtra']),null],
+])
 
 export function readCurrentFinolexCorporate(html){
  const owned=readOwnedCurrentDocument(html,{failure,title:'Careers & Jobs Opportunities | Work with Finolex Pipes',canonical:CAREERS_URL})
@@ -42,15 +52,31 @@ export function readCurrentFinolexListing(body){
  return {records,context:{nativeEmployerDisplayName:'Finolex Industries Ltd.',corporateURL:CAREERS_URL,listingURL:LISTING_URL,method:'POST',body:'Activity=joblist',paginationProtocolDeclared:false,companyScopeQualified:false}}
 }
 export function normalizeCurrentFinolexRecord(record){
+ const nativeCity=clean(record.city),nativeState=clean(record.state),key=JSON.stringify([nativeCity,nativeState])
+ const known=nativeGeography.has(key),country=known?'India':null
+ const city=known?nativeGeography.get(key):nativeCity||null
+ const location=known?[nativeCity,...(nativeCity.split(',').map(value=>value.trim()).includes(nativeState)?[]:[nativeState]),country].filter(Boolean).join(', '):nativeCity||nativeState||null
+ const criteria=readOriginalNativeCriteria(record.summary,failure,{minimumChars:1})
+ need(!/\b(?:this (?:position|role|job) is (?:closed|filled)|no longer accepting applications|applications (?:are )?closed)\b/i.test(criteria.sourceDescriptionLines.join('\n')),'Native role is explicitly closed')
+ const employerKey=value=>clean(value).toLowerCase().replace(/[^a-z0-9]/g,'')
+ const employers=new Set(['Finolex Industries Limited','Finolex Industries Ltd.'].map(employerKey))
+ for(const line of criteria.sourceDescriptionLines){
+  if(country)for(const match of line.matchAll(/\b(?:work(?:place)?\s+country|job\s+country|country)\s*:\s*([^.;]+)/gi))
+   need(nativeCountryName(match[1].trim())===country,'Native criteria country contradicts its job location')
+  for(const match of line.matchAll(/\b(?:employer|hiring\s+(?:company|organization))\s*:\s*([^;]+)/gi))
+   need(employers.has(employerKey(match[1])),'Native criteria employer contradicts its publisher')
+ }
  return {title:clean(record.title),company:'Finolex Industries Limited',legalEmployer:null,jobId:String(record.id),sourceNativeJobId:String(record.id),requisitionId:null,
-  location:clean(record.city)||clean(record.state)||null,city:clean(record.city)||null,state:clean(record.state)||null,country:null,sourceCountryScopeUnresolved:true,
+  location,city,state:nativeState||null,country,sourceCountryScopeUnresolved:!known,
+  sourceGeographyEvidence:known?{kind:'exact-native-city-and-state',nativeCity,nativeState,country,
+   reference:'https://www.india.gov.in/directory/contact-directory/state-uts'}:null,
   sourceNativeJobRecord:structuredClone(record),sourceExactBrandRoleScopeVerified:false,sourceEmployerScope:'first-party-corporate-vacancy-list',
   sourceUrl:CAREERS_URL,applyUrl:CAREERS_URL,applicationUrlIsGeneric:true,applicationVisited:false,
   department:clean(record.department)||null,experienceRequired:clean(record.experience)||null,employmentType:null,workplaceType:null,
   minimumQualification:null,preferredQualification:null,requiredSkills:[],postingDate:null,closingDate:null,firstPublishedAt:null,
   nativeDisplayDate:record.date,nativeDisplayDateProvenance:'Native listing date displayed by the employer client; first-publication semantics unverified',
   companyDomain:'finolexpipes.com',sourceEmployerEvidence:{nativeEmployerDisplayName:'Finolex Industries Ltd.',corporateURL:CAREERS_URL},
-  ...readOriginalNativeCriteria(record.summary,failure,{minimumChars:1}),lifecycleCleanupAllowed:false}
+  ...criteria,lifecycleCleanupAllowed:false}
 }
 export const runCurrentFinolex=options=>collectCurrentOriginalRecords(options,{source:'finolexindustrieslimited',company:'Finolex Industries Limited',atsPlatform:'first-party-declared-vacancy-query',corporateURL:CAREERS_URL,recordKind:'vacancy-rows',
  admitted:[[CAREERS_URL,'html'],[CLIENT_URL,'javascript'],[LISTING_URL,'json']],requests:[[LISTING_URL,{method:'POST',body:'Activity=joblist'}]],

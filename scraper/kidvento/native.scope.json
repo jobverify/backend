@@ -1,5 +1,7 @@
 {
   "$renderers": {
+    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.pibzlCfUmys.O/am=AAAAAAwAAQ/d=1/rs=AGEqA5k-wDLOplAQdHSgUii8vWaSzXSGkA/m=view": "d92e452d3be098578f563388409fd2312ae7970bec6f1c27af23a83e5439754b",
+    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.pibzlCfUmys.O/am=AAAAAAwAAQ/d=1/rs=AGEqA5k-wDLOplAQdHSgUii8vWaSzXSGkA/m=N0NZx": "78dbb368108406a2f1e71b5e1e7950d1c3ae56373e712589376ee0accf96e2c7",
     "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.7K42jXwKoL8.O/am=AAAAYAAI/d=1/rs=AGEqA5l1O939Wm7Yi7tplrOF29wrpok45A/m=view": "4a93ea8e983a635da9746946a4a7f51d53f68836a20618010733b4646cf1538e",
     "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.7K42jXwKoL8.O/am=AAAAYAAI/d=1/rs=AGEqA5l1O939Wm7Yi7tplrOF29wrpok45A/m=N0NZx": "3f9d47729edbe61b018fb3a22c47258a38076cc43313f035e1750084ed62bb63",
     "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US._0_99rmR4vA.O/am=AAAAGAAI/d=1/rs=AGEqA5lN6bX2oczbM7k3q7dUvgNJKaME4A/m=view": "9029954e613c89788ee1c9e64d8607c5a100a6e3d329f7829efb626001decf85",
@@ -990,6 +992,21 @@
   },
   "$publisher": {
     "alternatives": [
+      {
+        "bridge": "https://www.gstatic.com/atari/embeds/7688ba9b59f5a8d43ece826f5920d868/intermediate-frame-minified.html",
+        "bridgeSha256": "38dfe8ac6baeb0749ef3c836aebc6cbc657fb9c0971010eb37c65cf0381ff42e",
+        "baseJs": "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.pibzlCfUmys.O/am=AAAAAAwAAQ/d=1/rs=AGEqA5k-wDLOplAQdHSgUii8vWaSzXSGkA/m=view",
+        "baseJsSha256": "d92e452d3be098578f563388409fd2312ae7970bec6f1c27af23a83e5439754b",
+        "controller": "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.pibzlCfUmys.O/am=AAAAAAwAAQ/d=1/rs=AGEqA5k-wDLOplAQdHSgUii8vWaSzXSGkA/m=N0NZx",
+        "controllerSha256": "78dbb368108406a2f1e71b5e1e7950d1c3ae56373e712589376ee0accf96e2c7",
+        "gapiCallbackSha256": "d8bf19ab2a6f0a82c1c8b45550af6f9a1189d3c687a9958ac38f5ba52d1f541a",
+        "controllerIdentity": "_.MCa",
+        "controllerRegister": "_.Qj",
+        "controllerClass": "_.I3",
+        "baseClass": "_.dD",
+        "urlConvert": "_.to",
+        "viewMethod": "this.U"
+      },
       {
         "bridge": "https://www.gstatic.com/atari/embeds/197a9c195ad050c899a9ec96432b0a19/intermediate-frame-minified.html",
         "bridgeSha256": "76bfe9c5aa72d0f19d4cc93d74d479e0b7a33dee3df661a53a3692fd9093fed9",

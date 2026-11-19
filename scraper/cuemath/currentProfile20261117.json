@@ -1,5 +1,13 @@
 {
   "reviewedOn": "2026-11-17",
+  "reviewedClientVersions": [
+    {
+      "reviewedOn": "2026-11-18",
+      "bytes": 141691,
+      "sha256": "86f9a467df2a2e71f639c3e26fd2c461a5b2ede79de9d816f61bd5c106dcca43",
+      "reviewSummary": "Complete current same-URL program remains applicant eligibility, email/OTP, application, communication/math screening and fee intake. Applicant regions are not job worksite countries. No vacancy/job-board collection is declared; no program, form, authentication or fee action is executed. Full raw public intake context is retained with inventory unknown."
+    }
+  ],
   "root": "https://tutorhiring.cuemath.com/",
   "programs": [
     {

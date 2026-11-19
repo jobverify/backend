@@ -8,6 +8,7 @@ import{attachSourceObservationEvidence}from'../../scraper-support/utils/sourceOb
 import{nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
 import{currentGenworxTransport}from'./currentTransport20261117.js'
 const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
+const currentRevision=JSON.parse(readFileSync(new URL('./currentProfile20261118.json',import.meta.url),'utf8'))
 const sha=s=>createHash('sha256').update(s).digest('hex'),norm=v=>String(v??'').replace(/\s+/g,' ').trim(),id=v=>typeof v==='string'&&/^\d{8,30}$/.test(v)
 const check=(ok,reason)=>{if(!ok)throw Object.assign(Error('GENWORX current native contract: '+reason),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,label)=>{check(rows.length===1,'unique '+label);return rows[0]}
@@ -28,7 +29,11 @@ function dataValue(n){
 function nativeDocument(html,detail=false){
  const doc=readNativeDocument(html);check(doc.nodes(n=>n.tag==='base'||n.tag==='iframe').length===0,'no additional native navigation carrier')
  check(doc.nodes(n=>n.tag==='div'&&n.attrs.id==='career-website-main').length===1,'active native renderer root')
- const expected=detail?profile.detailScripts:profile.boardScripts,scripts=doc.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/javascript)$/i.test(n.attrs.type??''))
+ const scripts=doc.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/javascript)$/i.test(n.attrs.type??''))
+ const field=detail?'detailScripts':'boardScripts'
+ const revision=one([profile,currentRevision].filter(candidate=>candidate[field].length===scripts.length
+  &&scripts.every((node,index)=>equal(node.attrs,candidate[field][index].attrs))),'reviewed native complete program revision')
+ const expected=revision[field]
  check(scripts.length===expected.length,'complete declared native executable graph');const models={}
  for(let index=0;index<scripts.length;index++){
   const node=scripts[index],want=expected[index];check(equal(node.attrs,want.attrs),'exact native program declaration attributes')
@@ -41,10 +46,21 @@ function nativeDocument(html,detail=false){
    masks.push({name,type:d.init.type,start:d.init.start,end:d.init.end})
   }
   check(equal(masks.map(({name,type})=>({name,type})),want.data),'exact typed native carrier forms')
-  let skeleton=source;for(const d of masks.slice().sort((a,b)=>b.start-a.start))skeleton=skeleton.slice(0,d.start)+'<NATIVE-'+d.name+'>'+skeleton.slice(d.end)
+  const masked=value=>{for(const d of masks.slice().sort((a,b)=>b.start-a.start))value=value.slice(0,d.start)+'<NATIVE-'+d.name+'>'+value.slice(d.end);return value}
+  let skeleton=masked(source)
+  // The captured native detail varies its phone dialing default by visitor
+  // locale. Normalize only the reviewed IN literal back to US at its own AST
+  // declaration; the remaining code must still match, including the unchanged
+  // selectedCountry/mobileCountryCode flow. Workplace proof uses row.Country.
+  if(sha(skeleton)!==want.skeletonSHA256&&detail&&masks.some(d=>d.name==='jobs')&&masks.some(d=>d.name==='meta')){
+   const defaults=ast.body.flatMap(st=>st.type==='VariableDeclaration'?st.declarations:[]).filter(d=>d.id?.name==='country')
+   if(defaults.length===1&&defaults[0].init?.type==='Literal'&&defaults[0].init.raw==="'IN'"){
+    const value=defaults[0].init;skeleton=masked(source.slice(0,value.start)+"'US'"+source.slice(value.end))
+   }
+  }
   check(sha(skeleton)===want.skeletonSHA256,'whole native executable program profile changed')
  }
- return{doc,models}
+ return{doc,models,revision}
 }
 function checkMeta(meta){
  check(meta&&meta.org_info?.id===profile.nativeOrgId&&meta.org_info.company_name===profile.nativeEmployer&&meta.org_info.website==='www.genworx.ai'
@@ -95,20 +111,21 @@ function passiveRichCriteria(html){
  }catch{return false}
 }
 export async function runCurrentGenworx(options={}){
- options.signal?.throwIfAborted();const allowed=new Set([profile.primary.url,profile.client.url,profile.boardURL,profile.nativeClient.url])
+ options.signal?.throwIfAborted();const allowed=new Set([profile.primary.url,profile.client.url,profile.boardURL,profile.nativeClient.url,currentRevision.nativeClient.url])
  const io=currentGenworxTransport({...options,allowedURL:url=>allowed.has(url)}),verifiedAt=new Date().toISOString()
  const exact=async(entry,kind='html')=>{const p=await io.read(entry.url,kind);check(p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'finite current employer/client original '+entry.url);return p}
  const round=async()=>{
   const home=await exact(profile.primary);check(equal(activeHead(home.text).titles,[profile.primaryTitle]),'current employer title')
   const root=readNativeDocument(home.text);check(root.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src==='/assets/index-DHSlVCQC.js').length===1,'active current primary module')
-  await exact(profile.client,'js');const board=await io.read(profile.boardURL),{doc}=nativeDocument(board.text)
-  check(equal(activeHead(board.text).titles,[profile.boardTitle]),'native board title');await exact(profile.nativeClient,'js')
+  await exact(profile.client,'js');const board=await io.read(profile.boardURL),{doc,revision}=nativeDocument(board.text)
+  check(equal(activeHead(board.text).titles,[profile.boardTitle]),'native board title');await exact(revision.nativeClient,'js')
   const hidden=name=>{const n=one(doc.nodes(n=>n.tag==='input'&&n.attrs.id===name),'native hidden '+name);check(n.attrs.type==='hidden','native hidden carrier');return JSON.parse(n.attrs.value)}
   const rows=hidden('jobs'),meta=hidden('meta'),pageJson=hidden('pageJson'),moduleMeta=hidden('moduleMeta');checkRows(rows);checkMeta(meta)
   check(Array.isArray(moduleMeta)&&moduleMeta.filter(v=>v.api_name==='Job_Openings').length===1&&pageJson.detail?.section?.data?.length===1,'native module and listing renderer models')
   const details=[]
   for(const row of rows){if(!row.Publish||row.Is_Locked)continue
-   const url=viewURL(row);allowed.add(url);const page=await io.read(url),{models}=nativeDocument(page.text,true);checkRows(models.jobs);check(models.jobs.length===1&&models.jobs[0].id===row.id,'exact native detail record')
+   const url=viewURL(row);allowed.add(url);const page=await io.read(url),{models,revision:detailRevision}=nativeDocument(page.text,true)
+   check(detailRevision.nativeClient.url===revision.nativeClient.url,'native board/detail program revision changed');checkRows(models.jobs);check(models.jobs.length===1&&models.jobs[0].id===row.id,'exact native detail record')
    checkMeta(models.meta);checkCanonical(models.meta.detail_url,row);check(equal(models.meta.org_info,meta.org_info)&&equal(models.portalPageJson,pageJson)&&equal(models.moduleMeta,moduleMeta),'whole native detail employer/renderer/schema binding')
    const detail=models.jobs[0];for(const name of Object.keys(row))if(name!=='Job_Description')check(equal(row[name],detail[name]),'native listing/detail full '+name+' value')
    check(id(models.meta.webform_id),'native published webform identity');const applicationURL=new URL('/recruit/v2/public/Job_Openings/'+row.id+'/apply/'+models.meta.webform_id,new URL(profile.boardURL).origin)

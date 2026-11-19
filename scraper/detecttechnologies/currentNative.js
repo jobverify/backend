@@ -2,12 +2,18 @@ import {decodeHTML} from 'entities'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
 import {qualifiedFirstPartyHTML,clean,descendants,retained,nativeText,nativeLines,authoredNativeLines,comparable,requireNative,exactlyOne} from '../../scraper-support/native-sources/firstPartyNativeHtml.js'
 import {nativeCountryName,nativeLocationCountryName,nativeDate} from '../../scraper-support/shared/nativeJobPosting.js'
+import {findExplicitNativeClosure} from '../../scraper-support/utils/sourceAvailability.js'
 export const CONFIGURED_URL='https://detecttechnologies.com/current-openings/'
 export const CURRENT_URL='https://detecttechnologies.com/current-openings'
 const failure=message=>firstPartyFailure('detecttechnologies',message),need=(ok,message)=>requireNative(ok,message,failure),one=(rows,label)=>exactlyOne(rows,label,failure)
 const cls=(node,name)=>(node.attrs.class??'').split(/\s+/).includes(name)
 const normalized=value=>clean(decodeHTML(value??''))
 const writtenCountry=label=>nativeLocationCountryName(label)||(/(?:^|[, :]\s*)USA$/.test(label)?'United States':null)
+const localWorkplaces={
+ 'Chennai':{city:'Chennai',references:['https://chennai.nic.in/about-district/']},
+ 'Mumbai - Chembur':{city:'Mumbai',references:['https://mumbaicity.gov.in/en/','https://mumbaisuburban.gov.in/en/geo-tagging-of-offices/']},
+}
+const workplaceEvidence=label=>Object.hasOwn(localWorkplaces,label)?{kind:'reviewed-whole-native-workplace-geography',label,country:'India',...localWorkplaces[label]}:null
 export const isCurrentRoleURL=value=>{try{const url=new URL(value);return url.href===value&&url.origin==='https://detecttechnologies.com'&&!url.search&&!url.hash&&!url.username&&!url.password&&/^\/careers\/[a-z0-9-]+$/.test(url.pathname)}catch{return false}}
 const roleURL=href=>{const url=new URL(href,CURRENT_URL).href;need(isCurrentRoleURL(url),'Unreviewed native role URL');return url}
 const metadata=card=>{
@@ -40,9 +46,9 @@ export function extractCurrentListings(html){
   const title=clean(nativeText(one(descendants(card,node=>node.tag==='h3'),'native vacancy title')))
   const link=one(descendants(card,node=>node.tag==='a'&&clean(nativeText(node))==='Apply Now'),'native role link'),sourceUrl=roleURL(link.attrs.href)
   need(title&&!urls.has(sourceUrl),'Missing or duplicate native vacancy identity');urls.add(sourceUrl)
-  const fields=metadata(card),country=writtenCountry(fields.location)
+  const fields=metadata(card),proof=workplaceEvidence(fields.location),country=writtenCountry(fields.location)||(proof?'India':null)
   return {jobId:new URL(sourceUrl).pathname.split('/').at(-1),requisitionId:null,title,sourceUrl,applyUrl:sourceUrl,...fields,country,
-   sourceCountryScopeUnresolved:country===null,jobDescription:null,sourceDetailComplete:false}
+   sourceNativeLocation:fields.location,sourceCountryEvidence:proof,sourceCountryScopeUnresolved:country===null,jobDescription:null,sourceDetailComplete:false}
  })
 }
 export function extractCurrentDetail(html,listing){
@@ -62,7 +68,7 @@ export function extractCurrentDetail(html,listing){
  need(schema.hiringOrganization?.name==='Detect Technologies'&&schema.hiringOrganization?.url==='https://detecttechnologies.com','Native hiring organization changed')
  const address=schema.jobLocation?.address
  need(address&&typeof address.addressLocality==='string'&&clean(address.addressLocality)===listing.location,'Native listing/detail workplace conflict')
- const country=address.addressCountry?nativeCountryName(address.addressCountry):writtenCountry(listing.location)
+ const country=address.addressCountry?nativeCountryName(address.addressCountry):writtenCountry(listing.location)||(workplaceEvidence(listing.location)?'India':null)
  need(!address.addressCountry||country,'Unrecognized native workplace country')
  need(!listing.country||country===listing.country,'Native workplace country conflict')
  need(normalized(schema.employmentType)===listing.employmentType&&normalized(schema.experienceRequirements)===(listing.experienceRequired??''),'Native employment/experience metadata conflict')
@@ -74,11 +80,20 @@ export function extractCurrentDetail(html,listing){
   need(clean(lines.join(' ')).length>0,'Empty native criteria section');return lines
  }),description=descriptionLines.join('\n')
  need(description.length>300,'Missing native full criteria')
+ need(!findExplicitNativeClosure(descriptionLines),'Native role visibly closed')
+ if(country==='India')for(const line of descriptionLines){
+  const countryLine=/^(?:(?:workplace|work|job)\s+)?country\s*:\s*(.+)$/i.exec(clean(line))
+  if(countryLine)need(nativeCountryName(countryLine[1])==='India','Native full criteria country conflict')
+  const locationLine=/^(?:(?:workplace|work|job)\s+)?location\s*:\s*(.+)$/i.exec(clean(line))
+  if(locationLine)need(locationLine[1]===listing.location||listing.location==='Chennai'&&locationLine[1]==='Chennai (WFO)','Native full criteria workplace conflict')
+  const employerLine=/^(?:hiring organization|legal employer|employer|company)\s*:\s*(.+)$/i.exec(clean(line))
+  if(employerLine)need(employerLine[1]==='Detect Technologies','Native full criteria employer conflict')
+ }
  const form=one(descendants(scope,node=>node.tag==='form'),'native role-scoped application form')
  need(form.attrs.id==='email-form'&&form.attrs.method==='get'&&!form.attrs.action,'Native role application form changed')
  const posted=nativeDate(schema.datePosted,{required:true})
  need(schema.validThrough===undefined,'New native closing date requires review')
- return {...listing,company:'Detect Technologies',city:listing.location==='Remote'?null:listing.location.split(',')[0],sourceCountryScopeUnresolved:country===null,
+ return {...listing,company:'Detect Technologies',country,city:workplaceEvidence(listing.location)?.city??(listing.location==='Remote'?null:listing.location.split(',')[0]),sourceCountryScopeUnresolved:country===null,
   department:null,minimumQualification:null,preferredQualification:null,requiredSkills:[],postingDate:posted.raw,closingDate:null,
   sourceClosingStatusVerified:false,firstEverPostedAt:null,nativeLegalEmployer:null,jobDescription:description,sourceDescription:description,
   sourceDescriptionLines:descriptionLines,sourceNativeJobPosting:schema,

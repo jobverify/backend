@@ -169,6 +169,7 @@ test('run validates the official HHV homepage handoff and decorates first-party 
   assert.deepEqual(requestedUrls, [
     'https://hhvadvancedtech.com/',
     'https://hhvadvancedtech.com/careers',
+    'https://hhvadvancedtech.com/careers',
   ])
   assert.equal(jobs.length, 2)
   assert.equal(jobs[0].source, 'hhvadvancedtechnologies')

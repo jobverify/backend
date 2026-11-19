@@ -21,8 +21,9 @@ export const KEKA_INFO_URL = `${KEKA_BOARD_URL}api/organization/default/careerpo
 export const KEKA_JOBS_URL = `${KEKA_BOARD_URL}api/embedjobs/default/active/${KEKA_IDENTIFIER}`
 const ASSET_ROOT = 'https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/'
 const currentModule=JSON.parse(readFileSync(new URL('./reviewedModule20261117.json',import.meta.url),'utf8'))
+const currentModules=[currentModule,...(currentModule.alternatives||[])]
 const bodySHA=value=>createHash('sha256').update(value).digest('hex')
-const isCurrentJobsModule=chunk=>Buffer.byteLength(chunk)===currentModule.chunk.bytes&&bodySHA(chunk)===currentModule.chunk.sha256
+const isCurrentJobsModule=chunk=>currentModules.some(profile=>Buffer.byteLength(chunk)===profile.chunk.bytes&&bodySHA(chunk)===profile.chunk.sha256)
 const clean = value => String(value ?? '').replace(/<[^>]+>/g, ' ')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
   .replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"')
@@ -150,8 +151,9 @@ export const createAmberstudentScraper = (configuration={}) => ({
       const mainURL=mains[0].attrs.src,main=await io.fetchScript(mainURL),chunkURL=resolveJobsChunkUrl(main),chunk=await io.fetchScript(chunkURL)
       if(!hasVerifiedKekaJobsChunk(chunk))throw Error('Amber current jobs module no longer binds the verified Keka tenant')
       const currentProfile=isCurrentJobsModule(chunk)
-      if(currentProfile&&(mainURL!==currentModule.main.requestedURL||Buffer.byteLength(main)!==currentModule.main.bytes
-        ||bodySHA(main)!==currentModule.main.sha256||chunkURL!==currentModule.chunk.requestedURL))throw Error('Amber current native module tuple profile changed')
+      if(currentProfile&&!currentModules.some(profile=>mainURL===profile.main.requestedURL&&Buffer.byteLength(main)===profile.main.bytes
+        &&bodySHA(main)===profile.main.sha256&&chunkURL===profile.chunk.requestedURL&&Buffer.byteLength(chunk)===profile.chunk.bytes
+        &&bodySHA(chunk)===profile.chunk.sha256))throw Error('Amber current native module tuple profile changed')
       return {mainURL,chunkURL,...(currentProfile?{currentProfile:true,mainSHA256:bodySHA(main),chunkSHA256:bodySHA(chunk),browserEquivalenceComplete:false}:{})}
     }
     try{
@@ -183,6 +185,11 @@ export const createAmberstudentScraper = (configuration={}) => ({
       return finish()
     }catch(error){
       io.signal.throwIfAborted()
+      if(error&&typeof error==='object')Object.defineProperty(error,'nativeCollectionEvidence',{configurable:true,value:{source:SOURCE,
+        nativeOpeningInventory,nativeClosingInventory,unknownCountryIds:inventory.unknownCountryIds,
+        countryConflictIds:inventory.countryConflictIds,sourceScopeComplete:false,lifecycleCleanupAllowed:false}})
+      // Opening positives cannot bypass the closing account/route contract.
+      jobs=jobs.filter(job=>job.sourceClosingQualified===true)
       if(!jobs.length)throw error
       failures.push({message:error.message,status:error.status??null});return finish()
     }finally{io.close()}

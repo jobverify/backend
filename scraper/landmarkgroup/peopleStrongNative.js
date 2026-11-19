@@ -12,7 +12,13 @@ const norm=v=>v==null?null:String(v).replace(/\s+/g,' ').trim()||null
 const sha=v=>createHash('sha256').update(v).digest('hex')
 // This complete deployment factors the existing45-row paginator into ay=45.
 // Bind all three programs; matching endpoint snippets alone cannot admit it.
-const factoredPageSizeProfile={main:'main-C3ULYLPR.js',mainSHA:'f232fae4810bf9d0a51c7621b7ffe4b9cd175a73c98006b4fdc565422d866c83',service:PEOPLESTRONG_ORIGIN+'/chunk-IFMVPRQ7.js',serviceSHA:'aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c',jobModule:'./chunk-MP77JDEN.js',detailSHA:'2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c'}
+const factoredPageSizeProfiles=[
+ {main:'main-C3ULYLPR.js',mainSHA:'f232fae4810bf9d0a51c7621b7ffe4b9cd175a73c98006b4fdc565422d866c83',service:PEOPLESTRONG_ORIGIN+'/chunk-IFMVPRQ7.js',serviceSHA:'aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c',jobModule:'./chunk-MP77JDEN.js',detailSHA:'2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c'},
+ // Nov19 originals retain the same service/detail AST and45-row paginator.
+ // Main only changes consent-document opening to safeWindowOpen; the public
+ // job route, anonymous protocol, full criteria and role controls are unchanged.
+ {main:'main-OBU6H7ZJ.js',mainSHA:'6eda57f07a44bf4ba02727d9a1d56cee3aaa6ad3ccfd2aa62c51c858544d5830',service:PEOPLESTRONG_ORIGIN+'/chunk-P66I7TEB.js',serviceSHA:'5e9aa4cea5b09cedca5d25eb8b287ea5012ccc602cead3ee6d4dec852351a0bc',jobModule:'./chunk-QOT5H7Z2.js',detailSHA:'d09f722916757050e153688ee488b9697240046f709cfa17cebbed46ddd95a07'},
+]
 const parse=body=>{let p;try{p=JSON.parse(body)}catch{proof(false,'Invalid public JSON')};return p}
 const response=body=>{const p=parse(body);proof(p.messageCode?.code===200&&p.response!=null,'Native response unsuccessful');return p.response}
 const typed=(a,type)=>{const values=(a??[]).filter(x=>x.orgUnitType===type).map(x=>norm(x.orgUnitName)).filter(Boolean);proof(values.length<=1,'Ambiguous native hierarchy');return values[0]??null}
@@ -60,8 +66,8 @@ async function verifyClient(read){
  for(const file of imports){const url=new URL(file,PEOPLESTRONG_ORIGIN+'/'+main).href,text=await read(url);if(text.includes('getjoblist(')&&text.includes('jobs/v1?offset=')){service=text;serviceUrl=url;break}}
  proof(service&&['/api/cp/rest/altone/cp/','makePostReq("jobs/v1?offset=','job/organizationDetails?jobCode=','getJobDetails(','/v2?part=','&isReqId='].every(x=>service.includes(x)),'Current anonymous list/detail protocol changed')
  const lazy=await read(new URL(jobModule,PEOPLESTRONG_ORIGIN+'/'+main).href);proof(lazy.includes(PARTS)&&lazy.includes('getJobDetails(')&&lazy.includes('jobDescription'),'Current full-detail request not advertised')
- const current=main===factoredPageSizeProfile.main&&sha(js)===factoredPageSizeProfile.mainSHA&&serviceUrl===factoredPageSizeProfile.service&&sha(service)===factoredPageSizeProfile.serviceSHA&&jobModule===factoredPageSizeProfile.jobModule&&sha(lazy)===factoredPageSizeProfile.detailSHA
- const referencesCurrent=main===factoredPageSizeProfile.main||serviceUrl===factoredPageSizeProfile.service||jobModule===factoredPageSizeProfile.jobModule
+ const current=factoredPageSizeProfiles.some(profile=>main===profile.main&&sha(js)===profile.mainSHA&&serviceUrl===profile.service&&sha(service)===profile.serviceSHA&&jobModule===profile.jobModule&&sha(lazy)===profile.detailSHA)
+ const referencesCurrent=factoredPageSizeProfiles.some(profile=>main===profile.main||serviceUrl===profile.service||jobModule===profile.jobModule)
  proof(referencesCurrent?current:service.includes('this.offset=0,this.limit=45'),'Current anonymous list/detail protocol changed')
  const layout=await read(BASE+'layout?isPreview=false'),info=response(await read(BASE+'urlinfo'));proof(/Landmark Group/i.test(layout)&&info.url==='careers-landmarkgroupindia.peoplestrong.com','Current delegated employer identity mismatch')
  return{main,jobModule,layoutIdentity:true,mainSHA:sha(js),serviceUrl,serviceSHA:sha(service),detailSHA:sha(lazy)}

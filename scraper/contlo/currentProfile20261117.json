@@ -1,5 +1,29 @@
 {
   "reviewedOn": "2026-11-17",
+  "corporateVersions": [
+    {
+      "reviewedOn": "2026-11-18",
+      "reviewSummary": "Both whole corporate entities differ from the prior reviewed pair only by the exact stylesheet reference and Next build ID. Careers workspace embed and the complete corporate/native/application programs remain unchanged. The two entities form one coherent pair and cannot be mixed with another deployment.",
+      "reviewedStylesheet": {
+        "url": "https://contlo.com/_next/static/chunks/1p7aeh8z-2d6l.css",
+        "sha256": "9981646dd1399b7008e9a94bfdde58a5f249cb311345b56362686796c88fe5a1"
+      },
+      "corporate": [
+        {
+          "url": "https://contlo.com/",
+          "bytes": 298577,
+          "sha256": "dec9fb8d69247cf3d89e4cb454d881e4543c2f6485bc0966dc8e247cb19fdab9",
+          "title": "Contlo – Autonomous marketing for e-commerce"
+        },
+        {
+          "url": "https://contlo.com/careers",
+          "bytes": 79945,
+          "sha256": "ba54d10c3134a24fa4e8ea4c428cb22b01ed30cbbcb9b65c9a26a1dc2e325b89",
+          "title": "Careers | Contlo"
+        }
+      ]
+    }
+  ],
   "corporate": [
     {
       "url": "https://contlo.com/",

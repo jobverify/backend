@@ -10,26 +10,30 @@ import { defaultConfiguration } from '../src/pipeline/policy.js';
 import { createPipeline, failPipeline } from '../src/pipeline/execution.js';
 import { savedPipelineConfiguration } from '../src/pipeline/configuration.js';
 import { loadPipelineJobFilter } from '../src/pipeline/jobScope.js';
+import * as jobScope from '../src/pipeline/jobScope.js';
+import { buildRewriteInput } from '../src/services/jobDescriptionPolicy.js';
+import { reconcileRewriteCandidate } from '../rewriting/queue.js';
+import { buildSourceFacts } from '../rewriting/factPlan.js';
 import { classifyJobsWithBatches } from '../scripts/classifySavedJobs.js';
 import { assignedSavedJobs } from '../scripts/lib/assignedSavedJobs.js';
-import { rewriteQueueQuery, rewriteQueuePages } from '../rewriting/runner.js';
+import { rewriteQueueQuery, rewriteQueuePages, rewriteCandidates } from '../rewriting/runner.js';
 
 test('saved scope snapshots select new inserts consistently for rewrite, classification and batches', { timeout: 180000 }, async t => {
   const mongo = await MongoMemoryServer.create({ binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri());
   const config = defaultConfiguration();
-  config.stages.find(s => s.key === 'rewrite').runForAllExistingJobs = true;
+  config.stages.find(s => s.key === 'rewrite').jobScope = 'all';
   await PipelineConfiguration.create({ _id: 'global', ...config });
   const saved = await savedPipelineConfiguration();
-  assert.equal(saved.stages[1].runForAllExistingJobs, true);
-  assert.equal(saved.stages[2].runForAllExistingJobs, false);
+  assert.equal(saved.stages[1].jobScope, 'all');
+  assert.equal(saved.stages[2].jobScope, 'new');
   const run = await createPipeline({ configuration: saved, origin: 'admin', target: 'local' });
   const start = new Date('2026-11-16T10:00:00Z'), end = new Date('2026-11-16T11:00:00Z');
   await PipelineRun.updateOne({ _id: run._id }, { $set: {
     'stages.0.status': 'completed', 'stages.0.startedAt': start, 'stages.0.completedAt': end,
   } });
-  await PipelineConfiguration.updateOne({ _id: 'global' }, { $set: { 'stages.1.runForAllExistingJobs': false, 'stages.2.runForAllExistingJobs': true } });
+  await PipelineConfiguration.updateOne({ _id: 'global' }, { $set: { 'stages.1.jobScope': 'new', 'stages.2.jobScope': 'pending_and_new' } });
   const rewriteFilter = await loadPipelineJobFilter('rewrite', { pipelineId: run._id });
   const newFilter = await loadPipelineJobFilter('classification', { pipelineId: run._id });
   assert.deepEqual(rewriteFilter, {});
@@ -75,6 +79,55 @@ test('saved scope snapshots select new inserts consistently for rewrite, classif
   assert.equal(all.assigned, 4);
   assert.equal(all.batchEligibility.assigned, 4);
   assert.deepEqual((await Job.findById(old._id).lean()).eligibleBatches, [2022, 2023, 2024]);
+  await t.test('pending plus new uses caches while all jobs reruns classification and batch eligibility', async () => {
+    const pending = await classifyJobsWithBatches({ worker, mode: 'policy', now: () => end });
+    assert.equal(pending.cached, 4);
+    assert.equal(pending.modelRequests, 0);
+    assert.equal(pending.batchEligibility.cached, 4);
+    const options = await jobScope.loadPipelineProcessingOptions('rewrite', { pipelineId: run._id });
+    assert.equal(options.reprocessCompleted, true, 'the run keeps its saved scope after configuration changes');
+    const rerun = await classifyJobsWithBatches({ worker, mode: 'policy', now: () => end, ...options });
+    assert.equal(rerun.completed, 4);
+    assert.equal(rerun.modelRequests, 4);
+    assert.equal(rerun.cached, 0);
+    assert.equal(rerun.batchEligibility.cached, 0);
+    assert.equal(rerun.batchEligibility.inferred, 4);
+  });
+  await t.test('all jobs selects completed rewrites and retains source and concurrent update guards', async () => {
+    const current = await Job.findById(old._id).lean();
+    const hash = buildRewriteInput(current).inputHash;
+    await Job.updateOne({ _id: old._id }, { $set: { sourceContentHash: hash,
+      descriptionRewrite: { status: 'published', inputHash: hash, attempts: 3, policyVersion: 'completed-test' } } });
+    const options = { jobFilter: { _id: old._id }, reprocessCompleted: true };
+    assert.equal(await Job.countDocuments(rewriteQueueQuery(end, { jobFilter: options.jobFilter })), 0);
+    assert.equal(await Job.countDocuments(rewriteQueueQuery(end, options)), 1);
+    const candidate = await Job.findById(old._id).lean();
+    const update = (filter, values) => Job.updateOne(filter, values);
+    assert.equal((await reconcileRewriteCandidate(candidate, { update })).kind, 'stale');
+    assert.equal((await reconcileRewriteCandidate(candidate, { update, reprocessCompleted: true })).kind, 'ready');
+    const queued = await Job.findById(old._id).lean();
+    assert.equal(queued.descriptionRewrite.status, 'pending');
+    assert.equal(queued.descriptionRewrite.attempts, 0);
+    assert.equal((await reconcileRewriteCandidate({ ...queued, sourceContentHash: 'changed-source' }, {
+      update: () => assert.fail('An unverified source must never be reset'), reprocessCompleted: true,
+    })).kind, 'stale');
+    assert.equal((await reconcileRewriteCandidate(candidate, { update, reprocessCompleted: true })).kind, 'conflict');
+    await Job.updateOne({ _id: old._id }, { $set: { 'descriptionRewrite.status': 'published' } });
+    const published = await Job.findById(old._id).lean();
+    let generations = 0;
+    const stats = await rewriteCandidates([published], { update, reprocessCompleted: true, deadline: Date.now() + 10000,
+      client: { generate: async input => {
+        generations++;
+        return { value: { categories: buildSourceFacts(input).map(f => f.section ?? 9), overview: null }, finishReason: 'stop' };
+      } },
+    });
+    assert.equal(generations, 1);
+    assert.equal(stats.published, 1);
+    const rewritten = await Job.findById(old._id).lean();
+    assert.equal(rewritten.sourceDescription, published.sourceDescription);
+    assert.equal(rewritten.sourceContentHash, published.sourceContentHash);
+    assert.equal(rewritten.descriptionRewrite.status, 'published');
+  });
   await t.test('real scraper inserts record ownership and rescrapes never transfer it', async () => {
     const { saveToDB } = await import('../scraper-support/utils/saveToDB.js');
     const previousId = process.env.PIPELINE_ID;

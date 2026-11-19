@@ -1,0 +1,24 @@
+{
+  "current-20261119": {
+    "jobSHA256": "d09f722916757050e153688ee488b9697240046f709cfa17cebbed46ddd95a07",
+    "filterSHA256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff",
+    "serviceSHA256": "5e9aa4cea5b09cedca5d25eb8b287ea5012ccc602cead3ee6d4dec852351a0bc",
+    "evidence": "test-data/current-programs-20261119.json.gz",
+    "freshContext": "Anonymous, no query parameters, selectedFilter or browser history. Constructor creates an empty q filter and default pagination. loadJobsData copies undefined fields; Angular JSON serialization yields {}. Public service uses makePostReq jobs/v1 with offset and limit 45. No website program is executed."
+  },
+  "retained-20261103": {
+    "jobSHA256": "2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c",
+    "filterSHA256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff",
+    "serviceSHA256": "aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c",
+    "evidence": "../../test/test-data/recruitmentGoal20261106/peoplestrong-current-clients.json.gz",
+    "freshContext": "Previously reviewed retained full native programs and exact empty filter request."
+  },
+  "retained-20261103-original": {
+    "jobSHA256": "1af7cbcc4340a6796766ad5112b6b3adc3cdcbb6cf849dca676be8bfb36101a5",
+    "filterSHA256": "857afe923070a805880989daa2e1fa395b50ff64fba8c8acad5c8ce2ae488626",
+    "serviceSHA256": "202436abca50f08f99b34e7dee8d0492245ba45ec4613135d11a825823399254",
+    "paginationDeclaration": "var Qx=class{constructor(){this.offset=0,this.limit=45,this.totalRecords=-1}}",
+    "evidence": "test-data/native-20261103.json.gz",
+    "freshContext": "The retained original job constructor creates empty _e and page-45 ye. Initial load has no query/history restoration; empty filter has no own constructor fields. loadJobsData copies five undefined list fields; Angular serializeBody JSON.stringify omits all five, giving {} with no query suffix. Public jobs/detail/organization GET and POST service paths are unchanged."
+  }
+}

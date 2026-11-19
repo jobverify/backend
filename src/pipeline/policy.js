@@ -3,6 +3,9 @@ import { FALLBACK_PARALLEL_SCRAPER_CONCURRENCY } from '../../scraper-support/uti
 export const STAGES = ['scraper', 'rewrite', 'classification'];
 export const WORKFLOWS = { scraper: 'scraper.yml', rewrite: 'rewrite-descriptions.yml', classification: 'classify-jobs.yml' };
 export const WORKFLOW_NAMES = { 'Jobverify Scraper Cron': 'scraper', 'Jobverify Description Rewrite': 'rewrite', 'Jobverify Post-scrape Classification': 'classification' };
+export const JOB_SCOPES = ['all', 'pending_and_new', 'new'];
+// The old all-jobs toggle included the backlog but still reused completed work.
+export const configuredJobScope = stage => stage?.jobScope ?? (stage?.runForAllExistingJobs === true ? 'pending_and_new' : 'new');
 export function validateScraperConcurrency(value) {
   if (!Number.isSafeInteger(value) || value < 1) {
     throw Object.assign(new Error('Scraper concurrency must be a positive whole number.'),{status:400});
@@ -14,7 +17,7 @@ export const defaultScraperConcurrency = () => {
   return Number.isSafeInteger(value)&&value>0?value:FALLBACK_PARALLEL_SCRAPER_CONCURRENCY;
 };
 export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true,
-  ...(key !== 'scraper' ? { runForAllExistingJobs: false } : {}),
+  ...(key !== 'scraper' ? { jobScope: 'new' } : {}),
 })), scraperConcurrency:defaultScraperConcurrency() });
 export function validateConfiguration(value) {
   const stages=value?.stages;
@@ -26,14 +29,17 @@ export function validateConfiguration(value) {
     && typeof stage.runForAllExistingJobs !== 'boolean')) {
     throw Object.assign(new Error('Run for all existing jobs must be on or off.'), {status:400});
   }
-  return {stages:stages.map(({key,enabled,runForAllExistingJobs})=>({key,enabled,
-    ...(key !== 'scraper' ? {runForAllExistingJobs:runForAllExistingJobs ?? false} : {}),
+  if (stages.some(stage => stage.key !== 'scraper' && stage.jobScope !== undefined && !JOB_SCOPES.includes(stage.jobScope))) {
+    throw Object.assign(new Error('Choose all existing jobs, pending/queued jobs and new jobs, or new jobs only.'), {status:400});
+  }
+  return {stages:stages.map(stage=>({key:stage.key,enabled:stage.enabled,
+    ...(stage.key !== 'scraper' ? {jobScope:configuredJobScope(stage)} : {}),
   })),scraperConcurrency:validateScraperConcurrency(value.scraperConcurrency===undefined?defaultScraperConcurrency():value.scraperConcurrency)};
 }
 export const directConfiguration = (start, configuration = defaultConfiguration()) => {
   if (!STAGES.includes(start)) throw new Error('Unknown stage');
   return {stages:STAGES.map((key,i)=>({key,enabled:i>=STAGES.indexOf(start),
-    ...(key !== 'scraper' ? {runForAllExistingJobs:configuration.stages.find(stage=>stage.key===key)?.runForAllExistingJobs ?? false} : {}),
+    ...(key !== 'scraper' ? {jobScope:configuredJobScope(configuration.stages.find(stage=>stage.key===key))} : {}),
   }))};
 };
 export const createStages = config => config.stages.map(s=>({...s,status:s.enabled?'waiting':'disabled'}));

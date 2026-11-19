@@ -65,6 +65,9 @@ const cleanDescription = (html) => String(html ?? '')
   .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&')
   .replace(/&quot;/gi, '"').replace(/&#39;|&apos;/gi, "'").replace(/\s+/g, ' ').trim()
 
+// Match whole native filter labels, never a city substring in a mixed scope.
+const VERIFIED_INDIA_CITIES = new Set(['Mumbai', 'Pune', 'Nipani', 'Chennai'])
+
 const runCurrentPortal = async ({ fetchText, fetchJson, now }) => {
   const shell = await fetchText(CAREERS_PORTAL_URL)
   if (!/<title>Jobs at MOBICULE TECHNOLOGIES PRIVATE LIMITED<\/title>/i.test(shell)) {
@@ -82,9 +85,16 @@ const runCurrentPortal = async ({ fetchText, fetchJson, now }) => {
   if (!Array.isArray(locations) || !Array.isArray(inventory?.data)) {
     throw new Error('Mobicule greytHR inventory contract changed')
   }
-  const cityById = new Map(locations.map(item => [String(item.id), item.name]))
+  const cityById = new Map()
+  for (const item of locations) {
+    const id = String(item?.id ?? '')
+    if (!/^\d+$/.test(id) || typeof item?.name !== 'string' || !item.name.trim() || cityById.has(id)) {
+      throw new Error('Mobicule greytHR location filter changed')
+    }
+    cityById.set(id, item.name)
+  }
   const ids = new Set(), slugs = new Set()
-  const jobs = []
+  const jobs = [], nativeDetails = []
   for (const row of inventory.data) {
     const id = String(row?.id ?? ''), slug = String(row?.slug ?? '')
     if (!/^[0-9a-f-]{36}$/i.test(id) || !/^[a-z0-9-]+$/.test(slug)
@@ -94,11 +104,12 @@ const runCurrentPortal = async ({ fetchText, fetchJson, now }) => {
     }
     ids.add(id); slugs.add(slug)
     const cities = [...new Set(row.locations.map(locationId => cityById.get(String(locationId))))]
-    if (cities.some(city => !['Mumbai', 'Pune'].includes(city))) {
+    if (cities.some(city => !VERIFIED_INDIA_CITIES.has(city))) {
       throw new Error('Mobicule greytHR job geography is unverified')
     }
     const sourceUrl = `${CAREERS_PORTAL_URL}${slug}`
     const detail = await fetchJson(`${DETAIL_API_ROOT}${slug}/`)
+    nativeDetails.push({ sourceUrl, detail })
     if (detail?.job_status !== 'published' || detail?.job?.id !== id
       || detail.job.title !== row.title || detail.job.slug !== slug
       || detail.job.apply_url !== sourceUrl
@@ -115,9 +126,21 @@ const runCurrentPortal = async ({ fetchText, fetchJson, now }) => {
       experienceRequired: null, jobDescription: cleanDescription(detail.job.description),
       postingDate: published.toISOString().slice(0, 10),
       link: sourceUrl, source: SOURCE, scrapedAt: now(),
+      sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false,
     })
   }
-  return jobs
+  attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
+    observedRecordCount: inventory.data.length, observedVacancyCount: inventory.data.length,
+    sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+  Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: {
+    source: SOURCE, nativePortalHTML: shell, nativeCompany: company, nativeFilters: filters,
+    nativeInventory: inventory, nativeDetails, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    companyGlobalTotal: null, companyIndiaTotal: null,
+  } })
+  return attachInventoryEvidence(jobs, { status: 'discovery-only', surface: CAREERS_API_URL,
+    firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+    pagesFetched: 5 + nativeDetails.length, reportedTotal: inventory.data.length, indiaFacetCount: null,
+    verifiedAt: now(), reason: 'current-published-native-roles-and-matched-full-details-retained;closing-and-company-wide-coverage-unverified' })
 }
 
 export const extractIndiaJobs = (payload) => (Array.isArray(payload?.data) ? payload.data : [])
@@ -186,4 +209,7 @@ export const run = async ({
     scrapedAt: now(),
   }))
 }
+
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 

@@ -1,7 +1,7 @@
 import { buildClassificationInput, cleanSourceText } from './jobClassificationPolicy.js';
 import { sourceGuardedClassification } from './postScrapeClassification.js';
 import { batchHash, batchSourceFields, batchSourceHash, batchYears, batchMaximum, graduationAnchor,
-  BATCH_ELIGIBILITY_VERSION, hasBatchEligibility } from '../utils/jobBatchEligibility.js';
+  BATCH_ELIGIBILITY_VERSION, hasBatchEligibility, hasGraduationYearEvidence } from '../utils/jobBatchEligibility.js';
 
 // Alerts may be rendered before the asynchronous batch phase has saved its
 // result. Reuse deterministic policy rules without starting an extractor or
@@ -46,8 +46,7 @@ export function explicitSourceBatches(input) {
   for (const line of input.text.split('\n')) {
     if (/^(?:preferred|desirable|optional)\s*(?:qualifications?|requirements?)?/i.test(line.trim())) preferred = true;
     else if (/^(?:required|minimum|basic|responsibilities|requirements|description|title)\b/i.test(line.trim())) preferred = false;
-    if (!preferred) segments.push(...line.split(/[.!?;]/).filter(part => /\b(?:batches|batch|cohorts?|class\s+of|graduat(?:ion|ing|ed|es?)|pass[- ]?outs?)\b/i.test(part)
-      && /\b(?:19|20|21)\d{2}\b/.test(part)));
+    if (!preferred) segments.push(...line.split(/[.!?;]/).filter(hasGraduationYearEvidence));
   }
   if (!segments.length) return { years: [], ambiguous: false };
   if (segments.some(part => /\b(?:not|except|excluding|before|after|earlier|later|prior|preferred|desirable|by|since|between|above|newer|onwards?)\b/i.test(part))) return { years: [], ambiguous: true };

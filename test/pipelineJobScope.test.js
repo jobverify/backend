@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { defaultConfiguration, validateConfiguration, directConfiguration } from '../src/pipeline/policy.js';
 import { pipelineJobFilter, loadPipelineJobFilter } from '../src/pipeline/jobScope.js';
+import * as jobScope from '../src/pipeline/jobScope.js';
 
 const start = new Date('2026-11-16T10:00:00Z');
 const end = new Date('2026-11-16T11:00:00Z');
@@ -11,21 +12,47 @@ const run = (all = false) => ({ _id: 'test-pipeline', stages: [
   { key: 'classification', enabled: true, runForAllExistingJobs: all },
 ] });
 
-test('processing scope defaults to new jobs and validates each independent toggle', () => {
+test('processing scopes default to new jobs and validate each independent choice', () => {
   for (const stage of defaultConfiguration().stages.filter(s => s.key !== 'scraper')) {
-    assert.equal(stage.runForAllExistingJobs, false);
+    assert.equal(stage.jobScope, 'new');
   }
   const config = validateConfiguration({ stages: run().stages.map(s => ({ ...s,
     runForAllExistingJobs: s.key === 'rewrite',
   })) });
-  assert.equal(config.stages[1].runForAllExistingJobs, true);
-  assert.equal(config.stages[2].runForAllExistingJobs, false);
+  assert.equal(config.stages[1].jobScope, 'pending_and_new');
+  assert.equal(config.stages[2].jobScope, 'new');
+  assert.equal(Object.hasOwn(config.stages[1], 'runForAllExistingJobs'), false);
   assert.deepEqual(directConfiguration('rewrite', config).stages.slice(1), config.stages.slice(1));
   assert.equal(Object.hasOwn(config.stages[0], 'runForAllExistingJobs'), false);
   for (const value of ['false', 1, null, {}]) {
     assert.throws(() => validateConfiguration({ stages: run().stages.map(s => s.key === 'rewrite'
       ? { ...s, runForAllExistingJobs: value } : s) }), error => error.status === 400);
   }
+  for (const value of ['all', 'pending_and_new', 'new']) {
+    const explicit = validateConfiguration({ stages: run().stages.map(s => s.key !== 'scraper'
+      ? { ...s, jobScope: value } : s) });
+    assert.equal(explicit.stages[1].jobScope, value);
+    assert.deepEqual(directConfiguration('rewrite', explicit).stages.slice(1), explicit.stages.slice(1));
+  }
+  for (const value of ['pending', '', true, 1, null, {}]) {
+    assert.throws(() => validateConfiguration({ stages: run().stages.map(s => s.key === 'rewrite'
+      ? { ...s, jobScope: value } : s) }), error => error.status === 400);
+  }
+});
+
+test('only all jobs reprocesses completed work and standalone scripts retain queue behavior', async () => {
+  assert.equal(typeof jobScope.loadPipelineProcessingOptions, 'function');
+  for (const scope of ['all', 'pending_and_new', 'new']) {
+    const pipeline = run();
+    pipeline.stages[1].jobScope = scope;
+    const options = await jobScope.loadPipelineProcessingOptions('rewrite', { pipelineId: pipeline._id,
+      model: { findById: () => ({ lean: async () => pipeline }) } });
+    assert.deepEqual(options, { jobFilter: scope === 'new' ? { firstSeenPipelineId: pipeline._id } : {},
+      reprocessCompleted: scope === 'all' });
+  }
+  assert.deepEqual(await jobScope.loadPipelineProcessingOptions('rewrite', { pipelineId: '' }), {
+    jobFilter: {}, reprocessCompleted: false,
+  });
 });
 
 test('new jobs selection uses exact inserting pipeline ownership, never observation timestamps', () => {
@@ -37,6 +64,12 @@ test('new jobs selection uses exact inserting pipeline ownership, never observat
   independent.stages[1].runForAllExistingJobs = true;
   assert.deepEqual(pipelineJobFilter(independent, 'rewrite'), {});
   assert.deepEqual(pipelineJobFilter(independent, 'classification'), { firstSeenPipelineId: 'test-pipeline' });
+  for (const scope of ['all', 'pending_and_new']) {
+    const pipeline = run(); pipeline.stages[1].jobScope = scope; pipeline.stages.shift();
+    assert.deepEqual(pipelineJobFilter(pipeline, 'rewrite'), {});
+  }
+  const invalid = run(); invalid.stages[1].jobScope = 'invalid';
+  assert.throws(() => pipelineJobFilter(invalid, 'rewrite'), /scope/i);
 });
 
 test('without a preceding completed scraper new jobs selection is empty', () => {

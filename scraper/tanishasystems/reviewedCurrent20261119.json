@@ -1,0 +1,118 @@
+{
+  "source": "tanishasystems",
+  "provenance": "Finite whole public HTML and every declared stylesheet/program, acquired twice unchanged. Configured static notice page only; no company-wide India inventory or cleanup claim.",
+  "documents": [
+    {
+      "url": "https://www.tanishasystems.com/currentopenings.html",
+      "kind": "html",
+      "bytes": 83047,
+      "sha256": "f20368fce6fc1d5250063f0a7452c5d087390fce549a0d751ccca1e68b773403"
+    },
+    {
+      "url": "https://www.tanishasystems.com/joinus.html",
+      "kind": "html",
+      "bytes": 17464,
+      "sha256": "df6961c96f726e002bb7fa576b55d0e3d775a826e6baf82edc4b31507aa4dda2"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap",
+      "kind": "css",
+      "bytes": 9283,
+      "sha256": "eb441a89fd3d9d127868ad9fa932d43a0ce1417658eef42d7eaddb5e7635cad0"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/bootstrap/css/bootstrap.min.css",
+      "kind": "css",
+      "bytes": 232803,
+      "sha256": "3c8f27e6009ccfd710a905e6dcf12d0ee3c6f2ac7da05b0572d3e0d12e736fc8"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+      "kind": "css",
+      "bytes": 98255,
+      "sha256": "4ffa6bea4304d2eda418683f56261685ed47bf00995039f27e5ad62d53938d2d"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/glightbox/css/glightbox.min.css",
+      "kind": "css",
+      "bytes": 13749,
+      "sha256": "6d3f62d4d17969f9c70e9438cf671004725019e868123f2ebc295a006f8d5d2d"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/swiper/swiper-bundle.min.css",
+      "kind": "css",
+      "bytes": 18433,
+      "sha256": "fc9cc926368944db8f6a48d24a89968c35c1bd659eabe7040d8bf8081619c9a7"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/aos/aos.css",
+      "kind": "css",
+      "bytes": 28765,
+      "sha256": "8695f5fc64d65593f9763a5b28d14bc34e3cf802317e1ffad2125a7c8fedfafe"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/css/main.css",
+      "kind": "css",
+      "bytes": 63083,
+      "sha256": "9861c68dbd3de2912485189f7f6aa86437824e2c4e685dd38bfeb4f97fe822e5"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+      "kind": "js",
+      "bytes": 80721,
+      "sha256": "0833b2e9c3a26c258476c46266e6877fc75218625162e0460be9a3a098a61c6c"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/glightbox/js/glightbox.min.js",
+      "kind": "js",
+      "bytes": 56300,
+      "sha256": "a43ad251ad77bce9dee6eb81fe9494753daf3535ecab58b8bed9bfc69a895fdc"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/purecounter/purecounter_vanilla.js",
+      "kind": "js",
+      "bytes": 5409,
+      "sha256": "6b68e5ade742f1c41e98d4a7052dcfa69de8a5961c32144adee15091099060ff"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js",
+      "kind": "js",
+      "bytes": 5485,
+      "sha256": "86dacb15f649eafe6e74e1bede434b20d20a87682fa0aab01211d87d34cc2027"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/isotope-layout/isotope.pkgd.min.js",
+      "kind": "js",
+      "bytes": 35445,
+      "sha256": "081ae9baaacc857c1c2cb51de6dbd0e1eb811c2761ef01a50df373f2f6eefe22"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/swiper/swiper-bundle.min.js",
+      "kind": "js",
+      "bytes": 149748,
+      "sha256": "3444ae492a5500c9c803a93b7977a540fb136fb32e8f1676f3131a19f47f43ff"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/aos/aos.js",
+      "kind": "js",
+      "bytes": 13800,
+      "sha256": "dd1f9acf13b12f189da475e0f23c7c505767859ab620aac636964974093c281d"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/vendor/php-email-form/validate.js",
+      "kind": "js",
+      "bytes": 2649,
+      "sha256": "bb388b1ade58efcce82985d6c2bd651f81c2734af8c8248e4f14fd3ac836c555"
+    },
+    {
+      "url": "https://www.tanishasystems.com/assets/js/main.js",
+      "kind": "js",
+      "bytes": 6295,
+      "sha256": "5d1614b2465fadbf9f272ecc305c7272e9ce37f9f114187b89eca573af82ee1a"
+    }
+  ],
+  "geographyReferences": [
+    "https://www.usa.gov/states/new-jersey",
+    "https://www.usa.gov/states/new-york"
+  ]
+}

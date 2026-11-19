@@ -35,6 +35,29 @@ test('batch eligibility final phase, caching, concurrency, source persistence an
   const seed = async (fields = {}) => Job.create({ ...engineer, fingerprint: 'batch-test-' + new mongoose.Types.ObjectId(), status: 'active', ...fields });
   const phase = options => refreshJobBatchEligibility({ now: () => now, mode: 'policy', ...options });
 
+  await t.test('graduate apprenticeship intake dates resolve as unknown without starting an extractor', async () => {
+    await Job.deleteMany({});
+    const title = 'Advertisement for Engagement of Non-Engineering Graduate BSc-Nursing Apprentices 2026-27 under Apprentice Act-1961';
+    const job = await seed({ title, sourceDescription: '', eligibleBatches: [1961, 2026], eligibleBatchesProvenance: 'source',
+      batchEligibility: { version: 'academic-batches-v1', inputHash: 'obsolete-intake-extraction',
+        status: 'explicit', mode: 'policy', basis: 'source_text' } });
+    await Job.updateOne({ _id: job._id }, { $set: { 'batchEligibility.extraction': {
+      identity: 'obsolete-extractor', sourceHash: batchEligibilityInput(job.toObject(), { now }).sourceHash, result: notStated,
+    } } });
+    const extractorFactory = () => assert.fail('intake dates must not start a model');
+    const result = await phase({ extractorFactory });
+    assert.equal(result.unknown, 1);
+    assert.equal(result.failed, 0);
+    assert.equal(result.pending, 0);
+    assert.equal(result.modelRequests, 0);
+    const stored = await Job.findById(job._id).lean();
+    assert.equal(stored.batchEligibility.status, 'unknown');
+    assert.deepEqual(stored.eligibleBatches, []);
+    assert.equal(stored.eligibleBatchRange, null);
+    assert.equal(stored.eligibleBatchesProvenance, null);
+    assert.equal((await phase({ extractorFactory })).cached, 1);
+  });
+
   await t.test('final phase follows worker shutdown, includes cached classifications and leaves inactive jobs alone', async () => {
     await Job.deleteMany({});
     const active = await seed();
@@ -200,8 +223,10 @@ test('batch eligibility final phase, caching, concurrency, source persistence an
     assert.deepEqual(publicJob.eligibleBatchRange, { maxYear: 2024 });
     for (const [passingYear, expected] of [[2023, true], [2025, false]]) assert.equal(jobMatchesSavedFilters({ job: stored,
       userProfile: { passingYear }, filters: { company: ['Batch Test'] } }), expected);
-    assert.match(buildTelegramMessageBody([stored]), /2024 and earlier \(estimated\)/);
-    assert.match(renderBroadcastTemplate('{batch}\n{jobUrl}', stored), /2024 and earlier \(estimated\)/);
+    for (const message of [buildTelegramMessageBody([stored]), renderBroadcastTemplate('{batch}\n{jobUrl}', stored)]) {
+      assert.match(message, /2024 and earlier\n/);
+      assert.doesNotMatch(message, /estimated/i);
+    }
     const summary = aggregateClassificationSummaries([{ batchEligibility: { inferred: 1, pending: 2, failed: 0 } }]);
     assert.equal(summary.batchEligibility.inferred, 1); assert.equal(summary.batchEligibility.pending, 2);
     assert.equal(stageOutcome('classification', summary), 'completed');

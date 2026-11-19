@@ -18,12 +18,12 @@ import { classificationSkipReason, createClassificationReport, recordClassificat
   recordClassificationInference } from '../classification/reporting.js'
 import { assignedSavedJobs } from './lib/assignedSavedJobs.js'
 import { refreshJobBatchEligibility } from './lib/batchEligibilityPhase.js'
-import { loadPipelineJobFilter } from '../src/pipeline/jobScope.js'
+import { loadPipelineProcessingOptions } from '../src/pipeline/jobScope.js'
 import { stageOutcome, describeStageCompletion } from '../src/pipeline/policy.js'
 import { isFatalProcessingError } from '../src/pipeline/processingErrors.js'
 
 export async function classifySavedJobs({ model = Job, worker, now = () => new Date(),
-  mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal, jobFilter = {},
+  mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal, jobFilter = {}, reprocessCompleted = false,
   monotonicNow = () => performance.now(),
   onProgress = () => {}, onResult = () => {} } = {}) {
   if (!['shadow', 'policy'].includes(mode)) throw new Error('Mode must be shadow or policy')
@@ -90,7 +90,7 @@ export async function classifySavedJobs({ model = Job, worker, now = () => new D
           sourceQualityIssues: result?.sourceQualityIssues ?? [], reviewReasons: result?.reviewReasons ?? [],
         }
       }
-      if (measureSync('input', () => alreadyClassified(job, input, mode), jobTimings)) {
+      if (!reprocessCompleted && measureSync('input', () => alreadyClassified(job, input, mode), jobTimings)) {
         summary.cached++
         const previous = job.postClassification.result
         const publicJobType = mode === 'policy' ? job.jobType : null
@@ -131,7 +131,7 @@ export async function classifySavedJobs({ model = Job, worker, now = () => new D
       let outcome, details = {}, inferred = false
       try {
         const nativeInputHash = measureSync('input', () => trialNativeInputHash(input, nativeRuntime), jobTimings)
-        const priorNative = job.postClassification?.status === 'completed'
+        const priorNative = !reprocessCompleted && job.postClassification?.status === 'completed'
           && job.postClassification.result?.nativeInputHash === nativeInputHash
           ? job.postClassification.result.prediction : null
         let prediction = priorNative
@@ -241,11 +241,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     fs.writeFileSync(diagnostics, '')
     progress.phase('connect')
     await connectDB()
-    const jobFilter = await loadPipelineJobFilter('classification')
+    const processingOptions = await loadPipelineProcessingOptions('classification')
     progress.phase('start_worker')
     worker = await startGliclassWorker()
     progress.phase('process_queue')
-    const summary = await classifyJobsWithBatches({ worker, jobFilter, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
+    const summary = await classifyJobsWithBatches({ worker, ...processingOptions, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
       mode: process.env.POST_SCRAPE_CLASSIFICATION_MODE || 'shadow',
       concurrency: Number(process.env.CLASSIFICATION_CONCURRENCY || 1),
       budgetSeconds: Number(process.env.CLASSIFICATION_BUDGET_SECONDS || 18000), signal: controller.signal,
