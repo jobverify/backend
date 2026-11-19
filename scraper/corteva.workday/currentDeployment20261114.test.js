@@ -23,7 +23,7 @@ test('Corteva current-client renewal retains declared identity, original-byte an
  assert.throws(()=>board(html+'<script src="/gen/js/pcsxPwa.ceaedf5d9f9dac50.js"></script>'),/reviewed PCSX client/)
 })
 
-test('Corteva native collector reaches search only after reviewing the current declared client',async()=>{
+test('Corteva native collector binds the historical tenant before native role collection',async()=>{
  const calls=[],reachedSearch=new Error('verified current client reached native search')
  await assert.rejects(runNativeCorteva({fetchResponse:async url=>{
   calls.push(url)
@@ -33,5 +33,5 @@ test('Corteva native collector reaches search only after reviewing the current d
   const contentType=url===current?'text/javascript':'text/html'
   return {status:url===PORTAL?302:200,finalURL:url,headers:{'content-type':contentType,...(url===PORTAL?{location:'/careers'}:{})},contentType,bytes:body}
  }}),error=>error===reachedSearch)
- assert.deepEqual(calls,[CAREERS,PORTAL,BOARD,current,'https://apply.corteva.com/api/pcsx/search?domain=corteva.com&query=&location=&start=0&'])
+ assert.deepEqual(calls,[CAREERS,PORTAL,BOARD,'https://apply.corteva.com/api/pcsx/search?domain=corteva.com&query=&location=&start=0&'])
 })

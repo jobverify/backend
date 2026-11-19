@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import LOCOBUZZ_CATALOG from './catalog.js'
+import { hasCurrentLocobuzzInventory, readCurrentLocobuzzCards, collectLocobuzzCurrentJobs } from './nativeInventory.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -65,13 +66,15 @@ const findErrorInChain = (error, predicate) => {
 const hasHttpStatus = (error, status) =>
   Boolean(findErrorInChain(error, (candidate) => Number(candidate?.status) === status))
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url, options = {}) => fetchTextWithRetry(url, {
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   },
   label: SOURCE,
   timeoutMs: 15000,
+  attempts: 1, redirect: 'manual', signal: options.signal,
+  includeResponseMetadata: options.includeResponseMetadata === true,
 })
 
 const extractTextLines = (html = '') => decodeHtmlEntities(String(html ?? ''))
@@ -154,6 +157,10 @@ export const hasOfficialCareersSignal = (html = '') => {
   const rawHtml = String(html)
   const normalized = normalizeWhitespace(rawHtml)?.toLowerCase() || ''
 
+  try {
+    if (hasCurrentLocobuzzInventory(rawHtml)) return readCurrentLocobuzzCards(rawHtml).length > 0
+  } catch { return false }
+
   return /<title>\s*Careers at Locobuzz/i.test(rawHtml)
     && normalized.includes('open positions')
     && normalized.includes('careers@locobuzz.com')
@@ -197,32 +204,42 @@ export const extractOpenings = (html = '', { sourceUrl = CAREERS_URL } = {}) => 
   return jobs.length > 0 ? jobs : extractHeadingOpenings(html, sourceUrl)
 }
 
-const loadCareersPage = async (fetchText) => {
-  try {
-    return {
-      careersUrl: CAREERS_URL,
-      careersHtml: await fetchText(CAREERS_URL),
+const loadCareersPage = async (fetchText, signal, requestedURL = CAREERS_URL) => {
+  const read = async url => {
+    signal?.throwIfAborted()
+    const response = await fetchText(url, { signal, includeResponseMetadata: true })
+    signal?.throwIfAborted()
+    if (typeof response === 'string') return { careersUrl: url, careersHtml: response }
+    if (response?.status !== 200 || ![CAREERS_URL, CAREERS_URL + '/'].includes(response.url) || typeof response.html !== 'string') {
+      throw new Error('Locobuzz current first-party careers response identity changed')
     }
+    return { careersUrl: response.url, careersHtml: response.html }
+  }
+  try {
+    return await read(requestedURL)
   } catch (error) {
-    if (CAREERS_URL.endsWith('/') || !hasHttpStatus(error, 307)) {
+    if (requestedURL.endsWith('/') || ![301, 307].some(status => hasHttpStatus(error, status))) {
       throw error
     }
 
     const canonicalUrl = `${CAREERS_URL}/`
-    return {
-      careersUrl: canonicalUrl,
-      careersHtml: await fetchText(canonicalUrl),
-    }
+    return read(canonicalUrl)
   }
 }
 
 export const createLocobuzzScraper = () => ({
-  async run({ fetchText = defaultFetchText, now = () => new Date().toISOString() } = {}) {
-    const { careersUrl, careersHtml } = await loadCareersPage(fetchText)
+  async run({ fetchText = defaultFetchText, fetchPdf, now = () => new Date().toISOString(), signal } = {}) {
+    const { careersUrl, careersHtml } = await loadCareersPage(fetchText, signal)
 
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Locobuzz careers page no longer matches the verified first-party public jobs surface')
     }
+
+    if (hasCurrentLocobuzzInventory(careersHtml)) return collectLocobuzzCurrentJobs({ html: careersHtml, sourceURL: careersUrl,
+      fetchPdf, now, signal, readClosingPage: async () => {
+        const closing = await loadCareersPage(fetchText, signal, careersUrl)
+        return { html: closing.careersHtml, url: closing.careersUrl }
+      } })
 
     return extractOpenings(careersHtml, { sourceUrl: careersUrl }).map((job) => ({
       ...job,

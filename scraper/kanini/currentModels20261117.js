@@ -6,7 +6,14 @@ export const sha=value=>createHash('sha256').update(value).digest('hex')
 export const norm=value=>String(value??'').replace(/\s+/g,' ').trim()
 export const check=(ok,reason)=>{if(!ok)throw Object.assign(Error('KANINI current native contract: '+reason),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,name)=>{check(rows.length===1,'unique '+name);return rows[0]}
-const noncePaths=new Set(['elementorFrontendConfig.nonces.floatingButtonsClickTracking','elementorProFrontendConfig.nonce','localize.nonce'])
+const noncePaths=new Set(['elementorFrontendConfig.nonces.floatingButtonsClickTracking','elementorProFrontendConfig.nonce','ElementorProFrontendConfig.nonce','localize.nonce'])
+const proNonceProfile={original:'efa53166bae286915d11944fa4c0791bfd364d94b749a56047f6ee58ba7fedf3',
+ skeleton:'f8976a75291ed41f615d7446f9d1c1e065c35a72f059a6d0e6cfe5936e0dd98c'}
+// November 18 ordinary public deployment: the complete emoji bootstrap differs
+// only in its literal wp-emoji-release.min.js query, 6.8.12 -> 6.8.13. All job
+// query, renderer, employer and form programs retain their existing profiles.
+const emojiRevision=['85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f',
+ '633b900004b5e802a7670be5a5a44b9bdef854dfaf3b2fdfc94704f40ebd2413']
 export function inspectPrograms(doc,expected){
  const scripts=doc.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/javascript)$/i.test(n.attrs.type??''))
  check(scripts.length===expected.length,'whole active program declaration graph')
@@ -15,7 +22,10 @@ export function inspectPrograms(doc,expected){
   const walk=(node,path)=>{if(node?.type!=='ObjectExpression')return;for(const p of node.properties){if(p.type!=='Property'||p.computed)continue;const key=p.key.name??p.key.value,next=[...path,key];if(noncePaths.has(next.join('.'))){check(p.value.type==='Literal'&&typeof p.value.value==='string'&&/^[a-f0-9]{10}$/i.test(p.value.value),'exact typed nonce carrier');masks.push({path:next.join('.'),start:p.value.start,end:p.value.end})}else walk(p.value,next)}}
   for(const s of ast.body)if(s.type==='VariableDeclaration')for(const d of s.declarations)if(d.id.type==='Identifier')walk(d.init,[d.id.name]);let skeleton=source
   for(const m of masks.slice().sort((a,b)=>b.start-a.start))skeleton=skeleton.slice(0,m.start)+'<NATIVE-NONCE:'+m.path+'>'+skeleton.slice(m.end)
-  check(equal(masks.map(m=>m.path),want.noncePaths)&&sha(skeleton)===want.programSHA256,'whole current program changed outside exact nonce fields')
+  const program=sha(skeleton),reviewedEmoji=want.programSHA256===emojiRevision[0]&&program===emojiRevision[1]
+  const reviewedPro=want.attrs.id==='elementor-pro-frontend-js-before'&&want.programSHA256===proNonceProfile.original
+  const expectedPaths=reviewedPro?['ElementorProFrontendConfig.nonce']:want.noncePaths
+  check(equal(masks.map(m=>m.path),expectedPaths)&&(program===(reviewedPro?proNonceProfile.skeleton:want.programSHA256)||reviewedEmoji),'whole current program changed outside exact nonce fields')
  }
  return scripts
 }

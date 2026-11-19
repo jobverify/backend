@@ -26,7 +26,7 @@ const fieldsFor = result => ({ eligibleBatches: result.eligibleBatches || [], el
   eligibleBatchesProvenance: result.eligibleBatchesProvenance || null });
 
 export async function refreshJobBatchEligibility({ model = Job, now = () => new Date(), mode = 'shadow', shard = 0, shardCount = 1,
-  budgetSeconds = 18000, signal, referenceDate, jobFilter = {}, extractorFactory = startBatchExtractor, onResult = () => {}, onProgress = () => {} } = {}) {
+  budgetSeconds = 18000, signal, referenceDate, jobFilter = {}, reprocessCompleted = false, extractorFactory = startBatchExtractor, onResult = () => {}, onProgress = () => {} } = {}) {
   if (!['shadow', 'policy'].includes(mode)) throw new Error('Invalid batch eligibility mode');
   classificationShard('validate', shardCount);
   if (!Number.isSafeInteger(shard) || shard < 0 || shard >= shardCount || !Number.isFinite(budgetSeconds) || budgetSeconds < 0) throw new Error('Invalid batch phase configuration');
@@ -47,7 +47,7 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
         await onResult({ phase: 'batch_eligibility', id: String(job._id), shard, status, inputHash: input.inputHash, ...extra });
         await onProgress({ ...summary });
       };
-      if (prior?.inputHash === input.inputHash && prior.mode === mode && prior.version === BATCH_ELIGIBILITY_VERSION
+      if (!reprocessCompleted && prior?.inputHash === input.inputHash && prior.mode === mode && prior.version === BATCH_ELIGIBILITY_VERSION
         && ['explicit', 'inferred', 'unknown'].includes(prior.status)
         && (mode === 'shadow' || JSON.stringify(fieldsFor(job)) === JSON.stringify(prior.result))
         && (!prior.extraction || prior.extraction.identity === BATCH_EXTRACTION_IDENTITY)) {
@@ -73,7 +73,7 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
         let result = resolveBatchEligibility(input), extraction;
         if (result.needsExtraction) {
           const cache = prior?.extraction;
-          if (cache?.sourceHash === input.sourceHash && cache.identity === BATCH_EXTRACTION_IDENTITY) {
+          if (!reprocessCompleted && cache?.sourceHash === input.sourceHash && cache.identity === BATCH_EXTRACTION_IDENTITY) {
             extraction = validateBatchExtraction(cache.result, input.text); summary.extractionCached++;
           } else {
             if (extractorError) throw extractorError;
@@ -104,7 +104,8 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
         const completed = { ...metadata, status: result.status, basis: result.basis, evidence: result.evidence,
           result: fieldsFor(result), completedAt: now(),
           ...(extraction ? { extraction: { identity: BATCH_EXTRACTION_IDENTITY, sourceHash: input.sourceHash, result: extraction } }
-            : prior?.extraction?.sourceHash === input.sourceHash ? { extraction: prior.extraction } : {}) };
+            : prior?.extraction?.sourceHash === input.sourceHash && prior.extraction.identity === BATCH_EXTRACTION_IDENTITY
+              ? { extraction: prior.extraction } : {}) };
         delete completed.owner; delete completed.leaseUntil;
         const saved = await model.updateOne(guarded, { $set: { batchEligibility: completed,
           ...(mode === 'policy' ? fieldsFor(result) : {}) } });

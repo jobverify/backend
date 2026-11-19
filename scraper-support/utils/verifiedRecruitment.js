@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import {setTimeout as delay} from 'node:timers/promises'
 import {publishedIndiaLocationFacets,currentWorkdayRoleSnapshot,currentWorkdayListingSnapshot,reviewedWorkdayEmployerDeclaration} from './recruitmentWorkdayContext.js'
 import {extractWorkdayJobDetail} from '../detailExtractors/workday.js'
-import { readNativeDocument, activeIframeDeclarations, extractActiveDescription, decodeNativeEntities } from './activeNativeHtml.js'
+import { readNativeDocument, activeIframeDeclarations, activeRecruitmentNavigationDeclarations, extractActiveDescription, decodeNativeEntities } from './activeNativeHtml.js'
 import { normalizeNativeAttributeBoundaries } from './nativeHtmlAttributes.js'
 import { identifyPublicAtsBoard } from './publicAtsIdentity.js'
 import { createPublishingGapAtsScraper, publicAtsInventoryError } from './publishingGapAts.js'
@@ -920,6 +920,7 @@ export function createVerifiedRecruitmentScraper(config) {
       const next = []
       const links = doc.nodes(node => node.tag === 'a' && node.attrs.href).map(node => ({ href: node.attrs.href, label: doc.text(node), carrier: 'anchor' }))
       links.push(...activeIframeDeclarations(page.html))
+      links.push(...activeRecruitmentNavigationDeclarations(page.html))
       links.push(...doc.nodes(node => node.tag === 'script' && node.attrs.src && !Object.hasOwn(node.attrs, 'nomodule')
         && /^(?:|module|(?:text|application)\/javascript)$/i.test(node.attrs.type || '')).map(node => ({ href: node.attrs.src, label: /\/embed/.test(node.attrs.src) ? 'careers embed' : '' })))
       for (const link of links) {
@@ -1085,10 +1086,38 @@ export function createVerifiedRecruitmentScraper(config) {
         } else if (['ashby', 'greenhouse', 'lever'].includes(board.kind)) {
           if (board.kind === 'greenhouse' && new URL(board.url).hostname.includes('.eu.')) throw Error('European Greenhouse requires its regional extractor')
           const token = encodeURIComponent(board.token)
-          const api = board.kind === 'ashby' ? `https://api.ashbyhq.com/posting-api/job-board/${token}`
+          let api = board.kind === 'ashby' ? `https://api.ashbyhq.com/posting-api/job-board/${token}`
             : board.kind === 'greenhouse' ? `https://boards-api.greenhouse.io/v1/boards/${token}`
               : `https://api.${board.region === 'eu' ? 'eu.' : ''}lever.co/v0/postings/${token}`
           permit(api); permit(board.url)
+          if (board.kind === 'ashby') {
+            const payload = await readJson(api)
+            const active = Array.isArray(payload?.jobs) ? payload.jobs.filter(row => row?.isListed === true) : []
+            const tokens = new Set(active.flatMap(row => [row.jobUrl, row.applyUrl].map(value => {
+              const native = recruitmentBoard(value)
+              return native?.kind === 'ashby' ? native.token : null
+            })))
+            const canonicalToken = tokens.size === 1 ? [...tokens][0] : null
+            if (canonicalToken && canonicalToken !== board.token && canonicalToken.toLowerCase() === board.token.toLowerCase()) {
+              // A case alias in the API is only a candidate. Require the
+              // current hosted board to advertise that exact canonical name;
+              // keep the native role URL validator case-sensitive afterwards.
+              const handoffUrl = 'https://jobs.ashbyhq.com/' + token
+              const canonicalBoardUrl = 'https://jobs.ashbyhq.com/' + encodeURIComponent(canonicalToken)
+              permit(handoffUrl); permit(canonicalBoardUrl)
+              const page = await read(handoffUrl)
+              const declarations = readNativeDocument(normalizeNativeAttributeBoundaries(page.html))
+                .nodes(node => node.tag === 'meta' && node.attrs.property === 'og:url')
+              requireValue([handoffUrl, canonicalBoardUrl].includes(page.url) && declarations.length === 1
+                && declarations[0].attrs.content === canonicalBoardUrl, 'Ashby current native canonical board identity changed')
+              board.bindingEvidence = { ...board.bindingEvidence, nativeBoardCanonicalEvidence: {
+                field: 'active-meta-og:url', handoffUrl, canonicalBoardUrl, bodySHA256: sha(page.html),
+              } }
+              board.token = canonicalToken; board.url = canonicalBoardUrl
+              api = 'https://api.ashbyhq.com/posting-api/job-board/' + encodeURIComponent(canonicalToken)
+              permit(api)
+            }
+          }
           const nativeIntakes = new Map()
           const native = await createPublishingGapAtsScraper({ source: config.source, companyName: config.companyName,
             companyCareerPage: root?.href || homepage.href, atsPlatform: board.kind, boardToken: board.token,

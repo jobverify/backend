@@ -1,0 +1,20 @@
+{
+  "source": "pocketfm",
+  "reviewedAt": "2026-11-19T02:09:31.260Z",
+  "parent": {
+    "url": "https://pocketfm.com/_next/static/chunks/3flf9090qt7wy.js",
+    "sha256": "9ab78abf18e97fafef3f5fc120f1c3b213d68f34a73bdf4e3029b8208b18fd84",
+    "bytes": 16217,
+    "programSHA256": "b20eeba90a4fd400bd110c0319a97e3cce27e28deb2cd0becae0e69fcbde6763"
+  },
+  "footer": {
+    "url": "https://pocketfm.com/_next/static/chunks/163mtopasvko5.js",
+    "sha256": "7ad14d7ac768a1b13212bf8b26ba9be1dfc38719c208d8ab70093c12583e3316",
+    "bytes": 15228,
+    "programSHA256": "554a4637c39dd9cf3d68f1cb04559c8fdcff81e1a43694b3ee46d3a5f5901f7b"
+  },
+  "review": "Exact current whole parent/footer tuple. Parent AST review against Nov17 finds only one Sentry debug UUID, two changed lazy chunk literals, and consistently swapped module-local j/y bindings outside the unchanged module512169 footer loader. That loader still imports the first of its exact three chunks and invokes module516114. Complete footer normalized AST remains unchanged and declares exactly https://jobs.lever.co/pocketfm. No runtime alpha renaming or new normalization, and no browser or company-wide equivalence claim.",
+  "browserEquivalenceComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

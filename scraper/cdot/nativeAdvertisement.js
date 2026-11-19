@@ -4,7 +4,10 @@ import {bindNativeDeploymentCountry} from './nativeCountry.js'
 const normalize=value=>String(value??'').replace(/\s+/g,' ').trim()
 const titleKey=value=>normalize(value).toLowerCase().replace(/professionals?/g,'professional').replace(/[^a-z0-9]/g,'')
 const listedPostTitle=listing=>{
- const title=normalize(listing.title),extension=/^(.*?)\.\s*\(Last date for submission extended to (\d{2})\/(\d{2})\/(\d{4})\)$/.exec(title)
+ const title=normalize(listing.title),extension=[
+  /^(.*?)\.\s*\(Last date for submission extended to (\d{2})\/(\d{2})\/(\d{4})\)$/,
+  /^(.*?)\.\s*\(The last date for submission of applications has been extended to (\d{2})\/(\d{2})\/(\d{4}) due to administrative reasons\.\)$/,
+ ].map(pattern=>pattern.exec(title)).find(Boolean)
  if(!extension)return title
  const [,post,day,month,year]=extension
  need(`${year}-${month}-${day}`===listing.closingDate,'deadline extension annotation and closing date conflict')

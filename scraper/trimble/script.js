@@ -32,13 +32,20 @@ function stateOf(document){
   &&typeof build.right.value==='string'&&/^[a-f\d]{10}$/.test(build.right.value),'native state assignment changed')
  return parseRemoteLiteral(raw.slice(state.right.start,state.right.end))
 }
+// Both whole stylesheets were reviewed. November19 adds utility/control styles
+// and new font deployment URLs; .hidden and the later80rem .xl:flex rule retain
+// their original semantics. No unknown stylesheet may use this projection.
+const corporateStyles=new Set([
+ '51ca5bcbb028725fb506394bf76060e2a8a8f0385dd7f3e3aff373834848c641',
+ '86b0208a28eaa744b30ae0984930dd6f77cca968a09228dea41adacffd98b34f',
+])
 const corporateOf=page=>{
  const original=readNativeDocument(page.html)
  need(!treeNodes(original,n=>n.tag==='base').length,'corporate handoff base requires review')
  const styles=treeNodes(original,n=>n.tag==='style'),wrapper='hidden xl:flex flex-shrink-0 mr-[21px]'
  const desktop=original.nodes(n=>n.tag==='div'&&n.attrs.class===wrapper),start='<div class="'+wrapper+'">'
  need(styles.length===1&&Object.keys(styles[0].attrs).sort().join()==='data-href,data-precedence'
-  &&styles[0].attrs['data-precedence']==='next'&&sha(styles[0].raw)==='51ca5bcbb028725fb506394bf76060e2a8a8f0385dd7f3e3aff373834848c641'
+  &&styles[0].attrs['data-precedence']==='next'&&corporateStyles.has(sha(styles[0].raw))
   &&desktop.length===1&&Object.keys(desktop[0].attrs).join()==='class'&&page.html.split(start).length===2,'corporate responsive stylesheet/handoff contract changed')
  // This exact native stylesheet sets .hidden to display:none, then the later
  // @media(min-width:80rem) .xl\\:flex rule to display:flex. Qualify only that

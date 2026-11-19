@@ -291,6 +291,8 @@ export const createGcoreScraper = ({ maxJobs = null } = {}) => ({
       const closingOfficial = await guarded(() => textReader(CAREERS_URL,{signal:lifecycle}))
       currentPublisherProof.closing = await guarded(() => verifyCurrentPublisher({official:closingOfficial,
         readPage:url=>guarded(()=>pageReader(url,{signal:lifecycle})),verifyNavigation}))
+      if(currentPublisherProof.closing.deploymentMain!==currentPublisherProof.opening.deploymentMain)
+        throw failure('closing publisher complete deployment tuple changed')
       const closingBoard = await guarded(() => textReader(BOARD_URL,{signal:lifecycle}))
       const closingBoardIds = verifyBoard(closingBoard)
       if (closingBoardIds.size!==boardIds.size || [...boardIds].some(id=>!closingBoardIds.has(id))) throw failure('closing board role identity changed')
@@ -327,16 +329,17 @@ export const createGcoreScraper = ({ maxJobs = null } = {}) => ({
       ...(unknownCountry.length ? ['native-country-unresolved'] : []),
       ...(missingCriteria.length ? ['native-description-unavailable'] : []), ...(capped ? ['output-cap'] : [])]
     attachInventoryEvidence(output, { ...inventory, status: 'discovery-only', surface: API_URL, firstParty: true,
-      listingComplete: false, indiaFacetCount: unknownCountry.length ? null : indiaRecords,
+      listingComplete: false, lifecycleCleanupAllowed: false, indiaFacetCount: unknownCountry.length ? null : indiaRecords,
       verifiedAt: null, reason: reasons.join(';') })
     const evidence = Object.freeze({ observedNativeRecords: opening.size, observedPublicRecords: publicRecords,
       explicitIndiaRecords: indiaRecords, unknownCountryRecords: unknownCountry.length, missingCriteriaRecords: missingCriteria.length,
       unpublishedRecords: unpublished.length, nativeEnumerationComplete: inventory?.listingComplete === true,
-      boardIdsMatchApi: boardMatches, outputCapped: capped, sourceScopeComplete: false,
+      boardIdsMatchApi: boardMatches, outputCapped: capped, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
       companyGlobalTotal: null, companyIndiaTotal: null,
-      ...(currentPublisher ? {currentPublisherProof,rawNativeListingRecords:[...opening.values()],
-        rawNativeDetailRecords:[...nativeDetails.values()],rawClosingNativeListingRecords:[...closingRecords.values()]} : {}) })
+      ...(currentPublisher ? {currentPublisherProof} : {}),rawNativeListingRecords:[...opening.values()],
+      rawNativeDetailRecords:[...nativeDetails.values()],rawClosingNativeListingRecords:[...closingRecords.values()] })
     observations.set(output, evidence)
+    Object.defineProperty(output,'nativeCollectionEvidence',{value:evidence})
     if (onAudit) { await guarded(() => onAudit(evidence)) }
     attachSourceObservationEvidence(output, { source: SOURCE, recordKind: publicRecords === opening.size ? 'vacancy-rows' : 'mixed',
       observedRecordCount: opening.size, observedVacancyCount: publicRecords, sourceScopeComplete: false,

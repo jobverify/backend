@@ -1,8 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { runNativeTexmoInventory } from './nativePagination.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -12,9 +10,6 @@ export const COMPANY = 'Taro Pumps'
 export const CAREERS_URL = 'https://www.taropumps.com/careers'
 export const VIEW_ALL_JOBS_URL = 'https://www.texmo.com/careers/'
 export const TEXMO_CAREERS_URL = VIEW_ALL_JOBS_URL
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const escapeRegExp = (value) => String(value ?? '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
@@ -254,22 +249,6 @@ export const extractTexmoGroupJobCards = (html) => {
   return jobs
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  attempts: 1,
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const defaultCreateBrowserSession = async () => createBrowserFetchSession({
-  userAgent: USER_AGENT,
-  timeoutMs: 90000,
-  settleTimeMs: 2000,
-})
-
 export const hasConnectTimeoutFailure = (error) => {
   const code = String(error?.cause?.code ?? error?.code ?? '')
   const message = String(error?.cause?.message ?? error?.message ?? error ?? '')
@@ -286,97 +265,12 @@ export const hasRecoverableBrandedCareersFailure = (error) => {
 }
 
 export const createTaroPumpsScraper = () => ({
-  async run({
-    fetchText = defaultFetchText,
-    fetchImpl,
-    signal,
-    maxPages,
-    maxDetails,
-    fetchBrowserText,
-    createBrowserSession = defaultCreateBrowserSession,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    if (fetchImpl || fetchText === defaultFetchText && createBrowserSession === defaultCreateBrowserSession && !fetchBrowserText) {
-      return runNativeTexmoInventory({ fetchImpl, signal, maxPages, maxDetails, now })
+  run(options = {}) {
+    options.signal?.throwIfAborted()
+    if (!options.fetchImpl && (options.fetchText || options.fetchPage || options.fetchJson || options.fetchBrowserText || options.createBrowserSession)) {
+      throw Object.assign(Error('Taro Pumps original HTTP metadata is required; body-only or browser callbacks cannot bypass native own-role criteria'), {softFailure:true,abortRetries:true})
     }
-    let browserSession = null
-
-    const getBrowserSession = async () => {
-      if (!browserSession) {
-        browserSession = await createBrowserSession()
-      }
-
-      return browserSession
-    }
-
-    const browserTextFetcher = fetchBrowserText || (async (url) => {
-      const session = await getBrowserSession()
-      return session.fetchText(url)
-    })
-
-    const fetchSurfaceHtml = async (url) => {
-      try {
-        return await fetchText(url)
-      } catch (error) {
-        if (!hasConnectTimeoutFailure(error)) {
-          throw error
-        }
-
-        return browserTextFetcher(url)
-      }
-    }
-
-    try {
-      let brandedCareersHtml = null
-
-      try {
-        brandedCareersHtml = await fetchSurfaceHtml(CAREERS_URL)
-      } catch (error) {
-        if (!hasConnectTimeoutFailure(error) && !hasRecoverableBrandedCareersFailure(error)) {
-          throw error
-        }
-      }
-
-      let jobs = []
-
-      if (hasOfficialCareersSignal(brandedCareersHtml)) {
-        const viewAllJobsUrl = extractViewAllJobsUrl(brandedCareersHtml)
-        if (viewAllJobsUrl === VIEW_ALL_JOBS_URL) {
-          jobs = extractJobCards(brandedCareersHtml)
-        }
-      }
-
-      if (jobs.length === 0) {
-        const texmoCareersHtml = await fetchSurfaceHtml(TEXMO_CAREERS_URL)
-        if (!hasOfficialTexmoCareersSignal(texmoCareersHtml)) {
-          throw new Error('Taro Pumps fallback Texmo careers page no longer matches the verified latest careers surface')
-        }
-
-        jobs = extractTexmoGroupJobCards(texmoCareersHtml)
-      }
-
-      if (jobs.length === 0) {
-        throw new Error('Taro Pumps careers surfaces no longer expose parseable India roles for the verified Texmo group board')
-      }
-
-      return jobs.map((job) => ({
-        ...job,
-        company: COMPANY,
-        link: job.applyUrl || job.sourceUrl,
-        source: SOURCE,
-        scrapedAt: now(),
-      }))
-    } catch (error) {
-      if (hasConnectTimeoutFailure(error)) {
-        return []
-      }
-
-      throw error
-    } finally {
-      if (browserSession) {
-        await browserSession.close().catch(() => {})
-      }
-    }
+    return runNativeTexmoInventory(options)
   },
 })
 

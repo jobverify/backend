@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict'
+import test,{mock} from 'node:test'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {run} from './script.js'
+const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/cohort-20261119.json.gz',import.meta.url))))
+mock.method(globalThis,'fetch',async()=>{throw Error('No physical network in factory metadata regression')})
+test('metadata-free callback cannot publish current listing cards without native own-role criteria',async()=>{await assert.rejects(run({fetchText:async url=>{const original=fixture.originals.find(p=>p.requestedURL===url);assert.ok(original);return Buffer.from(original.bodyBase64,'base64').toString()}}),/metadata|original HTTP/i)})
+test('exact pre-aborted null or frozen caller reason wins before the legacy callback can execute',async()=>{for(const reason of [null,Object.freeze({source:'taropumps',phase:'factory-entry'})]){const caller=new AbortController();caller.abort(reason);let reads=0;await assert.rejects(run({signal:caller.signal,fetchText:async()=>{reads++;return 'Careers India'}}),error=>error===reason);assert.equal(reads,0)}})
+test('final synchronous native audit attachment preserves exact null and frozen caller ownership',async()=>{for(const reason of [null,Object.freeze({source:'taropumps',phase:'final-audit'})]){const caller=new AbortController(),define=Object.defineProperty,hook=mock.method(Object,'defineProperty',(target,key,descriptor)=>{const result=define(target,key,descriptor);if(Array.isArray(target)&&key==='nativeCollectionEvidence'&&descriptor.value?.detailObservations)caller.abort(reason);return result});try{await assert.rejects(run({signal:caller.signal,maxDetails:1,fetchImpl:async(url,init)=>{const row=fixture.originals.find(p=>p.requestedURL===url&&p.method===init.method&&p.requestBody===(init.body??null));assert.ok(row);return define(new Response(Buffer.from(row.bodyBase64,'base64'),{status:row.status,headers:row.headers}),'url',{value:row.finalURL})}}),error=>error===reason)}finally{hook.mock.restore()}}})

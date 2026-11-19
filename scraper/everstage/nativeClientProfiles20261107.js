@@ -44,10 +44,20 @@ const declarations20261116=Object.fromEntries(Object.entries(declarations).map((
  .replace('main-9b9f7dea66d0b54b.js','main-eb264300998e854e.js')
  .replace('_app-e4ddd0e6f708a095.js','_app-adc50512ab52b557.js')
  .replace('4yNB1FCH88tY6PbRSmFAH','-o1k54Bqx8mJwi93As_1h'))]))
+// The Nov18 role leaf is unchanged. The complete application program differs
+// only in its Sentry/map IDs and two minifier-local identifier swaps. Pin the
+// actual bytes and the entire advertised Next declaration tuple together.
+const current20261118={role:current.role,apply:'0eb8e1d10c1510914c38757e53297d837ea3f6557e3923df32b92a9de800af38'}
+const declarations20261118=Object.fromEntries(Object.entries(declarations).map(([kind,urls])=>[kind,urls.map(url=>url
+ .replace('main-9b9f7dea66d0b54b.js','main-73465e06eee9a8f2.js')
+ .replace('_app-e4ddd0e6f708a095.js','_app-df6557919049cce8.js')
+ .replace('4yNB1FCH88tY6PbRSmFAH','DZ554rXjs25aVcEecNGXp')
+ .replace('788-0c441e0104c99ca4.js','788-4f6f260a8769e9da.js')
+ .replace('apply-530b431e9be29ff9.js','apply-3fe9d85435bea2fa.js'))]))
 export function qualifyEverstageClient(document,url,body,kind){
  const sha=createHash('sha256').update(body).digest('hex')
  if(sha===legacy[kind])return '2026-10-21'
- const profiles=[{hashes:current,declarations,date:'2026-11-07'},{hashes:current20261115,declarations:declarations20261115,date:'2026-11-15'},{hashes:current,declarations:declarations20261116,date:'2026-11-16'}].filter(profile=>profile.hashes[kind]===sha)
+ const profiles=[{hashes:current,declarations,date:'2026-11-07'},{hashes:current20261115,declarations:declarations20261115,date:'2026-11-15'},{hashes:current,declarations:declarations20261116,date:'2026-11-16'},{hashes:current20261118,declarations:declarations20261118,date:'2026-11-18'}].filter(profile=>profile.hashes[kind]===sha)
  if(!profiles.length)throw Error('Everstage native: Native '+kind+' executable client contract changed')
  const advertised=[]
  // Hidden/inert presentation does not remove an authored program declaration.

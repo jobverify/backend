@@ -61,6 +61,13 @@ const REVIEWED_FOREIGN_TRACKING=Object.freeze({
   '26.27C':{country:'US',sha256:'c7729e1321e21a4514bbae3ef0cf5f589dbec234d346ddc3403279fdb3a3ac5f'},
   'BF.475':{country:'SG',sha256:'fb447278f713e98ca8a188f74c5c16442f4c0703228ee9ed7c01e5436437795c'},
 })
+// Current original board data retains the same query-free public Comeet UID
+// identities. These two opaque referral strings are never used as read routes;
+// bind the exact query digest, assigned foreign country and official path only.
+const REVIEWED_FOREIGN_TRACKING_20261119=Object.freeze({
+  '35.27F':{country:'IL',path:'/job-openings/position/35.27F/',sha256:'caea1dc6b80627bce8157cd447295ca3113929c5563dffbe7d1adcd02bcd24f6'},
+  'BF.475':{country:'SG',path:'/job-openings/position/BF.475',sha256:'9e8727a7093f9db2e079dd229257cf84d836a9e9bb578dbcb51a3a979b36c9d4'},
+})
 function nativeURL(value,id,firstParty=false,foreignPublicTracking=null){
   check(typeof value==='string','Native role URL missing')
   const u=new URL(value)
@@ -72,7 +79,10 @@ function nativeURL(value,id,firstParty=false,foreignPublicTracking=null){
     const allowed=new Set([id,id.split('-')[0]])
     check(u.origin==='https://checkmarx.com'&&[...allowed].some(x=>u.pathname==='/job-openings/position/'+x+'/'||u.pathname==='/job-openings/position/'+x),'Native official role identity mismatch')
     const review=Object.hasOwn(REVIEWED_FOREIGN_TRACKING,id)?REVIEWED_FOREIGN_TRACKING[id]:null
-    const reviewedTracking=review&&review.country===foreignPublicTracking&&value===u.href&&u.pathname==='/job-openings/position/'+id+'/'&&createHash('sha256').update(u.search.slice(1)).digest('hex')===review.sha256
+    const currentReview=Object.hasOwn(REVIEWED_FOREIGN_TRACKING_20261119,id)?REVIEWED_FOREIGN_TRACKING_20261119[id]:null
+    const querySHA256=createHash('sha256').update(u.search.slice(1)).digest('hex')
+    const reviewedTracking=value===u.href&&(review&&review.country===foreignPublicTracking&&u.pathname==='/job-openings/position/'+id+'/'&&querySHA256===review.sha256
+      ||currentReview&&currentReview.country===foreignPublicTracking&&u.pathname===currentReview.path&&querySHA256===currentReview.sha256)
     if(!reviewedTracking){
     const keys=[...u.searchParams.keys()]
     check(new Set(keys).size===keys.length&&keys.every(k=>['ref',';t','Share','utm_search_query','jr_id','employee','employeeShare','t'].includes(k)),'Native official tracking query changed')

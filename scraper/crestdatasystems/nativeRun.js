@@ -23,12 +23,14 @@ export async function runNative(options={}){
   const [rows,locations,teams]=feeds.map(parseFeed),details=[]
   check(rows.every(r=>typeof r.link==='string'&&/^https:\/\/www\.crestdata\.ai\/jobs\/[a-z0-9-]+\/$/.test(r.link)),'Invalid role URL')
   for(const row of rows)details.push((await request(row.link)).body)
-  const jobs=parseJobs(rows,locations,teams,details,now)
+  const observed=parseJobs(rows,locations,teams,details,now)
   for(let i=0;i<FEEDS.length;i++){
    const final=await request(FEEDS[i]);parseFeed(final)
    check(final.body===feeds[i].body&&final.headers.get('x-wp-total')===feeds[i].headers.get('x-wp-total')&&final.headers.get('x-wp-totalpages')===feeds[i].headers.get('x-wp-totalpages'),'Final native inventory/taxonomy drift')
   }
   signal.throwIfAborted()
+  const jobs=observed.filter(job=>job.country==='India')
+  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'crestdatasystems',nativeRecords:structuredClone(rows),nativeLocationTaxonomy:structuredClone(locations),nativeTeamTaxonomy:structuredClone(teams),observedRecords:observed,excludedForeignRecords:observed.filter(job=>job.country&&job.country!=='India'),sourceScopeComplete:false,lifecycleCleanupAllowed:false},configurable:true})
   return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,pagesFetched:1,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'Complete stable observed WordPress public feed and exact role pages; whole-company recruiting scope unproven. Native country absent, exact India offices corroborated separately.'})
  }finally{clearTimeout(timer);controller.abort()}
 }

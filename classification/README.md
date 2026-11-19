@@ -74,6 +74,12 @@ Worker summaries record `concurrency`, and aggregate `workers` retain each shard
 
 These policy edits invalidate completed policy identities. Unchanged native prediction inputs can still reuse the saved native cache on the next run, without calling the model again. Existing production records are updated only when the repaired classifier runs; the local regression tests use isolated MongoDB instances. The historical missing-description count is not a promise that all 269 old records can be recovered.
 
+## Log repairs (18 November 2026)
+
+Explicit dummy requisition titles such as `dummy req for testing` are non-vacancies. They remain `Unspecified` with `non_vacancy_test_posting`, even when a cached model prediction suggests a public category. Genuine test-engineering and requisition-management roles retain normal classification.
+
+The word `Graduate` in an apprenticeship or role title does not make nearby recruitment-intake or legislation dates graduation-year evidence. Batch resolution, extraction candidate selection and quoted-source validation share this check. A title-only HAL apprenticeship notice therefore resolves to unknown batch eligibility without starting an extractor; explicit graduation cohorts, calendar-qualified graduation predicates and independent employer experience remain usable. Batch policy version 2 and the extraction fingerprint invalidate older derived results on the next normal run. Obsolete extraction metadata is discarded when source rules resolve without it, so subsequent unchanged runs can reuse the outcome. Missing employer descriptions still require source recovery; these changes do not invent descriptions or update production data by themselves.
+
 ## Local setup
 
 From the backend directory, use Python 3.12 and install the CPU dependencies:

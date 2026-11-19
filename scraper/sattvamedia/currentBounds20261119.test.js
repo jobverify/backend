@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {currentTransport} from './currentTransport20261117.js'
+test('current full opening and closing inventory has bounded240s default below the300s runner',t=>{let clock=0;t.mock.method(performance,'now',()=>clock);const io=currentTransport({label:'Sattva',allowedURL:()=>false,fetchImpl:async()=>{throw Error('No network in limits check')}});try{clock=180001;assert.doesNotThrow(()=>io.checkpoint());clock=240001;assert.throws(()=>io.checkpoint(),e=>e.name==='TimeoutError'&&e.message==='Sattva source deadline exceeded')}finally{io.close()}})
+test('source time budget cannot exceed240s and caller budget remains independently bounded',t=>{assert.throws(()=>currentTransport({label:'Sattva',allowedURL:()=>false,timeoutMs:240001}),/limits invalid/);let clock=0;t.mock.method(performance,'now',()=>clock);const io=currentTransport({label:'Sattva',allowedURL:()=>false,timeoutMs:180000});try{clock=180001;assert.throws(()=>io.checkpoint(),e=>e.name==='TimeoutError')}finally{io.close()}})

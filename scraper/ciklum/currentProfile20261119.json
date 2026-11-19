@@ -1,0 +1,264 @@
+{
+  "source": "ciklum",
+  "reviewedOn": "2026-11-19",
+  "landingURL": "https://jobs.ciklum.com/offices/india/",
+  "title": "India - Jobs at Ciklum",
+  "publisherDeclarations": [
+    {
+      "src": "https://jobs.ciklum.com/wp-includes/js/jquery/jquery.min.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-includes/js/jquery/jquery-migrate.min.js"
+    },
+    {
+      "inlineSHA256": "28d3600f3b523463f585bf70666ceed26bd16ee2d2f5e7480ba08948f15b91fa"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-includes/js/dist/hooks.min.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-includes/js/dist/i18n.min.js"
+    },
+    {
+      "inlineSHA256": "cf01a621447e67a81629bc28276677c86c48fd72c44cba83a82448574aadfd60"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js"
+    },
+    {
+      "inlineSHA256": "14b015b7b81925ba61d3dbd2fdec80c713146982ad6fe268b766b9c98638ed15"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/plugins/contact-form-7/includes/js/index.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/plugins/simple-share-buttons-adder/js/ssba.js"
+    },
+    {
+      "inlineSHA256": "d7840c9958b93cc971b6b9e1a0493bf2866b863c8b8ff0fa497230938cd35b02"
+    },
+    {
+      "src": "https://code.jquery.com/jquery-3.6.0.min.js"
+    },
+    {
+      "src": "https://unpkg.com/lenis@1.1.4/dist/lenis.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.13.0/lottie.min.js"
+    },
+    {
+      "src": "https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/themes/ciklum/assets/js/megamenu.min.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/themes/ciklum/assets/js/common.min.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/themes/ciklum/assets/js/office-detail.min.js"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/themes/ciklum/js/navigation.js"
+    },
+    {
+      "src": "https://www.google.com/recaptcha/api.js?render=6Lcr8y0gAAAAAFDqVSfyjuIdtQodnFbnhV3zWuOO"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-includes/js/dist/vendor/wp-polyfill.min.js"
+    },
+    {
+      "inlineSHA256": "967ac5952922913f49818d2d491d36f5a0e308f7ced684ef4267c1827de1440b"
+    },
+    {
+      "src": "https://jobs.ciklum.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js"
+    }
+  ],
+  "facetURLs": [
+    "https://explore-jobs.ciklum.com/en/sites/ciklum-career/jobs?lastSelectedFacet=LOCATIONS&selectedLocationsFacet=300000000468243&_gl=1*a9h2f1*_ga*MTU2MDU1OTYxMC4xNzkxMTQzMzY0*_ga_0F913HP69E*czE3OTIzMTI3OTAkbzE1JGcxJHQxNzkyMzEyODE5JGo0MSRsMCRoMA..*_gcl_au*NDUxODgxMDM4LjE3OTExNDMzNjMuLS4tLjE3OTE1NTIwMTguNDE1ODU4MDAzLjE3OTIxMjczMjkuMTc5MjEyNzMyOQ..*FPAU*NDUxODgxMDM4LjE3OTExNDMzNjM.",
+    "https://explore-jobs.ciklum.com/en/sites/ciklum-career/jobs?lastSelectedFacet=LOCATIONS&selectedLocationsFacet=300000000468243&_gl=1*y4lclk*_ga*MTU2MDU1OTYxMC4xNzkxMTQzMzY0*_ga_0F913HP69E*czE3OTIzNTM2ODAkbzE2JGcwJHQxNzkyMzUzNzAzJGozNyRsMCRoMA..*_gcl_au*NDUxODgxMDM4LjE3OTExNDMzNjMuLS4tLjE3OTE1NTIwMTguNDE1ODU4MDAzLjE3OTIxMjczMjkuMTc5MjEyNzMyOQ..*FPAU*NDUxODgxMDM4LjE3OTExNDMzNjM."
+  ],
+  "shell": {
+    "url": "https://explore-jobs.ciklum.com/en/sites/ciklum-career/jobs?lastSelectedFacet=LOCATIONS&selectedLocationsFacet=300000000468243&_gl=1*a9h2f1*_ga*MTU2MDU1OTYxMC4xNzkxMTQzMzY0*_ga_0F913HP69E*czE3OTIzMTI3OTAkbzE1JGcxJHQxNzkyMzEyODE5JGo0MSRsMCRoMA..*_gcl_au*NDUxODgxMDM4LjE3OTExNDMzNjMuLS4tLjE3OTE1NTIwMTguNDE1ODU4MDAzLjE3OTIxMjczMjkuMTc5MjEyNzMyOQ..*FPAU*NDUxODgxMDM4LjE3OTExNDMzNjM.",
+    "sha256": "a7eb4e9652e5fe43a2755254d37e9d3ea447965d26344b2317973e6e0a8386af",
+    "bytes": 12980
+  },
+  "main": {
+    "url": "https://static.oracle.com/cdn/fa/oj-hcm-ce/2607.26.262300322/js/main-minimal.js",
+    "sha256": "5f2c075a17bd428ef44c9711862fde2247fe29195eadc169ff5f3f70a367c159",
+    "bytes": 6190513
+  },
+  "custom": {
+    "url": "https://ialmme.fa.ocs.oraclecloud.com/hcmUI/CandExpStatic/js/ce-custom.js?themeNumber=default_minimal_theme_CX_1001&themeVersion=4&brandVersion=20",
+    "sha256": "ed51b589a2230fe46c7e92153989bac009ad3d25c042e05f00ebe164a1af38a1",
+    "bytes": 739,
+    "publishedURL": "https://ialmme.fa.ocs.oraclecloud.com:443/hcmUI/CandExpStatic/js/ce-custom.js?themeNumber=default_minimal_theme_CX_1001&themeVersion=4&brandVersion=20"
+  },
+  "siteNumber": "CX_1001",
+  "apiOrigin": "https://ialmme.fa.ocs.oraclecloud.com",
+  "facet": "300000000468243",
+  "country": "IN",
+  "detailFields": [
+    "ApplyWhenNotPostedFlag",
+    "BeFirstToApplyFlag",
+    "BusinessUnit",
+    "BusinessUnitId",
+    "Category",
+    "ContentLocale",
+    "ContractType",
+    "CorporateDescriptionStr",
+    "Department",
+    "DomesticTravelRequired",
+    "ExternalContactEmail",
+    "ExternalContactName",
+    "ExternalDescriptionStr",
+    "ExternalPostedEndDate",
+    "ExternalPostedStartDate",
+    "ExternalQualificationsStr",
+    "ExternalResponsibilitiesStr",
+    "GeographyId",
+    "GeographyNodeId",
+    "HiringManager",
+    "HotJobFlag",
+    "Id",
+    "InternalQualificationsStr",
+    "InternalResponsibilitiesStr",
+    "InternationalTravelRequired",
+    "JobFamilyId",
+    "JobFunction",
+    "JobFunctionCode",
+    "JobGrade",
+    "JobLevel",
+    "JobSchedule",
+    "JobShift",
+    "JobType",
+    "LegalEmployer",
+    "LegalEmployerId",
+    "NumberOfOpenings",
+    "ObjectVerNumberProfile",
+    "Organization",
+    "OrganizationDescriptionStr",
+    "OrganizationId",
+    "OtherRequisitionTitle",
+    "PrimaryLocation",
+    "PrimaryLocationCountry",
+    "RequisitionId",
+    "RequisitionType",
+    "ShortDescriptionStr",
+    "StudyLevel",
+    "Title",
+    "TrendingFlag",
+    "WorkDays",
+    "WorkHours",
+    "WorkMonths",
+    "WorkYears",
+    "WorkerType",
+    "WorkplaceType",
+    "WorkplaceTypeCode",
+    "media",
+    "otherWorkLocations",
+    "primaryLocationCoordinates",
+    "requisitionFlexFields",
+    "secondaryLocations",
+    "skills",
+    "workLocation"
+  ],
+  "listingFields": [
+    "BeFirstToApplyFlag",
+    "BusinessUnit",
+    "BusinessUnitId",
+    "ContractType",
+    "Department",
+    "Distance",
+    "DomesticTravelRequired",
+    "ExternalQualificationsStr",
+    "ExternalResponsibilitiesStr",
+    "GeographyId",
+    "HotJobFlag",
+    "Id",
+    "InternationalTravelRequired",
+    "JobFamily",
+    "JobFunction",
+    "JobSchedule",
+    "JobShift",
+    "JobType",
+    "Language",
+    "LegalEmployer",
+    "LegalEmployerId",
+    "ManagerLevel",
+    "MediaThumbURL",
+    "Organization",
+    "OrganizationId",
+    "PostedDate",
+    "PostingEndDate",
+    "PrimaryLocation",
+    "PrimaryLocationCountry",
+    "Relevancy",
+    "ShortDescriptionStr",
+    "StudyLevel",
+    "Title",
+    "TrendingFlag",
+    "WorkDays",
+    "WorkDurationMonths",
+    "WorkDurationYears",
+    "WorkHours",
+    "WorkerType",
+    "WorkplaceType",
+    "WorkplaceTypeCode",
+    "otherWorkLocations",
+    "requisitionFlexFields",
+    "secondaryLocations",
+    "workLocation"
+  ],
+  "review": "Entire public Oracle client pins the default full search expansion, findReqs/ById GET routes, site account, job/{jobId} route and external own-criteria mappings. Current native primary country and own employer/title/India introduction must independently agree. Exact client tuple does not assert whole-browser or company-wide equivalence.",
+  "browserEquivalenceComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "workLocations": [
+    {
+      "id": 300000005222724,
+      "name": "Chennai"
+    },
+    {
+      "id": 300000005222804,
+      "name": "IN-Remote",
+      "missingCoordinates": true
+    },
+    {
+      "id": 300000005223120,
+      "name": "Pune"
+    }
+  ],
+  "workLocationFields": [
+    "AddressLine1",
+    "AddressLine2",
+    "AddressLine3",
+    "AddressLine4",
+    "Building",
+    "Country",
+    "Latitude",
+    "LocationId",
+    "LocationName",
+    "Longitude",
+    "PostalCode",
+    "Region1",
+    "Region2",
+    "Region3",
+    "TownOrCity"
+  ]
+}

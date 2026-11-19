@@ -96,13 +96,28 @@
     "https://monocept.turbohire.co/5.5d3f23d802f52b4217d2.chunk.js": "9d135bdc646d39e28fd9b0a010351fe99a97c7b33c3c95bc1ab2be884434cacf",
     "https://monocept.turbohire.co/6.ae9eba8cacd3e7671dcf.chunk.js": "a4ec10a883f2b62f4c058af2c21d5399b32fb600a2ff144b65c1c75ca1cd718f",
     "https://monocept.turbohire.co/7.dd8012d50bf18fb921e6.chunk.js": "2841ad1eebae2e342ba0c47155882da9e7b3bdd8fb1d0bf1ce165f15a93f4a9f",
-    "https://monocept.turbohire.co/62.55871fc2b6f0407d74c1.chunk.js": "33e4b809b6f98427ba2c2b907fda12e285655741bea36e0af39492ecdf001f05"
+    "https://monocept.turbohire.co/62.55871fc2b6f0407d74c1.chunk.js": "33e4b809b6f98427ba2c2b907fda12e285655741bea36e0af39492ecdf001f05",
+    "https://monocept.turbohire.co/runtime-main.3227fc0d9e16e672d196.js": "e8c90cef4f25a891cb1980cf5704033e753649285e949a36465915f1abfaa720",
+    "https://monocept.turbohire.co/18.6081fd087933a4c257f3.chunk.js": "e45b2a5d4c3f082311c827f42888190571e95cc55271fc1f22e0220af23637cf",
+    "https://monocept.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js": "f0b406873741adf14d0c8924a7f550871207904a76ff3ef19c98937c8b552153",
+    "https://monocept.turbohire.co/main.e15f0ac5069bbd0a19fd.chunk.js": "2be8de33dad1c0a385d2c66555f727e599ec447c8191553ce652e9c58d482df4",
+    "https://monocept.turbohire.co/24.a28a2a0baf5fa8604e96.chunk.js": "72d275fa9939f2505aac1d5046f580ffd1880b78f824ab462ee69bca1004a972",
+    "https://monocept.turbohire.co/40.218677b8799d5d3e687f.chunk.js": "816052187b9395ce16a3300325c149fb12c5d48093368702f2cf992e612b00c2",
+    "https://monocept.turbohire.co/17.b43c0c94060116649b1a.chunk.js": "15cb4b26906e7aa3399af7b463a941c6de7b112728983296527c97abc1827351",
+    "https://monocept.turbohire.co/14.7e262e2081727fd99ad1.chunk.js": "33c137c304abd945bc985318982307629bb3d84ca5e536f0e1b64b9732f10d0e",
+    "https://monocept.turbohire.co/64.b25336d8977beedc990c.chunk.js": "c7403c9aa92a627e0dc5df2c2b141a4c969fd28732a469dd5ced0be59d9423d0",
+    "https://monocept.turbohire.co/3.10d75d15fa513fc1ae02.chunk.js": "d17d250d4e070285838573c940dc781e2b13dc8b176d8cc959103fd73a74a40d",
+    "https://monocept.turbohire.co/5.5c1c2f858e01a890c5f9.chunk.js": "8da26474990fd591b5f8efd0db37ec5ed67386fa661d9b875a219a48b5dde426",
+    "https://monocept.turbohire.co/6.2686de4e81bd3acfb734.chunk.js": "cca1b0e586117f641e544efa4328c1e223b383414fa6ebe5736227400e6f119f",
+    "https://monocept.turbohire.co/7.f836db2b80a16205191b.chunk.js": "c4a0dfbc77582739876b4c443f3519416dc4384765a7a34e2ff7a929ca7d819e",
+    "https://monocept.turbohire.co/62.3fd6bfd14aa084f2c716.chunk.js": "6f5c8cb8a915dae11aa1b0e09c00a0b8d5f047b80c305baa86e1bbb6a6211dd8"
   },
   "cssSHA256": {
     "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.d9e7abae8.opt.min.css": "818041ebe4ea8077c36512005327b0a4f4e0b78ed0102adc1ad993ac462fb22b",
     "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.shared.986c02e95.min.css": "28e64b56d5456cb53130f52c539cfbaeaa31dff1c0af16797baad1765b5d2b6a",
     "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.682938860.opt.min.css": "11b6198b76b25c4342360e69ee729e22f145700b33babd584eb54d55c6a33ad2",
-    "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.shared.04749834d.min.css": "0aeeb1c936f27a724b8ae1de1543931bec2ce345551cdc53eafb80b2b8220e4c"
+    "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.shared.04749834d.min.css": "0aeeb1c936f27a724b8ae1de1543931bec2ce345551cdc53eafb80b2b8220e4c",
+    "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.fce9d8a1a.opt.min.css": "167d2ba063d9391178abce4df6d5e9ccef5c7c6071781ac7a5a3ca59dee11697"
   },
   "corporateStyleVersions": [
     {
@@ -129,6 +144,19 @@
       ],
       "stylesheets": [
         "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.682938860.opt.min.css",
+        "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.shared.04749834d.min.css"
+      ]
+    },
+    {
+      "reviewedAt": "2026-11-18",
+      "sourceCapture": "scraper/byteridge/test-data/deployment-20261118.json.gz",
+      "inlineStyleSHA256": [
+        "1c18e1ed650efd17ebfdd300c9f06955fb829f24595d023c8eb67523e249ee0c",
+        "44a0106f2665a336620352adba113f19e239d6b2062c49f4c20e62804cf0c5e0",
+        "cf74a8431814cc9fe05cb17c6f31669bb80d2c1546d5607a74a6e8fae3ed87d5"
+      ],
+      "stylesheets": [
+        "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.fce9d8a1a.opt.min.css",
         "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.shared.04749834d.min.css"
       ]
     }
@@ -263,6 +291,77 @@
       ],
       "companyScopeUnqualified": true,
       "publicRenderReviewSHA256": "b46820d4ac926ac69aa39f31b90a03802c44151f090ce7a920ae00d9a3e0964e"
+    },
+    {
+      "reviewedAt": "2026-11-18",
+      "sourceCapture": "scraper/byteridge/test-data/deployment-20261118.json.gz",
+      "reviewSummary": "Finite coherent Nov18 deployment, with original complete programs captured from both employer hosts. Anonymous token methods are byte-identical to Nov14. The organization/detail methods retain the same public routes and visibility query with import alias changes; the filteredjobs method adds a memoizer and shallow Result clones around the same anonymous all-filter public POST. Current public role/listing callers and all full-description carriers remain reviewed; omitted PDF/video criteria remain unresolved. Complete fourteen-program tuple pinned. This profile does not qualify company-wide inventory.",
+      "publicMethodSHA256": {
+        "getUnauthenticatedAccessToken": "d50db8d34d43d41eca8fc2f1403cec1661391d41d6dde960d7d1baec9be7f857",
+        "constructor": "78de35921c7af630f8dc9747604a81aae55a59093f3da08cb3d443707d6590b7",
+        "getUnAuthenticatedAccessToken": "75b78c537edf926ce6a024e37ccd9b587641b2c1698b5fb3dac6619c513142d0",
+        "getOrgDetailsFromAccountName": "2eabbd126aef739fe1af6db62fc05020588d5ce94cb0dec69ae60b7ee5393345",
+        "getPublicOrgInfo": "88a43f4ea0562dfca564e02d2d62a4be3ebfa20780fc796ab1eafa0aeab46702",
+        "getPublicJobRefsForOrgFiltered": "267cee1b3efaff2cfe9608daa28b0aab45de03ea4a5d6f38537675b253e9fd2d",
+        "getJobInfo": "7447d65681bd9761abc3ecf959449333f5dfb77116d643a0bf715612db9d0fcb"
+      },
+      "publicModuleReview": [
+        {
+          "id": "2101",
+          "sha256": "0d57eede90fa5ef39785f65b8fc114a3bc6d3d9e90adf7bb4decd78bf97b2550"
+        },
+        {
+          "id": "2457",
+          "sha256": "6c59a5e42f83f4f578f042659ed83d71ea969f0b0c1fb32aa452686bbbcb0995"
+        },
+        {
+          "id": "2501",
+          "sha256": "9c8e30efd6b51b47b96ee5dcbc8a09e7014afd2ad9b6389650be1e53588ea942"
+        },
+        {
+          "id": "2949",
+          "sha256": "4d6844fe25bad015097729e50032671758da4e7f54c64e5ebf171c761f0559e3"
+        },
+        {
+          "id": "3953",
+          "sha256": "946d2b85172f260ef38c3e4840f30d43938d54ed4c372c58d82228995be77556"
+        },
+        {
+          "id": "2949",
+          "sha256": "7eef213de44f553ae060989940902e877693c58ab5bbfb04603b280249ef232c"
+        },
+        {
+          "id": "2101",
+          "sha256": "7e94a79a8ecb8c754eb4ec673a1bb6d61ed6f2a8e7e6b99b8fd6b9ac84fcb654"
+        },
+        {
+          "id": "3862",
+          "sha256": "9f2255a404ea390a5724d1955cdc56f18180f612e592189de6642176898ac857"
+        }
+      ],
+      "scriptURLs": [
+        "https://monocept.turbohire.co/runtime-main.3227fc0d9e16e672d196.js",
+        "https://monocept.turbohire.co/18.6081fd087933a4c257f3.chunk.js",
+        "https://monocept.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://monocept.turbohire.co/main.e15f0ac5069bbd0a19fd.chunk.js"
+      ],
+      "clientURLs": [
+        "https://monocept.turbohire.co/runtime-main.3227fc0d9e16e672d196.js",
+        "https://monocept.turbohire.co/18.6081fd087933a4c257f3.chunk.js",
+        "https://monocept.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://monocept.turbohire.co/main.e15f0ac5069bbd0a19fd.chunk.js",
+        "https://monocept.turbohire.co/24.a28a2a0baf5fa8604e96.chunk.js",
+        "https://monocept.turbohire.co/40.218677b8799d5d3e687f.chunk.js",
+        "https://monocept.turbohire.co/17.b43c0c94060116649b1a.chunk.js",
+        "https://monocept.turbohire.co/14.7e262e2081727fd99ad1.chunk.js",
+        "https://monocept.turbohire.co/64.b25336d8977beedc990c.chunk.js",
+        "https://monocept.turbohire.co/3.10d75d15fa513fc1ae02.chunk.js",
+        "https://monocept.turbohire.co/5.5c1c2f858e01a890c5f9.chunk.js",
+        "https://monocept.turbohire.co/6.2686de4e81bd3acfb734.chunk.js",
+        "https://monocept.turbohire.co/7.f836db2b80a16205191b.chunk.js",
+        "https://monocept.turbohire.co/62.3fd6bfd14aa084f2c716.chunk.js"
+      ],
+      "companyScopeUnqualified": true
     }
   ]
 }

@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { REWRITE_MODEL } from './jobDescriptionPolicy.js';
 import { prepareRewriteRuntime, startRewriteWorker } from '../../rewriting/worker.js';
-import { batchHash, batchYears, validBatchYear } from '../utils/jobBatchEligibility.js';
+import { batchHash, batchYears, validBatchYear, hasGraduationYearEvidence } from '../utils/jobBatchEligibility.js';
 
 const samples = JSON.parse(readFileSync(new URL('../../test/test-data/batchEligibilityExtraction.json', import.meta.url), 'utf8'));
 export const BATCH_EXTRACTION_IDENTITY = batchHash([REWRITE_MODEL.sha256, REWRITE_MODEL.runtimeTag,
-  readFileSync(new URL('./batchEligibilityExtraction.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n'), samples]);
+  readFileSync(new URL('./batchEligibilityExtraction.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n'),
+  readFileSync(new URL('../utils/jobBatchEligibility.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n'), samples]);
 const normalized = text => String(text || '').replace(/\s+/g, ' ').trim();
 const properties = {
   status: { type: 'string', enum: ['supported', 'not_stated', 'conflicting'] },
@@ -52,7 +53,7 @@ export function validateBatchExtraction(value, text) {
   const graduation = value.graduationEvidence.join(' ');
   if (value.graduationYears.length || value.graduationMaxYear !== null) {
     if (!value.graduationEvidence.length || !value.graduationEvidence.every(quoted)
-      || !/\b(?:batch|cohort|class of|graduat|pass.?out)/i.test(graduation)
+      || !hasGraduationYearEvidence(graduation)
       || unsupportedGraduation(graduation) || /\bpreferred\b/i.test(graduation)) invalid();
     for (const year of value.graduationYears) {
       if (!graduation.includes(String(year))) {
@@ -147,7 +148,7 @@ export async function extractBatchChunk(worker, chunk, { signal, onCompletion })
     return raw;
   };
   const quote = id => facts.find(fact => fact.id === id)?.text || invalid();
-  const graduationFacts = facts.filter(fact => /\b(?:batch|cohort|class of|graduat|pass.?out)/i.test(fact.text) && /\b(?:19|20|21)\d{2}\b/.test(fact.text));
+  const graduationFacts = facts.filter(fact => hasGraduationYearEvidence(fact.text));
   if (graduationFacts.length) {
     const graduation = await request('Extract explicitly eligible graduation years for this vacancy. Never infer from experience or posting dates. Return years, maximumYear (only for YEAR and earlier), and sourceIds of the clauses that state them. If absent or excluded, return empty arrays and null.', {
       type: 'object', additionalProperties: false, properties: { years: properties.graduationYears,

@@ -68,7 +68,7 @@ export const readCurrentCareers = async ({ html, readText, readJson, maxJobs, no
     const complete=!unknown&&selected.length===indian.length
     for(const job of jobs)Object.assign(job,{sourceDetailComplete:true,sourceListingComplete:complete,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
     return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:ORIGIN+'/careers',firstParty:true,
-      listingComplete:complete,pagesFetched:2,reportedTotal:payload.items.length,indiaFacetCount:unknown?null:indian.length,
+      listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:2,reportedTotal:payload.items.length,indiaFacetCount:unknown?null:indian.length,
       verifiedAt:now(),reason:complete?'reviewed-current-native-api-and-closing-inventory':'unresolved-native-country-or-requested-sample'})
   }
   return jobs

@@ -69,6 +69,18 @@ export const hasOfficialHomepageSignal = (html) => {
   const page = String(html ?? '')
   const text = stripTags(page)
 
+  // The current redesign changes the old title and slogan together. Its
+  // active title, own heading and exact declared careers URL form a separate
+  // finite publisher profile; the historical profiles keep their own guards.
+  try {
+    const doc = readNativeDocument(page)
+    const titles = doc.nodes(node => node.tag === 'title').map(node => normalizeWhitespace(node.raw || ''))
+    if (titles.length === 1 && titles[0] === 'Data, AI, and Agentic Engineering Services | Apexon') {
+      return doc.nodes(node => node.tag === 'h1' && doc.text(node) === 'We engineer intelligent enterprises').length === 1
+        && doc.nodes(node => node.tag === 'a' && toAbsoluteUrl(node.attrs.href) === CAREERS_URL).length > 0
+    }
+  } catch { return false }
+
   return /<title>\s*(?:Apexon - Enterprise AI, Data (?:&amp;|&) Digital Engineering Solutions|Enterprise AI, Data, and Agentic Engineering \| Apexon)\s*<\/title>/i.test(page)
     && text.includes('Peak Ingenuity')
     && (

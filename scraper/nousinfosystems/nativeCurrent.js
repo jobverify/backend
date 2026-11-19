@@ -13,7 +13,13 @@ const PROFILE=new Map([[MAIN,'95ab5118281c93b1ab598a35866c10807d444e076426c34ab8
 // Exact current graph; native literal criteria are byte-identical. This
 // deployment grants no country, legal-employer, application or scope authority.
 const CURRENT_MAIN=HOME+'assets/index-D2dkAufN.js'
-const DEPLOYMENTS=[{main:MAIN,programs:PROFILE,data:DATA},{main:CURRENT_MAIN,data:DATA,programs:new Map([
+// November19 changes the critical renderers only by their exact import names;
+// the whole native jobs literal remains unchanged and carries no country.
+const DEPLOYMENTS=[{main:HOME+'assets/index-BDap2ywQ.js',data:DATA,programs:new Map([
+ [HOME+'assets/index-BDap2ywQ.js','719960dbf30766a875c6cfe0e21b8a787e37245b4be4fb3ab6c01c3112b73ea3'],
+ [HOME+'assets/JobOpenings-DZw962NJ.js','77391658793336689d6f3d32ea6fdd6e62a1746a37c6a7d7e7411a4326c5e20e'],
+ [HOME+'assets/JobDetail-KzxvAHQP.js','10e7d450ac1769f57f28c29137fbba738fef9e34c43e153e36d53661995048bf'],
+])},{main:MAIN,programs:PROFILE,data:DATA},{main:CURRENT_MAIN,data:DATA,programs:new Map([
  [CURRENT_MAIN,'a22ff603c9f9d0dd56f303153f46d261bdc95f791547040bf7ba972e2a8a6ce9'],
  [HOME+'assets/JobOpenings-jHC1xdB9.js','719aa7a67d134228346cb8abe2aae480f8d86dbf7fcdbf4adb9d4e3824f5c8bf'],
  [HOME+'assets/JobDetail-CgdPOxVu.js','783ee1a6f787c0c587c55e2a78cf7ef2483ae02ccb88d8ad3c83af759c6f2f1c'],

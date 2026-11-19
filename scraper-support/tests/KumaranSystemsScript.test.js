@@ -173,49 +173,42 @@ test('Kumaran Systems helpers stay pinned to the verified first-party careers pa
   ])
 })
 
-test('Kumaran Systems run hydrates only published India jobs from the public first-party API', async () => {
+test('Kumaran Systems run hydrates current full native India roles with raw metadata and closing evidence', async () => {
   const kumaran = await loadModule()
-
-  const jobs = await kumaran.run({
-    fetchText: async (url) => {
-      assert.equal(url, kumaran.CAREERS_URL)
-      return careersPageHtml
-    },
-    fetchJson: async (url) => {
-      assert.equal(url, kumaran.JOBS_API_URL)
-      return jobsApiPayload
-    },
-    now: () => FIXED_SCRAPED_AT,
-  })
-
-  assert.equal(jobs.length, 2)
-  assert.deepEqual(jobs[0], {
-    title: 'QA Engineer - ETL & DWH',
-    location: 'Siruseri, Chennai, Tamilnadu, India',
-    experience: '5+ years',
-    sourceUrl: 'https://careers.kumaran.com/jobs/Careers/31840000017996502/QA-Engineer---ETL-DWH?source=CareerSite',
-    applyUrl: 'https://careers.kumaran.com/jobs/Careers/31840000017996502/QA-Engineer---ETL-DWH?source=CareerSite',
-    jobId: '31840000017996502',
-    department: 'Insurance',
-    jobType: 'Full time',
-    postingDate: '2026-07-12',
-    jobDescription: 'Hands-on experience with EDW testing and Snowflake validation.',
-    company: 'Kumaran Systems',
-    country: 'India',
-    link: 'https://careers.kumaran.com/jobs/Careers/31840000017996502/QA-Engineer---ETL-DWH?source=CareerSite',
-    source: 'kumaransystems',
-    scrapedAt: FIXED_SCRAPED_AT,
-  })
+  const { readFileSync } = await import('node:fs')
+  const { gunzipSync } = await import('node:zlib')
+  const { createHash } = await import('node:crypto')
+  const fixture = JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/kumaransystems/test-data/current-native-20261119.json.gz', import.meta.url))))
+  const visits = new Map(), calls = []
+  const jobs = await kumaran.run({ now: () => fixture.capturedAt, requestIntervalMs: 0, fetchImpl: async (url, init) => {
+    const visit = visits.get(url) || 0; visits.set(url, visit + 1)
+    const packet = fixture.packets.filter(p => p.requestedUrl === url)[visit]
+    assert.ok(packet, 'Only captured actual native public reads: ' + url)
+    assert.equal(createHash('sha256').update(packet.text).digest('hex'), packet.sha256)
+    assert.equal(init.method, 'GET'); assert.equal(init.redirect, 'manual'); assert.equal(init.credentials, 'omit')
+    calls.push(url)
+    return Object.defineProperty(new Response(packet.text, { status: packet.status, headers: packet.headers }), 'url', { value: packet.finalUrl })
+  } })
+  assert.equal(jobs.length, 51)
+  assert.equal(calls.length, 128)
+  assert.equal(jobs.nativeCollectionEvidence.rawNativeOpeningInventory.data.length, 67)
+  assert.equal(jobs.nativeCollectionEvidence.rawNativeClosingInventory.data.length, 67)
+  assert.ok(jobs.every(j => j.sourceNativeDetailRecord.Job_Description === j.jobDescription
+    && j.sourceDetailComplete && j.sourceClosingQualified && j.country === 'India'
+    && j.sourceScopeComplete === false && j.lifecycleCleanupAllowed === false))
 })
 
-test('Kumaran Systems run fails closed when the verified careers page drifts', async () => {
+test('Kumaran Systems factory and run reject fabricated body-only listing previews before any request', async () => {
   const kumaran = await loadModule()
-
-  await assert.rejects(
-    kumaran.run({
-      fetchText: async () => '<html><body><h1>Unexpected</h1></body></html>',
-      fetchJson: async () => jobsApiPayload,
-    }),
-    /Kumaran verified first-party careers page changed materially/i,
-  )
+  for (const execute of [kumaran.run, kumaran.createKumaranSystemsScraper().run]) {
+    for (const html of [careersPageHtml, currentCareersPageHtml, '<html><body>Unexpected</body></html>']) {
+      let calls = 0
+      await assert.rejects(execute({
+        fetchText: async () => { calls++; return html },
+        fetchJson: async () => { calls++; return jobsApiPayload },
+        now: () => FIXED_SCRAPED_AT,
+      }), /metadata-aware native fetchImpl required/)
+      assert.equal(calls, 0)
+    }
+  }
 })

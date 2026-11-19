@@ -5,6 +5,7 @@ import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFir
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {createCurrentLogicFruitRenderer} from './currentRenderer20261119.js'
 
 const SOURCE='logicfruittechnologies',HOME='https://www.logic-fruit.com/'
 const MAIN=HOME+'assets/index-CAHOli87.js',LIST='https://api.logic-fruit.com/api/jobs?status=published',DETAIL='https://api.logic-fruit.com/api/jobs/'
@@ -61,8 +62,11 @@ export async function runCurrentLogicFruit(options={}){
  need(options.maxJobs==null,'A read cap cannot certify the observed native cohort')
  const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString()
  need(Number.isFinite(Date.parse(now)),'Invalid observation clock')
+ const sourceTimeoutMs=options.sourceTimeoutMs??90000
+ if(!Number.isSafeInteger(sourceTimeoutMs)||sourceTimeoutMs<1||sourceTimeoutMs>180000)throw RangeError('Invalid native source deadline')
+ options={...options,signal:AbortSignal.any([...(options.signal?[options.signal]:[]),AbortSignal.timeout(sourceTimeoutMs)])}
  const reader=createCurrentNativeReader({...options,sourceTimeoutMs:options.sourceTimeoutMs??90000},{source:SOURCE,admitted:[[HOME,'html'],[MAIN,'javascript'],[LIST,'json']],learnedURL:(url,kind)=>kind==='json'&&url.startsWith(DETAIL)&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(url.slice(DETAIL.length))})
- const observations=[]
+ const observations=[],jobs=[],renderer=createCurrentLogicFruitRenderer(options)
  async function authority(){
   const home=homeAuthority(await reader.read(HOME)),program=await reader.read(MAIN)
   need(sha(program.body)===CLIENT_SHA,'Whole reviewed current public client changed')
@@ -71,28 +75,34 @@ export async function runCurrentLogicFruit(options={}){
  }
  try{
   const opening=await authority()
+  await renderer.authority(opening);reader.check()
   for(const row of opening.nativeInventory.data){
    const url=DETAIL+row.slug;reader.allow(url,'json')
    const observed={id:row.id,nativeSlug:row.slug,nativeDetailAPI:url,nativeOpeningRecord:clone(row),country:null,publicationDate:null,applicationURL:null,legalHiringOrganization:null,activeApplyVerified:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
     qualificationIssues:['native-role-country-unpublished','whole-rendered-criteria-and-intake-unverified','active-own-application-url-unverified','company-inventory-scope-unverified']}
    observations.push(observed);observed.ownOpeningModel=clone(ownDetail((await reader.read(url)).body,row))
+   jobs.push({...await renderer.role(row,'opening'),scrapedAt:now});reader.check()
+   Object.assign(observed,{country:'India',applicationURL:jobs.at(-1).applyUrl,ownFormBindingVerified:true,
+    qualificationIssues:['company-inventory-scope-unverified','legal-employer-and-backend-submission-unverified']})
   }
   const closing=await authority()
   need(same(opening,closing),'Opening/closing whole native employer/client/inventory changed')
+  await renderer.authority(closing);reader.check()
   for(const observed of observations){
    const row=closing.nativeInventory.data.find(item=>item.id===observed.id)
    observed.nativeClosingRecord=clone(row);observed.ownClosingModel=clone(ownDetail((await reader.read(observed.nativeDetailAPI)).body,row))
    need(same(observed.ownOpeningModel,observed.ownClosingModel),'Opening/closing whole native own detail changed')
+   await renderer.role(row,'closing');reader.check()
   }
   reader.check()
-  const jobs=[]
-  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:LIST,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reader.stats().requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'bound-current-published-api-cohort-reconciled-role-country-rendered-criteria-application-and-company-scope-unqualified'})
+  need(reader.stats().decodedBytes+renderer.stats().decodedBytes<=32*1024*1024,'Combined native/renderer byte budget exceeded')
+  attachInventoryEvidence(jobs,{status:'discovery-only',surface:LIST,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reader.stats().requests+renderer.stats().requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'current-published-own-API-full-criteria-and-exact-renderer-form-country-closing-qualified;company-scope-unverified;real-SPA-HTTP404-retained'})
   const summary={source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:observations.length,observedVacancyCount:observations.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null}
   attachSourceObservationEvidence(jobs,summary)
-  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...summary,observations,heldNativeRows:observations,nativeOpeningAuthority:opening,nativeClosingAuthority:closing,wholeObservedNativeBoardClosingReconciled:true,observedNativeBoardTotal:observations.length,originalResponses:reader.stats().receipts,unknownCountryVacancies:observations.length,companyScopeComplete:false,companyIndiaZeroProven:false,lifecycleCleanupAllowed:false,renderedInventoryBindingVerified:false,activeApplyVerified:false,applicationInteractions:0,legacyCityCountryInferenceUsed:false,staticFallbackUsed:false,readLimits:reader.stats()},configurable:true})
+  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...summary,observations,heldNativeRows:[],nativeOpeningAuthority:opening,nativeClosingAuthority:closing,wholeObservedNativeBoardClosingReconciled:true,observedNativeBoardTotal:observations.length,originalResponses:[...reader.stats().receipts,...renderer.stats().receipts],unknownCountryVacancies:0,companyScopeComplete:false,companyIndiaZeroProven:false,lifecycleCleanupAllowed:false,renderedInventoryBindingVerified:true,activeOwnApplicationFormVerified:true,activeApplyVerified:false,applicationInteractions:0,legacyCityCountryInferenceUsed:false,staticFallbackUsed:false,readLimits:reader.stats(),renderer:renderer.stats()},configurable:true})
   return jobs
  }catch(error){
-  options.signal?.throwIfAborted();try{if(error&&typeof error==='object')Object.defineProperty(error,'recruitmentObservations',{value:{source:SOURCE,observations,originalResponses:reader.stats().receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false,companyGlobalTotal:null,companyIndiaTotal:null},configurable:true,enumerable:true})}catch{}
+  options.signal?.throwIfAborted();try{if(error&&typeof error==='object')Object.defineProperty(error,'recruitmentObservations',{value:{source:SOURCE,observations,originalResponses:[...reader.stats().receipts,...renderer.stats().receipts],sourceScopeComplete:false,lifecycleCleanupAllowed:false,companyGlobalTotal:null,companyIndiaTotal:null},configurable:true,enumerable:true})}catch{}
   throw error
  }finally{reader.close()}
 }

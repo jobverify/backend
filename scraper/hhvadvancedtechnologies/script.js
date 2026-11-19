@@ -1,8 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createHash } from 'node:crypto'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { document } from '../../scraper-support/shared/rmkNativePairHtml.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -14,9 +18,6 @@ export const CAREERS_URL = 'https://hhvadvancedtech.com/careers'
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const ACCORDION_ITEM_START_PATTERN =
-  /<div class="[^"]*\baccordion_[^"]*"[^>]*data-accordion-item="(\d+)"[^>]*>/gi
 
 const decodeHtml = (value) => String(value ?? '')
   .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
@@ -63,14 +64,9 @@ const htmlToLines = (value) => {
 }
 
 const extractAccordionBlocks = (html) => {
-  const page = String(html ?? '')
-  const matches = [...page.matchAll(ACCORDION_ITEM_START_PATTERN)]
-
-  return matches.map((match, index) => {
-    const start = match.index
-    const end = matches[index + 1]?.index ?? page.length
-    return page.slice(start, end)
-  })
+  const doc = document(String(html ?? ''))
+  return doc.nodes(node => node.tag === 'div' && Object.hasOwn(node.attrs, 'data-accordion-item')
+    && (node.attrs.class || '').split(/\s+/).some(name => /^accordion_/.test(name))).map(doc.outer)
 }
 
 const extractLabeledValue = (lines, label) => {
@@ -89,7 +85,8 @@ const deriveCity = (location) => {
 }
 
 const extractJobDescription = (lines) => {
-  const startIndex = lines.findIndex((line) => /^Job Description:?$/i.test(line))
+  let startIndex = lines.findIndex((line) => /^Job Description:?$/i.test(line))
+  if (startIndex === -1) startIndex = lines.findIndex((line) => /^Responsibilities:?$/i.test(line))
   const applyIndex = lines.findIndex((line) => /^APPLY NOW$/i.test(line))
 
   if (startIndex === -1) return null
@@ -103,11 +100,14 @@ const extractJobDescription = (lines) => {
 }
 
 const extractApplyUrl = (block) => {
-  const match = String(block ?? '').match(/href="(https:\/\/hhvadvancedtech\.com\/apply-now\?post=[^"]+)"/i)
-  if (!match) return null
+  const matches = [...String(block ?? '').matchAll(/href="(https:\/\/hhvadvancedtech\.com\/apply-now\?post=[^"]+)"/gi)]
+  if (matches.length !== 1) return null
 
   try {
-    return new URL(decodeHtml(match[1])).toString()
+    const url = new URL(decodeHtml(matches[0][1]))
+    return url.origin === 'https://hhvadvancedtech.com' && url.pathname === '/apply-now'
+      && !url.username && !url.password && !url.hash && url.searchParams.getAll('post').length === 1
+      && url.searchParams.get('post')?.trim() ? url.href : null
   } catch {
     return null
   }
@@ -132,12 +132,13 @@ export const hasOfficialCareersSignal = (html) => {
     && /https:\/\/hhvadvancedtech\.com\/apply-now\?post=/i.test(page)
 }
 
-export const extractJobsFromCareersPage = (html) => {
+const readCareersPage = (html) => {
   if (!hasOfficialCareersSignal(html)) {
     throw new Error('HHV Advanced Technologies careers page no longer matches the verified official public careers surface')
   }
 
-  const jobs = extractAccordionBlocks(html).map((block) => {
+  const blocks = extractAccordionBlocks(html), records = []
+  const jobs = blocks.map((block) => {
     const title = stripTags(
       block.match(/<h3[^>]*class="[^"]*accordion__heading[^"]*"[^>]*>([\s\S]*?)<\/h3>/i)?.[1],
     )
@@ -145,13 +146,19 @@ export const extractJobsFromCareersPage = (html) => {
     const lines = htmlToLines(block)
 
     if (!title || !applyUrl || lines.length === 0) return null
+    const location = extractLabeledValue(lines, 'Location')
+    if (!/^(?:Chennai & Mumbai|Dabaspet, Bangalore)$/i.test(location || '')) {
+      throw new Error('HHV native work location is outside the reviewed India worksites')
+    }
+    records.push({ title, accordionHTML: block, sourceDescription: lines.filter(line => !/^APPLY NOW$/i.test(line)).join('\n'),
+      documentSHA256: createHash('sha256').update(block).digest('hex') })
 
     return {
       title,
       company: COMPANY,
       department: extractLabeledValue(lines, 'Department'),
-      location: extractLabeledValue(lines, 'Location'),
-      city: deriveCity(extractLabeledValue(lines, 'Location')),
+      location,
+      city: deriveCity(location),
       state: null,
       country: 'India',
       jobId: slugify(title),
@@ -170,7 +177,7 @@ export const extractJobsFromCareersPage = (html) => {
     }
   }).filter(Boolean)
 
-  if (jobs.length === 0) {
+  if (jobs.length === 0 || jobs.length !== blocks.length) {
     throw new Error('HHV Advanced Technologies verified public careers page no longer exposes parseable openings')
   }
 
@@ -180,37 +187,79 @@ export const extractJobsFromCareersPage = (html) => {
     }
   }
 
-  return jobs
+  if (new Set(jobs.map(job => job.jobId)).size !== jobs.length) throw new Error('HHV native role identity is duplicated')
+  return { jobs, records }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+export const extractJobsFromCareersPage = html => readCareersPage(html).jobs
+
+const defaultFetchText = (url, options = {}) => fetchTextWithRetry(url, {
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   },
   label: SOURCE,
   timeoutMs: 15000,
+  attempts: 1, redirect: 'manual', signal: options.signal,
+  includeResponseMetadata: options.includeResponseMetadata === true,
 })
 
 export const createHhvAdvancedTechnologiesScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
+  async run({ fetchText = defaultFetchText, now = () => new Date().toISOString(), signal } = {}) {
+    const get = async url => {
+      signal?.throwIfAborted()
+      const response = await fetchText(url, { signal, includeResponseMetadata: true })
+      signal?.throwIfAborted()
+      if (typeof response === 'string') return response
+      if (response?.status !== 200 || response.url !== url || typeof response.html !== 'string') {
+        throw new Error('HHV Advanced Technologies first-party response identity changed')
+      }
+      return response.html
+    }
+    const homepageHtml = await get(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error('HHV Advanced Technologies homepage no longer matches the verified official careers handoff')
     }
 
-    const careersHtml = await fetchText(CAREERS_URL)
-    const jobs = extractJobsFromCareersPage(careersHtml)
+    const careersHtml = await get(CAREERS_URL)
+    const { jobs, records } = readCareersPage(careersHtml)
     const selectedJobs = maxJobs ? jobs.slice(0, maxJobs) : jobs
-
-    return selectedJobs.map((job) => ({
+    const reasons = [], failures = []
+    const signature = value => JSON.stringify(value.jobs.map((job, index) => ({ jobId: job.jobId, title: job.title,
+      location: job.location, applyUrl: job.applyUrl, description: value.records[index].sourceDescription })))
+    let pagesFetched = 1
+    try {
+      const closing = readCareersPage(await get(CAREERS_URL)); pagesFetched++
+      if (signature(closing) !== signature({ jobs, records })) reasons.push('closing-native-inventory-changed')
+    } catch (error) {
+      signal?.throwIfAborted()
+      reasons.push('closing-native-inventory-unavailable'); failures.push({ stage: 'closing-inventory', message: error.message })
+    }
+    if (selectedJobs.length !== jobs.length) reasons.push('configured-native-role-limit')
+    const output = selectedJobs.map((job, index) => ({
       ...job,
+      sourceDescription: records[index].sourceDescription, jobDescription: records[index].sourceDescription,
+      nativeSourceRecord: { ...records[index], sourceUrl: CAREERS_URL,
+        publisherDocumentSHA256: createHash('sha256').update(careersHtml).digest('hex') },
+      nativeHiringOrganization: { name: COMPANY },
+      nativeEmployerBinding: { method: 'explicit-first-party-careers-employer-and-own-accordion', surface: CAREERS_URL,
+        statement: 'The following are the current openings at HHV Advanced Technologies.' },
+      nativeCountryEvidence: { method: 'explicit-native-reviewed-india-worksite', location: job.location },
+      nativeBoardListingComplete: reasons.length === 0, nativeCollectionFailures: failures,
+      sourceDetailComplete: true, sourceScopeComplete: false, sourceListingComplete: false,
+      lifecycleCleanupAllowed: false, applicationVisited: false, sourcePublicationDateUnavailable: true,
       source: SOURCE,
       link: job.applyUrl,
-      scrapedAt: new Date().toISOString(),
+      scrapedAt: now(),
     }))
+    attachSourceObservationEvidence(output, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: jobs.length,
+      observedVacancyCount: jobs.length, sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+    return attachInventoryEvidence(output, { status: 'coverage-gap', surface: CAREERS_URL, firstParty: true,
+      listingComplete: false, lifecycleCleanupAllowed: false, reportedTotal: jobs.length, indiaFacetCount: jobs.length,
+      pagesFetched, verifiedAt: now(), reason: (reasons.length ? reasons.join(';') : 'native-accordion-inventory-reconciled')
+        + ';company-wide-scope-unverified' })
   },
 })
 

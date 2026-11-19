@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { HOME, runNative } from './nativeCareers.js'
+import { HOME } from './nativeCareers.js'
+import { runCurrentSchaeffler } from './currentQualified20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 export const SOURCE = 'schaeffler'
@@ -15,8 +16,8 @@ export const buildIndiaSearchUrl = (startRow = null) => {
   return url.href
 }
 export const extractJobIdFromUrl = value => /\/(\d+)\/?(?:[#?].*)?$/.exec(String(value ?? ''))?.[1] ?? null
-export const createSchaefflerScraper = () => ({ run: runNative, buildIndiaSearchUrl })
-export const run = options => runNative(options)
+export const createSchaefflerScraper = () => ({ run: runCurrentSchaeffler, buildIndiaSearchUrl })
+export const run = options => runCurrentSchaeffler(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

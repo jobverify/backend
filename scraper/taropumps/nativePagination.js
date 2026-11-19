@@ -46,7 +46,8 @@ function cards({ doc, form }) {
       && [...url.searchParams.keys()].every(key => ['id', 'title'].includes(key)), 'native listing role URL changed')
     const values = doc.nodes(n => n.tag === 'p', node).map(n => clean(doc.text(n)))
     need(values.length === 4 && values.every(Boolean) && clean(url.searchParams.get('title')) === values[0], 'native role card identity changed')
-    return { id: url.searchParams.get('id'), url: url.href, title: values[0], city: values[1], country: values[2], department: values[3] }
+    return { id: url.searchParams.get('id'), url: url.href, title: values[0], city: values[1], country: values[2], department: values[3],
+      originalModel: structuredClone(node) }
   })
   need(rows.length > 0 && new Set(rows.map(row => row.id)).size === rows.length, 'empty or duplicate native inventory cards')
   return rows
@@ -54,7 +55,8 @@ function cards({ doc, form }) {
 
 function role(html, responseURL, listing, checkedAt) {
   const doc = readNativeDocument(html)
-  const title = clean(doc.text(only(doc.nodes(n => n.tag === 'h1'), 'native role title identity changed')))
+  const heading = only(doc.nodes(n => n.tag === 'h1'), 'native role title identity changed')
+  const title = clean(doc.text(heading))
   need(title === listing.title, 'native role title disagrees with listing')
   const header = only(doc.nodes(n => n.tag === 'div' && doc.hasClass(n, 'career-details-inner')), 'native employer header changed')
   const strong = only(doc.nodes(n => n.tag === 'strong', header), 'native employer identity missing')
@@ -66,14 +68,15 @@ function role(html, responseURL, listing, checkedAt) {
   const applyURL = new URL(apply.attrs.href, responseURL)
   need(applyURL.origin === new URL(BOARD).origin && applyURL.pathname === '/job-application/'
     && applyURL.searchParams.getAll('id').length === 1 && applyURL.searchParams.get('id') === listing.id
-    && [...applyURL.searchParams.keys()].every(key => key === 'id') && !applyURL.hash, 'native application identity changed')
+    && [...applyURL.searchParams.keys()].every(key => key === 'id') && !applyURL.hash
+    && !applyURL.username && !applyURL.password && !applyURL.port, 'native application identity changed')
   const article = only(doc.nodes(n => n.tag === 'article'), 'native own-role content boundary changed')
   const own = only(doc.nodes(n => n.tag === 'div' && doc.hasClass(n, 'bkg--cream'), article), 'native own-role description boundary changed')
   const contents = doc.nodes(n => n.tag === 'div' && doc.hasClass(n, 'career-details-item--content'), own)
   need(contents.length > 0, 'native own-role description content missing')
   const description = doc.text(own)
-  need(description.length >= 160 && hasSourceDescription({ sourceDescription: description })
-    && /^Job Description\b/.test(description) && !/About the Hiring Team|Recruiter & Professional Consultant/.test(description), 'native own-role description criteria missing or mixed with recruiter content')
+  const descriptionComplete = description.length >= 160 && hasSourceDescription({ sourceDescription: description })
+    && /^Job Description\b/.test(description) && !/About the Hiring Team|Recruiter & Professional Consultant/.test(description)
   return {
     title, company: EMPLOYER, source: 'taropumps', jobId: listing.id, requisitionId: listing.id,
     location: listing.city + ', India', city: listing.city, country: 'India', department: listing.department,
@@ -82,9 +85,12 @@ function role(html, responseURL, listing, checkedAt) {
     experienceRequired: null, minimumQualification: null, preferredQualification: null, requiredSkills: [],
     employmentType: null, postingDate: null, closingDate: null, nativeDateUnknown: true,
     originalPublicationDateQualified: false, publicationDateProvenance: null,
-    publicExperienceChecked: true, scrapedAt: checkedAt,
+    publicExperienceChecked: descriptionComplete, scrapedAt: checkedAt,
     sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
-    nativeEmployerName: EMPLOYER, sourceDetailComplete: true,
+    nativeEmployerName: EMPLOYER, sourceDetailComplete: descriptionComplete,
+    nativeDetailHolds: descriptionComplete ? [] : ['native-own-role-description-criteria-missing-or-mixed-with-recruiter-content'],
+    sourceNativeOwnRoleModel: { heading: structuredClone(heading), header: structuredClone(header),
+      applicationAction: structuredClone(apply), wholeOwnRole: structuredClone(own) },
     sourceNativeDetailSha256: hash(html),
     employerBindingEvidence: { officialURL: CAREERS, nativeURL: BOARD,
       employer: EMPLOYER, method: 'current-visible-company-careers-delegation-and-exact-native-role-employer' },
@@ -117,7 +123,8 @@ const pageSnapshot = model => ({ employerId: model.employer.attrs.value,
 const roleSnapshot = job => {
   // Presentation markup and unrelated page assets may change without changing
   // the complete native role facts. Both original response hashes are retained.
-  const { sourceNativeDetailSha256, ...facts } = job
+  const facts = { ...job }
+  delete facts.sourceNativeDetailSha256
   return facts
 }
 
@@ -155,17 +162,18 @@ export async function runNativeTexmoInventory({ fetchImpl = globalThis.fetch, si
   }
   const corporate = await read(CAREERS), declaration = corporateDeclaration(corporate.html)
   const initial = employerForm((await read(BOARD)).html), employerId = initial.employer.attrs.value
-  const jobs = [], seen = new Set(), listingRecords = [], selectedPages = []
+  const jobs = [], stagedDetails = [], seen = new Set(), listingRecords = [], selectedPages = []
   let inspectedDetails = 0, publishedPages = 1
   for (let page = 1; page <= Math.min(publishedPages, maxPages); page++) {
     const body = new URLSearchParams({ company: employerId, location: '', role: '', pageNumber: String(page) }).toString()
-    const current = employerForm((await read(BOARD, body)).html)
+    const currentOriginal = await read(BOARD, body)
+    const current = employerForm(currentOriginal.html)
     need(current.employer.attrs.value === employerId && Object.hasOwn(current.employer.attrs, 'selected'), 'native employer filter changed')
     need(page === 1 || current.pages.length === publishedPages, 'native pagination inventory changed')
     publishedPages = current.pages.length
     need(current.pages.includes(page), 'native current pagination identity missing')
     const snapshot = pageSnapshot(current)
-    selectedPages.push({ page, body, snapshot })
+    selectedPages.push({ page, body, snapshot, originalNativeHTML: currentOriginal.html })
     for (const listing of snapshot.rows) {
       need(!seen.has(listing.id), 'native pagination repeated a role identity')
       seen.add(listing.id)
@@ -179,43 +187,67 @@ export async function runNativeTexmoInventory({ fetchImpl = globalThis.fetch, si
   const selected = indiaRows.slice(0, Math.min(maxDetails, transportDetailAllowance))
   for (const listing of selected) {
     const detail = await read(listing.url)
-    jobs.push(role(detail.html, detail.url, listing, checkedAt))
+    const nativeRole = role(detail.html, detail.url, listing, checkedAt)
+    stagedDetails.push({ listing, nativeRole, originalNativeHTML: detail.html })
     inspectedDetails++
   }
-  need(jobs.length > 0, 'no qualified native India roles; whole-employer inventory remains unknown')
   for (let index = 0; index < selected.length; index++) {
     const listing = selected[index], detail = await read(listing.url, undefined, true)
     const closing = role(detail.html, detail.url, listing, checkedAt)
-    need(same(roleSnapshot(jobs[index]), roleSnapshot(closing)), 'closing native full role criteria changed')
-    jobs[index].sourceNativeClosingEvidence = { fullRoleCriteriaRechecked: true,
-      openingDetailSHA256: jobs[index].sourceNativeDetailSha256, closingDetailSHA256: closing.sourceNativeDetailSha256,
+    const staged = stagedDetails[index]
+    need(same(roleSnapshot(staged.nativeRole), roleSnapshot(closing)), 'closing native full role criteria changed')
+    staged.closingOriginalNativeHTML = detail.html
+    staged.currentNativeClosingReconciled = true
+    staged.nativeRole.sourceNativeClosingEvidence = { fullRoleCriteriaRechecked: staged.nativeRole.sourceDetailComplete,
+      nativeRoleModelRechecked: true,
+      openingDetailSHA256: staged.nativeRole.sourceNativeDetailSha256, closingDetailSHA256: closing.sourceNativeDetailSha256,
       currentAvailabilityBasis: 'closing-current-selected-employer-listing-and-native-application-action' }
+    if (staged.nativeRole.sourceDetailComplete) jobs.push(staged.nativeRole)
   }
   for (const page of selectedPages) {
-    const closing = employerForm((await read(BOARD, page.body, true)).html)
+    const closingOriginal = await read(BOARD, page.body, true)
+    const closing = employerForm(closingOriginal.html)
     need(same(pageSnapshot(closing), page.snapshot), 'closing selected native employer listing inventory changed')
+    page.closingOriginalNativeHTML = closingOriginal.html
   }
-  const closingDeclaration = corporateDeclaration((await read(CAREERS, undefined, true)).html)
+  const closingCorporate = await read(CAREERS, undefined, true)
+  const closingDeclaration = corporateDeclaration(closingCorporate.html)
   need(same(closingDeclaration, declaration), 'closing current corporate employer handoff declaration changed')
   deadline.throwIfAborted()
   const audit = {
     source: 'taropumps', employer: EMPLOYER, checkedAt, receipts,
-    totalObserved: listingRecords.length, observedListingCount: listingRecords.length, listingRecords, inspectedDetails,
-    publishedPages, selectedPages: selectedPages.map(page => ({ page: page.page, body: page.body, snapshot: page.snapshot })),
+    totalObserved: listingRecords.length, observedListingCount: listingRecords.length, observedIndiaListingCount: indiaRows.length,
+    listingRecords, inspectedDetails,
+    publishedPages, selectedPages: selectedPages.map(page => ({ page: page.page, body: page.body, snapshot: page.snapshot,
+      originalNativeHTML: page.originalNativeHTML, closingOriginalNativeHTML: page.closingOriginalNativeHTML })),
     requestBudget, transportDetailAllowance, requestedDetailLimit: maxDetails,
     selectedDetailLimit: selected.length, omittedIndiaDetails: indiaRows.length - selected.length,
     listingPaginationComplete: selectedPages.length === publishedPages,
-    closingListingMatches: true, closingCorporateHandoffMatches: true, fullRoleCriteriaRechecked: true,
+    closingListingMatches: true, closingCorporateHandoffMatches: true,
+    fullRoleCriteriaRechecked: jobs.length > 0 && jobs.every(job => job.sourceDetailComplete),
+    roleCriteriaProofScope: 'returned-complete-rows-only', allSelectedNativeRoleModelsRechecked: true,
     corporateDeclaration: declaration, closingCorporateDeclaration: closingDeclaration,
+    originalCorporateHTML: corporate.html, closingOriginalCorporateHTML: closingCorporate.html,
+    fullCorporateRawEqual: corporate.html === closingCorporate.html,
+    fullNativeListingRawEqual: selectedPages.every(page => page.originalNativeHTML === page.closingOriginalNativeHTML),
+    listingClosingComparison: 'all-typed-card-facts-and-complete-original-card-models',
+    detailObservations: stagedDetails.map(staged => ({ nativeId: staged.listing.id, recordKind: 'vacancy-row',
+      sourceDetailComplete: staged.nativeRole.sourceDetailComplete, nativeRole: structuredClone(staged.nativeRole),
+      originalNativeHTML: staged.originalNativeHTML, closingOriginalNativeHTML: staged.closingOriginalNativeHTML,
+      currentNativeClosingReconciled: staged.currentNativeClosingReconciled })),
+    qualifiedDetails: jobs.length, incompleteDetails: stagedDetails.filter(staged => !staged.nativeRole.sourceDetailComplete).length,
+    fullNativeDetailRawEqual: stagedDetails.every(staged => staged.originalNativeHTML === staged.closingOriginalNativeHTML),
     sourceScopeComplete: false, lifecycleCleanupAllowed: false,
   }
   attachSourceObservationEvidence(jobs, { source: 'taropumps', recordKind: 'vacancy-rows',
     observedRecordCount: listingRecords.length, observedVacancyCount: listingRecords.length,
     sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
   Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: audit })
-  jobs[0].nativeCollectionEvidence = audit
-  return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: BOARD, firstParty: true,
+  if (jobs[0]) jobs[0].nativeCollectionEvidence = audit
+  const result = attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: BOARD, firstParty: true,
     listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: receipts.length,
-    reportedTotal: null, indiaFacetCount: jobs.length, verifiedAt: checkedAt,
-    reason: 'Current branded employer delegation, selected Texmo Industries native listing pages and full own-role criteria rechecked unchanged; whole-employer inventory and cleanup remain unqualified.' })
+    reportedTotal: null, indiaFacetCount: null, verifiedAt: checkedAt,
+    reason: 'Current branded employer delegation, selected Texmo Industries native listing pages and every selected complete or incomplete role model rechecked unchanged; only complete own-role criteria returned; whole-employer inventory and cleanup remain unqualified.' })
+  signal?.throwIfAborted()
+  return result
 }

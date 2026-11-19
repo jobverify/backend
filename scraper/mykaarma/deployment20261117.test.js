@@ -36,7 +36,8 @@ test('MyKaarma current original deployment retains seven full India role/applica
  assert.equal(jobs.nativeCollectionEvidence.observedNativeUniqueVacancies,16)
  assert.equal(proof.listingComplete,false);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
  const assessment=assessSoftFailureAcquisition({source:'mykaarma',companyName:'MyKaarma'},jobs)
- assert.equal(assessment.runnerOutcome.rawRecords,16);assert.equal(assessment.indiaJobs,7);assert.equal(assessment.eligibleJobs,7)
+ assert.equal(assessment.runnerOutcome.rawRecords,16);assert.equal(assessment.indiaJobs,7);assert.equal(assessment.eligibleJobs,4)
+ assert.equal(assessment.filterCounts.excludedTitle,3)
  assert.equal(assessment.runnerOutcome.partial,true);assert.equal(assessment.cleanupOptions.replaceExisting,false)
 })
 

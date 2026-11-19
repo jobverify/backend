@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import TANISHA_SYSTEMS_CATALOG from './catalog.js'
+import { runCurrentTanisha } from './currentNative20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -149,7 +150,9 @@ const extractInlineCurrentOpenings = (html = '') => {
 export const createTanishaSystemsScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (!Object.hasOwn(options, 'fetchText')) return runCurrentTanisha({ ...options, now })
+    const { fetchText = defaultFetchText } = options
     try {
       const html = await fetchText(CAREERS_URL)
       if (!hasOfficialCurrentOpeningsSignal(html)) {

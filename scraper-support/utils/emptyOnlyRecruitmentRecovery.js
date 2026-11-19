@@ -63,8 +63,13 @@ export async function recoverEmptyOnlyRecruitment(jobs, provider, options = {}) 
     const { createVerifiedRecruitmentScraper } = await import('./verifiedRecruitment.js')
     const recovered = await createVerifiedRecruitmentScraper({ ...provider,
       requireCorporateIdentityMatch: true,
+      // Registered brand names qualify the current corporate publisher only.
+      // They do not become native employer aliases or certify an inventory.
+      publisherNames: [...new Set([...(provider.publisherNames || []), provider.officialBrandName]
+        .filter(value => typeof value === 'string' && value.trim()))],
       // These enable current declared discovery, never inferred ATS accounts.
       prioritizeRecruitmentSearch: provider.prioritizeRecruitmentSearch ?? true,
+      discoverRecruitmentLinks: provider.discoverRecruitmentLinks ?? true,
       preferIndiaInventory: provider.preferIndiaInventory ?? true,
       searchIndiaWithoutFacet: provider.searchIndiaWithoutFacet ?? true,
       discoverLiteralRecruitmentData: provider.discoverLiteralRecruitmentData ?? true,

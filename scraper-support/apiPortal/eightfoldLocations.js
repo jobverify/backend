@@ -49,7 +49,7 @@ const explicitCountry = location => {
   // Eaton publishes complete native addresses such as "Hadapsar, Pune,
   // Maharashtra, IND, 411013". The country is before the postal code here.
   // Require that explicit country label; a postcode or city never supplies it.
-  const postalCountry = parts.length >= 4 && parts.every(Boolean) && /^[1-9]\d{5}$/.test(last)
+  const postalCountry = parts.length >= 2 && parts.every(Boolean) && /^[1-9]\d{5}$/.test(last)
     && /^(?:IND|India)$/i.test(parts.at(-2)) ? 'IN' : null
   // A two-component raw label ending IN may mean a US state. The reviewed
   // standardized field supplies an ISO suffix; raw labels require a name or

@@ -2,7 +2,7 @@ import {isDeepStrictEqual} from 'node:util'
 import {setTimeout as delay} from 'node:timers/promises'
 import {settingsFor,runtime,bounded,annotateFailure,errorValue} from './runtime20261107.js'
 import {nativeTransport} from './transport20261107.js'
-import {PROFILE,primaryDeclaration,reviewedAsset,nativeCollection,ownRole,roleURL,geography,publicationState,sha256,requireNative} from './data20261107.js'
+import {PROFILE,primaryDeclaration,reviewedAsset,nativeCollection,ownRole,readCriblRoleRenderDrift,roleURL,geography,publicationState,sha256,requireNative} from './data20261107.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
@@ -56,7 +56,14 @@ export const createCriblScraper=(defaults={})=>({run:async(options={})=>{
    }
    throw error
   }
-  const parsed=ownRole(canonical.packet.body,listing);control.check()
+  let parsed
+  try{parsed=ownRole(canonical.packet.body,listing)}
+  catch(error){
+   const drift=readCriblRoleRenderDrift(error)
+   if(!drift)throw error
+   throw annotateFailure(error,{nativeRoleRenderConflict:{...drift,sourceURL:url+'/',ownBodySHA256:canonical.packet.bodySHA256}})
+  }
+  control.check()
   return {...parsed,url:url+'/',bodySHA256:canonical.packet.bodySHA256}
  }
  const rowFor=(listing,parsed)=>{
@@ -85,7 +92,19 @@ export const createCriblScraper=(defaults={})=>({run:async(options={})=>{
    else earlier.closingListingRecord=structuredClone(listing)
   }
   for(const listing of collection.jobs){
-   control.check();const parsed=await own(listing),row=rowFor(listing,parsed),observation=observations.get(String(listing.id))
+   control.check();let parsed
+   try{parsed=await own(listing)}
+   catch(error){
+    control.check()
+    if(!readCriblRoleRenderDrift(error))throw error
+    const observation=observations.get(String(listing.id))
+    observation.nativeRenderConflicts??=[]
+    observation.nativeRenderConflicts.push({phase,...structuredClone(errorValue(error,'nativeRoleRenderConflict'))})
+    observation.paired=false
+    observation.issues.push('native-own-role-content-rendition-conflict')
+    continue
+   }
+   const row=rowFor(listing,parsed),observation=observations.get(String(listing.id))
    if(phase==='opening'){observation.nativeRecord=structuredClone(parsed.model);observation.openingRow=row}
    else{
     observation.closingRow=row
@@ -101,6 +120,7 @@ export const createCriblScraper=(defaults={})=>({run:async(options={})=>{
   return {source:'cribl',recordKind:'vacancy-rows',observedRecordCount:rows.length,observedVacancyCount:rows.length,
    observedAt,opening,closing,observations:rows,rawResponses:receipts,
    ownNativeModels:complete.length,pairedNativeModels:rows.filter(v=>v.paired).length,
+   rejectedNativeRecordCount:rows.filter(v=>v.nativeRenderConflicts?.length).length,
    knownForeignCount:countries.filter(v=>v&&v!=='India').length,countryUnresolvedCount:countries.filter(v=>v===null).length,observedIndiaCount:countries.filter(v=>v==='India').length,
    companyGlobalTotal:null,companyIndiaTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
    qualification:'Complete published native records; unknown countries, wider employer inventory, actual vacancies, applications, persistence and public visibility remain unverified.'}

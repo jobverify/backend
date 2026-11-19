@@ -116,7 +116,7 @@ test('registered American InfoSource probeUrl fixture never acquires recovery ne
 
 test('an explicit nested recovery transport can exercise fallback with source-local fixtures', async t => {
   originalTransport(t)
-  const jobs = await createCatalogScraper(provider).run({ fetchText: async () => 'original fixture',
+  const jobs = await createCatalogScraper(provider).run({ fetchText: async () => publisher(),
     emptyOnlyRecovery: { ...limits, fetchPage: async url => ({ status: 200, url,
       html: url === roleURL ? role(posting()) : publisher() }) } })
   assert.equal(jobs.length, 1)

@@ -319,6 +319,18 @@
       "url": "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js",
       "sha256": "c7403c9aa92a627e0dc5df2c2b141a4c969fd28732a469dd5ced0be59d9423d0",
       "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js",
+      "kind": "js",
+      "bytes": 10436298,
+      "sha256": "3a3387e44b881156ddaf88fbd54bfaf999da8460e89b0d08c58a41e6bed1acbf"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.05e45417c9cf8a8068a9.js",
+      "kind": "js",
+      "bytes": 8470,
+      "sha256": "3a6be591e4f1414ae61661b1cd4f51f004cf30c3890a1435453457eb9afd413a"
     }
   ],
   "surfaces": {
@@ -697,6 +709,48 @@
         "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js"
       ],
       "companyScopeUnqualified": true
+    },
+    {
+      "scriptURLs": [
+        "https://olacareers.turbohire.co/runtime-main.05e45417c9cf8a8068a9.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js"
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.05e45417c9cf8a8068a9.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js"
+      ],
+      "assetURLs": [
+        "https://olacareers.turbohire.co/38.3bfdd6d56a857d3bea5d.chunk.js",
+        "https://olacareers.turbohire.co/14.7e262e2081727fd99ad1.chunk.js",
+        "https://olacareers.turbohire.co/17.b43c0c94060116649b1a.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/25.4ff0b38bbe5de31b81f0.chunk.js",
+        "https://olacareers.turbohire.co/40.f0b04cd9a1b43375cd22.chunk.js",
+        "https://olacareers.turbohire.co/runtime-main.05e45417c9cf8a8068a9.js",
+        "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js"
+      ],
+      "companyScopeUnqualified": true,
+      "reviewedAt": "2026-11-19",
+      "proof": "Whole current runtime and eight other public clients are byte-identical to the preceding profile. Of 705 main modules, only402 differs: one UniqueGuid integration template literal property and its metadata row were added. Public token, organization, filtered listing, role detail and full criteria modules are byte-identical. Complete current bodies and coherent declaration tuple remain pinned; browser and shared-tenant company scope remain unqualified."
     }
   ],
   "corporateStyleVersions": {

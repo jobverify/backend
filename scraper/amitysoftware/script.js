@@ -1,5 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { withUnverifiedPublicSurface } from '../../scraper-support/utils/unverifiedPublicSurface.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 import {
   AMITY_SOFTWARE_CATALOG,
@@ -19,9 +22,6 @@ export const SITEMAP_URL = PROVIDER_METADATA.sitemapUrl
 export const VERIFIED_JOB_DETAIL_URLS_CONST = [...VERIFIED_JOB_DETAIL_URLS]
 export { VERIFIED_JOB_DETAIL_URLS_CONST as VERIFIED_JOB_DETAIL_URLS }
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<script[\s\S]*?<\/script>/gi, ' ')
   .replace(/<style[\s\S]*?<\/style>/gi, ' ')
@@ -40,22 +40,6 @@ const decodeHtmlEntities = (value) => normalizeWhitespace(String(value ?? ''))
 const extractTitle = (html = '') => {
   const match = String(html ?? '').match(/<title[^>]*>([\s\S]*?)<\/title>/i)
   return decodeHtmlEntities(match?.[1]) || null
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
 }
 
 const buildJobIdFromUrl = (url) => {
@@ -234,20 +218,24 @@ const mapCardToJob = (card, detailHtml, now) => ({
 export const createAmitySoftwareScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
+  async run(options = {}) {
+    return withUnverifiedPublicSurface({ source: SOURCE,
+      urls: [HOMEPAGE_URL, CAREERS_URL, SITEMAP_URL, ...VERIFIED_JOB_DETAIL_URLS],
+      options, injected: options.fetchPage,
+    }, async ({ read, responses }) => {
+    const homepage = await read(HOMEPAGE_URL)
 
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('Amity Software verified homepage no longer matches the known first-party surface')
     }
 
-    const careersPage = await fetchPage(CAREERS_URL)
+    const careersPage = await read(CAREERS_URL)
 
     if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
       throw new Error('Amity Software verified careers page no longer matches the known first-party surface')
     }
 
-    const sitemapPage = await fetchPage(SITEMAP_URL)
+    const sitemapPage = await read(SITEMAP_URL)
     if (
       sitemapPage.status !== 200
       || !/post-sitemap\.xml/i.test(sitemapPage.html)
@@ -269,7 +257,7 @@ export const createAmitySoftwareScraper = ({
     const jobs = []
 
     for (const card of cards) {
-      const detailPage = await fetchPage(card.detailUrl)
+      const detailPage = await read(card.detailUrl)
 
       if (detailPage.status !== 200 || !hasVerifiedDetailContent(detailPage.html)) {
         throw new Error(`Amity Software detail page surface changed: ${card.detailUrl}`)
@@ -278,7 +266,19 @@ export const createAmitySoftwareScraper = ({
       jobs.push(mapCardToJob(card, detailPage.html, now))
     }
 
-    return jobs
+    attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
+      observedRecordCount: jobs.length, observedVacancyCount: jobs.length,
+      sourceScopeComplete: false, companyIndiaTotal: null, companyGlobalTotal: null })
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: {
+      source: SOURCE, nativeOpeningCards: cards, retainedResponses: structuredClone(responses),
+      sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+      companyIndiaTotal: null, companyGlobalTotal: null,
+    } })
+    return attachInventoryEvidence(jobs, { status: 'discovery-only', surface: CAREERS_URL,
+      firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+      pagesFetched: responses.length, reportedTotal: null, indiaFacetCount: null,
+      verifiedAt: now(), reason: 'current-first-party-opening-cards-and-full-details-retained;company-wide-channel-coverage-unverified' })
+    })
   },
 })
 

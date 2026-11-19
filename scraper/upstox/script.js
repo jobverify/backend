@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { hasCurrentUpstoxClient, runCurrentUpstox } from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -180,8 +181,10 @@ export const hasOfficialCareersPageSignal = (html = '') => {
 export const createUpstoxScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    const fetchText = options.fetchText || defaultFetchText
     const careersHtml = await fetchText(CAREERS_PAGE_URL)
+    if (hasCurrentUpstoxClient(careersHtml)) return runCurrentUpstox(options)
 
     if (!hasOfficialCareersPageSignal(careersHtml)) {
       throw new Error('The verified Upstox careers page changed materially')

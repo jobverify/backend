@@ -1,0 +1,155 @@
+{
+  "verifiedOn": "2026-11-19",
+  "title": "Engineering Careers | Join a Growing AI Development Team",
+  "declarations": [
+    {
+      "inlineSHA256": "04e5653da081e5a6efd81e8af2baebf1cf24a53f1e90fb0b497453856a06ad3f"
+    },
+    {
+      "src": "https://www.google.com/recaptcha/enterprise.js?render=6LcQUNIrAAAAAM20OcyzFPIsqU54C4JFgd77FBRc"
+    },
+    {
+      "inlineSHA256": "b9d4f7f959a6017aa160f260bcd792ee1158389cd727184be367384395c08e05"
+    },
+    {
+      "src": "https://www.cypherox.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/jquery.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/swiper.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/swiper-bundle.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/gsap.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/ScrollTrigger.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/bootstrap.bundle.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/imagesloaded.pkgd.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/lenis.min.js"
+    },
+    {
+      "src": "https://www.cypherox.com/assets/js/script.js?v=20261114"
+    },
+    {
+      "inlineSHA256": "8ebb20158a0055005fa007aa45cf47e8a43a30f6e21fcbe9b160e791c9ede66f"
+    },
+    {
+      "inlineSHA256": "f763352475f0ddd3fe482ba5717e32acd04cb587065a65554065733769826a3c"
+    },
+    {
+      "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+    }
+  ],
+  "nativeClient": {
+    "url": "https://www.cypherox.com/assets/js/script.js?v=20261114",
+    "bytes": 102532,
+    "sha256": "fa64d68e6244e0ffaf037f0cf0ce4030887cdf996d46a9f7678999af256f4ec2"
+  },
+  "browserEvidence": "Current separate ordinary Chrome page opened the WordPress Developer application control. It populated the exact role title and exposed the native form without submitting; no pageerrors. This verifies one current control, not future browser equivalence or company-wide coverage.",
+  "eventHandlers": [],
+  "inlineStyles": [],
+  "stylesheetDeclarations": [
+    {
+      "rel": "stylesheet",
+      "href": "/assets/css/swiper.min.css"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "/assets/css/swiper-bundle.min.css"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "/assets/css/styles.css?v=20261114"
+    }
+  ],
+  "formControls": [
+    {
+      "tag": "input",
+      "type": "hidden",
+      "id": "career-location-post",
+      "name": "career_location_post"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "id": "caeer-first-name",
+      "name": "first_name"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "id": "caeer-last-name",
+      "name": "last_name"
+    },
+    {
+      "tag": "input",
+      "type": "email",
+      "id": "caeer-email",
+      "name": "email"
+    },
+    {
+      "tag": "input",
+      "type": "number",
+      "id": "caeer-phone",
+      "name": "phone"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "id": "caeer-selected-post",
+      "name": "apply_for_role"
+    },
+    {
+      "tag": "input",
+      "type": "file",
+      "id": "myfile",
+      "name": "myfile"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "id": "refresh",
+      "name": null
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "id": "captchaInput",
+      "name": "captchaInput"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "id": null,
+      "name": null
+    }
+  ],
+  "stylesheets": [
+    {
+      "url": "https://www.cypherox.com/assets/css/swiper.min.css",
+      "bytes": 19800,
+      "sha256": "0c161dae3ec1c4a337b2531ea815565f6a2dc7bc787aaa074490ac483274371c"
+    },
+    {
+      "url": "https://www.cypherox.com/assets/css/swiper-bundle.min.css",
+      "bytes": 23875,
+      "sha256": "a3d50ad0acffeebdd7aa81c09bc88bf09e704d566e9d6a5a65ed0fa546934144"
+    },
+    {
+      "url": "https://www.cypherox.com/assets/css/styles.css?v=20261114",
+      "bytes": 476316,
+      "sha256": "90361191d9292d383c34790939bc3f4384bf9afa958514dd9ac978888ce23549"
+    }
+  ]
+}

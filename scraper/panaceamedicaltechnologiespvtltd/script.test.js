@@ -386,6 +386,9 @@ test('run fetches homepage, Join Us, paginated listings, and detail pages to bui
     companyCareerPage: 'https://www.panaceamedical.in/careers/',
     companyDomain: 'panaceamedical.in',
     atsPlatform: 'official-first-party-careers-portal',
+    sourceScopeComplete: false,
+    sourceListingComplete: false,
+    lifecycleCleanupAllowed: false,
   })
   assert.equal(jobs[1].jobId, '44')
   assert.equal(jobs[1].department, 'Sales & Marketing')

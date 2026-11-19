@@ -1,6 +1,6 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {CAREERS,PORTAL,BOARD,need,json,corporate,board,client,canonical,searchURL,detailURL,roleURL} from './nativeDeclarations.js'
+import {CAREERS,PORTAL,BOARD,need,json,corporate,nativeBoard,canonical,searchURL,detailURL,roleURL} from './nativeDeclarations.js'
 import {readSearch,indiaCandidate,readRole,reconcile,mapRole} from './nativeModels.js'
 import {cap,transport} from './nativeTransport.js'
 
@@ -25,7 +25,7 @@ export async function runNativeCorteva(options={}){
    const owner=corporate((await io.read(CAREERS)).text);io.allow(PORTAL)
    const redirect=await io.read(PORTAL,'html',302)
    need(new URL(redirect.headers.location,PORTAL).href===BOARD,'declared portal redirect differs');io.allow(BOARD)
-   const tenant=board((await io.read(BOARD)).text);io.allow(tenant.clientURL);client((await io.read(tenant.clientURL,'javascript')).bytes,tenant)
+   const tenant=nativeBoard((await io.read(BOARD)).text)
    return{corporate:owner,tenant}
   }
   const openingDeclaration=await declarations()

@@ -3,12 +3,12 @@ import {fileURLToPath} from 'node:url'
 import {createHash} from 'node:crypto'
 import {runWorkdayScraper,validateWorkdayAdditionalWorksiteProof,WORKDAY_ADDITIONAL_WORKSITE_PROOF} from '../../scraper-support/myworkday/engine.js'
 import {WORKDAY_COUNTRY_INVENTORY_PROOF} from '../../scraper-support/myworkday/countryInventoryProof.js'
-import {AURECON_CAREERS,AURECON_CONTACT,AURECON_BOARD,AURECON_API,AURECON_MAIN,AURECON_CONTACT_MODULE,AURECON_CONTACT_TARGET,nextAureconClientRequest} from '../../scraper-support/myworkday/nativeAureconWorksites.js'
+import {AURECON_CAREERS,AURECON_CONTACT,AURECON_BOARD,AURECON_API,AURECON_REVIEWED_CLIENT_URLS,AURECON_CLIENT_REDIRECTS,nextAureconClientRequest} from '../../scraper-support/myworkday/nativeAureconWorksites.js'
 import {attachInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const scraperDir=path.dirname(fileURLToPath(import.meta.url))
-const allowed=new Set([AURECON_CAREERS,AURECON_CONTACT,AURECON_MAIN,AURECON_CONTACT_MODULE,AURECON_CONTACT_TARGET])
+const allowed=new Set([AURECON_CAREERS,AURECON_CONTACT,...AURECON_REVIEWED_CLIENT_URLS])
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const intrinsicByteLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'byteLength').get
 const failure=(message,kind='parser_or_contract_error',extra={})=>Object.assign(Error('Aurecon '+message),{abortRetries:true,failureKind:kind,...extra})
@@ -47,8 +47,8 @@ export function createCurrentAureconScraper(defaults={}){
     Object.assign(row,{status:response.status,responseUrl:response.url,contentType:response.headers?.get?.('content-type')||'',location:response.headers?.get?.('location')||null,sourceHttpDate:response.headers?.get?.('date')||null})
     if(accessDenied.has(response.status))heldHosts.add(new URL(url).host)
     if(response.url!==url)throw failure('public response URL identity changed')
-    if(url===AURECON_CONTACT_MODULE){
-     if(response.status!==301||row.location!==AURECON_CONTACT_TARGET)throw failure('declared contact-module redirect changed')
+    if(Object.hasOwn(AURECON_CLIENT_REDIRECTS,url)){
+     if(response.status!==301||row.location!==AURECON_CLIENT_REDIRECTS[url])throw failure('declared contact-module redirect changed')
      row.bodyUnavailableReason='Original redirect receipt retained; exact target is a separate anonymous request'
      row.fetchedAt=new Date().toISOString();return row
     }

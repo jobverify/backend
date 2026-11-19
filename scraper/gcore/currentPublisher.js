@@ -2,6 +2,8 @@ import {createHash} from 'node:crypto'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 import {matchesStaticActivationClass} from './staticActivationClass20261107.js'
+import {matchesCurrentActivationClass} from './currentActivation20261119.js'
+import currentProfile from './publisherProfile20261119.json' with {type:'json'}
 
 export const CURRENT_POSITIONS_URL='https://gcore.com/open-positions'
 const MAIN='/main-O7XHEPYM.js'
@@ -18,6 +20,7 @@ const resources=[
  ['chunk-ZZ33WBZD.js','47a22ea014d09a16963c3e70ddc46f54d61d23f0e18545c62f1d0cbc7b07e07b'],
  ['chunk-A4TY22EA.js','58d192d1cfbf6d8c1e1185374ce92e5fa0781df6641753898c18118279c2a021'],
 ]
+const deployments=[{main:MAIN,resources},currentProfile]
 const requireProof=(ok,message)=>{if(!ok)throw Object.assign(Error('Gcore current publisher: '+message),{incompleteScope:true,abortRetries:true,softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed',lifecycleCleanupAllowed:false})}
 // Complete genuine retained document activation profiles. Each fingerprint
 // binds base placement/attributes, every script's placement/attributes/order/
@@ -61,7 +64,8 @@ export const verifyCurrentDocumentActivation=(html,url)=>{
  const activation={bases:bases.map(({node,path})=>({path,attrs:ordered(node.attrs)})),scripts,carriers}
  const signature=sha(JSON.stringify(activation))
  requireProof(reviewedActivations[url].includes(signature)
-  ||matchesStaticActivationClass(url,activation,nodes.filter(({node})=>node.tag==='script').map(({node})=>node.raw??'')),
+  ||matchesStaticActivationClass(url,activation,nodes.filter(({node})=>node.tag==='script').map(({node})=>node.raw??''))
+  ||matchesCurrentActivationClass(url,activation,nodes.filter(({node})=>node.tag==='script').map(({node})=>node.raw??'')),
   'unreviewed complete document activation programs: '+url+' SHA256 '+signature)
  return signature
 }
@@ -71,8 +75,10 @@ const activeMain=(html,url)=>{
  const doc=readNativeDocument(html)
  const scripts=doc.nodes(n=>n.tag==='script'&&n.attrs.src)
  const main=scripts.filter(n=>/^\/?main-[\w]+\.js$/.test(n.attrs.src)||n.attrs.src.startsWith('https://gcore.com/main-'))
- requireProof(scripts.length===1&&main.length===1&&main[0].attrs.src===MAIN&&main[0].attrs.type==='module'
+ const deployment=deployments.find(d=>main.length===1&&main[0].attrs.src===d.main)
+ requireProof(scripts.length===1&&main.length===1&&deployment&&main[0].attrs.type==='module'
   &&!Object.hasOwn(main[0].attrs,'nomodule')&&!Object.hasOwn(main[0].attrs,'integrity'),'unreviewed main program or activation')
+ return deployment
 }
 const mountedVacancies=html=>{
  const raw=readNativeDocument(html),visible=readVisibleNativeDocument(html,{strict:true})
@@ -92,15 +98,15 @@ export const declaresCurrentOpenPositions=html=>{
 
 export const verifyCurrentPublisher=async({official,readPage,verifyNavigation})=>{
  verifyNavigation(official,'/open-positions')
- activeMain(official,'https://gcore.com/careers')
+ const deployment=activeMain(official,'https://gcore.com/careers')
  const page=await readPage(CURRENT_POSITIONS_URL)
  requireProof(page?.status===200&&page.url===CURRENT_POSITIONS_URL&&/^text\/html\b/i.test(page.contentType??'')
   &&typeof page.body==='string'&&Buffer.byteLength(page.body)<=4000000,'positions response status/URL/MIME/cap changed')
  verifyNavigation(page.body,'/open-positions')
- activeMain(page.body,CURRENT_POSITIONS_URL)
+ requireProof(activeMain(page.body,CURRENT_POSITIONS_URL)===deployment,'publisher/positions deployment tuple changed')
  mountedVacancies(page.body)
  const receipts=[]
- for(const[file,expected]of resources){
+ for(const[file,expected]of deployment.resources){
   const url='https://gcore.com/'+file,response=await readPage(url)
   requireProof(response?.status===200&&response.url===url&&/^(?:application|text)\/javascript\b/i.test(response.contentType??'')
    &&typeof response.body==='string'&&Buffer.byteLength(response.body)<=4000000,'client response status/URL/MIME/cap changed: '+file)
@@ -109,5 +115,5 @@ export const verifyCurrentPublisher=async({official,readPage,verifyNavigation})=
   receipts.push({url,sha256,bytes:Buffer.byteLength(response.body),status:response.status,contentType:response.contentType})
  }
  return{surface:CURRENT_POSITIONS_URL,declaredAPI:'https://api.smartrecruiters.com/v1/companies/Gcore/postings',declaredLimit:100,
-  generalApplicationUsedAsAuthority:false,staticPreviewUsedAsVacancies:false,resources:receipts}
+  generalApplicationUsedAsAuthority:false,staticPreviewUsedAsVacancies:false,deploymentMain:deployment.main,resources:receipts}
 }

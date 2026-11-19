@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto'
 import {activeHead,activeIframeSources,activeScripts,extractActiveDescription,readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {extractKulaNativeJobs,resolveKulaJobDescriptions} from '../../scraper-support/utils/kulaFlight.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
@@ -10,11 +11,25 @@ const check=(ok,message)=>{if(!ok)throw Error('Cashfree native Kula: '+message)}
 const canonical=value=>JSON.stringify(value,(_key,item)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item)
 const corporate=html=>{
  const document=readNativeDocument(html)
+ const head=activeHead(html),links=document.nodes(node=>node.tag==='link'&&node.attrs.rel==='canonical')
+ // The current publisher replaced its iframe with this complete, reviewed
+ // shadow-root program. Do not execute it or accept a matching URL substring.
+ // Its generated links delegate to the same Cashfree Kula account; its stale
+ // role set is reconciled separately rather than treated as native vacancies.
+ if(head.titles.length===1&&head.titles[0]==='Careers'){
+  check(links.length===1&&links[0].attrs.href==='https://www.cashfree.com/careers','official careers canonical identity changed')
+  check(document.nodes(node=>node.attrs.id==='cfj').length===1
+   &&document.nodes(node=>node.tag==='img'&&node.attrs.alt==='Cashfree').length>0,'current visible corporate Kula delegation host missing')
+  const programs=activeScripts(html).filter(raw=>/careers\.kula\.ai/.test(raw))
+  check(programs.length===1&&createHash('sha256').update(programs[0]).digest('hex')==='4ce78acddedd92f93decede0ba7f6589cdce68648573c6481f16a39c4b739e1e'
+   &&activeIframeSources(html).length===0,'unreviewed current corporate Kula handoff contract')
+  return [...programs[0].matchAll(/^\s*\[(\d+), \d+, '/gm)].map(match=>Number(match[1]))
+ }
  check(activeHead(html).titles.some(title=>/Career/i.test(title)&&/Cashfree Payments/.test(title)),'official careers employer identity changed')
- const links=document.nodes(node=>node.tag==='link'&&node.attrs.rel==='canonical')
  check(links.length===1&&links[0].attrs.href===CASHFREE_CAREERS,'official careers canonical identity changed')
  const frames=activeIframeSources(html)
  check(frames.filter(url=>url===CASHFREE_BOARD).length===1&&frames.filter(url=>/careers\.kula\.ai/.test(url)).every(url=>url===CASHFREE_BOARD),'current official Cashfree-to-Kula handoff is missing')
+ return null
 }
 const rowsValid=rows=>{
  check(Array.isArray(rows)&&rows.length<=5000,'native inventory shape or size invalid')
@@ -98,7 +113,7 @@ export async function runCurrentCashfree(options={}){
   }
   rowsValid(rows);check(rows.length===meta.count,'native complete inventory count mismatch');return{rows,total:meta.count,pages:meta.pages}
  }
- corporate(await read(CASHFREE_CAREERS))
+ const corporateDeclaredRoleIds=corporate(await read(CASHFREE_CAREERS))
  const openingBoard=board(await read(CASHFREE_BOARD)),opening=await inventory(),nativeByID=new Map(openingBoard.rows.map(row=>[row.id,row]))
  check(opening.rows.length===openingBoard.rows.length&&opening.rows.every(row=>nativeByID.has(row.id)),'rendered and API complete inventory identities differ')
  const failures=[],observedDetails=[],candidates=new Map()
@@ -108,7 +123,7 @@ export async function runCurrentCashfree(options={}){
   check(model(row)===model(nativeByID.get(row.id)),'native rendered and API role criteria or publication model conflict')
   candidates.set(row.id,job)
  }catch(error){failures.push({stage:'native-detail',nativeJobId:String(row.id),message:error.message})}}
- const closing=await inventory(),closingBoard=board(await read(CASHFREE_BOARD));corporate(await read(CASHFREE_CAREERS))
+ const closing=await inventory(),closingBoard=board(await read(CASHFREE_BOARD)),closingCorporateIds=corporate(await read(CASHFREE_CAREERS))
  const closingByID=new Map(closing.rows.map(row=>[row.id,row])),closingNativeByID=new Map(closingBoard.rows.map(row=>[row.id,row]))
  const models=rows=>canonical([...rows].sort((a,b)=>a.id-b.id).map(row=>({id:row.id,model:model(row)})))
  const stable=models(opening.rows)===models(closing.rows)&&models(openingBoard.rows)===models(closingBoard.rows)
@@ -121,12 +136,15 @@ export async function runCurrentCashfree(options={}){
  }
  const unknown=observedDetails.filter(job=>!job.country),exclusions=qualified.filter(job=>job.country!=='India').map(job=>({id:job.jobId,country:job.country,reason:'explicit native non-India worksite'}))
  const allJobs=qualified.filter(job=>job.country==='India'),jobs=options.maxJobs==null?allJobs:allJobs.slice(0,options.maxJobs)
- const complete=stable&&!failures.length&&!unknown.length&&jobs.length===allJobs.length
+ const ids=values=>canonical([...values].sort((a,b)=>a-b))
+ const corporateNativeMembershipMatches=corporateDeclaredRoleIds==null&&closingCorporateIds==null
+  ||corporateDeclaredRoleIds!=null&&closingCorporateIds!=null&&ids(corporateDeclaredRoleIds)===ids(closingCorporateIds)&&ids(corporateDeclaredRoleIds)===ids(opening.rows.map(row=>row.id))
+ const complete=stable&&corporateNativeMembershipMatches&&!failures.length&&!unknown.length&&jobs.length===allJobs.length
  const summary=pass=>({reportedTotal:pass.total,uniqueRoleIds:pass.rows.map(row=>String(row.id)),pages:pass.pages})
  const audit={source:'cashfreepayments',observedListingCount:opening.total,observedIndiaListingCount:observedDetails.filter(job=>job.country==='India').length,
   candidateDetails:opening.total,extractedDetailJobs:jobs.length,unknownCountryListingCount:unknown.length,nonIndiaListingCount:exclusions.length,
   opening:summary(opening),closing:summary(closing),closingInventoryMatches:stable,listingPaginationComplete:true,sourceScopeComplete:complete,
-  sourceDeclaredBoardScopeComplete:complete,sourceCompanyWideScopeComplete:false,failures,exclusions,observedDetails,jobs:jobs.map(job=>({id:job.jobId}))}
+  sourceDeclaredBoardScopeComplete:complete,sourceCompanyWideScopeComplete:false,corporateDeclaredRoleIds,corporateNativeMembershipMatches,failures,exclusions,observedDetails,jobs:jobs.map(job=>({id:job.jobId}))}
  for(const job of jobs)Object.assign(job,{scrapedAt:new Date().toISOString(),sourceListingComplete:complete,sourceDeclaredBoardScopeComplete:complete})
  if(jobs.length)jobs[0].nativeCollectionEvidence={...audit,observedDetails:observedDetails.map(job=>({id:job.jobId,country:job.country,sourceUrl:job.sourceUrl}))}
  attachInventoryEvidence(jobs,{firstParty:true,surface:CASHFREE_BOARD,status:complete?(opening.total?'complete-inventory':'verified-empty'):'coverage-gap',listingComplete:complete,

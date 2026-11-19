@@ -152,6 +152,8 @@ export function reviewedAsset(bytes){
  return {assetSHA256:asset.assetSHA256,factorySHA256:asset.factorySHA256,feedURL:PROFILE.feedURL,roleRoute:'/job-detail/<native-id>'}
 }
 export const roleURL=id=>'https://cribl.io/job-detail/'+id
+const roleRenderDrifts=new WeakMap()
+export const readCriblRoleRenderDrift=error=>{const proof=roleRenderDrifts.get(error);return proof?structuredClone(proof):null}
 export function nativeCollection(body){
  const value=JSON.parse(body)
  requireNative(value&&Array.isArray(value.jobs)&&Number.isSafeInteger(value.meta?.total)&&value.meta.total===value.jobs.length,'native collection total/shape mismatch')
@@ -171,6 +173,21 @@ export function ownRole(html,listing){
  const element=bound[0],binding=parsed.imports.get(element[1].slice(2))
  requireNative(Array.isArray(binding)&&binding[0]===PROFILE.roleModuleId&&binding[2]==='default','own role component changed')
  const model=parsed.resolve(element[3].data)
+ if(!isDeepStrictEqual(model,listing)){
+  const differingFields=[...new Set([...Object.keys(model),...Object.keys(listing)])]
+   .filter(key=>!isDeepStrictEqual(model[key],listing[key])).sort()
+  // A current own route can lag the native collection's content update. Hold
+  // that exact post while retaining other complete models. Every other native
+  // field, including title, country, IDs and role URLs, must still agree.
+  if(differingFields.length&&differingFields.every(key=>['content','updated_at'].includes(key))
+   &&typeof model.content==='string'&&model.content.length>100
+   &&nativeInstant(model.updated_at)!==null&&nativeInstant(listing.updated_at)!==null){
+   const full=criteria(model);requireNative(full.jobDescription&&full.sourceNativeContentText.length>100,'full native criteria unavailable')
+   const error=failure('Cribl native contract: own complete native model conflicts with collection; content rendition held','CRIBL_NATIVE_ROLE_RENDER_DRIFT')
+   roleRenderDrifts.set(error,{differingFields,listingRecord:structuredClone(listing),ownRecord:structuredClone(model)})
+   throw error
+  }
+ }
  requireNative(isDeepStrictEqual(model,listing),'own complete native model conflicts with collection')
  const full=criteria(model);requireNative(full.jobDescription&&full.sourceNativeContentText.length>100,'full native criteria unavailable')
  return {model,full,flight:{textFrames:parsed.textFrames,streamBytes:parsed.streamBytes,roleModuleId:binding[0]}}

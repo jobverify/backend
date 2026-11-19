@@ -49,7 +49,10 @@ test('Allstate closes the complete original India feed and preserves its company
  assert.ok(jobs.every(j=>j.sourceScopeComplete===false&&j.companyInventoryComplete===false&&j.lifecycleCleanupAllowed===false))
  assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
  const assessed=assessSoftFailureAcquisition({source:'allstate',companyName:'Allstate'},jobs)
- assert.equal(assessed.rawJobs,10);assert.equal(assessed.indiaJobs,10);assert.equal(assessed.eligibleJobs,10)
+ assert.equal(assessed.rawJobs,10);assert.equal(assessed.indiaJobs,10)
+ // The native feed retains its Product Manager row; the current publishing
+ // title policy excludes that row after acquisition.
+ assert.equal(assessed.eligibleJobs,9);assert.equal(assessed.filterCounts.excludedTitle,1)
  assert.equal(assessed.inventoryEvidence.listingComplete,true)
 })
 

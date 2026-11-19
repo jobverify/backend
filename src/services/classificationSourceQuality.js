@@ -5,7 +5,7 @@ export const isPlaceholderClassificationText = value => {
     || /^(?:n\s*\/?\s*a|not\s+(?:available|applicable|provided|specified)|tbd|tba|to\s+be\s+(?:announced|determined)|coming\s+soon|(?:enter\s+(?:the\s+)?)?job\s+description|description)[\s.!:]*$/i.test(text)
 }
 
-export const isExplicitTestPosting = title => /\b(?:job|posting|vacancy|requisition)\s+(?:is\s+)?(?:for\s+)?(?:a\s+)?system\s+test\s+only\d*\b|\b(?:this\s+is\s+(?:a\s+)?)?(?:dummy|test)\s+(?:job|posting|vacancy|requisition)\s*[-:,(]?\s*(?:only|do\s+not\s+apply)\b/i
+export const isExplicitTestPosting = title => /\b(?:job|posting|vacancy|requisition)\s+(?:is\s+)?(?:for\s+)?(?:a\s+)?system\s+test\s+only\d*\b|\b(?:this\s+is\s+(?:a\s+)?)?(?:dummy|test)\s+(?:job|posting|vacancy|req(?:uisition)?)\s*[-:,(]?\s*(?:only|do\s+not\s+apply|for\s+test(?:ing)?)\b/i
   .test(String(title ?? '').replace(/_/g, ' '))
 
 export function sourceAvailabilityIssues(input, { unresolved = false } = {}) {

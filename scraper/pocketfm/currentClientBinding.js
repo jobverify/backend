@@ -15,6 +15,8 @@ const FOOTER_SHA256 = '994447fba92c4b0e2d1b4a0ce8c0480d42dbdb6a462be524ee2bc66f8
 // model. Admit only these exact original bytes; no compiler differences are
 // erased at runtime and whole-browser equivalence remains unproved.
 const CURRENT_20261117 = JSON.parse(readFileSync(new URL('./reviewedBinding20261117.json', import.meta.url), 'utf8'))
+const CURRENT_20261119 = JSON.parse(readFileSync(new URL('./reviewedBinding20261119.json', import.meta.url), 'utf8'))
+const CURRENT_PROFILES = [CURRENT_20261117, CURRENT_20261119]
 const exactCurrentProgram = (url, body, expected) => url === expected.url
   && Buffer.byteLength(body) === expected.bytes
   && createHash('sha256').update(body).digest('hex') === expected.sha256
@@ -111,14 +113,15 @@ export const verifyCurrentPocketClientBinding = async (html, getText) => {
   const parentURL = currentParentURL(html)
   const parentBody = await getText(parentURL)
   const parent = readReviewedClientProgram(parentBody, { normalizeChunkNames: true })
-  const current = parent?.sha256 === CURRENT_20261117.parent.programSHA256
-    && exactCurrentProgram(parentURL, parentBody, CURRENT_20261117.parent)
+  const currentProfile = CURRENT_PROFILES.find(profile => parent?.sha256 === profile.parent.programSHA256
+    && exactCurrentProgram(parentURL, parentBody, profile.parent))
+  const current = Boolean(currentProfile)
   if (!current && ![LOADER_SHA256, LOADER_20261113_SHA256].includes(parent?.sha256)) fail('unreviewed parent program')
   const childURL = loaderChild(parent.program)
   const footerBody = await getText(childURL)
   const footer = readReviewedClientProgram(footerBody)
-  if (current ? footer?.sha256 !== CURRENT_20261117.footer.programSHA256
-    || !exactCurrentProgram(childURL, footerBody, CURRENT_20261117.footer)
+  if (current ? footer?.sha256 !== currentProfile.footer.programSHA256
+    || !exactCurrentProgram(childURL, footerBody, currentProfile.footer)
     : footer?.sha256 !== FOOTER_SHA256) fail('unreviewed careers footer program')
   return { parentURL, childURL, loaderProgramSHA256: parent.sha256, footerProgramSHA256: footer.sha256,
     ...(current ? {browserEquivalenceComplete:false,sourceScopeComplete:false} : {}) }

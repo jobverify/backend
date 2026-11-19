@@ -7,10 +7,12 @@ import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.j
 import {expandReviewedCSS} from './authoredCSS.js'
 import publisherReview from './publisherReview.json' with {type:'json'}
 import publisherReview20261114 from './publisherReview20261114.json' with {type:'json'}
+import publisherReview20261118 from './publisherReview20261118.json' with {type:'json'}
 
 export const SOURCE='condenast',COMPANY='Conde Nast',CORPORATE='https://www.condenast.com/careers',ORIGIN='https://condenast.wd115.myworkdayjobs.com',SITE='CondeCareers',COUNTRY_ID='c4f78be1a8f14da0ab49ce1162348a5e',BOARD=ORIGIN+'/'+SITE+'?locationCountry='+COUNTRY_ID,API=ORIGIN+'/wday/cxs/condenast/'+SITE,SEARCH=API+'/jobs'
 export const APP='https://www.condenast.com/_next/static/chunks/pages/_app-8980c1e2daf41426.js',PAGE='https://www.condenast.com/_next/static/chunks/pages/careers-8504f5719bd45b77.js',CSS='https://www.condenast.com/_next/static/css/7983c30399e0f3f4.css'
 const publisherProfiles=[
+ {app:'https://www.condenast.com/_next/static/chunks/pages/_app-f9be5bda5c9e636b.js',page:PAGE,css:'https://www.condenast.com/_next/static/css/a4d0ee7c6a37b337.css',review:publisherReview20261118,assetSHA256:{'https://www.condenast.com/_next/static/chunks/pages/_app-f9be5bda5c9e636b.js':'0ef111a6d8dae9ffb12dde38224b8aebaf948f21055db7ad7ead962e3774d0e6',[PAGE]:'50a4e907a975938409ced537af982759ff73ebcc1a6741db89db9d03a09036a6','https://www.condenast.com/_next/static/css/a4d0ee7c6a37b337.css':'f40581a6d2c07e3b9a2cc41fe8d10f83211d2134613f6f5ff3094614564cedec'}},
  {app:APP,page:PAGE,css:CSS,review:publisherReview,assetSHA256:{[APP]:'56e4593d21f3338630da5c019c79dbefc42fd41ed5c0cb10d76af182b61fe2e2',[PAGE]:'50a4e907a975938409ced537af982759ff73ebcc1a6741db89db9d03a09036a6',[CSS]:'e8f8b7ef406064c7c7a250feeae6f41b75857e63c0a66e03abbe62ba37954ea4'}},
  {app:'https://www.condenast.com/_next/static/chunks/pages/_app-7b5572eba30a654a.js',page:PAGE,css:'https://www.condenast.com/_next/static/css/a4d0ee7c6a37b337.css',review:publisherReview20261114,assetSHA256:{'https://www.condenast.com/_next/static/chunks/pages/_app-7b5572eba30a654a.js':'d9ed42715de1db6a27e08942a341d74e35eba95b7cf3903d5d1e4607fb0476e3',[PAGE]:'50a4e907a975938409ced537af982759ff73ebcc1a6741db89db9d03a09036a6','https://www.condenast.com/_next/static/css/a4d0ee7c6a37b337.css':'f40581a6d2c07e3b9a2cc41fe8d10f83211d2134613f6f5ff3094614564cedec'}},
 ]

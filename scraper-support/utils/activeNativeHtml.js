@@ -1,3 +1,4 @@
+import { parse } from 'acorn'
 import {hasSourceDescription} from '../../src/utils/jobSourceContent.js'
 export class ActiveNativeContentError extends Error {
  constructor(message){super('Active native content: '+message);this.name='ActiveNativeContentError'}
@@ -163,5 +164,41 @@ export const activeIframeDeclarations = (html, options) => {
  }))
 }
 export const activeIframeSources = (html, options) => activeIframeDeclarations(html,options).map(frame=>frame.href)
+
+// Some current careers publishers use a button instead of an href for their
+// public board handoff. Read only a complete, literal navigation statement;
+// handler code is never evaluated and arbitrary script URLs confer no trust.
+export const activeRecruitmentNavigationDeclarations = html => {
+ const tree=dom(html), declarations=[]
+ const blocked=new Set(all(tree,node=>node.tag==='fieldset'&&Object.hasOwn(node.attrs,'disabled')
+  || node.attrs['aria-disabled']?.toLowerCase()==='true').flatMap(node=>all(node,()=>true)))
+ for(const node of all(tree,node=>['button','a'].includes(node.tag)&&typeof node.attrs.onclick==='string')){
+  if(blocked.has(node)||Object.hasOwn(node.attrs,'disabled')||node.attrs.onclick.length>2048)continue
+  const label=[text(node),node.attrs['aria-label']||'',node.attrs.title||''].filter(Boolean).join(' ').trim()
+  if(!/(?:careers?|jobs?|vacanc|openings?|open[-_ /]?(?:roles?|positions?)|join[-_ /]?(?:us|(?:our|the)[-_ ]?team)|work[-_ /]?(?:with|for)[-_ /]?us|recruit)/i.test(label))continue
+  try{
+   const source=`function handler(event){${node.attrs.onclick}\n}`
+   const program=parse(source,{ecmaVersion:'latest'})
+   if(program.body.length!==1||program.body[0].type!=='FunctionDeclaration'
+    ||program.body[0].end!==source.length)continue
+   const statements=program.body[0].body.body
+   if(statements.length!==1)continue
+   const statement=statements[0], call=statement.type==='ExpressionStatement'?statement.expression
+    :statement.type==='ReturnStatement'?statement.argument:null
+   if(call?.type!=='CallExpression'||call.optional||call.callee.type!=='MemberExpression'||call.callee.computed
+    ||call.callee.optional||call.callee.object.type!=='Identifier'||call.callee.object.name!=='window'
+    ||call.callee.property.name!=='open'||call.arguments.length<1||call.arguments.length>2)continue
+   const destination=call.arguments[0], target=call.arguments[1]
+   if(destination.type!=='Literal'||typeof destination.value!=='string'
+    ||target&&(target.type!=='Literal'||!['_blank','_self','_parent','_top'].includes(target.value)))continue
+   const href=destination.value
+   if(!/^https?:\/\//i.test(href)||/[\u0000-\u0020\u007f]/.test(href))continue
+   const url=new URL(href)
+   if(url.username||url.password)continue
+   declarations.push({href:url.href,label,carrier:'onclick'})
+  }catch{/* An unqualified or dynamic handler cannot declare a public board. */}
+ }
+ return declarations
+}
 
 export const readNativeDocument=(html,options)=>{const root=dom(html,options);return{nodes:(predicate,subtree=root)=>all(subtree,predicate),text,hasClass:cls}}

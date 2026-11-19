@@ -484,6 +484,7 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
   let continuation = false
   const seenIdentities = new Set()
   const skippedForeignNativeRecords = []
+  const rejectedLocationRecords = new WeakSet(), rejectedNativeRecords = new Map()
   const incompleteReasons = new Set()
   const markIncomplete = reason => { inventoryComplete = false; incompleteReasons.add(reason) }
 
@@ -543,6 +544,7 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
       config.detail.enabled ? (config.detail.concurrency || 1) : 1,
       async (record) => {
         checkTraversalAbort()
+        if (rejectedLocationRecords.has(record)) return null
         // A global SmartRecruiters feed must establish the native country for
         // every row before filtering; a city name or provider default cannot
         // turn an unclassified vacancy into an India job or a complete scope.
@@ -739,7 +741,22 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
       const listingRecords = records
       if (stagedTraversal) cohortRecords.push(...listingRecords)
       if (config.mapping.location?.strategy === 'eightfold-location') {
-        if (listingRecords.some(record => readEightfoldLocationScope(record).unresolved)) markIncomplete('native-location-scope-unresolved')
+        for (const record of listingRecords) {
+          try {
+            if (readEightfoldLocationScope(record).unresolved) markIncomplete('native-location-scope-unresolved')
+          } catch (error) {
+            // The public-access policy retains independently validated roles.
+            // A rejected location remains in raw counts/snapshots, and cannot
+            // supply eligibility or authorize cleanup for the remaining feed.
+            if (!publicAccessRecovery || error.incompleteScope !== true) throw error
+            rejectedLocationRecords.add(record)
+            rejectedNativeRecords.set(JSON.stringify(record), {
+              jobId: getMappedValue(record, config.mapping.jobId),
+              reason: error.message, nativeRecord: structuredClone(record),
+            })
+            markIncomplete('native-location-record-rejected')
+          }
+        }
       }
       cohortPagesFetched += 1
       pagesFetched += 1
@@ -845,8 +862,13 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
     }
     if (indiaDetailHydration) {
       Object.defineProperty(jobs, 'sourceSkippedForeignNativeRecords', { value: skippedForeignNativeRecords })
+    }
+    if (indiaDetailHydration || rejectedNativeRecords.size) {
       Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: {
         source: provider.source, skippedForeignNativeRecords,
+        ...(rejectedNativeRecords.size ? {
+          rejectedNativeRecords: [...rejectedNativeRecords.values()], lifecycleCleanupAllowed: false,
+        } : {}),
       } })
     }
     return attachInventoryEvidence(jobs, {
@@ -856,7 +878,8 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
       ...(directGreenhouseScope ? { nativeCountryScopeChecked: true } : {}),
       indiaFacetCount: incompleteReasons.has('native-location-scope-unresolved')
         || incompleteReasons.has('native-india-location-unmapped')
-        || incompleteReasons.has('native-location-country-conflict') || deniedOrigins.size ? null : indiaCount,
+        || incompleteReasons.has('native-location-country-conflict') || rejectedNativeRecords.size || deniedOrigins.size ? null : indiaCount,
+      ...(rejectedNativeRecords.size ? { lifecycleCleanupAllowed: false } : {}),
       verifiedAt: new Date().toISOString(),
       reason: complete ? stagedTraversal ? 'api-portal-complete-opening-and-closing-native-pagination'
           : directGreenhouseScope ? 'api-portal-complete-native-pagination-and-native-country-scope' : 'api-portal-complete-native-pagination'

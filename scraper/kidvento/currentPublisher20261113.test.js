@@ -41,7 +41,7 @@ test('registered current Kidvento acquisition preserves every original native mo
  assert.ok(jobs.every(row=>row.sourceScopeComplete===false&&row.lifecycleCleanupAllowed===false))
  assert.equal(readInventoryEvidence(jobs).listingComplete,false);assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed,false)
 })
-test('current Kidvento returns only complete roles and its four complete recent candidates',async()=>{
+test('current Kidvento preserves complete acquired roles independently of current publication policy',async()=>{
  const current=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data-20261113/current-native.json.gz',import.meta.url))))
  let index=0
  const jobs=await createCatalogScraper(getScraperCatalog().find(row=>row.source==='kidvento')).run({fetchImpl:async(url)=>{
@@ -51,7 +51,9 @@ test('current Kidvento returns only complete roles and its four complete recent 
  assert.equal(jobs.length,14)
  assert.ok(jobs.every(row=>row.sourceDetailComplete===true&&row.sourceNativeCriteriaComplete===true))
  const eligible=analyzePublishableJobs(jobs,{now:new Date('2026-11-13T09:00:00Z')})
- assert.deepEqual(eligible.eligibleJobs.map(row=>row.jobId).sort(),['167526','167530','167534','167753'])
+ // Acquisition still retains all fourteen complete native roles. The current
+ // publication policy applies its title, criteria and date rules afterwards.
+ assert.deepEqual(eligible.eligibleJobs.map(row=>row.jobId).sort(),['157073','167753'])
  assert.equal(jobs.nativeCollectionEvidence.sourceNativeRaw.length,33)
  assert.equal(jobs.nativeCollectionEvidence.allNativeDetailProofs.length,33)
  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed,false)

@@ -4,6 +4,7 @@ import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS, estimateR
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
 import { applyPaginationRepair, buildPaginationRepairPlan, buildPreservedPreparationPlan, PAGINATION_REPAIR_MAX_TOKENS, RESUME_PIPELINE_POLICY } from './resumePaginationRepair.js';
 import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
+import { buildResumeTailoringPlan } from './resumeTailoringPlan.js';
 import { resumePageBudget } from '../src/utils/resumePresentation.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
   buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations, resumeSectionTitles, resumeSourceLayout, resumeSubheadingChoices } from '../src/services/resumeLatexContent.js';
@@ -40,9 +41,10 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   const sectionTitles = resumeSectionTitles(source, facts);
   let layout = resumeSourceLayout(source, facts, { preserveOriginal: !tailored });
   const preparationPlan = tailored ? null : buildPreservedPreparationPlan(layout, pagination);
+  let tailoringPlan = tailored ? buildResumeTailoringPlan({ source, baseLatex: input.baseLatex, jobSnapshot: input.jobSnapshot }) : null;
   // The bounded planner chooses a safe boundary rather than the word-count
   // estimate. Physical pagination and full factual checks remain mandatory.
-  if (preparationPlan) layout = { ...layout, pageBreakBefore: undefined, preservationBreak: undefined };
+  if (preparationPlan || tailoringPlan) layout = { ...layout, pageBreakBefore: undefined, preservationBreak: undefined };
   const headerChoices = resumeSubheadingChoices(facts);
   let originalPrompt = tailored ? buildLatexTailoringPrompt({ ...input, source, facts }) : buildPreparationPrompt({ ...input, source, facts });
   let prompt = originalPrompt;
@@ -68,10 +70,12 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       await phase(attempt === 1 ? 'generating' : 'repairing');
       diagnose('started', { policyVersion: RESUME_PIPELINE_POLICY, mode: tailored ? 'tailored' : 'base',
         targetPages: pagination.targetPages, sourceBlockCount: layout.preservationBlocks?.length || 0,
-        ...(attempt === 2 ? { repairKind: repairPlan ? 'pagination' : 'document' } : {}) });
+        ...(tailoringPlan && !repairPlan ? { editSlotCount: tailoringPlan.slotCount } : {}),
+        ...(attempt === 2 ? { repairKind: repairPlan ? 'pagination' : tailoringPlan ? 'edits' : 'document' } : {}) });
       const generated = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal,
         allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic,
         ...(attempt === 1 && preparationPlan ? { preparationPlan } : {}),
+        ...(tailoringPlan && !repairPlan ? { tailoringPlan } : {}),
         ...(repairPlan ? { paginationRepair: true, paginationBreakIds: repairPlan.candidates.map(candidate => candidate.id) } : {}),
         onUsage: usage => { generationUsage = usage; } }));
       latex = repairPlan ? applyPaginationRepair(repairPlan, generated) : generated;
@@ -143,17 +147,19 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
         originalPrompt = buildPreparationPrompt({ ...input, source, facts, condenseOriginal: true });
         issues.push('Condense the narrative bullet text within its original finite entry and item slots. Preserve fixed headers, grades, dates, skill categories, useful links, and all substantive facts.');
       }
-      prompt = repairPlan ? repairPlan.prompt : buildLatexRepairPrompt({ originalPrompt, latex, issues });
+      if (tailoringPlan && !repairPlan) tailoringPlan = buildResumeTailoringPlan({ source, baseLatex: input.baseLatex,
+        jobSnapshot: input.jobSnapshot, issues });
+      prompt = repairPlan ? repairPlan.prompt : tailoringPlan ? tailoringPlan.prompt : buildLatexRepairPrompt({ originalPrompt, latex, issues });
       const estimatedMs = estimateResumeRepairMs({
-        inputCharacters: prompt.length + (repairPlan ? 0 : RESUME_LATEX_PREAMBLE.length + (layout.contactHeader?.length || 0)),
-        outputTokens: repairPlan ? PAGINATION_REPAIR_MAX_TOKENS : generationUsage.outputTokens
+        inputCharacters: prompt.length + (repairPlan || tailoringPlan ? 0 : RESUME_LATEX_PREAMBLE.length + (layout.contactHeader?.length || 0)),
+        outputTokens: repairPlan ? PAGINATION_REPAIR_MAX_TOKENS : tailoringPlan ? tailoringPlan.maxTokens : generationUsage.outputTokens
           || Math.max(latex ? 512 : 2048, Math.ceil(Math.max(0, latex.length - RESUME_LATEX_PREAMBLE.length) / 3)),
         usage: generationUsage,
       });
       const remainingMs = generationDeadline - Date.now();
       if (estimatedMs > remainingMs) {
         stage = 'repairing';
-        diagnose('repair_budget_insufficient', { attempt: 2, repairKind: repairPlan ? 'pagination' : 'document',
+        diagnose('repair_budget_insufficient', { attempt: 2, repairKind: repairPlan ? 'pagination' : tailoringPlan ? 'edits' : 'document',
           estimatedSeconds: estimatedMs / 1000, remainingSeconds: Math.max(0, remainingMs) / 1000 });
         throw resumeFailure('repair_budget_insufficient');
       }

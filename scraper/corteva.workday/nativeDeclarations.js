@@ -42,20 +42,25 @@ function carrier(html,id){
  }
  visit(root);need(found.length===1,'missing or ambiguous '+id+' carrier');return found[0]
 }
-export function board(html){
+function readBoard(html,nativeRoles){
  const branding=carrier(html,'branding-data'),pcsx=carrier(html,'pcsx-data'),doc=readVisibleNativeDocument(html,{strict:true})
  need(branding.domain==='corteva.com'&&pcsx.domain==='corteva.com','tenant domain differs')
  const scripts=doc.nodes(n=>n.tag==='script'&&/^\/gen\/js\/pcsxPwa\.[^/]+\.js$/.test(n.attrs.src||''))
- need(scripts.length===1&&reviewedClients.has(PORTAL.slice(0,-1)+scripts[0].attrs.src),'reviewed PCSX client missing')
+ need(scripts.length===1&&(nativeRoles?/^\/gen\/js\/pcsxPwa\.[a-f0-9]{16}\.js$/.test(scripts[0].attrs.src):reviewedClients.has(PORTAL.slice(0,-1)+scripts[0].attrs.src)),'reviewed PCSX client missing')
  const clientURL=PORTAL.slice(0,-1)+scripts[0].attrs.src
  need(pcsx.configs?.pcsxConfig?.positionDetailsConfig?.efJdOverridesAtsPosting===false,'unreviewed description source override')
- return{tenantDomain:'corteva.com',boardURL:BOARD,clientURL,clientSHA256:reviewedClients.get(clientURL),efJdOverridesAtsPosting:false,requestGeolocationUsed:false,programsExecuted:false}
+ return{tenantDomain:'corteva.com',boardURL:BOARD,clientURL,clientSHA256:nativeRoles?null:reviewedClients.get(clientURL),efJdOverridesAtsPosting:false,requestGeolocationUsed:false,programsExecuted:false,...(nativeRoles?{nativeRoleChecksRequired:true}:{} )}
 }
+export const board=html=>readBoard(html,false)
+// The collector reads the employer's own public role API and canonical role
+// pages. Full unrelated browser bundle equivalence is not a role prerequisite;
+// its tenant, description configuration and unique active client stay bound.
+export const nativeBoard=html=>readBoard(html,true)
 export function client(bytes,{clientURL=CLIENT}={}){need(reviewedClients.has(clientURL)&&createHash('sha256').update(bytes).digest('hex')===reviewedClients.get(clientURL),'published client contract changed')}
 export function canonical(html,id,role,now,expectedTenant){
  const doc=readVisibleNativeDocument(html,{strict:true}),links=doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical')
  need(links.length===1&&links[0].attrs.href===roleURL(id),'canonical role page differs')
- const tenant=board(html)
+ const tenant=expectedTenant?.nativeRoleChecksRequired?nativeBoard(html):board(html)
  if(expectedTenant)need(tenant.clientURL===expectedTenant.clientURL&&tenant.clientSHA256===expectedTenant.clientSHA256,'role client differs from the native board deployment')
  const scripts=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json')
  need(scripts.length===1,'missing or ambiguous own structured role')

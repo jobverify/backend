@@ -7,12 +7,15 @@ import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvid
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 const SOURCE='chronus',PAGE='https://chronus.com/about-us/careers',API='https://app.recruiterbox.com/widget/8241/openings/'
 const countryNames=(()=>{const names=new Set(),display=new Intl.DisplayNames(['en'],{type:'region'});for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=display.of(code);if(!['EU','EZ','UN','QO','ZZ','XA','XB'].includes(code)&&name&&name!==code)names.add(name)}return names})()
-const PROGRAMS=new Map([
+const CLIENTS=new Map([
  ['https://chronus.com/_next/static/immutable/chunks/0ac16jm9wnz4f.js','d426d677069f86855d42395fb6a625a1f3c1000879e698ace163484dc3d16a7e'],
+ ['https://chronus.com/_next/static/immutable/chunks/41cg6wrlkolod.js','bb74cba6b67567153e8b68b50ec658d3e7e9da76bfae5f58fbf10667c0ea2365'],
+])
+const PROGRAMS=new Map([
  ['https://w.recruiterbox.com/static/client-src-served/widget/8241/rbox_api.js','46090c10c4c511e8ae7f37534654defbd8709fe44710139db41602be879f326a'],
  ['https://w.recruiterbox.com/static/client-src-served/widget/8241/rbox_impl.js','6d9940397501b4d80cc9ea51ffed3648e744ef562886ee88f062417b792cfeb5'],
 ])
-export const hasCurrentChronusClient=html=>String(html).includes('/_next/static/immutable/chunks/0ac16jm9wnz4f.js')
+export const hasCurrentChronusClient=html=>[...CLIENTS.keys()].some(url=>String(html).includes(new URL(url).pathname))
 export async function runCurrentChronus(options={}){
  const failure=message=>firstPartyFailure(SOURCE,message,{nativeAuthorityFailure:true})
  const need=(ok,message)=>{if(!ok)throw failure(message)}
@@ -23,6 +26,7 @@ export async function runCurrentChronus(options={}){
  const verifiedAt=typeof options.now==='function'?options.now():options.now??new Date().toISOString()
  need(typeof verifiedAt==='string'&&Number.isFinite(Date.parse(verifiedAt)),'Invalid native check time')
  let requests=0
+ const phases=[]
  const read=async(url,type)=>{
   signal.throwIfAborted();requests++
   const response=await boundedDeclaredPublicGet(url,{fetchImpl,signal,overflowError:failure('Native entity exceeds bounded size')})
@@ -35,10 +39,12 @@ export async function runCurrentChronus(options={}){
   need(page.title==='Careers at Chronus','Native employer title changed')
   const region=page.raw.nodes(n=>(n.attrs.class??'').split(/\s+/).includes('job-openings'))
   need(region.length===1&&clean(nativeText(page.body)).includes('Open Positions'),'Missing or ambiguous native recruiting region')
-  const client=[...PROGRAMS.keys()][0]
-  need(page.raw.nodes(n=>n.tag==='script'&&n.attrs.src===new URL(client).pathname).length===1,'Current native client declaration changed')
-  for(const[url,hash]of PROGRAMS)need(createHash('sha256').update(await read(url,'js')).digest('hex')===hash,'Current native recruiting program profile requires review')
-  const rows=JSON.parse(await read(API,'json'))
+  const clients=[...CLIENTS].filter(([url])=>page.raw.nodes(n=>n.tag==='script'&&n.attrs.src===new URL(url).pathname
+   &&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/(?:java|ecma)script)$/i.test(n.attrs.type??'')).length===1)
+  need(clients.length===1,'Current native client declaration changed')
+  const[client,clientHash]=clients[0]
+  for(const[url,hash]of [[client,clientHash],...PROGRAMS])need(createHash('sha256').update(await read(url,'js')).digest('hex')===hash,'Current native recruiting program profile requires review')
+  const originalInventoryText=await read(API,'json'),rows=JSON.parse(originalInventoryText)
   need(Array.isArray(rows)&&rows.length<=1000,'Native inventory is not a bounded array')
   const ids=new Set()
   for(const row of rows){
@@ -46,6 +52,8 @@ export async function runCurrentChronus(options={}){
    ids.add(String(row.id))
    need(!row.company_name||clean(row.company_name)==='Chronus','Native role employer identity changed')
   }
+  phases.push({phase:phases.length?'closing':'opening',clientURL:client,clientSHA256:clientHash,
+   originalInventory:structuredClone(rows),originalInventoryText,inventorySHA256:createHash('sha256').update(originalInventoryText).digest('hex')})
   return rows.sort((a,b)=>String(a.id).localeCompare(String(b.id)))
  }
  const opening=await collect(),closing=await collect()
@@ -73,6 +81,8 @@ export async function runCurrentChronus(options={}){
  const complete=!unknown.length&&!unqualified.length&&!capped
  for(const job of jobs)job.sourceListingComplete=complete
  attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:opening.length,observedVacancyCount:opening.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
- return attachInventoryEvidence(jobs,{status:complete?(opening.length?'complete-inventory':'verified-empty'):'coverage-gap',surface:API,firstParty:true,listingComplete:complete,pagesFetched:requests,reportedTotal:opening.length,indiaFacetCount:opening.filter(row=>clean(row.location?.country)==='India').length,verifiedAt,
+ Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+  phases,observedRecordCount:opening.length,observedVacancyCount:opening.length,unknownCountryIds:unknown,unqualifiedRoleIds:unqualified},configurable:true})
+ return attachInventoryEvidence(jobs,{status:complete?(opening.length?'complete-inventory':'verified-empty'):'coverage-gap',surface:API,firstParty:true,listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:requests,reportedTotal:opening.length,indiaFacetCount:opening.filter(row=>clean(row.location?.country)==='India').length,verifiedAt,
   reason:'current-declared-Chronus-8241-widget-client-and-unfiltered-native-inventory-reconciled-at-closing;whole-company-scope-unqualified;unknown-country:'+unknown.join(',')+';unqualified-role:'+unqualified.join(',')+(capped?';caller-cap':'')})
 }

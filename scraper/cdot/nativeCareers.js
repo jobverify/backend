@@ -11,15 +11,15 @@ export async function runCdotNative(options={}){
  need(cap===Infinity||Number.isSafeInteger(cap)&&cap>=0,'invalid result cap')
  const clock=new Date(typeof options.now==='function'?options.now():options.now??Date.now()).toISOString(),receipts=[]
  const audit={source:SOURCE,observedAt:clock,nativeRecords:null,nativePositions:null,nativePositionsObserved:null,nativeRoleClosingReconciled:0,
-  heldNativeRows:[],unknownCountryRoles:[],failures:[],sourceScopeComplete:false,lifecycleCleanupAllowed:false,complete:false}
+  heldNativeRows:[],unqualifiedListingRecords:[],knownVacancyRows:null,unknownCountryRoles:[],failures:[],sourceScopeComplete:false,lifecycleCleanupAllowed:false,complete:false}
  let jobs=[],failure
  const finish=()=>{
   const result=jobs.slice(0,cap),observations={...structuredClone(audit),responses:structuredClone(receipts),returnedRecords:result.length,
    unresolved:['company-recruitment-scope-unverified',...(audit.unknownCountryRoles.length?['native-role-country-unproven']:[]),...(cap!==Infinity?['caller-result-limit']:[])],
    nativeInventoryReads:audit.nativeRecords===null?[]:[{kind:'official-table-and-whole-bilingual-native-advertisements',surface:CURRENT_OPENINGS_URL,reportedTotal:audit.nativeRecords}]}
   Object.defineProperty(result,Symbol.for('jobverify.verified-recruitment-observations'),{value:observations})
-  if(audit.nativeRecords!==null)attachSourceObservationEvidence(result,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:audit.nativeRecords,
-   observedVacancyCount:audit.nativeRecords,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
+  if(audit.nativeRecords!==null)attachSourceObservationEvidence(result,{source:SOURCE,recordKind:audit.unqualifiedListingRecords.length?'mixed':'vacancy-rows',observedRecordCount:audit.nativeRecords,
+   observedVacancyCount:audit.knownVacancyRows,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   if(result.length)result[0].sourceNativeCollectionAudit={...structuredClone(audit),responses:structuredClone(receipts)}
   return attachInventoryEvidence(result,{status:'coverage-gap',surface:CURRENT_OPENINGS_URL,firstParty:Boolean(audit.openingIndex?.nativeRecord),
    listingComplete:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:receipts.length,verifiedAt:clock,
@@ -37,7 +37,9 @@ export async function runCdotNative(options={}){
  try{
   const first=await transport.read(CURRENT_OPENINGS_URL),html=first.receipt.rawHTML
   audit.openingIndex=indexEvidence(html)
-  const page=readCdotListing(html);audit.openingIndex.nativeRecord=structuredClone(page);audit.nativeRecords=page.rows.length
+  const page=readCdotListing(html);audit.openingIndex.nativeRecord=structuredClone(page)
+  audit.unqualifiedListingRecords=structuredClone(page.unqualifiedRows);audit.knownVacancyRows=page.rows.length
+  audit.nativeRecords=page.rows.length+page.unqualifiedRows.length
   for(const row of page.rows){
    transport.allowPDF(row.sourceUrl)
    const current=await transport.read(row.sourceUrl),job=await readCdotAdvertisement(current.bytes,row,{signal:transport.signal,page,clock})
@@ -47,7 +49,7 @@ export async function runCdotNative(options={}){
    if(!job.country)audit.unknownCountryRoles.push({jobId:job.jobId,title:job.title,nativeWorkplace:job.nativeWorkplace,country:null,
     reason:'native-country-unproven',nativeRecord:structuredClone(job.nativeSourceRecord)})
   }
-  audit.nativePositions=audit.nativePositionsObserved
+  audit.nativePositions=audit.unqualifiedListingRecords.length?null:audit.nativePositionsObserved
   const last=await transport.read(CURRENT_OPENINGS_URL),previous=jobs;transport.signal.throwIfAborted();jobs=[]
   audit.closingIndex=indexEvidence(last.receipt.rawHTML)
   let closingPage

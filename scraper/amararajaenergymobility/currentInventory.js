@@ -1,4 +1,4 @@
-import { createPeopleStrongPairScraper } from '../../scraper-support/shared/peopleStrongNativePair20261027.js'
+import { createAmaraNativeInventory } from './nativeInventory.js'
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 export const createCurrentAmaraInventory = (defaults = {}) => ({ async run(provided = {}) {
@@ -12,7 +12,7 @@ export const createCurrentAmaraInventory = (defaults = {}) => ({ async run(provi
   })
   signal.throwIfAborted()
   let report
-  const jobs = await wait(createPeopleStrongPairScraper('amararajaenergymobility').run({ ...options, signal, onReport: value => { report = value } }))
+  const jobs = await wait(createAmaraNativeInventory().run({ ...options, signal, onReport: value => { report = value } }))
   if (!report) throw Error('Amara current native collection report missing')
   const observations = report.roles.map(role => ({ ...role, company: role.nativeRoleCompany,
     sourceCatalogCompany: 'Amara Raja Energy & Mobility Ltd', productionWrites: false }))

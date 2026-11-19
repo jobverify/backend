@@ -1,7 +1,7 @@
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { createAvaamoReader } from './boundedRead.js'
-import { AVAAMO_CAREERS_URL, AVAAMO_COLLECTION_EVIDENCE, parseAvaamoListing, parseAvaamoDetail, explicitAvaamoCountry } from './currentNative.js'
+import { AVAAMO_CAREERS_URL, AVAAMO_COLLECTION_EVIDENCE, parseAvaamoListing, parseAvaamoDetail, explicitAvaamoCountry, avaamoWorkplaceEvidence } from './currentNative.js'
 import { PROVIDER_METADATA } from './catalog.js'
 
 export { AVAAMO_COLLECTION_EVIDENCE, parseAvaamoListing, parseAvaamoDetail, explicitAvaamoCountry, PROVIDER_METADATA }
@@ -30,11 +30,12 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
       const opening = parseAvaamoListing(first.html, first.url, { check: reader.check })
       reader.check()
       if (opening.roles.length > reader.limits.maxJobs) throw fail('job count budget exceeded')
-      const jobs = [], exclusions = [], failures = []
+      const jobs = [], exclusions = [], failures = [], openingDetailModels = [], closingDetailModels = []
       for (const listing of opening.roles) {
         reader.check()
         const page = await reader.read(listing.detailUrl)
         const detail = parseAvaamoDetail(page.html, listing, { check: reader.check })
+        openingDetailModels.push({ listing, detail, url: page.url, rawHtml: page.html })
         reader.check()
         const country = explicitAvaamoCountry(listing.location)
         if (detail.closedNotice) {
@@ -56,9 +57,9 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
           jobId: listing.detailUrl.split('/').at(-1), requisitionId: null,
           sourceUrl: listing.detailUrl, applyUrl: listing.detailUrl, link: listing.detailUrl,
           companyCareerPage: CAREERS_URL, companyDomain: 'avaamo.ai',
-          department: listing.department, location: listing.location, city: null, country,
+          department: listing.department, location: listing.location, city: avaamoWorkplaceEvidence(listing.location)?.city ?? null, country,
           sourceCountryScopeUnresolved: country === null, sourceNativeLocation: listing.location,
-          sourceCountryEvidence: country ? { kind: 'explicit-native-location-country', label: listing.location, country } : null,
+          sourceCountryEvidence: avaamoWorkplaceEvidence(listing.location) ?? (country ? { kind: 'explicit-native-location-country', label: listing.location, country } : null),
           employmentType: listing.employmentType, remoteStatus: /\bremote\b/i.test(listing.location) ? 'Remote' : null,
           experienceRequired: null, minimumQualification: null, preferredQualification: null, requiredSkills: [],
           requirements: requirements.map(section => section.text), postingDate: null, closingDate: null,
@@ -78,6 +79,24 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
         reader.check()
         jobs.push(job)
       }
+      const comparableDetail = detail => ({
+        title: detail.title, location: detail.location, department: detail.department, employmentType: detail.employmentType,
+        organization: detail.organization, rawContentHtml: detail.rawContentHtml, sourceSections: detail.sourceSections,
+        sourceDetailComplete: detail.sourceDetailComplete, sourceDetailFailureKind: detail.sourceDetailFailureKind,
+        sourceApplicationHandoff: detail.sourceApplicationHandoff, closedNotice: detail.closedNotice,
+      })
+      for (const openingDetail of openingDetailModels) {
+        reader.check()
+        const page = await reader.read(openingDetail.listing.detailUrl)
+        const detail = parseAvaamoDetail(page.html, openingDetail.listing, { check: reader.check })
+        closingDetailModels.push({ listing: openingDetail.listing, detail, url: page.url, rawHtml: page.html })
+        if (JSON.stringify(comparableDetail(detail)) !== JSON.stringify(comparableDetail(openingDetail.detail))) throw fail('opening and closing own detail criteria or application changed')
+        const job = jobs.find(job => job.sourceUrl === openingDetail.listing.detailUrl)
+        if (job) {
+          job.sourceClosingQualified = true
+          job.sourceNativeClosingDetail = { url: page.url, rawHtml: page.html, rawContentHtml: detail.rawContentHtml, documentSHA256: detail.documentSHA256 }
+        }
+      }
       const last = await reader.read(CAREERS_URL)
       const closing = parseAvaamoListing(last.html, last.url, { check: reader.check })
       reader.check()
@@ -91,6 +110,7 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
         observedListingCount: opening.roles.length, observedVacancyCount: opening.roles.length,
         responsiveCardCount: opening.responsiveCardCount, openingClosingMatch: true, closingInventoryMatches: true,
         openingNativeRecords: opening.roles, closingNativeRecords: closing.roles,
+        openingDetailModels, closingDetailModels, openingClosingOwnDetailModelsMatch: true,
         openingBodySHA256: first.sha256, closingBodySHA256: last.sha256,
         unknownCountryCount: unknown.length, unknownCountryRoles: unknown.map(role => ({ title: role.title, url: role.detailUrl, location: role.location })),
         fullRoleCriteriaCount: jobs.filter(job => job.sourceDetailComplete).length,
