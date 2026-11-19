@@ -855,16 +855,13 @@ test('getJobMeta applies the public location scope to metadata queries', async (
     return []
   }
   Job.aggregate = createAggregateExecStub(async (pipeline) => {
-    if (pipeline[1]?.$group?._id === PUBLIC_JOB_TYPE_EXPRESSION) {
-      capturedFilters.set('jobType', pipeline[0].$match)
-      return []
-    }
-    if (JSON.stringify(pipeline[1]?.$group?._id).includes('$workArrangement')) {
-      capturedFilters.set('workArrangement', pipeline[0].$match)
-      return []
-    }
     capturedCompanyPipeline = pipeline
-    return []
+    const facets = pipeline.find(stage => stage.$facet).$facet
+    for (const [field, facet] of [['company', 'companies'], ['city', 'cities'], ['jobType', 'jobTypes'],
+      ['experienceYears', 'experienceYears'], ['primaryRoleDomain', 'roleDomains'], ['workArrangement', 'workArrangements']]) {
+      capturedFilters.set(field, facets[facet][0].$match)
+    }
+    return [{}]
   })
   Job.countDocuments = async () => 1
 
@@ -911,18 +908,19 @@ test('getJobMeta applies the public location scope to metadata queries', async (
       companyKey: 'example corp',
     }
 
-    if (capturedCompanyPipeline) {
-      assertMatchesPublicJobScope(capturedCompanyPipeline[0].$match, expectedCompanyFilter)
-      assertMatchesPublicJobScope(capturedFilters.get('city'), expectedCityFilter)
-      assertMatchesPublicJobScope(capturedFilters.get('jobType'), expectedJobTypeFilter)
-    } else {
-      assertMatchesPublicJobScope(capturedFilters.get('company'), expectedCompanyFilter)
-      assertMatchesPublicJobScope(capturedFilters.get('city'), expectedCityFilter)
-      assertMatchesPublicJobScope(capturedFilters.get('jobType'), expectedJobTypeFilter)
+    const common = capturedCompanyPipeline[0].$match
+    assert.equal(common.isPublicIndia, true)
+    assert.equal(common.status, 'active')
+    assert.deepEqual(common.$nor, [buildAggregateHiringSignalFilter(), buildMissingSourceDescriptionFilter()])
+    const expression = capturedCompanyPipeline[2].$match.$expr
+    assertHasPublishedDateScope({ $expr: expression.$and[0] })
+    assert.deepEqual(expression.$and[1], { $in: ['$_metadataJobType', PUBLIC_JOB_TYPES] })
+    assert.equal(capturedCompanyPipeline[1].$set._metadataJobType, PUBLIC_JOB_TYPE_EXPRESSION)
+    for (const [field, expected] of [['company', expectedCompanyFilter], ['city', expectedCityFilter],
+      ['jobType', expectedJobTypeFilter], ['experienceYears', expectedExperienceFilter],
+      ['primaryRoleDomain', expectedRoleDomainFilter], ['workArrangement', expectedWorkArrangementFilter]]) {
+      assert.deepEqual(capturedFilters.get(field), expected)
     }
-    assertMatchesPublicJobScope(capturedFilters.get('experienceYears'), expectedExperienceFilter)
-    assertMatchesPublicJobScope(capturedFilters.get('primaryRoleDomain'), expectedRoleDomainFilter)
-    assertMatchesPublicJobScope(capturedFilters.get('workArrangement'), expectedWorkArrangementFilter)
 
     assert.equal(res.statusCode, 200)
   } finally {
@@ -944,11 +942,9 @@ test('getJobMeta preserves unspecified eligibility alongside known effective cat
     return []
   }
   Job.aggregate = createAggregateExecStub(async pipeline => {
-    if (pipeline[1]?.$group?._id === PUBLIC_JOB_TYPE_EXPRESSION) {
-      return [{ _id: 'Unspecified' }, { _id: 'Contract' }, { _id: 'Full-time Experienced' }]
-    }
-    if (JSON.stringify(pipeline[1]?.$group?._id).includes('$workArrangement')) return []
-    return [{ company: 'Example Corp' }]
+    return [{ companies: [{ company: 'Example Corp' }], companyNames: [{ _id: 'Example Corp' }],
+      cities: [{ _id: 'Bangalore' }],
+      jobTypes: [{ _id: 'Unspecified' }, { _id: 'Contract' }, { _id: 'Full-time Experienced' }] }]
   })
   Job.countDocuments = async () => 1
 
@@ -956,7 +952,7 @@ test('getJobMeta preserves unspecified eligibility alongside known effective cat
     const res = createResponseDouble()
 
     await getJobMeta({
-      query: { company: 'Example Corp' },
+      query: { company: 'Example Corp', city: 'Bangalore' },
       user: {
         role: 'user',
         accessRole: ACCESS_ROLES.MONTHLY,

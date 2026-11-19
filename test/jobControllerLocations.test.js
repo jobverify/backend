@@ -483,7 +483,6 @@ test('getJobMeta removes non-India city options and canonicalizes India location
     const res = createResponseDouble()
 
     await getJobMeta({
-      query: { company: 'Salesforce' },
       user: {
         role: 'user',
         accessRole: ACCESS_ROLES.MONTHLY,
@@ -553,7 +552,6 @@ test('getJobMeta removes markup, code, and grouped-count noise from city options
     const res = createResponseDouble()
 
     await getJobMeta({
-      query: { company: 'Salesforce' },
       user: {
         role: 'user',
         accessRole: ACCESS_ROLES.MONTHLY,
@@ -716,16 +714,17 @@ test('getJobMeta scopes each option group by the other active filters', async ()
     return []
   }
   Job.aggregate = createAggregateExecStub(async (pipeline) => {
-    if (pipeline[1]?.$group?._id === PUBLIC_JOB_TYPE_EXPRESSION) {
-      capturedFilters.set('jobType', pipeline[0].$match)
-      return [{ _id: 'Intern' }]
+    const facets = pipeline.find(stage => stage.$facet).$facet
+    capturedCompanyFilter = facets.companies[0].$match
+    for (const [field, facet] of [['city', 'cities'], ['jobType', 'jobTypes'],
+      ['workArrangement', 'workArrangements'], ['primaryRoleDomain', 'roleDomains']]) {
+      capturedFilters.set(field, facets[facet][0].$match)
     }
-    if (JSON.stringify(pipeline[1]?.$group?._id).includes('$workArrangement')) {
-      capturedFilters.set('workArrangement', pipeline[0].$match)
-      return [{ _id: 'Remote' }]
-    }
-    capturedCompanyFilter = pipeline[0].$match
-    return [{ company: 'Acme Labs' }]
+    return [{ companies: [{ company: 'Acme Labs' }],
+      companyNames: Array.from({ length: 30 }, (_, index) => ({ _id: `Company ${index}` })),
+      cities: [{ _id: 'Bangalore' }], jobTypes: [{ _id: 'Intern' }],
+      workArrangements: [{ _id: 'Remote' }], roleDomains: [{ _id: 'Data Science & AI' }],
+      experienceYears: [{ _id: 0 }, { _id: 1 }] }]
   })
   Job.find = () => {
     throw new Error('scoped metadata should not load jobs for experience options')
@@ -761,20 +760,20 @@ test('getJobMeta scopes each option group by the other active filters', async ()
     assert.ok(res.body.data.companies.length <= 24)
     assert.equal(companyFilter.companyKey, undefined)
     assert.equal(companyFilter.locationKeys, 'bangalore')
-    assertPublicCategoryPredicates(companyFilter.$expr, ['Intern', 'Internship'])
+    assert.deepEqual(companyFilter.$expr, { $in: ['$_metadataJobType', ['Intern', 'Internship']] })
     assert.equal(companyFilter.primaryRoleDomain, 'Data Science & AI')
-    assert.ok(JSON.stringify(companyFilter).includes('$workArrangement'))
+    assert.ok(JSON.stringify(companyFilter).includes('$_metadataWorkArrangement'))
     assert.ok(companyFilter.postedAt.$gte instanceof Date)
     assert.deepEqual(res.body.data.experienceYears, [0, 1])
 
     const cityFilter = capturedFilters.get('city')
     assert.equal(cityFilter.locationKeys, undefined)
     assert.equal(cityFilter.companyKey, 'acme labs')
-    assertPublicCategoryPredicates(cityFilter.$expr, ['Intern', 'Internship'])
+    assert.deepEqual(cityFilter.$expr, { $in: ['$_metadataJobType', ['Intern', 'Internship']] })
 
     const jobTypeFilter = capturedFilters.get('jobType')
     assert.equal(jobTypeFilter.jobType, undefined)
-    assertPublicCategoryPredicates(jobTypeFilter.$expr)
+    assert.equal(jobTypeFilter.$expr, undefined)
     assert.equal(jobTypeFilter.companyKey, 'acme labs')
     assert.equal(jobTypeFilter.locationKeys, 'bangalore')
 
@@ -1678,16 +1677,13 @@ test('getJobMeta scopes company options through stored experienceYears without l
     return []
   }
   Job.aggregate = createAggregateExecStub(async (pipeline) => {
-    const companyFilter = pipeline[0].$match
-    if (pipeline[1]?.$group?._id === PUBLIC_JOB_TYPE_EXPRESSION) {
-      return [...new Set(jobs.filter(job => matchesExperienceFilters(job, companyFilter))
-        .map(job => normalizeJobListResponseJob(job).jobType))].map(category => ({ _id: category }))
-    }
-    if (JSON.stringify(pipeline[1]?.$group?._id).includes('$workArrangement')) return []
-    capturedCompanyFilter = companyFilter
-    return jobs
-      .filter((job) => matchesExperienceFilters(job, companyFilter))
-      .map((job) => ({ company: job.company }))
+    const facets = pipeline.find(stage => stage.$facet).$facet
+    capturedCompanyFilter = facets.companies[0].$match
+    const selected = jobs.filter(job => matchesExperienceFilters(job, capturedCompanyFilter))
+    return [{ companies: selected.map(job => ({ company: job.company })),
+      companyNames: selected.map(job => ({ _id: job.company })),
+      cities: [{ _id: 'Bangalore' }], jobTypes: [{ _id: 'Full-time Experienced' }],
+      experienceYears: [{ _id: 3 }, { _id: 5 }] }]
   })
   Job.find = () => {
     throw new Error('scoped metadata should not load jobs for experience filtering')

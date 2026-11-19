@@ -5,9 +5,17 @@ const publicSettings = (settings) => ({
   experiencedJobsEnabled: settings?.experiencedJobsEnabled !== false,
 });
 
+let pendingRead;
+
 export async function getSiteSettings() {
-  const settings = await SiteSettings.findById("global").lean();
-  return publicSettings(settings);
+  // Share only overlapping reads. Billing and visibility decisions must always
+  // consult MongoDB again after that read completes, including after failures.
+  if (!pendingRead) {
+    const read = Promise.resolve().then(() => SiteSettings.findById('global').lean())
+      .then(publicSettings).finally(() => { if (pendingRead === read) pendingRead = undefined; });
+    pendingRead = read;
+  }
+  return { ...await pendingRead };
 }
 
 export async function saveSiteSettings(changes, updatedBy) {
@@ -16,5 +24,7 @@ export async function saveSiteSettings(changes, updatedBy) {
   const settings = await SiteSettings.findByIdAndUpdate("global", {
     $set: { ...values, updatedBy },
   }, { upsert: true, new: true, runValidators: true }).lean();
+  // Reads started before this write must not be reused after it commits.
+  pendingRead = undefined;
   return publicSettings(settings);
 }

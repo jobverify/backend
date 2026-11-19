@@ -55,7 +55,7 @@ export class JobverifyApi extends DurableObject {
           return;
         }
         await this.mongoose.connect(this.environment.MONGO_URI, {
-          maxPoolSize: 2, minPoolSize: 0, maxIdleTimeMS: 20_000,
+          maxPoolSize: 6, maxConnecting: 2, minPoolSize: 0, maxIdleTimeMS: 20_000,
           serverSelectionTimeoutMS: 5000, connectTimeoutMS: 5000,
           autoIndex: false, autoCreate: false,
         });

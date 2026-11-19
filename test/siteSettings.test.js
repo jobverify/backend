@@ -39,7 +39,7 @@ test("real admin routes enforce authentication, role, boolean validation, and du
     return { lean: async () => stored };
   });
   t.mock.method(BlacklistedToken, "findOne", async () => null);
-  t.mock.method(User, "findById", (id) => ({ select: async () => ({ _id: id, role: id === adminId ? "admin" : "user" }) }));
+  t.mock.method(User, "findById", (id) => ({ select: async () => ({ _id: id, isVerified: true, role: id === adminId ? "admin" : "user" }) }));
   const app = express();
   app.use(express.json());
   app.get("/api/site-settings", readSiteSettings);
@@ -87,4 +87,38 @@ test("invalid settings updates never write to the database", async (t) => {
     assert.equal(res.code, 400);
   }
   assert.equal(write.mock.callCount(), 0);
+});
+
+test('concurrent settings reads share the database request without caching later decisions', async t => {
+  let release;
+  const pending = new Promise(resolve => { release = resolve; });
+  const read = t.mock.method(SiteSettings, 'findById', () => ({ lean: () => pending }));
+  const first = getSiteSettings(), second = getSiteSettings(), third = getSiteSettings();
+  release({ billingEnabled: true, experiencedJobsEnabled: false });
+  for (const value of await Promise.all([first, second, third])) {
+    assert.deepEqual(value, { billingEnabled: true, experiencedJobsEnabled: false });
+  }
+  assert.equal(read.mock.callCount(), 1);
+  read.mock.mockImplementation(() => ({ lean: async () => ({ billingEnabled: false }) }));
+  assert.equal((await getSiteSettings()).billingEnabled, false, 'later requests must read current billing settings');
+  assert.equal(read.mock.callCount(), 2);
+});
+
+test('saving settings separates earlier in-flight reads from reads after the write', async t => {
+  let releaseOld, releaseNew;
+  const old = new Promise(resolve => { releaseOld = resolve; });
+  const newer = new Promise(resolve => { releaseNew = resolve; });
+  let reads = 0;
+  t.mock.method(SiteSettings, 'findById', () => ({ lean: () => ++reads === 1 ? old : newer }));
+  t.mock.method(SiteSettings, 'findByIdAndUpdate', () => ({ lean: async () => ({ billingEnabled: true }) }));
+  const before = getSiteSettings();
+  await saveSiteSettings(true, 'admin-1');
+  const after = getSiteSettings();
+  releaseOld({ billingEnabled: false });
+  assert.equal((await before).billingEnabled, false);
+  const concurrentAfter = getSiteSettings();
+  releaseNew({ billingEnabled: true });
+  assert.equal((await after).billingEnabled, true);
+  assert.equal((await concurrentAfter).billingEnabled, true);
+  assert.equal(reads, 2, 'finishing an older read must not discard a newer in-flight request');
 });

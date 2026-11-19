@@ -51,8 +51,8 @@ test('both snapshots use the caller clock for visibility, settings, content and 
     row('historical', '2026-06-19T10:00:00Z'),
     row('experienced', '2026-06-18T10:00:00Z', { jobType: 'Full-time Experienced',
       employmentType: 'Full-time', experienceLevel: 'Mid Level', experienceRequired: '3 years' }),
-    row('cutoff', '2026-05-20T00:00:00Z'),
-    row('too-old', '2026-05-19T23:59:59.999Z'),
+    row('cutoff', '2026-03-20T00:00:00Z'),
+    row('too-old', '2026-03-19T23:59:59.999Z'),
     row('future', '2026-06-20T08:00:00.001Z'),
     row('wall-clock-only', recentWallClock),
     row('foreign', '2026-06-19', { country: 'United Kingdom', city: 'London', isPublicIndia: false }),
@@ -69,7 +69,8 @@ test('both snapshots use the caller clock for visibility, settings, content and 
     assert.equal(direction.generatedAt, now.toISOString());
     assert.equal(direction.totalJobs, expected.length);
     assert.deepEqual(direction.companies.map(company => company.label).sort(), expected);
-    assert.equal(direction.daily.reduce((sum, day) => sum + day.count, 0), expected.length);
+    // The three-calendar-month visibility boundary precedes this 90-day chart.
+    assert.equal(direction.daily.reduce((sum, day) => sum + day.count, 0), experiencedJobsEnabled ? 2 : 1);
     const publishing = await collectPublishingGapSnapshot({ now });
     assert.equal(publishing.generatedAt, now.toISOString());
     assert.deepEqual(publishing.publicCompanyNames, expected);

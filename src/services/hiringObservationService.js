@@ -9,8 +9,8 @@ import { applyPublicJobVisibility } from '../utils/publicJobVisibility.js';
 export const OBSERVATION_VERSION = 3;
 export const observationScope = settings => `india-v${OBSERVATION_VERSION}-${settings?.experiencedJobsEnabled === false ? 'early-career' : 'all-types'}`;
 export const indiaDay = date => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
-const label = field => ({ $trim: { input: { $ifNull: [field === 'jobType' ? PUBLIC_JOB_TYPE_EXPRESSION
-  : field === 'workArrangement' ? PUBLIC_WORK_ARRANGEMENT_EXPRESSION : '$' + field, ''] } } });
+const label = field => ({ $trim: { input: { $ifNull: [field === 'jobType' ? '$_snapshotJobType'
+  : field === 'workArrangement' ? '$_snapshotWorkArrangement' : '$' + field, ''] } } });
 const ranking = field => [
   { $group: { _id: { $toLower: label(field) }, label: { $first: label(field) }, count: { $sum: 1 } } },
   { $sort: { count: -1, label: 1 } },
@@ -26,6 +26,7 @@ export async function readHiringSnapshot(settings = {}, now = new Date()) {
   const firstDay = new Date(`${indiaDay(now)}T00:00:00+05:30`).getTime() - 89 * dayMs;
   const [result] = await Job.aggregate([
     { $match: applyPublicJobVisibility({ status: 'active', $or: [{ closingDate: null }, { closingDate: { $gt: now } }] }, settings, now) },
+    { $set: { _snapshotJobType: PUBLIC_JOB_TYPE_EXPRESSION, _snapshotWorkArrangement: PUBLIC_WORK_ARRANGEMENT_EXPRESSION } },
     { $facet: {
       totals: [{ $count: 'count' }],
       companyTotals: [{ $group: { _id: { $toLower: label('company') } } }, { $match: { _id: { $ne: '' } } }, { $count: 'count' }],

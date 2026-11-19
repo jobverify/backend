@@ -1,4 +1,4 @@
-import { CALENDAR_POSTED_PERIODS, buildPostedDateRange } from "../utils/jobPostedDateFilter.js";
+import { CALENDAR_POSTED_PERIODS } from "../utils/jobPostedDateFilter.js";
 /**
  * @file Controllers for job listing searches, metadata extraction, and analytics tracking.
  * @module controllers/jobController
@@ -29,7 +29,7 @@ import {
 import { PUBLIC_JOB_TYPE_EXPRESSION } from "../utils/publicJobType.js";
 import { batchYearExpression } from '../utils/jobBatchEligibility.js';
 import { normalizePublicJobCategory as normalizeResponseJobType, normalizePublicExperienceLevel as normalizeResponseExperienceLevel } from '../utils/publicJobNormalization.js';
-import { normalizePublicWorkArrangement, PUBLIC_WORK_ARRANGEMENT_EXPRESSION } from '../utils/publicWorkArrangement.js';
+import { normalizePublicWorkArrangement } from '../utils/publicWorkArrangement.js';
 import { withSemanticExperienceConstraint } from '../utils/classifiedExperienceFilters.js';
 import { applyPublicJobVisibility } from "../utils/publicJobVisibility.js";
 import { recordApplicationOpen } from '../services/applicationService.js';
@@ -62,6 +62,10 @@ import {
 } from "../services/jobDatasetSummaryService.js";
 import { buildJobFilterConditions } from "../services/jobFilterMatcher.js";
 import { parseLegacyJobPagination } from "../utils/legacyJobPagination.js";
+import { createPublicResponseCache } from '../utils/publicResponseCache.js';
+import { jobMetadataCacheKey, readScopedJobMetadata } from '../services/jobMetadataService.js';
+
+const cachedJobMetadata = createPublicResponseCache({ maxEntries: 64 });
 
 const MAX_REGEX_FILTER_LENGTH = 80;
 const MAX_TEXT_QUERY_LENGTH = 200;
@@ -408,31 +412,6 @@ const normalizeDatePostedDaysValues = (value) => [...new Set(
     .map((item) => normalizeDatePostedDays(item))
     .filter((item) => item != null)
 )];
-
-const buildDatePostedRange = buildPostedDateRange;
-
-const buildOlderThanThirtyDaysRange = () => {
-  const cutoff = new Date();
-  cutoff.setHours(0, 0, 0, 0);
-  cutoff.setDate(cutoff.getDate() - 30);
-  return { $lt: cutoff };
-};
-
-const buildDatePostedFilter = (values) => {
-  const clauses = values.map((value) => (
-    value === DATE_POSTED_NA_VALUE
-      ? { postedAt: null }
-      : value === DATE_POSTED_OLDER_THAN_30_VALUE
-        ? { postedAt: buildOlderThanThirtyDaysRange() }
-      : { postedAt: buildDatePostedRange(value) }
-  ));
-
-  if (clauses.length === 1) {
-    return clauses[0];
-  }
-
-  return { $or: clauses };
-};
 
 const normalizeSkillMatchMode = (value) => (
   normalizeOptionValue(
@@ -1026,55 +1005,9 @@ const buildJobMetaFilter = (queryParams = {}, excludedKeys = [], extraFilters = 
   }, siteSettings)
 );
 
-const normalizeExperienceYearOptions = (values = []) => [...new Set(
-  values
-    .map((value) => Number.parseInt(String(value), 10))
-    .filter((value) => (
-      Number.isFinite(value)
-      && value >= 0
-      && value <= MAX_EXPERIENCE_FILTER_YEAR
-    )),
-)].sort((left, right) => left - right);
-
-const resolveScopedDistinctValues = async (
-  queryParams = {},
-  field,
-  excludedKeys = [],
-  extraFilters = {},
-  siteSettings,
-) => Job.distinct(field, buildJobMetaFilter(queryParams, excludedKeys, extraFilters, siteSettings));
-
-const resolveScopedExperienceYearOptions = async (queryParams = {}, siteSettings) => {
-  const experienceYears = await Job.distinct(
-    "experienceYears",
-    buildJobMetaFilter(queryParams, ["experienceYear", "experienceBucket"], {}, siteSettings),
-  );
-
-  return normalizeExperienceYearOptions(experienceYears);
-};
-
 const filterSupportedOptions = (values = [], supportedOptions = []) => {
   const valueSet = new Set(values.map((value) => String(value || "").trim()).filter(Boolean));
   return supportedOptions.filter((option) => valueSet.has(option));
-};
-
-const resolveScopedDatePostedOptions = async (queryParams = {}, siteSettings) => {
-  const baseConditions = buildJobFilterConditions(withoutQueryKeys(queryParams, ["datePostedDays"]));
-
-  const matchesByWindow = await Promise.all(
-    [0, 1, ...CALENDAR_POSTED_PERIODS].map(async (days) => {
-      const count = await Job.countDocuments(
-        applyPublicJobVisibility({
-          ...baseConditions,
-          ...buildDatePostedFilter([days]),
-        }, siteSettings),
-      );
-
-      return count > 0 ? days : null;
-    }),
-  );
-
-  return matchesByWindow.filter((days) => days != null);
 };
 
 const getBranchKeywords = (branch) => {
@@ -1770,48 +1703,23 @@ export const getJobMeta = async (req, res) => {
       roleDomains,
       workArrangements,
       datePostedOptions,
-    ] = await Promise.all([
-      hasScopedFilters
-        ? resolveActiveCompanyOptions(
-          queryParams,
-          {
-            excludedKeys: ["company"],
-            limit: DEFAULT_COMPANY_META_LIMIT,
-            siteSettings: req.siteSettings,
-          },
-        )
-        : Promise.resolve([]),
+    ] = hasScopedFilters ? await cachedJobMetadata(
+      jobMetadataCacheKey(queryParams, req.siteSettings),
+      () => readScopedJobMetadata(queryParams, req.siteSettings, buildCompanyOptionPipeline({})),
+    ) : await Promise.all([
+      Promise.resolve([]),
       Job.distinct('company', buildJobMetaFilter(
         queryParams, ['company'], { company: { $ne: null } }, req.siteSettings,
       )),
-      hasScopedFilters
-        ? resolveScopedDistinctValues(queryParams, "city", ["city", "location"], { city: { $ne: null } }, req.siteSettings)
-        : Job.distinct("city", applyPublicJobVisibility({ status: "active", city: { $ne: null } }, req.siteSettings)),
+      Job.distinct("city", applyPublicJobVisibility({ status: "active", city: { $ne: null } }, req.siteSettings)),
       Job.aggregate([
           { $match: buildJobMetaFilter(queryParams, ["jobType"], { status: "active" }, req.siteSettings) },
           { $group: { _id: PUBLIC_JOB_TYPE_EXPRESSION } },
         ]).exec().then(rows => rows.map(row => row._id)),
-      hasScopedFilters
-        ? resolveScopedExperienceYearOptions(queryParams, req.siteSettings)
-        : Promise.resolve(EXPERIENCE_FILTER_OPTIONS),
-      hasScopedFilters
-        ? resolveScopedDistinctValues(
-          queryParams,
-          "primaryRoleDomain",
-          ["roleDomain"],
-          { primaryRoleDomain: { $ne: null } },
-          req.siteSettings,
-        )
-        : Promise.resolve(ROLE_DOMAIN_OPTIONS),
-      hasScopedFilters
-        ? Job.aggregate([
-          { $match: buildJobMetaFilter(queryParams, ['workArrangement'], {}, req.siteSettings) },
-          { $group: { _id: PUBLIC_WORK_ARRANGEMENT_EXPRESSION } },
-        ]).exec().then(rows => rows.map(row => row._id))
-        : Promise.resolve(WORK_ARRANGEMENT_OPTIONS),
-      hasScopedFilters
-        ? resolveScopedDatePostedOptions(queryParams, req.siteSettings)
-        : Promise.resolve([0, 1, ...CALENDAR_POSTED_PERIODS]),
+      Promise.resolve(EXPERIENCE_FILTER_OPTIONS),
+      Promise.resolve(ROLE_DOMAIN_OPTIONS),
+      Promise.resolve(WORK_ARRANGEMENT_OPTIONS),
+      Promise.resolve([0, 1, ...CALENDAR_POSTED_PERIODS]),
     ]);
 
     return res.status(200).json({
@@ -1819,7 +1727,7 @@ export const getJobMeta = async (req, res) => {
       success: true,
       message: "Job metadata retrieved successfully",
       data: {
-        companies,
+        companies: mergeCompanyOptions(companies),
         companyCount: mergeCompanyOptions(companyNames).length,
         cities: normalizePublicCityOptions(cities),
         jobTypes: [...new Set(
