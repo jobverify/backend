@@ -85,6 +85,8 @@ Add private values with `npx wrangler secret put NAME`; ordinary settings can be
 
 The API object reuses a pool of up to six application connections per MongoDB server. `maxConnecting: 2` limits simultaneous connection establishment; MongoDB monitoring connections are additional. This application setting is separate from Cloudflare's per-invocation outbound connection limit. Keep the pool bounded and measure filter queries before increasing it further.
 
+Scoped filter metadata uses one aggregation with a five-second MongoDB execution budget. Identical authorized selections share in-flight work and a bounded 30-second process cache. Hiring snapshots are shared for five minutes; the response's `generatedAt` records their age. Both caches partition visibility settings and keep HTTP caching disabled. Site settings share overlapping reads only, so subsequent billing and visibility decisions still read MongoDB.
+
 Use the existing Atlas database and TLS/authenticated URI. This migration does not copy collections or replace the database. Automatic collection/index creation is disabled in the Worker; use the existing database with its indexes. For a new database, provision/review indexes using the repository's Node migration/index tools first.
 
 Workers do not provide one fixed outbound IP on the free plan. The old Render-only Atlas IP allowlist may therefore reject the new host. Check Atlas network access before cutover. Allowing `0.0.0.0/0` makes Atlas reachable from the public internet, so it is a security tradeoff, not a required code change: use a dedicated least-privilege database user, a strong unique password and verified TLS if you choose it. Cloudflare's published inbound proxy IP ranges are not a guaranteed outbound database allowlist.

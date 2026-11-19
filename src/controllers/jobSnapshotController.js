@@ -1,7 +1,9 @@
 import { readHiringSnapshot } from '../services/hiringObservationService.js';
 import { createPublicResponseCache } from '../utils/publicResponseCache.js';
 
-const cached = createPublicResponseCache();
+// The jobs page polls every minute. Keep one shared snapshot for five minutes
+// rather than running a broad analytics scan for each polling interval.
+const cached = createPublicResponseCache({ ttlMs: 5 * 60_000, maxEntries: 2 });
 
 export async function getJobSnapshot(req, res, next) {
   try {

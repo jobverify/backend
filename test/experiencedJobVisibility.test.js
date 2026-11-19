@@ -189,9 +189,9 @@ test('experienced job visibility is reversible and consistent across public surf
       assert.equal((await read('/api/jobs?jobType=Full-time%20Fresher')).pagination.total, 2);
       assert.ok((await read('/api/jobs/meta?jobType=Contract')).data.companies.includes('Legacy 2'));
       assert.equal((await read('/api/jobs/stats')).data.totalJobs, 5);
-      // Snapshot summaries retain their prior inventory for the 30-second cache TTL.
+      // Snapshot summaries retain their prior inventory for the five-minute cache TTL.
       assert.equal((await read('/api/jobs/snapshot')).data.totalJobs, 3);
-      snapshotCacheTime += 30_001;
+      snapshotCacheTime += 300_001;
       assert.equal((await read('/api/jobs/snapshot')).data.totalJobs, 5);
       assert.ok(!(await read('/api/jobs/meta')).data.jobTypes.includes('Full-time Experienced'));
     } finally { await Job.deleteMany({ _id: { $in: variantIds } }); }

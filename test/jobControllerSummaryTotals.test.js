@@ -24,6 +24,7 @@ test('job list totals follow effective filters while unfiltered lists retain cac
   } })
   t.after(async () => { await mongoose.disconnect(); await mongo.stop() })
   await mongoose.connect(mongo.getUri())
+  await Job.init()
   const samples = [
     { jobId: 'intern', title: 'Engineering Intern', jobType: 'Internship', company: 'Alpha' },
     { jobId: 'fresher', title: 'Engineer', jobType: 'Full-time Fresher', company: 'Beta' },

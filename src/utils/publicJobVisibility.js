@@ -4,7 +4,7 @@ import { PUBLIC_JOB_TYPES } from './publicJobTypeLabel.js';
 
 // Use effective categories for public selections, including nested zero-year filters.
 // Private inventory and ingestion continue to use the stored taxonomy.
-const withPublicCategoryFilters = filters => {
+export const withPublicCategoryFilters = filters => {
   const result = Object.fromEntries(Object.entries(filters).map(([key, value]) => [
     key, ['$and', '$or', '$nor'].includes(key) ? value.map(withPublicCategoryFilters) : value,
   ]));
