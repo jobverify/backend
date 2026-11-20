@@ -22,6 +22,12 @@ export function frugalListing(html){
 export function frugalRole(url,html){
  need(roleURL(url)===url,'unexpected native detail route')
  const doc=readNativeDocument(html);canonical(doc,url)
+ const inspectSchema=value=>{
+  if(!value||typeof value!=='object')return
+  need(![value['@type']].flat().includes('JobPosting')&&!Object.hasOwn(value,'jobLocation'),'new native structured JobPosting country model requires review')
+  Object.values(value).forEach(inspectSchema)
+ }
+ for(const node of doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json'))inspectSchema(JSON.parse(node.raw))
  need(activeHead(html).titles.length===1,'native page title unavailable')
  const title=doc.text(one(doc.nodes(n=>n.tag==='h2'&&doc.hasClass(n,'uui-heading-medium-9')),'native role title'))
  const details=doc.nodes(n=>doc.hasClass(n,'uui-career05_detail-wrapper')).map(doc.text)
@@ -49,6 +55,10 @@ export function frugalRole(url,html){
   if(countryLine)need(nativeCountryName(countryLine[1])===(country??(workplace==='Hyderabad'?'India':null)),'full native criteria country conflict')
   const employerLine=/^(?:hiring organization|legal employer|employer|company)\s*:\s*(.+)$/i.exec(line)
   if(employerLine)need(employerLine[1]==='Frugal Testing','full native criteria employer conflict')
+  const locationLine=/^(?:(?:workplace|work|job)\s+)?location\s*:\s*(.+)$/i.exec(line)
+  if(locationLine)need(locationLine[1]===workplace,'full native criteria workplace conflict')
+  const residence=/^(?:candidates?|applicants?|you|employees?)\s+(?:must|are required to)\s+(?:currently\s+)?(?:be\s+)?(?:reside|live|work|based)\s+in\s+(.+?)[.!]?$/i.exec(line)
+  if(residence)need(nativeCountryName(residence[1])==='India'||workplace==='Hyderabad'&&residence[1]==='Hyderabad','full native criteria country residence conflict')
  }
  const description=[intro,...sections].join('\n\n'),id=new URL(url).pathname.split('/').at(-1)
  return {source,title,company:'Frugal Testing',nativeEmployer:'Frugal Testing',nativeLegalEmployer:null,

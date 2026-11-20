@@ -3,9 +3,8 @@ import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
 import {gunzipSync} from 'node:zlib'
 import test,{mock} from 'node:test'
-import {createCatalogScraper,getScraperCatalog} from '../../scraper-support/providers/index.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
-import {createSorocoScraper} from './script.js'
+import {createLegacySorocoScraper as createSorocoScraper} from './script.js'
 import {parse} from 'acorn'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readSorocoListing,readSorocoDetail} from './currentNative.js'
@@ -13,7 +12,7 @@ import {CURRENT_SOROCO_PROFILE} from './currentProfile.js'
 
 const current=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/current-native-20261114.json.gz',import.meta.url))))
 const rows=JSON.parse(Buffer.from(current.captures.find(row=>row.requestUrl.includes('/Job_Openings?')).bodyBase64,'base64')).data
-const source=()=>createCatalogScraper(getScraperCatalog().find(row=>row.source==='soroco'))
+const source=()=>createSorocoScraper()
 function transport(change=()=>{}){
  const packets=structuredClone(current.captures),counts=new Map(),calls=[]
  return{calls,fetchImpl:async(url,init={})=>{
@@ -29,7 +28,7 @@ async function run(change,options={}){
  finally{nativeFetch.mock.restore()}
 }
 
-test('registered current Soroco retains two exact native India full roles and original native dates',async()=>{
+test('Explicit historical November14 Soroco reader retains its original fixture roles and date projection',async()=>{
  const {jobs,calls}=await run()
  assert.equal(jobs.length,2)
  assert.deepEqual(jobs.map(row=>row.jobId),rows.map(row=>row.id))

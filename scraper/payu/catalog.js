@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const VERIFIED_SURFACE_SUMMARY =
-  'Verified on Thursday, July 16, 2026 that https://corporate.payu.in/careers/ is the live official PayU India careers page, that its "Who do we hire? We hire the right tribe" section still links View all open positions to https://corporate.payu.com/job-board/, and that the linked public PayU Global job board currently shows 16 of 16 positions in Prague, Czech Republic; Poznan and Warsaw, Poland; and Bucharest, Romania, with no India locations published. There is no trustworthy public India jobs surface for PayU on the verified date, so this provider returns an empty array until India openings appear on the verified official hiring flow.'
+  'Follows the current own corporate redirect chain to the declared PayU Payments RMK publisher and its native pages. Current whole workplaces, exact employer, original public job identity, native criteria and dates, and same-role application handoff must reconcile. Bounded own role details retain explicit partial status; company totals, application activation and cleanup remain unverified. Counts require a current runtime assessment.'
 
 export const PAYU_CATALOG = {
   source: 'payu',
@@ -13,17 +13,22 @@ export const PAYU_CATALOG = {
   adapter: 'script',
   homepageUrl: 'https://corporate.payu.in/',
   companyCareerPage: 'https://corporate.payu.in/careers/',
-  globalJobBoardUrl: 'https://corporate.payu.com/job-board/',
+  globalJobBoardUrl: 'https://careers.payu.in/PayU/go/_/514880/',
   companyDomain: 'corporate.payu.in',
-  atsPlatform: 'official-careers-global-board-no-india-jobs',
+  atsPlatform: 'successfactors-rmk',
   countryFilter: 'India',
-  paginationStrategy: 'official-india-careers-page-plus-global-job-board-no-india-validation',
+  paginationStrategy: 'current-own-corporate-redirects-and-native-declared-result-pages-with-whole-listing-closing',
   extractionStrategy:
-    'verified-india-careers-page+verified-global-job-board+verified-no-india-locations-return-empty',
+    'exact-native-PayU-Payments-publisher+whole-India-workplaces+bounded-own-role-and-same-job-application-handoff',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-07-16',
-  verifiedGlobalJobCount: 16,
+  backfillMode: 'live-parser',
+  scraperTimeoutMs: 180000,
+  authoritativeCurrentPublication: true,
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  verifiedOn: null,
+  verifiedGlobalJobCount: null,
   verifiedSurfaceSummary: VERIFIED_SURFACE_SUMMARY,
   dryRunFile: 'payu/jobs.json',
   modulePath: path.resolve(currentDir, 'script.js'),

@@ -60,6 +60,7 @@
     "jobs:profile": "node scripts/profileJobQueries.js",
     "jobs:profile:local": "node scripts/profileLocalJobQueries.js",
     "test:api": "node --test --test-concurrency=4 \"test/**/*.test.js\"",
+    "assistant:evaluate": "node scripts/evaluateAssistant.js",
     "test:scraper": "node --test --test-concurrency=4 \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
     "check": "npm run lint && npm test",
     "test:integration": "node --test test/integration/*.integration.js",

@@ -1,0 +1,37 @@
+{
+  "kind": "independent-whole-role-municipal-workplace-proof",
+  "typedCountryAsserted": false,
+  "inferredFromCorporateAddress": false,
+  "places": [
+    {
+      "labels": [
+        "Bangalore",
+        "Bangalore, Karnataka"
+      ],
+      "city": "Bangalore",
+      "country": "India",
+      "reference": {
+        "url": "https://bengaluruurban.nic.in/en/history/",
+        "originalSHA256": "25438c9c1b4f486bc669462a91e8ccc4a5dd5bbdea6a5946de553874522bbeed",
+        "originalBytes": 133442,
+        "originalObservedAt": "2026-11-19T22:34:03.512Z",
+        "scope": "Official retained district history names this exact city as the capital of the Indian state of Karnataka; exact whole native city/state label only."
+      }
+    },
+    {
+      "labels": [
+        "Mumbai",
+        "Mumbai, Maharashtra"
+      ],
+      "city": "Mumbai",
+      "country": "India",
+      "reference": {
+        "url": "https://mumbaicity.gov.in/en/",
+        "originalSHA256": "ae8b810211242ae8871076b650be9c3cdea47334e21454d00046e9f00cc9da27",
+        "originalBytes": 218510,
+        "originalObservedAt": "2026-11-19T22:47:08.107Z",
+        "scope": "Official retained district history names this exact city as the capital of the Indian state of Maharashtra; exact whole native city/state label only."
+      }
+    }
+  ]
+}

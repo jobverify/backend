@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {run,CAREERS_URL} from './script.js'
+import {run,CAREERS_URL} from './legacy20261120.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 const packets=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-20261118.json.gz',import.meta.url))))

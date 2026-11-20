@@ -1,0 +1,15 @@
+{
+  "country": "India",
+  "place": "Koratty",
+  "exactWholeRoleLabels": [
+    "Koratty"
+  ],
+  "sourceURL": "https://thrissur.nic.in/en/public-utility/k-s-e-b-koratty/",
+  "originalSHA256": "187af34630ef4f7c66b3462ba9eb577ec5cd07097774d94d7105c7fe24e09ada",
+  "originalBytes": 119890,
+  "observedAt": "2026-11-19T23:33:21.815Z",
+  "originalEvidenceKind": "Indian district government public utility location with exact Koratty municipal label and Kerala India geography",
+  "authoredReference": "Koratty, Kerala 680308",
+  "nativeCountryAsserted": false,
+  "corporateHeadquartersInference": false
+}

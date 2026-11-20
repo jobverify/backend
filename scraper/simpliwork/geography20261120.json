@@ -1,0 +1,50 @@
+{
+  "kind": "independent-exact-whole-native-municipal-workplace-proof",
+  "inferredFromCorporateAddress": false,
+  "typedCountryAsserted": false,
+  "places": [
+    {
+      "labels": [
+        "Bangalore",
+        "Bengaluru"
+      ],
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "country": "India",
+      "reference": {
+        "url": "https://bengaluruurban.nic.in/en/history/",
+        "originalSHA256": "25438c9c1b4f486bc669462a91e8ccc4a5dd5bbdea6a5946de553874522bbeed",
+        "originalBytes": 133442,
+        "originalObservedAt": "2026-11-20T01:22:20.843Z"
+      }
+    },
+    {
+      "labels": [
+        "Gurugram"
+      ],
+      "city": "Gurugram",
+      "state": "Haryana",
+      "country": "India",
+      "reference": {
+        "url": "https://gurugram.gov.in/about-district/",
+        "originalSHA256": "cc23f498acddc869cdbde8738afcbf0136a4aa9114387c5b896f252b671c9e58",
+        "originalBytes": 122501,
+        "originalObservedAt": "2026-11-20T01:22:20.843Z"
+      }
+    },
+    {
+      "labels": [
+        "Noida"
+      ],
+      "city": "Noida",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "reference": {
+        "url": "https://gbnagar.nic.in/how-to-reach/",
+        "originalSHA256": "9b1c7d84f232aa01ee0fb47997c4b949f704a211624f718cf7d299f02894761f",
+        "originalBytes": 129115,
+        "originalObservedAt": "2026-11-20T01:22:20.843Z"
+      }
+    }
+  ]
+}

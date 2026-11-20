@@ -1,0 +1,21 @@
+{
+  "reviewedAt": "2026-11-19T18:07:57.454Z",
+  "reviewScope": "Only current own declared list service, public platform base URL and Apply card program. Original public programs are retained in genuine fixture; no programmes executed, no authentication or applications submitted.",
+  "apiURL": "https://api.leverageedu.com/services/ip/careers/get-job-list?category=&job_location=&job_type=",
+  "applicationURI": "Declared native card router.push /work-with-us/job-details?id=String(career_id); actual 308 Location adds trailing slash.",
+  "lastDateSemantics": "Native list returns last_date but the inspected public list/card programs neither consume nor label it; this reader does not infer a closing date.",
+  "programs": [
+    {
+      "url": "https://leverageeducom.vercel.app/_next/static/chunks/3p6pn0wngzuop.js?dpl=dpl_CxgXueFHZeHFQ3Mg1kLjMPbZhEYp",
+      "sha256": "de4db0d89b290e26a23ad611d85393d70b2a160fe557581aeea70d9387a0c7c5"
+    },
+    {
+      "url": "https://leverageeducom.vercel.app/_next/static/chunks/14ob6ol51njdx.js?dpl=dpl_CxgXueFHZeHFQ3Mg1kLjMPbZhEYp",
+      "sha256": "ba59cad1c13843719f76fd0fff557cf78b2f4da1e806611ae5cc369076f4a4e1"
+    },
+    {
+      "url": "https://leverageeducom.vercel.app/_next/static/chunks/0k0wlcj9ow7_w.js?dpl=dpl_CxgXueFHZeHFQ3Mg1kLjMPbZhEYp",
+      "sha256": "24a135cbb15b44ea97516ad20fb8086a2b4b8648cdccac68d1a2810e85f5bc36"
+    }
+  ]
+}

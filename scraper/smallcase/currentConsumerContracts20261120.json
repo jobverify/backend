@@ -1,0 +1,42 @@
+{
+  "note": "Scoped original native consumer functions are compared structurally with local/free bindings normalized; complete builds, rosters and client hashes are not runtime pins. Module IDs/bindings here document original extraction only.",
+  "contracts": {
+    "urlBuilder": {
+      "source": "function(e,t,n,i,o,a,s,u){var c=\"api/career/jobs/?company_uuid=\".concat(encodeURIComponent(e.company_uuid.trim()),\"&page=\").concat(t,\"&is_careers_page=\").concat(n);return(i||s.length)&&(c+=\"&company_product=\".concat([].concat((0,r.Z)(i||[]),(0,r.Z)(s||[])).join(\",\"))),o&&(c+=\"&department=\".concat(o.join(\",\"))),a&&(c+=\"&location=\".concat(a.map(b.to).join(\",\"))),u&&(c+=\"&query=\".concat(u)),c}",
+      "originalModule": 91181,
+      "originalBinding": "Q"
+    },
+    "fetchNative": {
+      "source": "function(e){return $.Z.get(\"\".concat(e)).then((function(e){return e.data})).catch((function(e){(0,w.$)(e)}))}",
+      "originalModule": 91181,
+      "originalBinding": "V"
+    },
+    "provider": {
+      "source": "function(e){var t=e.Component,n=e.pageProps,r=n.companyDetails||(null===n||void 0===n?void 0:n.error)===Bn.x?Ln:To.Z;return(0,Qn.jsxs)(ko,{children:[(0,Qn.jsx)(Rn.x7,{position:\"top-right\"}),(0,Qn.jsx)(o.zt,{store:r,children:(0,Qn.jsxs)(ar,{children:[(0,Qn.jsx)(Hn,{}),(0,Qn.jsx)(t,Po({},n))]})})]})}",
+      "originalModule": 96625,
+      "originalBinding": "Ao"
+    },
+    "appendResults": {
+      "source": "function(e){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];ve(t?(0,$.Qj)([].concat((0,r.Z)(A),(0,r.Z)(e))):(0,$.Qj)(e)),de(se+1)}",
+      "originalModule": 51485,
+      "originalBinding": "Le"
+    },
+    "loadResults": {
+      "source": "function(){var e=(0,o.Z)(a().mark((function e(){var t,n,i,r,o=arguments;return a().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return t=o.length>0&&void 0!==o[0]?o[0]:null,n=t||se,ve((0,$.Tq)(!0)),e.prev=3,e.next=6,(0,g.bG)((0,g.$E)(fe,n,xe,ye,L,O,R,F));case 6:if(r=e.sent,he(Math.ceil((null!==(i=null===r||void 0===r?void 0:r.count)&&void 0!==i?i:0)/x.kK)),!t){e.next=12;break}return de(t),Le(null===r||void 0===r?void 0:r.results,!1),e.abrupt(\"return\");case 12:return Le(null===r||void 0===r?void 0:r.results,!0),e.abrupt(\"return\");case 16:e.prev=16,e.t0=e.catch(3),console.error(\"Error loading more jobs:\",e.t0);case 19:return e.prev=19,ve((0,$.Tq)(!1)),e.finish(19);case 22:case\"end\":return e.stop()}}),e,null,[[3,16,19,22]])})));return function(){return e.apply(this,arguments)}}()",
+      "originalModule": 51485,
+      "originalBinding": "De"
+    },
+    "initialEffect": {
+      "source": "function(){De(null)}",
+      "originalModule": 51485
+    },
+    "resetEffect": {
+      "source": "function(){ve((0,$.Qj)([])),de(1),De(1)}",
+      "originalModule": 51485
+    },
+    "nativeTransport": {
+      "source": "function(e,t,n){\"use strict\";var r=n(30266),i=n(809),o=n.n(i),a=n(9669),s=n.n(a),u=n(2751),c=s().create({baseURL:\"https://api.pyjamahr.com\",timeout:3e4,headers:{\"Content-Type\":\"application/json\"}});c.interceptors.request.use(function(){var e=(0,r.Z)(o().mark((function e(t){var n;return o().wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.prev=0,e.next=3,(0,u.fm)();case 3:(n=e.sent)&&(t.headers=t.headers||{},t.headers[\"X-Client-Fingerprint\"]||(t.headers[\"X-Client-Fingerprint\"]=n),t.headers[\"X-Fingerprint-Version\"]=\"4\"),e.next=9;break;case 7:e.prev=7,e.t0=e.catch(0);case 9:return e.abrupt(\"return\",t);case 10:case\"end\":return e.stop()}}),e,null,[[0,7]])})));return function(t){return e.apply(this,arguments)}}()),t.Z=c}",
+      "originalModule": 29437
+    }
+  }
+}

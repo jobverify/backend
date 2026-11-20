@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import zlib from 'node:zlib'
-import * as source from './script.js'
+import {runNative} from './native.js'
 import {document} from '../../scraper-support/shared/rmkNativePairHtml.js'
 import {analyzePublishableJobs} from '../../scraper-support/utils/publishableJobMetrics.js'
 import {readInventoryEvidence,isVerifiedEmptyEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
@@ -20,7 +20,7 @@ function replay({edit=(html,url,kind)=>html,statusFor=()=>200}={}){
   Object.defineProperty(response,'url',{value:url});return response
  }}
 }
-const run=r=>source.run({fetchImpl:r.fetchImpl,now})
+const run=r=>runNative({fetchImpl:r.fetchImpl,now})
 function replaceDescription(html){const d=document(html),main=d.nodes(n=>n.tag==='main')[0],block=d.nodes(n=>n.tag==='div'&&d.hasClass(n,'fusion-text'),main).find(n=>d.text(n).length>300);assert.ok(block);return html.slice(0,block.start)+'<div class="fusion-text"></div>'+html.slice(block.end)}
 const batch=jobs=>jobs[0].nativeCollectionEvidence
 test('Emergys preserves captured role content and clocks while reporting uncaptured advertised pages',async()=>{
@@ -82,5 +82,5 @@ test('Emergys scripts are parsed as text and never executed',async()=>{
  assert.equal(jobs.length,2);assert.equal(globalThis.__emergysRemoteExecuted,false)
 })
 test('Emergys partial maxJobs options are rejected before public reads',async()=>{
- const r=replay();await assert.rejects(source.run({fetchImpl:r.fetchImpl,now,maxJobs:1}));assert.equal(r.reads.length,0)
+ const r=replay();await assert.rejects(runNative({fetchImpl:r.fetchImpl,now,maxJobs:1}));assert.equal(r.reads.length,0)
 })

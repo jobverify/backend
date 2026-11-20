@@ -95,7 +95,7 @@ export const createSightSpectrumTechnologySolutionsScraper = ({ now = () => new 
   run: (options = {}) => runCurrentSightSpectrum({ ...options, now }),
 })
 
-export const run = async (options = {}) => createSightSpectrumTechnologySolutionsScraper().run(options)
+export const run = async (options = {}) => (await import('./currentPublished20261119.js')).runSightPublished(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

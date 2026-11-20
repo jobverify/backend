@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import { SMART_ENERGY_WATER_CATALOG as PROVIDER_METADATA } from './catalog.js'
+import { runCurrentPublications } from './currentPublished20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -56,7 +57,7 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
   timeoutMs: 15000,
 })
 
-export const createSmartEnergyWaterScraper = () => ({
+export const createLegacySmartEnergyWaterScraper = () => ({
   async run({ fetchText = defaultFetchText } = {}) {
     const careersHtml = await fetchText(CAREERS_URL)
     if (!hasOfficialCareersSignal(careersHtml)) {
@@ -72,7 +73,17 @@ export const createSmartEnergyWaterScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createSmartEnergyWaterScraper().run(options)
+// Explicit historical fetchText fixture injection keeps the old public helper
+// contract. Normal factory/run calls use original current native Responses.
+export const createSmartEnergyWaterScraper = (defaults = {}) => ({
+  run: (options = {}) => {
+    const currentOptions = { ...defaults, ...options }
+    return typeof currentOptions.fetchText === 'function'
+      ? createLegacySmartEnergyWaterScraper().run(currentOptions)
+      : runCurrentPublications(currentOptions)
+  },
+})
+export const run = (options = {}) => createSmartEnergyWaterScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

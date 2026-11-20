@@ -18,13 +18,13 @@ export const LYBRATE_CATALOG = {
   atsPlatform: 'official-jobs-page-with-dead-embedded-api',
   countryFilter: 'India',
   paginationStrategy: 'stale-first-party-jobs-shell-validation',
-  extractionStrategy: 'verified-first-party-jobs-page+dead-embedded-api+return-empty',
+  extractionStrategy: 'current-own-careers+literal-public-endpoint+bounded-opening-closing+unavailable-inventory-hold',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-08-04',
-  verifiedPublicPostingCount: 0,
+  verifiedOn: null,
+  verifiedPublicPostingCount: null,
   verifiedSurfaceSummary:
-    'Verified on Tuesday, August 4, 2026 that https://www.lybrate.com/about still sends its hiring CTA to the first-party page at https://www.lybrate.com/jobs, but that the jobs route is now misconfigured into a first-party redirect loop: https://www.lybrate.com/jobs returns HTTP 301 with Location: https://www.lybrate.com/jobs while https://www.lybrate.com/jobs/ returns HTTP 308 with Location: /jobs. Verified that the embedded Lever URL https://api.lever.co/v0/postings/lybrate?group=team&mode=json still returns HTTP 404 with {"ok":false,"error":"Document not found"}. There is no trustworthy live public Lybrate jobs surface to scrape at this time, so this provider now treats that self-redirecting jobs route plus the dead Lever response as the authoritative empty public state.',
+    'The current own about/jobs declaration and literal public Lever endpoint are acquired on both boundaries. A retired or unavailable native endpoint establishes a coverage gap, with unknown company totals and lifecycle cleanup held. Medical content and partner-company enrollment are not Lybrate employment vacancies.',
 }
 
 export default LYBRATE_CATALOG

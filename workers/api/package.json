@@ -7,7 +7,7 @@
     "check": "npm run lint && npm test && npm run build && wrangler deploy --dry-run",
     "dev": "npm run build && wrangler dev",
     "deploy": "npm run build && wrangler deploy",
-    "test": "node --test test/platform.test.js test/pipelineDownload.test.js",
+    "test": "node --test test/platform.test.js test/pipelineDownload.test.js test/assistant.test.js",
     "test:runtime": "npm run build && node --test test/runtime.test.js",
     "lint": "node ../../node_modules/eslint/bin/eslint.js ."
   },

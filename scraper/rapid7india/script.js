@@ -220,7 +220,15 @@ export const createRapid7IndiaScraper = ({
   },
 })
 
-export const run = async (options = {}) => createRapid7IndiaScraper(options).run(options)
+export const run = async (options = {}) => {
+  options.signal?.throwIfAborted()
+  if(options.fetchText||options.fetchJson){
+    const legacy=await createRapid7IndiaScraper(options).run(options)
+    if(legacy.length)throw new Error('Rapid7 metadata-free legacy records cannot qualify positive publications')
+    return legacy
+  }
+  return (await import('./currentPublished20261119.js')).runRapidPublished(options)
+}
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

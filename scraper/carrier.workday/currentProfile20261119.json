@@ -1,0 +1,236 @@
+{
+  "source": "carrier",
+  "company": "Carrier",
+  "companyDomain": "carrier.com",
+  "origin": "https://jobs.carrier.com",
+  "rolePath": "^/en/job/[^/]+/[^/]+/29289/\\d+$",
+  "roleOrg": "29289",
+  "requisition": "^\\d{8}$",
+  "applyOrigin": "https://carrier.wd5.myworkdayjobs.com",
+  "applyPathPrefix": "^/jobs/job/",
+  "headingTag": "h1",
+  "locationClass": "job-location",
+  "dateClass": "job-start-date",
+  "datePrefix": "Posted Start Date",
+  "titleSuffix": " at Carrier",
+  "indexURL": "https://jobs.carrier.com/en/search-jobs?k=India",
+  "chain": [
+    {
+      "url": "https://www.carrier.com/us/en/careers/",
+      "target": "https://jobs.carrier.com/en",
+      "text": "Start your job search"
+    },
+    {
+      "url": "https://jobs.carrier.com/en",
+      "target": "https://carrier.wd5.myworkdayjobs.com/jobs/login",
+      "text": "Log In"
+    }
+  ],
+  "canonicalAliases": {
+    "https://jobs.carrier.com/en/job/haryana/ahu-sales-leader/29289/101231047840": "https://jobs.carrier.com/en/job/gurugram/ahu-sales-leader/29289/101231047840"
+  },
+  "approvedPrimaryPresentation": [
+    [
+      "a",
+      "class",
+      "button job-apply bottom"
+    ],
+    [
+      "a",
+      "class",
+      "button job-apply top"
+    ],
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      " section-container max-width fs-container"
+    ],
+    [
+      "div",
+      "class",
+      "fs-12 fs-m-6"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__buttons"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__info"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "html",
+      "class",
+      "no-js"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "p",
+      "class",
+      "job-location ajd_header__location ajd_header__location-list"
+    ],
+    [
+      "section",
+      "class",
+      "job-description"
+    ],
+    [
+      "span",
+      "class",
+      "job-id job-info"
+    ]
+  ],
+  "approvedCriteriaPresentation": [
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      " section-container max-width fs-container"
+    ],
+    [
+      "div",
+      "class",
+      "ats-description"
+    ],
+    [
+      "div",
+      "class",
+      "fs-12 fs-m-6"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "h2",
+      "style",
+      "color:!important"
+    ],
+    [
+      "html",
+      "class",
+      "no-js"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "p",
+      "style",
+      "color:!important"
+    ],
+    [
+      "p",
+      "style",
+      "font-size:medium !important;color:!important"
+    ],
+    [
+      "p",
+      "style",
+      "text-align:left !important"
+    ],
+    [
+      "p",
+      "style",
+      "text-align:left"
+    ],
+    [
+      "section",
+      "class",
+      "job-description"
+    ],
+    [
+      "span",
+      "class",
+      "WOR0"
+    ],
+    [
+      "span",
+      "class",
+      "__cf_email__"
+    ],
+    [
+      "span",
+      "class",
+      "emphasis-2"
+    ],
+    [
+      "span",
+      "style",
+      "color:#000000"
+    ],
+    [
+      "span",
+      "style",
+      "color:#0000ff"
+    ],
+    [
+      "span",
+      "style",
+      "color:#0875e1"
+    ],
+    [
+      "span",
+      "style",
+      "color:#17365d"
+    ],
+    [
+      "span",
+      "style",
+      "color:#2f5597"
+    ],
+    [
+      "span",
+      "style",
+      "color:#494949"
+    ],
+    [
+      "span",
+      "style",
+      "color:#4a4a4a"
+    ],
+    [
+      "span",
+      "style",
+      "color:#ff0000"
+    ],
+    [
+      "span",
+      "style",
+      "color:#ffffff"
+    ],
+    [
+      "span",
+      "style",
+      "font-size:inherit"
+    ],
+    [
+      "span",
+      "style",
+      "font-size:medium"
+    ]
+  ]
+}

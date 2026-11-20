@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const VERIFIED_SURFACE_SUMMARY =
-  'Current first-party jobs page loads the Skyscanner JobsApp bundle from js.skyscnr.com. Its executable fetch contract uses the exact Ashby board eb485598-6bf3-40a5-8560-d70150131305. Runtime extraction verifies that handoff and native role identities, preserves complete inventory evidence and keeps unknown India scope partial.'
+  'The current own JobsApp programme supplies the native Ashby account dynamically. Its connected default GET and complete listed-job selection are inspected without executing or pinning a UI build. A fetched zero is qualified only for the current complete configured feed typed-India-workplace projection after independent opening/closing observations: all listed roles require exact native identity/application/account and decisive whole foreign workplace countries. Positive India rows, unknown countries, changed membership, pagination, unavailable or contradictory models cannot establish zero. Whole company inventory, country facets, legal employing entities, application activation and cleanup remain unqualified.'
 
 export const SKYSCANNER_CATALOG = {
   source: 'skyscanner',
@@ -21,6 +21,9 @@ export const SKYSCANNER_CATALOG = {
   extractionStrategy:
     'current-employer-executable-bundle-contract+validated-ashby-inventory+native-india-location',
   parser: 'custom-script',
+  authoritativeCurrentPublication: true,
+  backfillMode: 'live-parser',
+  scraperTimeoutMs: 180000,
   normalizationProfile: 'engineering-default',
   verifiedOn: null,
   verifiedAt: null,

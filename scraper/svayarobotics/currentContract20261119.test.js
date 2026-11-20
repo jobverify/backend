@@ -58,6 +58,10 @@ test('Svaya owns the complete native listing, detail title, geography, criteria 
   [role.replace('action="'+new URL(record.url).pathname+'#wpcf7-f448-o1"','action="https://elsewhere.invalid/apply"'),record],
   [role.replace('</head>','<style>.singal_job_details{display:none}</style></head>'),record],
   [role.replace('</body>','<script>document.querySelector(".singal_job_details").remove()</script></body>'),record],
+  [role.replace('<p data-pm-slice="1 1 []">','<p class="d-none" data-pm-slice="1 1 []">'),record],
+  [role.replace('class="main_job_singal"','class="main_job_singal d-none"'),record],
+  [role.replace('type="text" name="first_name"','type="hidden" name="first_name"'),record],
+  [role.replace('type="text" name="first_name"','type="text" hidden name="first_name"'),record],
  ]
  for(const [index,[body,row]] of controls.entries()){
   assert.ok(body!==role||row!==record,'Control changes a native field: '+index)

@@ -38,7 +38,7 @@ const hasLink = (html, expected) => [...String(html).matchAll(/(?:href|src)=["']
   .some(match => { try { return new URL(decode(match[1]), CAREERS_URL).toString() === expected } catch { return false } })
 const indiaCity = location => /\bBangalore\b|\bBengaluru\b|^BLR-/i.test(location) ? 'Bangalore'
   : /\bPune\b/i.test(location) ? 'Pune' : null
-const validateHandoff = payload => {
+export const validateHandoff = payload => {
   // This is the first-party publisher reporting its own declared jobs service
   // connection failure. It supplies neither an employer handoff nor inventory.
   if (payload?.success === false && typeof payload.data === 'string' && payload.data.length <= 512
@@ -155,7 +155,15 @@ export const createEmbitelTechnologiesScraper = ({ maxJobs = null, now = () => n
     })
   },
 })
-export const run = async (options = {}) => createEmbitelTechnologiesScraper(options).run(options)
+export const run = async (options = {}) => {
+  if (options.fetchText || options.fetchJson) {
+    // Preserve the existing negative-only outage diagnostic contract. Parsed
+    // callbacks can never authorize a positive current publication result.
+    await createEmbitelTechnologiesScraper(options).run(options)
+    throw new Error('Embitel metadata-free callbacks cannot qualify positive publications')
+  }
+  return (await import('./currentPublished20261119.js')).runEmbitelPublished(options)
+}
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

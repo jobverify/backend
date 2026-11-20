@@ -1,4 +1,4 @@
-import { createDeclaredJobFeedScraper, DECLARED_JOB_FEED_PROFILES } from '../../scraper-support/native-sources/declaredJobFeeds/nativeCareers.js'
+import {runCurrentConfiguredBoard} from './currentConfigured20261120.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -14,9 +14,6 @@ export const CAREERS_PAGE_URL = PROVIDER_METADATA.companyCareerPage
 export const CAREERS_LIST_URL = PROVIDER_METADATA.officialCareersListUrl
 export const ASHBY_PUBLIC_BOARD_URL = PROVIDER_METADATA.ashbyPublicBoardUrl
 export const ASHBY_JOB_BOARD_URL = PROVIDER_METADATA.ashbyJobBoardUrl
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeString = (value) => {
   if (value == null) return null
@@ -144,37 +141,7 @@ export const extractAshbyJobs = (payload = {}) => (
     .filter(Boolean)
 )
 
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
-
-const defaultFetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'application/json',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.json()
-}
-
-export const createSandboxAQScraper = (options = {}) => createDeclaredJobFeedScraper(DECLARED_JOB_FEED_PROFILES.sandboxaq, options)
+export const createSandboxAQScraper = (defaults = {}) => ({run:(options = {})=>runCurrentConfiguredBoard({...defaults,...options})})
 
 export const run = async (options = {}) => createSandboxAQScraper(options).run(options)
 

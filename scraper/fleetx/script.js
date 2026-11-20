@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { FLEETX_CATALOG } from './catalog.js'
-import { createNativeFleetxScraper } from './native.js'
+import { runCurrentPublications } from './currentPublished20261120.js'
 export { hasOfficialCareersSignal, extractFleetxJobs } from './nativePage.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -84,7 +84,7 @@ export const isVerifiedTimeoutResult = (result = {}, requestedUrl = '') => {
   return combined.includes('timeout')
 }
 
-export const createFleetxScraper = (defaults = {}) => createNativeFleetxScraper(defaults)
+export const createFleetxScraper = (defaults = {}) => ({run:(options={})=>runCurrentPublications({...defaults,...options})})
 export const run = (options = {}) => createFleetxScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

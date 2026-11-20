@@ -309,7 +309,7 @@ export const createSquareyardsScraper = ({
   },
 })
 
-export const run = async (options = {}) => createSquareyardsScraper(options).run(options)
+export const run = async (options = {}) => (await import('./currentNative20261119.js')).runSquareNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentPublications } from './currentPublished20261120.js'
+export { default as PROVIDER_METADATA } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -256,7 +258,7 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
   timeoutMs: 15000,
 })
 
-export const createPixdynamicsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
+export const createLegacyPixdynamicsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
   async run({ fetchText = defaultFetchText } = {}) {
     const homepageHtml = await fetchText(HOMEPAGE_URL)
 
@@ -287,6 +289,9 @@ export const createPixdynamicsScraper = ({ now = () => new Date().toISOString() 
   },
 })
 
+export const createPixdynamicsScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentPublications({...defaults,...options}),
+})
 export const run = async (options = {}) => createPixdynamicsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

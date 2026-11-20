@@ -10,7 +10,7 @@ export const COMPANY = 'Avaamo'
 export const VERIFIED_ON = '2026-11-05'
 export const CAREERS_URL = AVAAMO_CAREERS_URL
 export const DISPOSITION = 'current-first-party-framer-role-observations'
-export const VERIFIED_SURFACE_SUMMARY = 'Current first-party Framer careers cards and canonical role pages are read as bounded public GETs. City-only countries and absent role criteria stay unresolved; company and India totals are not inferred.'
+export const VERIFIED_SURFACE_SUMMARY = 'Current first-party Framer careers cards and canonical role pages are read as bounded public GETs, with full own-detail closing reads. Finite reviewed whole worksite labels qualify geography; absent role criteria and company totals stay unresolved.'
 
 export const extractListingCards = (html, finalUrl = CAREERS_URL) => parseAvaamoListing(html, finalUrl).roles
 export const hasOfficialCareersPageSignal = html => { try { return extractListingCards(html).length > 0 } catch { return false } }
@@ -105,6 +105,7 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
       reader.check()
       if (typeof clock !== 'string' || !Number.isFinite(Date.parse(clock))) throw fail('invalid source observation clock')
       const unknown = opening.roles.filter(role => explicitAvaamoCountry(role.location) === null)
+      const criteriaGapCount = openingDetailModels.filter(model => !model.detail.sourceDetailComplete && !model.detail.closedNotice).length
       const summary = {
         source: SOURCE, sourceObservedAt: clock, sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null,
         observedListingCount: opening.roles.length, observedVacancyCount: opening.roles.length,
@@ -114,6 +115,7 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
         openingBodySHA256: first.sha256, closingBodySHA256: last.sha256,
         unknownCountryCount: unknown.length, unknownCountryRoles: unknown.map(role => ({ title: role.title, url: role.detailUrl, location: role.location })),
         fullRoleCriteriaCount: jobs.filter(job => job.sourceDetailComplete).length,
+        criteriaGapCount,
         candidateDetails: opening.roles.length, extractedDetailJobs: jobs.length,
         excludedDetailJobs: exclusions.length, exclusions, failures, listingPaginationComplete: true,
         retainedResponses: reader.receipts.map(receipt => ({ ...receipt })),
@@ -125,10 +127,11 @@ export const createAvaamoScraper = (factoryOptions = {}) => ({
       attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
         observedRecordCount: opening.roles.length, observedVacancyCount: opening.roles.length,
         sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+      Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: summary, configurable: true })
       attachInventoryEvidence(jobs, {
         status: 'discovery-only', surface: CAREERS_URL, firstParty: true, listingComplete: false,
         pagesFetched: reader.stats().pages, reportedTotal: null, indiaFacetCount: null, verifiedAt: clock,
-        reason: `Observed ${opening.roles.length} native role cards with stable opening/closing records; ${unknown.length} countries unresolved; ${failures.length} authored-criteria gaps; company hiring scope unverified`,
+        reason: `Observed ${opening.roles.length} native role cards with stable opening/closing records; ${unknown.length} countries unresolved; ${criteriaGapCount} authored-criteria gaps; company hiring scope unverified`,
       })
       reader.check()
       // Cover final projection/serialization work with the same source deadline.

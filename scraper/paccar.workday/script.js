@@ -1,14 +1,14 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRemainingRecruitmentBatchSource } from '../../scraper-support/utils/remainingRecruitmentBatch20261103.js'
+import { runPaccarPublications } from './currentPublication20261119.js'
 
 export const SOURCE = "paccar"
 export const COMPANY = "PACCAR"
 export const CAREERS_URL = "https://prod-cms.paccar.com/careers"
 export const DISPOSITION = 'runtime-verified-recruitment'
-export const VERIFIED_ON = null
-export const VERIFIED_SURFACE_SUMMARY = 'Current extraction is implemented; complete and empty company inventories remain unverified.'
-export const run = options => runRemainingRecruitmentBatchSource(SOURCE, options)
+export const VERIFIED_ON = '2026-11-19'
+export const VERIFIED_SURFACE_SUMMARY = 'Current own native RMK publications, exact employer, whole workplace, country, authored criteria, dates and same-role application links; full renderer, application controls, company inventory and cleanup remain unverified.'
+export const run = options => runPaccarPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

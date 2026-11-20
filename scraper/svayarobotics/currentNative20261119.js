@@ -38,6 +38,21 @@ const normalizeInline=node=>{
  return text
 }
 const resources=new Map(PROFILE.resources.map(row=>[row.url,row]))
+const presentationAttributes=new Set(PROFILE.criticalPresentationAttributes)
+function qualifyCriticalPresentation(page){
+ const all=node=>[node,...node.children.filter(child=>typeof child!=='string').flatMap(all)]
+ const root=one(page.raw.nodes(node=>node.tag==='root'),'original role presentation root'),parents=new Map()
+ for(const node of all(root))for(const child of node.children)if(typeof child!=='string')parents.set(child,node)
+ const selected=new Set()
+ for(const node of page.raw.nodes(node=>cls(node,'main_job_singal')||cls(node,'career-block-3'))){
+  for(const child of all(node))selected.add(child)
+  for(let parent=node;parent;parent=parents.get(parent))selected.add(parent)
+ }
+ for(const node of selected)for(const [name,raw]of Object.entries(node.attrs))if(['class','style','hidden','inert','aria-hidden','disabled','readonly','aria-disabled'].includes(name)){
+  const value=node.tag==='body'&&name==='class'?raw.replace(/\bpostid-\d+\b/g,'postid-NATIVE_POST_ID'):raw
+  need(presentationAttributes.has(JSON.stringify([node.tag,name,value])),'Critical native presentation attribute requires review')
+ }
+}
 function inspect(html,url,kind){
  const page=qualifiedFirstPartyHTML(html,url,failure)
  const executable=page.raw.nodes(node=>node.tag==='script'&&/^(?:|module|(?:text|application)\/(?:java|ecma)script)$/i.test(node.attrs.type||''))
@@ -85,6 +100,7 @@ function originalCriteriaHTML(html){
 export function readSvayaRole(html,record){
  need(roleURL(record.url),'Unbound native own role URL')
  const page=inspect(html,record.url,'role')
+ qualifyCriticalPresentation(page)
  const owner=one(page.visible.nodes(node=>cls(node,'main_job_singal')),'native own role owner')
  const heading=one(descendants(owner,node=>cls(node,'top_hedding')),'native own role heading')
  const title=label(one(descendants(heading,node=>node.tag==='h2'),'own detail title'))
@@ -94,6 +110,7 @@ export function readSvayaRole(html,record){
  need(['Hyderabad','Medchal-Hyderabad'].includes(location),'Unknown, remote, foreign or mixed whole native location')
  const criteriaOwner=one(descendants(owner,node=>cls(node,'singal_job_details')),'own full criteria owner')
  const sections=descendants(criteriaOwner,node=>cls(node,'jobdics_row'))
+ need(sections.every(section=>section.attrs.class==='jobdics_row wow fadeInUp'),'Native reviewed WOW section activation changed')
  const headings=sections.map((section,index)=>{
   const rows=descendants(section,node=>node.tag==='h3')
   if(index===0&&!rows.length&&/^Svaya works at the cutting edge of embodied-AI robotics,/.test(label(section)))return null
@@ -118,7 +135,8 @@ export function readSvayaRole(html,record){
  need(controls.every(node=>!Object.hasOwn(node.attrs,'disabled')&&!Object.hasOwn(node.attrs,'readonly')&&node.attrs['aria-disabled']!=='true'),'Native candidate controls disabled or readonly')
  for(const name of ['first_name','last_name','email','phone','job_position','attach_file']){
   const control=one(controls.filter(node=>node.attrs.name===name),'candidate '+name)
-  need(control.attrs['aria-required']==='true'&&control.tag==='input','Native required candidate field changed')
+  need(control.attrs['aria-required']==='true'&&control.tag==='input'&&!control.inert,'Native required candidate field changed')
+  if(!['email','attach_file'].includes(name))need(control.attrs.type==='text','Native candidate text field changed')
   if(name==='email')need(control.attrs.type==='email','Native candidate email field changed')
   if(name==='attach_file')need(control.attrs.type==='file'&&control.attrs.accept==='.pdf,.doc,.docx','Native candidate CV field changed')
  }
@@ -138,7 +156,8 @@ export async function runCurrentSvaya(options={}){
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(new DOMException('Svaya native source deadline','TimeoutError')),sourceTimeoutMs)
  const signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
  const audit={source:SOURCE,nativeEmployerDisplayName:COMPANY,companyScopeComplete:false,lifecycleCleanupAllowed:false,
-  applicationSubmitted:false,backendSubmissionVerified:false,receipts:[],heldNativeRoles:[],cacheBusterQualification:PROFILE.cacheBusterEvidence}
+  applicationSubmitted:false,backendSubmissionVerified:false,receipts:[],heldNativeRoles:[],cacheBusterQualification:PROFILE.cacheBusterEvidence,
+  criteriaPresentationReview:PROFILE.criteriaPresentationReview}
  const allowed=new Set([HOMEPAGE_URL,CAREERS_URL]);let bytes=0,nextStart=0
  const read=async(url,type)=>{
   signal.throwIfAborted();need(allowed.has(url)&&audit.receipts.length<96,'Unbound native URL or read budget exceeded')

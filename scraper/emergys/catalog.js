@@ -2,12 +2,12 @@ import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 const currentDir=path.dirname(fileURLToPath(import.meta.url))
 export const EMERGYS_CATALOG={source:'emergys',companyName:'Emergys',adapter:'script',companyDomain:'emergys.com',homepageUrl:'https://www.emergys.com/',companyCareerPage:'https://www.emergys.com/careers/',modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json'),
- backfillMode:'live-parser',zeroResultPolicy:'coverage-gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false,
- parser:'Existing firstPartyHTML collector with a bounded native WordPress role-page parser',countryFilter:'India',
- nativePostingDatePolicy:'Original Article.datePublished of the exact public role page,corroborated by WebPage.datePublished;not an explicit JobPosting.datePosted or first-ever requisition publication;edits and observations never refresh age',
- descriptionPolicy:'Complete authored role content preserved as native HTML;application forms and generic resume text excluded',
- locationPolicy:'Explicit written country in the authored job location;city-only country remains unresolved and separately retained as a gap',
- applicationLinkPolicy:'Public role-page fallback retained;no application endpoint or form actions',
+ authoritativeCurrentPublication:true,scraperTimeoutMs:180000,backfillMode:'live-parser',zeroResultPolicy:'coverage-gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+ parser:'custom-script',countryFilter:'India',
+ nativePostingDatePolicy:'Original Article.datePublished and WebPage.datePublished of this exact public role page are retained with original UTC spelling and earliest publication age;not an explicit JobPosting.datePosted or first-ever requisition publication;edits and observations never refresh age',
+ descriptionPolicy:'Original full role criteria and every observed revision remain in native HTML/models; missing or hidden criteria remain explicit partials; native intake retained separately without activation or full-controls claim',
+ locationPolicy:'Literal whole India workplace or exact whole authored municipal label with retained independent government original; every foreign/unknown alternative retained; no HQ/footer/default inference',
+ applicationLinkPolicy:'Current own advertised public role URI and optional same-canonical native CF7 form action/CMS post/form controls retained and qualified; no submissions, UI/backend activation or inferred requisition',
  verifiedOn:null,verifiedAt:null,verifiedPublicJobCount:null,verifiedIndiaJobCount:null,verifiedInventoryStatus:'unverified',runtimeQualification:'awaiting-restricted-live-and-local-publishing-checks',
- verifiedSurfaceSummary:'Research retained15advertised native roles with full authored content and matching original Article/WebPage publication metadata. All page publications are old. Two explicitIndia workplace labels,oneUSA,and12country-unresolved labels;not zero openings. Current source/runtime/local publishing qualification pending;whole employer unknown;cleanup forbidden.'}
+ verifiedSurfaceSummary:'Pairs currently published own Emergys native cards and optional same-canonical own role/full authored criteria and CF7 public resume-intake originals. Exact whole municipal workplaces qualify only through retained independent government originals, with all country alternatives and source-native availability/employer/application/date constraints preserved. Original exact role-page Article/WebPage publication ages remain labelled as page publications, not first-ever requisition dates; edits never refresh age. All records stay valid partials: native CMS/form IDs are separate from null job/requisition/legal-employer fields; no full application-control/backend/UI activation, allchannels/company totals, complete listing or cleanup replacement claim.'}
 export default EMERGYS_CATALOG

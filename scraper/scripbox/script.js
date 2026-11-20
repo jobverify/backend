@@ -6,6 +6,8 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { hydrateSourceDescriptions } from '../../scraper-support/utils/sourceDescriptionHydration.js'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import SCRIPBOX_CATALOG from './catalog.js'
+import {hasCurrentScripboxClient,runCurrentScripbox} from './currentNative20261119.js'
+export {readCurrentScripboxPage} from './currentNative20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -240,16 +242,20 @@ const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
 export const createScripboxScraper = () => {
   const native = createDarwinboxScraper({ source: SOURCE, companyName: COMPANY, origin: 'https://scripbox.darwinbox.in' })
   return {
-    async run({
+    async run(options = {}) {
+      const {
       fetchText = defaultFetchText,
       fetchJobDetail = native.fetchJobDetailFromApi,
       detailEnrichmentBudgetMs,
       signal,
       now = () => new Date().toISOString(),
-    } = {}) {
+      } = options
       signal?.throwIfAborted()
+
       const careersHtml = await fetchText(CAREERS_URL, { signal })
       signal?.throwIfAborted()
+
+      if (hasCurrentScripboxClient(careersHtml)) return runCurrentScripbox(options)
 
       if (!hasVerifiedCareersPageSignal(careersHtml)) {
         throw new Error('Scripbox verified first-party careers page no longer matches the trusted public jobs surface')

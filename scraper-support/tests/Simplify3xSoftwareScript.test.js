@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import test from 'node:test'
-import * as source from '../../scraper/simplify3xsoftware/script.js'
+// Explicit historical body-only client observations; these do not qualify the
+// current default target-employer scope or establish current public India jobs.
+import * as source from '../../scraper/simplify3xsoftware/legacy20261120.js'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 const fixtures = new URL('./fixtures/simplify3x-current/', import.meta.url)
 const texts = Object.fromEntries(await Promise.all(['home.html','life.html','about.html','contact.html','careers.html','app.js','careers.js','listing.json','details.json','availability.json'].map(async name => [name, await fs.readFile(new URL(name, fixtures), 'utf8')])))

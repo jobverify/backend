@@ -3,6 +3,7 @@ import { httpServerHandler } from 'cloudflare:node';
 import { createUnavailableResponse, forwardClientRequest, redirectInsecureRequest, validateWorkerConfiguration } from './config.js';
 import { loadMaintenanceTasks, runMaintenance } from './maintenance.js';
 import { bindPipelineDownloads, PIPELINE_FILE_PATH, pipelineFileResponse } from '../adapters/pipelineDownload.js';
+import { createWorkersAssistantModel } from './assistantModel.js';
 
 // One named API object owns the Mongoose connection. Data stays in Atlas.
 export class JobverifyApi extends DurableObject {
@@ -28,7 +29,8 @@ export class JobverifyApi extends DurableObject {
         ]);
         assertSecureMongoConnection(this.environment.MONGO_URI);
         this.mongoose = mongoose;
-        const app = createApp({ isReady: () => mongoose.connection.readyState === 1 });
+        const app = createApp({ isReady: () => mongoose.connection.readyState === 1,
+          assistantModel: createWorkersAssistantModel(this.environment.AI) });
         app.listen(3000);
         this.handler = httpServerHandler({ port: 3000 });
       })().catch(error => { this.initializing = undefined; throw error; });

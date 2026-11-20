@@ -34,7 +34,9 @@ export function canRecoverSoftRecruitmentFailure(error){
 // Missing data, unknown country and empty results preserve the original error.
 export async function recoverSoftFailedRecruitment(error,provider,options={}){
  options.signal?.throwIfAborted()
- if(options.softFailureRecovery===false||provider.adapter!=='script'||provider.parser==='runtime-verified-recruitment'||!canRecoverSoftRecruitmentFailure(error)
+ // Reviewed current readers own their publication and rejection evidence.
+ // A caller's recovery transport cannot replace that source contract.
+ if(provider.authoritativeCurrentPublication===true||options.softFailureRecovery===false||provider.adapter!=='script'||provider.parser==='runtime-verified-recruitment'||!canRecoverSoftRecruitmentFailure(error)
   ||typeof provider.modulePath!=='string'||!path.isAbsolute(provider.modulePath))return null
  const relative=path.relative(scraperRoot,provider.modulePath)
  if(relative.startsWith('..')||path.isAbsolute(relative)||!relative.endsWith('script.js'))return null

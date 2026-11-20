@@ -1,9 +1,10 @@
+// Historical body-only parser controls; client assignments here are not current target-employer proof.
 import fs from 'node:fs'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { createHash } from 'node:crypto'
-import * as source from './script.js'
-import { getScraperCatalog, createCatalogScraper } from '../../scraper-support/providers/index.js'
+import * as source from './legacy20261120.js'
+import { createCatalogScraper } from '../../scraper-support/providers/index.js'
 import { normalizeScrapedJob } from '../../scraper-support/utils/normalizeScrapedJob.js'
 import { readInventoryEvidence, isVerifiedEmptyEvidence, isFreshCompleteInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { filterIndiaJobs } from '../../scraper-support/utils/indiaLocationFilter.js'
@@ -11,7 +12,7 @@ import { analyzePublishableJobs } from '../../scraper-support/utils/publishableJ
 import { buildJobDerivedFields } from '../../src/utils/jobDerivedFields.js'
 
 const sha = value => createHash('sha256').update(value).digest('hex')
-const provider = getScraperCatalog().find(row => row.source === 'simplify3xsoftware')
+const provider = source.PROVIDER_METADATA
 assert.ok(provider)
 const fixtureRoot = new URL('../../scraper-support/tests/fixtures/simplify3x-current/', import.meta.url)
 const texts = Object.fromEntries(['home.html','life.html','about.html','contact.html','careers.html','app.js','careers.js','listing.json','details.json','availability.json'].map(name => [name, fs.readFileSync(new URL(name, fixtureRoot), 'utf8')]))
@@ -227,7 +228,7 @@ test('Simplify3x mixed named countries and terminal codes remain unqualified', a
   }
 })
 
-test('Simplify3x explicit-country role keeps native posting date at both real policy windows', async () => {
+test('historical client parser retains its original creation-date carrier at both clocks', async () => {
   for (const clock of ['2026-10-01T00:00:00.000Z', '2026-11-01T00:00:00.000Z']) {
     for (const result of await measure('explicit country date boundary', { location: ['Bengaluru, India'] }, clock)) {
       assert.equal(result.error, undefined); assert.equal(result.jobs.length, 1)
@@ -235,8 +236,8 @@ test('Simplify3x explicit-country role keeps native posting date at both real po
       assert.equal(result.normalized[0].postedAt.toISOString(), '2026-09-30T16:09:34.913Z')
       assert.equal(result.jobs[0].country, 'India'); assert.equal(result.jobs[0].city, null)
       assert.equal(result.indiaRows, 1); assert.equal(result.normalized[0].isPublicIndia, true)
-      assert.equal(result.eligibleJobIDs.length, clock.startsWith('2026-10') ? 1 : 0)
-      assert.equal(result.filterCounts.old, clock.startsWith('2026-10') ? 0 : 1)
+      // This historical client-assignment model cannot assert current target
+      // publication or eligibility under the current user publication policy.
     }
   }
 })

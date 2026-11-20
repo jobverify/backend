@@ -3,7 +3,8 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import { createHash } from 'node:crypto'
-import { getScraperCatalog, createCatalogScraper } from '../../scraper-support/providers/index.js'
+import { remainingRecruitmentBatchProvider } from '../../scraper-support/utils/remainingRecruitmentBatch20261103.js'
+import { createVerifiedRecruitmentScraper } from '../../scraper-support/utils/verifiedRecruitment.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const directory = new URL('./test-data-20261106/', import.meta.url)
@@ -16,7 +17,17 @@ for (const row of manifest.requests) {
   groups.get(identity).push(row)
 }
 const observations = jobs => jobs[Symbol.for('jobverify.verified-recruitment-observations')]
-const registered = () => createCatalogScraper(getScraperCatalog().find(row => row.source === 'priceline'))
+// These saved November 6 originals exercise their original historical reader.
+// Current production reads only the own published HTML and never retries the
+// subsequently denied Workday origin; currentPublished20261120.test.js covers it.
+const registered = () => {
+  const historical = createVerifiedRecruitmentScraper({
+    ...remainingRecruitmentBatchProvider('priceline'),
+    officialHomepageUrl: 'https://careers.priceline.com/life-at-priceline/',
+    reconcileWorkdayNativeContext: true,
+  })
+  return { run: options => historical.run({ maxRequests: 96, maxDetails: 40, ...options }) }
+}
 const replay = mutate => {
   const counts = new Map()
   return async (url, init = {}) => {

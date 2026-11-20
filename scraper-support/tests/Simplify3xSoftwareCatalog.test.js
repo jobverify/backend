@@ -36,22 +36,25 @@ test('Simplify3x Software local catalog captures the verified fail-closed first-
   assert.equal(provider.companyName, 'Simplify3x Software')
   assert.equal(provider.officialBrandName, 'Simplify3x')
   assert.equal(provider.adapter, 'script')
-  assert.equal(provider.companyCareerPage, "https://www.hire3x.com/careers")
+  assert.equal(provider.companyCareerPage, "https://simplify3x.com.my/")
+  assert.equal(provider.registeredDelegatedCareersLead, 'https://www.hire3x.com/careers')
   assert.equal(provider.companyDomain, "simplify3x.com.my")
-  assert.equal(provider.atsPlatform, "hire3x-public-careers")
+  assert.equal(provider.atsPlatform, "hire3x-public-observations")
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, "published-v2-categories-two-snapshots-native-details")
+  assert.equal(provider.paginationStrategy, 'bounded-own-authority-and-registered-native-leads-two-observations;inventory-unqualified')
   assert.equal(
     provider.extractionStrategy,
-    "verified-company-alias+published-hire3x-client+native-details+India-assignments-partial",
+    'current-original-native-client-observations-only;exact-own-employer-country-and-application-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(provider.verifiedOn, "2026-10-09")
+  assert.equal(provider.verifiedOn, null)
+  assert.equal(provider.authoritativeCurrentPublication, true)
+  assert.equal(provider.backfillMode, 'live-parser')
+  assert.equal(provider.scraperTimeoutMs, 120000)
   assert.equal(provider.modulePath, modulePath)
-  assert.match(provider.verifiedSurfaceSummary, /October 9, 2026/i)
-  assert.match(provider.verifiedSurfaceSummary, /Life at Simplify3x/i)
-  assert.match(provider.verifiedSurfaceSummary, /full source coverage is incomplete/i)
+  assert.match(provider.verifiedSurfaceSummary, /client assignments/i)
+  assert.match(provider.verifiedSurfaceSummary, /cleanup remain held/i)
   assert.equal(Object.prototype.hasOwnProperty.call(companyAliases, 'Simplify3x Software'), false)
 
   assert.equal(simplify3x.PROVIDER_METADATA.source, SIMPLIFY3X_SOFTWARE_CATALOG.source)

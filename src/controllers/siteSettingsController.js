@@ -1,10 +1,11 @@
 import { getSiteSettings, saveSiteSettings } from "../services/siteSettingsService.js";
 import { verificationEnabled } from '../jobVerification/service.js';
 
-export async function readSiteSettings(_req, res, next) {
+export async function readSiteSettings(req, res, next) {
   try {
     res.set("Cache-Control", "no-store");
-    res.json({ success: true, data: { ...await getSiteSettings(), jobVerificationEnabled: verificationEnabled() } });
+    res.json({ success: true, data: { ...await getSiteSettings(), jobVerificationEnabled: verificationEnabled(),
+      assistantEnabled: process.env.ASSISTANT_ENABLED === 'true' && req.app?.locals.assistantAvailable === true } });
   } catch (error) { next(error); }
 }
 

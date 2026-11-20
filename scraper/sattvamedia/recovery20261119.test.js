@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 import test,{mock} from 'node:test'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {run} from './script.js'
+// These Nov19 originals exercise the historical 138-read acquisition and its
+// transport lifecycle. Current production has its own genuine88-read tests.
+import {runCurrentSattva as run} from './currentNative20261117.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 import {analyzePublishableJobs} from '../../scraper-support/utils/publishableJobMetrics.js'

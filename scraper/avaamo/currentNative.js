@@ -133,6 +133,7 @@ function document(html, canonical, check = () => {}, expectedTitle) {
     need(value && typeof value === 'object', 'malformed Organization JSON data')
     if (Array.isArray(value)) { need(value.length <= 50, 'structured data count budget exceeded'); value.forEach(visit); return }
     const types = Array.isArray(value['@type']) ? value['@type'] : [value['@type']]
+    need(!types.includes('JobPosting') && !Object.hasOwn(value, 'jobLocation'), 'new native structured JobPosting country model requires review')
     if (types.includes('Organization')) organizations.push(value)
     if (value['@graph']) visit(value['@graph'])
   }
@@ -224,6 +225,12 @@ export function parseAvaamoDetail(html, listing, { check = () => {} } = {}) {
   const criteria = sourceSections.filter(section => !/^About Avaamo$/i.test(section.heading || ''))
     .map(section => section.text.replace(/^Location:[^\n]*(?:\n|$)/i, '')).join('\n')
   const hasCriteria = criteria.length >= 160 && requirements.some(section => section.text.length >= 40 && extractActiveDescription(section.html))
+  if (hasCriteria && explicitAvaamoCountry(listing.location) === 'India') for (const line of sourceDescription.split(/\n+/).map(norm)) {
+    const location = /^(?:(?:workplace|work|job)\s+)?location\s*:\s*(.+)$/i.exec(line)
+    if (location) need(location[1] === listing.location, 'full native criteria workplace conflict')
+    const residence = /^(?:candidates?|applicants?|you|employees?)\s+(?:must|are required to)\s+(?:currently\s+)?(?:be\s+)?(?:reside|live|work|based)\s+in\s+(.+?)[.!]?$/i.exec(line)
+    if (residence) need(explicitAvaamoCountry(residence[1]) === 'India', 'full native criteria country residence conflict')
+  }
   const applies = doc.nodes(node => node.tag === 'a' && node.attrs['data-framer-name'] === 'Apply now' && /^Apply now\b/i.test(doc.text(node))).map(node => node.attrs.href)
   need(applies.length > 0 && new Set(applies).size === 1 && /^mailto:[^\s<>]+@(?:avaamo\.ai|avaamo\.com)(?:\?[^\s<>]*)?$/i.test(applies[0]), 'native public apply handoff missing or ambiguous')
   const blocks = children(content).map(node => doc.text(node))

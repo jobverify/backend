@@ -12,7 +12,7 @@ import {
   hasOfficialCareersSignal,
   hasOfficialHomepageSignal,
   hasOfficialJobs404Signal,
-} from './script.js'
+} from './legacy20261120.js'
 
 const homepageHtml = `
   <!doctype html>

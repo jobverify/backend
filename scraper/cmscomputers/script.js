@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { CANONICAL_CITIES } from '../../scraper-support/utils/cities.js'
 import { extractJobFilterSignals } from '../../src/utils/jobFilterSignals.js'
+import {runCurrentCms} from './currentNative20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -348,7 +349,7 @@ const mapWithConcurrency = async (items, mapper, concurrency = 6) => {
   return results
 }
 
-export const createCmsComputersScraper = ({
+const createLegacyCmsComputersScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
   async run(options = {}) {
@@ -376,6 +377,11 @@ export const createCmsComputersScraper = ({
     }))
   },
 })
+
+export const createCmsComputersScraper = (factoryOptions={}) => ({async run(options={}){
+  if(options.fetchText||options.fetchJson||options.fetchPortalForm)return createLegacyCmsComputersScraper(factoryOptions).run(options)
+  return runCurrentCms({...factoryOptions,...options})
+}})
 
 export const run = async (options) => createCmsComputersScraper().run(options)
 

@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-import { runCurrentTce } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -339,7 +338,7 @@ export const createTceScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => runCurrentTce(options)
+export const run = async (options = {}) => (await import('./currentPublished20261119.js')).runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

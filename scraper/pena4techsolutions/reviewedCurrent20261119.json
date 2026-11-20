@@ -1,0 +1,36 @@
+{
+  "source": "pena4techsolutions",
+  "qualificationProfile": "current-public-workplace-and-application-20261119",
+  "provenance": "Independently acquired current Pena4 corporate India-tab handoff, own pena4tech tenant, native public employer configuration,2 native City rows, original own application shell and all4 native programmes; no country from corporate addresses.",
+  "portalShell": {
+    "bytes": 61978,
+    "sha256": "1bd109332335fb1ac290831908a4fb64e611e72f4bbff2fe096e1a0815930785"
+  },
+  "programs": [
+    {
+      "label": "main",
+      "path": "/main.94af3b54956e0a0b.js",
+      "bytes": 1151297,
+      "sha256": "60bf15917810d50a81a99d915d0eababf3e887b1aff5aa70e5f46af3a03d3427"
+    },
+    {
+      "label": "runtime",
+      "path": "/runtime.e1dcfa1dbf970e90.js",
+      "bytes": 4650,
+      "sha256": "ddc1d3667d9ad72ab38134d73379d0359259b2aa803ba081188e2c2dbbf9b091"
+    },
+    {
+      "label": "careers-client",
+      "path": "/1020.5da02bbdf228dacf.js",
+      "bytes": 1444285,
+      "sha256": "153f719692b0bd3a3d65b804d4c9eca6950e0d20f12af7bfe7b26f0241091336"
+    },
+    {
+      "label": "detail-client",
+      "path": "/6460.1a1993033241bd99.js",
+      "bytes": 95552,
+      "sha256": "836863acc642f711dcb1b28be2daa4c2dca11d260cdd5e49c7cf846f751d48ec"
+    }
+  ],
+  "applicationsSubmitted": 0
+}

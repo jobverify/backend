@@ -2,7 +2,10 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import fs from 'node:fs'
 import { gunzipSync } from 'node:zlib'
-import { run } from './script.js'
+// This fixture asserts the historical Nov19 full-criteria hold contract.
+// Current partial publication is covered through the production factory in
+// currentPublished20261120.test.js.
+import { runCurrentUpstox as run } from './currentNative.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { readSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 

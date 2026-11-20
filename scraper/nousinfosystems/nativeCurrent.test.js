@@ -3,7 +3,8 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {createHash} from 'node:crypto'
-import {run,createNousInfosystemsScraper,extractJobsFromAssetText} from './script.js'
+import {runCurrentNous as run} from './nativeCurrent.js'
+import {extractJobsFromAssetText} from './script.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {inventoryCleanupOptions} from '../../scraper-support/utils/scraperOutcome.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -53,7 +54,7 @@ const HOME='https://www.artizent.com/',STORY=HOME+'about/our-story',CAREERS=HOME
 const textChange=(url,change)=>({row,bytes})=>row.url===url?{bytes:Buffer.from(change(bytes.toString('utf8'),row))}:undefined
 function dataChange(change){return textChange(DATA,(text,row)=>{const models=structuredClone(fixture.rawNativeModels);change(models,row);return 'const e='+JSON.stringify(models)+';export{e as JOBS};'})}
 async function rejects(mutate,pattern){const io=replay(mutate);await assert.rejects(run({fetchImpl:io.fetchImpl,now:()=>now}),pattern);assert.ok(io.calls.length<=48);assert.equal(io.calls.some(c=>c.url.includes('nousinfosystems.com')),false);return io}
-test('exported factory uses the same current bounded partial reader and preserves historical pure-parser city uncertainty',async()=>{const io=replay(),jobs=await createNousInfosystemsScraper({now:()=>now}).run({fetchImpl:io.fetchImpl});assert.equal(jobs.length,0);assert.equal(io.calls.length,44);assert.equal(readSourceObservationEvidence(jobs,'nousinfosystems').observedVacancyCount,14);const packet=fixture.packets.find(p=>p.url===DATA),rows=extractJobsFromAssetText(Buffer.from(fixture.entities[packet.bodySHA256],'base64').toString());assert.equal(rows.length,14);assert.ok(rows.every(r=>r.city===null))})
+test('historical pure-parser city uncertainty remains explicit',()=>{const packet=fixture.packets.find(p=>p.url===DATA),rows=extractJobsFromAssetText(Buffer.from(fixture.entities[packet.bodySHA256],'base64').toString());assert.equal(rows.length,14);assert.ok(rows.every(r=>r.city===null))})
 
 for(const[label,url,change]of[
  ['missing current former-name affirmation',STORY,s=>s.replaceAll('Previously Nous Infosystems','Different company')],

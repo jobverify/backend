@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { SMARTSTREAM_TECHNOLOGIES_CATALOG as PROVIDER_METADATA } from './catalog.js'
-import { runCurrentSmartStream } from './currentNative.js'
+import { runCurrentSmartStreamMarkdown as runCurrentSmartStream } from './currentMarkdown20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 

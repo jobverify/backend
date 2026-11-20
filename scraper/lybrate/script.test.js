@@ -41,14 +41,14 @@ test('Lybrate recognizes the current first-party jobs redirect loop', () => {
   }), true)
 })
 
-test('Lybrate still treats the dead Lever payload as the authoritative empty result', () => {
+test('Lybrate recognizes the exact unavailable Lever payload', () => {
   assert.equal(isDeadEmbeddedJobsApiResponse({
     ok: false,
     error: 'Document not found',
   }), true)
 })
 
-test('Lybrate returns an empty set when about CTA, jobs redirect loop, and dead Lever payload all match', async () => {
+test('Lybrate legacy callbacks preserve an empty observation without proving a company zero', async () => {
   const scraper = createLybrateScraper()
 
   const jobs = await scraper.run({

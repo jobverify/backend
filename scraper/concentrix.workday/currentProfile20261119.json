@@ -1,0 +1,190 @@
+{
+  "approvedRendererSHA256": [
+    "38a4fd006bac3aa6f3743c3bcb648763f12091b5a3258030c69dc42dc7e3aae6",
+    "a0d5cb26f5a008adb9c45e2efc23b910a77b39ee20339301fd3a3879a18b18ca"
+  ],
+  "approvedPrimaryPresentation": [
+    [
+      "a",
+      "class",
+      "jdq-btn jdq-btn-primary"
+    ],
+    [
+      "body",
+      "class",
+      "wp-singular page-template-default page page-id-113 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default loftloader-lite-enabled elementor-default elementor-kit-7 elementor-page elementor-page-113"
+    ],
+    [
+      "div",
+      "class",
+      "e-con-inner"
+    ],
+    [
+      "div",
+      "class",
+      "elementor elementor-113"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-element elementor-element-08a7e29 e-flex e-con-boxed e-con e-parent"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-element elementor-element-c40f667 elementor-widget elementor-widget-jdq-job-single-widget"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-widget-container"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-apply-link jdq-apply-bottom"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-apply-link jdq-apply-top"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-body"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-meta"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-single-job-container"
+    ],
+    [
+      "div",
+      "class",
+      "page-content"
+    ],
+    [
+      "h1",
+      "class",
+      "jdq-job-title"
+    ],
+    [
+      "main",
+      "class",
+      "site-main post-113 page type-page status-publish has-post-thumbnail hentry"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ]
+  ],
+  "approvedCriteriaPresentation": [
+    [
+      "a",
+      "class",
+      "jdq-btn jdq-btn-primary"
+    ],
+    [
+      "body",
+      "class",
+      "wp-singular page-template-default page page-id-113 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default loftloader-lite-enabled elementor-default elementor-kit-7 elementor-page elementor-page-113"
+    ],
+    [
+      "div",
+      "class",
+      "e-con-inner"
+    ],
+    [
+      "div",
+      "class",
+      "elementor elementor-113"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-element elementor-element-08a7e29 e-flex e-con-boxed e-con e-parent"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-element elementor-element-c40f667 elementor-widget elementor-widget-jdq-job-single-widget"
+    ],
+    [
+      "div",
+      "class",
+      "elementor-widget-container"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-apply-link jdq-apply-bottom"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-apply-link jdq-apply-top"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-body"
+    ],
+    [
+      "div",
+      "class",
+      "jdq-single-job-container"
+    ],
+    [
+      "div",
+      "class",
+      "page-content"
+    ],
+    [
+      "li",
+      "style",
+      "color:black !important"
+    ],
+    [
+      "main",
+      "class",
+      "site-main post-113 page type-page status-publish has-post-thumbnail hentry"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "p",
+      "style",
+      "color:!important"
+    ],
+    [
+      "span",
+      "style",
+      "color:#000000"
+    ],
+    [
+      "span",
+      "style",
+      "color:#242424"
+    ],
+    [
+      "span",
+      "style",
+      "font-size:7pt"
+    ],
+    [
+      "span",
+      "style",
+      "font-size:inherit"
+    ]
+  ]
+}

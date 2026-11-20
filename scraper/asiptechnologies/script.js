@@ -77,7 +77,7 @@ export const extractListings = (html) => {
 
 export const createAsipTechnologiesScraper = (defaults = {}) => createCurrentAsipScraper(defaults)
 
-export const run = async (options = {}) => createAsipTechnologiesScraper().run(options)
+export const run = async (options = {}) => (await import('./currentQualified20261119.js')).runAsipQualified(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

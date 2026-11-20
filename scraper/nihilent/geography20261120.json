@@ -1,0 +1,20 @@
+{
+  "kind": "independent-whole-role-municipal-workplace-proof",
+  "typedCountryAsserted": false,
+  "inferredFromCorporateAddress": false,
+  "places": [
+    {
+      "labels": [
+        "Pune"
+      ],
+      "city": "Pune",
+      "country": "India",
+      "reference": {
+        "url": "https://pune.gov.in/en/",
+        "originalSHA256": "792d6b8dbbcbd1468d9be4983f64f433e62d1944fd1e3cd9266c21b68f2b84a7",
+        "originalBytes": 213271,
+        "originalObservedAt": "2026-11-19T22:34:03.512Z"
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import {runCurrentPublications} from './currentNative20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -28,15 +29,6 @@ const stripTags = (value) => normalizeWhitespace(
     .replace(/<p\b[^>]*>/gi, '\n')
     .replace(/<[^>]+>/g, ' '),
 )
-
-const toAbsoluteUrl = (value) => {
-  if (!value) return null
-  try {
-    return new URL(value, BASE_URL).toString()
-  } catch {
-    return null
-  }
-}
 
 const extractFirst = (pattern, value, transform = (match) => match[1]) => {
   const match = pattern.exec(String(value ?? ''))
@@ -214,7 +206,7 @@ const defaultFetchText = async (url) => {
   return response.text()
 }
 
-export const createElitmusScraper = ({ fetchText = defaultFetchText } = {}) => ({
+export const createLegacyElitmusScraper = ({ fetchText = defaultFetchText } = {}) => ({
   run: async ({ fetchText: overrideFetchText } = {}) => {
     const fetchImpl = overrideFetchText || fetchText
     const listingHtml = await fetchImpl(CAREER_PAGE_URL)
@@ -239,7 +231,10 @@ export const createElitmusScraper = ({ fetchText = defaultFetchText } = {}) => (
   },
 })
 
-export const run = async (options = {}) => createElitmusScraper().run(options)
+// Explicit text-only callers retain the old parser interface. Ordinary
+// production options use original HTTP metadata and current own Careers roles.
+export const createElitmusScraper = (options = {}) => ({run:(runOptions={})=>typeof(runOptions.fetchText??options.fetchText)==='function'?createLegacyElitmusScraper(options).run(runOptions):runCurrentPublications({...options,...runOptions})})
+export const run = (options = {}) => typeof options.fetchText==='function'?createLegacyElitmusScraper(options).run(options):runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

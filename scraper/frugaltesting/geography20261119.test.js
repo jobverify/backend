@@ -49,11 +49,17 @@ test('changed closing criteria, changed listing or changed application location 
 })
 
 test('explicit foreign country, employer and closed criteria remain held despite a Hyderabad metadata label',async()=>{
- for(const line of ['Country: Pakistan','Employer: Another Company','Applications are closed.']){
+ for(const line of ['Country: Pakistan','Location: Hyderabad, Pakistan','Employer: Another Company','Applications are closed.','Candidates must reside in Pakistan.']){
   const io=replay((url,html)=>url.endsWith('/sales-executive')?html.replace('Managing organizational sales','<p>'+line+'</p>Managing organizational sales'):html)
   const jobs=await runFrugalNative(io.options)
   assert.equal(jobs.filter(j=>j.jobId==='sales-executive'&&j.country==='India').length,0,line)
  }
+})
+
+test('a new contradictory JobPosting model cannot be ignored in favor of native form geography',async()=>{
+ const io=replay((url,html)=>url.endsWith('/sales-executive')?html.replace('</head>','<script type="application/ld+json">{"@type":"JobPosting","title":"Sales Executive","jobLocation":{"address":{"addressCountry":"PK"}}}</script></head>'):html)
+ const jobs=await runFrugalNative(io.options)
+ assert.equal(jobs.filter(j=>j.jobId==='sales-executive'&&j.country==='India').length,0)
 })
 
 test('unavailable or disabled same-role application options do not qualify a Hyderabad country',async()=>{

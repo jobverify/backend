@@ -1,0 +1,44 @@
+[
+  {
+    "source": "blackrock",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/blackrock.workday/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "bounded-current-observed-native-results-and-role-pages-with-closing-reconciliation",
+    "extractionStrategy": "current-own-employer-publication+native-role-identity-and-country+original-public-criteria-and-dates+own-application-link",
+    "parser": "custom-script",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedSurfaceSummary": "Routes acquisition to the source-local current native publication reader. Observed roles require current employer, identity, country and application reconciliation. Missing descriptions remain explicit partial records when independent publication checks pass. Whole-company inventory, remaining pagination, backend activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  },
+  {
+    "source": "concentrix",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/concentrix.workday/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "current-native-country-renderer-role-reconciliation",
+    "extractionStrategy": "current-own-wordpress-published-india-models-and-role-pages",
+    "parser": "custom-script",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedSurfaceSummary": "Routes acquisition to the source-local reader of the current own India country search and observed role pages. Native external requisition IDs, employer, country, public criteria, dates and exact own Workday application links require closing reconciliation. Whole-company totals, backend application activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  },
+  {
+    "source": "epam",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/epam/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "bounded-current-first-native-results-and-role-pages-with-closing-reconciliation",
+    "extractionStrategy": "current-own-server-rendered-role-contexts+native-identity-and-country+original-public-criteria-and-dates+own-application-link",
+    "parser": "custom-script",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedSurfaceSummary": "Routes acquisition to the source-local current own server-rendered publication reader. Observed roles require native identity, employer, country and application reconciliation. Valid partial records retain their missing-criteria status. Remaining pagination, whole-company totals, backend activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  }
+]

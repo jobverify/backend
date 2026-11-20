@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import {runNative} from './native.js'
+import {runCurrentPublications} from './currentPublished20261120.js'
 import {EMERGYS_CATALOG} from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -9,12 +9,12 @@ const currentDir = path.dirname(fileURLToPath(import.meta.url))
 export const SOURCE = "emergys"
 export const COMPANY = "Emergys"
 export const CAREERS_URL = EMERGYS_CATALOG.companyCareerPage
-export const DISPOSITION = 'native-public-role-page-integration'
+export const DISPOSITION = 'current-own-published-valid-partials'
 export const VERIFIED_ON = null
 export const PROVIDER_METADATA = EMERGYS_CATALOG
 export const VERIFIED_SURFACE_SUMMARY = EMERGYS_CATALOG.verifiedSurfaceSummary
 
-export const run = options=>runNative(options)
+export const run = options=>runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

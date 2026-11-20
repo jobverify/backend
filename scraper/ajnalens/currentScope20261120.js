@@ -1,0 +1,29 @@
+import {isDeepStrictEqual} from 'node:util'
+import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
+import {createCurrentReader} from './currentRead20261120.js'
+import {nativeFlightRows} from './currentFlight20261120.js'
+
+const SOURCE='ajnalens',HOME='https://www.ajnalens.com/',CAREERS=HOME+'careers'
+const need=(ok,message)=>{if(!ok)throw firstPartyFailure(SOURCE,message,{failureKind:'parser_or_contract_error'})}
+const objects=(value,predicate,out=[])=>{if(!value||typeof value!=='object')return out;if(!Array.isArray(value)&&predicate(value))out.push(value);for(const child of Object.values(value))objects(child,predicate,out);return out}
+function page(html,url){const d=readNativeDocument(html),canonical=d.nodes(n=>n.tag==='link'&&(n.attrs.rel??'').toLowerCase().split(/\s+/).includes('canonical'));need(canonical.length===1&&(canonical[0].attrs.href===url||url===HOME&&canonical[0].attrs.href===HOME.slice(0,-1)),'current own canonical publisher differs');need(activeHead(html).titles.some(t=>/AjnaLens/i.test(t)),'current own publisher unavailable');need(!d.nodes(n=>n.tag==='base'||n.tag==='meta'&&/refresh/i.test(n.attrs['http-equiv']??'')).length,'unreviewed native navigation');return d}
+function authority(html){const d=page(html,HOME),links=d.nodes(n=>n.tag==='a'&&n.attrs.href);need(links.some(n=>{try{return new URL(n.attrs.href,HOME).href===CAREERS}catch{return false}}),'current own homepage does not declare careers');return{url:HOME,publisher:'AjnaLens',careers:CAREERS,legalEmployer:null}}
+function openings(html){
+ const d=page(html,CAREERS);need(activeHead(html).titles.some(t=>/careers/i.test(t))&&d.nodes(n=>n.tag==='h2'&&d.text(n)==='Current Openings').length===1,'current own native openings heading unavailable')
+ const frames=nativeFlightRows(html),collections=frames.flatMap(f=>f.kind==='model'?objects(f.value,n=>Array.isArray(n.openings_list)):[]);need(collections.length===1,'current literal native opening collection unavailable or ambiguous')
+ const rows=objects(collections[0].openings_list,n=>Object.hasOwn(n,'ttile')&&Object.hasOwn(n,'id')),ids=new Set();need(rows.length>0&&rows.length<=100,'no bounded native opening observations; no zero proof')
+ for(const row of rows){need(Number.isSafeInteger(row.id)&&row.id>0&&!ids.has(row.id)&&typeof row.ttile==='string'&&row.ttile.trim(),'native opening identity missing or duplicated');ids.add(row.id);need(d.nodes(n=>n.tag==='h6'&&d.text(n)===row.ttile).length===1,'same current public/native opening title ambiguous or unavailable')}
+ return{rows,originalNativeCollection:collections[0],originalNativeWireRows:frames,originalHTML:html,nativeCreatedAtIsPublicationDate:false,nativeProgrammeExecuted:false,clientRendererQualified:false,applicationControlsQualified:false}
+}
+export async function runCurrentScope(options={}){
+ options.signal?.throwIfAborted();const at=(typeof options.now==='function'?options.now():options.now)??new Date().toISOString();need(Number.isFinite(Date.parse(at)),'invalid observation clock');const reader=createCurrentReader(options,u=>[HOME,CAREERS].includes(u)),responses=[]
+ const read=async(url,phase)=>{const p=await reader.read(url,{phase});responses.push({...p,requestedUrl:url,phase});return p.text}
+ try{
+  const openingPublisher=authority(await read(HOME,'opening')),opening=openings(await read(CAREERS,'opening')),closingPublisher=authority(await read(HOME,'closing')),closing=openings(await read(CAREERS,'closing')),jobs=[];need(isDeepStrictEqual(openingPublisher,closingPublisher),'current corporate publisher/delegation changed')
+  const audit={source:SOURCE,scopeDisposition:'unresolved-native-scope',observedRecordCount:opening.rows.length,observedVacancyCount:opening.rows.length,openingPublisher,closingPublisher,nativeOpeningObservation:opening,nativeClosingObservation:closing,currentOpeningClosingNativeModelsEqual:isDeepStrictEqual(opening.rows,closing.rows),originalResponses:responses,nativeTransport:reader.stats(),nativeWorkplaceCountryQualificationComplete:false,fullCriteriaPublished:false,nativeCreatedAtUsedAsPostingDate:false,currentPublicApplicationControlsQualified:false,positiveRoleQualificationRequired:true,sourceScopeComplete:false,sourceListingComplete:false,companyIndiaTotal:null,companyGlobalTotal:null,lifecycleCleanupAllowed:false,applicationsSubmitted:false}
+  attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:opening.rows.length,observedVacancyCount:opening.rows.length,sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true});if(options.onAudit)await reader.callback(options.onAudit,structuredClone(audit));reader.check();const result=attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS,firstParty:true,listingComplete:false,pagesFetched:responses.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:at,lifecycleCleanupAllowed:false,reason:'current-own-public-title-and-original-native-opening-models-retained;authored-workplace-country-and-current-application-control-binding-unqualified;no-India-or-company-empty-claim'});reader.check();return result
+ }catch(error){reader.check();if(error&&typeof error==='object')Object.assign(error,{sourceAudit:{source:SOURCE,scopeDisposition:'unresolved-native-scope',originalResponses:responses,nativeTransport:reader.stats(),sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null,lifecycleCleanupAllowed:false}});throw error}finally{reader.close()}
+}
