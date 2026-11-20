@@ -132,6 +132,7 @@ test("rate-limit handler emits the shared JSON contract with an explicit Retry-A
     code: 429,
     error: "rate_limited",
     success: false,
+    retryAfterSeconds: 900,
     message: "Too many requests",
   });
 });

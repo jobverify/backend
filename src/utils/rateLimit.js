@@ -107,6 +107,7 @@ export const createApiRateLimitHandler = (config) => {
       code: 429,
       error: "rate_limited",
       success: false,
+      retryAfterSeconds,
       message: String(normalizedConfig.message ?? "Too many requests"),
     });
   };

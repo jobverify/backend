@@ -43,10 +43,12 @@ import { requestDiagnostics } from './middleware/requestDiagnostics.js';
 import { observeLoginFailures } from './monitoring/errorEvents.js';
 import { captureLoginFailure } from './monitoring/sentry.js';
 import { SECURITY_DISCLOSURE } from './security/disclosurePolicy.js';
+import { createAssistantRouter } from './routes/assistantRoutes.js';
 
-export function createApp({ isReady = () => mongoose.connection.readyState === 1, ingressLimit = 1200 } = {}) {
+export function createApp({ isReady = () => mongoose.connection.readyState === 1, ingressLimit = 1200, assistantModel } = {}) {
   const env = process.env;
   const app = express();
+  app.locals.assistantAvailable = typeof assistantModel === 'function';
   app.set("trust proxy", parseTrustProxy(env.TRUST_PROXY));
   app.disable("x-powered-by");
   app.use(requestDiagnostics);
@@ -124,6 +126,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   app.use(express.json({
     limit: "32kb",
     verify: (req, _res, buffer) => {
+      if (/^\/api\/assistant\/messages\/?$/i.test(req.path)) req.assistantBodyBytes = buffer.length;
       if (req.path === "/api/billing/webhook") {
         req.rawBody = buffer.toString("utf8");
       }
@@ -224,6 +227,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   app.use("/api/companies", companyRoutes);
   app.use("/api/user", noStore, userRoutes);
   app.use('/api/job-verifications', noStore, jobVerificationRoutes);
+  app.use('/api/assistant', noStore, createAssistantRouter({ model: assistantModel }));
   app.use("/api/billing", noStore, billingRoutes);
   app.use('/api/content-reports', noStore, contentReportRoutes);
   app.use("/api/scrape", noStore, scrapeRoutes);

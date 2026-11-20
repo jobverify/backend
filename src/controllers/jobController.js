@@ -1,3 +1,5 @@
+import { searchJobs, PremiumJobFiltersError } from '../services/jobSearchService.js';
+import { JOB_LIST_CARD_PROJECTION, JOB_LIST_CARD_TEXT_PROJECTION, JOB_LIST_CARD_AGGREGATE_PROJECT } from '../utils/jobListCardFields.js';
 import { CALENDAR_POSTED_PERIODS } from "../utils/jobPostedDateFilter.js";
 /**
  * @file Controllers for job listing searches, metadata extraction, and analytics tracking.
@@ -51,9 +53,6 @@ import { publicDescriptionFields } from '../utils/jobDescriptionDisplay.js';
 import { hasWorkdayOutageSignal } from "../../scraper-support/myworkday/engine.js";
 import {
   SearchInputError,
-  buildJobSearchRequest,
-  decodeJobSearchCursor,
-  encodeJobSearchCursor,
 } from "../services/jobSearchContract.js";
 import {
   JOB_DATASET_LIFECYCLE_VERSION,
@@ -113,48 +112,6 @@ const PREMIUM_FILTER_KEYS = [
   "workArrangement",
   "datePostedDays",
 ];
-const JOB_LIST_CARD_FIELDS = Object.freeze([
-  "title",
-  "company",
-  "location",
-  "city",
-  "locations",
-  "jobType",
-  "experienceRequired",
-  "primaryRoleDomain",
-  "seniority",
-  "workArrangement",
-  "eligibleBatches",
-  "eligibleBatchRange",
-  "eligibleBatchesProvenance",
-  "branches",
-  "postedAt",
-  "employerPostedAt",
-  "postedAtProvenance",
-  "postedAtProvenanceValue",
-  "lastSeenAt",
-  "closingDate",
-  "salary",
-  "employerExperienceLevel",
-  "employerStreetAddress",
-  "requiredSkills",
-  "jobSkills",
-  "applyUrl",
-  "sourceUrl",
-  "workdayApplicationStatus",
-  "workdayApplicationStatusReason",
-  "workdayApplicationStatusCheckedAt",
-]);
-const JOB_LIST_CURSOR_FIELDS = Object.freeze(["sortDate", "clickCount"]);
-const JOB_LIST_QUERY_FIELDS = Object.freeze([
-  ...new Set([...JOB_LIST_CARD_FIELDS, ...JOB_LIST_CURSOR_FIELDS, 'classification', 'employmentType', 'experienceLevel',
-    'sourceRemoteStatusUnresolved', 'remoteStatus']),
-]);
-const JOB_LIST_CARD_PROJECTION = JOB_LIST_QUERY_FIELDS.join(" ");
-const JOB_LIST_CARD_TEXT_PROJECTION = Object.freeze(
-  Object.fromEntries(JOB_LIST_QUERY_FIELDS.map((field) => [field, 1])),
-);
-const JOB_LIST_CARD_AGGREGATE_PROJECT = { ...JOB_LIST_CARD_TEXT_PROJECTION, _publicJobType: PUBLIC_JOB_TYPE_EXPRESSION };
 
 const escapeRegex = (value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -1359,130 +1316,47 @@ export const getAllJobs = async (req, res) => {
   }
 };
 
-const buildCursorBoundary = (cursor, sort) => {
-  if (!cursor) return null;
-
-  if (sort === "popularity") {
-    return {
-      $or: [
-        { clickCount: { $lt: cursor.clickCount } },
-        { clickCount: cursor.clickCount, sortDate: { $lt: cursor.cursorDate } },
-        { clickCount: cursor.clickCount, sortDate: cursor.cursorDate, _id: { $lt: cursor.id } },
-      ],
-    };
-  }
-
-  const comparison = sort === "oldest" ? "$gt" : "$lt";
-  return {
-    $or: [
-      { sortDate: { [comparison]: cursor.cursorDate } },
-      { sortDate: cursor.cursorDate, _id: { [comparison]: cursor.id } },
-    ],
-  };
-};
-
-const buildCursorSort = (sort) => {
-  if (sort === "oldest") {
-    return { sortDate: 1, _id: 1 };
-  }
-
-  if (sort === "popularity") {
-    return { clickCount: -1, sortDate: -1, _id: -1 };
-  }
-
-  return { sortDate: -1, _id: -1 };
-};
-
-const buildCursorSearchPipeline = ({ filters, boundary, sort, pageSize }) => {
-  const pipeline = [{ $match: filters }];
-
-  if (boundary) {
-    pipeline.push({ $match: boundary });
-  }
-
-  pipeline.push(
-    { $sort: buildCursorSort(sort) },
-    { $limit: pageSize + 1 },
-    { $project: JOB_LIST_CARD_AGGREGATE_PROJECT },
-  );
-
-  return pipeline;
-};
-
 /**
  * Cursor-based JSON search. The database receives one composed predicate and
  * returns at most pageSize + 1 documents, so application work is O(pageSize).
  */
 export const getJobSearch = async (req, res) => {
-  const startedAt = performance.now();
   const requestId = String(req.headers?.["x-request-id"] || "").trim() || randomUUID();
   try {
     res.set("Cache-Control", req.user ? PRIVATE_CACHE_HEADER : PUBLIC_CACHE_HEADER);
     res.set("X-Request-Id", requestId);
     const searchInput = req.method === "GET" ? req.query : req.body;
-    const request = buildJobSearchRequest(searchInput);
-    const hasPremiumAccess = canUsePremiumFilters(req.user, new Date(), req.siteSettings);
-
-    if (!hasPremiumAccess && Object.keys(request.filters).length > 0) {
-      return res.status(403).json({
-        success: false,
-        premiumRequired: true,
-        feature: "job_filters",
-        message: "Filters are available on Jobverify Premium.",
-      });
-    }
-
-    const cursor = searchInput?.cursor ? decodeJobSearchCursor(searchInput.cursor, request) : null;
-    const filters = jobFilters(request.filters, undefined, req.siteSettings);
-    const boundary = buildCursorBoundary(cursor, request.sort);
-    const pipeline = buildCursorSearchPipeline({
-      filters,
-      boundary,
-      sort: request.sort,
-      pageSize: request.pageSize,
+    const { data, pagination, queryMs, filterHash } = await searchJobs(searchInput, {
+      user: req.user, siteSettings: req.siteSettings,
     });
-    const aggregate = Job.aggregate(pipeline);
-    if (typeof aggregate.option === "function") {
-      aggregate.option({ maxTimeMS: MAX_QUERY_EXECUTION_MS });
-    }
-    const rows = await aggregate.exec();
-    const hasNextPage = rows.length > request.pageSize;
-    const data = hasNextPage ? rows.slice(0, request.pageSize) : rows;
-    const last = data.at(-1);
-    const queryMs = Math.max(0, Math.round((performance.now() - startedAt) * 100) / 100);
-    const nextCursor = hasNextPage && last
-      ? encodeJobSearchCursor({
-        filterHash: request.filterHash,
-        sort: request.sort,
-        cursorDate: last.sortDate,
-        id: String(last._id),
-        clickCount: last.clickCount,
-      })
-      : null;
 
     res.set("Server-Timing", `total;dur=${queryMs}`);
     if (!isProductionEnvironment()) {
       console.info(JSON.stringify({
         event: "job_search",
         requestId,
-        queryShape: request.filterHash.slice(0, 12),
+        queryShape: filterHash.slice(0, 12),
         durationMs: queryMs,
         returnedRows: data.length,
-        pageSize: request.pageSize,
-        hasNextPage,
+        pageSize: pagination.limit,
+        hasNextPage: pagination.hasNextPage,
       }));
     }
     return res.status(200).json({
       code: 200,
       success: true,
       data: data.map(normalizeJobListResponseJob),
-      pagination: { limit: request.pageSize, hasNextPage, nextCursor },
+      pagination,
       meta: {
         requestId,
         queryMs,
       },
     });
   } catch (error) {
+    if (error instanceof PremiumJobFiltersError) {
+      return res.status(403).json({ success: false, premiumRequired: true,
+        feature: error.feature, message: error.message });
+    }
     if (error instanceof SearchInputError) {
       return res.status(422).json({ success: false, ...error.toResponse() });
     }
