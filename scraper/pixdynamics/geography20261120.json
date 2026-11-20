@@ -1,0 +1,20 @@
+{
+  "kind": "independent-whole-role-municipal-or-state-workplace-proof",
+  "inferredFromCorporateAddress": false,
+  "typedCountryAsserted": false,
+  "places": [
+    {
+      "labels": [
+        "Mumbai"
+      ],
+      "city": "Mumbai",
+      "country": "India",
+      "reference": {
+        "url": "https://mumbaicity.gov.in/en/",
+        "originalSHA256": "ae8b810211242ae8871076b650be9c3cdea47334e21454d00046e9f00cc9da27",
+        "originalBytes": 218510,
+        "originalObservedAt": "2026-11-19T22:47:08.107Z"
+      }
+    }
+  ]
+}

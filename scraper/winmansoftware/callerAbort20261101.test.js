@@ -16,7 +16,9 @@ const links = titles.map((_, index) => 'https://www.winmansoftware.com/more/care
 const current = `<title>Careers &#8211; Winman Software</title><table id="freshers"><tr><td>${titles.map((title, index) => `<a href="${links[index]}">${title}</a>`).join('')}</td></tr></table>
 <table id="experienced"><tr><td><h4>Senior Accountant</h4><ul><li>Oversee finalisation of accounts.</li></ul></td><td>2 years</td></tr></table><a href="${APPLY_URL}">Apply Now</a>`
 const detail = title => `<h1 class="job-title">${title}</h1><div>Winman Software India LLP</div><div>Mangalore</div><ul class="job-summary"><li>Build and test software.</li></ul><p class="qualification">B.E.</p><button onclick="window.open('${APPLY_URL}')">Apply Now</button>`
-const response = (html, url = CAREERS_URL) => ({ ok: true, status: 200, url, headers: new Headers({ 'content-type': 'text/html' }), text: async () => html })
+const streamResponse = read => ({ status: 200, url: CAREERS_URL, redirected: false,
+  headers: new Headers({ 'content-type': 'text/html' }),
+  body: { getReader: () => ({ read, cancel() {}, releaseLock() {} }) } })
 const outcome = async promise => {
   let timer
   try { return await Promise.race([promise.then(value => ({ state: 'fulfilled', value }), error => ({ state: 'rejected', error })), new Promise(resolve => { timer = setTimeout(() => resolve({ state: 'pending' }), 80) })]) }
@@ -82,7 +84,7 @@ test('Winman default fetch composes caller signal during a noncooperative reques
 test('Winman default pending body preserves null caller reason before parsing or retries', async t => {
   const controller = new AbortController(), started = deferred()
   let calls = 0
-  t.mock.method(globalThis, 'fetch', async () => { calls++; return { ...response(legacy), text: async () => { started.resolve(); return never() } } })
+  t.mock.method(globalThis, 'fetch', async () => { calls++; return streamResponse(() => { started.resolve(); return never() }) })
   const promise = run({ signal: controller.signal })
   await started.promise
   controller.abort(null)
@@ -95,7 +97,7 @@ for (const field of ['code', 'surface']) test('Winman default body cancellation 
   const controller = new AbortController()
   let reads = 0, calls = 0
   const reason = Object.freeze(Object.defineProperty({}, field, { get() { reads++; throw new Error('Opaque body reason must stay unread') } }))
-  t.mock.method(globalThis, 'fetch', async () => { calls++; return { ...response(legacy), text: async () => { controller.abort(reason); return legacy } } })
+  t.mock.method(globalThis, 'fetch', async () => { calls++; return streamResponse(async () => { controller.abort(reason); return { done: false, value: Buffer.from(legacy) } }) })
   const result = await outcome(run({ signal: controller.signal }))
   assert.equal(result.state, 'rejected')
   assert.equal(result.error, reason)
@@ -156,22 +158,21 @@ test('Winman legacy healthy mapping retains content and does not receive invente
   assert.equal(jobs[0].closingDate, null)
   assert.equal(jobs[0].applyUrl, APPLY_URL)
 })
-test('Winman default request retains the shared15second deadline', async t => {
-  const deadlines = []
-  t.mock.method(AbortSignal, 'timeout', milliseconds => { deadlines.push(milliseconds); return new AbortController().signal })
-  t.mock.method(globalThis, 'fetch', async () => response(legacy))
-  assert.equal((await run()).length, 2)
-  assert.deepEqual(deadlines, [15000])
-})
-test('Winman default shared retry budget still permits three ordinary attempts', async t => {
+test('Winman default original Response request retains a15second deadline', async t => {
   t.mock.timers.enable({ apis: ['setTimeout'] })
-  let calls = 0
-  t.mock.method(globalThis, 'fetch', async () => { if (++calls < 3) throw new Error('Controlled retryable transport failure'); return response(legacy) })
+  let calls = 0, transportSignal
+  t.mock.method(globalThis, 'fetch', (_url, init) => { calls++; transportSignal = init.signal; return never() })
   const promise = run()
   const drain = async () => { for (let index = 0; index < 40; index++) await Promise.resolve() }
   await drain(); assert.equal(calls, 1)
-  t.mock.timers.tick(2000); await drain(); assert.equal(calls, 2)
-  t.mock.timers.tick(4000); await drain()
-  assert.equal((await promise).length, 2)
-  assert.equal(calls, 3)
+  t.mock.timers.tick(14999); await drain(); assert.equal(transportSignal.aborted, false)
+  t.mock.timers.tick(1); await drain(); await assert.rejects(promise, error => error?.name === 'TimeoutError')
+  assert.equal(transportSignal.aborted, true); assert.equal(calls, 1)
+})
+test('Winman default original Response acquisition makes one bounded attempt per declared read', async t => {
+  const failure = new Error('Controlled original transport failure')
+  let calls = 0
+  t.mock.method(globalThis, 'fetch', async () => { calls++; throw failure })
+  await assert.rejects(run(), error => error === failure)
+  assert.equal(calls, 1)
 })

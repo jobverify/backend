@@ -1,4 +1,4 @@
-import { runCurrentPena4 } from './currentNative20261117.js'
+import { runCurrentPena4Qualified } from './currentNative20261119.js'
 
 export const SOURCE = 'pena4techsolutions'
 export const COMPANY = 'Pena4 Tech Solutions'
@@ -14,6 +14,7 @@ export const PROVIDER_METADATA = {
   companyCareerPage: JOBS_URL,
   atsPlatform: 'official-first-party-jobs-page',
   countryFilter: 'India',
+  scraperTimeoutMs: 300000,
   paginationStrategy: 'single-page-region-tabs',
   extractionStrategy: 'verified-first-party-jobs-page+india-region-filter+same-page-application-form',
   parser: 'custom-script',
@@ -69,5 +70,5 @@ export const extractJobCards = (html) => {
   return cards
 }
 
-export const run = (options = {}) => runCurrentPena4(options)
+export const run = (options = {}) => runCurrentPena4Qualified(options)
 

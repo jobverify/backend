@@ -3,7 +3,7 @@ import test from 'node:test'
 
 const loadCultFitModule = async () => {
   try {
-    return await import('../../scraper/cultfit/script.js')
+    return await import('../../scraper/cultfit/legacyNative202607.js')
   } catch {
     assert.fail('Expected Cult.fit scraper module at ../../scraper/cultfit/script.js')
   }

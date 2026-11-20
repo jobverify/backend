@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { PAYU_CATALOG } from './catalog.js'
 import {fetchReviewedPayUPage,isCurrentPayUSurface,runCurrentPayU} from './currentNative20261116.js'
+import {runPayUPublications} from './currentPublished20261119.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -88,7 +89,7 @@ export const extractVisibleJobLocations = (html = '') => {
 export const jobBoardHasIndiaLocations = (html = '') =>
   extractVisibleJobLocations(html).some((location) => /\bindia\b/i.test(location))
 
-export const createPayUScraper = () => ({
+const createLegacyPayUScraper = () => ({
   async run({ fetchPage = defaultFetchPage, signal, now } = {}) {
     signal?.throwIfAborted()
     const read = async (url) => {
@@ -139,6 +140,10 @@ export const createPayUScraper = () => ({
   },
 })
 
+// Keep the explicit legacy fixture interface available to its existing callers;
+// ordinary production and Response callbacks use the current native reader.
+export const createPayUScraper = () => ({run: (options = {}) => options.fetchPage
+  ? createLegacyPayUScraper().run(options) : runPayUPublications(options)})
 export const run = async (options = {}) => createPayUScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

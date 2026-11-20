@@ -1,8 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import {runWebandcraftsNative} from './native.js'
-
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {runCurrentPublications} from './currentPublished20261120.js'
+import PROVIDER from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,6 +13,7 @@ export const CAREERS_URL = 'https://webandcrafts.com/careers'
 export const JOBS_INDEX_URL = 'https://webandcrafts.com/careers/job-openings'
 export const JOBS_API_URL = 'https://forms.webandcrafts.com/api/careers/career-job-listing'
 export const ATS_PLATFORM = 'webandcrafts-first-party-careers-api'
+export const PROVIDER_METADATA = PROVIDER
 
 const decodeHtml = (value) => String(value ?? '')
   .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 16)))
@@ -78,13 +78,6 @@ const normalizeLocationCase = (value) => {
 const normalizeLocation = (value) => {
   const normalized = normalizeLocationCase(value)
   if (!normalized) return null
-  return normalized
-}
-
-const extractCity = (location) => {
-  const normalized = normalizeWhitespace(location)?.replace(/,\s*India$/i, '')
-  if (!normalized) return null
-  if (/\b(or|and)\b|[/|,&-]/i.test(normalized)) return null
   return normalized
 }
 
@@ -366,7 +359,7 @@ export const extractDepartmentJobs = (payload, category) => {
 }
 
 export const createWebandcraftsScraper = (configuration = {}) => ({
-  run: (options = {}) => runWebandcraftsNative({...configuration, ...options}),
+  run: (options = {}) => runCurrentPublications({...configuration, ...options}),
 })
 
 export const run = async (options = {}) => createWebandcraftsScraper().run(options)

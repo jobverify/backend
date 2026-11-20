@@ -55,6 +55,8 @@ const GREENHOUSE_PAYLOAD = {
       absolute_url: 'https://boards.eu.greenhouse.io/nice/jobs/4913142101?gh_jid=4913142101',
       requisition_id: '11349',
       title: 'Data Scientist, Actimize',
+      // Explicit synthetic native unit evidence; product titles and contact domains alone do not qualify the employer unit.
+      departments: [{name: 'Actimize'}],
       location: { name: 'India - Pune' },
       first_published: '2026-07-01T10:00:00-04:00',
       updated_at: '2026-07-08T12:00:00-04:00',
@@ -76,6 +78,7 @@ const GREENHOUSE_PAYLOAD = {
       absolute_url: 'https://boards.eu.greenhouse.io/nice/jobs/4928151101?gh_jid=4928151101',
       requisition_id: '11449',
       title: 'Senior Software Engineer, AI',
+      departments: [{name: 'Actimize'}],
       location: { name: 'India - Pune' },
       first_published: '2026-07-02T10:00:00-04:00',
       updated_at: '2026-07-09T12:00:00-04:00',
@@ -139,9 +142,9 @@ const GREENHOUSE_PAYLOAD = {
 
 const loadModule = async () => {
   try {
-    return await import('../../scraper/niceactimize/script.js')
+    return await import('../../scraper/niceactimize/legacy20261120.js')
   } catch {
-    assert.fail('Expected NICE Actimize scraper module at ../../scraper/niceactimize/script.js')
+    assert.fail('Expected explicit historical NICE Actimize parser fixture module at ../../scraper/niceactimize/legacy20261120.js')
   }
 }
 

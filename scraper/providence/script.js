@@ -212,7 +212,7 @@ export const createProvidenceSolrScraper = ({
   },
 })
 
-export const run = async (options = {}) => createProvidenceScraper().run(options)
+export const run = async (options = {}) => (await import('./currentPublished20261119.js')).runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

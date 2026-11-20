@@ -1,28 +1,5 @@
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const PROVIDER_METADATA = {
-  "source": "lonza",
-  "companyName": "Lonza",
-  "adapter": "script",
-  "atsPlatform": "workbook-exact-name-sentinel",
-  "countryFilter": "India",
-  "paginationStrategy": "none",
-  "extractionStrategy": "exact-name-batch-coverage-sentinel-return-empty-until-public-surface-is-verified",
-  "parser": "custom-script",
-  "normalizationProfile": "engineering-default",
-  "verifiedOn": "2026-08-01",
-  "verifiedPublicJobCount": 0,
-  "verifiedIndiaJobCount": 0,
-  "verificationDisposition": "no-trustworthy-exact-name-public-jobs-flow-verified-locally",
-  "verifiedSurfaceSummary": "Workbook batch 09 exact-name sentinel for Lonza added on Saturday, August 1, 2026. It intentionally returns zero jobs until a trustworthy public careers surface is verified for this exact company name.",
-  "originalModulePath": "../workbookbatch09d/failClosedSentinel.js",
-  "backfillMode": "workday",
-  "modulePath": path.join(currentDir, 'script.js'),
-  "dryRunFile": path.join(currentDir, 'jobs.json')
-}
-
+import {fileURLToPath} from 'node:url'
+const currentDir=path.dirname(fileURLToPath(import.meta.url))
+export const PROVIDER_METADATA={source:'lonza',companyName:'Lonza',adapter:'script',modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json'),atsPlatform:'own-public-talent-community-nuxt',countryFilter:'India',companyCareerPage:'https://lonza.talent-community.com/projects',backfillMode:'live-parser',authoritativeCurrentPublication:true,scraperTimeoutMs:240000,paginationStrategy:'current-declared-public-country-SSR-GET-all-pages-opening-and-closing-before-two-bounded-own-role-details',extractionStrategy:'exact-Lonza-public-portal-account-native-country-option-full-native-role-DTOs-public-availability-Application-Deadline-and-same-ID-own-published-handoff',parser:'custom-script',normalizationProfile:'engineering-default',verifiedOn:'2026-11-20',verifiedPublicJobCount:null,verifiedIndiaJobCount:null,verifiedSurfaceSummary:'Current own Lonza anonymous public portal declares the projects route and country/page query protocol. All native India SSR pages close before two optional own role reads. Full native role criteria, publication dates and explicit Application Deadlines are retained and enforced; expired, wrong-employer and contradictory records are held. Current program filenames are discovered from declared imports; downloaded programs are parsed as data and never executed. Public contact addresses and service-specific legal-entity IDs do not establish role country or legal employer. Published roles remain explicit partials; company inventories, full application controls/backend activation and cleanup are unqualified.'}
 export default PROVIDER_METADATA
-export { PROVIDER_METADATA }

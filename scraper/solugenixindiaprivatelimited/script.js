@@ -346,7 +346,7 @@ export const createSolugenixIndiaPrivateLimitedScraper = ({
   },
 })
 
-export const run = async (options = {}) => createSolugenixIndiaPrivateLimitedScraper().run(options)
+export const run = async (options = {}) => (await import('./currentNative20261119.js')).runSolugenixNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -1,6 +1,7 @@
+// Historical body-only parser controls; client assignments here are not current target-employer proof.
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import * as simplify3x from './script.js'
+import * as simplify3x from './legacy20261120.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {filterIndiaJobs} from '../../scraper-support/utils/indiaLocationFilter.js'
 

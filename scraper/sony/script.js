@@ -87,9 +87,21 @@ export const createSonyScraper = ({ fetchImpl = globalThis.fetch, now = () => ne
     }
     const reviewed = new Map()
     for (const record of opening.records) reviewed.set(record.id, await detail(record))
-    verifyGlobalCorporate(await request(URLS.globalCorporate))
-    const globalNativeFirstPage=await request(URLS.globalSearch, { method: 'POST', body: JSON.stringify({ appliedFacets: {}, limit: 20, offset: 0, searchText: '' }),
-      headers: { 'Content-Type': 'application/json' }, kind: 'json' }),globalWorkday={...parseGlobalObservation(globalNativeFirstPage),nativeFirstPage:globalNativeFirstPage}
+    // This separately owned global hiring channel cannot invalidate SISC
+    // identities and job countries verified through the current India board.
+    // Its absence keeps company coverage unknown and never proves zero jobs.
+    let globalWorkday
+    try {
+      verifyGlobalCorporate(await request(URLS.globalCorporate))
+      const nativeFirstPage=await request(URLS.globalSearch, { method: 'POST', body: JSON.stringify({ appliedFacets: {}, limit: 20, offset: 0, searchText: '' }),
+        headers: { 'Content-Type': 'application/json' }, kind: 'json' })
+      globalWorkday={...parseGlobalObservation(nativeFirstPage),nativeFirstPage}
+    } catch (error) {
+      signal?.throwIfAborted()
+      globalWorkday={status:'unavailable',httpStatus:Number.isInteger(error.status)?error.status:null,
+        errorName:error.name||'Error',reason:error.message,reportedTotal:null,observedRows:null,listingComplete:false,
+        scope:'separate-global-board-not-completely-reviewed',independentIndiaEmployerAndCountryEvidenceUnchanged:true}
+    }
     const closing = await inventory()
     requireNative(opening.total === closing.total && fingerprint(listingSnapshot(opening.records)) === fingerprint(listingSnapshot(closing.records)), 'Sony closing native inventory changed')
     for (const record of closing.records) requireNative(reviewed.get(record.id)?.snapshot === (await detail(record)).snapshot, 'Sony closing native detail criteria or availability changed')

@@ -1,0 +1,164 @@
+{
+  "source": "amgen",
+  "company": "Amgen",
+  "companyDomain": "amgen.com",
+  "origin": "https://careers.amgen.com",
+  "rolePath": "^/en/job/[^/]+/[^/]+/87/\\d+$",
+  "roleOrg": "87",
+  "requisition": "^R-\\d+$",
+  "applyOrigin": "https://amgen.wd1.myworkdayjobs.com",
+  "applyPathPrefix": "^/Careers/job/",
+  "headingTag": "h2",
+  "locationClass": "job-location__large",
+  "dateClass": "job-date",
+  "datePrefix": "DATE POSTED:",
+  "titleSuffix": " Jobs at Amgen in India",
+  "indexURL": "https://careers.amgen.com/en/search-jobs?acm=ALL&alrpm=1269750&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]",
+  "chain": [
+    {
+      "url": "https://careers.amgen.com/en/india",
+      "target": "https://careers.amgen.com/en/india-jobs",
+      "text": "Explore Jobs"
+    },
+    {
+      "url": "https://careers.amgen.com/en/india-jobs",
+      "status": 302,
+      "target": "https://careers.amgen.com/en/search-jobs?acm=ALL&alrpm=1269750&ascf=[%7B%22key%22:%22ALL%22,%22value%22:%22%22%7D]"
+    }
+  ],
+  "headingOwner": "job-description-left",
+  "approvedPrimaryPresentation": [
+    [
+      "a",
+      "class",
+      "button job-apply bottom"
+    ],
+    [
+      "a",
+      "class",
+      "button job-apply top"
+    ],
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      ""
+    ],
+    [
+      "div",
+      "class",
+      "job-description-left"
+    ],
+    [
+      "div",
+      "class",
+      "job-description-right"
+    ],
+    [
+      "div",
+      "class",
+      "job-info-container"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "html",
+      "class",
+      "no-js"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "section",
+      "class",
+      "job-description"
+    ],
+    [
+      "span",
+      "class",
+      "job-id job-info"
+    ],
+    [
+      "span",
+      "class",
+      "job-location__large"
+    ]
+  ],
+  "approvedCriteriaPresentation": [
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      ""
+    ],
+    [
+      "div",
+      "class",
+      "ats-description"
+    ],
+    [
+      "div",
+      "class",
+      "job-description-right"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "html",
+      "class",
+      "no-js"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "p",
+      "style",
+      "color:!important"
+    ],
+    [
+      "section",
+      "class",
+      "job-description"
+    ],
+    [
+      "span",
+      "style",
+      "color:#000000"
+    ],
+    [
+      "span",
+      "style",
+      "color:#17365d"
+    ],
+    [
+      "span",
+      "style",
+      "color:#365f91"
+    ],
+    [
+      "span",
+      "style",
+      "color:#4f81bd"
+    ]
+  ]
+}

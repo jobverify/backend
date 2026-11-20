@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { runCurrentSoroco } from './currentNative.js'
+import { runCurrentPublications } from './currentPublished20261120.js'
 
 import SOROCO_CATALOG from './catalog.js'
 
@@ -146,7 +146,12 @@ export const extractSorocoJobs = (html) => {
 }
 
 export const createSorocoScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  run: (options = {}) => runCurrentSoroco({ ...options, now: options.now ?? now }),
+  run: (options = {}) => runCurrentPublications({ ...options, now: options.now ?? now }),
+})
+
+// Explicit historical fixture reader; the ordinary factory always uses current native Responses.
+export const createLegacySorocoScraper = ({ now = () => new Date().toISOString() } = {}) => ({
+  run: async (options = {}) => (await import('./currentNative.js')).runCurrentSoroco({ ...options, now: options.now ?? now }),
 })
 
 export const run = async (options = {}) => createSorocoScraper().run(options)

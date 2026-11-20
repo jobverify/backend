@@ -298,7 +298,7 @@ test('PixDynamics run verifies the trusted surfaces and returns the current visi
   const pixdynamics = await loadPixdynamicsModule()
   const requestedUrls = []
 
-  const jobs = await pixdynamics.createPixdynamicsScraper({
+  const jobs = await pixdynamics.createLegacyPixdynamicsScraper({
     now: () => '2026-07-11T00:00:00.000Z',
   }).run({
     fetchText: async (url) => {
@@ -356,7 +356,7 @@ test('PixDynamics fails closed when the verified homepage or public career struc
   const pixdynamics = await loadPixdynamicsModule()
 
   await assert.rejects(
-    pixdynamics.createPixdynamicsScraper().run({
+    pixdynamics.createLegacyPixdynamicsScraper().run({
       fetchText: async (url) => {
         if (url === pixdynamics.HOMEPAGE_URL) {
           return homepageHtml.replace('PixDynamics Private Limited', 'Another Company')
@@ -369,7 +369,7 @@ test('PixDynamics fails closed when the verified homepage or public career struc
   )
 
   await assert.rejects(
-    pixdynamics.createPixdynamicsScraper().run({
+    pixdynamics.createLegacyPixdynamicsScraper().run({
       fetchText: async (url) => {
         if (url === pixdynamics.HOMEPAGE_URL) return homepageHtml
         if (url === pixdynamics.CAREERS_URL) {

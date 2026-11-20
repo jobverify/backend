@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { runRemainingRecruitmentBatchSource } from '../../scraper-support/utils/remainingRecruitmentBatch20261103.js'
+import { runTeradynePublications } from './currentPublication20261119.js'
 
 export const SOURCE = "teradyne"
 export const COMPANY = "Teradyne"
@@ -8,7 +9,10 @@ export const CAREERS_URL = "https://www.teradyne.com/careersatteradyne/"
 export const DISPOSITION = 'runtime-verified-recruitment'
 export const VERIFIED_ON = null
 export const VERIFIED_SURFACE_SUMMARY = 'Current extraction is implemented; complete and empty company inventories remain unverified.'
-export const run = options => runRemainingRecruitmentBatchSource(SOURCE, options)
+// Keep the explicit legacy fixture callback isolated from the current runtime.
+export const run = options => options?.fetchPage
+  ? runRemainingRecruitmentBatchSource(SOURCE, options)
+  : runTeradynePublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

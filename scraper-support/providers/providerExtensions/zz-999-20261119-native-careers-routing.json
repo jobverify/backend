@@ -1,0 +1,45 @@
+[
+  {
+    "source": "amgen",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/amgen.workday/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "bounded-current-first-result-page-and-all-observed-native-details-with-closing-reconciliation",
+    "extractionStrategy": "current-own-employer-handoffs+native-TalentBrew-role-publication+explicit-native-country+original-criteria-and-date-carriers+exact-own-Workday-application",
+    "parser": "source-local-current-native-publication-subset",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedSurfaceSummary": "Current source-local reader follows current employer careers handoffs and inspects the observed first native result page. Original role identity, employer, country, criteria, dates and exact own Workday application links are reconciled independently at closing. Valid missing descriptions remain explicit partial records. Remaining pagination, whole-company totals, backend application activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  },
+  {
+    "source": "capitalone",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/capitalone.workday/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "bounded-current-first-result-page-and-all-observed-native-details-with-closing-reconciliation",
+    "extractionStrategy": "current-own-employer-handoffs+native-TalentBrew-role-publication+explicit-native-country+original-criteria-and-date-carriers+exact-own-Workday-application",
+    "parser": "source-local-current-native-publication-subset",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedSurfaceSummary": "Current source-local reader follows current employer careers handoffs and inspects the observed first native result page. Original role identity, employer, country, criteria, dates and exact own Workday application links are reconciled independently at closing. Valid missing descriptions remain explicit partial records. Remaining pagination, whole-company totals, backend application activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  },
+  {
+    "source": "carrier",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/carrier.workday/script.js",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "bounded-current-first-result-page-and-all-observed-native-details-with-closing-reconciliation",
+    "extractionStrategy": "current-own-employer-handoffs+native-TalentBrew-role-publication+explicit-native-country+original-criteria-and-date-carriers+exact-own-Workday-application",
+    "parser": "source-local-current-native-publication-subset",
+    "scraperTimeoutMs": 180000,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "sourceScopeNotes": "Current reader qualifies only observed own-employer native roles. Remaining pagination, whole-company totals, backend application activation and cleanup remain unproven; keyword search can include foreign roles.",
+    "verifiedSurfaceSummary": "Current source-local reader follows current employer careers handoffs and inspects the observed first native result page. Original role identity, employer, country, criteria, dates and exact own Workday application links are reconciled independently at closing. Valid missing descriptions remain explicit partial records. Remaining pagination, whole-company totals, backend application activation and cleanup remain unproven. Runtime counts require a fresh imported assessment."
+  }
+]

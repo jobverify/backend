@@ -3,6 +3,7 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {inspectPublishedBataCriteria} from '../bataindia/publicCriteria.js'
 import {decodeHTML} from 'entities'
 import {need,sha} from './publicRead.js'
+import {CURRENT_PUBLIC_PROGRAM,CURRENT_PUBLIC_PROFILE_NAME,verifyCurrentPublicShell} from './currentPublicQualification20261119.js'
 
 export const HOME='https://annapurnafinance.in/'
 export const CAREERS='https://annapurnafinance.in/career/career-openings'
@@ -35,10 +36,13 @@ export function portalConfiguration(value,html){
  const u=new URL(value),keys=['appId','dc','rqt','cc']
  need(u.origin===PORTAL&&u.pathname==='/career-portal'&&!u.username&&!u.password&&!u.hash&&u.searchParams.size===keys.length&&keys.every(k=>u.searchParams.getAll(k).length===1&&norm(u.searchParams.get(k)))&&u.searchParams.get('dc')==='annapurna','published public portal tenant identity changed')
  const doc=readNativeDocument(html),scripts=doc.nodes(n=>n.tag==='script'&&!n.inert&&typeof n.attrs.src==='string').map(n=>new URL(n.attrs.src,PORTAL).href)
- need(PROGRAM.slice(0,2).every(p=>scripts.includes(PORTAL+p.path)),'published public portal read program changed')
- return{appId:u.searchParams.get('appId'),dc:u.searchParams.get('dc'),rqt:u.searchParams.get('rqt'),cc:u.searchParams.get('cc')}
+ const current=CURRENT_PUBLIC_PROGRAM.slice(0,2).every(p=>scripts.includes(PORTAL+p.path))
+ need(current||PROGRAM.slice(0,2).every(p=>scripts.includes(PORTAL+p.path)),'published public portal read program changed')
+ if(current)verifyCurrentPublicShell(html)
+ return{appId:u.searchParams.get('appId'),dc:u.searchParams.get('dc'),rqt:u.searchParams.get('rqt'),cc:u.searchParams.get('cc'),...(current?{publicProgrammeProfile:CURRENT_PUBLIC_PROFILE_NAME}:{})}
 }
-export function verifyProgram(label,body){const p=PROGRAM.find(p=>p.label===label);need(p&&sha(body)===p.sha256,'published public '+label+' program changed')}
+export const programsFor=config=>config?.publicProgrammeProfile===CURRENT_PUBLIC_PROFILE_NAME?CURRENT_PUBLIC_PROGRAM:PROGRAM
+export function verifyProgram(label,body,config){const p=programsFor(config).find(p=>p.label===label);need(p&&sha(body)===p.sha256,'published public '+label+' program changed')}
 export const headersFor=c=>({apiKey:c.appId,domainCode:c.dc,AccessMode:'W','skip-withcredentials':'false',Origin:PORTAL,Referer:PORTAL+'/'})
 export const queryFor=(c,page)=>({departmentCode:'',companyCode:c.cc,careerPortalType:c.rqt,jobTitle:'',employmentType:'',seniorityName:'',jobFunction:'',company:'',businessUnitCode:'',department:'',subDepartment:'',gradeCode:'',designationCode:'',levelCode:'',branchCode:'',subBranchCode:'',regionCode:'',locationId:'',experience:'',qualification:'',skillsName:'',urgentOpening:'',jobPosted:'0',isShortUrl:false,pagination:{pageNumber:page,pageSize:15},nationality:'',preferredLocationId:''})
 export const ownDetailUrl=(r,c)=>GATEWAY+'/api/external/public/referral/JobOpening/Request/Details/'+[r.encryptedPositionId,c.cc,r.sourceType].map(encodeURIComponent).join('/')
@@ -137,7 +141,7 @@ export function publicRole(row,data,labels,{now}={}){
   // Canonical geography stays empty until its country is qualified. Native
   // city labels remain below; shared city heuristics must not publish them.
   location:null,locations:[],city:null,country:null,
-  nativePreferredLocation:row.preferredLocation??null,nativePreferredLocationOptionId:row.preferredLocationOptionId??null,nativeWorkplaceAlternatives:workplaces,nativeEmployer:employer,
+  nativePreferredLocation:row.preferredLocation??null,nativePreferredLocationOptionId:row.preferredLocationOptionId??null,nativeWorkplaceAlternatives:workplaces,nativeEmployer:employer,sourceEmployerBindingQualified:employerBound,
   nativePublicJobCriteria:projection,publicCriteriaFields:criteria,nativeCriteriaQualification:{qualified:complete,reasons},
   jobDescription:body,sourceDescription:body,sourceDetailComplete:complete,sourceDetailStatus:complete?'complete':'native-public-criteria-unqualified',
   postingDate:null,postedAt:null,closingDate:null,sourcePostingDateUnknown:true,sourceDateEvidence:{status:'unpublished-native-posting-date',closingDatePublished:false},

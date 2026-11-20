@@ -1,0 +1,186 @@
+{
+  "source": "capitalone",
+  "company": "Capital One",
+  "companyDomain": "capitalone.com",
+  "origin": "https://www.capitalonecareers.com",
+  "rolePath": "^/job/[^/]+/[^/]+/1732/\\d+$",
+  "roleOrg": "1732",
+  "requisition": "^R\\d+$",
+  "applyOrigin": "https://capitalone.wd12.myworkdayjobs.com",
+  "applyPathPrefix": "^/Capital_One/job/",
+  "headingTag": "h1",
+  "locationClass": "job-location",
+  "dateClass": "job-date",
+  "datePrefix": "Posted",
+  "titleSuffix": " at Capital One",
+  "indexURL": "https://www.capitalonecareers.com/search-jobs/India/234/2/1269750/22/79/50/2",
+  "chain": [
+    {
+      "url": "https://www.capitalone.com/",
+      "target": "https://www.capitalonecareers.com/",
+      "text": "Careers + Jobs"
+    },
+    {
+      "url": "https://www.capitalonecareers.com/",
+      "target": "https://www.capitalonecareers.com/india",
+      "text": "India",
+      "canonical": false
+    },
+    {
+      "url": "https://www.capitalonecareers.com/india",
+      "target": "https://www.capitalonecareers.com/search-jobs/India/234/2/1269750/22/79/50/2",
+      "text": "View all India opportunities",
+      "canonical": false
+    }
+  ],
+  "roleRequireCanonical": false,
+  "approvedPrimaryPresentation": [
+    [
+      "a",
+      "class",
+      "button job-apply button-action top"
+    ],
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      "job-description-overview"
+    ],
+    [
+      "div",
+      "class",
+      "job-description-overview__textblock"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__buttons"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__info"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__intro"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__secondary-info"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__wrap"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "html",
+      "class",
+      "no-js site-57198"
+    ],
+    [
+      "li",
+      "class",
+      "job-description-overview__item"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "section",
+      "class",
+      "job-description global-vertical-top global-vertical-bottom"
+    ],
+    [
+      "span",
+      "class",
+      "job-description-overview__text"
+    ],
+    [
+      "span",
+      "class",
+      "job-id job-info"
+    ],
+    [
+      "span",
+      "class",
+      "job-location"
+    ],
+    [
+      "ul",
+      "class",
+      "job-description-overview__list"
+    ]
+  ],
+  "approvedCriteriaPresentation": [
+    [
+      "body",
+      "id",
+      "job"
+    ],
+    [
+      "div",
+      "class",
+      "ats-description"
+    ],
+    [
+      "div",
+      "class",
+      "job-description__wrap"
+    ],
+    [
+      "div",
+      "id",
+      "page"
+    ],
+    [
+      "h2",
+      "class",
+      "ats-headline"
+    ],
+    [
+      "html",
+      "class",
+      "no-js site-57198"
+    ],
+    [
+      "li",
+      "style",
+      "color:#000000 !important"
+    ],
+    [
+      "main",
+      "id",
+      "content"
+    ],
+    [
+      "p",
+      "style",
+      "text-align:inherit"
+    ],
+    [
+      "section",
+      "class",
+      "job-description global-vertical-top global-vertical-bottom"
+    ],
+    [
+      "span",
+      "style",
+      "color:#000000"
+    ]
+  ]
+}

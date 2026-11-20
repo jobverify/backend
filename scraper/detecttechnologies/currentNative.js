@@ -88,6 +88,8 @@ export function extractCurrentDetail(html,listing){
   if(locationLine)need(locationLine[1]===listing.location||listing.location==='Chennai'&&locationLine[1]==='Chennai (WFO)','Native full criteria workplace conflict')
   const employerLine=/^(?:hiring organization|legal employer|employer|company)\s*:\s*(.+)$/i.exec(clean(line))
   if(employerLine)need(employerLine[1]==='Detect Technologies','Native full criteria employer conflict')
+  const residence=/^(?:candidates?|applicants?|you|employees?)\s+(?:must|are required to)\s+(?:currently\s+)?(?:be\s+)?(?:reside|live|work|based)\s+in\s+(.+?)[.!]?$/i.exec(clean(line))
+  if(residence)need((nativeCountryName(residence[1])||(workplaceEvidence(residence[1])?'India':null))==='India','Native full criteria country residence conflict')
  }
  const form=one(descendants(scope,node=>node.tag==='form'),'native role-scoped application form')
  need(form.attrs.id==='email-form'&&form.attrs.method==='get'&&!form.attrs.action,'Native role application form changed')

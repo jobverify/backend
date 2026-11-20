@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {run} from './script.js'
+// Explicit historical reader controls; the ordinary factory uses current original observations.
+import {runCurrentFunPlus as run} from './currentNative20261117.js'
 import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {assessSoftFailureAcquisition} from '../../scripts/softFailureAssessment20261113.mjs'
@@ -20,7 +21,7 @@ const replay=(edit=(p,body)=>body)=>{
   return Object.defineProperty(new Response(changed,{status:p.status,headers:{'content-type':p.headers['content-type']}}),'url',{value:p.url})
  }}}
 }
-test('current original FunPlus relative native role retains full foreign criteria and application under scope holds',async()=>{
+test('historical 20261117 original FunPlus relative native role retains full foreign criteria and application under scope holds',async()=>{
  const {options,reads}=replay(),jobs=await run(options)
  assert.equal(jobs.length,1);assert.equal(jobs[0].jobId,'329858');assert.equal(jobs[0].country,'Portugal')
  assert.match(jobs[0].jobDescription,/Minimum of 3 years/);assert.match(jobs[0].jobDescription,/Bachelor/)

@@ -1,4 +1,5 @@
 import { runCurrentSattva } from './currentNative20261117.js'
+import { runCurrentPublications } from './currentNative20261120.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -264,9 +265,15 @@ export const extractJobDetail = (html, listing = {}) => {
   }
 }
 
-// Historical format parsers above are pure helpers; every runtime caller uses the current native contract.
+// The explicit legacy fixture interface remains isolated. Ordinary original
+// Response acquisition always selects the current native publication contract.
 export const createSattvaMediaScraper = (defaults = {}) => ({
-  run: (options = {}) => runCurrentSattva({...defaults, ...options}),
+  run: (options = {}) => {
+    const settings={...defaults,...options}
+    return typeof settings.fetchPage==='function'&&typeof settings.fetchText==='function'&&typeof settings.fetchImpl==='function'
+      ? runCurrentSattva(settings)
+      : runCurrentPublications(settings)
+  },
 })
 
 export const run = async (options = {}) => createSattvaMediaScraper().run(options)

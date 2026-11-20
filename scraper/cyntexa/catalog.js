@@ -13,15 +13,23 @@ export const CYNTEXA_CATALOG = {
   companyCareerPage: 'https://cyntexa.com/careers/',
   atsPlatform: 'official-company-careers',
   countryFilter: 'India',
-  paginationStrategy: 'single-first-party-index-plus-detail-pages',
-  extractionStrategy: 'verified-careers-index-plus-first-party-detail-pages',
+  paginationStrategy: 'bounded-current-own-SSR-cards-and-original-same-role-paired-detail-GETs;company-scope-unverified',
+  extractionStrategy: 'current-own-Cyntexa-publisher;typed-India-native-JobPosting-and-actual-role-title-plus-same-native-public-ID-application;partial-roles',
+  backfillMode: 'live-parser',
+  authoritativeCurrentPublication: true,
+  scraperTimeoutMs: 180000,
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   companyDomain: 'cyntexa.com',
   dryRunFile: 'cyntexa/jobs.json',
-  verifiedOn: '2026-07-18',
+  verifiedOn: null,
+  verifiedPublicJobCount: null,
+  verifiedGlobalJobCount: null,
+  verifiedIndiaJobCount: null,
   verifiedSurfaceSummary:
-    'Verified on Saturday, July 18, 2026 that https://cyntexa.com/careers/ was the live first-party Cyntexa careers index. The page exposed the Job Opportunities index plus first-party detail pages such as Software Developer, with career contact details on the same host.',
+    'Current own careers SSR cards and separately read own role pages supply current title, typed workplace country, original native public identifier, hiring brand, authored criteria and dates, and matching same-role public application links. Every record closes independently; missing or contradictory identity/country/employer/application facts remain held. All returned roles are partial. Whole company inventory, legal employing entity, application backend activation and cleanup remain unverified.',
 }
 
 export default CYNTEXA_CATALOG

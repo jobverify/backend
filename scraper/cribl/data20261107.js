@@ -70,7 +70,7 @@ export function flightDocument(html){
   if(row==='C'){requireNative(asyncStreams.get(id)===false,'invalid Flight stream close');asyncStreams.set(id,true);continue}
   requireNative(!seen.has(id),'duplicate Flight frame');seen.add(id)
   if(row.startsWith('I'))imports.set(id,JSON.parse(row.slice(1)))
-  else if(/^[\[{\"]/.test(row)||['null','true','false'].includes(row))models.set(id,JSON.parse(row))
+  else if(/^[[{"]/.test(row)||['null','true','false'].includes(row))models.set(id,JSON.parse(row))
  }
  requireNative([...asyncStreams.values()].every(Boolean),'unclosed Flight stream')
  requireNative(models.has('0'),'Flight root unavailable')

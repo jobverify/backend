@@ -59,4 +59,5 @@ test('changed closing own criteria do not publish otherwise qualifying India rec
 
 test('exact caller cancellation still wins before native geography acquisition',async()=>{
  const controller=new AbortController(),reason=Object.freeze({owner:'detect-geography'});controller.abort(reason)
- await assert.rejects(run({signal:controller.signal,fetchImpl:async()=>assert.fail('No fetch after 
+ await assert.rejects(run({signal:controller.signal,fetchImpl:async()=>assert.fail('No fetch after cancellation')}),error=>error===reason)
+})

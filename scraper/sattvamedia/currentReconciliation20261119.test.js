@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 import test,{mock} from 'node:test'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {run} from './script.js'
+// Historical whole-program reconciliation behavior stays covered separately
+// from the current explicit-partial production publication contract.
+import {runCurrentSattva as run} from './currentNative20261117.js'
 import {nativeFlightRows} from './currentFlight20261117.js'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 const original=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/reconciled-native-20261119.json.gz',import.meta.url))))

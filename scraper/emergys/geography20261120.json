@@ -1,0 +1,48 @@
+{
+  "kind": "independent-whole-role-municipal-workplace-proof",
+  "typedCountryAsserted": false,
+  "inferredFromCorporateAddress": false,
+  "places": [
+    {
+      "labels": [
+        "Pune",
+        "Pune – Emergys Balewadi (Work from Office)"
+      ],
+      "city": "Pune",
+      "country": "India",
+      "reference": {
+        "url": "https://pune.gov.in/en/",
+        "originalSHA256": "792d6b8dbbcbd1468d9be4983f64f433e62d1944fd1e3cd9266c21b68f2b84a7",
+        "originalBytes": 213271,
+        "originalObservedAt": "2026-11-19T22:34:03.512Z"
+      }
+    },
+    {
+      "labels": [
+        "Mumbai"
+      ],
+      "city": "Mumbai",
+      "country": "India",
+      "reference": {
+        "url": "https://mumbaicity.gov.in/en/",
+        "originalSHA256": "ae8b810211242ae8871076b650be9c3cdea47334e21454d00046e9f00cc9da27",
+        "originalBytes": 218510,
+        "originalObservedAt": "2026-11-19T22:47:08.107Z"
+      }
+    },
+    {
+      "labels": [
+        "Chennai"
+      ],
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "reference": {
+        "url": "https://chennai.nic.in/about-district/",
+        "originalSHA256": "697edaa7ceaeea244bed93453f83ba0ae28e426f6f8ba81008b7437a3c214ecb",
+        "originalBytes": 120965,
+        "originalObservedAt": "2026-11-20T01:18:38.999Z"
+      }
+    }
+  ]
+}

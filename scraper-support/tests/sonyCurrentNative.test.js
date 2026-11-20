@@ -8,8 +8,8 @@ import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.
 
 const captured = JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/sony/test-data/native-current-20261102.json.gz', import.meta.url))))
 const current = () => structuredClone(captured)
-const response = (url, body, type = 'text/html') => {
-  const result = new Response(typeof body === 'string' ? body : JSON.stringify(body), { headers: { 'content-type': type } })
+const response = (url, body, type = 'text/html', status = 200) => {
+  const result = new Response(typeof body === 'string' ? body : JSON.stringify(body), { status, headers: { 'content-type': type } })
   Object.defineProperty(result, 'url', { value: url })
   return result
 }
@@ -27,7 +27,7 @@ async function exercise(t, { change = () => {}, options = {} } = {}) {
     const countKey = `${init.method || 'GET'} ${url}`
     counts.set(countKey, (counts.get(countKey) || 0) + 1)
     calls.push({ url, init })
-    let body, type = 'text/html'
+    let body, type = 'text/html', status = 200
     if (url === 'https://www.sony.co.in/microsite/corporate/') body = fixture.responses.indiaCorporate
     else if (url === 'https://www.sony.co.in/microsite/careers/') body = fixture.responses.indiaCareers
     else if (url.startsWith('https://www.sony.co.in/microsite/careers/career.html')) body = fixture.responses.indiaFragment
@@ -64,10 +64,10 @@ async function exercise(t, { change = () => {}, options = {} } = {}) {
     } else if (url === 'https://www.sonyjobs.com/jobs.html') body = fixture.responses.globalCorporate
     else if (url === 'https://sonyglobal.wd1.myworkdayjobs.com/wday/cxs/sonyglobal/SonyGlobalCareers/jobs') {
       assert.deepEqual(JSON.parse(init.body), { appliedFacets: {}, limit: 20, offset: 0, searchText: '' })
-      body = fixture.responses.globalListing; type = 'application/json'
+      body = fixture.responses.globalListing; type = 'application/json'; status = fixture.globalHTTPStatus || 200
     } else throw new Error(`Unexpected Sony public request: ${init.method || 'GET'} ${url}`)
     assert.notEqual(body, undefined, `Missing captured Sony response: ${url}`)
-    return response(url, body, type)
+    return response(url, body, type, status)
   })
   const jobs = await createCatalogScraper(provider).run({ ...options })
   return { jobs, calls, fixture }
@@ -100,6 +100,22 @@ test('Sony preserves both visible Description and Role criteria and native origi
   assert.equal(job.sourceRawDates.postedOn, '1791786912000')
   assert.equal(job.sourceRawDates.modifiedDate, 1793266884000)
   assert.notEqual(job.postingDate, new Date(job.sourceRawDates.modifiedDate).toISOString())
+})
+
+// The supplied November19 standard capture reaches this additional global
+// channel after the India records, then receives HTTP429. That channel does
+// not establish the independently verified SISC employer or India countries.
+test('Sony retains independently verified current India roles when the additional global Workday channel is throttled', async t => {
+  const {jobs}=await exercise(t,{change:f=>{f.globalHTTPStatus=429}})
+  assert.equal(jobs.length,5)
+  assert.ok(jobs.every(job=>job.company==='Sony India Software Centre'&&job.country==='India'))
+  const global=jobs[0].sourceNativeInventory.globalWorkday
+  assert.equal(global.status,'unavailable')
+  assert.equal(global.httpStatus,429)
+  assert.equal(global.listingComplete,false)
+  assert.equal(global.reportedTotal,null)
+  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
+  assert.equal(readInventoryEvidence(jobs).reportedTotal,null)
 })
 
 for (const [label, change] of [

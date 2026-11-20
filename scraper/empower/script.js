@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import {runCurrentNative} from './currentNative20261120.js'
 
 const HOMEPAGE_URL = 'https://www.empower.com/'
 const BASE_URL = 'https://jobs.empower.com'
@@ -293,7 +294,7 @@ export const createEmpowerScraper = ({
   },
 })
 
-export const run = async (options = {}) => createEmpowerScraper(options).run(options)
+export const run = async (options = {}) => options.fetchText ? createEmpowerScraper(options).run(options) : runCurrentNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

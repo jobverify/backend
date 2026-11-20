@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { withRetry } from '../../scraper-support/utils/retry.js'
+import {runCurrentLybrate} from './currentNative20261119.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 
 import { LYBRATE_CATALOG } from './catalog.js'
 
@@ -117,7 +119,7 @@ const defaultFetchJson = (url) => withRetry(async () => {
     signal: AbortSignal.timeout(15000),
   })
 
-  // Lever's retired posting endpoint reports its authoritative empty state as JSON with HTTP 404.
+  // A retired endpoint is unavailable inventory; it cannot establish a zero.
   if (!response.ok && response.status !== 404) {
     const error = new Error(`HTTP ${response.status} for ${url}`)
     error.status = response.status
@@ -131,7 +133,7 @@ const defaultFetchJson = (url) => withRetry(async () => {
   baseDelayMs: 2000,
 })
 
-export const createLybrateScraper = () => ({
+const createLegacyLybrateScraper = () => ({
   async run({
     fetchPage = defaultFetchPage,
     fetchJson = defaultFetchJson,
@@ -149,9 +151,15 @@ export const createLybrateScraper = () => ({
       throw new Error('Lybrate embedded jobs API no longer matches the verified dead public surface')
     }
 
-    return []
+    return attachInventoryEvidence([],{status:'coverage-gap',surface:JOBS_PAGE_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:2,reportedTotal:null,indiaFacetCount:null,reason:'legacy-callback-dead-endpoint-is-not-an-authoritative-company-zero'})
   },
 })
+
+export const createLybrateScraper = () => ({async run(options={}){
+  options.signal?.throwIfAborted()
+  if(options.fetchPage&&options.fetchJson&&!options.fetchImpl){const jobs=await createLegacyLybrateScraper().run(options);options.signal?.throwIfAborted();return jobs}
+  return runCurrentLybrate(options)
+}})
 
 export const run = async (options = {}) => createLybrateScraper().run(options)
 

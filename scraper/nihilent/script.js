@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentPublications } from './currentPublished20261120.js'
 
 import { NIHILENT_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -56,7 +57,7 @@ const normalizeLocation = (value) => {
 }
 
 const extractPrimaryCity = (value) =>
-  normalizeWhitespace(value).split(/[\/,]/)[0]?.trim() || null
+  normalizeWhitespace(value).split(/[/,]/)[0]?.trim() || null
 
 const defaultFetchText = (url) => fetchTextWithRetry(url, {
   headers: {
@@ -157,11 +158,7 @@ export const createNihilentScraper = ({
   },
 })
 
-export const run = async (options = {}) => createNihilentScraper({
-  now: options.now,
-}).run({
-  fetchText: options.fetchText,
-})
+export const run = (options = {}) => runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

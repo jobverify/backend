@@ -2,31 +2,12 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { parseJavaScriptLiteral } from '../../scraper-support/utils/safeLiteral.js'
-import { runCurrentNous } from './nativeCurrent.js'
+import {runCurrentPublications} from './currentPublished20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
-export const PROVIDER_METADATA = {
-  source: 'nousinfosystems',
-  companyName: 'Nous Infosystems',
-  officialBrandName: 'Artizent',
-  adapter: 'script',
-  homepageUrl: 'https://www.nousinfosystems.com/',
-  legacyHomepageRedirectUrl: 'https://www.artizent.com/',
-  companyCareerPage: 'https://www.artizent.com/insights/careers',
-  officialOpeningsUrl: 'https://www.artizent.com/insights/careers/openings',
-  companyDomain: 'artizent.com',
-  atsPlatform: 'official-company-careers',
-  countryFilter: 'India',
-  paginationStrategy: 'legacy-domain-redirect-plus-first-party-careers-shell-plus-js-jobs-asset',
-  extractionStrategy:
-    'verified-nous-domain-redirect+verified-artizent-careers-shell+first-party-openings-assets+structured-jobs-asset',
-  parser: 'custom-script',
-  normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-08-03',
-  verifiedSurfaceSummary:
-    'Verified on Monday, August 3, 2026 that https://www.nousinfosystems.com/ redirects to the first-party Artizent homepage at https://www.artizent.com/, that the public careers shell remains at https://www.artizent.com/insights/careers, and that the current first-party openings flow is powered by Artizent bundle assets including https://www.artizent.com/assets/jobs-ysHR8TnP.js. The verified same-domain openings route under /insights/careers/openings/ currently exposes 14 public India jobs such as Java Full Stack Developer in Pune, Databricks Team Lead (PySpark) in Bangalore, and Senior .NET Backend Developer in Bangalore.',
-}
+import {PROVIDER_METADATA} from './catalog.js'
+export {PROVIDER_METADATA}
 
 export const SOURCE = PROVIDER_METADATA.source
 export const COMPANY = PROVIDER_METADATA.companyName
@@ -38,8 +19,7 @@ export const OPENINGS_URL = PROVIDER_METADATA.officialOpeningsUrl
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+
 
 const JOBS_ASSET_PATTERN = /(\/?assets\/jobs-[A-Za-z0-9_-]+\.js)/i
 const OPENINGS_ASSET_PATTERN = /(\/?assets\/JobOpenings-[A-Za-z0-9_-]+\.js)/i
@@ -67,42 +47,11 @@ const normalizeComparableUrl = (value) => {
   }
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
 
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
 
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'application/javascript,text/javascript,text/plain;q=0.9,*/*;q=0.8',
-    },
-  })
 
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
 
-  return response.text()
-}
 
-const normalizePageText = (html) => normalizeWhitespace(
-  String(html ?? '')
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' '),
-)
 
 const normalizeEmploymentType = (value) => {
   const normalized = normalizeWhitespace(value)
@@ -110,10 +59,7 @@ const normalizeEmploymentType = (value) => {
   return /^full\s*time$/i.test(normalized) ? 'Full-time' : normalized
 }
 
-const buildDetailUrl = (slug) => new URL(
-  `/insights/careers/openings/${slug}`,
-  HOMEPAGE_REDIRECT_URL,
-).toString()
+
 
 const buildJobDescription = (record) => {
   const items = Array.isArray(record?.description)
@@ -227,10 +173,10 @@ export const extractJobsFromAssetText = (assetText) => {
 }
 
 export const createNousInfosystemsScraper = ({now:defaultNow=()=>new Date().toISOString()}={})=>({
-  run:(options={})=>runCurrentNous({now:defaultNow,...options}),
+  run:(options={})=>runCurrentPublications({now:defaultNow,...options}),
 })
 
-export const run = options => runCurrentNous(options)
+export const run = options => runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

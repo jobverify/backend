@@ -1,0 +1,87 @@
+{
+  "kind": "independent-whole-role-municipal-or-state-workplace-proof",
+  "inferredFromCorporateAddress": false,
+  "typedCountryAsserted": false,
+  "places": [
+    {
+      "labels": [
+        "Bangalore"
+      ],
+      "city": "Bangalore",
+      "country": "India",
+      "reference": {
+        "url": "https://bengaluruurban.nic.in/en/history/",
+        "originalSHA256": "25438c9c1b4f486bc669462a91e8ccc4a5dd5bbdea6a5946de553874522bbeed",
+        "originalBytes": 133442,
+        "originalObservedAt": "2026-11-19T22:34:03.512Z"
+      }
+    },
+    {
+      "labels": [
+        "Pune"
+      ],
+      "city": "Pune",
+      "country": "India",
+      "reference": {
+        "url": "https://pune.gov.in/en/",
+        "originalSHA256": "792d6b8dbbcbd1468d9be4983f64f433e62d1944fd1e3cd9266c21b68f2b84a7",
+        "originalBytes": 213271,
+        "originalObservedAt": "2026-11-19T22:34:03.512Z"
+      }
+    },
+    {
+      "labels": [
+        "Mumbai"
+      ],
+      "city": "Mumbai",
+      "country": "India",
+      "reference": {
+        "url": "https://mumbaicity.gov.in/en/",
+        "originalSHA256": "ae8b810211242ae8871076b650be9c3cdea47334e21454d00046e9f00cc9da27",
+        "originalBytes": 218510,
+        "originalObservedAt": "2026-11-19T22:47:08.107Z"
+      }
+    },
+    {
+      "labels": [
+        "Gurgaon",
+        "HO Gurgaon"
+      ],
+      "city": "Gurgaon",
+      "country": "India",
+      "reference": {
+        "url": "https://gurugram.gov.in/about-district/",
+        "originalSHA256": "cc23f498acddc869cdbde8738afcbf0136a4aa9114387c5b896f252b671c9e58",
+        "originalBytes": 122501,
+        "originalObservedAt": "2026-11-19T23:50:56.122Z"
+      }
+    },
+    {
+      "labels": [
+        "Rajasthan"
+      ],
+      "city": null,
+      "state": "Rajasthan",
+      "country": "India",
+      "reference": {
+        "url": "https://foundation.rajasthan.gov.in/EngagewithRajasthan.aspx",
+        "originalSHA256": "63bd1d431f60e0e156602dd95c48fb7ec661cb2a404552d3a1caf0a303446cef",
+        "originalBytes": 62882,
+        "originalObservedAt": "2026-11-19T23:50:56.122Z"
+      }
+    },
+    {
+      "labels": [
+        "Mundra"
+      ],
+      "city": "Mundra",
+      "country": "India",
+      "reference": {
+        "url": "https://kachchh.nic.in/public-utility-category/municipality/",
+        "originalSHA256": "a2d3dc94188e7d5e8db9c3764e49893fa3b02a9090cc047ac88ad2c57228c125",
+        "originalBytes": 161305,
+        "originalObservedAt": "2026-11-19T23:50:56.122Z"
+      }
+    }
+  ]
+}

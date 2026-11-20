@@ -1,4 +1,7 @@
-﻿import path from 'node:path'
+import PROVIDER_METADATA from './catalog.js'
+import {runCurrentNative} from './currentNative20261120.js'
+export {PROVIDER_METADATA}
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -11,23 +14,7 @@ export const PALO_ALTO_INDIA_URL = 'https://jobs.paloaltonetworks.com/en/india'
 export const PALO_ALTO_INDIA_SEARCH_URL = 'https://jobs.paloaltonetworks.com/en/search-jobs/?alcpm=1269750&orgIds=47263'
 export const PALO_ALTO_IDIRA_URL = 'https://www.paloaltonetworks.com/idira'
 
-export const CATALOG_METADATA = {
-  source: SOURCE,
-  companyName: COMPANY,
-  adapter: 'script',
-  modulePath: '../../scraper/cyberarkindia/script.js',
-  companyCareerPage: CYBERARK_CAREERS_URL,
-  atsPlatform: 'official-company-careers-handoff-to-shared-parent-jobs',
-  countryFilter: 'India',
-  paginationStrategy: 'official-careers-handoff-plus-parent-india-page-and-filtered-search-validation',
-  extractionStrategy: 'verified-cyberark-careers-handoff+verified-pan-india-pages-without-cyberark-specific-public-jobs-return-empty',
-  parser: 'custom-script',
-  normalizationProfile: 'engineering-default',
-  companyDomain: 'cyberark.com',
-  workspaceDomain: 'jobs.paloaltonetworks.com',
-  verifiedOn: '2026-08-15',
-  verifiedSurfaceSummary: 'Verified on Saturday, August 15, 2026 that https://www.cyberark.com/careers/ redirects to https://www.paloaltonetworks.com/idira, whose footer still links to https://jobs.paloaltonetworks.com/en/. Verified on the same date that the India-filtered shared Palo Alto Networks search shell at https://jobs.paloaltonetworks.com/en/search-jobs/?alcpm=1269750&orgIds=47263 remains live, while the older India location landing route at https://jobs.paloaltonetworks.com/en/india currently falls through to the first-party /en/error page rather than a distinct location story page. The shared parent surfaces still do not expose a CyberArk-specific public jobs board.',
-}
+export const CATALOG_METADATA = PROVIDER_METADATA
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
@@ -134,7 +121,7 @@ export const hasCyberArkSpecificJobsSignal = (html) => {
     || /href=["'][^"']*cyberark[^"']*(?:jobs?|careers?|roles?|openings?)[^"']*["']/i.test(rawHtml)
 }
 
-export const createCyberArkIndiaScraper = () => ({
+export const createLegacyCyberArkIndiaScraper = () => ({
   async run({ fetchPage = defaultFetchPage } = {}) {
     const careersPage = await fetchPage(CYBERARK_CAREERS_URL)
 
@@ -186,6 +173,7 @@ export const createCyberArkIndiaScraper = () => ({
   },
 })
 
+export const createCyberArkIndiaScraper = (settings = {}) => ({source: SOURCE, run: (options = {}) => typeof options.fetchPage === 'function' ? createLegacyCyberArkIndiaScraper().run(options) : runCurrentNative({...settings, ...options})})
 export const run = async (options = {}) => createCyberArkIndiaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

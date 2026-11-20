@@ -20,12 +20,12 @@ export async function withAnnapurnaPublicRead(options,operation){
  const controller=new AbortController(),deadline=fail('public collection deadline exceeded','ANNAPURNA_COLLECTION_TIMEOUT');deadline.name='TimeoutError'
  const timer=setTimeout(()=>controller.abort(deadline),budget),signal=caller?AbortSignal.any([caller,controller.signal]):controller.signal,receipts=[]
  let nextReadAt=0,attempts=0,totalBytes=0
- const read=async(url,{label,phase='opening',method='GET',headers={},body,redirect=false}={})=>{
+ const read=async(url,{label,phase='opening',method='GET',headers={},body,redirect=false,mime=null}={})=>{
   signal.throwIfAborted();need(++attempts<=1100,'public request budget exceeded')
   const target=new URL(url)
   need(target.protocol==='https:'&&!target.username&&!target.password&&!target.hash,'invalid public hiring target')
   need(['annapurnafinance.in','hr1.to','career.hrone.cloud','gateway.app.hrone.cloud'].includes(target.hostname),'undeclared public hiring host')
-  need(method==='GET'||method==='POST'&&target.origin==='https://gateway.app.hrone.cloud'&&target.pathname==='/api/external/public/referral/CareerPosition/Details','undeclared public read operation')
+  need(method==='GET'||method==='POST'&&target.origin==='https://gateway.app.hrone.cloud'&&['/api/external/public/referral/CareerPosition/Details','/api/external/public/City/BindDropDown'].includes(target.pathname),'undeclared public read operation')
   const scheduledAt=Math.max(Date.now(),nextReadAt);nextReadAt=scheduledAt+interval
   if(scheduledAt>Date.now())await withCallerSignal(()=>new Promise(resolve=>setTimeout(resolve,Math.max(0,scheduledAt-Date.now()))),signal)
   const requestController=new AbortController(),requestSignal=AbortSignal.any([signal,requestController.signal,AbortSignal.timeout(requestBudget)])
@@ -38,7 +38,7 @@ export async function withAnnapurnaPublicRead(options,operation){
     headers:{'User-Agent':'Mozilla/5.0 (compatible; JobverifyCareerScraper/1.0)',Accept:'application/json,text/html,*/*;q=0.8',...headers},...(body===undefined?{}:{body}),
    }),requestSignal)
    need(Number.isInteger(response?.status)&&response.url===url,'public response status or final URL changed')
-   receipt.status=response.status
+   receipt.status=response.status;receipt.contentType=response.headers?.get?.('content-type')??null
    if(redirect&&[301,302,303,307,308].includes(response.status)){
     const location=response.headers?.get?.('location');need(typeof location==='string','public portal redirect unavailable')
     receipt.completedAt=new Date().toISOString();return{location:new URL(location,url).href}
@@ -48,6 +48,7 @@ export async function withAnnapurnaPublicRead(options,operation){
     if(native.retryDelayMs!=null)error.retryDelayMs=native.retryDelayMs
     throw error
    }
+   if(mime){const pattern=mime==='json'?/^application\/json(?:;|$)/i:mime==='html'?/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i:/^(?:application|text)\/(?:x-)?(?:java|ecma)script(?:;|$)/i;need(pattern.test(receipt.contentType??''),'current public '+mime+' MIME changed')}
    let text=response.html??(typeof response.body==='string'?response.body:undefined)
    if(text===undefined&&typeof response.body?.getReader==='function'){
     reader=response.body.getReader();const chunks=[];let bytes=0

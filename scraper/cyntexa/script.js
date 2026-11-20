@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import { CYNTEXA_CATALOG } from './catalog.js'
+import {runCurrentNative} from './currentNative20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -142,7 +143,7 @@ const extractJobDetail = (html = '', detailUrl) => {
 const isLikelyIndiaRole = (detailUrl, jobDetail) =>
   !/\busa\b/i.test(detailUrl) && !/\busa\b/i.test(jobDetail.location || '')
 
-export const createCyntexaScraper = ({
+const createLegacyCyntexaScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
   async run({ fetchText = defaultFetchText } = {}) {
@@ -198,7 +199,12 @@ export const createCyntexaScraper = ({
   },
 })
 
-export const run = async (options = {}) => createCyntexaScraper(options).run(options)
+export const createCyntexaScraper = (options={}) => ({async run(runOptions={}){
+  const effective={...options,...runOptions}
+  if(typeof effective.fetchText==='function')return createLegacyCyntexaScraper(effective).run(effective)
+  return runCurrentNative(effective)
+}})
+export const run = async (options = {}) => createCyntexaScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

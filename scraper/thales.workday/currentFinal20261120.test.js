@@ -1,0 +1,15 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {createHash} from 'node:crypto'
+import {gunzipSync} from 'node:zlib'
+import {run,createThalesScraper} from './script.js'
+import provider from './catalog.js'
+import {assessSoftFailureAcquisition} from '../../scripts/softFailureAssessment20261113.mjs'
+
+const f=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/current-publication-final-20261120.json.gz',import.meta.url))))
+async function replay(options={}){const counts=new Map(),calls=[];let harnessError;const jobs=await run({now:()=>f.observedAt,requestIntervalMs:0,...options,fetchImpl:async(url,init)=>{try{assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');const n=counts.get(url)??0;counts.set(url,n+1);const p=f.responses.filter(p=>p.requestedUrl===url)[n];assert.ok(p,'Exact genuine chronological full reader request '+url+' #'+n);calls.push(url);return Object.defineProperties(new Response(Buffer.from(p.bodyBase64,'base64'),{status:p.status,headers:p.headers}),{url:{value:p.url},redirected:{value:p.redirected}})}catch(e){harnessError=e;throw e}}});if(harnessError)throw harnessError;return{jobs,calls,audit:jobs.nativeCollectionEvidence}}
+
+test('Thales final current native reader44 genuine original GET bodies retain exact bytes and hashes',()=>{assert.equal(f.error,null);assert.equal(f.responses.length,44);for(const p of f.responses){const bytes=Buffer.from(p.bodyBase64,'base64');assert.equal(bytes.length,p.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),p.sha256);assert.equal(p.status,200);assert.equal(p.method,'GET')}})
+test('Thales factory and unchanged standard assessor retain ten current India partials with no cleanup or company-total claim',async()=>{assert.equal(typeof createThalesScraper().run,'function');const{jobs,calls,audit}=await replay(),r=assessSoftFailureAcquisition(provider,jobs);assert.equal(jobs.length,10);assert.equal(calls.length,44);assert.equal(r.indiaJobs,10);assert.equal(r.runnerOutcome.success,true);assert.equal(r.runnerOutcome.partial,true);assert.equal(r.cleanupOptions.replaceExisting,false);assert.equal(audit.heldNativeRoles.length,0);assert.equal(audit.companyIndiaTotal,null);assert.ok(jobs.every(j=>j.sourceDetailComplete===false&&j.sourceLegalEmployer===null&&j.sourceNativeRoleVersions.length===2&&j.sourceNativeRoleClosingQualified&&j.sourceClosingReconciled&&j.lifecycleCleanupAllowed===false));assert.ok(jobs.some(j=>j.sourceNativePublicationDateAmbiguous));assert.ok(jobs.some(j=>j.sourceNativeRecord.countryCode==='global'))})
+test('Thales bounded collection caps accepted jobs without changing the independent native authority and closing query phases',async()=>{const{jobs,calls,audit}=await replay({maxJobs:2});assert.equal(jobs.length,2);assert.equal(calls.length,28);assert.equal(audit.openingNativeRecords.length,10);assert.equal(audit.closingNativeRecords.length,10);assert.equal(audit.sourceScopeComplete,false)})

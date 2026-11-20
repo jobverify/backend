@@ -66,13 +66,13 @@ const PUBLIC_JOB_HTML = `
 
 const loadModule = async () => {
   try {
-    return await import('../../scraper/smallcase/script.js')
+    return await import('../../scraper/smallcase/legacySentinel20260717.js')
   } catch {
     assert.fail('Expected Smallcase scraper module at ../../scraper/smallcase/script.js')
   }
 }
 
-test('Smallcase sentinel helpers stay pinned to the verified first-party About page and opaque PyjamaHR board state', async () => {
+test('Historical July sentinel: Smallcase sentinel helpers stay pinned to the verified first-party About page and opaque PyjamaHR board state', async () => {
   const smallcase = await loadModule()
 
   assert.equal(smallcase.SOURCE, 'smallcase')
@@ -107,7 +107,7 @@ test('Smallcase sentinel helpers stay pinned to the verified first-party About p
   )
 })
 
-test('Smallcase accepts the current About page handoff when the Pyjama query string is HTML-escaped', async () => {
+test('Historical July sentinel: Smallcase accepts the current About page handoff when the Pyjama query string is HTML-escaped', async () => {
   const smallcase = await loadModule()
 
   assert.equal(smallcase.hasOfficialCareersSignal(CURRENT_ABOUT_HTML), true)
@@ -117,7 +117,7 @@ test('Smallcase accepts the current About page handoff when the Pyjama query str
   )
 })
 
-test('Smallcase returns [] only while the verified first-party About page still hands off to an opaque PyjamaHR board', async () => {
+test('Historical July sentinel: Smallcase returns [] only while the verified first-party About page still hands off to an opaque PyjamaHR board', async () => {
   const smallcase = await loadModule()
   const requestedUrls = []
 
@@ -144,7 +144,7 @@ test('Smallcase returns [] only while the verified first-party About page still 
   assert.deepEqual(jobs, [])
 })
 
-test('Smallcase fails closed when the verified official page or PyjamaHR handoff drifts into a parseable board', async () => {
+test('Historical July sentinel: Smallcase fails closed when the verified official page or PyjamaHR handoff drifts into a parseable board', async () => {
   const smallcase = await loadModule()
 
   await assert.rejects(

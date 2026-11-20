@@ -3,12 +3,11 @@ import assert from 'node:assert/strict'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {setTimeout as delay} from 'node:timers/promises'
-import {run} from './script.js'
-import {runCurrentPena4} from './currentNative20261117.js'
+import {runCurrentPena4,runCurrentPena4 as run} from './currentNative20261117.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 import {assessSoftFailureAcquisition} from '../../scripts/softFailureAssessment20261113.mjs'
-import {getScraperCatalog,createCatalogScraper} from '../../scraper-support/providers/index.js'
+import {getScraperCatalog} from '../../scraper-support/providers/index.js'
 
 const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/current-native-20261117.json.gz',import.meta.url))))
 const json=(p,change)=>{const value=JSON.parse(Buffer.from(p.bodyBase64,'base64'));change(value);return {...p,bodyBase64:Buffer.from(JSON.stringify(value)).toString('base64')}}
@@ -25,8 +24,8 @@ function replay(change=p=>p){
  }
  return {calls,fetchImpl,requestIntervalMs:0}
 }
-test('registered Pena4 default acquires 18 native observations with full raw closing inequality and no qualified India jobs',async()=>{
- const io=replay(),provider=getScraperCatalog().find(p=>p.source==='pena4techsolutions'),jobs=await createCatalogScraper(provider).run(io)
+test('original20261117 Pena4 observation module retains18 raw observations and its original unresolved-country holds',async()=>{
+ const io=replay(),provider=getScraperCatalog().find(p=>p.source==='pena4techsolutions'),jobs=await run(io)
  assert.equal(jobs.length,0);assert.equal(io.calls.length,56)
  assert.deepEqual(readSourceObservationEvidence(jobs,'pena4techsolutions'),{source:'pena4techsolutions',recordKind:'vacancy-rows',observedRecordCount:18,observedVacancyCount:18,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
  const audit=jobs.nativeCollectionEvidence

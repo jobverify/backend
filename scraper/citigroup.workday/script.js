@@ -1,12 +1,13 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRecruitmentBatchSource } from '../../scraper-support/utils/recruitmentBatch20261103.js'
+import { runCurrentNative } from './currentNative20261120.js'
 
 export const SOURCE = "citigroup"
 export const COMPANY = "Citigroup"
 export const CAREERS_URL = "https://jobs.citi.com/"
 export const DISPOSITION = 'runtime-verified-recruitment'
-export const run = options => runRecruitmentBatchSource(SOURCE, options)
+export const createCitigroupScraper = () => ({run:runCurrentNative})
+export const run = options => createCitigroupScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -6,6 +6,7 @@ import { gunzipSync } from 'node:zlib'
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { createCatalogScraper, hydrateProviderCatalogEntry } from '../providers/index.js'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
+import {runCurrentSoroco as runHistoricalNovember14Soroco} from '../../scraper/soroco/currentNative.js'
 
 const CAREERS_HTML = `
 <!doctype html>
@@ -54,21 +55,25 @@ const transport = (change = () => {}) => {
   } }
 }
 const registered = async () => createCatalogScraper(hydrateProviderCatalogEntry((await loadCatalogModule()).SOROCO_CATALOG))
+const historical = () => ({run:runHistoricalNovember14Soroco})
 
-test('Soroco local catalog identifies its current declared own native full-role contract', async () => {
+test('Soroco local catalog identifies its current declared native partial contract without snapshot counts', async () => {
   const { SOROCO_CATALOG } = await loadCatalogModule()
   const soroco = await loadScraperModule()
   const provider = hydrateProviderCatalogEntry(SOROCO_CATALOG)
 
   assert.equal(provider.source, 'soroco')
   assert.equal(provider.companyName, 'Soroco')
-  assert.equal(provider.companyCareerPage, 'https://soroco.com/careers/')
-  assert.equal(provider.allOpeningsUrl, 'https://soroco.com/all-job-openings/')
+  assert.equal(provider.companyCareerPage, 'https://soroco.com/careers')
+  assert.equal(provider.allOpeningsUrl, 'https://soroco.com/all-job-openings')
   assert.equal(provider.embeddedGreenhouseApiUrl, 'https://boards-api.greenhouse.io/v1/boards/soroco/jobs?content=true')
-  assert.equal(provider.verifiedPublicJobCount, 2)
-  assert.equal(provider.verifiedIndiaJobCount, 2)
-  assert.match(provider.verifiedSurfaceSummary, /complete original rich criteria/i)
-  assert.match(provider.verifiedSurfaceSummary, /August Date_Opened values are retained/i)
+  assert.equal(provider.verifiedPublicJobCount, null)
+  assert.equal(provider.verifiedIndiaJobCount, null)
+  assert.equal(provider.verifiedOn, null)
+  assert.equal(provider.authoritativeCurrentPublication,true)
+  assert.equal(provider.backfillMode,'live-parser')
+  assert.match(provider.verifiedSurfaceSummary, /partial evidence/i)
+  assert.match(provider.verifiedSurfaceSummary, /Date_Opened is retained without asserting original posting/i)
   assert.match(provider.verifiedSurfaceSummary, /cleanup held/i)
   assert.equal(soroco.PROVIDER_METADATA.source, provider.source)
 })
@@ -84,8 +89,8 @@ test('Soroco exact backlog row resolves from the local catalog object', async ()
   assert.equal(report.unmatchedCount, 0)
 })
 
-test('registered Soroco maps only complete own native India criteria with original dates and cleanup holds', async () => {
-  const wire = transport(), jobs = await (await registered()).run({ fetchImpl: wire.fetchImpl, now: () => fixture.capturedAt })
+test('Explicit historical November14 Soroco reader preserves its original full-criteria fixture projection', async () => {
+  const wire = transport(), jobs = await historical().run({ fetchImpl: wire.fetchImpl, now: () => fixture.capturedAt })
   assert.equal(jobs.length, 2)
   assert.equal(jobs[0].source, 'soroco')
   assert.equal(jobs[0].title, 'General Counsel')
@@ -113,20 +118,20 @@ test('Soroco legacy city-only brief remains a discovery record and body-only inp
   assert.equal(legacy[0].jobDescription, null)
   assert.equal(legacy[0].sourceDetailComplete, false)
   let calls = 0
-  await assert.rejects((await registered()).run({ fetchText: async () => { calls++; return CAREERS_HTML } }), /Original HTTP metadata is required/)
+  await assert.rejects((await registered()).run({ fetchText: async () => { calls++; return CAREERS_HTML } }), /original native Responses required/)
   assert.equal(calls, 0)
 })
 
-test('registered Soroco retains exact current first-party authority before reading native roles', async () => {
+test('Explicit historical November14 Soroco reader retains its obsolete document-pin regression', async () => {
   const wire = transport(row => {
     if (row.requestUrl === 'https://soroco.com/careers') row.bodyBase64 = Buffer.concat([Buffer.from(row.bodyBase64, 'base64'), Buffer.from('<p>Changed publisher</p>')]).toString('base64')
   })
-  await assert.rejects((await registered()).run({ fetchImpl: wire.fetchImpl }), /corporate document original entity changed/)
+  await assert.rejects(historical().run({ fetchImpl: wire.fetchImpl }), /corporate document original entity changed/)
   assert.equal(wire.calls.length, 2)
   assert.ok(wire.calls.every(call => new URL(call.url).hostname === 'soroco.com'))
 })
 
-test('registered Soroco cannot replace a missing literal native country with Bangalore', async () => {
+test('Explicit historical November14 Soroco reader does not replace a missing native country with Bangalore', async () => {
   const wire = transport(row => {
     if (row.requestUrl.includes('/Job_Openings?')) {
       const payload = JSON.parse(Buffer.from(row.bodyBase64, 'base64'))
@@ -134,6 +139,6 @@ test('registered Soroco cannot replace a missing literal native country with Ban
       row.bodyBase64 = Buffer.from(JSON.stringify(payload)).toString('base64')
     }
   })
-  await assert.rejects((await registered()).run({ fetchImpl: wire.fetchImpl }), /Native listing role schema changed/)
+  await assert.rejects(historical().run({ fetchImpl: wire.fetchImpl }), /Native listing role schema changed/)
   assert.ok(wire.calls.every(call => !call.url.includes('/jobs/Careers/')))
 })

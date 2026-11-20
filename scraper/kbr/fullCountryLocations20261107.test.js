@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
-import {createKbrScraper} from './script.js'
+import {createKbrScraper} from './legacyNative20261107.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const fixture=name=>fs.readFileSync(new URL('../../scraper-support/tests/fixtures/kbr/'+name,import.meta.url),'utf8')
 const original=JSON.parse(fixture('current-snapshot.json'))

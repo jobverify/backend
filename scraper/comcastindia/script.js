@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {runCurrentNative} from './currentNative20261120.js'
 
 export const COMPANY_NAME = 'Comcast India'
 export const SOURCE = 'comcastindia'
@@ -339,7 +340,7 @@ export const createComcastIndiaScraper = ({ maxPages = Number.POSITIVE_INFINITY,
   },
 })
 
-export const run = async (options = {}) => createComcastIndiaScraper(options).run(options)
+export const run = async (options = {}) => options.fetchText ? createComcastIndiaScraper(options).run(options) : runCurrentNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

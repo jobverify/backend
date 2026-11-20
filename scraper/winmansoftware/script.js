@@ -6,6 +6,7 @@ import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNa
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { readCurrentWinmanCriteria } from './currentCriteria.js'
+import { runCurrentWinman } from './currentNative20261119.js'
 
 import { WINMAN_SOFTWARE_CATALOG } from './catalog.js'
 
@@ -378,10 +379,9 @@ const withWinmanCancellation = async (fetchText, signal, collect) => {
 export const createWinmanSoftwareScraper = ({
   maxJobs = null,
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    signal,
-  } = {}) {
+  async run(options = {}) {
+    if (!Object.hasOwn(options, 'fetchText')) return runCurrentWinman({ ...options, maxJobs: maxJobs ?? options.maxJobs })
+    const { fetchText = defaultFetchText, signal } = options
     return withWinmanCancellation(fetchText, signal, async (readText) => {
       const careersHtml = await readText(CAREERS_URL)
     if (hasCurrentCareersSignal(careersHtml)) {

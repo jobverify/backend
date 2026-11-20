@@ -41,7 +41,7 @@ const diagnostic = (jobs, entry, provider, value) => {
  */
 export async function recoverEmptyOnlyRecruitment(jobs, provider, options = {}) {
   const entry = sources.get(provider.source)
-  if (!entry || !Array.isArray(jobs) || jobs.length > 0 || options.emptyOnlyRecovery === false
+  if (provider.authoritativeCurrentPublication === true || !entry || !Array.isArray(jobs) || jobs.length > 0 || options.emptyOnlyRecovery === false
     || isFreshCompleteInventoryEvidence(readInventoryEvidence(jobs))
     || typeof provider.modulePath !== 'string' || !path.isAbsolute(provider.modulePath)
     || path.resolve(provider.modulePath).toLowerCase() !== path.resolve(root, entry.module).toLowerCase()) return jobs

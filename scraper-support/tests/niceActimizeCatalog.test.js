@@ -17,7 +17,7 @@ const loadCatalogModule = async () => {
   }
 }
 
-test('NICE Actimize local catalog captures the verified first-party handoff and filtered Greenhouse jobs surface', async () => {
+test('NICE Actimize local catalog keeps current own authority and unresolved parent employer-unit scope explicit', async () => {
   const { NICE_ACTIMIZE_CATALOG, default: defaultCatalog } = await loadCatalogModule()
   const provider = hydrateProviderCatalogEntry(NICE_ACTIMIZE_CATALOG)
 
@@ -29,7 +29,7 @@ test('NICE Actimize local catalog captures the verified first-party handoff and 
   assert.equal(provider.officialActimizePageUrl, 'https://www.niceactimize.com/get-in-touch')
   assert.equal(
     provider.companyCareerPage,
-    'https://www.nice.com/careers/apply?location=India+-+Pune',
+    'https://www.niceactimize.com/get-in-touch',
   )
   assert.equal(
     provider.greenhouseJobsApiUrl,
@@ -38,25 +38,26 @@ test('NICE Actimize local catalog captures the verified first-party handoff and 
   assert.equal(provider.greenhouseBoardHost, 'boards.eu.greenhouse.io')
   assert.equal(provider.atsPlatform, 'greenhouse-board-api')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-greenhouse-board-feed')
+  assert.equal(provider.paginationStrategy, 'paired-own-and-delegated-parent-observations;exact-native-unit-scope-held')
   assert.equal(
     provider.extractionStrategy,
-    'verified-nice-actimize-first-party-handoff+verified-nice-careers-filter-page+greenhouse-board-api+actimize-india-filter',
+    'bounded-original-Responses+current-Actimize-to-NICE-delegation+complete-original-parent-feed+exact-native-employer-unit-observations;no-parent-product-keyword-promotion',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(provider.companyDomain, 'nice.com')
-  assert.equal(provider.verifiedOn, '2026-08-13')
-  assert.equal(provider.verifiedJobCount, 7)
-  assert.match(provider.sampleJobUrl, /boards\.eu\.greenhouse\.io\/nice\/jobs\/4913142101/i)
+  assert.equal(provider.companyDomain, 'niceactimize.com')
+  assert.equal(provider.verifiedOn, null)
+  assert.equal(provider.verifiedJobCount, null)
+  assert.equal(provider.verifiedIndiaJobCount, null)
+  assert.equal(provider.sampleJobUrl, null)
+  assert.equal(provider.authoritativeCurrentPublication, true)
+  assert.equal(provider.scraperTimeoutMs, 120000)
   assert.match(provider.dryRunFile, /niceactimize[\\/]jobs\.json$/i)
   assert.equal(provider.modulePath, modulePath)
-  assert.match(provider.verifiedSurfaceSummary, /Thursday, August 13, 2026/i)
+  assert.match(provider.verifiedSurfaceSummary, /unresolved unit scope is a coverage gap/i)
   assert.match(provider.verifiedSurfaceSummary, /https:\/\/www\.niceactimize\.com\/get-in-touch/i)
   assert.match(provider.verifiedSurfaceSummary, /https:\/\/boards-api\.greenhouse\.io\/v1\/boards\/nice\/jobs\?content=true/i)
-  assert.match(provider.verifiedSurfaceSummary, /\b7 India\/Pune Actimize roles\b/i)
-  assert.match(provider.verifiedSurfaceSummary, /Tech Manager, Actimize/i)
-  assert.match(provider.verifiedSurfaceSummary, /Specialist Product Owner, Actimize \( BFSI, AI\)/i)
+  assert.match(provider.verifiedSurfaceSummary, /contact domains never establish Actimize membership/i)
 })
 
 test('NICE Actimize exact backlog row resolves directly from the local provider metadata', async () => {
@@ -81,7 +82,7 @@ test('NICE Actimize hydrated local catalog stays script-runner compatible for la
 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, NICE_ACTIMIZE_CATALOG.companyCareerPage)
-  assert.equal(provider.companyDomain, 'nice.com')
+  assert.equal(provider.companyDomain, 'niceactimize.com')
   assert.equal(provider.atsPlatform, 'greenhouse-board-api')
   assert.match(provider.modulePath, /niceactimize[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /niceactimize[\\/]jobs\.json$/i)

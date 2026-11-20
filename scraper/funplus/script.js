@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { FUNPLUS_CATALOG } from './catalog.js'
 import {runCurrentFunPlus} from './currentNative20261117.js'
+import {runCurrentControlled} from './currentControlled20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -299,7 +300,7 @@ const buildJob = (card, detail, postingDate, scrapedAt) => {
   }
 }
 
-export const createFunPlusScraper = ({
+export const createLegacyFunPlusScraper = ({
   now = () => new Date().toISOString(),
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   ...currentOptions
@@ -375,6 +376,9 @@ export const createFunPlusScraper = ({
   },
 })
 
+export const createFunPlusScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentControlled({...defaults,...options}),
+})
 export const run = async (options = {}) => createFunPlusScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

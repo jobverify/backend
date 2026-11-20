@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {createHash} from 'node:crypto'
-import {run} from './script.js'
+import {runCurrentWpp as run} from './currentNative20261115.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))
 const packets=new Map(fixture.packets.map(p=>{const bytes=Buffer.from(p.bodyBase64,'base64');assert.equal(createHash('sha256').update(bytes).digest('hex'),p.bodySHA256);return[p.requestedURL||p.url,{...p,html:bytes.toString()}]}))

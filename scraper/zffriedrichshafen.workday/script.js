@@ -1,14 +1,15 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRemainingRecruitmentBatchSource } from '../../scraper-support/utils/remainingRecruitmentBatch20261103.js'
+import {runCurrentPublications} from './currentPublication20261120.js'
 
 export const SOURCE = "zffriedrichshafen"
 export const COMPANY = "ZF Friedrichshafen"
-export const CAREERS_URL = "https://web.arbeitsagentur.de/vermittlung/ag-darstellung-ui/anzeigen/lbSR-UdBKwidAQG0OtOqxnslw8CU_ZGPAAYNC8b-DWM%3D"
-export const DISPOSITION = 'runtime-verified-recruitment'
+export const CAREERS_URL = 'https://www.zf.com/india/en/careers/careers.html'
+export const DISPOSITION = 'current-native-partial-publications'
 export const VERIFIED_ON = null
-export const VERIFIED_SURFACE_SUMMARY = 'Current extraction is implemented; complete and empty company inventories remain unverified.'
-export const run = options => runRemainingRecruitmentBatchSource(SOURCE, options)
+export const VERIFIED_SURFACE_SUMMARY = 'Current corporate-declared ZF group publications retain native employer and legal labels, typed India workplaces, original dates/criteria and exact own applications. Full company inventory, renderer/application controls and cleanup remain unverified.'
+export const createZfScraper = () => ({run:runCurrentPublications})
+export const run = options => runCurrentPublications(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

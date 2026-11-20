@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import {createCriblScraper} from './native20261107.js'
-export {createCriblScraper} from './native20261107.js'
+import {runCurrentScope} from './currentScope20261120.js'
+export const createCriblScraper=()=>({run:runCurrentScope})
 
 export const SOURCE = "cribl"
 export const COMPANY = "Cribl"

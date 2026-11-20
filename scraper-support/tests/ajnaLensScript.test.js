@@ -57,9 +57,9 @@ const originUnreachableHtml = `
 
 const loadAjnaLensModule = async () => {
   try {
-    return await import('../../scraper/ajnalens/script.js')
+    return await import('../../scraper/ajnalens/legacy20261120.js')
   } catch {
-    assert.fail('Expected AjnaLens scraper module at ../../scraper/ajnalens/script.js')
+    assert.fail('Expected explicit historical AjnaLens fixture module at ../../scraper/ajnalens/legacy20261120.js')
   }
 }
 

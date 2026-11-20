@@ -92,11 +92,14 @@ function roleModel(page,row,now){
  need(page.visible.text(brand)==='Rexel','visible native employer conflict')
  const original=one(page.raw.nodes(node=>node.attrs['aria-label']==='Job description'),'full original native criteria')
  const visible=one(page.visible.nodes(node=>node.attrs['aria-label']==='Job description'),'full visible native criteria')
- const current=profile.roles[row.url];need(current,'native role context requires review')
  const criterionPath=one(walk(page.root).filter(({node})=>node===original),'native criterion ancestor context').path
  const path=criterionPath.slice(0,-1).map(node=>({tag:node.tag,attrs:node.attrs}))
- need(canonical(path)===canonical(current.criterionAncestors),'native criterion ancestor attributes changed')
- need(canonical([...new Set(page.raw.nodes(node=>node.attrs['data-type']).map(node=>node.attrs['data-type']))])===canonical(current.widgetTypes),'unreviewed native criteria widget')
+ const widgetTypes=[...new Set(page.raw.nodes(node=>node.attrs['data-type']).map(node=>node.attrs['data-type']))]
+ // The reviewed contexts describe server layout/CSS, not a frozen vacancy
+ // roster. Current native IDs still bind independently to their own cards,
+ // UUIDs, employer, workplace, criteria, canonical URI and application URL.
+ need(Object.values(profile.roles).some(current=>canonical(path)===canonical(current.criterionAncestors)
+  &&canonical(widgetTypes)===canonical(current.widgetTypes)),'native criterion ancestor attributes changed or unreviewed native criteria widget')
  need(walk(original).every(({node})=>!node.inert&&!Object.hasOwn(node,'raw')&&['div','br','p','strong','ul','li','u','ol'].includes(node.tag)
   &&(node===original||Object.keys(node.attrs).length===0||node.tag==='div'&&Object.keys(node.attrs).length===1&&/^jobad-(?:companydescription|jobdescription|qualifications)$/.test(node.attrs.class))),'native authored criterion hidden or changed')
  const description=page.visible.text(visible)
@@ -135,6 +138,12 @@ export async function runCurrentRexel(options={}){
   if(wait)await delay(wait,undefined,{signal});lastRead.set(origin,performance.now())
   const nativeFetch=async(value,init)=>{
    const response=await fetchImpl(value,{...init,cache:'no-store',credentials:'omit'})
+   try{
+    signal.throwIfAborted();init.signal.throwIfAborted()
+    need(response&&response.url===value&&response.redirected===false&&typeof response.headers?.get==='function','original HTTP identity or redirect metadata changed')
+    if(response.status!==200)throw Object.assign(problem('native HTTP '+response.status,[401,403,429,451].includes(response.status)?'blocked_or_access_denied':'upstream_unavailable'),{status:response.status,httpStatus:response.status})
+    need(mime.test(response.headers.get('content-type')??''),'native response MIME changed')
+   }catch(error){try{Promise.resolve(response?.body?.cancel(error)).catch(()=>{})}catch{/* Preserve the observed HTTP status or opaque caller reason. */}throw error}
    const body=response.body===null?null:{cancel:reason=>response.body.cancel(reason),getReader(){const reader=response.body.getReader();let bytes=0;return{async read(){const part=await reader.read();if(!part.done){need(types.isUint8Array(part.value),'native response chunk type');need(part.value.byteLength<=4000000-bytes&&part.value.byteLength<=24000000-totalBytes,'native stream byte bound');bytes+=part.value.byteLength;totalBytes+=part.value.byteLength}return part},cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}}}
    return{status:response.status,url:response.url,headers:response.headers,body}
   }

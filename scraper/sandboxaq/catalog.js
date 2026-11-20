@@ -14,17 +14,22 @@ export const SANDBOXAQ_CATALOG = {
   officialCareersListUrl: 'https://www.sandboxaq.com/careers-list',
   ashbyPublicBoardUrl: 'https://jobs.ashbyhq.com/sandboxaq',
   ashbyJobBoardUrl: 'https://api.ashbyhq.com/posting-api/job-board/sandboxaq',
-  atsPlatform: 'ashby',
+  atsPlatform: 'first-party-declared-ashby-current-public-native-board-model',
   countryFilter: 'Global',
-  paginationStrategy: 'single-public-ashby-job-board-get',
+  paginationStrategy: 'paired-current-own-declared-native-appData-jobBoard-array-configured-surface-only',
   extractionStrategy:
-    'verified-first-party-careers-page+verified-careers-list-shell+verified-public-ashby-board+public-ashby-get-feed',
+    'current-own-careers-handoffs+connected-declared-native-embed-account+whole-primary-and-secondary-native-country-models',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
+  authoritativeCurrentPublication: true,
+  backfillMode: 'live-parser',
+  scraperTimeoutMs: 180000,
   companyDomain: 'sandboxaq.com',
-  verifiedOn: '2026-07-17',
+  verifiedOn: null,
+  verifiedJobCount: null,
+  verifiedIndiaJobCount: null,
   verifiedSurfaceSummary:
-    'Verified on Friday, July 17, 2026 that https://www.sandboxaq.com/careers is the live official SandboxAQ careers page and routes applicants to https://www.sandboxaq.com/careers-list via View Job Openings, that the careers-list route remains a live SandboxAQ shell, that the public SandboxAQ jobs board shell exists at https://jobs.ashbyhq.com/sandboxaq, and that current public SandboxAQ job pages include Staff Machine Learning Engineer, AI Generation Engine and Product & Growth Marketer, AI Simulation. The public Ashby feed endpoint for this board is https://api.ashbyhq.com/posting-api/job-board/sandboxaq.',
+    'Pairs current own corporate careers handoffs, their connected declared native embed account, and the original public native board JobBoard model. Fetched-zero is restricted to this configured surface when every nonempty current primary and secondary whole native workplace country is explicitly foreign in both observations. India, unknown, malformed, maintenance, empty or denied models remain held. Original models retained; no India-facet, whole-company/all-channel total, application activation or cleanup claim.',
   dryRunFile: 'sandboxaq/jobs.json',
 }
 

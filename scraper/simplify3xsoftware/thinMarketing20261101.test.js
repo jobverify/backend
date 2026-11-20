@@ -1,7 +1,8 @@
+// Historical body-only parser controls; client assignments here are not current target-employer proof.
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import * as source from './script.js'
-import {getScraperCatalog,createCatalogScraper} from '../../scraper-support/providers/index.js'
+import * as source from './legacy20261120.js'
+import {createCatalogScraper} from '../../scraper-support/providers/index.js'
 
 // Exact thin synthetic homepage from the archived d347 legacy regression.
 // A brand, slogan and email alone do not establish the declared employer route.
@@ -17,7 +18,7 @@ const homepageHtml = `
   </html>
 `
 
-const provider=getScraperCatalog().find(item=>item.source==='simplify3xsoftware')
+const provider=source.PROVIDER_METADATA
 assert.ok(provider)
 for(const [name,execute] of [
   ['factory',options=>source.createSimplify3xSoftwareScraper().run(options)],

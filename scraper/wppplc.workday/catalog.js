@@ -1,34 +1,30 @@
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const PROVIDER_METADATA = {
+import {fileURLToPath} from 'node:url'
+const currentDir=path.dirname(fileURLToPath(import.meta.url))
+const PROVIDER_METADATA={
   "source": "wppplc",
   "companyName": "WPP plc",
   "adapter": "script",
-  "atsPlatform": "corporate-delegated-careersitecloud-and-own-greenhouse-application",
-  "companyHomepage": "https://www.wpp.com/",
-  "companyCareerPage": "https://www.wpp.com/",
-  "companyDomain": "wpp.com",
+  "authoritativeCurrentPublication": true,
+  "scraperTimeoutMs": 180000,
+  "sourceDeadlineMs": 180000,
+  "atsPlatform": "runtime-first-party-native-publication",
   "countryFilter": "India",
-  "paginationStrategy": "bounded-current-published-mixed-agency-leads;own-employer-country-and-role-reconciliation;fresh-closing",
-  "extractionStrategy": "exact-own-native-title-plus-independently-typed-city;labelled-employer-country-and-UID;full-schema-visible-and-current-application-criteria",
+  "paginationStrategy": "independently-closed-current-own-published-surface-with-other-inventory-held",
+  "extractionStrategy": "current-own-native-employer-workplace-identity-availability-and-authored-application-models",
   "parser": "custom-script",
+  "backfillMode": "live-parser",
   "normalizationProfile": "engineering-default",
   "verifiedOn": null,
   "verifiedPublicJobCount": null,
   "verifiedIndiaJobCount": null,
-  "verificationDisposition": "current-own-native-role-positives;company-and-group-scope-unqualified",
-  "sourceScopeComplete": false,
-  "lifecycleCleanupAllowed": false,
-  "zeroJobsEvidenceRequired": true,
-  "verifiedSurfaceSummary": "The configured WPP corporate careers page visibly delegates its current mixed-agency board. Only exact WPP agency roles with independent own typed India country, native UID and exact title/city relationship qualify. Own full visible criteria, the same-employer current application and corporate/native/style closing reads are reconciled. Company/group totals and empty inventory remain unproved; cleanup is forbidden.",
-  "originalModulePath": "../workbookbatch11c/failClosedSentinel.js",
-  "backfillMode": null,
-  "modulePath": path.join(currentDir, 'script.js'),
-  "dryRunFile": path.join(currentDir, 'jobs.json')
+  "verificationDisposition": "current-native-published-partial-contract-company-inventory-and-cleanup-held",
+  "verifiedSurfaceSummary": "Current corporate-declared native board publishes multiple agencies; only exact native WPP employer qualifies. Typed India or independently reviewed exact whole Mumbai workplace proof is retained with original country values. Subsidiaries/agencies, company inventories, backend activation and cleanup remain held.",
+  "companyHomepage": "https://www.wpp.com/en",
+  "companyCareerPage": "https://www.wpp.com/en/careers/search-and-apply",
+  "officialOpeningsUrl": "https://wpp.careersitecloud.com/"
 }
-
+PROVIDER_METADATA.modulePath=path.join(currentDir,'script.js')
+PROVIDER_METADATA.dryRunFile=path.join(currentDir,'jobs.json')
+export {PROVIDER_METADATA}
 export default PROVIDER_METADATA
-export { PROVIDER_METADATA }

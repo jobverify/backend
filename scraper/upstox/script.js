@@ -1,13 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-import { hasCurrentUpstoxClient, runCurrentUpstox } from './currentNative.js'
+import {runCurrentPublications} from './currentPublished20261120.js'
+export {PROVIDER_METADATA} from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 export const SOURCE = 'upstox'
 export const COMPANY_NAME = 'Upstox'
@@ -41,8 +38,6 @@ const normalizeWhitespace = (value) => decodeHtmlEntities(stripComments(value))
   .replace(/\s+/g, ' ')
   .trim()
 
-const stripTags = (value) => normalizeWhitespace(String(value ?? '').replace(/<[^>]+>/g, ' '))
-
 const slugify = (value) => normalizeWhitespace(value)
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, '-')
@@ -67,15 +62,6 @@ const normalizeRemoteStatus = (value) => {
   return normalized
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
 export const extractJobCards = (html = '') => [
   ...String(html ?? '').matchAll(CARD_PATTERN),
 ].map((match) => match[1])
@@ -92,7 +78,7 @@ const extractExperienceRequired = (badges, summary) => {
   )
   if (experienceBadge) return experienceBadge
 
-  const summaryMatch = String(summary ?? '').match(/Experience required:\s*([^\.]+)\./i)
+  const summaryMatch = String(summary ?? '').match(/Experience required:\s*([^.]+)\./i)
   return normalizeWhitespace(summaryMatch?.[1]) || null
 }
 
@@ -181,29 +167,7 @@ export const hasOfficialCareersPageSignal = (html = '') => {
 export const createUpstoxScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run(options = {}) {
-    const fetchText = options.fetchText || defaultFetchText
-    const careersHtml = await fetchText(CAREERS_PAGE_URL)
-    if (hasCurrentUpstoxClient(careersHtml)) return runCurrentUpstox(options)
-
-    if (!hasOfficialCareersPageSignal(careersHtml)) {
-      throw new Error('The verified Upstox careers page changed materially')
-    }
-
-    const jobs = extractJobsFromPage(careersHtml)
-    if (jobs.length === 0) {
-      throw new Error('The verified Upstox careers page no longer exposes public job cards')
-    }
-
-    const scrapedAt = now()
-
-    return jobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt,
-    }))
-  },
+  run(options = {}) {return runCurrentPublications({...options,now:options.now??now})},
 })
 
 export const run = async (options = {}) => createUpstoxScraper().run(options)

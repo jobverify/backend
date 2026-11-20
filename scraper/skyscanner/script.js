@@ -6,6 +6,7 @@ import { readNativeDocument, activeHead } from '../../scraper-support/utils/acti
 import { inspectRecruitingBundle } from '../../scraper-support/utils/recruitingBundleContracts.js'
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { runPublicCollection } from './publicBoundary.js'
+import {runCurrentConfiguredFeed} from './currentConfiguredFeed20261120.js'
 
 import { SKYSCANNER_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -32,12 +33,6 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\u00a0/g, ' ')
   .replace(/\s+/g, ' ')
   .trim()
-
-const defaultFetchPage = async (url, { signal } = {}) => {
-  const response = await fetch(url, { headers: { 'User-Agent': USER_AGENT, Accept: 'text/html,*/*' },
-    signal: AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(20000)]) })
-  return { status: response.status, url: response.url, html: await response.text() }
-}
 
 export const hasVerifiedJobsShellSignal = (html = '') => {
   const page = String(html ?? '')
@@ -72,7 +67,7 @@ export const hasChallengeGateSignal = (html = '') => {
     )
 }
 
-export const createSkyscannerScraper = ({ maxJobs = null } = {}) => ({
+export const createLegacySkyscannerScraper = ({ maxJobs = null } = {}) => ({
   async run(options = {}) {
     return runPublicCollection(SOURCE, options, async boundary => {
     const signal = boundary.signal, fetchJson = options.fetchJson
@@ -132,6 +127,10 @@ export const createSkyscannerScraper = ({ maxJobs = null } = {}) => ({
   },
 })
 
+export const createSkyscannerScraper = (settings = {}) => ({source: SOURCE, run: (options = {}) =>
+  typeof options.fetchPage === 'function' || typeof options.fetchJson === 'function'
+    ? createLegacySkyscannerScraper(settings).run(options)
+    : runCurrentConfiguredFeed({...settings, ...options})})
 export const run = async (options = {}) => createSkyscannerScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

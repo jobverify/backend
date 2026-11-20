@@ -49,49 +49,49 @@
       "sha256": "1d861c95192b40d2680b564034f75e375ca54331dbc5592e895b936adbfbe756"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.5",
       "type": "css",
       "bytes": 160403,
       "sha256": "680af6669abc319f9803f0fa26d443df1b6bc29133d88a8e4bea560ffed7288c"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.5",
       "type": "css",
       "bytes": 3482,
       "sha256": "7da1fa9cbab70ee6a9690216a927a5621d625078b494b21832e41fe9b975aa78"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.5",
       "type": "css",
       "bytes": 57095,
       "sha256": "a8f043e8a5c152aa9c78326de61736d14d58bc224bb3c2eca12fa4a417639166"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.5",
       "type": "css",
       "bytes": 4025,
       "sha256": "c7ea3491403b15e71ec8cb3d1cef520813138941e7eb8d898baef7799369f4ea"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.5",
       "type": "css",
       "bytes": 1776,
       "sha256": "de1e399b07289f3b0a8d35142e363e128124a1185770e214e25e58030dad48e5"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.5",
       "type": "css",
       "bytes": 4744,
       "sha256": "aaf08be6ae4ed211293a6d4280e2d052e1f332eb0066a0dc0192fd8a3a9f39d2"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.5",
       "type": "css",
       "bytes": 55278,
       "sha256": "b90c6e2f9442646a82dada14dd86c35097bc73545913b11c1785c45707a9c883"
     },
     {
-      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.5",
       "type": "css",
       "bytes": 24312,
       "sha256": "80b7bbfb79d5db4e901eacd233485ede0cde2442c5d36f52e7738b6d3ba2f373"
@@ -205,7 +205,7 @@
       "sha256": "74b88e3c74597c256390ff0cf19b7bc9c5427ca2b0651959c164b29253965871"
     },
     {
-      "url": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.4",
+      "url": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.5",
       "type": "css",
       "bytes": 140829,
       "sha256": "222ca4216c4f17530a03bf9701410b689d7d9c953c8ddcc9d4e8722d69c348aa"
@@ -263,49 +263,49 @@
         {
           "rel": "stylesheet",
           "id": "w3n-bootstrap-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-fonts-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-animate-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-nice-select-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-slick-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-carousel-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-style-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-responsive-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.5",
           "media": "all"
         }
       ],
@@ -457,7 +457,7 @@
         {
           "rel": "stylesheet",
           "id": "wp-block-library-css",
-          "href": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.5",
           "media": "all"
         },
         {
@@ -493,49 +493,49 @@
         {
           "rel": "stylesheet",
           "id": "w3n-bootstrap-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-fonts-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-animate-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-nice-select-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-slick-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-carousel-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-style-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-responsive-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.5",
           "media": "all"
         }
       ],
@@ -678,7 +678,7 @@
         {
           "rel": "stylesheet",
           "id": "wp-block-library-css",
-          "href": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-includes/css/dist/block-library/style.min.css?ver=7.1.5",
           "media": "all"
         },
         {
@@ -714,49 +714,49 @@
         {
           "rel": "stylesheet",
           "id": "w3n-bootstrap-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/bootstrap.min.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-fonts-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/fonts/fonts.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-animate-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/animate.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-nice-select-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/nice-select.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-slick-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/slick.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-carousel-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/owl.carousel.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-style-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/style.css?ver=7.1.5",
           "media": "all"
         },
         {
           "rel": "stylesheet",
           "id": "w3n-responsive-css-css",
-          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.4",
+          "href": "https://svayarobotics.com/wp-content/themes/svayarobotics/css/responsive.css?ver=7.1.5",
           "media": "all"
         }
       ],
@@ -905,5 +905,56 @@
     "reference": "https://developer.wordpress.org/reference/functions/wp_enqueue_script/",
     "nativeVersionedWholeProgramRepresentationsReviewed": 56,
     "qualifiedFields": "Only the complete ver query of these eight exact own theme paths; complete acquired bytes, MIME, final URL and whole SHA-256 remain mandatory; opening and closing phase caches are independent."
+  },
+  "currentDeploymentVerifiedAt": "2026-11-19T15:58:49.228Z",
+  "criticalPresentationAttributes": [
+    "[\"body\",\"class\",\"wp-singular cpt_job-template-default single single-cpt_job postid-NATIVE_POST_ID wp-custom-logo wp-embed-responsive wp-theme-twentyseventeen wp-child-theme-svayarobotics enteringpage has-header-image colors-light elementor-default elementor-kit-1271\"]",
+    "[\"div\",\"aria-hidden\",\"true\"]",
+    "[\"div\",\"class\",\"apply-form wow fadeInUp\"]",
+    "[\"div\",\"class\",\"apply-text-top wow fadeInUp\"]",
+    "[\"div\",\"class\",\"attach_file_blk\"]",
+    "[\"div\",\"class\",\"career-block-3\"]",
+    "[\"div\",\"class\",\"col-lg-8\"]",
+    "[\"div\",\"class\",\"col-md-12\"]",
+    "[\"div\",\"class\",\"col-md-6\"]",
+    "[\"div\",\"class\",\"container\"]",
+    "[\"div\",\"class\",\"file-select-button\"]",
+    "[\"div\",\"class\",\"file-select-name\"]",
+    "[\"div\",\"class\",\"form_row attach_and_recaptch\"]",
+    "[\"div\",\"class\",\"inner_wapper job_singal_page cms-page\"]",
+    "[\"div\",\"class\",\"input-box submit-btn\"]",
+    "[\"div\",\"class\",\"input-box\"]",
+    "[\"div\",\"class\",\"jobdics_row wow fadeInUp\"]",
+    "[\"div\",\"class\",\"loacation_blk flxrow wow fadeInUp\"]",
+    "[\"div\",\"class\",\"main_job_singal\"]",
+    "[\"div\",\"class\",\"main_wapper\"]",
+    "[\"div\",\"class\",\"row justify-content-center\"]",
+    "[\"div\",\"class\",\"row\"]",
+    "[\"div\",\"class\",\"screen-reader-response\"]",
+    "[\"div\",\"class\",\"singal_job_blk\"]",
+    "[\"div\",\"class\",\"singal_job_details\"]",
+    "[\"div\",\"class\",\"top_hedding\"]",
+    "[\"div\",\"class\",\"wpcf7 no-js\"]",
+    "[\"div\",\"class\",\"wpcf7-response-output\"]",
+    "[\"fieldset\",\"class\",\"hidden-fields-container\"]",
+    "[\"form\",\"class\",\"wpcf7-form init\"]",
+    "[\"h2\",\"class\",\"wow fadeInUp\"]",
+    "[\"html\",\"class\",\"no-js no-svg\"]",
+    "[\"input\",\"class\",\"wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email input-text\"]",
+    "[\"input\",\"class\",\"wpcf7-form-control wpcf7-file wpcf7-validates-as-required attach_file\"]",
+    "[\"input\",\"class\",\"wpcf7-form-control wpcf7-submit has-spinner\"]",
+    "[\"input\",\"class\",\"wpcf7-form-control wpcf7-text wpcf7-validates-as-required input-text\"]",
+    "[\"p\",\"class\",\"isSelectedEnd\"]",
+    "[\"p\",\"style\",\"text-align: left;\"]",
+    "[\"section\",\"class\",\"contain_wapper\"]",
+    "[\"span\",\"class\",\"upload_icon\"]",
+    "[\"span\",\"class\",\"wpcf7-form-control-wrap\"]",
+    "[\"span\",\"style\",\"background-image:url(https://multiatesting.in/svayarobotics/wp-content/uploads/2021/09/pin.svg);\"]",
+    "[\"textarea\",\"class\",\"wpcf7-form-control wpcf7-textarea input-text\"]"
+  ],
+  "criteriaPresentationReview": {
+    "nativeSections": "jobdics_row wow fadeInUp; current pinned theme new WOW().init() and complete pinned WOW scroll renderer reveal sections as the visitor scrolls",
+    "backendSubmissionVerified": false,
+    "presentationQualification": "Exact current critical class/style/interaction attribute vocabulary, including ancestors; only native body postid integer is passive metadata. Unknown presentation requires review."
   }
 }
