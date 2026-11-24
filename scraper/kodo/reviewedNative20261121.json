@@ -1,0 +1,305 @@
+{
+  "source": "kodo",
+  "release": "current-native-data-20261121",
+  "policy": "Finite additional current native DATA-only deployment. Framer execution/CSS activation, complete dependency graph, formal legal employer, application actions, company inventory and cleanup remain unqualified. Whole original corporate/board/client bytes and exact current public carrier are required; no executable normalization or guessed routes.",
+  "currentCorporate": [
+    {
+      "label": "home",
+      "requestedURL": "https://www.kodo.com/",
+      "bytes": 751820,
+      "sha256": "a8c64a0cf97be875dac1f6b871d778223ac7fa380e657ec09eeae79510f5cf29"
+    },
+    {
+      "label": "careers",
+      "requestedURL": "https://www.kodo.com/careers",
+      "bytes": 368394,
+      "sha256": "0cef4645652f66fb16e32bf62d4772cbd3397ee8a18b6568a1cc78838c5e0645"
+    }
+  ],
+  "nativeBoard": {
+    "requestedURL": "https://app.pyjamahr.com/careers?company=Kodo&company_uuid=FC3BF22FD8&isHeaderVisible=false&is_careers_page=true",
+    "bytes": 25402,
+    "sha256": "2684b905c95083e465eab791824946bfed260f3b09e98c37c59dbc46ac12b61b"
+  },
+  "wholeCriticalClients": [
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/_app-d46e2c3291aa923ebd40.js",
+      "bytes": 883703,
+      "wholeOriginalSHA256": "7e125da71b23a3728701ed859d50ca0deb112b544f5028c679cd42fa918cf760",
+      "modules": [
+        {
+          "id": 29437,
+          "start": 564473,
+          "end": 565211,
+          "bytes": 738,
+          "sha256": "1a9cc73eb648c07098a3926667c424938b2fd6e9c4f8f70f4e1d886d03b6ed8d",
+          "rawOriginalEqualToPriorReview": true
+        },
+        {
+          "id": 34054,
+          "start": 787454,
+          "end": 789387,
+          "bytes": 1933,
+          "sha256": "20b617964169380f1dd4cb724199ddfce68ce5b19aa8b8333f855c6e2d9c9df2",
+          "rawOriginalEqualToPriorReview": true
+        },
+        {
+          "id": 36523,
+          "start": 729522,
+          "end": 736895,
+          "bytes": 7373,
+          "sha256": "70bda4ea2b4a7274ecd8e528e2a76d2104d537f757971b0beb5255cd8c3ff608",
+          "rawOriginalEqualToPriorReview": true
+        },
+        {
+          "id": 77361,
+          "start": 693629,
+          "end": 706522,
+          "bytes": 12893,
+          "sha256": "5dca59a41527619cc5f7ede322500e6cf1aa615704a36a6a4ded572812edfc82",
+          "rawOriginalEqualToPriorReview": true
+        },
+        {
+          "id": 91181,
+          "start": 756799,
+          "end": 766038,
+          "bytes": 9239,
+          "sha256": "4c7bffa1632c66f9c581d988c414241fbd3905d4de079b4ddf32c3785dc055f0",
+          "rawOriginalEqualToPriorReview": true
+        }
+      ]
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/careers-3964a3a7b87976873257.js",
+      "bytes": 62462,
+      "wholeOriginalSHA256": "5ad63501a21e61804d21db297ed01a576046e201659e39ac8b5d1a967facf956",
+      "modules": [
+        {
+          "id": 51485,
+          "start": 2874,
+          "end": 62029,
+          "bytes": 59155,
+          "sha256": "b0db5b98d44240be0e2c582829620ce2d37c4f721f145b8674a11969fd7ada8b",
+          "rawOriginalEqualToPriorReview": false
+        }
+      ]
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/2113-006cc9dc526179c5b7d1.js",
+      "bytes": 31459,
+      "wholeOriginalSHA256": "98f6c24c42067d8db7f4b132ce67ca2011b16838dd6ef13608db946f0e243b9b",
+      "modules": [
+        {
+          "id": 99709,
+          "start": 70,
+          "end": 15441,
+          "bytes": 15371,
+          "sha256": "512890f253d035b647ab9e8f9de2dd4674c2ede8e6853797076fd736f8dbdd5c",
+          "rawOriginalEqualToPriorReview": false
+        }
+      ]
+    }
+  ],
+  "nativeListingCount": 15,
+  "nativeListingPageLengths": [
+    10,
+    5
+  ],
+  "knownCompletePublicRoleEnvelopes": [
+    {
+      "id": 415100,
+      "currentRoleURL": "https://app.pyjamahr.com/careers?company=Kodo&job_id=415100&company_uuid=FC3BF22FD8&utm_source=DIRECT&source=DIRECT&isHeaderVisible=false",
+      "prefixBytes": 16421,
+      "prefixSHA256": "225224b39faeca2a5ca348c0eaf1e117053d31594a3464cdd2945b790e01a3af",
+      "suffixBytes": 23,
+      "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+      "reviewedNonJobModel": {
+        "props": {
+          "pageProps": {
+            "isBot": false,
+            "companyDetails": {
+              "id": 9551,
+              "name": "Kodo",
+              "url": "https://kodo.com",
+              "slug": "kodo",
+              "location": "Mumbai, IN",
+              "address": null,
+              "description": "",
+              "primary_brand_colour": "#000000",
+              "secondary_brand_colour": "#6c6c6c",
+              "image_path": "",
+              "image_url": null,
+              "uuid": "FC3BF22FD8",
+              "phone_number": "+919321024013",
+              "email": null,
+              "banner_image_path": "",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            }
+          },
+          "__N_SSP": true
+        },
+        "page": "/careers",
+        "query": {
+          "company": "Kodo",
+          "job_id": "415100",
+          "company_uuid": "FC3BF22FD8",
+          "utm_source": "DIRECT",
+          "source": "DIRECT",
+          "isHeaderVisible": "false"
+        },
+        "buildId": "hGwYSswRdYk00b5WE7uoq",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "originalWholeSHA256": "17fd351b1f0c6385180b0a0eee37072f2e6ae177b76ff55b66f1cdf0e4a7551f",
+      "originalWholeBytes": 23136,
+      "acquisitionScope": "Exact current public native data carrier only; no Framer/UI/company/application completeness claim"
+    },
+    {
+      "id": 429015,
+      "currentRoleURL": "https://app.pyjamahr.com/careers?company=Kodo&job_id=429015&company_uuid=FC3BF22FD8&utm_source=DIRECT&source=DIRECT&isHeaderVisible=false",
+      "prefixBytes": 16939,
+      "prefixSHA256": "687fa0d8bb0358afd14bd6dcf28058299f64404648d118c07abdd864e24d9a1e",
+      "suffixBytes": 23,
+      "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+      "reviewedNonJobModel": {
+        "props": {
+          "pageProps": {
+            "isBot": false,
+            "companyDetails": {
+              "id": 9551,
+              "name": "Kodo",
+              "url": "https://kodo.com",
+              "slug": "kodo",
+              "location": "Mumbai, IN",
+              "address": null,
+              "description": "",
+              "primary_brand_colour": "#000000",
+              "secondary_brand_colour": "#6c6c6c",
+              "image_path": "",
+              "image_url": null,
+              "uuid": "FC3BF22FD8",
+              "phone_number": "+919321024013",
+              "email": null,
+              "banner_image_path": "",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            }
+          },
+          "__N_SSP": true
+        },
+        "page": "/careers",
+        "query": {
+          "company": "Kodo",
+          "job_id": "429015",
+          "company_uuid": "FC3BF22FD8",
+          "utm_source": "DIRECT",
+          "source": "DIRECT",
+          "isHeaderVisible": "false"
+        },
+        "buildId": "hGwYSswRdYk00b5WE7uoq",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "originalWholeSHA256": "1fe717cbc510ca2da33f7688c9f9a1295f5ae66627192c41b9e4dac7a68f6a5e",
+      "originalWholeBytes": 23236,
+      "acquisitionScope": "Original current own native DATA carrier; UI/application/company/cleanup qualification held"
+    },
+    {
+      "id": 60181,
+      "currentRoleURL": "https://app.pyjamahr.com/careers?company=Kodo&job_id=60181&company_uuid=FC3BF22FD8&utm_source=DIRECT&source=DIRECT&isHeaderVisible=false",
+      "prefixBytes": 15620,
+      "prefixSHA256": "1d283a3f581d84649714aed906a7d7e2935efd912cca91873132487a0c00c224",
+      "suffixBytes": 23,
+      "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+      "reviewedNonJobModel": {
+        "props": {
+          "pageProps": {
+            "isBot": false,
+            "companyDetails": {
+              "id": 9551,
+              "name": "Kodo",
+              "url": "https://kodo.com",
+              "slug": "kodo",
+              "location": "Mumbai, IN",
+              "address": null,
+              "description": "",
+              "primary_brand_colour": "#000000",
+              "secondary_brand_colour": "#6c6c6c",
+              "image_path": "",
+              "image_url": null,
+              "uuid": "FC3BF22FD8",
+              "phone_number": "+919321024013",
+              "email": null,
+              "banner_image_path": "",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            }
+          },
+          "__N_SSP": true
+        },
+        "page": "/careers",
+        "query": {
+          "company": "Kodo",
+          "job_id": "60181",
+          "company_uuid": "FC3BF22FD8",
+          "utm_source": "DIRECT",
+          "source": "DIRECT",
+          "isHeaderVisible": "false"
+        },
+        "buildId": "hGwYSswRdYk00b5WE7uoq",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "originalWholeSHA256": "ecd7d68310e610415c0b62b9505b690f14f4e07213e2c4ded5f89bc9415f80a5",
+      "originalWholeBytes": 20659,
+      "acquisitionScope": "Original current own native DATA carrier; UI/application/company/cleanup qualification held"
+    }
+  ],
+  "heldNativeReason": "Explicit native expiry, unhydrated details and reduced caller/public-carrier budgets remain per-record holds. Full UI, application, formal-employer, company and cleanup scope remain unqualified.",
+  "formalLegalEmployerQualified": false,
+  "renderedActivationQualified": false,
+  "currentCSSCoverage": false,
+  "completeDependencyGraphQualified": false,
+  "nativeApplicationActionQualified": false,
+  "companyScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "reviewedAdditionalNativeWorksites": [
+    {
+      "id": 429015,
+      "country": "India",
+      "location": "Mumbai, Maharashtra, India",
+      "other_locations": []
+    },
+    {
+      "id": 60181,
+      "country": "India",
+      "location": "Mumbai, Maharashtra, India",
+      "other_locations": []
+    }
+  ],
+  "explicitAdditionalExpiryEvidence": [
+    {
+      "id": 60181,
+      "nativeValidThrough": "2023-12-11T23:22:34.378878+05:30",
+      "classification": "explicitly expired; an advertised public carrier does not make the native vacancy current"
+    }
+  ],
+  "currentAdditionalRoleBoundary": "Exact complete current API/public models and original worksite tuples reviewed. All35 criteria fields and original prose retained; request/detail/public budgets, native expiry and opening/closing guards unchanged."
+}

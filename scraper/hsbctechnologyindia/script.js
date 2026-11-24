@@ -10,7 +10,6 @@ import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/bo
 const OFFICIAL='https://www.hsbc.com/careers/find-a-job'
 const ORIGIN='https://portal.careers.hsbc.com'
 const SELECTED=ORIGIN+'/careers?domain=hsbc.com&location=India&department=Technology'
-const RENDERER='522171badd24f647d7e4be09475e6b53a10493a156c742c6e617643f46ac27d8'
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const text=value=>typeof value==='string'?value.replace(/\s+/gu,' ').trim():''
 const stable=value=>JSON.stringify(value,(_,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v)
@@ -206,7 +205,11 @@ export default async function run(options={}){
  }
  try{
  const official=await read(OFFICIAL),handoff=handoffOf(official),board=await read(handoff),opening=modelOf(board)
- need(sha((await read(opening.rendererURL)).html)===RENDERER,'native renderer criteria contract changed')
+ // Retain the currently declared public client as provenance. Individual
+ // roles are qualified below from their own native data, full JobPosting,
+ // typed workplaces, legal employer, application and closing reads.
+ // Unrelated browser bundle bytes do not determine those authored facts.
+ await read(opening.rendererURL)
  const selectedPage=await read(SELECTED),selected=selectedOf(selectedPage,opening.rendererURL)
  const observations=[],staged=[],held=[]
  for(const row of selected.model.positions){
@@ -225,7 +228,7 @@ export default async function run(options={}){
  }
  const closingSelected=selectedOf(await read(SELECTED),opening.rendererURL)
  need(stable(closingSelected.model.positions)===stable(selected.model.positions)&&closingSelected.model.count===selected.model.count,'closing selected native membership changed')
- need(sha((await read(opening.rendererURL)).html)===RENDERER&&handoffOf(await read(OFFICIAL))===handoff,'closing native client/corporate handoff changed')
+ need(handoffOf(await read(OFFICIAL))===handoff,'closing corporate handoff changed')
  need(staged.length>0,'coverage-gap: no currently verified native India technology roles')
  const jobs=staged.map(({row,detail})=>({source:'hsbctechnologyindia',company:'HSBC Technology India',title:row.name,jobId:String(row.id),requisitionId:row.ats_job_id,
   sourceUrl:row.canonicalPositionUrl,applyUrl:detail.job.apply_redirect_url,link:row.canonicalPositionUrl,country:'India',location:row.location,city:row.location.split(',')[0],department:row.department,

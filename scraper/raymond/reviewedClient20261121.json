@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "review": "2026-11-21 complete current selected native client originals; no application execution or browser completeness claim",
+  "main": {
+    "url": "https://raymondcareers.peoplestrong.com/main-OBU6H7ZJ.js",
+    "bytes": 515627,
+    "sha256": "6eda57f07a44bf4ba02727d9a1d56cee3aaa6ad3ccfd2aa62c51c858544d5830"
+  },
+  "core": {
+    "url": "https://raymondcareers.peoplestrong.com/chunk-P66I7TEB.js",
+    "bytes": 3018145,
+    "sha256": "5e9aa4cea5b09cedca5d25eb8b287ea5012ccc602cead3ee6d4dec852351a0bc"
+  },
+  "role": {
+    "url": "https://raymondcareers.peoplestrong.com/chunk-QOT5H7Z2.js",
+    "bytes": 88144,
+    "sha256": "d09f722916757050e153688ee488b9697240046f709cfa17cebbed46ddd95a07"
+  },
+  "portalProjectedSHA256": "17e77e3b937ecdac208777a5751d47532d629a2e044cb86382917b381a64a879",
+  "portalProjection": "Only the one exact active public Imperva script numeric cb cache-buster becomes0; every other original HTML byte is bound. No security code is executed/fetched.",
+  "additionalPrograms": [
+    {
+      "url": "https://raymondcareers.peoplestrong.com/chunk-5O7NHF3E.js",
+      "bytes": 17530,
+      "sha256": "24e2984c34eec3e7813e8d4ed024ae6808fc3b874f6ace14ca43803ea8307621",
+      "declaredBy": "main"
+    },
+    {
+      "url": "https://raymondcareers.peoplestrong.com/chunk-BH3DVTPY.js",
+      "bytes": 695,
+      "sha256": "92cefd64b49e6bfa8cbf73cccf006931a08cdac217bcb2ae6e7328df7c025613",
+      "declaredBy": "main"
+    },
+    {
+      "url": "https://raymondcareers.peoplestrong.com/chunk-GXVQSF7C.js",
+      "bytes": 54743,
+      "sha256": "c569fd840cdded99f35956d05dffd9a208d8e14ae961ad10e79c69ccd1127beb",
+      "declaredBy": "main"
+    },
+    {
+      "url": "https://raymondcareers.peoplestrong.com/chunk-IBMO7ROQ.js",
+      "bytes": 3828,
+      "sha256": "1dd7a9ec520a810743460ab5bb687f7f905048bf233eeb8b3ae6380a95951b6d",
+      "declaredBy": "main"
+    },
+    {
+      "url": "https://raymondcareers.peoplestrong.com/chunk-B2MJ73ZP.js",
+      "bytes": 30215,
+      "sha256": "cdd202ceb4164d4f84c90c80b2ef3dbf4fa9918a1d87a562919d2d0841a51b44",
+      "declaredBy": "core"
+    },
+    {
+      "url": "https://raymondcareers.peoplestrong.com/scripts-FBG5OBPV.js",
+      "bytes": 87742,
+      "sha256": "17d38e29b393e16dcc22eb804930eaa3e8ac486ebbda8b1cf66d3ec0308e36ff",
+      "declaredBy": "portal"
+    }
+  ]
+}

@@ -33,11 +33,11 @@ test('current Sears tracking deployment reaches its declared missing native feed
   assert.equal(io.reads.length, 3)
 })
 
-test('Sears accepts no unreviewed tracking program or changed job endpoint', async () => {
-  for (const change of [
-    text => text.replace('15386a882b17', 'unreviewed'),
-    text => text.replace("fetch('/api/careers-openings')", "fetch('/api/other-company')"),
-  ]) {
+test('Sears telemetry values remain unrelated while a changed job endpoint is held', async () => {
+  for (const mode of ['telemetry', 'endpoint']) {
+    const change = mode === 'telemetry'
+      ? text => text.replace('15386a882b17', 'unreviewed')
+      : text => text.replace("fetch('/api/careers-openings')", "fetch('/api/other-company')")
     const io = replay(packet => {
       if (packet.requestedUrl.endsWith('/careers/')) {
         const changed = change(packet.text)
@@ -45,7 +45,9 @@ test('Sears accepts no unreviewed tracking program or changed job endpoint', asy
         packet.text = changed
       }
     })
-    await assert.rejects(run(io.options), error => error.failureKind === 'parser_or_contract_error')
-    assert.equal(io.reads.length, 2)
+    await assert.rejects(run(io.options), error => mode === 'telemetry'
+      ? error.failureKind === 'source_inventory_unavailable' && error.httpStatus === 404
+      : error.failureKind === 'parser_or_contract_error')
+    assert.equal(io.reads.length, mode === 'telemetry' ? 3 : 2)
   }
 })

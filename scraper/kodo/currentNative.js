@@ -7,6 +7,7 @@ import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvid
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const profile = JSON.parse(readFileSync(new URL('./reviewedNative20261114.json', import.meta.url)))
+const currentProfile = JSON.parse(readFileSync(new URL('./reviewedNative20261121.json', import.meta.url)))
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 const clone = value => structuredClone(value)
 const same = isDeepStrictEqual
@@ -31,9 +32,15 @@ const fixedPhaseBytes = 2 * kindCaps.corporate + kindCaps.board + 3 * kindCaps.p
 const firstListURL = 'https://api.pyjamahr.com/api/career/jobs/?company_uuid=FC3BF22FD8&page=1&is_careers_page=true'
 const detailURL = id => 'https://api.pyjamahr.com/api/career/jobs/' + id + '/?company_uuid=FC3BF22FD8&is_careers_page=false'
 const expectedCompany = profile.knownCompletePublicRoleEnvelopes[0].reviewedNonJobModel.props.pageProps.companyDetails
-const wholePins = new Map([...profile.currentCorporate, profile.nativeBoard, ...profile.wholeCriticalClients]
-  .map(row => [row.requestedURL, {bytes: row.bytes, sha256: row.sha256 ?? row.wholeOriginalSHA256}]))
-const roleEnvelopes = new Map(profile.knownCompletePublicRoleEnvelopes.map(row => [row.id, row]))
+const releases = [{...profile, release: 'current-native-data-20261114', nativeListingCount: 14,
+  nativeListingPageLengths: [10, 4]}, currentProfile]
+const matchesPin = (receipt, pin) => receipt.bytes === pin.bytes
+  && receipt.rawEntitySHA256 === (pin.sha256 ?? pin.wholeOriginalSHA256)
+const wholePins = new Map()
+for (const release of releases) for (const pin of [...release.currentCorporate, release.nativeBoard, ...release.wholeCriticalClients]) {
+  const pins = wholePins.get(pin.requestedURL) ?? []
+  pins.push(pin); wholePins.set(pin.requestedURL, pins)
+}
 const reviewedWorksites = new Map(profile.reviewedNativeWorksites.map(row => [row.id,
   {country: row.country, location: row.location, other_locations: row.other_locations}]))
 const typedArray = Object.getPrototypeOf(Uint8Array.prototype)
@@ -63,20 +70,20 @@ const corporateHandoff = html => {
   need(declarations.length === 1 && new URL(declarations[0].href).href === profile.nativeBoard.requestedURL, 'Exact own false-header iframe declaration changed')
   need(document(html).nodes.some(node => node.tag === 'a' && node.attrs.href === 'https://app.kodo.in/login'), 'Literal unvisited corporate native-domain declaration changed')
 }
-const boardCompany = html => {
+const boardCompany = (html, release) => {
   const parsed = ssr(html), {model} = parsed
   need(same(model.props?.pageProps?.companyDetails, expectedCompany)
     && keys(model.props.pageProps, ['isBot', 'companyDetails']) && model.props.pageProps.isBot === false
     && same(model.query, {company: 'Kodo', company_uuid: 'FC3BF22FD8', isHeaderVisible: 'false', is_careers_page: 'true'})
     && model.page === '/careers', 'Whole own company/UUID/website/false-header board context changed')
-  for (const client of profile.wholeCriticalClients) need(parsed.nodes.some(node => node.tag === 'script'
+  for (const client of release.wholeCriticalClients) need(parsed.nodes.some(node => node.tag === 'script'
     && new URL(node.attrs.src ?? '', 'https://app.pyjamahr.com').href === client.requestedURL), 'Critical current client declaration missing')
   return clone(model)
 }
 const listingFields = ['id', 'slug', 'title', 'max_experience', 'min_experience', 'country', 'location', 'other_locations', 'department_name', 'published_internally', 'workplace_type', 'product']
-const listModel = (value, page) => {
-  need(keys(value, ['count', 'next', 'previous', 'results']) && value.count === 14 && Array.isArray(value.results)
-    && value.results.length === (page === 1 ? 10 : 4), 'Unknown complete native listing schema/count')
+const listModel = (value, page, release) => {
+  need(keys(value, ['count', 'next', 'previous', 'results']) && value.count === release.nativeListingCount && Array.isArray(value.results)
+    && value.results.length === release.nativeListingPageLengths[page - 1], 'Unknown complete native listing schema/count')
   const second = 'https://api.pyjamahr.com/api/career/jobs/?company_uuid=FC3BF22FD8&is_careers_page=true&page=2'
   const previous = 'https://api.pyjamahr.com/api/career/jobs/?company_uuid=FC3BF22FD8&is_careers_page=true'
   need(value.next === (page === 1 ? second : null) && value.previous === (page === 1 ? null : previous), 'Unknown native pagination route')
@@ -88,14 +95,14 @@ const listModel = (value, page) => {
   'Native listing country/publication/identity/criteria changed')
   return value
 }
-const fullDetail = (job, row, observedInstant) => {
+const fullDetail = (job, row, observedInstant, additionalWorksites) => {
   need(keys(job, profile.nativeFullDetailFields), 'Unknown complete35-field native DTO')
   need(job.id === row.id && typeof job.uuid === 'string' && /^[A-F0-9]{10}$/.test(job.uuid) && string(job.title)
     && job.email_domain === 'kodo.in' && job.company_country === 'Premium-Converted-India'
     && job.country === 'India' && countryLocation(job.location) && same(job.other_locations, [])
     && job.published_internally === false && job.remote === false && job.workplace_type === 'ON_SITE', 'Own native role/country/domain/status conflict')
   for (const key of ['title', 'country', 'location', 'other_locations', 'published_internally', 'max_experience', 'min_experience', 'department_name', 'workplace_type']) need(same(job[key], row[key]), 'Listing/detail full qualification conflict: ' + key)
-  const reviewedWorksite = reviewedWorksites.get(row.id)
+  const reviewedWorksite = reviewedWorksites.get(row.id) ?? additionalWorksites.get(row.id)
   if (reviewedWorksite) need(same(reviewedWorksite,
     {country: job.country, location: job.location, other_locations: job.other_locations}),
   'Changed reviewed native role-specific worksite/country tuple')
@@ -120,8 +127,7 @@ const fullDetail = (job, row, observedInstant) => {
   return {originalNativeDetail: clone(job), criteriaText: text, expired: expires <= observedInstant,
     nativeReviewedWorksiteQualified: Boolean(reviewedWorksite)}
 }
-const publicCarrier = (raw, row, job) => {
-  const envelope = roleEnvelopes.get(row.id)
+const publicCarrier = (raw, row, job, envelope) => {
   need(envelope, 'Unreviewed own public role carrier')
   const prefix = raw.subarray(0, envelope.prefixBytes), suffix = raw.subarray(raw.length - envelope.suffixBytes)
   need(raw.length > envelope.prefixBytes + envelope.suffixBytes && sha(prefix) === envelope.prefixSHA256
@@ -243,8 +249,8 @@ export const createKodoScraper = (defaults = {}) => ({name: 'kodo', async run(pa
       let text
       try {text = new TextDecoder('utf-8', {fatal: true, ignoreBOM: true}).decode(raw)} catch {throw failure('Invalid original UTF8 bytes')}
       need(Buffer.from(text).equals(raw), 'Original UTF8 byte roundtrip changed')
-      const pin = wholePins.get(url)
-      if (pin) need(raw.length === pin.bytes && receipt.rawEntitySHA256 === pin.sha256, 'Changed whole original corporate/board/client bytes')
+      const pins = wholePins.get(url)
+      if (pins) need(pins.some(pin => matchesPin(receipt, pin)), 'Changed whole original corporate/board/client bytes')
       completed = true
       return {raw, text, receipt}
     } catch (error) {cancel(error); caller?.throwIfAborted(); receipt.error = error?.message ?? String(error); throw error}
@@ -255,19 +261,28 @@ export const createKodoScraper = (defaults = {}) => ({name: 'kodo', async run(pa
     try {observedAt = typeof options.now === 'function' ? options.now() : options.now ?? new Date().toISOString()} finally {check()}
     const observedInstant = nativeKodoInstant(observedAt, true)
     const discovery = async () => {
-      await read(profile.currentCorporate[0].requestedURL, 'corporate')
+      const home = await read(profile.currentCorporate[0].requestedURL, 'corporate')
       const careers = await read(profile.currentCorporate[1].requestedURL, 'corporate'); corporateHandoff(careers.text)
-      const board = await read(profile.nativeBoard.requestedURL, 'board'), company = boardCompany(board.text)
-      for (const client of profile.wholeCriticalClients) await read(client.requestedURL, 'program')
-      const first = listModel(json((await read(firstListURL, 'json')).text), 1)
+      const board = await read(profile.nativeBoard.requestedURL, 'board')
+      const release = releases.find(candidate => [home, careers, board].every((page, index) =>
+        matchesPin(page.receipt, [...candidate.currentCorporate, candidate.nativeBoard][index])))
+      need(release, 'Unreviewed corporate/native release tuple')
+      const company = boardCompany(board.text, release)
+      for (const client of release.wholeCriticalClients) await read(client.requestedURL, 'program')
+      const first = listModel(json((await read(firstListURL, 'json')).text), 1, release)
       need(limits.maxPages >= 2, 'Complete current listing pages do not fit reduced caller budget')
       allowed.add(first.next)
-      const second = listModel(json((await read(first.next, 'json')).text), 2)
+      const second = listModel(json((await read(first.next, 'json')).text), 2, release)
       const rows = [...first.results, ...second.results]
-      need(rows.length === 14 && new Set(rows.map(row => row.id)).size === 14, 'Incomplete/duplicate current native inventory')
-      return {company, pages: [first, second], rows}
+      need(rows.length === release.nativeListingCount && new Set(rows.map(row => row.id)).size === release.nativeListingCount, 'Incomplete/duplicate current native inventory')
+      return {company, pages: [first, second], rows, nativeRelease: release.release}
     }
     const opening = await discovery()
+    const release = releases.find(release => release.release === opening.nativeRelease)
+    const roleEnvelopes = new Map(release.knownCompletePublicRoleEnvelopes.map(row => [row.id, row]))
+    const additionalWorksites = new Map((release.reviewedAdditionalNativeWorksites ?? []).map(row => [row.id,
+      {country: row.country, location: row.location, other_locations: row.other_locations}]))
+    audit.nativeRelease = opening.nativeRelease
     audit.opening = clone(opening); audit.observedRecordCount = opening.rows.length; audit.observedVacancyCount = opening.rows.length
     audit.observations = opening.rows.map(row => ({id: row.id, sourceNativeListingRecord: clone(row), qualified: false}))
     let nativeCount = Math.min(opening.rows.length, limits.maxDetails), htmlCount
@@ -282,7 +297,7 @@ export const createKodoScraper = (defaults = {}) => ({name: 'kodo', async run(pa
     const selected = opening.rows.slice(0, nativeCount), details = new Map(), publicPages = new Map()
     for (const row of selected) {
       const url = detailURL(row.id); allowed.add(url)
-      const response = await read(url, 'json'), detail = fullDetail(json(response.text), row, observedInstant)
+      const response = await read(url, 'json'), detail = fullDetail(json(response.text), row, observedInstant, additionalWorksites)
       details.set(row.id, detail)
       const observation = audit.observations.find(item => item.id === row.id)
       observation.opening = {...clone(detail), rawEntitySHA256: response.receipt.rawEntitySHA256}
@@ -290,7 +305,7 @@ export const createKodoScraper = (defaults = {}) => ({name: 'kodo', async run(pa
       const envelope = roleEnvelopes.get(row.id)
       if (!detail.nativeReviewedWorksiteQualified || publicPages.size >= htmlCount || !envelope) {audit.issues.push({id: row.id, reason: 'Unqualified or budget-held public carrier'}); continue}
       allowed.add(envelope.currentRoleURL)
-      const html = await read(envelope.currentRoleURL, 'role'), carrier = publicCarrier(html.raw, row, detail.originalNativeDetail)
+      const html = await read(envelope.currentRoleURL, 'role'), carrier = publicCarrier(html.raw, row, detail.originalNativeDetail, envelope)
       publicPages.set(row.id, carrier); observation.publicOpening = {...clone(carrier), rawEntitySHA256: html.receipt.rawEntitySHA256}
     }
     check(); phase = 'closing'; phaseDeadline = began + limits.sourceTimeoutMs
@@ -298,13 +313,13 @@ export const createKodoScraper = (defaults = {}) => ({name: 'kodo', async run(pa
     audit.closing = clone(closing)
     need(same(opening, closing), 'Closing whole inventory/count/order/status/company changed')
     for (const row of selected) {
-      const response = await read(detailURL(row.id), 'json'), detail = fullDetail(json(response.text), row, observedInstant)
+      const response = await read(detailURL(row.id), 'json'), detail = fullDetail(json(response.text), row, observedInstant, additionalWorksites)
       need(same(detail, details.get(row.id)), 'Closing complete35-field native criterion/date/identity changed')
       const observation = audit.observations.find(item => item.id === row.id)
       observation.closing = {...clone(detail), rawEntitySHA256: response.receipt.rawEntitySHA256}
       if (!publicPages.has(row.id)) continue
       const envelope = roleEnvelopes.get(row.id), html = await read(envelope.currentRoleURL, 'role')
-      const carrier = publicCarrier(html.raw, row, detail.originalNativeDetail)
+      const carrier = publicCarrier(html.raw, row, detail.originalNativeDetail, envelope)
       need(same(carrier, publicPages.get(row.id)), 'Closing complete public data/carrier changed')
       observation.publicClosing = {...clone(carrier), rawEntitySHA256: html.receipt.rawEntitySHA256}; observation.qualified = true
     }

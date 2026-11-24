@@ -51,8 +51,9 @@ export const createTaxBuddyScraper = () => ({
         return active(body)
       }
       const home=await read(FIRST_PARTY_ROOT_URL)
-      check(home.text(home.root).includes('TaxBuddy')&&home.nodes(n=>n.tag==='a'&&n.attrs.href===EMPLOYER_URL).length===1,'Official employer delegation changed')
+      check(home.text(home.root).includes('TaxBuddy'),'Official employer identity changed')
       firstParty=true
+      if(home.nodes(n=>n.tag==='a'&&n.attrs.href===EMPLOYER_URL).length!==1)throw gap('Current official publisher has no reviewed active recruiting delegation; inventory remains unverified')
       const company=await read(EMPLOYER_URL)
       check(company.nodes(n=>n.tag==='h1'&&company.text(n)==='TaxBuddy.com').length===1,'Native employer name changed')
       check(company.nodes(n=>n.attrs['data-semaphore-content-urn']==='urn:li:organization:14564264').length===1,'Native employer organization changed')

@@ -1,0 +1,215 @@
+{
+  "additionalCorporateProfiles": [
+    {
+      "requestUrl": "https://snowplow.io/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodySHA256": "045407699680334c658fb84d6bae48b26027638c2f2eabe1ce5a0d30e3e95818",
+      "bodyBytes": 139573,
+      "id": "corporate"
+    }
+  ],
+  "version": "2026-11-21-exact-finite-public-native-data",
+  "provenance": "Seven original current public responses retained independently: complete company corporate document, exact published native job entry, complete native main/runtime/public-route chunk, current tenant-routed native site and entire feed. Closing fixture reuses originals; no physical closing proof is claimed by the fixture. Public GET classes are resolved lexical-AST equivalent to Nov16; current private/internal-career-site services are excluded. All 14 original current records/criteria/dates are retained; no application-form or rendering qualification, India/company totals or cleanup authority.",
+  "corporateBodySha256": "b5e298f26c40fd87d0f547278b3731ab57e522e00bdd87f71860a96fe629d6f3",
+  "requests": [
+    {
+      "requestUrl": "https://snowplow.io/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodySHA256": "b5e298f26c40fd87d0f547278b3731ab57e522e00bdd87f71860a96fe629d6f3",
+      "bodyBytes": 139573,
+      "id": "corporate"
+    },
+    {
+      "requestUrl": "https://snowplow.careers.hibob.com/jobs/bed846f2-3702-4117-b35d-c77c3177897e",
+      "contentType": "text/html",
+      "bodySHA256": "f2015a8bf8782f9e53b538bcd7ccdfaa4d23f5c104adcef3247ba78e220d6c8e",
+      "bodyBytes": 1342,
+      "id": "entry"
+    },
+    {
+      "requestUrl": "https://front.hibob.com/master-2362346a37b8f119f2e8fb84c7df43797609ce02/careers/main.dbac64e5cd70d829.js",
+      "contentType": "text/javascript",
+      "bodySHA256": "7250241ee516829362b3ed8a1f325747b47b70ad0c40483b0dbdd8b1bbbffdb6",
+      "bodyBytes": 2063101,
+      "id": "main"
+    },
+    {
+      "requestUrl": "https://front.hibob.com/master-2362346a37b8f119f2e8fb84c7df43797609ce02/careers/runtime.c8f7704d31d36041.js",
+      "contentType": "text/javascript",
+      "bodySHA256": "cc566e42df6915d5ff2ea102e6cc220a5aad910be62962edf80da7d12c20a919",
+      "bodyBytes": 5529,
+      "id": "runtime"
+    },
+    {
+      "requestUrl": "https://front.hibob.com/master-2362346a37b8f119f2e8fb84c7df43797609ce02/careers/3213.65e0e462ac85e6d1.js",
+      "contentType": "text/javascript",
+      "bodySHA256": "4a650acfd1a9f146d240144c2c1aa8da336a7a03cf07b4cdc96cc98c3f7f3c8e",
+      "bodyBytes": 235945,
+      "id": "routes"
+    },
+    {
+      "requestUrl": "https://snowplow.careers.hibob.com/api/career-site",
+      "contentType": "application/json",
+      "bodySHA256": "adb1e97ee0a6798b04ad2fecca3689203701f48bfa8f557747d5875844a0e7be",
+      "bodyBytes": 3751,
+      "id": "site"
+    },
+    {
+      "requestUrl": "https://snowplow.careers.hibob.com/api/job-ad",
+      "contentType": "application/json",
+      "bodySHA256": "027de71eff2a398b7694c6466e043e3f1551a8966de518ca1854aa37724baf72",
+      "bodyBytes": 125989,
+      "id": "feed"
+    }
+  ],
+  "entryCSP": "default-src 'self'; script-src 'self' https://front.hibob.com; style-src 'self' 'unsafe-inline' https://front.hibob.com https://fonts.hibob.com https://cdn.icomoon.io/fe7353d4db/ https://cloud.typography.com https://fonts.googleapis.com; font-src 'self' data: https://front.hibob.com https://fonts.hibob.com https://images.hibob.com https://cdn.icomoon.io https://cloud.typography.com https://fonts.gstatic.com https://media-process.hibob.com; img-src 'self' data: blob: https://images.hibob.com https://media-process.hibob.com https://files.hibob.com https://img.youtube.com https://i.ytimg.com; connect-src 'self' https://i18n.hibob.com https://hibob-prod-eu-west-1-s3-files-external.s3.eu-west-1.amazonaws.com https://hibob-prod-eu-west-1-s3-temp-external-files.s3.eu-west-1.amazonaws.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self';",
+  "observedRowFieldTypes": {
+    "id": [
+      "string"
+    ],
+    "title": [
+      "string"
+    ],
+    "departmentId": [
+      "string"
+    ],
+    "department": [
+      "string"
+    ],
+    "employmentTypeId": [
+      "string"
+    ],
+    "employmentType": [
+      "string"
+    ],
+    "siteId": [
+      "number"
+    ],
+    "site": [
+      "string"
+    ],
+    "country": [
+      "string"
+    ],
+    "language": [
+      "string"
+    ],
+    "description": [
+      "string"
+    ],
+    "requirements": [
+      "null"
+    ],
+    "responsibilities": [
+      "null"
+    ],
+    "benefits": [
+      "null"
+    ],
+    "sectionLabels": [
+      "object"
+    ],
+    "publishedAt": [
+      "string"
+    ],
+    "workspaceTypeId": [
+      "string"
+    ],
+    "workspaceType": [
+      "string"
+    ],
+    "payTransparencyMinSalary": [
+      "null"
+    ],
+    "payTransparencyMaxSalary": [
+      "null"
+    ],
+    "payTransparencySalaryCurrency": [
+      "null"
+    ],
+    "payTransparencySalaryPayPeriod": [
+      "null"
+    ],
+    "payTransparencySalaryAdditionalInfo": [
+      "null"
+    ],
+    "hideLocationInformation": [
+      "null"
+    ],
+    "postingLocations": [
+      "array"
+    ]
+  },
+  "forms": {
+    "724ab4ae-e09e-4fd3-a412-ac834b6c81db": {
+      "fullRawRoleCriteriaSha256": "d783654cee41b5b78edd67db5663e563d9192b41d709ec8174b5d606a4d7573b",
+      "applicationCriteriaReviewed": false
+    },
+    "ba971356-78ac-4710-86ac-1383cdd75a06": {
+      "fullRawRoleCriteriaSha256": "835a2d3973c80c5f446f888059bc2b4d35815edd98d34f592b11c756b865f3ed",
+      "applicationCriteriaReviewed": false
+    },
+    "1b29b2e2-8fa7-431f-948d-060d8ec1fe33": {
+      "fullRawRoleCriteriaSha256": "1fdad19487a4cde477f19602c1c3dff0896f2a34e754c17cdd8f4e203008461d",
+      "applicationCriteriaReviewed": false
+    },
+    "06c7f607-c7b3-4895-8a1a-fa98fb34af8f": {
+      "fullRawRoleCriteriaSha256": "3b77eb77f54d8ed963fb03eac848ea2a9156760b8582a4cd212a6f243b70c82a",
+      "applicationCriteriaReviewed": false
+    },
+    "bed846f2-3702-4117-b35d-c77c3177897e": {
+      "fullRawRoleCriteriaSha256": "2c6575a9219c0e846dc6a303b4b3bb153fed447542346ec0e7bd013403b07638",
+      "applicationCriteriaReviewed": false
+    },
+    "c8f4bc5d-92bb-4838-ac8b-c12a4f5009a4": {
+      "fullRawRoleCriteriaSha256": "c2796a5ca86ff57d5c4989a0ee9a7a0155105e92c34d7ec99f04c378763a2380",
+      "applicationCriteriaReviewed": false
+    },
+    "7439512f-c0e6-4c3c-9771-8aabaed2d5d9": {
+      "fullRawRoleCriteriaSha256": "d803758b6d0af138af6f87a92749fefcc28f1ee559776feeae8fd27f19610858",
+      "applicationCriteriaReviewed": false
+    },
+    "d1a74124-0a50-47fd-a565-c6b46a984322": {
+      "fullRawRoleCriteriaSha256": "3c656fd63e1b106b9eeaf55e4102d7691c4ebde6879b5854908cb246b718dc1f",
+      "applicationCriteriaReviewed": false
+    },
+    "073ee211-5603-4e2c-907e-6e74935a3678": {
+      "fullRawRoleCriteriaSha256": "954d6fba4fbdde28ef54e37df805f3cf520f0b5b0a53a5672494abba5ce3e930",
+      "applicationCriteriaReviewed": false
+    },
+    "0b14ff55-f5fb-4e83-a2fb-be41a3165f4e": {
+      "fullRawRoleCriteriaSha256": "f320e802516dcf06a84677be30f4906f1fc6916bb105359ba0012926bfbbb42e",
+      "applicationCriteriaReviewed": false
+    },
+    "c460099e-54dc-4ad4-aafd-5f2fd099a012": {
+      "fullRawRoleCriteriaSha256": "11cc457639c4cff9b2bb2d15b9d56bf866bb7450f4e2f24b1978ffa0cde081a4",
+      "applicationCriteriaReviewed": false
+    },
+    "985efaa8-7630-4427-9117-5bead937fd72": {
+      "fullRawRoleCriteriaSha256": "4981a565e74c6043c58a8d0d851c24a21698bf19ee9502373d4301935c9c694c",
+      "applicationCriteriaReviewed": false
+    },
+    "2ca301b1-a31a-44e6-99be-3b26931c0864": {
+      "fullRawRoleCriteriaSha256": "c4bde7b6230896c3410c3b3fded118cedc4ab2adcb32c8d775f86e5e8bb88ce4",
+      "applicationCriteriaReviewed": false
+    },
+    "06759ba0-62cb-4f37-b706-f5ba5955c6e8": {
+      "fullRawRoleCriteriaSha256": "3e8712bda18744809d524fdd1fa04edcdd324a80d666f3b6371e8bf0d98f4a85",
+      "applicationCriteriaReviewed": false
+    }
+  },
+  "countryConflicts": [
+    {
+      "jobId": "1b29b2e2-8fa7-431f-948d-060d8ec1fe33",
+      "rawCountry": "United Kingdom",
+      "rawSite": "United Kingdom",
+      "corporateLocation": "Massachusetts, United States",
+      "postingCountry": "United States"
+    }
+  ],
+  "rendererScopeComplete": false,
+  "applicationScopeComplete": false,
+  "companyScopeComplete": false,
+  "sourceScopeComplete": false,
+  "cleanupAllowed": false
+}

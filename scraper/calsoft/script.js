@@ -68,7 +68,26 @@ export const createCalsoftScraper = () => ({
     }
 
     if (hasZeroResultsSignal(html)) {
-      return []
+      const error = Object.assign(new Error('Calsoft careers displays an initial empty state; a qualified native listing inventory is required'), {
+        failureKind: 'source_inventory_unavailable',
+        softFailure: true,
+        upstreamOutage: false,
+        abortRetries: true,
+      })
+      error.recruitmentObservations = {
+        source: SOURCE,
+        companyCareerPage: CAREERS_URL,
+        rawCareersHTML: html,
+        responseMetadataQualified: false,
+        nativeListingInventoryAcquired: false,
+        observedVacancyCount: null,
+        companyIndiaTotal: null,
+        companyGlobalTotal: null,
+        verifiedEmpty: false,
+        sourceScopeComplete: false,
+        lifecycleCleanupAllowed: false,
+      }
+      throw error
     }
 
     throw new Error('Calsoft verified zero-openings shell changed materially')

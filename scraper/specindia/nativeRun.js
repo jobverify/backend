@@ -1,5 +1,6 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {SOURCE,COMPANY,ENTRY,PRIMARY,BOARD,AJAX,sha,need,comparable,roleURL,readPublisher,readInventoryContract,inventoryBody,readInventory,readDetail} from './nativeModels.js'
+import {CURRENT_DATA_URLS,runCurrentSpecData} from './currentNativeData20261121.js'
 
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
 const publicationState=detail=>({closed:detail.nativePublishedClosedNotice,criteriaReconciled:detail.nativeRoleCriteriaReconciled,identityReconciled:detail.nativeRoleIdentityReconciled,employerReconciled:detail.nativeEmployerReconciled})
@@ -11,7 +12,7 @@ async function abortable(start,signal){
 }
 async function publicRead(url,{method,body,signal}){
  const startedAt=new Date().toISOString(),response=await fetch(url,{method,body:body||undefined,headers:{Accept:'text/html',...(method==='POST'?{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}:{})},redirect:'manual',credentials:'omit',signal})
- if(![200,301].includes(response.status)){cancel(response.body);throw Error('SPEC native HTTP '+response.status+' for '+url)}
+ if(!([200,301].includes(response.status)||response.status===308&&url===ENTRY)){cancel(response.body);throw Error('SPEC native HTTP '+response.status+' for '+url)}
  need(response.url===url,'public response URL changed')
  const chunks=[];let size=0
  try{for await(const chunk of response.body){size+=chunk.byteLength;need(size<=4000000,'bounded original response required');chunks.push(Buffer.from(chunk))}}finally{cancel(response.body)}
@@ -28,7 +29,7 @@ export function createNativeSpecScraper({maxJobs:factoryCap=Infinity,now:factory
   if(cap===0)return finish([])
   const receipts=[],originals=[],allowedRoles=new Set(),read=async(url,{method='GET',body=null}={})=>{
    signal?.throwIfAborted()
-   need(method==='GET'&&([ENTRY,PRIMARY,BOARD].includes(url)||allowedRoles.has(url))||method==='POST'&&url===AJAX&&Array.from({length:8},(_,i)=>inventoryBody(i+1)).includes(body),'unreviewed native request')
+   need(method==='GET'&&([ENTRY,PRIMARY,BOARD,...CURRENT_DATA_URLS].includes(url)||allowedRoles.has(url))||method==='POST'&&url===AJAX&&Array.from({length:8},(_,i)=>inventoryBody(i+1)).includes(body),'unreviewed native request')
    const timeout=AbortSignal.timeout(20000),attempt=signal?AbortSignal.any([signal,timeout]):timeout
    const value=await abortable(()=>fetchResponse?fetchResponse(url,{method,body,signal:attempt}):fetchPage?fetchPage(url,{method,body,signal:attempt}):fetchText?(need(method==='GET','legacy text callback cannot impersonate a native POST'),fetchText(url,{method,body,signal:attempt})):publicRead(url,{method,body,signal:attempt}),attempt)
    signal?.throwIfAborted()
@@ -37,18 +38,20 @@ export function createNativeSpecScraper({maxJobs:factoryCap=Infinity,now:factory
    const bytes=Buffer.isBuffer(packet.bytes)?packet.bytes:typeof packet.bodyBase64==='string'?Buffer.from(packet.bodyBase64,'base64'):typeof packet.html==='string'?Buffer.from(packet.html):null
    need(bytes&&bytes.length<=4000000,'bounded original response bytes required')
    const html=new TextDecoder('utf-8',{fatal:true}).decode(bytes),status=packet.status??200,headers=packet.headers instanceof Headers?Object.fromEntries(packet.headers):packet.headers||{},contentType=packet.contentType??headers['content-type']??null
-   need(status===200||status===301&&url===ENTRY,'HTTP '+status+' for '+url)
+   need(status===200||[301,308].includes(status)&&url===ENTRY,'HTTP '+status+' for '+url)
    need(status===301||bytes.length>0,'empty native role/inventory body')
    if(packet.method!==undefined)need(packet.method===method,'response method metadata differs')
    if(packet.body!==undefined)need(packet.body===body,'response request-body metadata differs')
    for(const field of ['url','requestedURL','finalURL'])if(packet[field]!==undefined)need(packet[field]===url,'response URL metadata differs')
    if(packet.bodySHA256!==undefined)need(packet.bodySHA256===sha(bytes),'original response digest differs')
-   if(contentType!==null)need(/^text\/html\b/i.test(contentType),'native HTML content type changed')
+   if(contentType!==null&&!(status===308&&url===ENTRY&&contentType===''))need(/^text\/html\b/i.test(contentType),'native HTML content type changed')
    if(packet.html!==undefined)need(packet.html===html,'original response text/bytes disagree')
-   const receipt={url,requestedURL:packet.requestedURL??packet.url??null,method:packet.method??null,body:packet.body??null,status:packet.status??null,finalURL:packet.finalURL??packet.url??null,contentType,startedAt:packet.startedAt??null,completedAt:packet.completedAt??null,bodySHA256:sha(bytes),bodyBytes:bytes.length}
-   receipts.push(receipt);originals.push({...receipt,html});return{html,status,headers}
+   const receipt={url,requestedURL:packet.requestedURL??packet.url??null,method:packet.method??null,body:packet.body??null,status:packet.status??null,finalURL:packet.finalURL??packet.url??null,contentType,responseContentTypePresent:Object.keys(headers).some(name=>name.toLowerCase()==='content-type'),startedAt:packet.startedAt??null,completedAt:packet.completedAt??null,bodySHA256:sha(bytes),bodyBytes:bytes.length}
+   receipts.push(receipt);originals.push({...receipt,html});return{html,status,headers,contentType}
   }
-  const primary=async()=>{const response=await read(ENTRY);if(response.status===301){need(response.headers.location===PRIMARY,'unreviewed canonical redirect');return readPublisher((await read(PRIMARY)).html,'primary')}return readPublisher(response.html,'primary')}
+  let firstEntry=await read(ENTRY)
+  if(firstEntry.status===308)return runCurrentSpecData({entry:firstEntry,read,receipts,originals,options,cap,now:options.now||factoryNow,started,abortable})
+  const primary=async()=>{const response=firstEntry??await read(ENTRY);firstEntry=null;if(response.status===301){need(response.headers.location===PRIMARY,'unreviewed canonical redirect');return readPublisher((await read(PRIMARY)).html,'primary')}return readPublisher(response.html,'primary')}
   const snapshot=async(expected)=>{
    const publisher=await primary(),board=readPublisher((await read(BOARD)).html,'board'),contract=readInventoryContract(board),pages=[],rows=[]
    need(equal(publisher.office.reconciledWholeContext,board.office.reconciledWholeContext),'primary/board own office context differs')

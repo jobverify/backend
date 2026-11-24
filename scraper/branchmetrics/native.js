@@ -10,6 +10,7 @@ const CLIENT_SHA256='c682b0fc1afc2103d6affbad8014a2afa23f0c6f53f3ba313803e330ab7
 export const check=(ok,message)=>{if(!ok){const error=new Error(`Branch Metrics native: ${message}`);error.code='BRANCHMETRICS_NATIVE_CONTRACT';throw error}}
 const plain=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)
 const text=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
+const nativeLanguage=value=>{try{return typeof value==='string'&&Intl.getCanonicalLocales(value)[0]===value}catch{return false}}
 const decode=value=>value.replace(/&#x([\da-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16))).replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Number(n)))
  .replace(/&(amp|quot|apos|nbsp|lt|gt);/g,(_,n)=>({amp:'&',quot:'"',apos:"'",nbsp:' ',lt:'<',gt:'>'})[n])
 const attrs=value=>{
@@ -147,7 +148,7 @@ export function mergeListings(rows){
  for(const row of rows){
   rejectError(row);publication(row)
   check(typeof row.id==='string'&&/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(row.id)&&text(row.name)
-   &&typeof row.name==='string'&&row.url===`${BOARD_URL}/${row.id}`&&row.language==='en-US'
+   &&typeof row.name==='string'&&row.url===`${BOARD_URL}/${row.id}`&&nativeLanguage(row.language)
    &&plain(row.department)&&text(row.department.name)&&Array.isArray(row.locations)&&row.locations.length>0,'native listing identity malformed')
   const {locations,...identity}=row,prior=grouped.get(row.id)
   if(prior)check(sameNative(prior.identity,identity),'same native ID has conflicting fields')

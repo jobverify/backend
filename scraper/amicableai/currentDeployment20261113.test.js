@@ -9,6 +9,9 @@ import { decodeNativeEntities } from '../../scraper-support/utils/activeNativeHt
 import { assessSoftFailureAcquisition } from '../../scripts/softFailureAssessment20261113.mjs'
 
 const packets = JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261113.json.gz', import.meta.url))))
+// Explicit current original preload dependency; the historical corpus stays
+// unchanged and this composed test does not assert historical coevality.
+packets.push(...JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/corporate-styling-20261121.json.gz', import.meta.url)))).packets.filter(p => p.requestedUrl.includes('swiper@8')))
 const replay = async (mutate = () => {}) => {
   let audit
   const jobs = await run({ fetchPage: async url => {

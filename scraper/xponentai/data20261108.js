@@ -90,6 +90,17 @@ function geography(schema,record){
  return {country,countryUnresolved:country===null,sourceCountryScopeUnresolved:country===null,sourceNativeCountryConflict:conflict,sourceNativeCountryEvidence:{jobLocation:structuredClone(schema.jobLocation??null),nativeLocationClassLabels:labels,explicitCountries:distinct,unresolvedWorksites:unresolved,companyAddressUsed:false,applicationFormCountryUsed:false},location:null,city:null,state:null,
   workplaceType:workplace,remoteStatus:workplace,sourceNativeWorkplaceConflict:workplaces.length>1,sourceNativeWorkplaceEvidence:{nativeJobLocationType:schema.jobLocationType??null,nativeModeClasses:modes}}
 }
+function applicationModel(html,doc,record){
+ const form=one(doc.nodes(n=>n.tag==='form'&&n.attrs.id==='awsm-application-form'),'native role application'),url=roleURL(record)
+ need(form.attrs.method==='post'&&form.attrs.enctype==='multipart/form-data'&&(!form.attrs.action||new URL(form.attrs.action,url).href===url)&&!Object.hasOwn(form.attrs,'disabled')&&form.attrs['aria-disabled']!=='true','native role application target or availability changed')
+ const raw=rawDocument(html),original=one(raw.nodes(n=>n.tag==='form'&&n.attrs.id==='awsm-application-form'),'whole role application'),nodes=[],visit=n=>{if(typeof n==='string')return;nodes.push(n);n.children?.forEach(visit)};visit(original)
+ const controls=nodes.filter(n=>['input','select','option','optgroup','textarea','button','label','fieldset'].includes(n.tag)),field=name=>one(controls.filter(n=>n.tag==='input'&&n.attrs.name===name),'application identity '+name).attrs.value
+ need(field('awsm_job_id')===String(record.id)&&field('action')==='awsm_applicant_form_submission'&&field('_wp_http_referer')===new URL(url).pathname,'native application form identity conflicts with own role')
+ need(!controls.some(n=>n.tag==='fieldset'&&Object.hasOwn(n.attrs,'disabled'))&&controls.some(n=>(n.tag==='input'&&n.attrs.type==='submit'||n.tag==='button'&&(!n.attrs.type||n.attrs.type==='submit'))&&!Object.hasOwn(n.attrs,'disabled')&&n.attrs['aria-disabled']!=='true'),'native role application disabled')
+ const protocol=jobBootstrap(doc);need(protocol.job_id===String(record.id)&&protocol.ajaxurl==='https://xponent.ai/wp-admin/admin-ajax.php','native application protocol identity differs')
+ const comparison=n=>typeof n==='string'?n:{tag:n.tag,attrs:{...n.attrs,...(n.tag==='input'&&n.attrs.name==='awsm_nonce'?{value:'[per-read-native-nonce]'}:{})},children:(n.children??[]).map(comparison),...(['script','style','textarea'].includes(n.tag)?{raw:n.raw??null}:{})}
+ return{url,jobId:String(record.id),nativeRoleBindingQualified:true,method:form.attrs.method,nativeApplicationProtocol:structuredClone(protocol),originalHTML:raw.outer(original),originalModel:structuredClone(original),nativeControls:controls.map(n=>({tag:n.tag,attrs:{...n.attrs},text:raw.text(n),originalHTML:raw.outer(n)})),comparisonModel:{form:comparison(original),protocol:structuredClone(protocol)},nativeFieldModelRetained:true,publicApplicationEligibilityQualified:false,activeApplyVerified:false,submitted:false,publisherProgramsExecuted:false}
+}
 export function ownRole(html,record,at){
  const doc=readNativeDocument(html),url=roleURL(record);canonical(doc,url)
  need(!doc.nodes(n=>n.tag==='base').length,'unreviewed document base')
@@ -121,5 +132,5 @@ export function ownRole(html,record,at){
  one(doc.nodes(n=>n.tag==='div'&&cls(n,'job-extennn')),'active complete role criteria')
  const raw=rawDocument(html),carrier=one(raw.nodes(n=>n.tag==='div'&&raw.hasClass(n,'job-extennn')),'exact complete criteria carrier'),descriptionHTML=raw.outer(carrier),description=plain(descriptionHTML)
  need(description.length>100&&!raw.nodes(n=>n.tag==='form',carrier).length,'complete role criteria missing or includes an application form')
- return {title,description,descriptionHTML,schema:structuredClone(schema),nativePublication:publication(record,schema,at),...geography(schema,record)}
+ return {title,description,descriptionHTML,schema:structuredClone(schema),nativePublication:publication(record,schema,at),application:applicationModel(html,doc,record),...geography(schema,record)}
 }

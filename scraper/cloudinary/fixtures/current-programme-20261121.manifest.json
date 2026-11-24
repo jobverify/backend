@@ -1,0 +1,110 @@
+{
+  "source": "cloudinary",
+  "fixture": "scraper/cloudinary/fixtures/current-programme-20261121.json.gz",
+  "fixtureSHA256": "98b49e310b5543abf4c35709a43906e78802a37f79bfe0d296156c66a6963e0d",
+  "fixtureBytes": 248924,
+  "originalEntityBytes": 787652,
+  "composedReplay": true,
+  "actualNativeClosingAcquisition": false,
+  "omittedResponseHeaders": [
+    "set-cookie"
+  ],
+  "responses": [
+    {
+      "phase": "opening-corporate",
+      "requestedURL": "https://cloudinary.com/careers",
+      "status": 200,
+      "bodyBytes": 145593,
+      "bodySHA256": "b33095b40fc9d8c21698120df4d11f45c4c40ebd7f86c3370bd5b3f501e52438",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 1,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0001.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:51.569Z",
+        "originalCompletedAt": "2026-11-20T23:01:51.929Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    },
+    {
+      "phase": "opening-jobs",
+      "requestedURL": "https://cloudinary.com/careers/jobs",
+      "status": 200,
+      "bodyBytes": 117636,
+      "bodySHA256": "707eadf58983e65b301529640c1f33cb5710902425e5050e1e0f816f4c1c5dc9",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 4,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0004.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:52.153Z",
+        "originalCompletedAt": "2026-11-20T23:01:52.255Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    },
+    {
+      "phase": "opening-native",
+      "requestedURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "status": 200,
+      "bodyBytes": 130597,
+      "bodySHA256": "a1a235f0f0bf075b47c3fdb38f882536d03968c2d852612d91c47ab290d52ee2",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 5,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0005.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:52.299Z",
+        "originalCompletedAt": "2026-11-20T23:01:54.318Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    },
+    {
+      "phase": "closing-native",
+      "requestedURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "status": 200,
+      "bodyBytes": 130597,
+      "bodySHA256": "a1a235f0f0bf075b47c3fdb38f882536d03968c2d852612d91c47ab290d52ee2",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 10,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0010.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:55.432Z",
+        "originalCompletedAt": "2026-11-20T23:01:56.685Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    },
+    {
+      "phase": "closing-jobs",
+      "requestedURL": "https://cloudinary.com/careers/jobs",
+      "status": 200,
+      "bodyBytes": 117636,
+      "bodySHA256": "30b262500fd04f59bea0d4d422f69dd352c658e16ea4acc1cdae513325934009",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 9,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0009.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:55.215Z",
+        "originalCompletedAt": "2026-11-20T23:01:55.332Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    },
+    {
+      "phase": "closing-corporate",
+      "requestedURL": "https://cloudinary.com/careers",
+      "status": 200,
+      "bodyBytes": 145593,
+      "bodySHA256": "a8c4fba7ea72c332aff07b9d412a31a37da2abaa8f51c9c1d22e812836a8701b",
+      "provenance": {
+        "captureResult": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/result.json",
+        "originalOrdinal": 8,
+        "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/cloudinary/current-20261120230148461-4108/0008.body.gz",
+        "originalRequestedAt": "2026-11-20T23:01:54.988Z",
+        "originalCompletedAt": "2026-11-20T23:01:55.093Z",
+        "originalEntityUnmodified": true,
+        "phaseAssignedForOfflineReplay": true
+      }
+    }
+  ]
+}

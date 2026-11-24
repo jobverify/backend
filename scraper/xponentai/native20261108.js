@@ -35,7 +35,7 @@ export const createXponentNativeScraper=(defaults={})=>({run:async(options={})=>
  }
  const makeRow=(record,parsed,bodySHA256)=>({
   source:'xponentai',company:'xponent.ai',jobId:String(record.id),requisitionId:null,title:parsed.title,
-  sourceUrl:record.link,link:record.link,detailUrl:record.link,applyUrl:null,activeApplyVerified:false,applicationVisited:false,
+  sourceUrl:record.link,link:record.link,detailUrl:record.link,applyUrl:parsed.application.url,sourceNativeApplication:parsed.application,activeApplyVerified:false,applicationVisited:false,
   jobDescription:parsed.description,sourceDescription:parsed.description,sourceNativeDescriptionHTML:parsed.descriptionHTML,
   sourceNativeRecord:structuredClone(record),sourceNativeSchema:parsed.schema,sourceNativeOwnBodySHA256:bodySHA256,
   sourceNativePublication:parsed.nativePublication,sourceNativePhase:phase,sourceNativeIdentityKind:'wordpress-published-job-post',
@@ -75,7 +75,7 @@ export const createXponentNativeScraper=(defaults={})=>({run:async(options={})=>
    if(phase==='opening')observation.nativeRecord=structuredClone(native)
    const response=await read(roleURL(native)),parsed=ownRole(response.body,native,clock()),row=makeRow(native,parsed,response.bodySHA256);control.check()
    if(phase==='opening')observation.openingRow=row
-   else{observation.closingRow=row;observation.paired=Boolean(observation.openingRow)&&isDeepStrictEqual(observation.nativeRecord,native)&&observation.openingRow.sourceDescription===row.sourceDescription&&isDeepStrictEqual(observation.openingRow.sourceNativeSchema,row.sourceNativeSchema);if(!observation.paired)observation.issues.push('native-opening-closing-model-or-criteria-changed')}
+   else{observation.closingRow=row;observation.paired=Boolean(observation.openingRow)&&isDeepStrictEqual(observation.nativeRecord,native)&&observation.openingRow.sourceDescription===row.sourceDescription&&isDeepStrictEqual(observation.openingRow.sourceNativeSchema,row.sourceNativeSchema)&&isDeepStrictEqual(observation.openingRow.sourceNativeApplication.comparisonModel,row.sourceNativeApplication.comparisonModel);if(!observation.paired)observation.issues.push('native-opening-closing-model-or-criteria-changed')}
   }
   return {phase,declaration,contract,totalNativePublishedPosts:total,pages,records:listings}
  }
@@ -89,7 +89,7 @@ export const createXponentNativeScraper=(defaults={})=>({run:async(options={})=>
   const stable=isDeepStrictEqual(opening.records,closing.records)
   if(!stable)for(const observation of observations.values()){observation.paired=false;observation.issues.push('native-opening-closing-inventory-changed')}
   const all=[...observations.values()].filter(v=>v.openingRow).map(v=>{
-   const row=structuredClone(v.openingRow);row.sourceNativeClosingRecord=structuredClone(v.closingRow?.sourceNativeRecord??null);row.sourceNativeModelPairQualified=v.paired
+   const row=structuredClone(v.openingRow);row.sourceNativeClosingRecord=structuredClone(v.closingRow?.sourceNativeRecord??null);row.sourceNativeModelPairQualified=v.paired;row.sourceNativeApplicationClosingQualified=v.paired;row.sourceNativeClosingApplication=structuredClone(v.closingRow?.sourceNativeApplication??null)
    row.sourceNativeClosingPublication=structuredClone(v.closingRow?.sourceNativePublication??null)
    row.sourceNativeIssues=[...new Set([...row.sourceNativeIssues,...v.closingRow?.sourceNativeIssues??[],...v.issues])];return row
   });control.check()
@@ -116,7 +116,8 @@ export const createXponentNativeScraper=(defaults={})=>({run:async(options={})=>
   refresh()
   const selected=all.filter(row=>row.sourceNativeTemporalQualified&&(row.country===null||row.country==='India')),jobs=settings.maxJobs===null?selected:selected.slice(0,settings.maxJobs)
   attachSourceObservationEvidence(jobs,audit);Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,pagesFetched:control.requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,reason:'complete-native-post-models-and-own-HTML-criteria;country-India-zero-company-hiring-application-and-publication-scope-unqualified'})
- }catch(error){const evidence=structuredClone(snapshot());if(settings.signal?.aborted){failures.set(settings.signal,evidence);throw settings.signal.reason}throw annotateFailure(error,{source:'xponentai',sourceScopeComplete:false,lifecycleCleanupAllowed:false,nativeEvidence:evidence})}
- finally{control.close()}
+  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,pagesFetched:control.requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,reason:'complete-native-post-own-HTML-criteria-and-role-bound-application-models-reconciled;country-unpublished-native-posting-dates-preserved-whole-company-inventory-and-cleanup-held'})
+  control.check();settings.signal?.throwIfAborted();return jobs
+ }catch(error){const evidence=structuredClone(snapshot());if(settings.signal?.aborted){failures.set(settings.signal,evidence);throw settings.signal.reason}const failure=annotateFailure(error,{source:'xponentai',sourceScopeComplete:false,lifecycleCleanupAllowed:false,nativeEvidence:evidence});settings.signal?.throwIfAborted();throw failure}
+ finally{control.close();settings.signal?.throwIfAborted()}
 }})

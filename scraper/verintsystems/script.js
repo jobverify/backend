@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { run as runCurrentVerint } from './nativeCareers20261114.js'
+import { runCurrentVerintPublished as runCurrentVerint } from './currentPublished20261121.js'
 
 import { VERINT_SYSTEMS_CATALOG } from './catalog.js'
 
@@ -267,7 +267,8 @@ export const extractJobDetail = (payload, listing = {}) => {
 }
 
 // Historical Oracle parsing helpers above remain available for old fixtures.
-// Both public entry points use the current declared native handoff.
+// Both public entry points use the current semantic native collector. The
+// November 14 reader and its byte profiles remain explicit historical fixtures.
 export const createVerintSystemsScraper = (defaults = {}) => ({
   run: (options = {}) => runCurrentVerint({ ...defaults, ...options }),
 })

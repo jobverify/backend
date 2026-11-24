@@ -115,7 +115,7 @@ export async function readCurrentDatafoldProgramme(options={}){
   need(feed.jobs.length<=maxDetails,'Every current native role must fit the detail bound')
   need(maxRequests-receipts.length>=2*feed.jobs.length+(sourceCertificateRequired?13:7),
    'Reserve every opening role and all corporate/native/renderer closings')
-  let manifest,entry,sourcePackets,resourceDeclarations
+  let manifest,entry,sourcePackets,resourceDeclarations,rendererQualified=true,rendererHold=null
   if(sourceCertificateRequired){
    allowed.add(declaration.manifestURL)
    manifest=await read(declaration.manifestURL,'manifest','opening')
@@ -125,10 +125,20 @@ export async function readCurrentDatafoldProgramme(options={}){
     allowed.add(resourceDeclarations[kind].url)
     sourcePackets[kind]=await read(resourceDeclarations[kind].url,kind,'opening')
    }
-   audit.renderer={...sourceProof(certifyAshbyRendererSource,{declaration,
-    packets:Object.fromEntries(Object.entries(sourcePackets).map(([kind,packet])=>[kind,certificatePacket(packet)]))}),
-    version:declaration.version,manifestURL:declaration.manifestURL,entryURL:resourceDeclarations.entry.url,
-    stylesheetBytesAcquired:true,untrustedJavaScriptExecuted:false}
+   try{
+    audit.renderer={...sourceProof(certifyAshbyRendererSource,{declaration,
+     packets:Object.fromEntries(Object.entries(sourcePackets).map(([kind,packet])=>[kind,certificatePacket(packet)]))}),
+     version:declaration.version,manifestURL:declaration.manifestURL,entryURL:resourceDeclarations.entry.url,
+     stylesheetBytesAcquired:true,untrustedJavaScriptExecuted:false}
+   }catch(error){
+    check()
+    if(error?.code!=='ASHBY_SOURCE_CERTIFICATE_HOLD')throw error
+    rendererQualified=false;rendererHold={code:error.code,reason:error.cause?.reason??'unqualified-current-client'}
+    audit.renderer={sourceBodiesQualified:false,qualificationHold:rendererHold,nativeFactProvenanceOnly:true,
+     version:declaration.version,manifestURL:declaration.manifestURL,entryURL:resourceDeclarations.entry.url,
+     resources:Object.fromEntries(Object.entries(sourcePackets).map(([kind,packet])=>[kind,{url:packet.url,originalSHA256:packet.hash,bytes:packet.size}])),
+     stylesheetBytesAcquired:true,untrustedJavaScriptExecuted:false}
+   }
   }else{
    // Preserve the separately reviewed 07dd compatibility route and its original
    // fixture/limits. It does not claim the new five-resource source certificate.
@@ -156,7 +166,11 @@ export async function readCurrentDatafoldProgramme(options={}){
   const closingBoard=await read(BOARD,'board','closing'),closingNative=parse(readNative,closingBoard)
   parse(sameDeclaration,closingNative);parse(readBoard,closingNative,feed);unchanged(boardPacket,closingBoard,'Native board')
   const closingFeed=await read(API,'feed','closing');parse(readFeed,closingFeed);unchanged(feedPacket,closingFeed,'Native full feed')
-  const closingCorporate=await read(HOME,'corporate','closing');parse(readHome,closingCorporate);unchanged(corporate,closingCorporate,'Corporate programme')
+  const closingCorporate=await read(HOME,'corporate','closing'),closingCorporateProof=parse(readHome,closingCorporate)
+  need(closingCorporateProof.programmeScriptSHA256===audit.corporateProgramme.programmeScriptSHA256
+   &&closingCorporateProof.account===audit.corporateProgramme.account,'Corporate native programme/handoff changed')
+  need(JSON.stringify(securitySnapshot(corporate))===JSON.stringify(securitySnapshot(closingCorporate)),'Corporate enforced security headers changed')
+  audit.wholeCorporateBodyUnchanged=corporate.hash===closingCorporate.hash
   if(sourceCertificateRequired){
    const closingManifest=await read(declaration.manifestURL,'manifest','closing')
    const closingDeclarations=sourceProof(inspectAshbyRendererManifest,{declaration,manifest:certificatePacket(closingManifest)}).resources
@@ -164,8 +178,10 @@ export async function readCurrentDatafoldProgramme(options={}){
    unchanged(manifest,closingManifest,'Manifest')
    const closingPackets={manifest:closingManifest}
    for(const kind of['entry','recorder','profiler','css'])closingPackets[kind]=await read(resourceDeclarations[kind].url,kind,'closing')
-   audit.closingRendererSourceCertificate=sourceProof(certifyAshbyRendererSource,{declaration,
-    packets:Object.fromEntries(Object.entries(closingPackets).map(([kind,packet])=>[kind,certificatePacket(packet)]))})
+   audit.closingRendererSourceCertificate=rendererQualified?sourceProof(certifyAshbyRendererSource,{declaration,
+    packets:Object.fromEntries(Object.entries(closingPackets).map(([kind,packet])=>[kind,certificatePacket(packet)]))}):
+    {sourceBodiesQualified:false,qualificationHold:rendererHold,nativeFactProvenanceOnly:true,
+     resources:Object.fromEntries(Object.entries(closingPackets).map(([kind,packet])=>[kind,{url:packet.url,originalSHA256:packet.hash,bytes:packet.size}]))}
    for(const kind of['entry','recorder','profiler','css'])unchanged(sourcePackets[kind],closingPackets[kind],'Renderer '+kind)
    audit.allDeclaredSourceResourcesRechecked=true
   }else{
@@ -173,27 +189,27 @@ export async function readCurrentDatafoldProgramme(options={}){
    parse(verifyRenderer,closingManifest,closingEntry);unchanged(manifest,closingManifest,'Manifest');unchanged(entry,closingEntry,'Renderer')
   }
   check()
-  Object.assign(audit,{requests:receipts.length,totalDecodedBytes:total,currentDeclaredSourceProgramComplete:true,
-   nativeIndiaCount:0,nativeProgrammeIsEmpty:feed.jobs.length===0,allOwnRolesRechecked:true,wholeNativeBoardRechecked:true,
+  Object.assign(audit,{requests:receipts.length,totalDecodedBytes:total,currentDeclaredSourceProgramComplete:rendererQualified,currentNativeFactModelsComplete:true,currentRendererQualified:rendererQualified,
+   nativeIndiaCount:rendererQualified?0:null,observedNativeIndiaCount:0,nativeProgrammeIsEmpty:rendererQualified?feed.jobs.length===0:null,allOwnRolesRechecked:true,wholeNativeBoardRechecked:true,
    wholePublicFeedRechecked:true,currentCorporateHandoffRechecked:true,currentRendererRechecked:true,
    noNonceComparisonExceptionApplied:true,enforcedSecurityProfilesQualified:true,sourceMonotonicDeadlineChecked:true,
    sourceScope:'current-corporate-declared-Datafold-Ashby-programme-only',
-   completenessLimit:'Entire current native published programme and original criteria; application/survey/automated legal fallback fields are null and unacquired. Company-global inventory and legal-entity verification remain unknown.'})
+   completenessLimit:rendererQualified?'Entire current native published programme and original criteria; application/survey/automated legal fallback fields are null and unacquired. Company-global inventory and legal-entity verification remain unknown.':'Only complete explicitly bound published native records and original criteria are reconciled. Current browser programme, application, screening, unseen membership and company-global inventory remain unqualified.'})
   if(options.onAudit)await abortable(()=>options.onAudit(structuredClone(audit)),signal)
   check()
   const jobs=[]
   attachSourceObservationEvidence(jobs,{source:'datafold',recordKind:'vacancy-rows',observedRecordCount:feed.jobs.length,
    observedVacancyCount:feed.jobs.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
-  const result=attachInventoryEvidence(jobs,{status:'complete-inventory',surface:BOARD,firstParty:true,listingComplete:true,lifecycleCleanupAllowed:false,
-   pagesFetched:receipts.length,reportedTotal:feed.jobs.length,indiaFacetCount:0,verifiedAt:now,
-   reason:'Complete current corporate-declared Datafold Ashby programme: every native role, explicit work/applicant countries and full original published descriptions/supplements, reviewed current renderer, and all closing reads reconcile. Application screening and company-global inventory remain unqualified; lifecycle cleanup forbidden.'})
+  const result=attachInventoryEvidence(jobs,{status:rendererQualified?'complete-inventory':'coverage-gap',surface:BOARD,firstParty:true,listingComplete:rendererQualified,lifecycleCleanupAllowed:false,
+   pagesFetched:receipts.length,reportedTotal:rendererQualified?feed.jobs.length:null,indiaFacetCount:rendererQualified?0:null,verifiedAt:now,
+   reason:rendererQualified?'Complete current corporate-declared Datafold Ashby programme: every native role, explicit work/applicant countries and full original published descriptions/supplements, reviewed current renderer, and all closing reads reconcile. Application screening and company-global inventory remain unqualified; lifecycle cleanup forbidden.':'Bound original own API/board/JobPosting records and complete explicit foreign criteria reconcile with closing; current renderer, unseen programme membership, application and company scope remain unqualified. No India or company-zero assertion; cleanup forbidden.'})
   check();return result
  }catch(error){
   Object.assign(audit,{requests:receipts.length,totalDecodedBytes:total,currentDeclaredSourceProgramComplete:false})
-  try{Object.defineProperty(error,'nativeCollectionEvidence',{value:audit,configurable:true})}catch{}
+  try{Object.defineProperty(error,'nativeCollectionEvidence',{value:audit,configurable:true})}catch{/* Frozen/opaque caller reasons are retained verbatim. */}
   throw error
- }finally{clearTimeout(timer);controller.abort()}
+ }finally{clearTimeout(timer);controller.abort();options.signal?.throwIfAborted()}
 }
 
 export async function runCurrentDatafoldProgramme(options={}){
@@ -238,5 +254,5 @@ export async function runCurrentDatafoldProgramme(options={}){
    return {url:page.url,status:page.status,headers:page.headers,
     text:new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(Buffer.from(page.bodyBase64,'base64'))}
   }})
- }finally{clearTimeout(timer);controller.abort()}
+ }finally{clearTimeout(timer);controller.abort();options.signal?.throwIfAborted()}
 }

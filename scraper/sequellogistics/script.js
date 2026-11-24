@@ -1,4 +1,3 @@
-import https from 'node:https'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -59,110 +58,49 @@ const createTimeoutSignal = (timeoutMs) => {
   return controller.signal
 }
 
-const isSequelGlobalHost = (url) => {
-  try {
-    return /(?:^|\.)sequelglobal\.com$/i.test(new URL(url).hostname)
-  } catch {
-    return false
-  }
-}
-
-const isCertificateVerificationFailure = (error) => {
-  const message = String(error?.message || '')
-  const causeMessage = String(error?.cause?.message || '')
-  const combined = `${message}\n${causeMessage}`
-
-  return /unable to verify the first certificate|UNABLE_TO_VERIFY_LEAF_SIGNATURE|self[- ]signed certificate|certificate/i.test(combined)
-}
-
 const fetchTextResponse = async (
   url,
   {
     fetchImpl = fetch,
     timeoutMs = 15000,
     headers = DEFAULT_HEADERS,
+    signal,
   } = {},
 ) => {
-  const response = await fetchImpl(url, {
-    redirect: 'follow',
-    headers,
-    signal: createTimeoutSignal(timeoutMs),
-  })
-
-  return response.text()
-}
-
-const insecureFetchText = (
-  url,
-  {
-    timeoutMs = 15000,
-    headers = DEFAULT_HEADERS,
-    maxRedirects = 5,
-  } = {},
-) => new Promise((resolve, reject) => {
-  if (maxRedirects < 0) {
-    reject(new Error(`Too many redirects while fetching ${url}`))
-    return
-  }
-
-  const request = https.request(url, {
-    method: 'GET',
-    headers,
-    rejectUnauthorized: true,
-  }, (response) => {
-    const statusCode = Number(response.statusCode || 0)
-    const location = response.headers.location
-
-    if (statusCode >= 300 && statusCode < 400 && location) {
-      response.resume()
-      const redirectedUrl = new URL(location, url).toString()
-      resolve(insecureFetchText(redirectedUrl, {
-        timeoutMs,
-        headers,
-        maxRedirects: maxRedirects - 1,
-      }))
-      return
+  const timeout = createTimeoutSignal(timeoutMs)
+  const activeSignal = signal && timeout ? AbortSignal.any([signal, timeout]) : signal || timeout
+  try {
+    activeSignal?.throwIfAborted()
+    const response = await fetchImpl(url, { redirect: 'manual', headers, signal: activeSignal })
+    activeSignal?.throwIfAborted()
+    if (!(response instanceof Response) || !Number.isInteger(response.status) || response.status < 200
+      || response.status > 599 || response.bodyUsed || response.body?.locked) {
+      throw new Error(`Invalid completed HTTP response for ${url}`)
     }
-
-    let body = ''
-    response.setEncoding('utf8')
-    response.on('data', (chunk) => {
-      body += chunk
-    })
-    response.on('end', () => resolve(body))
-  })
-
-  request.setTimeout(timeoutMs, () => {
-    request.destroy(new Error(`Request timed out after ${timeoutMs}ms`))
-  })
-  request.on('error', reject)
-  request.end()
-})
+    if (!response.ok || response.status === 202) {
+      throw Object.assign(new Error(`HTTP ${response.status} for ${url}`), {
+        status: response.status, httpStatus: response.status, requestedUrl: String(url), abortRetries: true,
+      })
+    }
+    const html = await response.text()
+    activeSignal?.throwIfAborted()
+    if (typeof html !== 'string' || !html.trim()) throw new Error(`Empty or invalid completed HTTP body for ${url}`)
+    return html
+  } catch (error) {
+    if (signal?.aborted) throw signal.reason
+    if (activeSignal?.aborted) throw activeSignal.reason
+    throw error
+  }
+}
 
 export const defaultFetchText = async (
   url,
   {
     fetchImpl = fetch,
-    insecureFetchTextImpl = insecureFetchText,
     timeoutMs = 15000,
+    signal,
   } = {},
-) => {
-  try {
-    return await fetchTextResponse(url, {
-      fetchImpl,
-      timeoutMs,
-    })
-  } catch (error) {
-    if (!isSequelGlobalHost(url) || !isCertificateVerificationFailure(error)) {
-      throw error
-    }
-
-    return insecureFetchTextImpl(url, {
-      timeoutMs,
-      headers: DEFAULT_HEADERS,
-    })
-  }
-}
+) => fetchTextResponse(url, { fetchImpl, timeoutMs, signal })
 
 export const hasOfficialCareersSignal = (html = '') => {
   const page = String(html ?? '')
@@ -254,13 +192,16 @@ export const extractLateralJobs = (html = '') => {
 }
 
 export const createSequelLogisticsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText, now: overrideNow } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+  async run({ fetchText = defaultFetchText, now: overrideNow, signal } = {}) {
+    signal?.throwIfAborted()
+    const careersHtml = await fetchText(CAREERS_URL, { signal })
+    signal?.throwIfAborted()
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Sequel Logistics verified careers landing page no longer matches the trusted first-party surface')
     }
 
-    const lateralHtml = await fetchText(LATERAL_HIRING_URL)
+    const lateralHtml = await fetchText(LATERAL_HIRING_URL, { signal })
+    signal?.throwIfAborted()
     if (!hasOfficialLateralHiringSignal(lateralHtml)) {
       throw new Error('Sequel Logistics verified lateral openings page no longer matches the trusted first-party surface')
     }
@@ -281,6 +222,7 @@ export const createSequelLogisticsScraper = ({ now = () => new Date().toISOStrin
       throw new Error('Sequel Logistics verified lateral openings page no longer exposes public job cards')
     }
 
+    signal?.throwIfAborted()
     return jobs
   },
 })

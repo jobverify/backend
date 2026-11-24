@@ -1,4 +1,6 @@
 ﻿export const SOURCE = 'techjays'
+import {isReviewedCurrentSurface,readReviewedCurrentPublication} from './currentPublication.js'
+
 export const COMPANY = 'Techjays'
 export const HOMEPAGE_URL = 'https://www.techjays.com/'
 export const CAREERS_URL = 'https://www.techjays.com/careers'
@@ -56,22 +58,32 @@ const createTimeoutSignal = (timeoutMs) => {
 export const defaultFetchPage = async (url, {
   fetchImpl = fetch,
   timeoutMs = 15000,
+  signal,
+  redirect = url === CAREERS_URL ? 'manual' : 'follow',
 } = {}) => {
+  signal?.throwIfAborted()
+  const timeoutSignal=createTimeoutSignal(timeoutMs)
   const response = await fetchImpl(url, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (compatible; Jobverify scraper)',
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
-    redirect: url === CAREERS_URL ? 'manual' : 'follow',
-    signal: createTimeoutSignal(timeoutMs),
+    redirect,
+    signal: signal&&timeoutSignal?AbortSignal.any([signal,timeoutSignal]):signal??timeoutSignal,
   })
-
+  signal?.throwIfAborted()
+  const html=await response.text()
+  signal?.throwIfAborted()
   return {
     status: response.status,
     url: response.url,
-    html: await response.text(),
+    html,
     headers: {
       location: response.headers?.get?.('location') || '',
+    },
+    responseHeaders:{
+      'content-security-policy':response.headers?.get?.('content-security-policy')||'',
+      'content-security-policy-report-only':response.headers?.get?.('content-security-policy-report-only')||'',
     },
   }
 }
@@ -159,13 +171,34 @@ export const extractCurrentRoleDetail = (html, card) => {
   }
 }
 
-export const run = async ({ fetchPage = defaultFetchPage, onDiagnostic = diagnostic => console.warn('[techjays] ' + diagnostic.message) } = {}) => {
+export const run = async (options = {}) => {
+  const {fetchPage:providedFetchPage=defaultFetchPage,fetchImpl=fetch,signal:callerSignal,
+    onDiagnostic=diagnostic=>console.warn('[techjays] '+diagnostic.message)}=options
+  callerSignal?.throwIfAborted()
+  const controller=new AbortController()
+  const timer=setTimeout(()=>controller.abort(new DOMException('Techjays source deadline exceeded','TimeoutError')),120000)
+  const signal=callerSignal?AbortSignal.any([callerSignal,controller.signal]):controller.signal
+  const fetchPage=async url=>{
+    signal.throwIfAborted()
+    const page=await new Promise((resolve,reject)=>{
+      const cleanup=()=>signal.removeEventListener('abort',abort)
+      const abort=()=>{cleanup();reject(signal.reason)}
+      signal.addEventListener('abort',abort,{once:true})
+      Promise.resolve().then(()=>providedFetchPage(url,{fetchImpl,signal,redirect:'manual'})).then(
+        value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)},
+      )
+    })
+    signal.throwIfAborted()
+    return page
+  }
+  try{
   const homepage = await fetchPage(HOMEPAGE_URL)
   if (homepage?.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
     throw new Error('Techjays verified homepage changed materially')
   }
   const careers = await fetchPage(CAREERS_URL)
   if (careers?.status !== 200) throw new Error('Techjays current careers public surface is unavailable; a redirect is not an empty listing')
+  if(isReviewedCurrentSurface(careers.html))return await readReviewedCurrentPublication({homepage,careers,fetchPage,signal,onDiagnostic})
   const cards = extractCurrentRoleCards(careers.html)
   const records = []
   for (const card of cards) {
@@ -182,5 +215,8 @@ export const run = async ({ fetchPage = defaultFetchPage, onDiagnostic = diagnos
     if (!jobs.length) throw Object.assign(new Error(diagnostic.message), { code: diagnostic.code, diagnostic })
     for (const job of jobs) job.sourceListingComplete = false
   }
+  signal.throwIfAborted()
   return jobs
+  }catch(error){callerSignal?.throwIfAborted();throw error}
+  finally{clearTimeout(timer)}
 }

@@ -1,5 +1,6 @@
 import {document,norm} from '../../scraper-support/shared/rmkNativePairHtml.js'
 import {requireNative,nativeDate,nativeCountryName,plainNativeHTML,oneNative,hasClass} from '../../scraper-support/shared/nativeJobPosting.js'
+import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 export const SOURCE='forvismazars',COMPANY='Forvis Mazars',CORPORATE='https://careers.forvismazars.com/',ORIGIN='https://careers-asia.forvismazars.com',INDIA=ORIGIN+'/countries/india/',CANONICAL_INDIA=ORIGIN+'/india/'
 export const TERMS=ORIGIN+'/wp-json/wp/v2/location?per_page=100&page=1&_envelope=1',listingURL=page=>ORIGIN+'/wp-json/wp/v2/job-offer?per_page=100&page='+page+'&_envelope=1'
 const ensure=(v,m)=>requireNative(v,'Forvis Mazars: '+m),text=v=>typeof v==='string',positive=v=>Number.isSafeInteger(v)&&v>0
@@ -8,6 +9,25 @@ const contentKey=h=>plainNativeHTML(h).replace(/\s+/g,'')
 const country=label=>{const tail=label.split(',').at(-1).trim();return nativeCountryName(tail==='Hong Kong'?'HK':tail==='Republic of Korea'?'KR':tail)}
 function envelope(raw){const p=JSON.parse(raw);ensure(p&&p.status===200&&Array.isArray(p.body)&&p.headers&&typeof p.headers==='object'&&!p.error&&!p.errors,'Invalid native read-only REST envelope');ensure(p.headers.Allow==='GET','Native endpoint no longer a public GET collection');return p}
 function postDate(raw){ensure(text(raw)&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(raw),'Missing native job-offer UTC post date');return nativeDate(raw+'Z',{required:true})}
+function corporateIndiaDeclaration(html){
+ const previous=document(html)
+ if(previous.nodes(n=>n.tag==='h1'&&previous.text(n).includes(COMPANY)).length>=1&&previous.nodes(n=>n.tag==='a'&&n.attrs.href===INDIA&&previous.text(n)==='India').length>=1)return INDIA
+ // The current marketing heading is independent of country delegation. Bind
+ // the original own publisher and the visible country card's accessible label;
+ // the separately labelled Delivery Platform is not the base India endpoint.
+ const d=readVisibleNativeDocument(html,{strict:true})
+ ensure(single(d,n=>n.tag==='link'&&n.attrs.rel==='canonical','global canonical publisher').attrs.href===CORPORATE,'Global canonical publisher changed')
+ ensure(single(d,n=>n.tag==='meta'&&n.attrs.property==='og:url','global publisher URL').attrs.content===CORPORATE,'Global publisher URL changed')
+ ensure(single(d,n=>n.tag==='meta'&&n.attrs.property==='og:site_name','global publisher brand').attrs.content==='Forvis Mazars Careers Group','Global publisher brand changed')
+ const visibleAll=node=>node.inert?[]:[node,...node.children.filter(child=>typeof child!=='string').flatMap(visibleAll)]
+ const cards=d.nodes(n=>n.tag==='div'&&hasClass(n,'locations-map__card')&&hasClass(n,'locations-map__card--grouped')).filter(card=>visibleAll(card).some(n=>n.tag==='h4'&&d.text(n)==='India'))
+ const card=oneNative(cards,'Forvis Mazars visible India country card'),own=visibleAll(card)
+ const heading=oneNative(own.filter(n=>n.tag==='h4'&&d.text(n)==='India'),'Forvis Mazars own India country label')
+ ensure(/^locations-map-location-\d+$/.test(heading.attrs.id??'')&&d.nodes(n=>n.attrs.id===heading.attrs.id).length===1,'Missing or ambiguous original India label identity')
+ const link=oneNative(own.filter(n=>n.tag==='a'&&n.attrs.href===CANONICAL_INDIA),'Forvis Mazars declared India country URL')
+ ensure(JSON.stringify(Object.keys(link.attrs).sort())===JSON.stringify(['href','target','rel','class','aria-describedby'].sort())&&link.attrs['aria-describedby']===heading.attrs.id&&link.attrs.target==='_blank'&&link.attrs.rel==='noopener'&&link.attrs.class==='locations-map__card-link'&&d.text(link)==='View opportunities','Unqualified original India country control')
+ return link.attrs.href
+}
 export function createSourceConfig({now=()=>new Date().toISOString()}={}){
  const clock=Date.parse(now());ensure(Number.isFinite(clock),'Invalid collection clock')
  let terms,advertisedLocations;const allowedDetails=new Set()
@@ -16,7 +36,7 @@ export function createSourceConfig({now=()=>new Date().toISOString()}={}){
   validateURL(value){const u=new URL(value);ensure(u.href===value&&!u.username&&!u.password&&!u.hash,'Noncanonical public endpoint');const page=u.searchParams.get('page');ensure([CORPORATE,INDIA,CANONICAL_INDIA,TERMS].includes(value)||positive(Number(page))&&Number(page)<=1000&&value===listingURL(Number(page))||allowedDetails.has(value),'Unqualified public listing/detail endpoint')},
   sameReadIdentity:(from,to)=>from===to||from===INDIA&&to===CANONICAL_INDIA,
   handoffs:[
-   {url:CORPORATE,verify(html){const d=document(html);ensure(d.nodes(n=>n.tag==='h1'&&d.text(n).includes(COMPANY)).length>=1&&d.nodes(n=>n.tag==='a'&&n.attrs.href===INDIA&&d.text(n)==='India').length>=1,'Official global careers/India handoff changed')}},
+   {url:CORPORATE,verify(html){config.handoffs[1].url=corporateIndiaDeclaration(html)}},
    {url:INDIA,verify(html){const d=document(html);ensure(d.text(single(d,n=>n.tag==='h1','India heading'))==='India','Regional country identity changed');ensure(single(d,n=>n.tag==='link'&&n.attrs.rel==='canonical','India canonical URL').attrs.href===CANONICAL_INDIA,'India canonical changed');ensure(d.nodes(n=>n.tag==='link'&&n.attrs.rel==='https://api.w.org/'&&n.attrs.href===ORIGIN+'/wp-json/').length===1,'Advertised public REST identity missing');const select=single(d,n=>n.tag==='select'&&n.attrs.name==='location'&&hasClass(n,'job-posts__filter'),'public job location selector');advertisedLocations=d.nodes(n=>n.tag==='option',select).map(n=>d.text(n));ensure(advertisedLocations.some(l=>l.endsWith(', India')),'Explicit public India locations missing')}},
    {url:TERMS,verify(raw){const p=envelope(raw);ensure(p.headers['X-WP-Total']===p.body.length&&p.headers['X-WP-TotalPages']===1&&p.body.length>0&&p.body.length<=100,'Incomplete location taxonomy');terms=new Map();for(const t of p.body){ensure(positive(t.id)&&!terms.has(t.id)&&t.taxonomy==='location'&&text(t.name)&&t.name.trim()&&Number.isSafeInteger(t.count)&&t.count>=0,'Malformed/duplicate native location');terms.set(t.id,{id:t.id,name:norm(t.name),slug:t.slug,nativeAdvertisedCount:t.count})}ensure(advertisedLocations.every(l=>[...terms.values()].some(t=>t.name===l)),'Public selector and native location taxonomy conflict')}},
   ],

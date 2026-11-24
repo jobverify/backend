@@ -3,6 +3,7 @@
     "source": "evidation",
     "catalogOverride": true,
     "adapter": "script",
+    "authoritativeCurrentPublication": true,
     "modulePath": "../evidation/script.js",
     "atsPlatform": "rippling",
     "backfillMode": "live-parser",

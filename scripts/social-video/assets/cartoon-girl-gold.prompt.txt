@@ -1,0 +1,4 @@
+Tool: built-in image_gen.imagegen
+Mode: edit, transparent_background=true
+Edit target: cartoon-girl.png
+Prompt: Use case: precise-object-edit. Edit target: the referenced transparent full-body cartoon woman asset for JobVerify Instagram job videos. Change ONLY her mint-green inner shirt/top beneath the violet blazer to a rich warm GOLD color, approximately #D4AF37, with lighter golden highlights and darker golden folds in the existing cartoon shading. Preserve the exact same friendly adult Indian woman's identity, face, expression, long dark hair, waving hand pose, purple/violet blazer, navy trousers, white shoes, black outlines, full body proportions, framing, and illustration style. Keep her entire full body visible including hair, fingers, and shoes. Preserve a genuinely transparent alpha background with clean cutout edges. No scene, no background color, no text, no logos, no new objects. This is the same character with only the inner top recoloured gold.

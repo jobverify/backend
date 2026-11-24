@@ -1,3 +1,10 @@
+import { runCurrentRakuten } from './currentPublished20261121.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { need } from './currentFacts20261121.js'
+import metadata from './catalog.js'
+export const PROVIDER_METADATA = metadata
+export const SOURCE = 'rakuten'
+export const COMPANY = 'Rakuten'
 export const LISTING_API_URL = 'https://apic2.zwayam.com/jobs/search'
 export const DETAIL_API_URL = 'https://apic2.zwayam.com/jobs-service/v1/jobs/careersite'
 
@@ -125,7 +132,7 @@ const getPageSize = (payload, fallback) => {
 
 const getTotalCount = (payload) => Number(payload?.data?.totalCount)
 
-export const createRakutenScraper = ({
+const createLegacyRakutenScraper = ({
   maxPages = DEFAULT_MAX_PAGES,
   maxJobs = DEFAULT_MAX_JOBS,
   pageSize = DEFAULT_PAGE_SIZE,
@@ -188,4 +195,26 @@ export const createRakutenScraper = ({
   }
 }
 
-export const run = (options) => createRakutenScraper().run(options)
+// The explicitly paired legacy hooks are a compatibility observation surface.
+// They carry no original-Response authority, qualified geography, publication,
+// company inventory or cleanup credit. Ordinary/default runs are current only.
+export const createRakutenScraper = (constructorOptions = {}) => ({
+  async run(runtimeOptions = {}) {
+    const options = { ...constructorOptions, ...runtimeOptions }
+    const hasListing = options.fetchListingPage != null, hasDetail = options.fetchJobDetail != null
+    if (!hasListing && !hasDetail) return runCurrentRakuten(options)
+    need(typeof options.fetchListingPage === 'function' && typeof options.fetchJobDetail === 'function' && !options.fetchImpl && !options.fetchText && !options.fetchJson && !options.fetchPage, 'legacy observation requires both explicit hooks and cannot mix native transport')
+    options.signal?.throwIfAborted()
+    const original = await createLegacyRakutenScraper(constructorOptions).run({ fetchListingPage: options.fetchListingPage, fetchJobDetail: options.fetchJobDetail })
+    options.signal?.throwIfAborted()
+    const jobs = original.map(job => ({
+      ...job, company: null, location: null, city: null, country: null, postingDate: null, closingDate: null,
+      sourceLegacyObservation: { originalProjection: structuredClone(job), currentPublicationVerified: false, originalResponsesAvailable: false },
+      nativeLegalEmployer: null, requisitionId: null, sourceObservationOnly: true, sourceScopeComplete: false,
+      sourceCurrentPublicationVerified: false, sourceListingComplete: false, lifecycleCleanupAllowed: false,
+    }))
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: { source: SOURCE, observationOnly: true, originalResponses: [], companyIndiaTotal: null, companyGlobalTotal: null, currentIndiaPublicationPartials: 0, sourceScopeComplete: false, lifecycleCleanupAllowed: false }, configurable: true })
+    return attachInventoryEvidence(jobs, { status: 'unverified', surface: 'https://corp.rakuten.co.in/', firstParty: false, listingComplete: false, reportedTotal: null, indiaFacetCount: null, pagesFetched: 0, verifiedAt: new Date().toISOString(), lifecycleCleanupAllowed: false, reason: 'explicit-paired-legacy-hooks-observation-only;no-native-response-current-publication-geography-inventory-or-cleanup-authority' })
+  },
+})
+export const run = (options = {}) => createRakutenScraper().run(options)

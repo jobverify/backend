@@ -2,7 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { HEX_CATALOG } from './catalog.js'
-import {hasCurrentHexPublisher,runCurrentHex} from './currentNative.js'
+import {hasCurrentHexPublisher} from './currentNative.js'
+import {runCurrentHex} from './currentPublished20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -90,18 +91,7 @@ export const hasCompleteUsOnlyInventory = (html = '') => {
 
 export const createHexScraper = () => ({
   async run(options = {}) {
-    if (typeof options.fetchText !== 'function') return runCurrentHex(options)
-    const {fetchText}=options
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasVerifiedCareersLandingSignal(careersHtml)) {
-      throw new Error('Hex verified careers page no longer matches the known fail-closed contract')
-    }
-
-    if (!hasCompleteUsOnlyInventory(careersHtml)) {
-      throw new Error('Hex careers inventory is incomplete or includes a location outside the verified US-only set')
-    }
-
-    return []
+    return runCurrentHex(options)
   },
 })
 

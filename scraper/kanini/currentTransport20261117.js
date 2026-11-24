@@ -16,7 +16,13 @@ export function currentKaniniTransport({allowedRequest,fetchImpl=globalThis.fetc
   const requestCheck=()=>{check();if(performance.now()-requestStarted>=25000&&!elapsed.signal.aborted)elapsed.abort(new DOMException('KANINI current request deadline exceeded','TimeoutError'));requestSignal.throwIfAborted()}
   const pending=Promise.resolve().then(()=>fetchImpl(url,{method,redirect:'manual',credentials:'omit',signal:requestSignal,headers:{Accept:kind==='json'?'application/json':kind==='js'?'application/javascript':'text/html,application/xhtml+xml',...(method==='POST'?{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest',Referer:'https://kanini.com/careers/open-positions/'}:{})},...(body===undefined?{}:{body})}))
   pending.then(value=>{if(!response&&requestSignal.aborted)disposeResponseBody(value,{bestEffort:true}).catch(()=>{})},()=>{})
-  try{response=await race(pending,requestSignal);await requireNativeHttpResponse(response,url,{context:'KANINI current native read',signal:requestSignal,callerSignal:callerSignal??null});requestCheck()
+  try{response=await race(pending,requestSignal)
+   // The current own listing is served as a complete HTML entity with status
+   // 302 and no redirect target. Preserve that status; the caller still checks
+   // its full canonical, program declarations and native search contract.
+   const currentListingEntity=url==='https://kanini.com/careers/open-positions/'&&method==='GET'&&kind==='html'
+    &&response.status===302&&response.url===url&&response.redirected===false&&!response.headers.has('location')&&!response.headers.has('refresh')
+   if(!currentListingEntity)await requireNativeHttpResponse(response,url,{context:'KANINI current native read',signal:requestSignal,callerSignal:callerSignal??null});requestCheck()
    const pattern={html:/^(?:text\/html|application\/xhtml\+xml)[ \t]*(?:;|$)/i,js:/^(?:application|text)\/(?:x-)?(?:java|ecma)script[ \t]*(?:;|$)/i,json:/^(?:application|text)\/(?:[\w.+-]*\+)?json[ \t]*(?:;|$)/i}[kind]
    if(!pattern?.test(response.headers.get('content-type')??'')||!response.body)throw Error('KANINI native MIME/body changed')
    reader=response.body.getReader();const chunks=[];let bytes=0;for(;;){requestCheck();const p=await race(reader.read(),requestSignal);requestCheck();if(p.done){complete=true;break}bytes+=p.value.byteLength;total+=p.value.byteLength;if(bytes>4000000||total>32000000)throw Error('KANINI native byte budget exceeded');chunks.push(Buffer.from(p.value))}

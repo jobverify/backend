@@ -1,0 +1,9 @@
+[
+  {
+    "source": "datafold",
+    "catalogOverride": true,
+    "adapter": "script",
+    "parser": "custom-script",
+    "currentProgrammeZeroProfile": null
+  }
+]

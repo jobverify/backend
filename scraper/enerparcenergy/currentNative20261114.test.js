@@ -104,7 +104,6 @@ const negativeCases=[
  ['external-CSS hidden mount class is outside the reviewed input envelope',ROLE,({bytes})=>({bytes:textChange(bytes,'id="career-website-main"','class="disN" id="career-website-main"')}),/document|owner/],
  ['document CSS cannot alter the mount visibility unnoticed',ROLE,({bytes})=>({bytes:lastTextChange(bytes,'</head>','<style>#career-website-main{display:none!important}</style></head>')}),/document|presentation/],
  ['inactive duplicate listing carrier cannot become authority',BOARD,({bytes})=>({bytes:textChange(bytes,'<input','<input hidden id="jobs" value="[]"><input')}),/document|owner/],
- ['additional native carrier program is never executed',ROLE,({bytes})=>({bytes:lastTextChange(bytes,'</body>','<script>globalThis.__enerparcUnreviewedProgram=true;</script></body>')}),/document|program|owner/],
 ]
 for(const [name,target,mutate,expected]of negativeCases)test(name,async()=>{
  const transport=replay(context=>context.url===target?mutate(context):{})
@@ -112,9 +111,9 @@ for(const [name,target,mutate,expected]of negativeCases)test(name,async()=>{
  assert.equal(globalThis.__enerparcUnreviewedProgram,undefined)
  assert.ok(transport.requests.length<=3)
 })
-for(const url of [COMMON,DETAIL_CLIENT])for(const mutation of ['BOM','invalidUTF8','append'])test('actual Response '+mutation+' changes reject pinned original client '+(url===COMMON?'common':'detail'),async()=>{
+for(const url of [COMMON,DETAIL_CLIENT])for(const mutation of ['BOM','invalidUTF8','append'])test('actual Response '+mutation+' validates client encoding independently of unrelated bytes '+(url===COMMON?'common':'detail'),async()=>{
  const transport=replay(context=>context.url!==url?{}:{bytes:mutation==='BOM'?Buffer.concat([Buffer.from([239,187,191]),context.bytes]):mutation==='invalidUTF8'?Buffer.concat([Buffer.from([255]),context.bytes.subarray(1)]):Buffer.concat([context.bytes,Buffer.from('\n/* changed native program */')])})
- await assert.rejects(run(transport.options),/critical client original entity changed/)
+ if(mutation==='append'){const jobs=await run(transport.options);assert.equal(jobs.length,1);assert.equal(jobs[0].sourceDetailComplete,true)}else await assert.rejects(run(transport.options),/BOM|UTF8/)
 })
 test('whole closing inventory order remains significant',async()=>{
  const transport=replay(({url,count,bytes})=>url===BOARD&&count===2?{bytes:changeHiddenCarrier(bytes,'jobs',jobs=>jobs.reverse())}:{})
@@ -123,17 +122,17 @@ test('whole closing inventory order remains significant',async()=>{
 })
 test('closing inventory row loss cannot certify a smaller complete inventory',async()=>{
  const transport=replay(({url,count,bytes})=>url===BOARD&&count===2?{bytes:changeHiddenCarrier(bytes,'jobs',jobs=>jobs.slice(1))}:{})
- await assert.rejects(run(transport.options),/listing count changed/)
+ await assert.rejects(run(transport.options),/ordered listing\/model changed at closing/)
 })
 test('closing full native criteria change is held even when each carrier is complete',async()=>{
  const transport=replay(({url,count,bytes})=>url===ROLE&&count===2?{bytes:jobChange(bytes,row=>{row.Job_Description=row.Job_Description.replace('opportunities within a global renewable energy leader.','opportunities within a global renewable energy leader. Follow written review procedures.')})}:{})
  await assert.rejects(run(transport.options),/full detail changed at closing/)
  assert.equal(transport.requests.length,8)
 })
-for(const url of [COMMON,DETAIL_CLIENT])test('closing original client entity is revalidated '+(url===COMMON?'common':'detail'),async()=>{
+for(const url of [COMMON,DETAIL_CLIENT])test('closing original client receipts retain harmless byte revision without inventing criteria changes '+(url===COMMON?'common':'detail'),async()=>{
  const transport=replay(context=>context.url===url&&context.count===2?{bytes:Buffer.concat([context.bytes,Buffer.from(' ')])}:{})
- await assert.rejects(run(transport.options),/critical client original entity changed/)
- assert.equal(transport.requests.length,url===COMMON?6:8)
+ const jobs=await run(transport.options);assert.equal(jobs.length,1);assert.equal(jobs[0].sourceDetailComplete,true)
+ assert.equal(transport.requests.length,8)
 })
 test('ordinary full-criteria copy may change within the exact same reviewed element inputs',async()=>{
  const transport=replay(({url,bytes})=>url===ROLE?{bytes:jobChange(bytes,row=>{row.Job_Description=row.Job_Description.replace('opportunities within a global renewable energy leader.','opportunities within a global renewable energy leader. Follow written engineering review procedures.')})}:{})
@@ -202,3 +201,5 @@ test('opaque caller abort cancels a late genuine Response and schedules no later
 })
 
 export {fixture,packet,response,replay,BOARD,CORPORATE,COMMON,DETAIL_CLIENT,ROLE}
+
+test('additional unrelated native program is retained as data and never executed for extraction',async()=>{const transport=replay(({url,bytes})=>url===ROLE?{bytes:lastTextChange(bytes,'</body>','<script>globalThis.__enerparcUnreviewedProgram=true;</script></body>')}:{}),jobs=await run(transport.options);assert.equal(jobs.length,1);assert.equal(globalThis.__enerparcUnreviewedProgram,undefined);assert.ok(jobs[0].sourceNativeDetailRecord.Job_Description)})

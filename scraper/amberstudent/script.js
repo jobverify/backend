@@ -8,6 +8,7 @@ import {readNativeDocument,extractActiveDescription} from '../../scraper-support
 import {nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {resolveDirectJobsChunkUrl,resolveNestedJobsChunkUrl} from './declaredJobsChunk.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 export const SOURCE = 'amberstudent'
@@ -38,6 +39,8 @@ export const hasOfficialCareersSignal = html => {
 
 // Read the public webpack route/chunk mapping as text; never evaluate downloaded code.
 export const resolveJobsChunkUrl = main => {
+  const direct=resolveDirectJobsChunkUrl(main)
+  if(direct)return direct
   const variable = main.match(/path:"\/job-opening",exact:!0,component:([\w$]+)\.A/)?.[1]
   const moduleId = variable && main.match(new RegExp(escaped(variable) + '=[\\w$]+\\((\\d+)\\)'))?.[1]
   const start = moduleId ? main.indexOf(`${moduleId}:function`) : -1
@@ -148,13 +151,19 @@ export const createAmberstudentScraper = (configuration={}) => ({
       const opening=readNativeDocument(await io.fetchText(JOB_OPENING_URL))
       const mains=opening.nodes(n=>n.tag==='script'&&new RegExp('^'+escaped(ASSET_ROOT)+'js/main\\.[a-f0-9]+\\.desktop\\.js$').test(n.attrs.src||''))
       if(mains.length!==1)throw Error('Amber current jobs route has no verified first-party asset handoff')
-      const mainURL=mains[0].attrs.src,main=await io.fetchScript(mainURL),chunkURL=resolveJobsChunkUrl(main),chunk=await io.fetchScript(chunkURL)
+      const mainURL=mains[0].attrs.src,main=await io.fetchScript(mainURL),routeChunks=[]
+      let chunkURL=resolveJobsChunkUrl(main),chunk=await io.fetchScript(chunkURL)
+      if(!hasVerifiedKekaJobsChunk(chunk)){
+        const nestedURL=resolveNestedJobsChunkUrl(main,chunk)
+        routeChunks.push({requestedURL:chunkURL,bytes:Buffer.byteLength(chunk),sha256:bodySHA(chunk)})
+        chunkURL=nestedURL;chunk=await io.fetchScript(chunkURL)
+      }
       if(!hasVerifiedKekaJobsChunk(chunk))throw Error('Amber current jobs module no longer binds the verified Keka tenant')
       const currentProfile=isCurrentJobsModule(chunk)
-      if(currentProfile&&!currentModules.some(profile=>mainURL===profile.main.requestedURL&&Buffer.byteLength(main)===profile.main.bytes
+      if((currentProfile||routeChunks.length)&&!currentModules.some(profile=>mainURL===profile.main.requestedURL&&Buffer.byteLength(main)===profile.main.bytes
         &&bodySHA(main)===profile.main.sha256&&chunkURL===profile.chunk.requestedURL&&Buffer.byteLength(chunk)===profile.chunk.bytes
-        &&bodySHA(chunk)===profile.chunk.sha256))throw Error('Amber current native module tuple profile changed')
-      return {mainURL,chunkURL,...(currentProfile?{currentProfile:true,mainSHA256:bodySHA(main),chunkSHA256:bodySHA(chunk),browserEquivalenceComplete:false}:{})}
+        &&bodySHA(chunk)===profile.chunk.sha256&&isDeepStrictEqual(routeChunks,profile.routeChunks??[])))throw Error('Amber current native module tuple profile changed')
+      return {mainURL,chunkURL,...(routeChunks.length?{routeChunks}:{}),...(currentProfile?{currentProfile:true,mainSHA256:bodySHA(main),chunkSHA256:bodySHA(chunk),browserEquivalenceComplete:false}:{})}
     }
     try{
       const opening=await context();firstParty=true

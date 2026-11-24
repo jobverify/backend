@@ -1,18 +1,17 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {run,createVerintSystemsScraper} from './script.js'
+// Explicit historical compatibility only. Current stable factory is covered by currentPublished20261121.test.js.
+import {run} from './nativeCareers20261114.js'
 import {genuineVerintFixture,laterVerintFixture,correctedVerintFixture,replayVerint,fullVerintResponse} from './currentFixture20261114.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
-import {buildScrapers} from '../../scraper-support/providers/index.js'
+
 
 const originalFeed=JSON.parse(Buffer.from(genuineVerintFixture.responses[2].bodyBase64,'base64'))
 const originalRole=originalFeed.jobs.find(row=>row.id==='698d571e-d45c-4624-8a01-7d36224a6673')
 const bodyChange=(entity,change)=>({...entity,body:Buffer.from(change(entity.body.toString('utf8')),'utf8')})
 
 for(const [entry,runEntry]of [
- ['run',run],
- ['factory',options=>createVerintSystemsScraper().run(options)],
- ['registered native',options=>buildScrapers().find(row=>row.name==='verintsystems').run(options)],
+ ['historical module only',run],
 ])test('reviewed corrected18 native title and full edited criteria survive through '+entry,async()=>{
  const feed=JSON.parse(Buffer.from(correctedVerintFixture.responses[2].bodyBase64,'base64'))
  const role=feed.jobs.find(row=>row.id===originalRole.id)
@@ -40,9 +39,7 @@ test('corrected18 cannot combine edited opening criteria with the prior18 closin
 })
 
 for(const [entry,runEntry]of [
- ['run',run],
- ['factory',options=>createVerintSystemsScraper().run(options)],
- ['registered native',options=>buildScrapers().find(row=>row.name==='verintsystems').run(options)],
+ ['historical module only',run],
 ])test('reviewed coherent18 inventory preserves the unchanged original India criteria through '+entry,async()=>{
  const feed=JSON.parse(Buffer.from(laterVerintFixture.responses[2].bodyBase64,'base64'))
  const {jobs,requests}=await replayVerint(runEntry,{fixture:laterVerintFixture})
@@ -102,9 +99,8 @@ test('native data, original dates, conflicting workplace carriers and coverage h
  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
  for(const {options}of requests){assert.equal(options.method,'GET');assert.equal(options.redirect,'manual');assert.equal(options.credentials,'omit');assert(options.signal instanceof AbortSignal)}
 })
-test('registered native entry uses the same full response contract without a legacy fallback',async()=>{
- const scraper=buildScrapers().find(row=>row.name==='verintsystems')
- assert.match(scraper.provider.modulePath,/nativeCareers20261114\.js$/)
+test('historical direct-module import preserves its original full response and denial contract',async()=>{
+ const scraper={run}
  const {jobs,requests}=await replayVerint(options=>scraper.run(options))
  assert.equal(jobs.length,1);assert.equal(requests.length,8)
  await assert.rejects(replayVerint(options=>scraper.run(options),{mutate:(entity,index)=>index===0?{...entity,status:403}:entity}),error=>error.status===403&&error.failureKind==='blocked_or_access_denied')
@@ -158,7 +154,7 @@ test('valid UTF8 nonASCII bytes cannot masquerade as an ASCII base64url CSP nonc
   for(const slot of profile.documents[entity.url].slots)replacement.copy(raw,slot.start)
   return {...entity,body:raw}
  }
- for(const entry of [run,options=>buildScrapers().find(row=>row.name==='verintsystems').run(options)])await assert.rejects(replayVerint(entry,{mutate}),/Public CSP nonce type changed/)
+ for(const entry of [run])await assert.rejects(replayVerint(entry,{mutate}),/Public CSP nonce type changed/)
 })
 for(const [label,change]of [
  ['BOM',body=>Buffer.concat([Buffer.from([239,187,191]),body])],
@@ -198,7 +194,7 @@ test('shadowed Uint8Array byteLength cannot bypass original entity or aggregate 
   const response=new Response(new ReadableStream({start(sink){sink.enqueue(chunk);sink.close()}}),{status:original.status,headers:original.headers})
   Object.defineProperty(response,'url',{value:original.url});return response
  }
- for(const entry of [run,options=>buildScrapers().find(row=>row.name==='verintsystems').run(options)]){
+ for(const entry of [run]){
   await assert.rejects(replayVerint(entry,{runOptions:{maxEntityBytes:100000},fetchOverride}),/Entity byte budget/)
   await assert.rejects(replayVerint(entry,{runOptions:{maxAggregateBytes:300000},fetchOverride}),/Aggregate byte budget/)
  }
@@ -244,8 +240,8 @@ test('body-only injected transports and invalid clocks fail before any network r
  assert.equal(reads,0)
  await assert.rejects(replayVerint(run,{runOptions:{now:()=> '2026-11-11T00:00:00.000Z'}}),/publication\/date/)
 })
-test('exported source factory uses the same current native collector',async()=>{
- const {jobs}=await replayVerint(options=>createVerintSystemsScraper(options).run())
+test('historical direct-module import retains the original offset date verbatim',async()=>{
+ const {jobs}=await replayVerint(run)
  assert.equal(jobs.length,1)
  assert.equal(jobs[0].postingDate,'2026-11-12T13:47:09.067+00:00')
 })

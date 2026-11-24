@@ -224,7 +224,7 @@ export async function runCurrentVistex(options={}){
  const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString(),duration=options.sourceDeadlineMs??85000,interval=options.requestIntervalMs??0
  need(Number.isFinite(Date.parse(now))&&Number.isSafeInteger(duration)&&duration>0&&duration<=85000&&Number.isSafeInteger(interval)&&interval>=0&&interval<=60000,'invalid native deadline/clock/pacing')
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(problem('source deadline exceeded')),duration),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
- const allowed=new Set([CURRENT_INDIA]),receipts=[],headersByURL=new Map();let reads=0,totalBytes=0,opening,closing,lastRead=-Infinity
+ const allowed=new Set([CURRENT_INDIA]),receipts=[],headersByURL=new Map();let reads=0,totalBytes=0,opening,closing,lastRead=-Infinity,activeAssetOverrides={}
  const byteLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'byteLength').get
  async function read(url,kind){
   signal.throwIfAborted();need(allowed.has(url)&&++reads<=190,'unbound native URL or finite read bound exceeded')
@@ -237,12 +237,13 @@ export async function runCurrentVistex(options={}){
   const bytes=Buffer.from(packet.bodyBase64,'base64');receipts.push({requestedURL:url,...packet,bodySHA256:sha(bytes)})
   headersByURL.set(url,packet.headers)
   need(packet.status===200&&packet.url===url,'native HTTP status or exact final URL changed')
-  const expected=kind==='asset'?profile.assets[url]:profile.headers[kind]
+  const expected=kind==='asset'?(activeAssetOverrides[url]??profile.assets[url]):profile.headers[kind]
   need(expected&&same(currentVistexHeaders(packet.headers),expected.headers),'native effective headers/full MIME, navigation, execution or representation changed')
   if(kind==='asset')need(expected.bytes===bytes.length&&expected.sha256===sha(bytes),'complete authoritative declared client/style bytes changed')
   try{return new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch{throw problem('native invalid UTF-8')}
  }
  async function pass(){
+  activeAssetOverrides={};let corporateContract
   const assets=new Map()
   async function asset(url){
    if(assets.has(url))return
@@ -253,6 +254,13 @@ export async function runCurrentVistex(options={}){
   async function document(url,kind){
    const html=await read(url,kind),contract=currentVistexDocumentContract(html,kind,{headers:headersByURL.get(url)}),expected=profile.contracts[kind]
    need(expected.some(value=>same(value,contract)),'unreviewed full '+kind+' program/style/context/control/property authority')
+   if(kind==='corporate'){
+    // The shared runtime URL carries an exact deployment-specific feedback ID.
+    // Its reviewed bytes are bound to the complete admitted corporate contract.
+    const bindings=(profile.corporateAssetBindings??[]).filter(binding=>same(binding.contract,contract))
+    need(bindings.length<=1,'ambiguous corporate asset deployment binding')
+    activeAssetOverrides=bindings[0]?.assets??{};corporateContract=contract
+   }
    const {nodes}=currentVistexInitializers(html,kind)
    need(!nodes.some(n=>n.tag==='base'),'native base qualification changed')
    for(const dependency of profile.dependencies[url]??[]){need(html.includes(dependency.literal),'current native document data dependency changed');await asset(dependency.url)}
@@ -280,7 +288,7 @@ export async function runCurrentVistex(options={}){
    const html=await document(url,'role');jobs.push(verifyRole(html,row,now))
   }
   need(jobs.length>0,'partial observations establish no qualified positive; zero/company scope unqualified')
-  return{rows,held,jobs}
+  return{rows,held,jobs,corporateContract}
  }
  try{
   opening=await pass();closing=await pass();need(same(opening,closing),'fresh closing native membership/full original criteria/employer/location changed');signal.throwIfAborted()

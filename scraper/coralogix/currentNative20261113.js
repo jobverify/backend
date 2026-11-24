@@ -6,6 +6,12 @@ import { attachSourceObservationEvidence } from '../../scraper-support/utils/sou
 const CAREERS = 'https://coralogix.com/careers/'
 const CLIENT = 'https://coralogix.com/assets/pages/careers/page.js?v=0f8f0637'
 const DETAIL_CLIENT = 'https://coralogix.com/assets/pages/careers-position/page.js?v=5461ccfb'
+const ASTRO_CLIENT = 'https://coralogix.com/_astro/careers-page.tEjVQcR0.js'
+const ASTRO_DETAIL_CLIENT = 'https://coralogix.com/_astro/careers-position-page.CqJoTVAg.js'
+// Both reviewed deployments declare the same complete-array Comeet inventory
+// and same-ID details=true read. Select only the pair actually declared by the
+// current corporate page, and never use retired assets as a fallback.
+const DEPLOYMENTS = new Map([[CLIENT, DETAIL_CLIENT], [ASTRO_CLIENT, ASTRO_DETAIL_CLIENT]])
 const API = 'https://www.comeet.co/careers-api/2.0/company/06.004/positions'
 // This public pair is declared by the current first-party executable careers client.
 const TOKEN = '604241801E141E1460430200604604'
@@ -13,6 +19,8 @@ const LIST = `${API}?token=${TOKEN}`
 const SHA = {
   [CLIENT]: '79f85c6ce468f19cf8d5674a32b49af5bd1fe72c8afc22589f929f330c8cb090',
   [DETAIL_CLIENT]: '52c4e12eac8444f00f6dd196614cd21b97fdb83219927b8262cdaadcc9d0c5a9',
+  [ASTRO_CLIENT]: 'bdc2cc3e956fd5cd387def8841581cddfc0f10db3d3496d1d93efb2aff71cd72',
+  [ASTRO_DETAIL_CLIENT]: 'e47847bd7ffcad14ac1fcea09cd155e04a923abea133b79591d0299584c14bcc',
 }
 const hash = value => createHash('sha256').update(value).digest('hex')
 const need = (value, why) => { if (!value) throw Error('Coralogix current native: ' + why) }
@@ -117,10 +125,11 @@ export async function runCurrentCoralogix(options = {}) {
     need(activeHead(html).titles.includes('Careers at Coralogix: Open Positions | Coralogix')
       && doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical' && node.attrs.href === CAREERS).length === 1
       && doc.nodes(node => node.attrs.id === 'positions').length === 1, 'active corporate careers identity changed')
-    one(script(html, CLIENT), 'current listing client')
-    need(hash(await read(CLIENT)) === SHA[CLIENT], 'unreviewed public inventory client contract')
+    const client = one([...DEPLOYMENTS.keys()].filter(url => script(html, url).length === 1), 'current listing client')
+    need(hash(await read(client)) === SHA[client], 'unreviewed public inventory client contract')
+    return client
   }
-  await context()
+  const currentClient = await context(), currentDetailClient = DEPLOYMENTS.get(currentClient)
   const opening = listing(await read(LIST))
   const representative = opening.find(row => nativeCountry(row) === 'India')
   if (representative) {
@@ -130,8 +139,8 @@ export async function runCurrentCoralogix(options = {}) {
     need(roleUrl.origin === 'https://coralogix.com' && roleUrl.pathname.startsWith('/careers/co/')
       && ['', '?isComingFromApp=true'].includes(roleUrl.search) && !roleUrl.hash, 'first-party role identity changed')
     const html = await read(roleUrl.href)
-    one(script(html, DETAIL_CLIENT), 'current full criteria client')
-    need(hash(await read(DETAIL_CLIENT)) === SHA[DETAIL_CLIENT], 'unreviewed full criteria client contract')
+    one(script(html, currentDetailClient), 'current full criteria client')
+    need(hash(await read(currentDetailClient)) === SHA[currentDetailClient], 'unreviewed full criteria client contract')
   }
   const inspect = async (rows, phase) => {
     for (const row of rows) {
@@ -146,7 +155,7 @@ export async function runCurrentCoralogix(options = {}) {
     }
   }
   await inspect(opening, 'opening')
-  await context()
+  need(await context() === currentClient, 'current declared deployment changed before closing')
   const closingBeforeDetails = listing(await read(LIST))
   await inspect(closingBeforeDetails, 'closing')
   const closing = listing(await read(LIST)), unchanged = equal(projection(opening), projection(closingBeforeDetails)) && equal(projection(opening), projection(closing))

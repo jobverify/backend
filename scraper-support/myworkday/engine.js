@@ -307,10 +307,10 @@ const fetchWorkdayResource = async (
       signal: controller.signal,
     })
     throwIfAborted(controller.signal)
-    if (response.status === 429) {
+    const serverRetryDelayMs = parseRetryAfterHeader(response.headers?.get?.('retry-after'))
+    if (response.status === 429 || (response.status === 503 && serverRetryDelayMs !== null)) {
       requestScheduler.recordRateLimit(url,
-        parseRetryAfterHeader(response.headers?.get?.('retry-after'))
-          ?? DEFAULT_WORKDAY_RATE_LIMIT_RETRY_DELAY_MS)
+        serverRetryDelayMs ?? DEFAULT_WORKDAY_RATE_LIMIT_RETRY_DELAY_MS)
     }
     // A managed access challenge is not a transient rate-limit response. Its
     // explicit response header also identifies challenges served with HTTP 200.
@@ -380,11 +380,12 @@ const applyWorkdayRetryDelayHint = (
     responseHeaders = null,
   } = {},
 ) => {
-  if (httpStatus !== 429) return error
+  if (httpStatus !== 429 && httpStatus !== 503) return error
 
-  const retryDelayMs = parseRetryAfterHeader(responseHeaders?.get?.('retry-after'))
-    ?? DEFAULT_WORKDAY_RATE_LIMIT_RETRY_DELAY_MS
-  error.retryDelayMs = retryDelayMs
+  const serverRetryDelayMs = parseRetryAfterHeader(responseHeaders?.get?.('retry-after'))
+  if (httpStatus === 429 || serverRetryDelayMs !== null) {
+    error.retryDelayMs = serverRetryDelayMs ?? DEFAULT_WORKDAY_RATE_LIMIT_RETRY_DELAY_MS
+  }
   return error
 }
 

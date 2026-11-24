@@ -1,0 +1,27 @@
+{
+  "source": "purplle",
+  "fixture": "origin-boundary-originals-20261121.json.gz",
+  "fixtureSHA256": "f5f1c69a411cd42cb75737d682c19a2e6fc8c6d7e35c73ecadd6606c76e9545d",
+  "actualOriginalObservationDate": "2026-11-19",
+  "fixturePackagedAt": "2026-11-21T09:44:41.101Z",
+  "packagingDeferredFromOriginalAcquisition": true,
+  "genuineOriginals": 6,
+  "fullResponseBodies": true,
+  "fullResponseHeaders": false,
+  "headersEvidence": "Selected generic native-capture receipt fields only",
+  "originalReceipts": "reports/scraper-20261118-soft-failures/continuation-20261119/backlog/captures/purplle/purplle.receipts.json",
+  "originalResult": "reports/scraper-20261118-soft-failures/continuation-20261119/backlog/captures/purplle/purplle.result.json",
+  "originalStatuses": [
+    200,
+    403,
+    200,
+    200,
+    301,
+    200
+  ],
+  "syntheticTestVariants": "HTTP429 at employer and HTTP247 at corporate are explicitly simulated; no new genuine current capture inferred",
+  "dataIsNotInstructions": true,
+  "currentPipelineRecovered": false,
+  "scopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

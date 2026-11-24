@@ -1,12 +1,14 @@
-﻿import assert from 'node:assert/strict'
+import assert from 'node:assert/strict'
 import {createHash} from 'node:crypto'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {getScraperCatalog,createCatalogScraper} from '../../../../scraper-support/providers/index.js'
+// Historical Nov7 physical registered capture is replayed through its dated reader.
+// The current registered reader has separate currentRegistered20261121 coverage.
+import {createHistoricalLangchainNativeScraper} from '../../nativeInventory.js'
 import {readInventoryEvidence} from '../../../../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../../../../scraper-support/utils/sourceObservationEvidence.js'
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex')
-export async function replayGenuineRegisteredDefault(){
+export async function replayHistoricalRegisteredCapture(){
  const root=new URL('./',import.meta.url),manifest=JSON.parse(readFileSync(new URL('manifest.json',root))),read=record=>{
   const bytes=gunzipSync(readFileSync(new URL(record.bodyFile??record.file,root)))
   assert.equal(bytes.length,record.bytes??record.bodyBytes);assert.equal(sha(bytes),record.sha256??record.bodySHA256);return bytes
@@ -21,7 +23,7 @@ export async function replayGenuineRegisteredDefault(){
   const response=new Response(row.bytes,{status:row.status,headers:row.headers});Object.defineProperty(response,'url',{value:row.finalURL});return response
  }
  let jobs
- try{const provider=getScraperCatalog().find(row=>row.source==='langchain');assert.ok(provider);jobs=await createCatalogScraper(provider).run()}
+ try{jobs=await createHistoricalLangchainNativeScraper().run()}
  finally{globalThis.fetch=priorFetch}
  assert.equal(calls.length,8)
  const replay=JSON.parse(JSON.stringify({jobs,audit:jobs[Symbol.for('jobverify.verified-recruitment-observations')],inventory:readInventoryEvidence(jobs),observations:readSourceObservationEvidence(jobs,'langchain')}))
@@ -46,5 +48,5 @@ export async function replayGenuineRegisteredDefault(){
  const payload=JSON.parse(packets[4].bytes.toString('utf8'))
  assert.deepEqual(audit.fullNativeModels.map(model=>model.nativeSourceRecord),payload.jobs)
  for(let index=0;index<8;index++){assert.equal(audit.retainedResponses[index].bodySHA256,packets[index].bodySHA256);assert.equal(audit.retainedResponses[index].bodyBytes,packets[index].bodyBytes)}
- return{source:'langchain',mode:'offline exact8 original response replay through registered DEFAULT .run() and global request init',networkRequests:0,replayedOriginalRequests:calls.length,allOriginalResponseBytes:packets.reduce((n,row)=>n+row.bodyBytes,0),allRequestIdentityAndInitExact:true,entireSerializedOutputEqualExceptExplicitClocks:true,originalFullOutputBytes:manifest.originalFullOutput.bytes,originalFullOutputSHA256:manifest.originalFullOutput.sha256,ignoredRuntimeFields,ignoredRoleOrBusinessFields:[],retainedNativeModels:99,typedCountryRelations:audit.countryRelations,allCriteriaPresent:true,returnedIndiaJobs:0,configuredBoardIndiaCount:null,configuredBoardComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,originalPhysicalAcquisitionStartedAt:original.audit.nativeInventoryAudit.physicalAcquisitionStartedAt,originalPhysicalAcquisitionCompletedAt:original.audit.nativeInventoryAudit.physicalAcquisitionCompletedAt,replayExecutionIsNotFreshAcquisition:true}
+ return{source:'langchain',mode:'offline exact8 original historical registered capture replay through its dated factory and global request init',networkRequests:0,replayedOriginalRequests:calls.length,allOriginalResponseBytes:packets.reduce((n,row)=>n+row.bodyBytes,0),allRequestIdentityAndInitExact:true,entireSerializedOutputEqualExceptExplicitClocks:true,originalFullOutputBytes:manifest.originalFullOutput.bytes,originalFullOutputSHA256:manifest.originalFullOutput.sha256,ignoredRuntimeFields,ignoredRoleOrBusinessFields:[],retainedNativeModels:99,typedCountryRelations:audit.countryRelations,allCriteriaPresent:true,returnedIndiaJobs:0,configuredBoardIndiaCount:null,configuredBoardComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,originalPhysicalAcquisitionStartedAt:original.audit.nativeInventoryAudit.physicalAcquisitionStartedAt,originalPhysicalAcquisitionCompletedAt:original.audit.nativeInventoryAudit.physicalAcquisitionCompletedAt,replayExecutionIsNotFreshAcquisition:true}
 }

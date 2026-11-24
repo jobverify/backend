@@ -1,5 +1,7 @@
 import {setTimeout as delay} from 'node:timers/promises'
 import {types,isDeepStrictEqual} from 'node:util'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {readJasperCorporate,readJasperBoard,readJasperApi,readJasperOwn,reconcileJasperServerProgramme} from './currentProgrammeData.js'
@@ -55,6 +57,13 @@ function wait(operation,signal,disposeLate){
    if(settled){if(disposeLate)ignore(()=>disposeLate(value));return}finish(resolve,value)
   },error=>finish(reject,error))
  })
+}
+// Abort races cannot release the source while its adapter still owns bounded cleanup.
+const settleTransport=async pending=>{
+ if(!pending)return
+ let timer
+ try{await Promise.race([pending.then(()=>{},()=>{}),new Promise(resolve=>{timer=setTimeout(resolve,1000)})])}
+ finally{clearTimeout(timer)}
 }
 const errorField=(value,key)=>value&&typeof value==='object'&&!types.isProxy(value)?Object.getOwnPropertyDescriptor(value,key)?.value:undefined
 function errorFacts(value){
@@ -117,10 +126,10 @@ export async function readCurrentJasperProgramme(options={}){
   const expireRequest=()=>request.abort(new DOMException('Jasper request deadline exceeded','TimeoutError'))
   const requestTimer=setTimeout(expireRequest,bound.request)
   const checkRequest=()=>{check();if(performance.now()-requestStarted>=bound.request&&!request.signal.aborted)expireRequest();requestSignal.throwIfAborted()}
-  let accounted=false
+  let accounted=false,pendingRead
   try{
-   const page=await wait(()=>input.readPage(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:{Accept:kind==='A'?'application/json':'text/html','Cache-Control':'no-store',Pragma:'no-cache'},
-    signal:requestSignal,maxBodyBytes:maximum,checkDeadline:checkRequest}),requestSignal)
+   const page=await wait(()=>pendingRead=Promise.resolve(input.readPage(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:{Accept:kind==='A'?'application/json':'text/html','Cache-Control':'no-store',Pragma:'no-cache'},
+    signal:requestSignal,maxBodyBytes:maximum,checkDeadline:checkRequest})),requestSignal)
    need(plain(page),'response','Original flat raw response record required')
    const supplied=own(page,'body',true),consumed=entityLength(supplied),body=entityCopy(supplied,maximum)
    aggregate+=consumed;retained+=body.length;accounted=true
@@ -148,10 +157,12 @@ export async function readCurrentJasperProgramme(options={}){
    }
    receipt.controllerCompletedAt=new Date().toISOString();checkRequest();return model
   }catch(caught){
-   const error=nativeError(caught),progress=!accounted&&(responseFailures.get(error)??responseProgress.get(requestSignal)?.())
+   const callerAborted=parent&&signalAborted.call(parent),error=callerAborted?signalReason.call(parent):nativeError(caught)
+   const progress=!accounted&&(responseFailures.get(error)??responseProgress.get(requestSignal)?.())
    if(progress){Object.assign(receipt,progress);aggregate+=progress.consumedBodyBytes??progress.bodyBytes??0;retained+=progress.bodyBytes??0;accounted=true}
-   receipt.failure=errorFacts(error);receipt.controllerCompletedAt=new Date().toISOString();throw error
-  }finally{responseProgress.delete(requestSignal);clearTimeout(requestTimer);request.abort()}
+   receipt.failure=callerAborted?{name:'AbortError',message:'Caller canceled the native transaction'}:errorFacts(error)
+   receipt.controllerCompletedAt=new Date().toISOString();throw error
+  }finally{responseProgress.delete(requestSignal);clearTimeout(requestTimer);request.abort();await settleTransport(pendingRead);if(parent)throwIfAborted(parent)}
  }
  try{
   check();const corporate=await read(CORPORATE,'C',true),board=await read(BOARD,'B',true)
@@ -182,11 +193,21 @@ export async function readCurrentJasperProgramme(options={}){
    reportedTotal:null,indiaFacetCount:0,verifiedAt:audit.completedAt,reason:'Complete finite Jasper corporate/named native board/API and every own server-published work-country record; whole raw opening/closing interval and all native primary/plain/LD/head/teams/supplements reconcile. Source/global/UI/application/legal eligibility and cleanup remain unqualified.'})
   check();return result
  }catch(caught){
-  const error=nativeError(caught);audit.currentTransactionQualified=false;audit.currentDeclaredSourceProgramComplete=false;audit.heldAt=new Date().toISOString();audit.failure=errorFacts(error)
+  const callerAborted=parent&&signalAborted.call(parent),error=callerAborted?signalReason.call(parent):nativeError(caught)
+  audit.currentTransactionQualified=false;audit.currentDeclaredSourceProgramComplete=false;audit.heldAt=new Date().toISOString();audit.failure=errorFacts(error)
+  if(callerAborted){
+   // Preserve exact caller values. Only native extensible errors retain the
+   // historical audit channel; opaque/frozen/null reasons remain untouched.
+   if(error&&typeof error==='object'&&!types.isProxy(error)&&Object.isExtensible(error)&&(types.isNativeError(error)||error instanceof DOMException)){
+    try{Object.defineProperty(error,'nativeCollectionEvidence',{value:snapshotAudit(),configurable:true})}catch{/* Audit cannot replace caller ownership. */}
+   }
+   throw error
+  }
   const evidence=snapshotAudit()
   try{Object.defineProperty(error,'nativeCollectionEvidence',{value:evidence,configurable:true})}catch{const wrapped=held('held','Finite server programme evidence held');wrapped.cause=error;Object.defineProperty(wrapped,'nativeCollectionEvidence',{value:evidence});throw wrapped}
+  if(parent)throwIfAborted(parent)
   throw error
- }finally{clearTimeout(timer);controller.abort()}
+ }finally{clearTimeout(timer);controller.abort();if(parent)throwIfAborted(parent)}
 }
 
 /** Real raw Fetch adapter. No retries, redirect following, alternate routes,
@@ -201,22 +222,33 @@ export async function runCurrentJasperProgramme(options={}){
   if(next>performance.now())await delay(next-performance.now(),undefined,{signal:init.signal})
   init.checkDeadline();next=performance.now()+interval
   const requestedAt=new Date().toISOString(),chunks=[]
-  let response,reader,canceled=false,released=false,complete=false,size=0,discardedOverflowBytes=0,base=null
+  let response,pendingResponse,reader,canceling,released=false,complete=false,size=0,discardedOverflowBytes=0,base=null
   const acquired=()=>{
    const body=Buffer.concat(chunks,size)
    return{...base,bodyComplete:false,streamDone:false,decodedPrefixOnly:true,bodyBase64:body.toString('base64'),bodyBytes:body.length,bodySHA256:sha(body),
     consumedBodyBytes:size+discardedOverflowBytes,discardedOverflowBytes,completedAt:new Date().toISOString(),bodyRepresentation:'Genuinely acquired bounded Fetch-decoded prefix; incomplete and not raw-wire bytes.'}
   }
   const release=()=>{if(released||!reader)return;released=true;try{reader.releaseLock()}catch{}}
-  const cancel=reason=>{if(canceled)return;canceled=true;ignore(()=>reader?reader.cancel(reason):response?.body?.cancel(reason));release()}
-  const aborted=()=>cancel(init.signal.reason)
+  const cancel=reason=>canceling??=disposeResponseReader({cancel:async()=>{
+   if(reader)return reader.cancel(reason)
+   const acquired=response??await pendingResponse
+   return acquired?.body?.cancel(reason)
+  }},{bestEffort:true}).finally(release)
+  const aborted=()=>{void cancel(init.signal.reason)}
   try{
-   response=await wait(()=>fetchImpl(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:init.headers,signal:init.signal}),init.signal,late=>late?.body?.cancel())
+   response=await wait(()=>pendingResponse=Promise.resolve(fetchImpl(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:init.headers,signal:init.signal})),init.signal)
    need(response&&typeof response.url==='string','response','Original Fetch final URL unavailable')
    const headerEntries=[...response.headers],headers=Object.fromEntries(headerEntries)
    base={source:SOURCE,requestedURL:url,finalURL:response.url,status:response.status,method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',requestHeaders:init.headers,
     requestedAt,responseAt:new Date().toISOString(),headers,headerEntries}
    responseProgress.set(init.signal,acquired)
+   if(parent)throwIfAborted(parent)
+   // Admission uses metadata only. This adapter retains and disposes the actual
+   // unread body exactly once, including late caller cancellation.
+   await requireNativeHttpResponse({status:base.status,url:base.finalURL,headers:response.headers},url,{context:'Jasper native response',signal:init.signal,callerSignal:parent??null})
+   const expectedMime=url===API?'application/json; charset=utf-8':'text/html; charset=utf-8'
+   if(response.headers.get('content-type')!==expectedMime){const error=held('response','Unexpected original native MIME');Object.assign(error,{status:base.status,httpStatus:base.status,requestedUrl:url,responseUrl:base.finalURL,contentType:response.headers.get('content-type')});throw error}
+   need(response.headers.get('content-encoding')===(url===CORPORATE?'gzip':'br'),'response','Unexpected original native content encoding')
    const advertised=response.headers.get('content-length')
    need(advertised===null||/^\d+$/.test(advertised),'body','Malformed advertised body length')
    need(advertised===null||Number(advertised)<=init.maxBodyBytes,'body','Advertised body exceeds entity/closing reserve')
@@ -235,7 +267,8 @@ export async function runCurrentJasperProgramme(options={}){
    return{...base,body,bodyBytes:body.length,bodySHA256:sha(body),bodyComplete:true,streamDone:true,decodedPrefixOnly:false,error:null,
     consumedBodyBytes:body.length,discardedOverflowBytes:0,completedAt:new Date().toISOString(),bodyRepresentation:'Complete original Fetch-decoded entity bytes; not raw-wire bytes.'}
   }catch(caught){
+   if(parent)throwIfAborted(parent)
    const error=nativeError(caught);if(base)responseFailures.set(error,{...acquired(),failure:errorFacts(error)});throw error
-  }finally{init.signal.removeEventListener('abort',aborted);if(!complete)cancel(init.signal.reason);release()}
+  }finally{init.signal.removeEventListener('abort',aborted);if(!complete||canceling)await cancel(init.signal.reason);release();if(parent)throwIfAborted(parent)}
  }})
 }

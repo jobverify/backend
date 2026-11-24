@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 
 const loadModule = async () => {
   try {
@@ -96,7 +98,7 @@ const academicAssociateHtml = `
   </html>
 `
 
-test('Vidyalai constants stay pinned to the verified homepage, jobs handoff, and filtered ERP API', async () => {
+test('legacy helper constants remain available while title and Apply Now alone do not qualify criteria', async () => {
   const vidyalai = await loadModule()
   assert.ok(vidyalai, 'Vidyalai scraper module should load')
 
@@ -125,8 +127,9 @@ test('Vidyalai constants stay pinned to the verified homepage, jobs handoff, and
       url: seniorSoftwareEngineerUrl,
       html: seniorSoftwareEngineerHtml,
     }, apiPayload.data[0]),
-    true,
+    false,
   )
+  assert.equal(vidyalai.hasVerifiedDetailPage({status:200,url:academicAssociateUrl,html:academicAssociateHtml},apiPayload.data[1]),false)
 })
 
 test('extractOpenJobs keeps the filtered open ERP jobs and preserves routes verbatim', async () => {
@@ -181,89 +184,50 @@ test('extractOpenJobs keeps the filtered open ERP jobs and preserves routes verb
   ])
 })
 
-test('run validates the Vidyalai homepage handoff, jobs count, filtered API payload, and detail pages', async () => {
+const currentOriginals=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/current-native-20261121.json.gz',import.meta.url))))
+const currentReader=(calls,change=()=>{})=>async url=>{
+  calls.push(url)
+  const packet=currentOriginals.packets.find(row=>row.url===url)
+  assert.ok(packet,'The runtime must use only published routes and no historical undeclared API')
+  const response={status:packet.status,url:packet.url,headers:new Headers(packet.headers),body:Buffer.from(packet.bodyBase64,'base64').toString('utf8')}
+  return change(url,response)??response
+}
+
+test('public factory reconciles all current original role details before applying its configured cap', async () => {
   const vidyalai = await loadModule()
   assert.ok(vidyalai, 'Vidyalai scraper module should load')
 
   const requestedUrls = []
   const jobs = await vidyalai.createVidyalaiScraper({ maxJobs: 1 }).run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-      if (url === vidyalai.HOMEPAGE_URL) return { status: 200, url, html: homepageHtml }
-      if (url === vidyalai.JOBS_PAGE_URL) return { status: 200, url, html: jobsPageHtml }
-      if (url === seniorSoftwareEngineerUrl) return { status: 200, url, html: seniorSoftwareEngineerHtml }
-      throw new Error(`Unexpected page URL: ${url}`)
-    },
-    fetchJson: async (url) => {
-      requestedUrls.push(url)
-      assert.equal(url, vidyalai.JOBS_API_URL)
-      return apiPayload
-    },
+    fetchPage: currentReader(requestedUrls),
+    fetchJson: async () => {throw Error('No current client declares the legacy filtered API')},
+    requestIntervalMs:0,
     now: () => '2026-07-12T00:00:00.000Z',
   })
 
-  assert.deepEqual(requestedUrls, [
-    vidyalai.HOMEPAGE_URL,
-    vidyalai.JOBS_PAGE_URL,
-    vidyalai.JOBS_API_URL,
-    seniorSoftwareEngineerUrl,
-  ])
+  assert.equal(requestedUrls.length,36)
+  assert.equal(requestedUrls.includes(vidyalai.JOBS_API_URL),false)
   assert.equal(jobs.length, 1)
   assert.equal(jobs[0].source, 'vidyalai')
-  assert.equal(jobs[0].link, seniorSoftwareEngineerUrl)
+  assert.equal(jobs[0].link, null)
+  assert.equal(jobs[0].country,null)
+  assert.equal(jobs[0].sourceCountryScopeUnresolved,true)
+  assert.equal(jobs.nativeCollectionEvidence.fullRawCriteriaRecords,16)
   assert.equal(jobs[0].scrapedAt, '2026-07-12T00:00:00.000Z')
 })
 
-test('run fails closed when the homepage handoff, jobs count, API payload, or detail page contract changes', async () => {
+test('public factory cannot route current native rejection into historical or incomplete extraction', async () => {
   const vidyalai = await loadModule()
   assert.ok(vidyalai, 'Vidyalai scraper module should load')
 
-  await assert.rejects(
-    vidyalai.createVidyalaiScraper().run({
-      fetchPage: async (url) => {
-        if (url === vidyalai.HOMEPAGE_URL) return { status: 200, url, html: '<html><body>Home</body></html>' }
-        return { status: 200, url, html: jobsPageHtml }
-      },
-      fetchJson: async () => apiPayload,
-    }),
-    /official Vidyalai homepage/i,
-  )
-
-  await assert.rejects(
-    vidyalai.createVidyalaiScraper().run({
-      fetchPage: async (url) => {
-        if (url === vidyalai.HOMEPAGE_URL) return { status: 200, url, html: homepageHtml }
-        if (url === vidyalai.JOBS_PAGE_URL) return { status: 200, url, html: '<html><body>Showing 1 results</body></html>' }
-        return { status: 200, url, html: seniorSoftwareEngineerHtml }
-      },
-      fetchJson: async () => apiPayload,
-    }),
-    /jobs page count/i,
-  )
-
-  await assert.rejects(
-    vidyalai.createVidyalaiScraper().run({
-      fetchPage: async (url) => {
-        if (url === vidyalai.HOMEPAGE_URL) return { status: 200, url, html: homepageHtml }
-        if (url === vidyalai.JOBS_PAGE_URL) return { status: 200, url, html: jobsPageHtml }
-        return { status: 200, url, html: seniorSoftwareEngineerHtml }
-      },
-      fetchJson: async () => ({
-        data: [{ ...apiPayload.data[0], status: 'Closed' }],
-      }),
-    }),
-    /filtered public jobs api/i,
-  )
-
-  await assert.rejects(
-    vidyalai.createVidyalaiScraper().run({
-      fetchPage: async (url) => {
-        if (url === vidyalai.HOMEPAGE_URL) return { status: 200, url, html: homepageHtml }
-        if (url === vidyalai.JOBS_PAGE_URL) return { status: 200, url, html: jobsPageHtml }
-        return { status: 200, url, html: '<html><head><title>Other</title></head><body>No apply link</body></html>' }
-      },
-      fetchJson: async () => apiPayload,
-    }),
-    /detail pages no longer match/i,
-  )
+  for(const [target,change,expectedCalls]of[
+    [vidyalai.HOMEPAGE_URL,()=>homepageHtml,1],
+    [vidyalai.JOBS_PAGE_URL,body=>body.replace('Showing 16','Showing 15'),2],
+    [vidyalai.JOBS_PAGE_URL,body=>body.replace('name="card"','hidden name="card"'),2],
+    [currentOriginals.packets[3].url,body=>body.replace(/<div class="ql-editor read-mode">[\s\S]*?<\/div>/,'<div class="ql-editor read-mode"></div>'),3],
+  ]){
+    const calls=[]
+    await assert.rejects(vidyalai.createVidyalaiScraper().run({fetchPage:currentReader(calls,(url,response)=>url===target?{...response,body:change(response.body)}:undefined),requestIntervalMs:0,fetchJson:async()=>{throw Error('No historical API fallback')}}),/Vidyalai native data/)
+    assert.equal(calls.length,expectedCalls)
+  }
 })

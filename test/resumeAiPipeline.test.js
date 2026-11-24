@@ -147,7 +147,7 @@ test('three-page output uses a short layout-only repair and still receives the i
   assert.match(documents[1], /Developed Java services and automated tests/);
   assert.equal(result.pageCount, 2);
   assert.ok(events.some(event => event.stage === 'repairing' && event.repairKind === 'pagination'));
-  assert.ok(events.some(event => event.policyVersion === 'abey-pagination-v2'));
+  assert.ok(events.some(event => event.policyVersion === 'abey-tailoring-v3'));
 });
 
 test('a full repair is declined before inference when the measured generation cannot fit the remaining budget', async t => {

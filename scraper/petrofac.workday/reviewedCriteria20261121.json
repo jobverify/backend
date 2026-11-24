@@ -1,0 +1,16 @@
+{
+  "source": "petrofac",
+  "qualification": "Original selected-role authored full-criteria DOM only; excludes page/client/style context and grants no rendered behaviour",
+  "models": {
+    "12218": {
+      "nativeCriteriaTreeSHA256": "bc9fe53003edd95d7db8eb6c127bc63160318629d25537f67f4f24dd58ef5bed",
+      "textCharacters": 4639,
+      "supplementalAuthoritySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "12272": {
+      "nativeCriteriaTreeSHA256": "dd069174b2ce5934c17aa597976d01f721c5b0c27ccf8ad00b307cc808720117",
+      "textCharacters": 4025,
+      "supplementalAuthoritySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

@@ -37,8 +37,8 @@
       "sha256": "8a482f2271a42c5f54c96e816a84340a6f2357a5b81f927d07d00788f5140a41"
     }
   ],
-  "clientUrl": "https://datapatterns.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
-  "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+  "clientUrl": "https://datapatterns.darwinbox.in/ms/candidatev2/main.aad4e9f12624d60f.js",
+  "clientSha256": "7d18a53b8cde72423e953eee67317dd245113c4ed0078dbfa65376d04354cfe1",
   "schemas": {
     "company": {
       "$": [
@@ -248,6 +248,13 @@
     }
   },
   "provenance": "Current first-party career link graph, current public candidate JS client, and two full native GET inventories/details. Only observed object key schemas; no invented employer/country/job values.",
-  "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
-  "rendererProvenance": "Exact current Chrome-User-Agent candidate shell from advertised employer handoff. Full text/attributes/scripts/forms/frames/hiring surfaces are byte-pinned and opening/closing scope snapshots reconcile; no candidate shell executable or hiring channel is ignored."
+  "rendererSha256": "0b8f0c170d8e77ad96a38b379825cdb70ceff4f6623432800603e601cf782c26",
+  "rendererProvenance": "Exact current Chrome-User-Agent candidate shell from advertised employer handoff. Full text/attributes/scripts/forms/frames/hiring surfaces are byte-pinned and opening/closing scope snapshots reconcile; no candidate shell executable or hiring channel is ignored.",
+  "previousReleases": [
+    {
+      "clientUrl": "https://datapatterns.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
+      "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+      "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7"
+    }
+  ]
 }

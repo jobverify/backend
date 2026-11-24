@@ -1,75 +1,34 @@
-import {readReviewedTensorGoChunks} from './currentChunks.js'
+import {isDeepStrictEqual} from 'node:util'
+import {createCurrentNativeReader} from '../../scraper-support/native-sources/boundedCurrentNativeRead20261106.js'
+import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
-
-const API_BASE = 'https://api.humains.one'
-const ORIGIN = 'https://tensorgo.com'
-const indiaCities = /^(?:Hyderabad|Delhi|New Delhi|Bengaluru|Bangalore|Mumbai|Pune|Chennai)(?:,\s*India)?$/i
-const foreignLocations = /\b(?:United States|USA|New York|United Kingdom|London|Dubai|UAE|Saudi Arabia|Singapore)\b/i
-
-const validate = (row) => {
-  if (!row || typeof row.id !== 'string' || !row.id || typeof row.slug !== 'string' || !/^[a-z0-9-]+$/.test(row.slug) || typeof row.title !== 'string' || !row.title.trim() || !Array.isArray(row.locations) || !row.locations.length || row.locations.some(location => typeof location !== 'string' || !location.trim())) throw new Error('TensorGo invalid job identity or country scope')
-  if (row.datePosted && (!/^\d{4}-\d{2}-\d{2}$/.test(row.datePosted) || !Number.isFinite(Date.parse(row.datePosted)) || new Date(row.datePosted).toISOString().slice(0,10) !== row.datePosted)) throw new Error('TensorGo invalid posting date')
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {getValidIndiaCityForJob} from '../../src/utils/publicJobLocationScope.js'
+import {isNativeBareCityInPublicScope} from '../../scraper-support/shared/nativeCityScope.js'
+import {hasSourceDescription} from '../../src/utils/jobSourceContent.js'
+import {ORIGIN,API_BASE,need,readReviewedTensorGoChunks} from './currentChunks.js'
+export const SOURCE='tensorgosoftwarepvtltd',COMPANY='TensorGo Software Pvt Ltd',CAREERS_PAGE_URL=ORIGIN+'/careers',JOBS_API_URL=API_BASE+'/api/jobs'
+const validDate=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&Number.isFinite(Date.parse(value))&&new Date(value).toISOString().slice(0,10)===value
+function validateRow(row){need(row&&typeof row==='object'&&!Array.isArray(row)&&typeof row.id==='string'&&row.id.trim()===row.id&&row.id.length>0&&row.id.length<=160&&typeof row.slug==='string'&&/^[a-z0-9-]{1,200}$/.test(row.slug)&&typeof row.title==='string'&&row.title.trim()===row.title&&row.title.length>0&&row.title.length<=500,'Invalid native role identity');need(Array.isArray(row.locations)&&row.locations.length>0&&row.locations.length<=20&&row.locations.every(v=>typeof v==='string'&&v.trim()===v&&v.length>0&&v.length<=200),'Invalid native role locations')}
+function validatePayload(payload){need(payload&&Array.isArray(payload.items)&&payload.items.length<=5000,'Invalid or oversized live native API items');need(!payload.nextCursor&&!payload.next&&!payload.hasMore&&!payload.more_records&&(payload.total==null||payload.total===payload.items.length),'Incomplete native pagination contract');const ids=new Set(),slugs=new Set();for(const row of payload.items){validateRow(row);need(!ids.has(row.id)&&!slugs.has(row.slug),'Duplicate native job identity');ids.add(row.id);slugs.add(row.slug)}}
+function qualify(row,detail,semantics){const nativeCountry=typeof row.country==='string'?row.country:typeof detail?.country==='string'?detail.country:null,nativeLocation=row.locations.join(' / '),city=getValidIndiaCityForJob({country:nativeCountry,location:nativeLocation}),wholeCityLabels=row.locations.length>0&&row.locations.every(label=>isNativeBareCityInPublicScope(label)&&!/^(?:remote|wfh|work from home)$/i.test(label)),locationQualified=Boolean(city&&(nativeCountry==='India'||nativeCountry===null&&wholeCityLabels)),identityQualified=!!detail&&Object.entries(row).every(([field,value])=>isDeepStrictEqual(detail[field],value)),criteriaQualified=identityQualified&&typeof detail.description==='string'&&detail.description.trim().length>=300&&detail.description.trim()!==detail.short?.trim()&&hasSourceDescription({sourceDescription:detail.description}),nativePostingDate=row.datePosted??detail?.datePosted??null,unknownDateFields=[...new Set([row,detail].filter(Boolean).flatMap(record=>Object.keys(record).filter(k=>k!=='datePosted'&&/date|closing|deadline|validThrough/i.test(k))))],dateQualified=(nativePostingDate==null||validDate(nativePostingDate))&&unknownDateFields.length===0,active=row.isActive!==false&&detail?.isActive!==false
+ return{nativeId:row.id,nativeSlug:row.slug,listing:structuredClone(row),detail:detail?structuredClone(detail):null,nativeCountry,nativeLocation,nativePostingDate,publicLocationQualification:{policy:'src/utils/publicJobLocationScope.js#getValidIndiaCityForJob',nativeCountry,nativeLocation,wholeCityLabels,qualified:locationQualified,city:locationQualified?city:null,basis:nativeCountry==='India'?'native-explicit-country':'whole-native-role-city-labels;country-unpublished'},nativeIdentityQualified:identityQualified,nativeCriteriaQualified:criteriaQualified,nativeDateQualified:dateQualified,nativeActive:active,nativeEmployerQualified:semantics.employer.legalName==='TensorGo Software Private Limited',nativeApplicationQualified:semantics.application.nativeRoleSlugBound===true,application:{...semantics.application,roleURL:ORIGIN+'/careers/'+row.slug,declaredSubmissionURL:API_BASE+'/api/jobs/'+encodeURIComponent(row.slug)+'/applications',activeApplyVerified:false,submissionPerformed:false},unknownDateFields,qualificationHolds:[...(!identityQualified?['detail-not-hydrated-or-native-listing-detail-fields-differ']:[]),...(!criteriaQualified?['full-native-role-criteria-unqualified']:[]),...(!locationQualified?['native-workplace-foreign-mixed-or-unresolved-under-public-role-city-policy']:[]),...(!dateQualified?['native-date-contract-unqualified']:[]),...(!active?['explicit-native-inactive-role']:[])]}
 }
-
-export const readCurrentCareers = async ({ html, readText, readJson, maxJobs, now }) => {
-  const src = String(html).match(/<script\b[^>]*src=["']([^"']*\/static\/js\/main\.[^"']+\.js)["']/i)?.[1]
-  if (!src) throw new Error('TensorGo current job inventory bundle is missing')
-  const asset = new URL(src, ORIGIN)
-  if (asset.origin !== ORIGIN) throw new Error('TensorGo job bundle has an unverified origin')
-  const bundle = await readText(asset.href)
-  const reviewedChunks = await readReviewedTensorGoChunks({html,asset,bundle,readText})
-  const payload = await readJson(API_BASE + '/api/jobs')
-  if (!payload || !Array.isArray(payload.items)) throw new Error('TensorGo invalid current public job inventory')
-  if (payload.nextCursor || payload.next || payload.hasMore || payload.more_records || (payload.total != null && payload.total !== payload.items.length)) throw new Error('TensorGo incomplete pagination contract')
-  if (payload.items.length === 0) {
-    throw Object.assign(
-      new Error('TensorGo public job inventory is unavailable: current API does not prove zero openings'),
-      {
-        code: 'TENSORGO_INVENTORY_UNAVAILABLE',
-        softFailure: true,
-        failureKind: 'upstream_inventory_unavailable',
-        abortRetries: true,
-      },
-    )
-  }
-  const ids = new Set(), slugs = new Set()
-  for (const row of payload.items) {
-    validate(row)
-    if (ids.has(row.id) || slugs.has(row.slug)) throw new Error('TensorGo duplicate job identity')
-    ids.add(row.id); slugs.add(row.slug)
-  }
-  let unknown = false
-  const indian = payload.items.filter(row => {
-    if (row.locations.every(location => indiaCities.test(location))) return true
-    if (!row.locations.every(location => foreignLocations.test(location))) unknown = true
-    return false
-  })
-  if (unknown && !indian.length) throw new Error('TensorGo job country scope is unverified')
-  const selected = Number.isInteger(maxJobs) && maxJobs > 0 ? indian.slice(0,maxJobs) : indian
-  const jobs = []
-  for (const row of selected) {
-    const detail = await readJson(API_BASE + '/api/jobs/' + encodeURIComponent(row.slug))
-    validate(detail)
-    if (detail.id !== row.id || detail.slug !== row.slug || detail.title !== row.title || JSON.stringify(detail.locations) !== JSON.stringify(row.locations) || typeof detail.description !== 'string' || detail.description.trim().length < 40) throw new Error('TensorGo incomplete or mismatched job detail')
-    if (reviewedChunks && (detail.description.trim().length < 300 || detail.description.trim() === detail.short?.trim()
-      || ['department','type','yearsRange','workMode','datePosted','short'].some(field=>detail[field]!==row[field]))) throw new Error('TensorGo incomplete native criteria or mismatched job detail')
-    const sourceUrl = ORIGIN + '/careers/' + row.slug
-    jobs.push({title:row.title, company:'TensorGo Software Pvt Ltd', department:row.department || null, location:row.locations.join(', ') + ', India', locations:row.locations, city:row.locations.length === 1 ? row.locations[0] : null, country:'India', jobId:row.id, requisitionId:row.id, sourceUrl, applyUrl:sourceUrl, employmentType:row.type || null, experienceRequired:row.yearsRange || null, jobDescription:detail.description.trim(), postingDate:row.datePosted || null, closingDate:null, remoteStatus:row.workMode === 'WFH' ? 'Remote' : row.workMode === 'WFO' ? 'On-site' : null, source:'tensorgosoftwarepvtltd', link:sourceUrl, scrapedAt:now(), ...(unknown || selected.length < indian.length ? {sourceListingComplete:false} : {})})
-  }
-  if (reviewedChunks) {
-    const closing=await readJson(API_BASE+'/api/jobs')
-    if(!closing||!Array.isArray(closing.items)||closing.nextCursor||closing.next||closing.hasMore||closing.more_records
-      ||closing.total!=null&&closing.total!==closing.items.length)throw Error('TensorGo closing inventory pagination changed')
-    const snapshot=rows=>JSON.stringify(rows.map(row=>{
-      validate(row)
-      return ['id','slug','title','locations','department','type','yearsRange','workMode','datePosted','short'].map(field=>row[field]??null)
-    }).sort((left,right)=>left[0].localeCompare(right[0])))
-    if(snapshot(closing.items)!==snapshot(payload.items))throw Error('TensorGo closing native inventory changed')
-    const complete=!unknown&&selected.length===indian.length
-    for(const job of jobs)Object.assign(job,{sourceDetailComplete:true,sourceListingComplete:complete,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
-    return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:ORIGIN+'/careers',firstParty:true,
-      listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:2,reportedTotal:payload.items.length,indiaFacetCount:unknown?null:indian.length,
-      verifiedAt:now(),reason:complete?'reviewed-current-native-api-and-closing-inventory':'unresolved-native-country-or-requested-sample'})
-  }
-  return jobs
+export async function readCurrentCareers(options={}){
+ options.signal?.throwIfAborted();const maxJobs=options.maxJobs??Infinity;need(maxJobs===Infinity||Number.isSafeInteger(maxJobs)&&maxJobs>=0,'Invalid output cap')
+ const reader=createCurrentNativeReader(options,{source:SOURCE,admitted:[[CAREERS_PAGE_URL,'html']],learnedURL:(url,kind)=>kind==='javascript'&&/^https:\/\/tensorgo\.com\/static\/js\/(?:main\.[a-z0-9]+\.js|\d+\.[a-f0-9]{8}\.chunk\.js)$/.test(url)||kind==='json'&&/^https:\/\/api\.humains\.one\/api\/jobs(?:\/[a-z0-9-]+)?$/.test(url)});let opening,closing,currentModel,lastEntity,reconciled=false
+ const read=async(url,kind)=>{if(kind)reader.allow(url,kind);lastEntity=await reader.read(url);return lastEntity.body}
+ async function collect(){const html=await read(CAREERS_PAGE_URL),doc=readNativeDocument(html),declarations=doc.nodes(n=>n.tag==='script'&&n.attrs.src&&/\/static\/js\/main\.[^/]+\.js$/.test(n.attrs.src));need(declarations.length===1&&!doc.nodes(n=>n.tag==='base').length,'Own current active main declaration changed');const asset=new URL(declarations[0].attrs.src,ORIGIN);need(asset.origin===ORIGIN,'Foreign current main origin');const bundle=await read(asset.href,'javascript'),contract=await readReviewedTensorGoChunks({html,asset,bundle,readText:url=>read(url,'javascript')});reader.check();const payload=JSON.parse(await read(contract.semantics.api.apiBase+contract.semantics.api.listPath,'json'));validatePayload(payload);const records=[],details=[],hydrationLimit=48-(3+contract.declaredChunkURLs.length);need(hydrationLimit>=0,'Declaration reads exceed native request budget');currentModel={page:{url:CAREERS_PAGE_URL,wholeOriginalHTML:html},mainURL:asset.href,contract,payload,records,details,hydrationLimit,hydrationLimitReason:'96native-request budget;2*(page+main+declared dependencies+list+hydrated details)'}
+  // Bound hydration independently of the published native cohort; never turn
+  // unhydrated rows into complete roles or a company inventory proof.
+  const selected=payload.items.filter(row=>row.isActive!==false).slice(0,hydrationLimit)
+  for(const row of selected){reader.check();const detail=JSON.parse(await read(JOBS_API_URL+'/'+encodeURIComponent(row.slug),'json'));details.push({id:row.id,slug:row.slug,raw:detail});need(detail&&typeof detail==='object'&&!Array.isArray(detail)&&Object.entries(row).every(([field,value])=>isDeepStrictEqual(detail[field],value)),'Mismatched full native job detail');need(typeof detail.description==='string'&&detail.description.trim().length>=300&&detail.description.trim()!==detail.short?.trim()&&hasSourceDescription({sourceDescription:detail.description}),'Incomplete full native job criteria')}
+  for(const row of payload.items){const detail=details.find(d=>d.id===row.id)?.raw;records.push(qualify(row,detail,contract.semantics))}reader.check();return currentModel
+ }
+ const audit=()=>{const cohort=opening??currentModel;return{source:SOURCE,recordKind:cohort?.records.some(r=>!r.nativeActive)?'mixed':'vacancy-rows',observedRecordCount:cohort?.payload.items.length??null,observedVacancyCount:cohort?.records.filter(r=>r.nativeActive).length??null,observations:cohort?.records??[],nativeOpening:opening,nativeClosing:closing,lastNativeEntity:lastEntity,wholeNativeAPIAndDetailsClosingReconciled:reconciled,rawClientOriginalsRetained:true,rawClientBodiesOpeningClosingEqual:opening&&closing?isDeepStrictEqual({main:opening.contract.rawMain,programs:opening.contract.rawPrograms},{main:closing.contract.rawMain,programs:closing.contract.rawPrograms}):null,browserProgramsExecuted:false,wholeBrowserByteEqualityRequired:false,companyGlobalTotal:null,companyIndiaTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,applicationInteractions:0,activeApplyVerified:false,publisherAPIFallbackUsed:false,sourceNativeRequests:reader.stats().requests,readEvidence:reader.stats()}}
+ try{opening=await collect();closing=await collect();const model=cohort=>({semantics:cohort.contract.semantics,payload:cohort.payload,details:cohort.details});need(isDeepStrictEqual(model(opening),model(closing)),'Closing whole native API/detail/application model changed');reconciled=true;reader.check();const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString();need(typeof now==='string'&&Number.isFinite(Date.parse(now)),'Invalid observation clock')
+  const jobs=opening.records.filter(r=>r.nativeActive&&r.nativeIdentityQualified&&r.nativeCriteriaQualified&&r.nativeDateQualified&&r.nativeEmployerQualified&&r.nativeApplicationQualified&&r.publicLocationQualification.qualified).slice(0,maxJobs).map(r=>({title:r.listing.title,company:COMPANY,companyDomain:'tensorgo.com',source:SOURCE,department:r.listing.department??null,location:r.nativeLocation,locations:structuredClone(r.listing.locations),country:r.nativeCountry,city:r.publicLocationQualification.city,sourceNativeCountry:r.nativeCountry,sourceNativeCountryUnpublished:r.nativeCountry===null,sourceCountryScopeUnresolved:false,sourcePublicLocationPolicyQualified:true,sourcePublicLocationQualification:structuredClone(r.publicLocationQualification),sourceNativeJobPostingEmployer:structuredClone(opening.contract.semantics.employer),jobId:r.nativeId,requisitionId:null,sourceUrl:r.application.roleURL,applyUrl:r.application.roleURL,link:r.application.roleURL,employmentType:r.listing.type??null,experienceRequired:r.listing.yearsRange??null,minimumQualification:null,preferredQualification:null,requiredSkills:[],postingDate:r.nativePostingDate,closingDate:null,sourceNativeDatePosted:r.nativePostingDate,postingDatePublished:r.nativePostingDate!=null,closingDatePublished:false,jobDescription:r.detail.description,sourceDescription:r.detail.description,remoteStatus:r.listing.workMode==='WFH'?'Remote':r.listing.workMode==='WFO'?'On-site':null,sourceDetailComplete:true,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,sourceNativeRecord:structuredClone(r),sourceNativeApplicationDeclaration:structuredClone(r.application),activeApplyVerified:false,publicExperienceChecked:true,scrapedAt:now}))
+  const active=opening.records.filter(r=>r.nativeActive).length;attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:active===opening.records.length?'vacancy-rows':'mixed',observedRecordCount:opening.records.length,observedVacancyCount:active,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit(),configurable:true});attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_PAGE_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reader.stats().requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'whole-current-native-API-and-hydrated-role-criteria/application-closing-models;native-country-preserved;role-city-policy;company-scope-unproved'});reader.check();return jobs
+ }catch(error){options.signal?.throwIfAborted();try{if(error&&typeof error==='object')Object.defineProperty(error,'recruitmentObservations',{value:audit(),configurable:true})}catch{}options.signal?.throwIfAborted();throw error}
+ finally{reader.close();options.signal?.throwIfAborted()}
 }

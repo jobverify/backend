@@ -1,0 +1,9 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {setTimeout as delay} from 'node:timers/promises'
+import {runCurrentJasperProgramme} from './currentProgramme.js'
+import {CORPORATE} from './currentProgrammeRenderer.js'
+function refused({never=false,reject=false}={}){const counts={readers:0,cancels:0,settled:false},response={status:403,url:CORPORATE,headers:new Headers({'content-type':'text/html'}),body:{getReader(){counts.readers++;assert.fail('Denied body reader opened')},async cancel(){counts.cancels++;if(never)return new Promise(()=>{});await delay(30);counts.settled=true;if(reject)throw Error('Controlled disposal rejection')}}};return{response,counts}}
+for(const reason of[null,Object.freeze({caller:'truly-late-native-transport'})])test('Jasper fetch resolving after caller abort waits for owned disposal: '+(reason===null?'null':'frozen'),async()=>{const c=new AbortController(),r=refused();let caught=false;try{await runCurrentJasperProgramme({signal:c.signal,requestIntervalMs:0,fetchImpl:async()=>{c.abort(reason);await delay(20);return r.response}})}catch(error){caught=true;assert.equal(error,reason)}assert.equal(caught,true);assert.deepEqual(r.counts,{readers:0,cancels:1,settled:true})})
+test('Jasper nonsettling cleanup has bounded grace and retains primary403',{timeout:3500},async()=>{const r=refused({never:true}),start=performance.now();await assert.rejects(runCurrentJasperProgramme({requestIntervalMs:0,fetchImpl:async()=>r.response}),e=>e.status===403);assert.ok(performance.now()-start>=900);assert.deepEqual(r.counts,{readers:0,cancels:1,settled:false})})
+test('Jasper disposal rejection retains the original403',async()=>{const r=refused({reject:true});await assert.rejects(runCurrentJasperProgramme({requestIntervalMs:0,fetchImpl:async()=>r.response}),e=>e.status===403);assert.deepEqual(r.counts,{readers:0,cancels:1,settled:true})})

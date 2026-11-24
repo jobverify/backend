@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { createLangchainNativeScraper } from './nativeInventory.js'
+import {createHistoricalLangchainNativeScraper as createLangchainNativeScraper } from './nativeInventory.js'
 import { serializeNativePayload } from './nativeTransport.js'
 
 // Finite authored transport controls. Genuine capture bytes remain immutable.

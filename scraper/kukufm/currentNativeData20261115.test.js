@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import * as script from './script.js'
+// Historical Nov15 finite reader. Current public entrypoints have separate native-prefix and registered transaction tests.
+import {createHistoricalKukuFMScraper} from './nativeData20261115.js'
+const script={createKukuFMScraper:createHistoricalKukuFMScraper,run:options=>createHistoricalKukuFMScraper().run(options)}
 import {getScraperCatalog, createCatalogScraper} from '../../scraper-support/providers/index.js'
 import {clock, replay, selectedIDs, profile, fixture, originalBytes, caught, editJSON, editHTML, editSSR, NOW, sha} from './fixtures/replayNativeData20261115.js'
 import {readInventoryEvidence, sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
@@ -12,7 +14,7 @@ globalThis.fetch = async () => {throw Error('Network forbidden in saved-response
 for (const [name, start] of [
   ['factory', options => {assert.equal(typeof script.createKukuFMScraper, 'function'); return script.createKukuFMScraper().run(options)}],
   ['exported run', options => script.run(options)],
-  ['registered native route', options => createCatalogScraper(getScraperCatalog().find(row => row.source === 'kukufm')).run(options)],
+  ['historical finite module', options => createHistoricalKukuFMScraper().run(options)],
 ]) test(name + ' preserves all six genuine complete native India roles including Android questions', async t => {
   const r = replay(), jobs = await clock(t, () => start(r.options))
   assert.deepEqual(jobs.map(job => Number(job.jobId)), selectedIDs)
@@ -484,14 +486,14 @@ test('registered route never enters generic corporate/empty recovery after an ow
   assert.equal(r.calls.length, 1)
   assert.equal(fallback, 0)
 })
-test('registered native module blocks explicitly supplied generic recovery on eligible changed-source coverage errors', async t => {
+test('registered current native module blocks generic recovery after a conflicting native employer', async t => {
   let fallback = 0
-  const r = replay((_url, entity) => ({...entity, bytes: Buffer.concat([entity.bytes, Buffer.from(' ')])}))
+  const r = replay((_url, entity) => editSSR(entity, model => {model.props.pageProps.companyDetails.name = 'Other Employer'}))
   const poison = async () => {fallback++; throw Error('Generic recovery transport must never execute')}
   const source = createCatalogScraper(getScraperCatalog().find(row => row.source === 'kukufm'))
   const error = await caught(() => clock(t, () => source.run({...r.options,
     softFailureRecovery: {fetchImpl: poison}, emptyOnlyRecovery: {fetchImpl: poison}})))
-  assert.match(error.message, /Whole original board\/program/)
+  assert.match(error.message, /Exact native employer\/account\/backlink/)
   assert.equal(r.calls.length, 1)
   assert.equal(fallback, 0)
 })

@@ -36,7 +36,7 @@ test('a changed current Groupon role renderer cannot authorize inventory request
  const profile=profileForPublisher(publisher(text(graph.get(PRIMARY))))
  assert.throws(()=>program(text(graph.get(profileModuleURL('roles',profile)))+';fetch("https://foreign.example/jobs")','roles',profile),/program changed/)
 })
-test('a synthetic explicit-country Groupon role still needs a current active application before full qualification',async()=>{
+test('a synthetic explicit-country control retains a declared application without claiming activation',async()=>{
  const id=JSON.parse(previous.nativePackets.find(row=>row.url===API).text).jobs[0].id,visits=new Map()
  const jobs=await createCatalogScraper(getScraperCatalog().find(row=>row.source==='groupon')).run({fetchResponse:async url=>{
   const visit=visits.get(url)||0;visits.set(url,visit+1)
@@ -47,5 +47,7 @@ test('a synthetic explicit-country Groupon role still needs a current active app
   return{bytes:Buffer.from(body),requestedURL:url,finalURL:url,method:'GET',body:null,status:original.status,headers:original.headers,contentType:original.headers['content-type'],startedAt:clock,completedAt:clock}
  }})
  assert.equal(jobs.find(row=>row.jobId===id).activeApplyVerified,false)
- assert.equal(jobs.find(row=>row.jobId===id).sourceDetailComplete,false)
+ assert.equal(jobs.find(row=>row.jobId===id).sourceDetailComplete,true)
+ assert.equal(jobs.find(row=>row.jobId===id).nativePublicApplicationEntryDeclared,true)
+ assert.equal(jobs.find(row=>row.jobId===id).lifecycleCleanupAllowed,false)
 })

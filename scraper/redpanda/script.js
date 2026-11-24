@@ -1,19 +1,18 @@
-import { createDeclaredJobFeedScraper, DECLARED_JOB_FEED_PROFILES } from '../../scraper-support/native-sources/declaredJobFeeds/nativeCareers.js'
+import {runCurrentConfiguredBoard} from './currentConfiguredBoard20261120.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+
 import { filterIndiaJobs } from '../../scraper-support/utils/indiaLocationFilter.js'
-import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+
 import { extractAshbyExperienceRequired } from '../../scraper-support/utils/ashbyExperience.js'
 
 import { REDPANDA_CATALOG } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const config = loadConfig(currentDir)
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+
+
 
 export const SOURCE = REDPANDA_CATALOG.source
 export const COMPANY = REDPANDA_CATALOG.companyName
@@ -90,23 +89,9 @@ const inferRemoteStatus = (job = {}) => {
   return null
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
+
+
 
 export const hasVerifiedJobsPageSignal = (html = '') => {
   const rawHtml = String(html ?? '')
@@ -172,7 +157,7 @@ export const extractAshbyJobs = (payload = {}) =>
     })
     .filter(Boolean)
 
-export const createRedpandaScraper = (options = {}) => createDeclaredJobFeedScraper(DECLARED_JOB_FEED_PROFILES.redpanda, options)
+export const createRedpandaScraper = (options = {}) => ({name:SOURCE,run:(passed={})=>runCurrentConfiguredBoard({...options,...Object.fromEntries(Object.entries(passed).filter(([,value])=>value!==undefined))})})
 
 export const run = async (options = {}) => createRedpandaScraper(options).run(options)
 

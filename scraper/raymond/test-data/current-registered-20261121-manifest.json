@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "file": "current-registered-20261121.json.gz",
+  "bytes": 1641375,
+  "sha256": "2da48ffdb541f60658df17010688caac7876e92fe5694abb976df84c1e9cca74",
+  "responseCount": 19,
+  "kind": "actual registered Raymond run, complete original bodies, no transformed or historical native rows",
+  "expected": {
+    "rawJobs": 2,
+    "indiaJobs": 2,
+    "eligibleJobs": 2,
+    "sourceDetailCompleteJobs": 2,
+    "nativeCandidateCount": 3,
+    "heldCount": 1,
+    "heldID": "RAY/A-S/1906579",
+    "heldReason": "[raymond] Own native location labels conflict",
+    "detailHealthComplete": false,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false
+  },
+  "originalRegisteredResultSHA256": "2875fdc1261a3503670d1a39af277efe9905acb3927c4e673c109e917bff2f4e"
+}

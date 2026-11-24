@@ -81,14 +81,14 @@ export async function readCurrentAccionRoles({ careersHtml, read, signal, now = 
   if (records.some(row => !row.sourceDetailComplete)) reasons.push('native-public-criteria-rendering-incomplete')
   const jobs = records.filter(row => row.country === 'India' && row.sourceDetailComplete)
   const stamp = now(), evidence = { status: 'coverage-gap', surface: ORIGIN + '/careers', firstParty: true,
-    listingComplete: false, reportedTotal: null, indiaFacetCount: null, pagesFetched: 4 + records.length * 2,
+    lifecycleCleanupAllowed: false, listingComplete: false, reportedTotal: null, indiaFacetCount: null, pagesFetched: 4 + records.length * 2,
     verifiedAt: stamp, reason: [...new Set(reasons)].join(';') }
   for (const job of jobs) job.scrapedAt = stamp
   attachInventoryEvidence(jobs, evidence)
   attachSourceObservationEvidence(jobs, { source: 'accionlabs', recordKind: 'vacancy-rows', observedRecordCount: records.length,
     observedVacancyCount: records.length, sourceScopeComplete: false })
   await onAudit?.({ source: 'accionlabs', nativeRecords: records, pragueObservationKind: 'role-areas-and-spontaneous-application',
-    sourceScopeComplete: false, inventoryEvidence: evidence, productionWrites: false })
+    sourceScopeComplete: false, lifecycleCleanupAllowed: false, inventoryEvidence: evidence, productionWrites: false })
   signal?.throwIfAborted()
   return jobs
 }

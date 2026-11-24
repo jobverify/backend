@@ -23,7 +23,7 @@ export async function runMaintenance({ tasks, storage, scheduledTime, now = Date
 }
 
 export async function loadMaintenanceTasks() {
-  const [outbox, channel, alerts, resumes, pipeline, plans, hiring, scheduler] = await Promise.all([
+  const [outbox, channel, alerts, resumes, pipeline, plans, hiring, scheduler, social] = await Promise.all([
     import('../../../src/services/jobAlertOutboxService.js'),
     import('../../../src/services/telegramChannelService.js'),
     import('../../../src/services/jobAlertService.js'),
@@ -32,8 +32,10 @@ export async function loadMaintenanceTasks() {
     import('../../../src/services/planService.js'),
     import('../../../src/services/hiringObservationService.js'),
     import('../../../src/pipeline/scheduler.js'),
+    import('../../../src/social/service.js'),
   ]);
   return [
+    { name: 'social-maintenance', run: social.maintainSocialPublishing },
     { name: 'alert-outbox', run: () => outbox.recoverJobAlertOutbox({ limit: 1 }) },
     { name: 'telegram-channel', run: channel.recoverTelegramChannelAlerts },
     { name: 'user-alerts', run: () => alerts.recoverQueuedJobAlerts({ maxDeliveries: 5, deadline: Date.now() + 20_000 }) },

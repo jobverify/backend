@@ -9,10 +9,11 @@ import {selectCurrentTwilioContract} from './currentNative20261115.js'
 const SOURCE='twilio',HOME='https://www.twilio.com/en-us/careers',BOARD='https://jobs.twilio.com/careers'
 const ENTRY='https://jobs.twilio.com/gen/js/pcsxPwa.ceaedf5d9f9dac50.js',ROLE_RENDERER='https://jobs.twilio.com/gen/js/12480.6ba506c902de6e73.js'
 const HISTORICAL_ENTRY='https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js',HISTORICAL_ROLE_RENDERER='https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js'
+const NOVEMBER21_ENTRY='https://jobs.twilio.com/gen/js/pcsxPwa.068e7dc3d3bb906d.js'
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const problem=(message,kind='coverage_gap')=>Object.assign(Error('Twilio current native: '+message),{softFailure:true,abortRetries:true,failureKind:kind,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
 const need=(value,message)=>{if(!value)throw problem(message)}
-const permitted=url=>url===HOME||url===BOARD||url===ENTRY||url===ROLE_RENDERER||url===HISTORICAL_ENTRY||url===HISTORICAL_ROLE_RENDERER
+const permitted=url=>url===HOME||url===BOARD||url===ENTRY||url===ROLE_RENDERER||url===HISTORICAL_ENTRY||url===HISTORICAL_ROLE_RENDERER||url===NOVEMBER21_ENTRY
  ||/^https:\/\/jobs\.twilio\.com\/api\/pcsx\/search\?domain=twilio\.com&query=&location=India&start=(?:0|[1-9]\d*)&$/.test(url)
  ||/^https:\/\/jobs\.twilio\.com\/api\/pcsx\/position_details\?position_id=[1-9]\d*&domain=twilio\.com&hl=en$/.test(url)
  ||/^https:\/\/jobs\.twilio\.com\/careers\/job\/[1-9]\d*$/.test(url)

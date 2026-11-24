@@ -157,16 +157,15 @@ test('extractLateralJobs parses the three public lateral openings from the verif
   )
 })
 
-test('defaultFetchText falls back to the source-local TLS bypass only for the verified Sequel Global certificate failure', async () => {
+test('defaultFetchText preserves the original certificate error without a second transport', async () => {
   const sequel = await loadSequelModule()
   assert.ok(sequel, 'Expected scraper module at ./script.js')
 
   let insecureFetchCalled = false
-  const html = await sequel.defaultFetchText(sequel.CAREERS_URL, {
-    fetchImpl: async () => {
-      const cause = new Error('unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca')
-      throw Object.assign(new Error('fetch failed'), { cause })
-    },
+  const cause = new Error('unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca')
+  const original = new Error('fetch failed', { cause })
+  await assert.rejects(sequel.defaultFetchText(sequel.CAREERS_URL, {
+    fetchImpl: async () => { throw original },
     insecureFetchTextImpl: async (url, options) => {
       insecureFetchCalled = true
       assert.equal(url, sequel.CAREERS_URL)
@@ -174,10 +173,9 @@ test('defaultFetchText falls back to the source-local TLS bypass only for the ve
       return careersHtml
     },
     timeoutMs: 25,
-  })
+  }), error => error === original && error.cause === cause)
 
-  assert.equal(html, careersHtml)
-  assert.equal(insecureFetchCalled, true)
+  assert.equal(insecureFetchCalled, false)
 })
 
 test('Sequel Logistics scraper returns the public lateral openings from the verified first-party careers surface', async () => {

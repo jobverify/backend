@@ -9,6 +9,7 @@ import {gunzipSync,gzipSync} from 'node:zlib'
 import {createHash} from 'node:crypto'
 import {types} from 'node:util'
 import {buildScrapers,getScraperCatalog} from '../scraper-support/providers/index.js'
+import {run as runHyperscienceSource} from '../scraper/hyperscience/script.js'
 import {readInventoryEvidence} from '../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../scraper-support/utils/sourceObservationEvidence.js'
 import {extractionRawJobMetrics} from '../scraper-support/utils/extractionRawJobMetrics.js'
@@ -174,4 +175,22 @@ test('registered native prefix abort retains actual acquired headers and128 byte
   assert.equal(raw.bodyComplete,false);assert.deepEqual(raw.receipt.headers,Object.fromEntries(new Headers(original('C0').receipt.headers)))
   assert.equal(saved.nativeCollectionEvidence.currentTransactionQualified,false);assert.equal(saved.nativeCollectionEvidence.currentDeclaredSourceProgramComplete,false)
   assert.equal(Object.hasOwn(saved,'jobs'),false)
+})
+
+for(const [label,reason]of [['null',null],['frozen',Object.freeze({owner:'registered-native-caller'})]])test('registered native cleanup settles before exact '+label+' caller rejection',async t=>{
+ forbidNetwork(t)
+ const parent=new AbortController(),prefix=Buffer.alloc(128,65);let reads=0,cancels=0,releases=0,held
+ const reader={read(){reads++;parent.abort(reason);return Promise.resolve({done:false,value:prefix})},async cancel(){cancels++;await new Promise(resolve=>setTimeout(resolve,30))},releaseLock(){releases++}}
+ const r=replay({data:dataset(1),nativeFetch:url=>({url,status:200,headers:new Headers(original('C0').receipt.headers),body:{getReader:()=>reader,cancel(){throw Error('reader owns cancellation')}}})})
+ try{await registered().run({...r.options,signal:parent.signal});assert.fail('caller abort must hold')}catch(error){held=error}
+ assert.equal(held,reason);assert.equal(reads,1);assert.equal(cancels,1);assert.equal(releases,1)
+})
+
+for(const[label,reason]of [['frozen',Object.freeze({owner:'completed-native-bridge'})],['null',null]])test('source completed-native bridge audit preserves late '+label+' caller reason',async t=>{
+ forbidNetwork(t)
+ const parent=new AbortController(),define=Object.defineProperty;let hooks=0,held
+ const r=replay({changePrimary:payload=>{payload.jobs[0].publishedAt='2026-11-10T12:00:00.000+00:00';return payload}})
+ t.mock.method(Object,'defineProperty',(target,key,descriptor)=>{const result=define(target,key,descriptor);if(key==='nativeCollectionEvidence'&&!Array.isArray(target)&&target instanceof Error){hooks++;parent.abort(reason)}return result})
+ try{await runHyperscienceSource({...r.options,signal:parent.signal});assert.fail('late caller abort must hold')}catch(error){held=error}
+ assert.equal(r.nativeCalls.length,22);assert.ok(hooks>=1);assert.equal(parent.signal.aborted,true);assert.equal(held,reason)
 })

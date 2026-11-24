@@ -328,7 +328,6 @@ export const hasOfficialCareersPageSignal = (html) => {
 
 export const hasSuccessFactorsSearchPageSignal = (html) => {
   const rawHtml = String(html ?? '')
-  const normalized = stripTags(rawHtml) || ''
 
   return hasStaticSuccessFactorsSearchPageSignal(rawHtml)
     || hasSuccessFactorsDwrResponseSignal(rawHtml)
@@ -908,7 +907,8 @@ export const createMetricStreamScraper = ({
   },
 })
 
-export const run = async (options = {}) => createMetricStreamScraper(options).run({ signal: options.signal })
+// Registered current acquisition requires original HTTP metadata; historical pure helpers remain available.
+export const run = async (options = {}) => (await import('./currentNative20261120.js')).runCurrentMetricStream(options,hasOfficialHomepageSignal)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

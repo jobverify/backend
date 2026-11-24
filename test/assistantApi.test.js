@@ -9,14 +9,15 @@ import RateLimitBucket from '../src/models/RateLimitBucket.js';
 import Job from '../src/models/Job.js';
 
 Object.assign(process.env, { NODE_ENV: 'test', JWT_SECRET: 'assistant-api-tests-only-secret-at-least-32-characters',
-  CORS_ORIGIN: 'https://app.jobverify.test', ASSISTANT_ENABLED: 'true', JOB_VERIFICATION_ENABLED: 'false' });
+  CORS_ORIGIN: 'https://app.jobverify.test', JOB_VERIFICATION_ENABLED: 'false' });
 const { createApp } = await import('../src/app.js');
 
 async function fixture(t, { model, billingEnabled = false } = {}) {
   const member = { _id: '507f1f77bcf86cd799439011', isVerified: true, sessionVersion: 0, role: 'user' };
   t.mock.method(User, 'findById', () => ({ select: async () => member }));
   t.mock.method(BlacklistedToken, 'findOne', async () => null);
-  t.mock.method(SiteSettings, 'findById', () => ({ lean: async () => ({ billingEnabled, experiencedJobsEnabled: true }) }));
+  const settings = { billingEnabled, experiencedJobsEnabled: true, assistantEnabled: true };
+  t.mock.method(SiteSettings, 'findById', () => ({ lean: async () => settings }));
   const counts = new Map();
   t.mock.method(RateLimitBucket, 'findOneAndUpdate', async filter => {
     counts.set(filter._id, (counts.get(filter._id) || 0) + 1);
@@ -33,7 +34,7 @@ async function fixture(t, { model, billingEnabled = false } = {}) {
   const token = csrf.token;
   const headers = { authorization: 'Bearer ' + jwt.sign({ id: member._id, sessionVersion: 0 }, process.env.JWT_SECRET),
     'content-type': 'application/json', origin: 'https://app.jobverify.test', cookie, 'x-csrf-token': token };
-  return { member, base, headers, counts, post: (body, extra = {}) => fetch(base + '/api/assistant/messages', {
+  return { member, settings, base, headers, counts, post: (body, extra = {}) => fetch(base + '/api/assistant/messages', {
     method: 'POST', headers, body: typeof body === 'string' ? body : JSON.stringify(body), ...extra,
   }) };
 }
@@ -54,6 +55,30 @@ test('assistant capabilities require a verified session and mutations require CS
   const noCsrf = { ...state.headers, 'x-csrf-token': '' };
   assert.equal((await state.post({ message: 'Hi' }, { headers: noCsrf })).status, 403);
   assert.equal(calls, 0);
+});
+
+test('global assistant setting blocks every member before quota and inference and can be re-enabled without restart', async t => {
+  // An obsolete environment value must have no effect on the admin setting.
+  const previous = process.env.ASSISTANT_ENABLED;
+  process.env.ASSISTANT_ENABLED = 'false';
+  t.after(() => { if (previous === undefined) delete process.env.ASSISTANT_ENABLED; else process.env.ASSISTANT_ENABLED = previous; });
+  let calls = 0;
+  const state = await fixture(t, { model: async () => { calls++; return {}; } });
+  const capabilities = async () => (await (await fetch(state.base + '/api/assistant/capabilities', { headers: state.headers })).json()).data;
+  assert.equal((await capabilities()).enabled, true);
+  for (const setting of [false, undefined]) {
+    state.settings.assistantEnabled = setting;
+    assert.equal((await capabilities()).enabled, false);
+    for (const id of ['507f1f77bcf86cd799439011', '507f1f77bcf86cd799439012']) {
+      state.member._id = id;
+      assert.equal((await state.post({ message: 'Help' })).status, 503);
+    }
+  }
+  assert.equal(calls, 0);
+  assert.equal(state.counts.size, 0);
+  state.settings.assistantEnabled = true;
+  assert.equal((await state.post({ message: 'Help' })).status, 200);
+  assert.equal(calls, 1);
 });
 
 test('assistant validates before charging quota and counts actual request bytes', async t => {

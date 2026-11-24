@@ -41,6 +41,17 @@ const DEPLOYMENTS = {
     island: '7fbf2a35d77a2e13d2e04f4223342f676b5614bc7417da51f7c4a2ab0c631e42',
     components: '542c5b4a4de0e62f24335fe1b522dcb4dd753d9276a816330b39d40f369a109e',
   },
+  // Nov21: all 18 careers data-flow definitions retain their original AST;
+  // the Pt careers UI and Ft department list retain their lexical binding
+  // structure. Publisher text, links and careers props remain unchanged; five
+  // other islands add only three popup form translations. The section wrapper
+  // changes only its dependency URL. Keep the entire reviewed UI deployment
+  // byte-paired; native rows, full criteria, dates and closing reads stay live.
+  '9fbf8906b0fd8a2f0f78dc7381a0f24e94afc139ce30ae37f80a2afd4ee76a1c': {
+    index: '40dc2a9794a7140cf572009c4ea48f639152698a79164e9653bab5c74e5482ca',
+    island: '6d5483887c15ed003c7cb9673b3ab8885f91c78d6cf279f5c4882473ed244c3d',
+    components: '4512c3f62ebd1b7bf3063ee822a462fa78972f118ef5b5a91dff20db5d19c8a3',
+  },
 }
 const sha = value => createHash('sha256').update(value).digest('hex')
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)

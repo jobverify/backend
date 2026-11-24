@@ -331,6 +331,18 @@
       "kind": "js",
       "bytes": 8470,
       "sha256": "3a6be591e4f1414ae61661b1cd4f51f004cf30c3890a1435453457eb9afd413a"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.ab093536bfff1b8a581e.js",
+      "kind": "js",
+      "bytes": 8470,
+      "sha256": "7706c80ce3a7cd770d34b563fcb48acbfbf9b31f86b45c07702fcf4007dfe8cb"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/40.61d4764b44ad41ba41f7.chunk.js",
+      "kind": "js",
+      "bytes": 4599478,
+      "sha256": "ec4d7bcc557bfd8e58522db7835a4d7e188a8a51cd1eb9f0e22ae3b033f7dc87"
     }
   ],
   "surfaces": {
@@ -751,6 +763,48 @@
       "companyScopeUnqualified": true,
       "reviewedAt": "2026-11-19",
       "proof": "Whole current runtime and eight other public clients are byte-identical to the preceding profile. Of 705 main modules, only402 differs: one UniqueGuid integration template literal property and its metadata row were added. Public token, organization, filtered listing, role detail and full criteria modules are byte-identical. Complete current bodies and coherent declaration tuple remain pinned; browser and shared-tenant company scope remain unqualified."
+    },
+    {
+      "scriptURLs": [
+        "https://olacareers.turbohire.co/runtime-main.ab093536bfff1b8a581e.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js"
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.ab093536bfff1b8a581e.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js"
+      ],
+      "assetURLs": [
+        "https://olacareers.turbohire.co/38.3bfdd6d56a857d3bea5d.chunk.js",
+        "https://olacareers.turbohire.co/14.7e262e2081727fd99ad1.chunk.js",
+        "https://olacareers.turbohire.co/17.b43c0c94060116649b1a.chunk.js",
+        "https://olacareers.turbohire.co/main.0fbeb7233f472c0db0a8.chunk.js",
+        "https://olacareers.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+        "https://olacareers.turbohire.co/18.ad1f07674b986c5052f1.chunk.js",
+        "https://olacareers.turbohire.co/25.4ff0b38bbe5de31b81f0.chunk.js",
+        "https://olacareers.turbohire.co/40.61d4764b44ad41ba41f7.chunk.js",
+        "https://olacareers.turbohire.co/runtime-main.ab093536bfff1b8a581e.js",
+        "https://olacareers.turbohire.co/64.b25336d8977beedc990c.chunk.js"
+      ],
+      "companyScopeUnqualified": true,
+      "reviewedAt": "2026-11-21",
+      "proof": "Original current main, chunks18 and30 are byte-identical to the preceding profile. The complete runtime differs only in four literal chunk filename hashes (22,40,62,65). Current selected chunk40 has the same318-module declaration and bootstrap skeleton;315 module ASTs are identical. All changes in module2543 are confined to the interview onInitStore method: cancellation of stale organization requests, pathname/load guards, a nonempty GUID check and the reviewed organization-details action. Module3019 adds organization GUID validation, deferred loading and request-generation checks around existing policy/branding/license responses; its complete authenticated store was reviewed, without claiming global behavioral equivalence. Module3953 changes only reviewed layout mount/update/unmount methods and private route co, plus a deferOrgLoading flag on the existing interview-hub route; all remaining AST structure is identical. The selected public acquisition, listing, role DTO, criteria, country, date and application readers retain their strict contracts. Only this exact coherent declaration tuple and original asset bytes are admitted. Shared-tenant brand, legal employer and company-wide scope remain unqualified."
     }
   ],
   "corporateStyleVersions": {
@@ -779,6 +833,33 @@
           "e9c8fc652f2b62abb49743628fc420db7b94aef3b075ab348a8dc6fff2de4a37",
           "56a412ebdf34e6b92604577fb3927a3d7a45bde83fa756b0d1e1a9d58c9cadb9"
         ]
+      },
+      {
+        "stylesheets": [
+          {
+            "url": "https://www.olaelectric.com/static/_cache/merged/ba425f4b503867d814bcd6848d8bb896.min.css",
+            "media": "all"
+          },
+          {
+            "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/support_faq_v1.min.css",
+            "media": "all"
+          },
+          {
+            "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/common_admin_css_file_v4.min.css",
+            "media": "all"
+          }
+        ],
+        "inlineStyleSHA256": [
+          "2e450ddcb53a2d676ee72e9279fbf3c8e7e3baf8349242643b857279f9061b19",
+          "e06074d2f0b85bdaaac5f7c16cd872f90abd67c58b7503a0f509b2e2bf207b14",
+          "76c74c57da9fd408693043af819405f14c6634412ff783d8937d8bdbe1b5cea0",
+          "7f5af4ea4a4ebcf7466bfa42431a04503a7b38c0e6d2be6b3519b80d9e2dab70",
+          "8a59f0fa2ffb0b6d9868fb363ef5e113dbf857af60f83ef4ea5189982e5024bb",
+          "e9c8fc652f2b62abb49743628fc420db7b94aef3b075ab348a8dc6fff2de4a37",
+          "56a412ebdf34e6b92604577fb3927a3d7a45bde83fa756b0d1e1a9d58c9cadb9"
+        ],
+        "reviewedAt": "2026-11-21",
+        "proof": "One original current corporate response: six of seven inline styles are byte-identical to the preceding exact profile. The complete changed72747-byte third style differs only in a consistent bijection of14 generated selector class names; every CSS declaration and every other byte is unchanged. All14 mapped current and previous elements are present and none is a recruitment-link ancestor. All three external styles retain their exact existing URL/body contracts. This exact profile changes stylesheet selection only; corporate programs, shared-tenant employer identity, company inventory and lifecycle cleanup remain unqualified."
       }
     ]
   }

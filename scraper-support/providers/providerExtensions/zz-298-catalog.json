@@ -1,6 +1,7 @@
 [
   {
     "source": "2070health",
+    "authoritativeCurrentPublication": true,
     "catalogOverride": true,
     "backfillMode": null,
     "runtimeValidation": null,

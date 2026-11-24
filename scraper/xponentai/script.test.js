@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {replay,mutateBody,fixture} from '../../test/test-data/xponentai20261108.js'
+import {fixture,replayOptions} from './fixture20261120.js'
+// Current complete physical originals replace the unavailable historical Nov8
+// helper. Retain the same declared-URL/metadata/no-uncaptured-request contract.
+const mutateBody=(packet,text)=>{packet.bodyBase64=Buffer.from(text).toString('base64')}
+const replay=({transform}={})=>{
+ const options=replayOptions({},(text,requestedURL)=>{const packet={requestedURL,bodyBase64:Buffer.from(text).toString('base64')};if(transform)transform(packet);return Buffer.from(packet.bodyBase64,'base64').toString()})
+ return{options,requests:options.calls,uncaptured:[]}
+}
 
 const loadModule = async () => {
   try {
@@ -174,7 +181,7 @@ test('xponent.ai factory runs the paired full-native route with captured respons
   assert.deepEqual(r.uncaptured, [])
   assert.equal(jobs[0].source, 'xponentai')
   assert.equal(jobs[0].link, fixture.expected.nativeModels[0].link)
-  assert.equal(jobs[0].scrapedAt, fixture.captureCompletedAt)
+  assert.equal(jobs[0].scrapedAt, fixture.observedAt)
   assert.equal(jobs[0].sourceDescription, fixture.expected.roles[0].description)
   assert.equal(jobs[0].country, null)
   assert.equal(jobs[0].requisitionId, null)

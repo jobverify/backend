@@ -1,0 +1,17 @@
+[
+  {
+    "source": "carlsberggroup",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "carlzeiss",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "revature",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  }
+]

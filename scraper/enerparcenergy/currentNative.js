@@ -1,3 +1,4 @@
+import nativeRouteSerializer from './currentRoute20261120.js'
 import {createHash} from 'node:crypto'
 import {types} from 'node:util'
 import {parse} from 'acorn'
@@ -6,6 +7,8 @@ import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFir
 import {canonicalNativeRecord} from '../../scraper-support/native-sources/collectCurrentOriginalRecords20261106.js'
 import {readOwnedCurrentDocument,readOriginalNativeCriteria} from '../../scraper-support/native-sources/currentNativeCriteria20261106.js'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
+import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
+import {nativeLines,comparable} from '../../scraper-support/native-sources/firstPartyNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {CURRENT_ENERPARC_PROFILE as PROFILE} from './currentProfile.js'
@@ -40,7 +43,7 @@ export function createEnerparcOriginalReader(options={}){
  const timer=setTimeout(expire,limits.sourceTimeoutMs)
  const check=()=>{caller?.throwIfAborted();if(performance.now()-started>=limits.sourceTimeoutMs&&!controller.signal.aborted)expire();signal.throwIfAborted();need(!closed,'Original native reader is closed')}
  const admitted=new Map([[BOARD,'html'],[COMMON,'javascript'],[DETAIL_CLIENT,'javascript'],[ROLE,'html']])
- return {check,limits,
+ return {check,limits,allowClient(url){check();need(/^https:\/\/static[.]zohocdn[.]com\/recruit\/javascript\/career-website-(?:common|detailapply)[.][a-f0-9]{32}[.]js$/.test(url),'Unbound native declared client');admitted.set(url,'javascript')},
   async read(url,{reserveBytes=0}={}){
    check();const kind=admitted.get(url),detail=url===ROLE
    need(kind&&!inFlight&&receipts.length<limits.maxRequests,'Unbound or excessive original native request')
@@ -84,7 +87,7 @@ export function createEnerparcOriginalReader(options={}){
     if(response.status!==200)throw fail('Original native HTTP '+response.status,{status:response.status,requestUrl:url})
     need(response.headers['content-type']===(kind==='html'?'text/html;charset=UTF-8':'text/javascript;charset=UTF-8'),'Original native '+kind+' MIME changed')
     const expected=PROFILE.clients.find(client=>client.url===url)
-    if(expected)need(bytes.length===expected.bytes&&receipt.sha256===expected.sha256,'Declared critical client original entity changed')
+    if(expected)receipt.historicalClientFingerprintMatch=bytes.length===expected.bytes&&receipt.sha256===expected.sha256
     need(!(bytes[0]===239&&bytes[1]===187&&bytes[2]===191),'Original native BOM requires review')
     let body;try{body=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch(cause){throw fail('Original native UTF8 entity is invalid',{cause})}
     check();return{url,body,bytes,sha256:receipt.sha256}
@@ -115,62 +118,42 @@ function strictJSON(text){
  need(ast.body.length===1&&ast.body[0].type==='ExpressionStatement','Changed original native JSON expression')
  need(same(value,literal(ast.body[0].expression)),'Native JSON data differs');return value
 }
-function carrierValue(program,expected){
- need(Buffer.byteLength(program)<=256*1024,'Excessive native carrier')
- let ast;try{ast=parse(program,{ecmaVersion:'latest'})}catch(cause){throw fail('Native carrier AST changed',{cause})}
- need(ast.body.length===expected.length,'Native complete carrier execution plan changed')
- const values={}
- for(const [index,plan]of expected.entries()){
-  const statement=ast.body[index];need(statement.type===plan.type,'Native carrier statement changed')
-  if(statement.type!=='VariableDeclaration'){need(hash(program.slice(statement.start,statement.end))===plan.sha256,'Native carrier executable statement changed');continue}
-  need(statement.kind===plan.kind&&statement.declarations.length===plan.declarations.length,'Native carrier declarations changed')
-  for(const [offset,field]of plan.declarations.entries()){
-   const declaration=statement.declarations[offset];need(declaration.id.type==='Identifier'&&declaration.id.name===field.name,'Native carrier binding changed')
-   if(field.kind==='uninitialized'){need(declaration.init===null,'Native uninitialized binding changed');continue}
-   if(field.kind==='exact-original-expression'){need(declaration.init&&hash(program.slice(declaration.init.start,declaration.init.end))===field.sha256,'Native original carrier expression changed');continue}
-   if(field.kind==='original-job-json'){
-    const call=declaration.init
-    need(call?.type==='CallExpression'&&call.callee.type==='MemberExpression'&&!call.callee.computed&&call.callee.object.name==='JSON'&&call.callee.property.name==='parse'&&call.arguments.length===1&&call.arguments[0].type==='Literal'&&typeof call.arguments[0].value==='string','Native complete original job JSON binding changed')
-    values.jobs=strictJSON(call.arguments[0].value);continue
-   }
-   const value=literal(declaration.init)
-   if(field.kind==='unconsumed-public-uuid'){need(typeof value==='string'&&/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(value),'Unconsumed native public request-token shape changed');continue}
-   need(field.kind==='complete-literal-data'&&hash(JSON.stringify(value))===field.sha256,'Native complete metadata/layout input changed');values[field.name]=value
+function semanticCarrier(scripts){
+ const names=new Set(['jobs',...Object.keys(PROFILE.detailMetadata)]),values={},owners=[]
+ for(const script of scripts.filter(node=>!node.attrs.src&&/\bvar\s+jobs\s*=/.test(node.raw))){
+  need(!script.inert&&Buffer.byteLength(script.raw)<=256*1024,'Native literal carrier owner changed')
+  const ast=parse(script.raw,{ecmaVersion:'latest'});owners.push(script)
+  for(const statement of ast.body)if(statement.type==='VariableDeclaration')for(const declaration of statement.declarations){
+   const name=declaration.id.name;if(!names.has(name))continue
+   need(!Object.hasOwn(values,name)&&declaration.id.type==='Identifier'&&declaration.init,'Duplicate native literal metadata binding')
+   const init=declaration.init
+   if(name==='jobs'){need(init.type==='CallExpression'&&init.callee.type==='MemberExpression'&&!init.callee.computed&&init.callee.object.name==='JSON'&&init.callee.property.name==='parse'&&init.arguments.length===1&&init.arguments[0].type==='Literal'&&typeof init.arguments[0].value==='string','Native original job JSON declaration changed');values.jobs=strictJSON(init.arguments[0].value)}
+   else values[name]=literal(init)
   }
+  const rootName=node=>node?.type==='Identifier'?node.name:node?.type==='MemberExpression'?rootName(node.object):null
+  const walk=node=>{if(!node||typeof node!=='object')return;if(['AssignmentExpression','UpdateExpression'].includes(node.type)&&names.has(rootName(node.left??node.argument))){
+   const left=node.left,field=left?.type==='MemberExpression'&&!left.computed&&left.object.name==='meta'?left.property.name:null,value=node.right?.type==='Literal'?node.right.value:undefined
+   let reviewed=false
+   if(node.type==='AssignmentExpression'&&node.operator==='='&&['callback_url','listpage_callback_url'].includes(field)&&value==='')reviewed=true
+   if(node.type==='AssignmentExpression'&&node.operator==='='&&field==='favicon_url'&&typeof value==='string'){const url=new URL(value);reviewed=url.origin===new URL(BOARD).origin&&url.pathname==='/recruit/viewCareerImage.do'&&url.searchParams.get('type')==='favicon'&&url.searchParams.get('page_id')===values.page_id&&!url.username&&!url.password&&!url.hash&&[...url.searchParams.keys()].every(key=>['type','page_id','file_name'].includes(key))}
+   need(reviewed,'Native literal carrier mutated after publication');(values.nativePublisherAssignments??=[]).push({field,value,originalStatement:script.raw.slice(node.start,node.end)})
+  }if(node.type==='CallExpression')need(!names.has(rootName(node.callee))&&!node.arguments.some(arg=>arg.type==='Identifier'&&names.has(arg.name)),'Native literal carrier delegated to unreviewed mutation');for(const [key,value]of Object.entries(node))if(!['start','end','loc'].includes(key)){if(Array.isArray(value))value.forEach(walk);else if(value&&typeof value==='object')walk(value)}}
+  walk(ast)
  }
+ need(owners.length===1&&Object.hasOwn(values,'jobs'),'Native complete original detail carrier unavailable')
+ for(const [name,expected]of Object.entries(PROFILE.detailMetadata))need(same(values[name],expected),'Native detail employer/metadata binding changed: '+name)
  return values
-}
-function documentPlan(root,kind){
- const visit=node=>{
-  const attrs={...node.attrs}
-  if(kind==='listing'&&node.tag==='input'&&['pageJson','moduleMeta','jobs','meta'].includes(node.attrs.id))attrs.value={originalDataSlot:node.attrs.id}
-  return{tag:node.tag,attrs,unqualifiedTag:Boolean(node.nativeTagUnqualified),...(['title','style'].includes(node.tag)?{rawSHA256:hash(node.raw??'')}:{ }),children:node.children.map(child=>typeof child==='string'?child:visit(child))}
- }
- return visit(root)
 }
 function criteriaPlan(root){return{tag:root.tag,attrs:root.attrs,unqualifiedTag:Boolean(root.nativeTagUnqualified),children:root.children.map(child=>typeof child==='string'?{originalTextSlot:true}:criteriaPlan(child))}}
 function ownedDocument(body,kind){
- const expected=PROFILE.documents[kind],owned=readOwnedCurrentDocument(body,{failure:fail,title:expected.title,canonical:kind==='detail'?PROFILE.detailMetadata.meta.detail_url:BOARD,stylesheetFragment:true}),scripts=owned.nodes.filter(node=>node.tag==='script')
- // Nov16 keeps the full employer/data/carrier plans. Its reviewed document
- // revisions change only static social-icon CSS and declared CDN CSS paths;
- // pair the complete original document fingerprint to the new literal map.
- const currentPlanSHA=kind==='listing'?'b72cd572db98d4055b1321b9b9f4d27d72b10d14c335226fcab54546888c85ee':'142ffc15a5618722e082ce6dde7aa93af4bd6276a91d687cc3822223962ac0fb'
- const plan=documentPlan(owned.root,kind),currentDeployment=hash(canonicalNativeRecord(plan))===currentPlanSHA
- need(currentDeployment||same(plan,expected.documentPlan),'Native complete raw document/owner/presentation input changed')
- need(scripts.length===expected.scripts.length,'Native raw executable owner inventory changed')
- let values
- for(const [index,script]of scripts.entries()){
-  const plan=expected.scripts[index];need(same(script.attrs,plan.attrs),'Native exact script declarations changed')
-  if(plan.carrier){need(!script.inert,'Native carrier is hidden or inert');values=carrierValue(script.raw,expected.carrierPlan)}
-  else{
-   const fingerprint=currentDeployment&&plan.sha256==='014c397d0ed8d76f5277c690e3f41ece944a41dd9202cc766f636ba7f380df97'?'66c0332e7206d4ab43ece27e9f39ab936698d663cef95aef32a100c870fbd189':plan.sha256
-   need(hash(script.raw??'')===fingerprint,'Native original inline program changed')
-  }
- }
- need(values,'Native current carrier unavailable')
- const mounts=owned.nodes.filter(node=>node.attrs.id==='career-website-main')
- need(mounts.length===1&&mounts[0].tag==='div'&&!mounts[0].inert,'Native complete raw mount owner changed')
- return{owned,values,clients:scripts.filter(node=>node.attrs.src&&PROFILE.clients.some(client=>client.url===node.attrs.src)).map(node=>node.attrs.src)}
+ const expected=PROFILE.documents[kind],owned=readOwnedCurrentDocument(body,{failure:fail,title:expected.title,canonical:kind==='detail'?PROFILE.detailMetadata.meta.detail_url:BOARD,stylesheetFragment:true}),scripts=owned.nodes.filter(node=>node.tag==='script'),mounts=owned.nodes.filter(node=>node.attrs.id==='career-website-main')
+ const findMount=node=>node.attrs?.id==='career-website-main'?node:(node.children??[]).filter(child=>typeof child!=='string').map(findMount).find(Boolean),expectedMount=findMount(expected.documentPlan)
+ need(mounts.length===1&&mounts[0].tag==='div'&&!mounts[0].inert&&same(mounts[0].attrs,expectedMount?.attrs),'Native complete raw mount owner changed')
+ need(readVisibleNativeDocument(body,{strict:true}).nodes(node=>node.attrs.id==='career-website-main').length===1,'Native document presentation hides the current data mount')
+ const clients=scripts.filter(node=>node.attrs.src&&/^https:\/\/static[.]zohocdn[.]com\/recruit\/javascript\/career-website-(?:common|detailapply)[.][a-f0-9]{32}[.]js$/.test(node.attrs.src))
+ need(clients.every(node=>!node.inert)&&clients.length===(kind==='detail'?2:1),'Native declared critical client owner changed')
+ need(clients.filter(node=>node.attrs.src.includes('/career-website-common.')).length===1&&(kind!=='detail'||clients.filter(node=>node.attrs.src.includes('/career-website-detailapply.')).length===1),'Native ambiguous critical client declaration')
+ return{owned,values:kind==='detail'?semanticCarrier(scripts):null,clients:clients.map(node=>node.attrs.src)}
 }
 const listFields=['Industry','Remote_Job','Job_Type','Job_Opening_Name','Posting_Title','Country','Is_Locked','id','City','Publish','Keep_on_Career_Site']
 const detailFields=[...listFields,'Job_Description','Work_Experience','State','Zip_Code','Date_Opened']
@@ -188,11 +171,11 @@ export function readEnerparcListing(body){
   values[name]=strictJSON(owners[0].attrs.value)
  }
  for(const name of ['pageJson','moduleMeta','meta'])need(same(values[name],PROFILE.listingMetadata[name]),'Native own employer/whole listing model changed')
- need(Array.isArray(values.jobs)&&values.jobs.length===PROFILE.listingExpectedCount,'Native complete observed listing count changed')
+ need(Array.isArray(values.jobs)&&values.jobs.length<=2000,'Native complete observed listing count/bound changed')
  const ids=new Set()
  for(const row of values.jobs){rowShape(row,listFields);need(!ids.has(row.id),'Duplicate native listing role ID');ids.add(row.id)}
- need(same(clients,[COMMON]),'Native listing critical client declarations changed')
- return values
+ need(clients.length===1,'Native listing critical client declarations changed')
+ return{...values,nativeClients:clients,originalHTML:body}
 }
 export function readEnerparcDetail(body,row){
  const {values,clients}=ownedDocument(body,'detail')
@@ -206,10 +189,22 @@ export function readEnerparcDetail(body,row){
  need(/^\d{4}-\d{2}-\d{2}$/.test(record.Date_Opened)&&Number.isFinite(Date.parse(record.Date_Opened))&&new Date(record.Date_Opened).toISOString().slice(0,10)===record.Date_Opened,'Invalid native Date_Opened')
  const criteria=readOriginalNativeCriteria(record.Job_Description,fail)
  need(criteria.sourceDetailComplete&&/Requirements/.test(criteria.sourceDescription)&&/Benefits/.test(criteria.sourceDescription),'Native full original criteria unavailable')
+ need(same(criteriaPlan(readNativeDocument(record.Job_Description).nodes(node=>node.tag==='root')[0]),PROFILE.criteriaPlan),'Native criteria element/attribute presentation changed')
+ const styles=readVisibleNativeDocument(body).nodes(node=>node.tag==='style').map(node=>'<style>'+node.raw+'</style>').join(''),view=readVisibleNativeDocument(styles+'<div id="original-native-criteria">'+record.Job_Description+'</div>',{strict:true}).nodes(node=>node.attrs.id==='original-native-criteria')
+ need(view.length===1&&comparable(nativeLines(view[0]).join('\n'))===comparable(criteria.sourceDescription??''),'Native current criteria presentation changed or hides authored requirements')
  need(!/\b(?:(?:this|the) (?:job|role|position|vacancy) (?:is |has been |has )?(?:closed|filled|expired)|(?:we are |we're )?no longer accepting applications|applications? (?:are |have been )?closed)\b/i.test(criteria.sourceDescription),'Explicit native closed role notice')
- need(same(criteriaPlan(readNativeDocument(record.Job_Description).nodes(node=>node.tag==='root')[0]),PROFILE.criteriaPlan),'Native complete criteria element/attribute presentation changed')
- need(same(clients,[COMMON,DETAIL_CLIENT]),'Native complete detail critical client declarations changed')
+ need(clients.length===2,'Native complete detail critical client declarations changed')
  return{record,criteria,metadata:values,clients}
+}
+const originalRouteFunction=nativeRouteSerializer
+export function readEnerparcRouteClient(body){
+ need(typeof body==='string'&&Buffer.byteLength(body)<=4000000,'Native route client bound changed')
+ const ast=parse(body,{ecmaVersion:'latest'}),found=[]
+ const walk=node=>{if(!node||typeof node!=='object')return;if(node.type==='CallExpression'&&node.callee.type==='MemberExpression'&&node.callee.property.name==='registerHelper'&&node.arguments[0]?.value==='getJobViewUrl'){need(node.arguments.length===2&&node.arguments[1].type==='FunctionExpression','Native own routing serializer changed');found.push(node.arguments[1])}for(const value of Object.values(node))if(Array.isArray(value))value.forEach(walk);else if(value&&typeof value==='object')walk(value)}
+ walk(ast);need(found.length===1,'Native own route serializer ambiguous or absent')
+ const clean=value=>Array.isArray(value)?value.map(clean):value&&typeof value==='object'?Object.fromEntries(Object.entries(value).filter(([key])=>!['start','end','loc','raw'].includes(key)).map(([key,value])=>[key,clean(value)])):value
+ need(same(clean(found[0]),originalRouteFunction),'Native own routing serializer changed')
+ return{nativeSerializerQualified:true,originalClient:body,originalSerializer:body.slice(found[0].start,found[0].end)}
 }
 function reviewedRole(listing){
  const row=listing.jobs.find(row=>row.id===PROFILE.reviewedRoleID)
@@ -227,29 +222,29 @@ export async function runCurrentEnerparc(options={}){
   need(reader.limits.maxRequests>=8&&reader.limits.maxPages>=6&&reader.limits.maxDetails>=2,'Insufficient native budget for complete opening/closing qualification')
   const commonBytes=PROFILE.clients[0].bytes,detailBytes=PROFILE.clients[1].bytes,closingReserve=2*reader.limits.maxEntityBytes+commonBytes+detailBytes
   const opening=readEnerparcListing((await reader.read(BOARD,{reserveBytes:closingReserve})).body),row=reviewedRole(opening)
-  await reader.read(COMMON,{reserveBytes:closingReserve})
+  const currentCommon=opening.nativeClients[0];reader.allowClient(currentCommon);readEnerparcRouteClient((await reader.read(currentCommon,{reserveBytes:closingReserve})).body)
   const first=readEnerparcDetail((await reader.read(ROLE,{reserveBytes:closingReserve})).body,row)
   need(Date.parse(first.record.Date_Opened)<=Date.parse(observedAt),'Native Date_Opened is in the future')
-  await reader.read(DETAIL_CLIENT,{reserveBytes:closingReserve})
+  const currentDetail=first.clients.find(url=>url.includes('/career-website-detailapply.'));reader.allowClient(currentDetail);await reader.read(currentDetail,{reserveBytes:closingReserve})
   const closing=readEnerparcListing((await reader.read(BOARD,{reserveBytes:reader.limits.maxEntityBytes+commonBytes+detailBytes})).body)
-  need(same(opening,closing),'Native whole ordered listing/model changed at closing')
-  await reader.read(COMMON,{reserveBytes:reader.limits.maxEntityBytes+detailBytes})
+  need(same({...opening,originalHTML:null},{...closing,originalHTML:null}),'Native whole ordered listing/model changed at closing')
+  readEnerparcRouteClient((await reader.read(currentCommon,{reserveBytes:reader.limits.maxEntityBytes+detailBytes})).body)
   const last=readEnerparcDetail((await reader.read(ROLE,{reserveBytes:detailBytes})).body,reviewedRole(closing))
-  await reader.read(DETAIL_CLIENT)
+  need(same(first.clients,last.clients),'Native critical client declarations changed at closing');await reader.read(currentDetail)
   need(same(first.record,last.record)&&same(first.metadata,last.metadata),'Native complete original full detail changed at closing')
   need(Date.parse(first.record.Date_Opened)<=Date.parse(observedAt),'Native Date_Opened is in the future')
   const record=first.record,job={...first.criteria,sourceDescription:record.Job_Description,jobDescription:record.Job_Description,sourceDescriptionText:first.criteria.sourceDescription,
    source:SOURCE,company:'Enerparc Energy',title:record.Posting_Title,jobId:record.id,requisitionId:record.id,sourceUrl:ROLE,applyUrl:ROLE,link:ROLE,
    country:'India',location:[record.City,record.State,record.Country].filter(Boolean).join(', '),city:record.City||null,state:record.State||null,department:record.Industry,employmentType:record.Job_Type,
    experienceRequired:record.Work_Experience,postingDate:record.Date_Opened,nativeDateOpened:record.Date_Opened,nativePublicationDateProvenance:'original-public-Zoho-Date_Opened-displayed-with-native-postedon-label',nativeFirstEverPublicationUnverified:true,closingDate:null,
-   sourceNativeListingRecord:row,sourceNativeDetailRecord:record,sourceNativeClosingListingRecord:reviewedRole(closing),sourceNativeClosingDetailRecord:last.record,
+   sourceNativeListingRecord:row,sourceNativeDetailRecord:record,sourceNativeClosingListingRecord:reviewedRole(closing),sourceNativeClosingDetailRecord:last.record,sourceNativeDetailModel:first.metadata,sourceNativeClosingDetailModel:last.metadata,
    nativeEmployerBinding:{method:'current-own-native-internal-legal-organization-and-official-website;historical-corporate-handoff',organization:first.metadata.meta.org_info},
    nativeApplyHandoff:{kind:'current-own-public-native-detail-page',url:ROLE,applicationActionVerified:false},
    sourceClosingReconciled:true,nativeCriteriaTextComplete:true,sourceCriteriaPresentation:'complete-original-native-criteria-data-and-finite-reviewed-inputs;current-external-CSS-and-rendered-activation-unverified',
    currentCSSCoverage:false,activationVerified:false,clientDependencyCoverage:false,applicationQuestionsCoverage:false,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,
    scrapedAt:observedAt,companyCareerPage:CORPORATE,companyDomain:'enerparc.in',atsPlatform:'zoho-recruit'}
   const jobs=[job],audit={source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:opening.jobs.length,observedVacancyCount:opening.jobs.length,companyGlobalTotal:null,companyIndiaTotal:null,returnedCount:1,unhydratedRecordCount:opening.jobs.length-1,
-   originalOpeningRecords:opening.jobs,originalClosingRecords:closing.jobs,unhydratedRecords:opening.jobs.filter(candidate=>candidate.id!==record.id),
+   originalOpeningRecords:opening.jobs,originalClosingRecords:closing.jobs,nativeOpeningModel:opening,nativeClosingModel:closing,fullRawPublisherHTMLClosingEqual:opening.originalHTML===closing.originalHTML,unhydratedRecords:opening.jobs.filter(candidate=>candidate.id!==record.id),
    unknownCountryRecordCount:opening.jobs.filter(candidate=>candidate.Country!=='India').length,unpublishedOrLockedRecordCount:opening.jobs.filter(candidate=>!candidate.Publish||candidate.Is_Locked).length,
    sourceScopeComplete:false,lifecycleCleanupAllowed:false,currentCSSCoverage:false,activationVerified:false,clientDependencyCoverage:false,applicationQuestionsCoverage:false,
    currentCorporateBindingVerified:false,historicalCorporateHandoff:PROFILE.originalCorporateHandoff,observedCorporateBlock:PROFILE.observedCorporateBlock,
@@ -259,7 +254,7 @@ export async function runCurrentEnerparc(options={}){
    openingClosingListingMatch:true,openingClosingDetailMatch:true,reader:reader.stats(),observationTime:observedAt}
   attachSourceObservationEvidence(jobs,audit);Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
   attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:audit.reader.requests,verifiedAt:observedAt,
-   reason:'exact-own-native-complete-criteria-and-closing;24unhydrated;historical-corporate-binding;company-CSS-dependency-activation-application-cleanup-held'})
+   reason:'exact-own-native-complete-criteria-and-closing;other-native-records-unhydrated;historical-corporate-binding;company-CSS-dependency-activation-application-cleanup-held'})
   need(Buffer.byteLength(JSON.stringify({jobs,audit}))<=8*1024*1024,'Native output byte budget exceeded');reader.check();return jobs
  }finally{reader.close()}
 }

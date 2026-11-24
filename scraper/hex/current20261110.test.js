@@ -2,12 +2,14 @@ import assert from 'node:assert/strict'
 import {createHash} from 'node:crypto'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import test from 'node:test'
-import {createHexScraper,hasCompleteUsOnlyInventory,hasVerifiedCareersLandingSignal} from './script.js'
-import {inspectCurrentHexRole,readCurrentHexInventory} from './currentNative.js'
+import nodeTest from 'node:test'
+import {hasCompleteUsOnlyInventory,hasVerifiedCareersLandingSignal} from './script.js'
+import {inspectCurrentHexRole,readCurrentHexInventory,runCurrentHex as historicalRunCurrentHex} from './currentNative.js'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+const test=(name,fn)=>nodeTest('Historical 20261110 '+name,fn)
+const createHexScraper=()=>({run:historicalRunCurrentHex})
 
 const capture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current20261110.json.gz',import.meta.url))))
 const landing=capture.opening.responses[0]

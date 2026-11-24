@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto'
 import {parse} from 'acorn'
+import {readFactSetCorporateShell} from './currentShell20261121.js'
 import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 
 export const FACTSET_CAREERS='https://www.factset.com/careers'
@@ -8,31 +9,6 @@ export const FACTSET_WORKDAY={origin:'https://factset.wd108.myworkdayjobs.com',t
 const REVIEWED_RENDERERS={
  'https://www.factset.com/assets/index-CJaIwYkV.js':'575b59fa2aaedc23f433c8664241c0535ab087daebb2e261225cb66b1ea4a479',
  'https://www.factset.com/assets/index--Pj3DBjZ.js':'19c18961e30aa70fb08e69f85177f6b9b8d05ee78e14034217dd963fdc27cb4f',
-}
-// Complete genuine shells, paired with their declared program. The current
-// shell's only variable bytes are the same canonical 16-byte CSP nonce in
-// twelve script attributes and the prefetch spark.nonce JSON value. Consume
-// each exact literal run and each typed slot; never normalize the document.
-const REVIEWED_SHELLS={
- 'https://www.factset.com/assets/index-CJaIwYkV.js':{bytes:6088,literals:[
-  [6088,'c28c3de5cedaebb2ea305d87209467c1be2410b2ce718e406223750280182a3a'],
- ]},
- 'https://www.factset.com/assets/index--Pj3DBjZ.js':{bytes:6519,literals:[
-  [529,'3a0d80a6011bb9ee50b0369b5e1a369d3dbf3cff38d9a4900e32d2fd00b37f9c'], // script[0].nonce
-  [86,'ac6e642b7767ebf26c008ecbc7ee063b247ed50d0bf30c5cbaec533303c41545'], // script[1].nonce
-  [137,'373cf0d213480721b28d8ca47861a7a9cf65af2a2f93e14ed29bcc3b1c007152'], // script[2].nonce
-  [2311,'7bf0105027cdcd2c21377eb2bc1ff086045f00b25c2211078b81ac98891ef1a2'], // script[3].nonce
-  [97,'9610a4641c7e85052c7d290e0b07fed227110ab7625ffa5afdde80be1b8e3dff'], // script[4].nonce
-  [949,'afd407f3dac5b04f05a7f4832aa90458e134db282089c2d221b2b1f6b624635d'], // script[5].nonce
-  [260,'0eae454623fe74574645c9a68a1aedb27994680530b6bb61457174243bbedbdc'], // script[6].nonce
-  [162,'20cf9c1b2597842c712c7e0c53f62d493d8bdc42a813e30aa6b92e77905b4193'], // script[7].nonce
-  [346,'e95dca4bdd74a5943a76e7b4e946dd2d4dd641f35332df142897df3a5468cc4a'], // script[8].nonce
-  [189,'ce4a23d76be21e7d61eede1502c7dd2121794139321a9361c47c946e5d396896'], // script[9].nonce
-  [220,'d7fa52e7d3ff7bf904164552a3aa58b16d686544f8df4bc6f67a683869c60da1'], // script[10].nonce
-  [144,'66ce41cfe57614d0a989ef84e109ac3b267eea72f3c9322b852b43bcb0780352'], // script[11].nonce
-  [388,'e19851486e133b86f579923ee69f3e1e5551ab9cd1bbfdef553cdc00afa4a7b5'], // prefetch.spark.nonce
-  [389,'a59f530409f2dfbe49fef065695109b247bc67b28f739efeeb45c84fb2280d26'],
- ]},
 }
 const sha=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex')
 const check=(condition,message)=>{if(!condition)throw Error('FactSet current publisher: '+message)}
@@ -48,23 +24,6 @@ const member=(node,object,property)=>node?.type==='MemberExpression'&&!node.comp
  &&node.object.name===object&&node.property?.name===property
 const workdayReference=node=>member(node,'window','workday')||node?.type==='MemberExpression'&&node.computed
  &&node.object?.type==='Identifier'&&node.object.name==='window'&&node.property?.type==='Literal'&&node.property.value==='workday'
-function reviewedCorporateShell(body,rendererURL){
- check(typeof body==='string'&&!body.includes('\uFFFD'),'invalid UTF-8 corporate shell')
- const profile=REVIEWED_SHELLS[rendererURL],bytes=Buffer.from(body,'utf8')
- check(profile&&bytes.length===profile.bytes,'reviewed corporate shell changed')
- let offset=0,nonce
- for(const[index,[length,hash]]of profile.literals.entries()){
-  check(createHash('sha256').update(bytes.subarray(offset,offset+length)).digest('hex')===hash,'reviewed corporate shell changed')
-  offset+=length
-  if(index===profile.literals.length-1)continue
-  const value=bytes.subarray(offset,offset+24).toString('utf8')
-  check(/^[A-Za-z0-9+/]{22}==$/.test(value)&&Buffer.from(value,'base64').length===16
-   &&Buffer.from(value,'base64').toString('base64')===value&&(nonce===undefined||nonce===value),'reviewed corporate shell changed')
-  nonce??=value;offset+=24
- }
- check(offset===bytes.length,'reviewed corporate shell changed')
- return{bytes:profile.bytes,nonceSlots:profile.literals.length-1,nonceFormat:'same canonical-base64-16-byte value in every explicit slot'}
-}
 function reviewedPagePrefix(renderer,declaredURL){
  const body=renderer.html
  // The bounded shared stream reader retains a UTF-8 BOM. Neither reviewed
@@ -230,7 +189,7 @@ export async function readFactSetPublisherDeclaration({page,readRenderer,readJso
  check(entries.length===1&&/^\/assets\/index-[a-zA-Z0-9_-]+\.js$/.test(entries[0].attrs.src),'reviewed active renderer changed')
  const rendererURL=new URL(entries[0].attrs.src,page.url).href
  check(Object.hasOwn(REVIEWED_RENDERERS,rendererURL),'reviewed active renderer changed')
- const publisherShell=reviewedCorporateShell(page.html,rendererURL)
+ const {metadata:publisherMetadata,...publisherShell}=readFactSetCorporateShell(page.html,rendererURL)
  const renderer=await readRenderer(rendererURL),prefix=reviewedPagePrefix(renderer,rendererURL)
  const careersURL=new URL(prefix+new URL(page.url).pathname.slice(1),page.url).href
  const careers=cms(await readJson(careersURL),'careers'),sections=careers.content.sections
@@ -259,7 +218,7 @@ export async function readFactSetPublisherDeclaration({page,readRenderer,readJso
  const board=await readDeclaredBoardPage(boardURL),nativeConfig=workdayConfiguration(board)
  const context={publisher:'FactSet Research Systems',brand:'FactSet',publisherShell,rendererURL:renderer.url,rendererSHA256:sha(renderer.html),cmsPrefix:prefix,
   careersURL,pageType:careers.pageType,locale:careers.locale,title:careers.seo.title,ctas:structuredClone(ctas),legalURL,privacyStatement,ownerStatement,nativeConfig}
- return{url:boardURL,context,evidence:{publisherURL:page.url,publisherBodySHA256:sha(page.html),rendererURL:renderer.url,rendererBodySHA256:sha(renderer.html),
+ return{url:boardURL,context,evidence:{publisherURL:page.url,publisherBodySHA256:sha(page.html),publisherMetadata,rendererURL:renderer.url,rendererBodySHA256:sha(renderer.html),
   careersURL,careersPayloadSHA256:sha(careers),declaredCTAs:structuredClone(ctas),legalURL,legalPayloadSHA256:sha(legal),privacyStatement,ownerStatement,
   nativeBoardURL:board.url,nativeBoardBodySHA256:sha(board.html),nativeConfig},payloads:{careers,legal,nativeConfig}}
 }

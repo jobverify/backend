@@ -1,0 +1,1867 @@
+{
+  "reviewedAt": "2026-11-21T00:26:03.361Z",
+  "scope": "Closed current public API URL/default query and native route/application identity expressions only. All programmes remain unexecuted. Module aliases, comments, styles, layout, icons, caches, errors and full client bytes do not enter this profile. Critical shared dependency12480 is an explicit finite reviewed executable dependency, not a role/count restriction.",
+  "entry": {
+    "searchURL": {
+      "type": "CallExpression",
+      "callee": {
+        "type": "MemberExpression",
+        "object": {
+          "type": "CallExpression",
+          "callee": {
+            "type": "MemberExpression",
+            "object": {
+              "type": "CallExpression",
+              "callee": {
+                "type": "MemberExpression",
+                "object": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Literal",
+                                  "value": "/api/pcsx/search?domain="
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "concat"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "domain"
+                                },
+                                {
+                                  "type": "Literal",
+                                  "value": "&query="
+                                }
+                              ],
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "concat"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Identifier",
+                              "name": "encodedQuery"
+                            },
+                            {
+                              "type": "Literal",
+                              "value": "&location="
+                            }
+                          ],
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "concat"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "name": "encodedLocation"
+                        },
+                        {
+                          "type": "Literal",
+                          "value": "&start="
+                        }
+                      ],
+                      "optional": false
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "concat"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "start"
+                    }
+                  ],
+                  "optional": false
+                },
+                "property": {
+                  "type": "Identifier",
+                  "name": "concat"
+                },
+                "computed": false,
+                "optional": false
+              },
+              "arguments": [
+                {
+                  "type": "ConditionalExpression",
+                  "test": {
+                    "type": "Identifier",
+                    "name": "sort"
+                  },
+                  "consequent": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Literal",
+                        "value": "&sort_by="
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "concat"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "sort"
+                      }
+                    ],
+                    "optional": false
+                  },
+                  "alternate": {
+                    "type": "Literal",
+                    "value": ""
+                  }
+                },
+                {
+                  "type": "Literal",
+                  "value": "&"
+                }
+              ],
+              "optional": false
+            },
+            "property": {
+              "type": "Identifier",
+              "name": "concat"
+            },
+            "computed": false,
+            "optional": false
+          },
+          "arguments": [
+            {
+              "type": "CallExpression",
+              "callee": {
+                "type": "MemberExpression",
+                "object": {
+                  "type": "Identifier",
+                  "name": "filterParams"
+                },
+                "property": {
+                  "type": "Identifier",
+                  "name": "toString"
+                },
+                "computed": false,
+                "optional": false
+              },
+              "arguments": [],
+              "optional": false
+            }
+          ],
+          "optional": false
+        },
+        "property": {
+          "type": "Identifier",
+          "name": "concat"
+        },
+        "computed": false,
+        "optional": false
+      },
+      "arguments": [
+        {
+          "type": "ConditionalExpression",
+          "test": {
+            "type": "Identifier",
+            "name": "locale"
+          },
+          "consequent": {
+            "type": "CallExpression",
+            "callee": {
+              "type": "MemberExpression",
+              "object": {
+                "type": "Literal",
+                "value": "&hl="
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "concat"
+              },
+              "computed": false,
+              "optional": false
+            },
+            "arguments": [
+              {
+                "type": "Identifier",
+                "name": "locale"
+              }
+            ],
+            "optional": false
+          },
+          "alternate": {
+            "type": "Literal",
+            "value": ""
+          }
+        }
+      ],
+      "optional": false
+    },
+    "searchLocale": {
+      "type": "CallExpression",
+      "callee": {
+        "type": "MemberExpression",
+        "object": {
+          "type": "NewExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "URLSearchParams"
+          },
+          "arguments": [
+            {
+              "type": "MemberExpression",
+              "object": {
+                "type": "MemberExpression",
+                "object": {
+                  "type": "Identifier",
+                  "name": "window"
+                },
+                "property": {
+                  "type": "Identifier",
+                  "name": "location"
+                },
+                "computed": false,
+                "optional": false
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "search"
+              },
+              "computed": false,
+              "optional": false
+            }
+          ]
+        },
+        "property": {
+          "type": "Identifier",
+          "name": "get"
+        },
+        "computed": false,
+        "optional": false
+      },
+      "arguments": [
+        {
+          "type": "Literal",
+          "value": "hl"
+        }
+      ],
+      "optional": false
+    },
+    "searchFilterWrites": [
+      {
+        "type": "CallExpression",
+        "callee": {
+          "type": "MemberExpression",
+          "object": {
+            "type": "Identifier",
+            "name": "filterParams"
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "append"
+          },
+          "computed": false,
+          "optional": false
+        },
+        "arguments": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "MemberExpression",
+              "object": {
+                "type": "Literal",
+                "value": "filter_"
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "concat"
+              },
+              "computed": false,
+              "optional": false
+            },
+            "arguments": [
+              {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "SequenceExpression",
+                  "expressions": [
+                    {
+                      "type": "Literal",
+                      "value": 0
+                    },
+                    {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "binding1"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "LW"
+                      },
+                      "computed": false,
+                      "optional": false
+                    }
+                  ]
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "binding2"
+                  }
+                ],
+                "optional": false
+              }
+            ],
+            "optional": false
+          },
+          {
+            "type": "Identifier",
+            "name": "binding3"
+          }
+        ],
+        "optional": false
+      }
+    ],
+    "detailQuery": {
+      "type": "NewExpression",
+      "callee": {
+        "type": "Identifier",
+        "name": "URLSearchParams"
+      },
+      "arguments": [
+        {
+          "type": "CallExpression",
+          "callee": {
+            "type": "FunctionExpression",
+            "id": null,
+            "expression": false,
+            "generator": false,
+            "async": false,
+            "params": [
+              {
+                "type": "Identifier",
+                "name": "binding4"
+              }
+            ],
+            "body": {
+              "type": "BlockStatement",
+              "body": [
+                {
+                  "type": "ForStatement",
+                  "init": {
+                    "type": "VariableDeclaration",
+                    "declarations": [
+                      {
+                        "type": "VariableDeclarator",
+                        "id": {
+                          "type": "Identifier",
+                          "name": "binding5"
+                        },
+                        "init": {
+                          "type": "Literal",
+                          "value": 1
+                        }
+                      }
+                    ],
+                    "kind": "var"
+                  },
+                  "test": {
+                    "type": "BinaryExpression",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "binding5"
+                    },
+                    "operator": "<",
+                    "right": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "binding6"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "length"
+                      },
+                      "computed": false,
+                      "optional": false
+                    }
+                  },
+                  "update": {
+                    "type": "UpdateExpression",
+                    "operator": "++",
+                    "prefix": false,
+                    "argument": {
+                      "type": "Identifier",
+                      "name": "binding5"
+                    }
+                  },
+                  "body": {
+                    "type": "BlockStatement",
+                    "body": [
+                      {
+                        "type": "VariableDeclaration",
+                        "declarations": [
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "id"
+                            },
+                            "init": {
+                              "type": "ConditionalExpression",
+                              "test": {
+                                "type": "BinaryExpression",
+                                "left": {
+                                  "type": "Literal",
+                                  "value": null
+                                },
+                                "operator": "!=",
+                                "right": {
+                                  "type": "MemberExpression",
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "binding6"
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "binding5"
+                                  },
+                                  "computed": true,
+                                  "optional": false
+                                }
+                              },
+                              "consequent": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "binding6"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "binding5"
+                                },
+                                "computed": true,
+                                "optional": false
+                              },
+                              "alternate": {
+                                "type": "ObjectExpression",
+                                "properties": []
+                              }
+                            }
+                          },
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "groupId"
+                            },
+                            "init": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "Object"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "keys"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "id"
+                                }
+                              ],
+                              "optional": false
+                            }
+                          }
+                        ],
+                        "kind": "var"
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "SequenceExpression",
+                          "expressions": [
+                            {
+                              "type": "LogicalExpression",
+                              "left": {
+                                "type": "BinaryExpression",
+                                "left": {
+                                  "type": "Literal",
+                                  "value": "function"
+                                },
+                                "operator": "==",
+                                "right": {
+                                  "type": "UnaryExpression",
+                                  "operator": "typeof",
+                                  "prefix": true,
+                                  "argument": {
+                                    "type": "MemberExpression",
+                                    "object": {
+                                      "type": "Identifier",
+                                      "name": "Object"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "getOwnPropertySymbols"
+                                    },
+                                    "computed": false,
+                                    "optional": false
+                                  }
+                                }
+                              },
+                              "operator": "&&",
+                              "right": {
+                                "type": "AssignmentExpression",
+                                "operator": "=",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "groupId"
+                                },
+                                "right": {
+                                  "type": "CallExpression",
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "object": {
+                                      "type": "Identifier",
+                                      "name": "groupId"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "concat"
+                                    },
+                                    "computed": false,
+                                    "optional": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "CallExpression",
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "object": {
+                                          "type": "CallExpression",
+                                          "callee": {
+                                            "type": "MemberExpression",
+                                            "object": {
+                                              "type": "Identifier",
+                                              "name": "Object"
+                                            },
+                                            "property": {
+                                              "type": "Identifier",
+                                              "name": "getOwnPropertySymbols"
+                                            },
+                                            "computed": false,
+                                            "optional": false
+                                          },
+                                          "arguments": [
+                                            {
+                                              "type": "Identifier",
+                                              "name": "id"
+                                            }
+                                          ],
+                                          "optional": false
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "filter"
+                                        },
+                                        "computed": false,
+                                        "optional": false
+                                      },
+                                      "arguments": [
+                                        {
+                                          "type": "FunctionExpression",
+                                          "id": null,
+                                          "expression": false,
+                                          "generator": false,
+                                          "async": false,
+                                          "params": [
+                                            {
+                                              "type": "Identifier",
+                                              "name": "binding4"
+                                            }
+                                          ],
+                                          "body": {
+                                            "type": "BlockStatement",
+                                            "body": [
+                                              {
+                                                "type": "ReturnStatement",
+                                                "argument": {
+                                                  "type": "MemberExpression",
+                                                  "object": {
+                                                    "type": "CallExpression",
+                                                    "callee": {
+                                                      "type": "MemberExpression",
+                                                      "object": {
+                                                        "type": "Identifier",
+                                                        "name": "Object"
+                                                      },
+                                                      "property": {
+                                                        "type": "Identifier",
+                                                        "name": "getOwnPropertyDescriptor"
+                                                      },
+                                                      "computed": false,
+                                                      "optional": false
+                                                    },
+                                                    "arguments": [
+                                                      {
+                                                        "type": "Identifier",
+                                                        "name": "id"
+                                                      },
+                                                      {
+                                                        "type": "Identifier",
+                                                        "name": "binding4"
+                                                      }
+                                                    ],
+                                                    "optional": false
+                                                  },
+                                                  "property": {
+                                                    "type": "Identifier",
+                                                    "name": "enumerable"
+                                                  },
+                                                  "computed": false,
+                                                  "optional": false
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "optional": false
+                                    }
+                                  ],
+                                  "optional": false
+                                }
+                              }
+                            },
+                            {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "groupId"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "forEach"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "FunctionExpression",
+                                  "id": null,
+                                  "expression": false,
+                                  "generator": false,
+                                  "async": false,
+                                  "params": [
+                                    {
+                                      "type": "Identifier",
+                                      "name": "binding5"
+                                    }
+                                  ],
+                                  "body": {
+                                    "type": "BlockStatement",
+                                    "body": [
+                                      {
+                                        "type": "VariableDeclaration",
+                                        "declarations": [
+                                          {
+                                            "type": "VariableDeclarator",
+                                            "id": {
+                                              "type": "Identifier",
+                                              "name": "groupId"
+                                            },
+                                            "init": null
+                                          }
+                                        ],
+                                        "kind": "var"
+                                      },
+                                      {
+                                        "type": "ExpressionStatement",
+                                        "expression": {
+                                          "type": "SequenceExpression",
+                                          "expressions": [
+                                            {
+                                              "type": "AssignmentExpression",
+                                              "operator": "=",
+                                              "left": {
+                                                "type": "Identifier",
+                                                "name": "groupId"
+                                              },
+                                              "right": {
+                                                "type": "MemberExpression",
+                                                "object": {
+                                                  "type": "Identifier",
+                                                  "name": "id"
+                                                },
+                                                "property": {
+                                                  "type": "Identifier",
+                                                  "name": "binding5"
+                                                },
+                                                "computed": true,
+                                                "optional": false
+                                              }
+                                            },
+                                            {
+                                              "type": "ConditionalExpression",
+                                              "test": {
+                                                "type": "BinaryExpression",
+                                                "left": {
+                                                  "type": "Identifier",
+                                                  "name": "binding5"
+                                                },
+                                                "operator": "in",
+                                                "right": {
+                                                  "type": "Identifier",
+                                                  "name": "binding4"
+                                                }
+                                              },
+                                              "consequent": {
+                                                "type": "CallExpression",
+                                                "callee": {
+                                                  "type": "MemberExpression",
+                                                  "object": {
+                                                    "type": "Identifier",
+                                                    "name": "Object"
+                                                  },
+                                                  "property": {
+                                                    "type": "Identifier",
+                                                    "name": "defineProperty"
+                                                  },
+                                                  "computed": false,
+                                                  "optional": false
+                                                },
+                                                "arguments": [
+                                                  {
+                                                    "type": "Identifier",
+                                                    "name": "binding4"
+                                                  },
+                                                  {
+                                                    "type": "Identifier",
+                                                    "name": "binding5"
+                                                  },
+                                                  {
+                                                    "type": "ObjectExpression",
+                                                    "properties": [
+                                                      {
+                                                        "type": "Property",
+                                                        "method": false,
+                                                        "shorthand": false,
+                                                        "computed": false,
+                                                        "key": {
+                                                          "type": "Identifier",
+                                                          "name": "value"
+                                                        },
+                                                        "value": {
+                                                          "type": "Identifier",
+                                                          "name": "groupId"
+                                                        },
+                                                        "kind": "init"
+                                                      },
+                                                      {
+                                                        "type": "Property",
+                                                        "method": false,
+                                                        "shorthand": false,
+                                                        "computed": false,
+                                                        "key": {
+                                                          "type": "Identifier",
+                                                          "name": "enumerable"
+                                                        },
+                                                        "value": {
+                                                          "type": "UnaryExpression",
+                                                          "operator": "!",
+                                                          "prefix": true,
+                                                          "argument": {
+                                                            "type": "Literal",
+                                                            "value": 0
+                                                          }
+                                                        },
+                                                        "kind": "init"
+                                                      },
+                                                      {
+                                                        "type": "Property",
+                                                        "method": false,
+                                                        "shorthand": false,
+                                                        "computed": false,
+                                                        "key": {
+                                                          "type": "Identifier",
+                                                          "name": "configurable"
+                                                        },
+                                                        "value": {
+                                                          "type": "UnaryExpression",
+                                                          "operator": "!",
+                                                          "prefix": true,
+                                                          "argument": {
+                                                            "type": "Literal",
+                                                            "value": 0
+                                                          }
+                                                        },
+                                                        "kind": "init"
+                                                      },
+                                                      {
+                                                        "type": "Property",
+                                                        "method": false,
+                                                        "shorthand": false,
+                                                        "computed": false,
+                                                        "key": {
+                                                          "type": "Identifier",
+                                                          "name": "writable"
+                                                        },
+                                                        "value": {
+                                                          "type": "UnaryExpression",
+                                                          "operator": "!",
+                                                          "prefix": true,
+                                                          "argument": {
+                                                            "type": "Literal",
+                                                            "value": 0
+                                                          }
+                                                        },
+                                                        "kind": "init"
+                                                      }
+                                                    ]
+                                                  }
+                                                ],
+                                                "optional": false
+                                              },
+                                              "alternate": {
+                                                "type": "AssignmentExpression",
+                                                "operator": "=",
+                                                "left": {
+                                                  "type": "MemberExpression",
+                                                  "object": {
+                                                    "type": "Identifier",
+                                                    "name": "binding4"
+                                                  },
+                                                  "property": {
+                                                    "type": "Identifier",
+                                                    "name": "binding5"
+                                                  },
+                                                  "computed": true,
+                                                  "optional": false
+                                                },
+                                                "right": {
+                                                  "type": "Identifier",
+                                                  "name": "groupId"
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "optional": false
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "ReturnStatement",
+                  "argument": {
+                    "type": "Identifier",
+                    "name": "binding4"
+                  }
+                }
+              ]
+            }
+          },
+          "arguments": [
+            {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "name": "position_id"
+                  },
+                  "value": {
+                    "type": "LogicalExpression",
+                    "left": {
+                      "type": "ConditionalExpression",
+                      "test": {
+                        "type": "BinaryExpression",
+                        "left": {
+                          "type": "Literal",
+                          "value": null
+                        },
+                        "operator": "==",
+                        "right": {
+                          "type": "Identifier",
+                          "name": "id"
+                        }
+                      },
+                      "consequent": {
+                        "type": "UnaryExpression",
+                        "operator": "void",
+                        "prefix": true,
+                        "argument": {
+                          "type": "Literal",
+                          "value": 0
+                        }
+                      },
+                      "alternate": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "object": {
+                            "type": "Identifier",
+                            "name": "id"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "toString"
+                          },
+                          "computed": false,
+                          "optional": false
+                        },
+                        "arguments": [],
+                        "optional": false
+                      }
+                    },
+                    "operator": "||",
+                    "right": {
+                      "type": "Literal",
+                      "value": ""
+                    }
+                  },
+                  "kind": "init"
+                },
+                {
+                  "type": "Property",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "name": "domain"
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "groupId"
+                  },
+                  "kind": "init"
+                },
+                {
+                  "type": "Property",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "name": "hl"
+                  },
+                  "value": {
+                    "type": "LogicalExpression",
+                    "left": {
+                      "type": "ConditionalExpression",
+                      "test": {
+                        "type": "LogicalExpression",
+                        "left": {
+                          "type": "BinaryExpression",
+                          "left": {
+                            "type": "Literal",
+                            "value": null
+                          },
+                          "operator": "===",
+                          "right": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "binding8"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "u"
+                            },
+                            "computed": false,
+                            "optional": false
+                          }
+                        },
+                        "operator": "||",
+                        "right": {
+                          "type": "BinaryExpression",
+                          "left": {
+                            "type": "UnaryExpression",
+                            "operator": "void",
+                            "prefix": true,
+                            "argument": {
+                              "type": "Literal",
+                              "value": 0
+                            }
+                          },
+                          "operator": "===",
+                          "right": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "binding8"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "u"
+                            },
+                            "computed": false,
+                            "optional": false
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "UnaryExpression",
+                        "operator": "void",
+                        "prefix": true,
+                        "argument": {
+                          "type": "Literal",
+                          "value": 0
+                        }
+                      },
+                      "alternate": {
+                        "type": "CallExpression",
+                        "callee": {
+                          "type": "MemberExpression",
+                          "object": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "binding8"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "u"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "getLocale"
+                          },
+                          "computed": false,
+                          "optional": false
+                        },
+                        "arguments": [],
+                        "optional": false
+                      }
+                    },
+                    "operator": "||",
+                    "right": {
+                      "type": "Literal",
+                      "value": "en"
+                    }
+                  },
+                  "kind": "init"
+                }
+              ]
+            },
+            {
+              "type": "LogicalExpression",
+              "left": {
+                "type": "Identifier",
+                "name": "queriedLocation"
+              },
+              "operator": "&&",
+              "right": {
+                "type": "ObjectExpression",
+                "properties": [
+                  {
+                    "type": "Property",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "name": "queried_location"
+                    },
+                    "value": {
+                      "type": "Identifier",
+                      "name": "queriedLocation"
+                    },
+                    "kind": "init"
+                  }
+                ]
+              }
+            }
+          ],
+          "optional": false
+        }
+      ]
+    }
+  },
+  "roles": {
+    "applicationParameters": {
+      "type": "NewExpression",
+      "callee": {
+        "type": "Identifier",
+        "name": "URLSearchParams"
+      },
+      "arguments": [
+        {
+          "type": "ObjectExpression",
+          "properties": [
+            {
+              "type": "Property",
+              "method": false,
+              "shorthand": false,
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "name": "pid"
+              },
+              "value": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "String"
+                },
+                "arguments": [
+                  {
+                    "type": "ConditionalExpression",
+                    "test": {
+                      "type": "BinaryExpression",
+                      "left": {
+                        "type": "Literal",
+                        "value": null
+                      },
+                      "operator": "==",
+                      "right": {
+                        "type": "Identifier",
+                        "name": "lite"
+                      }
+                    },
+                    "consequent": {
+                      "type": "UnaryExpression",
+                      "operator": "void",
+                      "prefix": true,
+                      "argument": {
+                        "type": "Literal",
+                        "value": 0
+                      }
+                    },
+                    "alternate": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "lite"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "id"
+                      },
+                      "computed": false,
+                      "optional": false
+                    }
+                  }
+                ],
+                "optional": false
+              },
+              "kind": "init"
+            }
+          ]
+        }
+      ]
+    },
+    "applicationURL": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "Identifier",
+        "name": "privatePage"
+      },
+      "consequent": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "MemberExpression",
+          "object": {
+            "type": "Literal",
+            "value": "/careers/apply/private?"
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "concat"
+          },
+          "computed": false,
+          "optional": false
+        },
+        "arguments": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "MemberExpression",
+              "object": {
+                "type": "Identifier",
+                "name": "params"
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "toString"
+              },
+              "computed": false,
+              "optional": false
+            },
+            "arguments": [],
+            "optional": false
+          }
+        ],
+        "optional": false
+      },
+      "alternate": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "MemberExpression",
+          "object": {
+            "type": "Literal",
+            "value": "/careers/apply?"
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "concat"
+          },
+          "computed": false,
+          "optional": false
+        },
+        "arguments": [
+          {
+            "type": "CallExpression",
+            "callee": {
+              "type": "MemberExpression",
+              "object": {
+                "type": "Identifier",
+                "name": "params"
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "toString"
+              },
+              "computed": false,
+              "optional": false
+            },
+            "arguments": [],
+            "optional": false
+          }
+        ],
+        "optional": false
+      }
+    },
+    "applicationActionSelector": {
+      "type": "ConditionalExpression",
+      "test": {
+        "type": "BinaryExpression",
+        "left": {
+          "type": "Literal",
+          "value": null
+        },
+        "operator": "!=",
+        "right": {
+          "type": "AssignmentExpression",
+          "operator": "=",
+          "left": {
+            "type": "Identifier",
+            "name": "binding1"
+          },
+          "right": {
+            "type": "ConditionalExpression",
+            "test": {
+              "type": "LogicalExpression",
+              "left": {
+                "type": "LogicalExpression",
+                "left": {
+                  "type": "BinaryExpression",
+                  "left": {
+                    "type": "Literal",
+                    "value": null
+                  },
+                  "operator": "==",
+                  "right": {
+                    "type": "Identifier",
+                    "name": "full"
+                  }
+                },
+                "operator": "||",
+                "right": {
+                  "type": "BinaryExpression",
+                  "left": {
+                    "type": "Literal",
+                    "value": null
+                  },
+                  "operator": "==",
+                  "right": {
+                    "type": "AssignmentExpression",
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "binding2"
+                    },
+                    "right": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "full"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "positionUserActions"
+                      },
+                      "computed": false,
+                      "optional": false
+                    }
+                  }
+                }
+              },
+              "operator": "||",
+              "right": {
+                "type": "BinaryExpression",
+                "left": {
+                  "type": "Literal",
+                  "value": null
+                },
+                "operator": "==",
+                "right": {
+                  "type": "AssignmentExpression",
+                  "operator": "=",
+                  "left": {
+                    "type": "Identifier",
+                    "name": "binding3"
+                  },
+                  "right": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "Identifier",
+                      "name": "binding2"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "applyAction"
+                    },
+                    "computed": false,
+                    "optional": false
+                  }
+                }
+              }
+            },
+            "consequent": {
+              "type": "UnaryExpression",
+              "operator": "void",
+              "prefix": true,
+              "argument": {
+                "type": "Literal",
+                "value": 0
+              }
+            },
+            "alternate": {
+              "type": "MemberExpression",
+              "object": {
+                "type": "Identifier",
+                "name": "binding3"
+              },
+              "property": {
+                "type": "Identifier",
+                "name": "status"
+              },
+              "computed": false,
+              "optional": false
+            }
+          }
+        }
+      },
+      "consequent": {
+        "type": "Identifier",
+        "name": "binding1"
+      },
+      "alternate": {
+        "type": "Literal",
+        "value": "allowed"
+      }
+    },
+    "privatePageFlag": {
+      "type": "BinaryExpression",
+      "left": {
+        "type": "Literal",
+        "value": "/careers/job/private"
+      },
+      "operator": "===",
+      "right": {
+        "type": "MemberExpression",
+        "object": {
+          "type": "MemberExpression",
+          "object": {
+            "type": "Identifier",
+            "name": "window"
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "location"
+          },
+          "computed": false,
+          "optional": false
+        },
+        "property": {
+          "type": "Identifier",
+          "name": "pathname"
+        },
+        "computed": false,
+        "optional": false
+      }
+    },
+    "routeAccessor": {
+      "type": "ArrowFunctionExpression",
+      "id": null,
+      "expression": false,
+      "generator": false,
+      "async": false,
+      "params": [],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "VariableDeclaration",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "ObjectPattern",
+                  "properties": [
+                    {
+                      "type": "Property",
+                      "method": false,
+                      "shorthand": false,
+                      "computed": false,
+                      "key": {
+                        "type": "Identifier",
+                        "name": "pid"
+                      },
+                      "value": {
+                        "type": "Identifier",
+                        "name": "binding0"
+                      },
+                      "kind": "init"
+                    }
+                  ]
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "SequenceExpression",
+                    "expressions": [
+                      {
+                        "type": "Literal",
+                        "value": 0
+                      },
+                      {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "binding1"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "g"
+                        },
+                        "computed": false,
+                        "optional": false
+                      }
+                    ]
+                  },
+                  "arguments": [],
+                  "optional": false
+                }
+              },
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "binding2"
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "NewExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "URLSearchParams"
+                      },
+                      "arguments": [
+                        {
+                          "type": "MemberExpression",
+                          "object": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "window"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "location"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "search"
+                          },
+                          "computed": false,
+                          "optional": false
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "get"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "value": "pid"
+                    }
+                  ],
+                  "optional": false
+                }
+              },
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "binding5"
+                },
+                "init": {
+                  "type": "LogicalExpression",
+                  "left": {
+                    "type": "LogicalExpression",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "binding0"
+                    },
+                    "operator": "||",
+                    "right": {
+                      "type": "Identifier",
+                      "name": "binding2"
+                    }
+                  },
+                  "operator": "||",
+                  "right": {
+                    "type": "Literal",
+                    "value": ""
+                  }
+                }
+              },
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "binding6"
+                },
+                "init": {
+                  "type": "LogicalExpression",
+                  "left": {
+                    "type": "ConditionalExpression",
+                    "test": {
+                      "type": "BinaryExpression",
+                      "left": {
+                        "type": "Literal",
+                        "value": null
+                      },
+                      "operator": "==",
+                      "right": {
+                        "type": "Identifier",
+                        "name": "binding5"
+                      }
+                    },
+                    "consequent": {
+                      "type": "UnaryExpression",
+                      "operator": "void",
+                      "prefix": true,
+                      "argument": {
+                        "type": "Literal",
+                        "value": 0
+                      }
+                    },
+                    "alternate": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "binding5"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "toString"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [],
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "trim"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "arguments": [],
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "split"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "value": "-"
+                        }
+                      ],
+                      "optional": false
+                    }
+                  },
+                  "operator": "||",
+                  "right": {
+                    "type": "ArrayExpression",
+                    "elements": []
+                  }
+                }
+              }
+            ],
+            "kind": "var"
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "SequenceExpression",
+              "expressions": [
+                {
+                  "type": "LogicalExpression",
+                  "left": {
+                    "type": "LogicalExpression",
+                    "left": {
+                      "type": "BinaryExpression",
+                      "left": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "binding6"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "length"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "operator": ">",
+                      "right": {
+                        "type": "Literal",
+                        "value": 0
+                      }
+                    },
+                    "operator": "&&",
+                    "right": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "Number"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "isInteger"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "Identifier",
+                            "name": "Number"
+                          },
+                          "arguments": [
+                            {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "Identifier",
+                                "name": "binding6"
+                              },
+                              "property": {
+                                "type": "Literal",
+                                "value": 0
+                              },
+                              "computed": true,
+                              "optional": false
+                            }
+                          ],
+                          "optional": false
+                        }
+                      ],
+                      "optional": false
+                    }
+                  },
+                  "operator": "&&",
+                  "right": {
+                    "type": "AssignmentExpression",
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "binding5"
+                    },
+                    "right": {
+                      "type": "LogicalExpression",
+                      "left": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "binding6"
+                        },
+                        "property": {
+                          "type": "Literal",
+                          "value": 0
+                        },
+                        "computed": true,
+                        "optional": false
+                      },
+                      "operator": "||",
+                      "right": {
+                        "type": "Literal",
+                        "value": ""
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "binding5"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "routeSelection": {
+      "type": "CallExpression",
+      "callee": {
+        "type": "Identifier",
+        "name": "Number"
+      },
+      "arguments": [
+        {
+          "type": "Identifier",
+          "name": "routeID"
+        }
+      ],
+      "optional": false
+    }
+  },
+  "supplemental": {
+    "videos": [
+      {
+        "title": "We go beyond to bring progress to life",
+        "description": "Every day, our people Go Beyond — sparking creativity and innovation, growing personally and professionally, and making a real impact with our custome..."
+      },
+      {
+        "title": "Digital & Tech in Hyderabad",
+        "description": "Working for Digital & Tech in our Hyderabad office is about more than coding. It's about learning from each other, collaborating across teams and deve..."
+      },
+      {
+        "title": "Our Digital & Tech team",
+        "description": "At dsm-firmenich, Digital & Tech isn’t just a department, it’s the engine that powers our business. Our solutions unlock creative potential, empower o..."
+      }
+    ],
+    "blogs": [],
+    "perks": [
+      {
+        "title": "Purpose",
+        "description": "Working for dsm-firmenich means the opportunity to really contribute to improving the health of people and planet through sustainable nutrition.",
+        "imageAlt": null
+      },
+      {
+        "title": "Recognition",
+        "description": "We pursue a fair and competitive remuneration policy, recognizing individual and team competencies and performance.",
+        "imageAlt": null
+      },
+      {
+        "title": "Unlimited learning",
+        "description": "We offer you a world of learning at your fingertips through an extensive library of both work and non-work-related training materials and platforms. ",
+        "imageAlt": null
+      },
+      {
+        "title": "Community",
+        "description": "Great ideas thrive when we come together. Our teams are on site at least 60% of the time to connect, depending on the role.",
+        "imageAlt": null
+      }
+    ],
+    "pymww": {
+      "people": [],
+      "count": 0
+    },
+    "customContent": []
+  }
+}

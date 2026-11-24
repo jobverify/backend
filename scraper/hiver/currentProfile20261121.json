@@ -1,0 +1,1545 @@
+{
+  "source": "hiver",
+  "reviewedAt": "2026-11-20T20:08:29.603Z",
+  "authority": "Current corporate delegation, coherent native634afc deployment, seven independently typed India roles and complete original descriptions/dates. Exact original UI/controller/style inputs retained; browser/application/company-wide scope unqualified.",
+  "corporate": {
+    "cacheMode": "reviewed-native-no-batcache-20261116",
+    "variableSlots": [
+      {
+        "index": 0,
+        "selector": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator,.ekit_menu_responsive_tablet .elementskit-submenu-indicator",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_0",
+        "stablePair": {
+          "selector": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator,.ekit_menu_responsive_tablet .elementskit-submenu-indicator",
+          "style": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator::before,.ekit_menu_responsive_tablet .elementskit-submenu-indicator::before{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_0: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_0",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 1,
+        "selector": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_1",
+        "stablePair": {
+          "selector": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_1: url('https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_1",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 2,
+        "selector": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_2",
+        "stablePair": {
+          "selector": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+          "style": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link::after{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_2: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_2",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 3,
+        "selector": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_3",
+        "stablePair": {
+          "selector": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+          "style": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link::after{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_3: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_3",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 4,
+        "selector": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_4",
+        "stablePair": {
+          "selector": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_4: url('https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_4",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 5,
+        "selector": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_5",
+        "stablePair": {
+          "selector": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_5: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_5",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 6,
+        "selector": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_6",
+        "stablePair": {
+          "selector": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_6: url('https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_6",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 7,
+        "selector": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_7",
+        "stablePair": {
+          "selector": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_7: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_7",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 8,
+        "selector": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_8",
+        "stablePair": {
+          "selector": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_8: url('https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_8",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 9,
+        "selector": "#elementor-popup-modal-94181",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_9",
+        "stablePair": {
+          "selector": "#elementor-popup-modal-94181",
+          "style": "#elementor-popup-modal-94181{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_9: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_9",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 10,
+        "selector": "#elementor-popup-modal-94181",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_10",
+        "stablePair": {
+          "selector": "#elementor-popup-modal-94181",
+          "style": "#elementor-popup-modal-94181{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_10: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_10",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp"
+        },
+        "occurrences": 3,
+        "referenceCount": 0
+      },
+      {
+        "index": 11,
+        "selector": ".demo_form_wrapper .hs_form_demo_render.demo_form select",
+        "url": "https://images.hiverhq.com/images/svg/drop1.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_11",
+        "stablePair": {
+          "selector": ".demo_form_wrapper .hs_form_demo_render.demo_form select",
+          "style": ".demo_form_wrapper .hs_form_demo_render.demo_form select{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_11: url('https://images.hiverhq.com/images/svg/drop1.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_11",
+          "url": "https://images.hiverhq.com/images/svg/drop1.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 12,
+        "selector": ".contact-us-form-inner select",
+        "url": "https://images.hiverhq.com/images/svg/drop1.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_12",
+        "stablePair": {
+          "selector": ".contact-us-form-inner select",
+          "style": ".contact-us-form-inner select{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_12: url('https://images.hiverhq.com/images/svg/drop1.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_12",
+          "url": "https://images.hiverhq.com/images/svg/drop1.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      }
+    ],
+    "cacheStyles": [],
+    "headerNameVariants": [
+      [
+        "access-control-allow-headers",
+        "access-control-allow-methods",
+        "access-control-allow-origin",
+        "alt-svc",
+        "connection",
+        "content-encoding",
+        "content-security-policy",
+        "content-type",
+        "date",
+        "host-header",
+        "link",
+        "permissions-policy",
+        "referrer-policy",
+        "server",
+        "server-timing",
+        "strict-transport-security",
+        "transfer-encoding",
+        "vary",
+        "x-ac",
+        "x-content-type-options",
+        "x-frame-options"
+      ],
+      [
+        "access-control-allow-headers",
+        "access-control-allow-methods",
+        "access-control-allow-origin",
+        "alt-svc",
+        "cache-control",
+        "connection",
+        "content-encoding",
+        "content-security-policy",
+        "content-type",
+        "date",
+        "host-header",
+        "last-modified",
+        "link",
+        "permissions-policy",
+        "referrer-policy",
+        "server",
+        "server-timing",
+        "strict-transport-security",
+        "transfer-encoding",
+        "vary",
+        "x-ac",
+        "x-content-type-options",
+        "x-frame-options",
+        "x-nananana"
+      ]
+    ],
+    "headerContextVariants": [
+      {
+        "content-type": "text/html; charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cache-control": null,
+        "vary": "Accept-Encoding, Cookie",
+        "access-control-allow-origin": "https://hiverhq.com",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "POST, GET, OPTIONS",
+        "cross-origin-resource-policy": null,
+        "x-pinpoint-version": null,
+        "set-cookie": null
+      },
+      {
+        "content-type": "text/html; charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cache-control": "max-age=CURRENT_BOUND_BATCACHE_REMAINING, must-revalidate",
+        "vary": "Accept-Encoding, Cookie",
+        "access-control-allow-origin": "https://hiverhq.com",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "POST, GET, OPTIONS",
+        "cross-origin-resource-policy": null,
+        "x-pinpoint-version": null,
+        "set-cookie": null
+      }
+    ]
+  },
+  "role": {
+    "postingID": "619893",
+    "jobID": "582830",
+    "requisitionID": "REQ-0098",
+    "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+    "rowStable": {
+      "id": "619893",
+      "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+      "benefits_header": "Job Benefits",
+      "compensation": null,
+      "compensation_minimum": null,
+      "compensation_maximum": null,
+      "compensation_currency": null,
+      "compensation_frequency": null,
+      "compensation_visible": false,
+      "deadline_at": null,
+      "description": "CURRENT_COMPLETE_NATIVE_description",
+      "employment_type": "full_time",
+      "employment_type_text": "Full Time",
+      "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+      "key_responsibilities_header": "Key Responsibilities",
+      "reporting_to": "Amit Agarwal",
+      "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+      "skills_knowledge_expertise_header": "Skills, Knowledge & Expertise",
+      "title": "DevOps Lead",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272",
+      "path": "/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272",
+      "workplace_type": "hybrid",
+      "workplace_type_text": "Hybrid",
+      "job": {
+        "id": "577919",
+        "requisition_id": "REQ-0093",
+        "department": {
+          "id": "72356",
+          "name": "Engineering"
+        },
+        "division": null,
+        "structure_custom_group_one": null
+      },
+      "location": {
+        "id": "86155",
+        "city": "Bengaluru",
+        "name": "Bangalore - India",
+        "postal_code": "560102",
+        "province": "Karnataka",
+        "street_address": "HSR Layout"
+      }
+    },
+    "jobPostingStable": {
+      "@context": "http://schema.org",
+      "@type": "JobPosting",
+      "datePosted": "2026-11-16T04:55:10+00:00",
+      "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Hiver",
+        "url": "https://hiverhq.com",
+        "sameAs": "https://hiverhq.com",
+        "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+      },
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "Pinpoint Job Posting ID",
+        "value": "4051a8c4-0ee2-46ad-ad79-978437a5e272"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "name": "Bangalore - India",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "HSR Layout",
+          "addressCountry": "IN",
+          "addressLocality": "Bengaluru",
+          "addressRegion": "Karnataka",
+          "postalCode": "560102"
+        }
+      },
+      "title": "DevOps Lead",
+      "applicantLocationRequirements": {
+        "@type": "Country",
+        "name": "India"
+      }
+    },
+    "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+    "criteriaFields": [
+      "description",
+      "key_responsibilities"
+    ],
+    "emptyCriterionFields": {
+      "skills_knowledge_expertise": "",
+      "benefits": null
+    },
+    "stageCount": 5,
+    "minimumFullAuthoredTextLength": 5081
+  },
+  "roles": [
+    {
+      "postingID": "619893",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "619893",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Job Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Amit Agarwal",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Skills, Knowledge & Expertise",
+        "title": "DevOps Lead",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272",
+        "path": "/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "577919",
+          "requisition_id": "REQ-0093",
+          "department": {
+            "id": "72356",
+            "name": "Engineering"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-16T04:55:10+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "4051a8c4-0ee2-46ad-ad79-978437a5e272"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "DevOps Lead",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities"
+      ],
+      "emptyCriterionFields": {
+        "skills_knowledge_expertise": "",
+        "benefits": null
+      },
+      "stageCount": 5,
+      "minimumFullAuthoredTextLength": 5081
+    },
+    {
+      "postingID": "620099",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "620099",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Amit Agarwal",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Skills, Knowledge and Expertise",
+        "title": "AI SDE 2 - Full Stack",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/7e049ee0-21a9-4676-94ef-8324ad9fab76",
+        "path": "/en/postings/7e049ee0-21a9-4676-94ef-8324ad9fab76",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "573847",
+          "requisition_id": "REQ-0089",
+          "department": {
+            "id": "72356",
+            "name": "Engineering"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-16T12:28:01+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "7e049ee0-21a9-4676-94ef-8324ad9fab76"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "AI SDE 2 - Full Stack",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities",
+        "skills_knowledge_expertise"
+      ],
+      "emptyCriterionFields": {
+        "benefits": ""
+      },
+      "stageCount": 4,
+      "minimumFullAuthoredTextLength": 5313
+    },
+    {
+      "postingID": "621350",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "621350",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Good to Have skills?",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Anurag Maherchandani",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Key Requirements",
+        "title": "AI Senior QA",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/56e85315-0682-4d11-b1ce-0a0daddc025e",
+        "path": "/en/postings/56e85315-0682-4d11-b1ce-0a0daddc025e",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "582830",
+          "requisition_id": "REQ-0098",
+          "department": {
+            "id": "77352",
+            "name": "AI"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-17T17:06:05+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "56e85315-0682-4d11-b1ce-0a0daddc025e"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "AI Senior QA",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities",
+        "skills_knowledge_expertise",
+        "benefits"
+      ],
+      "emptyCriterionFields": {},
+      "stageCount": 4,
+      "minimumFullAuthoredTextLength": 5345
+    },
+    {
+      "postingID": "622691",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "622691",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Job Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Amit Agarwal",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Key Requirements",
+        "title": "SDE - 3 Frontend",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/4cd2ab50-5d12-4f67-9b5e-ce07441d65dd",
+        "path": "/en/postings/4cd2ab50-5d12-4f67-9b5e-ce07441d65dd",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "573835",
+          "requisition_id": "REQ-0090",
+          "department": {
+            "id": "72356",
+            "name": "Engineering"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-19T10:38:12+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "4cd2ab50-5d12-4f67-9b5e-ce07441d65dd"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "SDE - 3 Frontend",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities",
+        "skills_knowledge_expertise"
+      ],
+      "emptyCriterionFields": {
+        "benefits": ""
+      },
+      "stageCount": 5,
+      "minimumFullAuthoredTextLength": 7226
+    },
+    {
+      "postingID": "623018",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "623018",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Job Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Key Requirements",
+        "title": "Employee Experience & Community Associate",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/cf15a6d0-9e29-4461-9681-5db94df7f20c",
+        "path": "/en/postings/cf15a6d0-9e29-4461-9681-5db94df7f20c",
+        "workplace_type": "onsite",
+        "workplace_type_text": "Onsite",
+        "job": {
+          "id": "620623",
+          "requisition_id": "REQ-0119",
+          "department": {
+            "id": "72359",
+            "name": "HR"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-19T15:10:26+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "cf15a6d0-9e29-4461-9681-5db94df7f20c"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "Employee Experience & Community Associate",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities",
+        "skills_knowledge_expertise"
+      ],
+      "emptyCriterionFields": {
+        "benefits": null
+      },
+      "stageCount": 4,
+      "minimumFullAuthoredTextLength": 4827
+    },
+    {
+      "postingID": "623060",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "623060",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Job Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Anurag Maherchandani",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Skills, Knowledge & Expertise",
+        "title": "AI SDE 3 - Full Stack",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/f93bf2b0-a201-43b8-a5b4-85f8773690b8",
+        "path": "/en/postings/f93bf2b0-a201-43b8-a5b4-85f8773690b8",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "581453",
+          "requisition_id": "REQ-0097",
+          "department": {
+            "id": "77352",
+            "name": "AI"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-19T16:07:28+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "f93bf2b0-a201-43b8-a5b4-85f8773690b8"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "AI SDE 3 - Full Stack",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities"
+      ],
+      "emptyCriterionFields": {
+        "skills_knowledge_expertise": "",
+        "benefits": ""
+      },
+      "stageCount": 5,
+      "minimumFullAuthoredTextLength": 5596
+    },
+    {
+      "postingID": "623066",
+      "jobID": "582830",
+      "requisitionID": "REQ-0098",
+      "url": "https://hiverhq.pinpointhq.com/en/postings/64a310b6-2717-4478-bd32-d299502f5e89",
+      "rowStable": {
+        "id": "623066",
+        "benefits": "CURRENT_COMPLETE_NATIVE_benefits",
+        "benefits_header": "Job Benefits",
+        "compensation": null,
+        "compensation_minimum": null,
+        "compensation_maximum": null,
+        "compensation_currency": null,
+        "compensation_frequency": null,
+        "compensation_visible": false,
+        "deadline_at": null,
+        "description": "CURRENT_COMPLETE_NATIVE_description",
+        "employment_type": "full_time",
+        "employment_type_text": "Full Time",
+        "key_responsibilities": "CURRENT_COMPLETE_NATIVE_key_responsibilities",
+        "key_responsibilities_header": "Key Responsibilities",
+        "reporting_to": "Amit Agarwal",
+        "skills_knowledge_expertise": "CURRENT_COMPLETE_NATIVE_skills_knowledge_expertise",
+        "skills_knowledge_expertise_header": "Skills, Knowledge & Expertise",
+        "title": "SDE 3 - Backend",
+        "url": "https://hiverhq.pinpointhq.com/en/postings/962e2e34-b530-4c54-a701-b66f7ab3bfb5",
+        "path": "/en/postings/962e2e34-b530-4c54-a701-b66f7ab3bfb5",
+        "workplace_type": "hybrid",
+        "workplace_type_text": "Hybrid",
+        "job": {
+          "id": "553841",
+          "requisition_id": "REQ-0076",
+          "department": {
+            "id": "72356",
+            "name": "Engineering"
+          },
+          "division": null,
+          "structure_custom_group_one": null
+        },
+        "location": {
+          "id": "86155",
+          "city": "Bengaluru",
+          "name": "Bangalore - India",
+          "postal_code": "560102",
+          "province": "Karnataka",
+          "street_address": "HSR Layout"
+        }
+      },
+      "jobPostingStable": {
+        "@context": "http://schema.org",
+        "@type": "JobPosting",
+        "datePosted": "2026-11-19T16:14:54+00:00",
+        "description": "CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "Hiver",
+          "url": "https://hiverhq.com",
+          "sameAs": "https://hiverhq.com",
+          "logo": "https://app.pinpointhq.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ3J5NXdVPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f65db3af61164efe83a7929d08a92bdf3084174c/hiver-logo-2026@2x.png"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Pinpoint Job Posting ID",
+          "value": "962e2e34-b530-4c54-a701-b66f7ab3bfb5"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "name": "Bangalore - India",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "HSR Layout",
+            "addressCountry": "IN",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "postalCode": "560102"
+          }
+        },
+        "title": "SDE 3 - Backend",
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        }
+      },
+      "aboutHiver": "We specialise in delivering innovative solutions and exceptional services to meet the diverse needs of our clients. With a strong commitment to quality and customer satisfaction, we strive to exceed expectations and drive success in every project we undertake.",
+      "criteriaFields": [
+        "description",
+        "key_responsibilities"
+      ],
+      "emptyCriterionFields": {
+        "skills_knowledge_expertise": null,
+        "benefits": null
+      },
+      "stageCount": 5,
+      "minimumFullAuthoredTextLength": 4806
+    }
+  ],
+  "headers": {
+    "https://hiverhq.com/careers": {
+      "content-type": "text/html; charset=UTF-8",
+      "content-disposition": null,
+      "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": null,
+      "vary": "Accept-Encoding, Cookie",
+      "access-control-allow-origin": "https://hiverhq.com",
+      "access-control-allow-headers": "Content-Type",
+      "access-control-allow-methods": "POST, GET, OPTIONS",
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://hiverhq.pinpointhq.com/": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/postings.json": {
+      "content-type": "application/json; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": "Origin",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/runtime-e4b3d9f244427ef6c8d1.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/71515-033a3d790520bba98048.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/application-fff82c634d5c02e9ca6c.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/application-35bf5897.css": {
+      "content-type": "text/css",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/cookieconsent-61546814.css": {
+      "content-type": "text/css",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/7e049ee0-21a9-4676-94ef-8324ad9fab76": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/56e85315-0682-4d11-b1ce-0a0daddc025e": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/4cd2ab50-5d12-4f67-9b5e-ce07441d65dd": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/cf15a6d0-9e29-4461-9681-5db94df7f20c": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/f93bf2b0-a201-43b8-a5b4-85f8773690b8": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://hiverhq.pinpointhq.com/en/postings/962e2e34-b530-4c54-a701-b66f7ab3bfb5": {
+      "content-type": "text/html; charset=utf-8",
+      "content-disposition": null,
+      "content-security-policy": "default-src 'self' https:; font-src 'self' https: data:; img-src 'self' https: data:; object-src 'none'; media-src 'self' https: blob:; script-src 'self' https: 'strict-dynamic' 'nonce-CURRENT_NATIVE_NONCE'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: wss:; worker-src 'self' https: blob:; frame-ancestors 'self'; base-uri 'none'; report-uri https://csp-report.browser-intake-datadoghq.eu/api/v2/logs?dd-api-key=pub7dcbc8d08b4cd1dd6d37b5500bb63929&dd-evp-origin=content-security-policy&ddsource=csp-report&ddtags=service%3Apinpoint_production%2Cenv%3Aproduction",
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "permissions-policy": null,
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "cache-control": "max-age=0, private, must-revalidate",
+      "vary": null,
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": "634afcfa5174bab45121cffb2fae154b1c7e851b-1795123014",
+      "set-cookie": "_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/34330-95ab275c4e09d959ccdf.chunk.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/77920-20044cb7e61622717a4f.chunk.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/92225-09a699ae3b32c8370b1f.chunk.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/61871-563b217e0ec2b96ae208.chunk.js": {
+      "content-type": "text/javascript",
+      "content-disposition": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "refresh": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": null,
+      "x-frame-options": null,
+      "permissions-policy": null,
+      "referrer-policy": null,
+      "cache-control": null,
+      "vary": "Accept-Encoding",
+      "access-control-allow-origin": null,
+      "access-control-allow-headers": null,
+      "access-control-allow-methods": null,
+      "cross-origin-resource-policy": null,
+      "x-pinpoint-version": null,
+      "set-cookie": null
+    }
+  },
+  "contexts": {
+    "https://hiverhq.pinpointhq.com/": "c80c4b38f45f0f2f0986a82d965efab96d72123a244f35d6b1977f2ddbb1b922",
+    "https://hiverhq.pinpointhq.com/en/postings/4051a8c4-0ee2-46ad-ad79-978437a5e272": "7e1dc95b968c8f160c4f2af15734254b509018d0828960b84f5d64f4c3d04c60",
+    "https://hiverhq.pinpointhq.com/en/postings/7e049ee0-21a9-4676-94ef-8324ad9fab76": "aef33714b95a366887f60ab2c0dbfd801cb0caeb3cf10e42029c41a3a86dd589",
+    "https://hiverhq.pinpointhq.com/en/postings/56e85315-0682-4d11-b1ce-0a0daddc025e": "b4283e14778efddd0c502c642c262f0939fc41ba6da1479260c876aefc6383be",
+    "https://hiverhq.pinpointhq.com/en/postings/4cd2ab50-5d12-4f67-9b5e-ce07441d65dd": "f225afe9de8e064061a6856c4b0beb595b15108793ffbd1d92900c36c5e09711",
+    "https://hiverhq.pinpointhq.com/en/postings/cf15a6d0-9e29-4461-9681-5db94df7f20c": "5780c98d727f5f28634ad3ede59d29a8a708ae4bd63fba3998c1539f4a745919",
+    "https://hiverhq.pinpointhq.com/en/postings/f93bf2b0-a201-43b8-a5b4-85f8773690b8": "6c38bbc8a5024e9bed6dfc9dfb73ef6f5f902c7bf41b34d3149a75c149f4534a",
+    "https://hiverhq.pinpointhq.com/en/postings/962e2e34-b530-4c54-a701-b66f7ab3bfb5": "3a90400b0de23f16d171015f9e03ded1ffc0b793759026c8f5e3859e2181e520"
+  },
+  "assets": {
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/runtime-e4b3d9f244427ef6c8d1.js": {
+      "bytes": 25559,
+      "sha256": "4fba766deb13e4041ed572f79b059ba8d6982def301fa0534174211867dd9599"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/71515-033a3d790520bba98048.js": {
+      "bytes": 3323996,
+      "sha256": "e8d2ba61f15a6940dd2adeac8f8c1ae5aac406b7110b227cd740af921e4e4518"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/application-fff82c634d5c02e9ca6c.js": {
+      "bytes": 211561,
+      "sha256": "3cbef32e318a53a74df4755df8727d0da5890dc3ea6fdbc8193acb70185e3515"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/application-35bf5897.css": {
+      "bytes": 2077138,
+      "sha256": "1c861178f0172663b5bfc643f988cd2a6d1210d1da565d3a314aca16f28219c8"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/cookieconsent-61546814.css": {
+      "bytes": 37305,
+      "sha256": "bb576c0e4d684a64843a7c7482d991011b27e8441a9d07c247c171cdce8552ef"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/34330-95ab275c4e09d959ccdf.chunk.js": {
+      "bytes": 112966,
+      "sha256": "49acda09b7ad999d1709c9912498ea9e1d95966baf1dcd01d42270fc16067122"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/77920-20044cb7e61622717a4f.chunk.js": {
+      "bytes": 794,
+      "sha256": "2a53fbf3011c21de6038bc3322c3ba3d5b8133c3aeba7abff68b4d589c30a1af"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/92225-09a699ae3b32c8370b1f.chunk.js": {
+      "bytes": 43420,
+      "sha256": "d8772c9ccffae408b7607adc9d00f913a29721532c19a1d97c6858a63b3c4f38"
+    },
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/61871-563b217e0ec2b96ae208.chunk.js": {
+      "bytes": 21514,
+      "sha256": "cb88b706d640a7015b335eeedba45a662897fe78ade95d69a215e33c9993763e"
+    }
+  },
+  "assetOrder": [
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/application-fff82c634d5c02e9ca6c.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/runtime-e4b3d9f244427ef6c8d1.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/71515-033a3d790520bba98048.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/34330-95ab275c4e09d959ccdf.chunk.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/77920-20044cb7e61622717a4f.chunk.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/92225-09a699ae3b32c8370b1f.chunk.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/js/61871-563b217e0ec2b96ae208.chunk.js",
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/application-35bf5897.css",
+    "https://d2n5ied94mazop.cloudfront.net/packs/css/cookieconsent-61546814.css"
+  ],
+  "passiveUnexecutedResourcePolicy": "All original native declarations, inline programmes/styles and context remain bound. Nine declared native application/runtime/vendor/renderer/style files are bounded-read and pinned. The four native renderer/controller chunks and cookie stylesheet are byte-identical to retained prior originals. External programmes are not executed; no rendered UI/application or company-wide proof is claimed.",
+  "scope": {
+    "companyScopeComplete": false,
+    "sourceListingComplete": false,
+    "lifecycleCleanupAllowed": false
+  },
+  "proof": "reports/scraper-20261120-133018/agent2/native-followup/hiver-role-review.json; acquired-hiver-current original packets; programme review and focused current deployment regressions."
+}

@@ -14,6 +14,29 @@ const criticalPrograms=new Map([
  ['https://assets.nobroker.in/nb-new/41/41.0a1b48c0d9c92bf70879.chunk.js','0ea440165d6823650117de5198f466761e4f5a4ed78741548c23ba8b41539993'],
  ['https://assets.nobroker.in/nb-new/careers/careers.1c5a6746d0965d5502f9.chunk.js','d1189a0b29b7b13cbb3b9d9bca01c4d6eccba372b96a050fef8f907f5f768c36'],
 ])
+const programmeProfiles=[
+ {id:'retained-20261117',componentModule:3325,entryModule:1098,configModule:1365,criticalPrograms,bootURLs:[
+  'https://assets.nobroker.in/nb-new/691.b56c99c6f87440061dbe.js',
+  'https://assets.nobroker.in/nb-new/main.c45ef50822d53c11ecde.js',
+  'https://assets.nobroker.in/nb-new/6/6.a1d241bb327fe1c7fdc1.chunk.js',
+  'https://assets.nobroker.in/nb-new/21/21.ba0bf95f500b55ecdf07.chunk.js',
+  'https://assets.nobroker.in/nb-new/41/41.0a1b48c0d9c92bf70879.chunk.js',
+  'https://assets.nobroker.in/nb-new/careers/careers.1c5a6746d0965d5502f9.chunk.js',
+ ]},
+ {id:'current-20261121',componentModule:3333,entryModule:1910,configModule:1284,criticalPrograms:new Map([
+  ['https://assets.nobroker.in/nb-new/41/41.07a9d48911ae6b02e436.chunk.js','f806a54f28a7188990ad260f82b7fc4e0b9204c209c76a1ae6b7e3ba6447328d'],
+  ['https://assets.nobroker.in/nb-new/careers/careers.eeb6f256aea164d5808f.chunk.js','f280ab47549b5a746bc1f48e456a68db666fd0379c22341211d67fe11c076fd5'],
+ ]),bootURLs:[
+  'https://assets.nobroker.in/nb-new/694.3993ca0e70df03ca905e.js',
+  'https://assets.nobroker.in/nb-new/main.4b2dcd38530cd24e9ba0.js',
+  'https://assets.nobroker.in/nb-new/6/6.b45dfc055a119082e42f.chunk.js',
+  'https://assets.nobroker.in/nb-new/21/21.974be12d96e19d5fbb3e.chunk.js',
+  'https://assets.nobroker.in/nb-new/41/41.07a9d48911ae6b02e436.chunk.js',
+  'https://assets.nobroker.in/nb-new/careers/careers.eeb6f256aea164d5808f.chunk.js',
+ ]},
+]
+// Complete reviewed tuples prevent combining critical modules with another deployment.
+const programmeProfileFor=boot=>programmeProfiles.find(profile=>boot.length===profile.bootURLs.length&&boot.every((p,index)=>p.body===''&&isDeepStrictEqual(Object.keys(p.attrs).sort(),['async','crossorigin','data-chunk','src'])&&p.attrs.async===''&&p.attrs.crossorigin==='anonymous'&&p.attrs['data-chunk']===(index<2?'main':'careers')&&p.attrs.src===profile.bootURLs[index]))
 const jobType=v=>Array.isArray(v)?v.some(jobType):typeof v==='string'&&/(?:^|[/#:])JobPosting$/i.test(v)
 const hasJob=v=>!!v&&typeof v==='object'&&(jobType(v['@type'])||Object.values(v).some(hasJob))
 const detailURL=value=>{try{const u=new URL(value);return u.href===value&&u.origin==='https://www.linkedin.com'&&/^\/jobs\/view\/\d+\/$/.test(u.pathname)&&u.search==='?capColoOverride=true'}catch{return false}}
@@ -25,8 +48,9 @@ export function readCurrentNoBrokerPage(html,url){
  const career=url===CAREERS_URL?one(doc.nodes(n=>doc.hasClass(n,'nb__2PpJ3')),'whole career root'):null
  if(career)need(doc.nodes(n=>n.tag==='h1'&&doc.text(n)==='Careers at NoBroker',career).length===1&&doc.text(career).includes('Join an amazing team'),'Current own career context changed')
  const programmes=doc.nodes(n=>n.tag==='script').map(n=>({attrs:structuredClone(n.attrs),body:n.raw??''})),boot=programmes.filter(p=>['main','careers'].includes(p.attrs['data-chunk']))
- if(career)need(boot.length===6&&boot.every(p=>/^https:\/\/assets\.nobroker\.in\/nb-new\/.+\.js$/.test(p.attrs.src??''))&&[...criticalPrograms.keys()].every(url=>boot.some(p=>p.attrs.src===url)),'Current declared career boot programme binding changed')
- return {url,title,canonical,structured,wholeCareerDOM:career?structuredClone(career):null,careerText:career?doc.text(career):null,programDeclarations:programmes,bootURLs:boot.map(p=>p.attrs.src),wholeOriginalHTML:html}
+ const programmeProfile=career?programmeProfileFor(boot):null
+ if(career)need(programmeProfile,'Current declared career boot programme binding changed')
+ return {url,title,canonical,structured,programmeProfileId:programmeProfile?.id??null,wholeCareerDOM:career?structuredClone(career):null,careerText:career?doc.text(career):null,programDeclarations:programmes,bootURLs:boot.map(p=>p.attrs.src),wholeOriginalHTML:html}
 }
 export function readCurrentNoBrokerFeed(body){
  const feed=readLiteralModel(body).value;need(Array.isArray(feed)&&feed.length<=500,'Current native feed array model changed')
@@ -63,10 +87,11 @@ export async function runCurrentNoBroker(options={}){
  }
  async function authority(){
   const home=readCurrentNoBrokerPage((await reader.read(HOMEPAGE_URL)).body,HOMEPAGE_URL),career=readCurrentNoBrokerPage((await reader.read(CAREERS_URL)).body,CAREERS_URL),programmes=[]
-  for(const url of career.bootURLs){reader.allow(url,'javascript');const page=await reader.read(url);if(criticalPrograms.has(url))need(page.sha256===criticalPrograms.get(url),'Reviewed active programme import/config/feed binding changed');programmes.push({url,sha256:page.sha256,wholeOriginalProgram:page.body})}
+  const profile=programmeProfiles.find(p=>p.id===career.programmeProfileId);need(profile,'Current native programme profile was not selected')
+  for(const url of career.bootURLs){reader.allow(url,'javascript');const page=await reader.read(url);if(profile.criticalPrograms.has(url))need(page.sha256===profile.criticalPrograms.get(url),'Reviewed active programme import/config/feed binding changed');programmes.push({url,sha256:page.sha256,wholeOriginalProgram:page.body})}
   const feed=readCurrentNoBrokerFeed((await reader.read(JOB_FEED_URL)).body),search=nativeHandoffDenial?{url:SEARCH_URL,qualification:'unobserved-after-native-host-denial'}:readCurrentNoBrokerSearch((await reader.read(SEARCH_URL)).body),details=[]
   for(const row of feed.filter(Boolean))details.push(await detail(row.Link))
-  return {home,career,programmes,feed,search,details,programmeBinding:{componentModule:3325,entryModule:1098,configModule:1365,configExport:'firebaseConfig',collection:'jobOpeningSheet',feedURL:JOB_FEED_URL,searchURL:SEARCH_URL,reviewedCriticalProgramHashes:Object.fromEntries(criticalPrograms),programmesExecuted:false,completeDependencyClosureQualified:false}}
+  return {home,career,programmes,feed,search,details,programmeBinding:{programmeProfileId:profile.id,componentModule:profile.componentModule,entryModule:profile.entryModule,configModule:profile.configModule,configExport:'firebaseConfig',collection:'jobOpeningSheet',feedURL:JOB_FEED_URL,searchURL:SEARCH_URL,reviewedCriticalProgramHashes:Object.fromEntries(profile.criticalPrograms),programmesExecuted:false,completeDependencyClosureQualified:false}}
  }
  const semantic=m=>({home:{title:m.home.title,canonical:m.home.canonical,structured:m.home.structured},career:{wholeCareerDOM:m.career.wholeCareerDOM,structured:m.career.structured,bootURLs:m.career.bootURLs},programmes:m.programmes.map(p=>({url:p.url,sha256:p.sha256})),feed:m.feed})
  const searchSemantic=m=>({title:m.title,nativeCompanyFilters:m.nativeCompanyFilters,nativeNoResultsText:m.nativeNoResultsText,wholeResultsDOM:m.wholeResultsDOM}),detailSemantic=m=>({url:m.url,httpStatus:m.httpStatus,nativeRedirectLocation:m.nativeRedirectLocation,wholeOriginalHTML:m.wholeOriginalHTML})

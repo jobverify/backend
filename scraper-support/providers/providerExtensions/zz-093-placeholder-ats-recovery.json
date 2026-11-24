@@ -20,6 +20,7 @@
   },
   {
     "source": "cloudinary",
+    "authoritativeCurrentPublication": true,
     "catalogOverride": true,
     "adapter": "script",
     "modulePath": "../cloudinary/script.js",
@@ -147,6 +148,7 @@
   },
   {
     "source": "housecallpro",
+    "authoritativeCurrentPublication": true,
     "catalogOverride": true,
     "adapter": "script",
     "modulePath": "../housecallpro/script.js",
@@ -256,6 +258,7 @@
   },
   {
     "source": "huntress",
+    "authoritativeCurrentPublication": true,
     "catalogOverride": true,
     "adapter": "script",
     "modulePath": "../huntress/script.js",

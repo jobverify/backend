@@ -31,6 +31,10 @@ export async function readCurrentCloudinaryProgramme(options={}){
   for(const name of['location','refresh','content-location','www-authenticate','proxy-authenticate','content-disposition'])need(!headers.has(name),'Security/redirect response header unreviewed: '+name)
   need(headers.get('cf-mitigated')!=='challenge','Security challenge response header')
   need(body,'Original raw body bytes unavailable');receipt.securityPolicy=readCloudinarySecurity(headers,url)
+  // Both HTML channels belong to one reviewed policy release. Individually
+  // admitted old/current policies cannot be combined into a deployment proof.
+  const publisherPolicy=audit.rawPages.find(row=>row!==receipt&&row.requestedURL===CORPORATE&&row.securityPolicy)
+  if(url!==API&&publisherPolicy)need(receipt.securityPolicy['content-security-policy']===publisherPolicy.securityPolicy['content-security-policy'],'Whole publisher/jobs enforced CSP policy changed within the transaction')
   const opening=audit.rawPages.find(row=>row!==receipt&&row.requestedURL===url);if(opening)need(JSON.stringify(receipt.securityPolicy)===JSON.stringify(opening.securityPolicy),'Closing same-channel response security policy changed')
   let text;try{text=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(body)}catch{throw failure('Original native UTF-8 bytes invalid')}
   return{text,body,receipt}

@@ -1,6 +1,6 @@
 {
  "source":"amicableai","catalogOverride":true,"companyName":"Amicable AI","officialBrandName":"amicable",
- "adapter":"script","modulePath":"../amicableai/script.js","companyCareerPage":"https://amicable.io/careers","companyDomain":"amicable.io",
+ "adapter":"script","authoritativeCurrentPublication":true,"modulePath":"../amicableai/script.js","companyCareerPage":"https://amicable.io/careers","companyDomain":"amicable.io",
  "atsPlatform":"screenloop-public-careers","countryFilter":"India","paginationStrategy":"declared-complete-jobPosts-local-pagination+final-inventory-after-closing-details",
  "extractionStrategy":"current-corporate-handoff+bound-public-components+same-ID-full-criteria+native-countries+closing",
  "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",

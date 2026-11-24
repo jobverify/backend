@@ -1,5 +1,5 @@
 // Source-owned exact derivative of the reviewed shared Comeet reader.
-// Import relocation and finite declared URL/program pairs are its only semantic changes.
+// Source-local declared URL/program pairs also participate in closing reconciliation.
 import { createHash } from 'node:crypto'
 import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { parse } from 'acorn'
@@ -11,8 +11,16 @@ const PROOF = Symbol.for('jobverify.official-ats-discovery')
 const ORIGIN = 'https://www.comeet.com'
 // Finite source-local reviewed program identities. No runtime byte/AST normalization.
 const REVIEWED_CLIENT_PROFILES = Object.freeze({
-  'https://www.comeet.com/common/careers.js?rc-314-0': '664680f59b3640c168c58230a2f95965ff334c15937555dfd33b39f7dfca1ea4',
-  'https://www.comeet.com/common/careers.js?rc-314-10': 'fcea099bc3113e6ea20e9baad0b9b35d70ec7a9c245a7472cb1420f859368d4c',
+  'https://www.comeet.com/common/careers.js?rc-314-0': Object.freeze(['664680f59b3640c168c58230a2f95965ff334c15937555dfd33b39f7dfca1ea4']),
+  'https://www.comeet.com/common/careers.js?rc-314-10': Object.freeze(['fcea099bc3113e6ea20e9baad0b9b35d70ec7a9c245a7472cb1420f859368d4c']),
+  // rc-315-10 changes only the referral-form normalizeDefaultConfig condition
+  // and release comment. All other executable AST, including native job data
+  // rendering and scope, matches rc-314-10. Independently captured 04:15 and
+  // 04:14 release-comment variants differ by one byte; neither is normalized.
+  'https://www.comeet.com/common/careers.js?rc-315-10': Object.freeze([
+    'bed63ae981bf1f9471d558822531bd54711b62f28f02e7b590337e1793119f51',
+    'd11567c0662fae4372fcea166c0aa5915ba630a6caefb5590a058a80b3945625',
+  ]),
 })
 
 const DATA_NAMES = new Set(['COMPANY_DATA', 'COMPANY_POSITIONS_DATA', 'POSITION_DATA'])
@@ -350,9 +358,10 @@ export const createEmployerBoundComeetScraper = config => ({
       }
       need(links.every(link => ids.has(link.uid) && link.texts.some(value => value === listing.find(record => record.uid === link.uid).fields.name)), 'current corporate handoff and native list identities differ')
       const reviewedClientSHA256 = REVIEWED_CLIENT_PROFILES[data.clientURL]
-      need(typeof reviewedClientSHA256 === 'string', 'current advertised native client profile unknown')
+      need(Array.isArray(reviewedClientSHA256), 'current advertised native client profile unknown')
       const client = await get(data.clientURL, true)
-      need(createHash('sha256').update(client).digest('hex') === reviewedClientSHA256, 'current advertised native client contract changed')
+      const clientSHA256 = createHash('sha256').update(client).digest('hex')
+      need(reviewedClientSHA256.includes(clientSHA256), 'current advertised native client contract changed')
       const records = []
       for (const record of listing) {
         const detailData = bootstrap(await get(record.url), record.url), detailEmployer = company(detailData, config, accountURL)
@@ -361,7 +370,7 @@ export const createEmployerBoundComeetScraper = config => ({
         need(same(record.fields, detail.fields), 'native position identity/location/content changed between list and detail')
         records.push(detail)
       }
-      return { employer, links, clientURL: data.clientURL, records: records.sort((a, b) => a.uid.localeCompare(b.uid)) }
+      return { employer, links, clientURL: data.clientURL, clientSHA256, records: records.sort((a, b) => a.uid.localeCompare(b.uid)) }
     }
     const initial = await snapshot(), closing = await snapshot()
     need(same(initial, closing), 'current corporate/native inventory/content changed during closing reconciliation')

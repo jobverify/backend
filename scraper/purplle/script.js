@@ -66,10 +66,9 @@ export const createPurplleScraper=(defaults={})=>({async run(options={}) {
   try{collected=await collectPurplleNative({read,now:typeof now==='function'?now():now})}
   catch(error){
    const corporateUnavailable=error.status===247&&error.requestUrl===CAREERS_URL&&error.finalUrl===CAREERS_URL?{url:CAREERS_URL,status:247}:null
-   const exactEmployerDenied=[403,429].includes(error.status)&&error.requestUrl==='https://www.linkedin.com/company/purplle-com/'&&error.finalUrl===error.requestUrl
-   if(!corporateUnavailable&&!exactEmployerDenied)throw error
+   if(!corporateUnavailable)throw error
    try{collected=await collectPurplleTurboHire({fetchImpl,signal:controller.signal,now,retainedResponses,maxJobs,requestIntervalMs,corporateUnavailable})}
-   catch(recoveryError){if(!corporateUnavailable)throw recoveryError;error.independentRecoveryFailure={message:recoveryError.message,status:recoveryError.status??null};throw error}
+   catch(recoveryError){error.independentRecoveryFailure={message:recoveryError.message,status:recoveryError.status??null};throw error}
    surface=collected.facts.nativeSurface
   }
   const {jobs,facts,firstParty,reason,inventoryStatus}=collected

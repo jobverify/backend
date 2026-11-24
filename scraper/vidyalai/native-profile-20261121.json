@@ -1,0 +1,119 @@
+{
+  "ready": true,
+  "homeSHA256": "9d1996f38a664da57b3ab00ce5cd864d0395389bd37a96a11c079e019fef66e1",
+  "boardShellSHA256": "ccc3bcd17ad132bdcdd1c9c5272186f8fddb42cff8a3851184cba274e2fe51f9",
+  "roles": {
+    "jobs/vidyalai/part-time-teacher---ib-diploma-programme-(ib-dp)---geography": {
+      "cardShellSHA256": "98c14ff2b12630fb0fb7a6f933680b524f5d126a5f8b5ad0e96c657b86cfa6bb",
+      "detailShellSHA256": "c3baca5a4a2c441039bd0db2d33fa9dadfe2e8086a1edfddbd921618322b60ff",
+      "criteriaSHA256": "cb1b462a0cfb059252725c5f80ee8e17d8dc84bb8ea5e64a5ca906b19941017c",
+      "metadataSHA256": "956667083c9552bb98f32fe0beb6450f57bc796257587d244daedc3cbca183c0",
+      "applicationDeclaration": "https://erp.vidyalai.com/part-time-teacher-application/new?job_title=Part%20Time%20Teacher%20-%20IB%20Diploma%20Programme%20(IB%20DP)%20-%20Geography"
+    },
+    "jobs/vidyalai/part-time-teacher---advanced-placement-(ap)---psychology": {
+      "cardShellSHA256": "d098567061a80626a00aa8cc42f8477fcb860be9541385cf583b2bcdc7eee656",
+      "detailShellSHA256": "c3baca5a4a2c441039bd0db2d33fa9dadfe2e8086a1edfddbd921618322b60ff",
+      "criteriaSHA256": "0242a306b916ca55a1182d91454015b500bf41313bfe7a7ab88c1b36e8b3d78b",
+      "metadataSHA256": "95d6a8149aefa3a4d0bca5f2011623c13087e5b669720cf4080553227610d5a3",
+      "applicationDeclaration": "https://erp.vidyalai.com/part-time-teacher-application/new?job_title=Part%20Time%20Teacher%20-%20Advanced%20Placement%20(AP)%20-%20Psychology"
+    },
+    "jobs/vidyalai/part-time-teacher---ib-diploma-programme-(ib-dp)---business-management": {
+      "cardShellSHA256": "597a03e21088e09e644392b6f2901e8ddb95e3dfe1501096c955dad087a1fb8b",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "1d2496117c5da24a79e65aad0ce1f0a12ca8047b8babebf871e3d93f159e7f2d",
+      "metadataSHA256": "aa4d2eb212d4cb812fc0b1e60fa3cccc1d93e118904c96b22847ee65c69a523a",
+      "applicationDeclaration": "https://erp.vidyalai.com/part-time-teacher-application/new?job_title=Part%20Time%20Teacher%20-%20IB%20Diploma%20Programme%20(IB%20DP)%20-%20Business%20Management"
+    },
+    "academic-associate-chemistry-k12": {
+      "cardShellSHA256": "7e63e334687636972f703ae437bf919b8a906f16f018df1d9600754135fcb17c",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "87aaa86662f511e5035dcf7188d06c87f9625ea9af0a4b6a120ee0b9963b1780",
+      "metadataSHA256": "badf4dcd73637c4f352528cb4b8a1beb726884c3c52a61fd16ccdb31a456f258",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Chemistry%20K12"
+    },
+    "academic-associate-economics-and-business-k12": {
+      "cardShellSHA256": "e564a737d19005c1c3a53a108b5c0010e659d0052a9dfb6aea4bb74e2fa9dbe5",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "0d757d8be61592f8c844e6c50d9db5574580a5d7523548efba8d3e168b0a49a4",
+      "metadataSHA256": "c60a51444ff76ba1a22a154380b5b90423ed996969032b7d0befa64e5d9ae063",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Economics%20and%20Business%20K12"
+    },
+    "academic-associate-english-k12": {
+      "cardShellSHA256": "895f3463f6751d5c1f9e3653866109d36674830dd9926722b54b292314d67ce4",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "0ac27d1ba9b91065a413de8f988df911b9bb9f9a6cd49ada4ed6c66897c37050",
+      "metadataSHA256": "1e84fa55ed26d189044eeb3d7cdaf9cabbb3a4bde55cdb4121d9d5089940c905",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20English%20K12"
+    },
+    "academic-associate-mathematics-k10": {
+      "cardShellSHA256": "bb4f0ed9039ad4618219fcc94db362789b7c7b83217f563c824e8fcd6c79ad1a",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "ee3206b6bde84c86e6aa1662d590630b4dafd63e7fead2623ed173e52183d783",
+      "metadataSHA256": "5c3173b86ef8def5adb90ceafbdbb7c26cad2ec338fb43f182dda315f5c9d28b",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Mathematics%20K10"
+    },
+    "academic-associate-mathematics-k12": {
+      "cardShellSHA256": "71b690e4694f7f859b2a5b2032f8a6cfc5b4a0a8d55ccf87f8c0b59391c3ea55",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "ccf0d5075bf2f17dd6463ba60494b113d491c9dbaefc37e9f86e4574a83b46f8",
+      "metadataSHA256": "ba9e5683494e42ea7a622f19cb5188126cfad94ed4f7c2586394acb84611c4bd",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Mathematics%20K12"
+    },
+    "academic-associate-physics-k12": {
+      "cardShellSHA256": "3d3d711d0f3894395816f3f227aac5152523f8e1ea6668c74a68ef66767ed81e",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "4fe745faf1bf4c54bb7b01da534b798a836e64263c3795870e72a72a71b169f5",
+      "metadataSHA256": "e30930913db4a0fef23f5ddae41c6869a747d848adbd2ce23f6c01897f8f26e8",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Physics%20K12"
+    },
+    "academic-associate-science-k10": {
+      "cardShellSHA256": "cac8f00c52dddb943ba2d41af69d8b17dc822fe1177478af38ad744631ef1410",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "ac0d731fea4904869366a2ae45787df964bfb9dc2fef38e534582959cd64bbf0",
+      "metadataSHA256": "021924f4270390b6c279491dfaf2d8cf11a0464642a4f638fbbece1dbeb9f787",
+      "applicationDeclaration": "https://erp.vidyalai.com/academic-associate-job-application/new?job_title=Academic%20Associate%20-%20Science%20K10"
+    },
+    "jobs/vidyalai/business-operations-associate": {
+      "cardShellSHA256": "77e998b5f0eb428ef5b379b8b4d5b1803c12a4023b76fc2722a247aaa32ea1cd",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "adeaa3a0aebfd113d0b2d7df31fd8dbbf90a5a353e08882704276d81f21563a8",
+      "metadataSHA256": "bbfe42b9f378fbcaa4c1858792be8ddeb17965d50ae2e1a59b962ebaa9f9e7a0",
+      "applicationDeclaration": "https://erp.vidyalai.com/operations-job-application/new?job_title=Business%20Operations%20Associate"
+    },
+    "jobs/vidyalai/business-operations-manager": {
+      "cardShellSHA256": "4cb66d226939b69acf556ab032a9956cb411b1f3c3101a977b95a69b872732ec",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "00851a32a41d1e0c5a8098fcc4f28aa275fd50aae0575ecb77b3818749de36f9",
+      "metadataSHA256": "d7dd2ef9930ba21400bf6bf96dc664dbf512e98ec874d196347172e5bc425b29",
+      "applicationDeclaration": "https://erp.vidyalai.com/business-operations-manager-job-application/new?job_title=Business%20Operations%20Manager"
+    },
+    "jobs/vidyalai/full-stack-developer": {
+      "cardShellSHA256": "0b24c2db4314a49657bd3b4678e64e2f2848d9c8a9bd39b5a5bdd58e3ace5911",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "d4c17303e6518257b869b32ec0f11bf70408cf470514183f745bd615ed9affec",
+      "metadataSHA256": "0af152a30908fdac134e994139d538249d72e0bdda0aacb87576e4a81bc2c126",
+      "applicationDeclaration": "https://erp.vidyalai.com/full-stack-developer-job-application-form/new?job_title=Full%20Stack%20Developer"
+    },
+    "jobs/vidyalai/full-stack-developer-intern": {
+      "cardShellSHA256": "cfc10f4f6b2149e0a0fe162ca6fa2d4444308124924b21c6d0a08effab7063c0",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "4f30b7961cade5529d11f01d5a4b3455c46fc78db2db37f1feef24dc7e4aa9d0",
+      "metadataSHA256": "335fa37ef37906bc28a2914e6cb653db264a279bef591d402f4319aee10d96ea",
+      "applicationDeclaration": "https://erp.vidyalai.com/full-stack-developer-intern-job-application/new?job_title=Full%20Stack%20Developer%20Intern"
+    },
+    "jobs/vidyalai/hr-intern": {
+      "cardShellSHA256": "8e5677f4d14a2c5157b2c1730c8b0e508180d11466ca0d8a2ed7107a1d2bffaf",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "8259fd2344839099a68cdf7bf3be5ebbbe9c19c2a77bd47803640b81f12a6184",
+      "metadataSHA256": "a361855ebb84b24c59bdb94afa4325836f7a2aaba1e86658cc7ae14f8a60d26e",
+      "applicationDeclaration": "https://erp.vidyalai.com/human-resources-intern-job-application/new?job_title=HR%20Intern"
+    },
+    "jobs/vidyalai/senior-software-engineer": {
+      "cardShellSHA256": "e3c5d2a37479c1d8ff44b43fa9b09f077bf502f7ffd8b895cae04527902a4c69",
+      "detailShellSHA256": "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02",
+      "criteriaSHA256": "9dfba088c389412c124ced569a659e4acfdfde3c9cb789c2e524925fc30fab73",
+      "metadataSHA256": "3bcb74d15d10dd42be298f3b040c88feedc728f90d7f3e4636341f6c3e73ff15",
+      "applicationDeclaration": "https://erp.vidyalai.com/senior-software-engineer-job-application-form/new?job_title=Senior%20Software%20Engineer"
+    }
+  }
+}

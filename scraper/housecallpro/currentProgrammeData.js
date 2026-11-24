@@ -6,6 +6,7 @@ import {readNativeDocument,readNativeAttributeTokens} from '../../scraper-suppor
 import {parseEightfoldJson as parseNativeJSON} from '../../scraper-support/utils/recruitmentEightfoldData.js'
 import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 import {NATIVE_INDIA_LOCATION} from '../../scraper-support/utils/greenhouseLocations.js'
+import currentNativeDeployment from './nativeDeployment20261120.json' with {type:'json'}
 
 export const CORPORATE='https://www.housecallpro.com/careers/'
 export const CLIENT='https://boards.greenhouse.io/embed/job_board/js?for=housecall'
@@ -73,7 +74,11 @@ export function corporateProgramme(original){
   html=html.replace(re,before+'<specific-reviewed-video-message-fragment>$2')
  }
  const canonicalSHA256=sha(html)
- need(canonicalSHA256==='c505086df29f441a4217fc1f0e487d889ef3fa72bb707cd5fde02da51c70e6b1','Unreviewed corporate authority/programme/carrier bytes')
+ // Both whole deployments were reviewed. The 2.7.8 recruitment renderer is
+ // byte-identical to 2.7.5; marketing settings, navigation and build declarations
+ // changed. Keep each complete document bound instead of mixing its fragments.
+ need(['c505086df29f441a4217fc1f0e487d889ef3fa72bb707cd5fde02da51c70e6b1',
+  'db72ee6b31e5024dce3c7599c2ff090bc5b4ce732874c6cfde5fe57c6b3a0ad6'].includes(canonicalSHA256),'Unreviewed corporate authority/programme/carrier bytes')
  const document=readNativeDocument(original),root=one(document.nodes(n=>n.tag==='root'),'corporate document')
  const scripts=walk(root).filter(({node})=>node.tag==='script'&&node.attrs.src===CLIENT)
  const {node,ancestors}=one(scripts,'current corporate native client')
@@ -108,6 +113,11 @@ export function classicClient(original){
 
 const STATIC_MODEL='6f6fb55c33dcd331b5372871d1f0fd754dd3a16b592f235a5cf69cf26a74432e'
 const STATIC_SHELL={1:'c7195fec75f1d37b2e3675705d712891df41ae659ea4d043c4bef942f8d9ff71',2:'8c353b7637ccf3e335f9b77150db4808777411398a33b0fcd8eb6f2479bbf1dd'}
+export const NATIVE_DEPLOYMENTS={
+ 'greenhouse-reviewed-20261111':{id:'greenhouse-reviewed-20261111',fixedModelSHA256:STATIC_MODEL,shellSHA256:STATIC_SHELL,pages:2,
+  cspSHA256:'57755a728c840458183872d6bc8af36915c881cef4266d2ba1932fe4056b9b54',assets:ASSETS,assetHashes:ASSET_HASHES},
+ [currentNativeDeployment.id]:currentNativeDeployment,
+}
 const ROW=/<tr class="job-post">[\s\S]*?<\/tr>/g,COUNT=/<h2[^>]*data-testid="job-count-header"[^>]*>[\s\S]*?<\/h2>/g
 const POST_KEYS=['id','title','internal_job_id','updated_at','requisition_id','location','absolute_url','published_at','department','is_featured']
 // The actual API parent record is unacquired. This is the exact observed child
@@ -120,13 +130,15 @@ export function nativeBoard(html,url,page,now){
  const match=/^window\.__remixContext = ([\s\S]+);$/.exec(carrier.raw||'');need(match,'Native literal loader assignment changed')
  const model=json(match[1]),route=model?.state?.loaderData?.['routes/embed.job_board'],posts=route?.jobPosts
  need(exact(posts,['count','page','total','total_pages','data'])&&Array.isArray(posts.data)&&ids(posts.data)
-  &&Number.isSafeInteger(posts.total)&&posts.total>50&&posts.total<=100&&posts.page===page&&posts.total_pages===2
-  &&posts.count===posts.data.length&&posts.count===(page===1?50:posts.total-50),'Incomplete/unreviewed native two-page programme counts')
+  &&Number.isSafeInteger(posts.total)&&posts.total>0&&posts.total<=100&&posts.page===page&&posts.total_pages===Math.ceil(posts.total/50)
+  &&page<=posts.total_pages&&posts.count===posts.data.length&&posts.count===Math.min(50,posts.total-(page-1)*50),'Incomplete/unreviewed native programme page counts')
  const nativeURL=url.replace(/^https:/,'http:')
  need(model.state.loaderData.root.href===nativeURL&&route.url===nativeURL,'Original native same-channel URL/account binding changed')
  const fixed=structuredClone(model);delete fixed.state.loaderData.root.href;delete fixed.state.loaderData['routes/embed.job_board'].url
  delete fixed.state.loaderData['routes/embed.job_board'].jobPosts
- need(sha(JSON.stringify(fixed))===STATIC_MODEL,'Unreviewed native scope/filter/config/employer/dependency model')
+ const deployment=Object.values(NATIVE_DEPLOYMENTS).find(profile=>profile.fixedModelSHA256===sha(JSON.stringify(fixed)))
+ need(deployment,'Unreviewed native scope/filter/config/employer/dependency model')
+ need(posts.total_pages===deployment.pages,'Native page count contradicts reviewed programme controls')
  for(const row of posts.data){
   need(exact(row,POST_KEYS)&&integer(row.internal_job_id)&&typeof row.title==='string'&&norm(row.title)&&row.title.length<=500
    &&roleURL(row.id,row.absolute_url)&&typeof row.requisition_id==='string'&&row.is_featured===false,'Unreviewed native posting identity/model')
@@ -179,10 +191,10 @@ export function nativeBoard(html,url,page,now){
  const titleMarkup='<title>'+title.node.raw+'</title>'
  let shell=html.replace(carrier.raw,'<reviewed-native-model>').replace(ROW,'').replace(COUNT,'<reviewed-job-count>')
  shell=shell.replace(titleMarkup,'<title><reviewed-board-title></title>').replace(canonical,'<reviewed-canonical>').replace(ogURL,'<reviewed-og-url>')
- need(sha(shell)===STATIC_SHELL[page],'Unreviewed native page programme/carrier/control/renderer/criterion bytes')
+ need(sha(shell)===deployment.shellSHA256[page],'Unreviewed native page programme/carrier/control/renderer/criterion bytes')
  const comparison=html.replace(titleMarkup,'<title><specific-reviewed-board-title-presentation></title>')
   .replace(/<span class="tag-text">(?:New|tags\.new)<\/span>/g,'<span class="tag-text"><specific-reviewed-native-new-badge-label></span>')
- return {model,posts:posts.data,cards,reportedTotal:posts.total,page,loaderSHA256:sha(carrier.raw),comparisonCanonicalSHA256:sha(comparison),
+ return {model,posts:posts.data,cards,reportedTotal:posts.total,page,nativeDeploymentID:deployment.id,loaderSHA256:sha(carrier.raw),comparisonCanonicalSHA256:sha(comparison),
   originalHeadTitle:title.node.raw,originalCanonicalHTTPMetadataURL:nativeURL,requestedHTTPSURL:url,
   revisionDifferences:[],revisionDifferenceCauseVerified:false,staticShellSHA256:sha(shell)}
 }
@@ -217,9 +229,9 @@ const API_KEYS=['absolute_url','data_compliance','internal_job_id','location','m
  'company_name','first_published','language','application_deadline','content','departments','offices','ai_disclaimer','include_ai_disclaimer','ai_opt_out_request_url']
 export function nativeAPI(raw,pages,now){
  const value=json(raw)
- need(exact(value,['jobs','meta'])&&exact(value.meta,['total'])&&Array.isArray(value.jobs)&&value.jobs.length>50&&value.jobs.length<=100
+ need(exact(value,['jobs','meta'])&&exact(value.meta,['total'])&&Array.isArray(value.jobs)&&value.jobs.length>0&&value.jobs.length<=100
   &&value.meta.total===value.jobs.length&&ids(value.jobs),'Incomplete/duplicate native full API programme')
- need(pages.length===2&&pages[0].page===1&&pages[1].page===2&&pages.every(p=>p.reportedTotal===value.meta.total),'Native page/API totals disagree')
+ need(pages.length===Math.ceil(value.jobs.length/50)&&pages.every((p,index)=>p.page===index+1&&p.reportedTotal===value.meta.total),'Native page/API totals disagree')
  const officeMap=new Map(),walkOffices=(rows,parent=null)=>rows.forEach(row=>{officeMap.set(row.id,{...row,parent});walkOffices(row.children,row.id)})
  walkOffices(pages[0].model.state.loaderData['routes/embed.job_board'].offices)
  const departmentMap=new Map(pages[0].model.state.loaderData['routes/embed.job_board'].departments.map(d=>[d.id,d]))
@@ -237,7 +249,15 @@ export function nativeAPI(raw,pages,now){
     &&(office.parent_id===null||integer(office.parent_id)),'Unreviewed native office hierarchy/country fields')
    const native=officeMap.get(office.id)
    need(native&&native.children.length===0&&native.name===office.name&&native.parent===office.parent_id,'Native leaf office/group binding conflicts')
-   country(office.name);if(office.location!==null)country(office.location)
+   if(nativeCountryName(office.name)){
+    country(office.name);if(office.location!==null)country(office.location)
+   }else{
+    const binding=NATIVE_DEPLOYMENTS[pages[0].nativeDeploymentID]?.officeCountryBindings?.find(proof=>
+     proof.id===office.id&&proof.name===office.name&&proof.location===office.location)
+    need(binding&&typeof office.location==='string'&&office.location.endsWith(', '+binding.countryLiteral),
+     'Unreviewed native literal office-country binding')
+    country(binding.countryLiteral)
+   }
   }
   need(Array.isArray(row.departments)&&row.departments.length===1&&ids(row.departments),'Unresolved complete native department membership')
   for(const department of row.departments)need(exact(department,['id','name','child_ids','parent_id'])&&typeof department.name==='string'

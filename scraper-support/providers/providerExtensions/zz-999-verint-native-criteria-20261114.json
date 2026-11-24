@@ -1,6 +1,6 @@
 {
   "source": "verintsystems",
-  "catalogOverride": true,
+  "catalogOverride": false,
   "adapter": "script",
   "modulePath": "../verintsystems/nativeCareers20261114.js",
   "atsPlatform": "ashby",

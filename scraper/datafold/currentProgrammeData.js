@@ -48,20 +48,46 @@ function uniqueIdentityAttributes(html){
  }
 }
 
-// The current complete corporate body is deliberately narrow. It binds the
-// reviewed all-jobs+tiers executable programme, visible mount and every other
-// current recruitment declaration. Any body drift requires a new review; the
-// marketing empty/error message is never used as inventory evidence.
+// Recruitment authority comes from the current own URL, unique active native
+// programme and its visible mount. Marketing body bytes are provenance, not a
+// native inventory selector; the empty/error message is never job evidence.
+function isAdditionalRecruitmentURL(raw){
+ let url
+ try{url=new URL(raw,HOME)}catch{return false}
+ if(!['https:','http:'].includes(url.protocol))return false
+ if(url.origin===new URL(HOME).origin&&url.pathname.replace(/\/+$/,'')==='/careers'&&!url.search)return false
+ if(url.href.replace(/\/$/,'')===BOARD)return false
+ return /^(?:careers?|jobs?)\./i.test(url.hostname)
+  ||/(?:^|\.)(?:ashbyhq\.com|greenhouse\.io|lever\.co|workable\.com|smartrecruiters\.com|myworkdayjobs\.com|successfactors\.(?:com|eu))$/i.test(url.hostname)
+  ||/(?:^|\/)(?:careers?|jobs?|open-positions|job-openings|vacancies)(?:\/|$)/i.test(url.pathname)
+}
+function containsJobPosting(value){
+ const pending=[value];let visited=0
+ while(pending.length){
+  need(++visited<=20000,'Additional corporate schema publication is not bounded')
+  const item=pending.pop()
+  if(!item||typeof item!=='object')continue
+  if(!Array.isArray(item)&&[item['@type']].flat().some(type=>type==='JobPosting'||type==='https://schema.org/JobPosting'||type==='http://schema.org/JobPosting'))return true
+  pending.push(...Object.values(item))
+ }
+ return false
+}
 export function readHome(packet){
- need(packet.hash==='894a61681b6b6ee55c4ffb6fcde89a0ff23bbfb2846fbb9b28be488016bfbb39','Unreviewed whole corporate programme/authority body')
+ need(packet.url===HOME,'Current own corporate recruitment URL changed')
  const parsed=eightfoldDocument(packet.text),visible=readVisibleNativeDocument(packet.text,{strict:true})
  const mounts=parsed.entries.filter(({node})=>node.attrs.id==='careers-jobs-root')
  need(mounts.length===1&&active(mounts[0])&&visible.nodes(n=>n.attrs.id==='careers-jobs-root').length===1,'Unique active corporate programme mount unavailable')
  const carriers=parsed.entries.filter(({node})=>node.tag==='script'&&node.raw?.includes('const ASHBY_ORG'))
  need(carriers.length===1&&active(carriers[0])&&!has(carriers[0].node.attrs,'src')&&!has(carriers[0].node.attrs,'nomodule')
-  &&!carriers[0].node.attrs.type&&sha(carriers[0].node.raw)==='f1da389f5a20d560fc6835bcba51c569cd67f338685d08165af20645d386684a','Current active corporate all-jobs programme changed')
+  &&!carriers[0].node.attrs.type&&sha(carriers[0].node.raw)==='f1da389f5a20d560fc6835bcba51c569cd67f338685d08165af20645d386684a','Current active corporate programme changed')
+ for(const entry of parsed.entries.filter(active)){
+  const node=entry.node,raw=node.tag==='a'?node.attrs.href:['form','iframe'].includes(node.tag)?node.attrs.action??node.attrs.src:null
+  need(!raw||!isAdditionalRecruitmentURL(raw),'Additional corporate programme recruitment publication requires qualification')
+  if(node.tag==='script'&&node.attrs.type?.toLowerCase()==='application/ld+json')
+   need(!containsJobPosting(originalJSON(node.raw??'')),'Additional corporate programme JobPosting publication requires qualification')
+ }
  return {url:HOME,htmlSHA256:packet.hash,programmeScriptSHA256:sha(carriers[0].node.raw),account:'datafold',
-  programmeMapsEveryNativeJobAndCompensationTier:true,marketingEmptyMessageUsedAsEvidence:false,wholeCorporateBodyPinned:true}
+  programmeMapsEveryNativeJobAndCompensationTier:true,marketingEmptyMessageUsedAsEvidence:false,wholeCorporateBodyPinned:false}
 }
 
 function literal(raw){
@@ -120,6 +146,29 @@ function qualifyHeadDeclarations(links,declaration){
   'Unreviewed native renderer/bootstrap asset declaration')
 }
 
+// Native employer/account routing fields bind this own public board. Theme and
+// feature flags are retained original data, not proof of browser/application
+// behavior or filters. Authored board-wide criteria remain a separate guard.
+function qualifyOrganization(organization){
+ shape(organization,'organizationId name publicWebsite customJobsPageUrl hostedJobsPageSlug allowJobPostIndexing isDemoOrg theme appConfirmationTrackingPixelHtml recruitingPrivacyPolicyUrl activeFeatureFlags timezone candidateScheduleCancellationReasonRequirementStatus showCookieBanner __typename','Native employer/account field inventory changed')
+ need(organization.organizationId==='25c04251-28a2-46f6-aeea-58822308757a'&&organization.name==='Datafold'
+  &&organization.publicWebsite==='https://www.datafold.com'&&organization.customJobsPageUrl==='https://www.datafold.com/careers?'
+  &&organization.hostedJobsPageSlug==='datafold'&&organization.isDemoOrg===false&&organization.__typename==='Organization','Native employer/account scope changed')
+ need(typeof organization.allowJobPostIndexing==='boolean'&&typeof organization.showCookieBanner==='boolean'
+  &&typeof organization.timezone==='string'&&typeof organization.candidateScheduleCancellationReasonRequirementStatus==='string'
+  &&Array.isArray(organization.activeFeatureFlags)&&organization.activeFeatureFlags.length<=256
+  &&organization.activeFeatureFlags.every(flag=>typeof flag==='string'&&flag.length>0&&flag.length<=200)
+  &&new Set(organization.activeFeatureFlags).size===organization.activeFeatureFlags.length,'Native account metadata field types changed')
+ const nullableString=value=>value===null||typeof value==='string'
+ need(nullableString(organization.appConfirmationTrackingPixelHtml)&&nullableString(organization.recruitingPrivacyPolicyUrl),'Native account metadata types changed')
+ const theme=organization.theme
+ shape(theme,'colors showJobFilters showLocationAddress showTeams showAutofillApplicationsBox logoWordmarkImageUrl logoSquareImageUrl applicationSubmittedSuccessMessage jobBoardTopDescriptionHtml jobBoardBottomDescriptionHtml jobPostingBackUrl __typename','Native theme/criteria field inventory changed')
+ need(theme.jobBoardTopDescriptionHtml===null&&theme.jobBoardBottomDescriptionHtml===null,'Additional native board-wide criteria publication requires qualification')
+ need(['showJobFilters','showLocationAddress','showTeams','showAutofillApplicationsBox'].every(key=>typeof theme[key]==='boolean')
+  &&['logoWordmarkImageUrl','logoSquareImageUrl','applicationSubmittedSuccessMessage','jobPostingBackUrl'].every(key=>nullableString(theme[key]))
+  &&theme.colors&&typeof theme.colors==='object'&&!Array.isArray(theme.colors)&&Object.values(theme.colors).every(nullableString)
+  &&typeof theme.__typename==='string','Native theme metadata field types changed')
+}
 export function readNative(packet,isRole=false){
  const parsed=eightfoldDocument(packet.text),entries=parsed.entries
  uniqueIdentityAttributes(parsed.normalized)
@@ -147,7 +196,7 @@ export function readNative(packet,isRole=false){
  shape(model,'ddRumApplicationId ddRumClientToken environment maintenanceMode schedulingMaintenanceMode organization posting jobBoard routerPrefix recaptchaUniversalPublicSiteKey','Unreviewed native top-level fields')
  need(model.environment==='production'&&model.maintenanceMode===false&&model.schedulingMaintenanceMode===false&&model.routerPrefix==='/',
   'Native availability/routing mode changed')
- need(sha(JSON.stringify(model.organization))==='c6793c490c7b2da4e39dadfb2f55eb6be5a3a071ca1bfaf535a18f0832e44cef','Native employer/account/theme/scope changed')
+ qualifyOrganization(model.organization)
  const nonce=boot.attrs.nonce,metas=entries.filter(({node})=>node.attrs.id==='csp-nonce')
  need(typeof nonce==='string'&&/^[A-Za-z0-9_-]{43}$/.test(nonce)&&metas.length===1&&active(metas[0])
   &&metas[0].ancestors.map(n=>n.tag).join('/')==='root/html/head'

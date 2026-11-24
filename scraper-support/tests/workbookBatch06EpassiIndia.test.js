@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import fs from 'node:fs/promises'
+import { gunzipSync } from 'node:zlib'
 
 const VERIFIED_CAREERS_HTML = `
 <!doctype html>
@@ -169,6 +170,15 @@ const loadModule = async () => {
   }
 }
 
+const unlocatedEuropeDetail = country => {
+  const script = /(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/
+  const payload = JSON.parse(VERIFIED_NON_INDIA_DETAIL_HTML.match(script)[2])
+  payload.description = '<p>This is a full-time, Europe-based role.</p>'
+  payload.jobLocation = [{ '@type': 'Place', address: { '@type': 'PostalAddress', streetAddress: '',
+    ...(country ? { addressCountry: country } : {}) } }]
+  return VERIFIED_NON_INDIA_DETAIL_HTML.replace(script, (_match, open, _body, close) => open + JSON.stringify(payload) + close)
+}
+
 test('Epassi India validates the verified first-party careers shell and public Jobylon listing contract', async () => {
   const epassiindia = await loadModule()
   const listings = epassiindia.extractJobylonListings(VERIFIED_JOBYLON_EMBED_JS)
@@ -331,15 +341,15 @@ test('Epassi India fails closed when the public Jobylon embed or detail contract
   )
 })
 
-test('Epassi India parses every current embedded page when a summary location is unpublished', async () => {
+test('Epassi India parses both pages of the November 20 public embedded inventory', async () => {
   const epassiindia = await loadModule()
-  const embed = await fs.readFile(new URL('../../scraper/epassiindia/fixtures/jobylon-current-embed.js', import.meta.url), 'utf8')
+  const fixture = JSON.parse(gunzipSync(await fs.readFile(new URL('../../scraper/epassiindia/fixtures/native-20261120.json.gz', import.meta.url))))
+  const embed = fixture.responses[0].body
   const listings = epassiindia.extractJobylonListings(embed)
-  assert.equal(listings.length, 17)
-  assert.equal(new Set(listings.map(job => job.jobId)).size, 17)
-  assert.equal(listings[0].jobId, '389049')
-  assert.equal(listings[0].location, null)
-  assert.equal(listings.at(-1).jobId, '343629')
+  assert.equal(listings.length, 16)
+  assert.equal(new Set(listings.map(job => job.jobId)).size, 16)
+  assert.equal(listings[0].jobId, '398413')
+  assert.equal(listings.at(-1).jobId, '370526')
 })
 
 test('Epassi India requires public detail country coverage for an unpublished listing location', async () => {
@@ -356,10 +366,10 @@ test('Epassi India requires public detail country coverage for an unpublished li
   assert.equal(jobs[0].jobDescription, 'Build platform capabilities for India and Europe.')
 })
 
-test('Epassi India accepts the actual explicit Europe-based role and rejects unclassified remote vacancies', async () => {
+test('Epassi India accepts explicit Europe placement with a blank address and rejects unclassified remote vacancies', async () => {
   const epassiindia = await loadModule()
-  const detail = await fs.readFile(new URL('../../scraper/epassiindia/fixtures/detail-389049.html', import.meta.url), 'utf8')
-  const listing = { jobId: '389049', title: 'Enterprise Systems Specialist', sourceUrl: 'https://emp.jobylon.com/jobs/389049-epassi-enterprise-systems-specialist/' }
+  const detail = unlocatedEuropeDetail()
+  const listing = epassiindia.extractJobylonListings(VERIFIED_JOBYLON_EMBED_JS)[0]
   assert.equal(epassiindia.extractIndiaJobFromDetail(listing, detail), null)
   assert.throws(() => epassiindia.extractIndiaJobFromDetail(listing, detail.replace('Europe-based role', 'global role')), /country.*coverage|location.*coverage/i)
 })
@@ -414,10 +424,9 @@ test('Epassi India catalog records the complete verified current global inventor
 
 test('Epassi India rejects unrecognized declared countries instead of classifying Remote or ZZ as foreign', async () => {
   const epassiindia = await loadModule()
-  const detail = await fs.readFile(new URL('../../scraper/epassiindia/fixtures/detail-389049.html', import.meta.url), 'utf8')
-  const listing = { jobId: '389049', title: 'Enterprise Systems Specialist', sourceUrl: 'https://emp.jobylon.com/jobs/389049-epassi-enterprise-systems-specialist/' }
+  const listing = epassiindia.extractJobylonListings(VERIFIED_JOBYLON_EMBED_JS)[0]
   for (const country of ['Remote', 'ZZ', 'Atlantis']) {
-    const modified = detail.replace('"streetAddress": ""', '"addressCountry": "' + country + '", "streetAddress": ""')
+    const modified = unlocatedEuropeDetail(country)
     assert.throws(() => epassiindia.extractIndiaJobFromDetail(listing, modified), /unknown|unrecognized.*country|country.*coverage/i)
   }
 })
@@ -426,4 +435,76 @@ test('Epassi India rejects a foreign country declaration that contradicts an exp
   const epassiindia = await loadModule()
   const listing = epassiindia.extractJobylonListings(VERIFIED_JOBYLON_EMBED_JS)[0]
   assert.throws(() => epassiindia.extractIndiaJobFromDetail(listing, VERIFIED_INDIA_DETAIL_HTML.replace('"addressCountry": "IN"', '"addressCountry": "DE"')), /country.*conflict|country.*contradict/i)
+})
+
+test('Epassi preserves a validated India role when an independent detail cannot be read', async () => {
+  const epassi = await loadModule()
+  const { readInventoryEvidence, sourceLifecycleCleanupForbidden } = await import('../utils/inventoryEvidence.js')
+  const jobs = await epassi.run({ fetchText: async url => {
+    if (url === epassi.CAREERS_URL) return VERIFIED_CAREERS_HTML
+    if (url === epassi.JOBYLON_EMBED_URL) return VERIFIED_JOBYLON_EMBED_JS
+    if (url.includes('/372856-')) return VERIFIED_INDIA_DETAIL_HTML
+    throw Object.assign(new Error('HTTP 503 detail temporarily unavailable'), { status: 503 })
+  } })
+  assert.equal(jobs.length, 1)
+  assert.equal(jobs[0].jobId, '372856')
+  assert.equal(jobs[0].sourceListingComplete, false)
+  assert.equal(jobs[0].sourceDetailComplete, true)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs), true)
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence.status, 'coverage-gap')
+  assert.equal(evidence.listingComplete, false)
+  assert.equal(evidence.indiaFacetCount, null)
+  assert.equal(jobs.nativeCollectionEvidence.failures[0].jobId, '370526')
+})
+
+test('Epassi continues to independently validated jobs after an earlier detail failure', async () => {
+  const epassi = await loadModule()
+  const secondIndia = VERIFIED_NON_INDIA_DETAIL_HTML_TWO.replace('"addressCountry": "NL"', '"addressCountry": "IN"')
+    .replaceAll('Omval 300, 1096 HP Amsterdam, Niederlande', 'Bengaluru, India')
+    .replace('"addressLocality": "Amsterdam"', '"addressLocality": "Bengaluru"')
+    .replace('"addressRegion": "Noord-Holland"', '"addressRegion": "Karnataka"')
+  const jobs = await epassi.run({ fetchText: async url => {
+    if (url === epassi.CAREERS_URL) return VERIFIED_CAREERS_HTML
+    if (url === epassi.JOBYLON_EMBED_URL) return VERIFIED_JOBYLON_EMBED_JS
+    if (url.includes('/372856-')) throw new Error('HTTP 500 first detail unavailable')
+    return secondIndia
+  } })
+  assert.deepEqual(jobs.map(job => job.jobId), ['370526'])
+  assert.equal(jobs[0].country, 'India')
+  assert.equal(jobs.nativeCollectionEvidence.failures[0].jobId, '372856')
+})
+
+test('Epassi does no I/O after caller cancellation', async () => {
+  const epassi = await loadModule()
+  const controller = new AbortController()
+  const reason = new Error('Caller cancelled Epassi')
+  controller.abort(reason)
+  let reads = 0
+  await assert.rejects(epassi.run({ signal: controller.signal, fetchText: async () => { reads++; return VERIFIED_CAREERS_HTML } }), error => error === reason)
+  assert.equal(reads, 0)
+})
+
+for (const limited of [false, true]) test(`Epassi keeps an India role without native criteria partial with listing limit ${limited}`, async () => {
+  const epassi = await loadModule()
+  const { readInventoryEvidence, sourceLifecycleCleanupForbidden } = await import('../utils/inventoryEvidence.js')
+  const withoutDescription = VERIFIED_INDIA_DETAIL_HTML.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/,
+    (_whole, opening, body, closing) => {
+      const model = JSON.parse(body)
+      delete model.description
+      return opening + JSON.stringify(model) + closing
+    })
+  const jobs = await epassi.run({ ...(limited ? { maxJobs: 1 } : {}), fetchText: async url => {
+    if (url === epassi.CAREERS_URL) return VERIFIED_CAREERS_HTML
+    if (url === epassi.JOBYLON_EMBED_URL) return VERIFIED_JOBYLON_EMBED_JS
+    return url.includes('/372856-') ? withoutDescription : VERIFIED_NON_INDIA_DETAIL_HTML_TWO
+  } })
+  assert.equal(jobs.length, 1)
+  assert.equal(jobs[0].country, 'India')
+  assert.equal(jobs[0].jobDescription, null)
+  assert.equal(jobs[0].sourceDetailComplete, false)
+  assert.equal(jobs[0].sourceDetailStatus, 'partial')
+  assert.equal(jobs[0].sourceDetailFailureKind, 'native-description-unavailable')
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs), true)
 })

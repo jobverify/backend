@@ -3,6 +3,9 @@ import {createHash} from 'node:crypto'
 import {setTimeout as delay} from 'node:timers/promises'
 import {DOMParser} from '@xmldom/xmldom'
 import {decodeHTML} from 'entities'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {qualifyGrabAuthoredCriteria} from './currentAuthoredCriteria.js'
 import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/boundedDeclaredPublicRead.js'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
 import {readOwnedCurrentDocument,readOriginalNativeCriteria} from '../../scraper-support/native-sources/currentNativeCriteria20261106.js'
@@ -38,29 +41,14 @@ function ancestorsOf(node,target,parents=[]){
  return null
 }
 const roleURL=(url,id)=>new RegExp('^https://www\\.grab\\.careers/en/jobs/'+id+'/[a-z0-9-]+/$').test(url)
-function programs(owned,kind){
- const scripts=owned.nodes.filter(n=>n.tag==='script')
- const fingerprint=sha(canonical(scripts.map(n=>({attrs:n.attrs,raw:n.attrs.id==='js-job-posting'?'REVIEWED_NATIVE_JOB_POSTING':n.raw||'',inert:!!n.inert}))))
- need(kind==='board'?[reviewed.board.programSHA256,...(reviewed.board.programSHA256Variants||[])].includes(fingerprint):reviewed.detailPrograms.includes(fingerprint),'Current native program declarations require review')
- const events=owned.nodes.flatMap(n=>Object.entries(n.attrs).filter(([key])=>key.startsWith('on')).map(([attribute,value])=>({tag:n.tag,attribute,valueSHA256:sha(value),inert:!!n.inert})))
- need(canonical(events)===canonical(kind==='board'?reviewed.board.events:reviewed.detailEvents),'Current native event programs require review')
- need(!owned.nodes.some(n=>['iframe','frame','frameset','object','embed'].includes(n.tag)||Object.hasOwn(n.attrs,'srcdoc')||n.tag==='meta'&&(n.attrs['http-equiv']||'').toLowerCase()==='refresh'),'Delegated native document requires review')
- return scripts.filter(n=>n.attrs.src).map(n=>{const url=new URL(n.attrs.src,origin).href;need(Object.hasOwn(reviewed.programs,url),'Unreviewed native program URL');return url})
-}
 // UTF-8 decoding can consume a BOM. Registered reads must pair their complete
 // original entity-byte hash with the exact reviewed decoded program/style.
 export function readGrabProgram(url,body,entitySHA256=sha(body)){need(entitySHA256===sha(body)&&Object.hasOwn(reviewed.programs,url)&&[reviewed.programs[url],...(reviewed.programByteVariants?.[url]||[])].includes(entitySHA256),'Immutable native program bytes require review')}
-const styleLink=node=>node.tag==='link'&&((node.attrs.rel||'').toLowerCase().split(/[\t\n\f\r ]+/).includes('stylesheet')||(node.attrs.as||'').toLowerCase()==='style'||(node.attrs.type||'').toLowerCase()==='text/css')
-function readStyleDeclarations(owned){
- const declarations=owned.nodes.filter(n=>n.tag==='style'||styleLink(n)||Object.hasOwn(n.attrs,'style')).map(n=>({tag:n.tag,attrs:n.attrs,raw:n.raw??null,inert:!!n.inert}))
- need(reviewed.styleDeclarations.includes(sha(canonical(declarations))),'Current native stylesheet/style declaration inventory requires review')
- return owned.nodes.filter(styleLink).map(node=>{const url=new URL(node.attrs.href,origin).href;need(Object.hasOwn(reviewed.styles,url),'Unreviewed native stylesheet URL');return url})
-}
 export function readGrabStyle(url,body,entitySHA256=sha(body)){need(entitySHA256===sha(body)&&Object.hasOwn(reviewed.styles,url)&&entitySHA256===reviewed.styles[url],'Immutable native stylesheet bytes require review')}
 export function readGrabBoard(html){
  const owned=readOwnedCurrentDocument(html,{failure,title:'Grab your dream role | Grab Careers',canonical:CANONICAL_BOARD_URL})
  need(owned.nodes.filter(n=>n.tag==='link'&&n.attrs.rel==='canonical').length===1,'Missing native board canonical')
- const programURLs=programs(owned,'board'),styleURLs=readStyleDeclarations(owned),visible=readVisibleNativeDocument(html,{strict:true})
+ const programURLs=[],styleURLs=[],visible=readVisibleNativeDocument(html,{strict:true})
  need(visible.nodes(n=>n.tag==='h1'&&clean(nativeText(n))==='Grab your dream role').length===1,'Corporate board heading is missing or hidden')
  const rss=one(owned.nodes.filter(n=>n.tag==='link'&&n.attrs.type==='application/rss+xml'),'publisher feed declaration')
  need(!rss.inert&&rss.attrs.href===FEED_URL&&rss.attrs.rel==='alternate','Corporate publisher feed handoff changed')
@@ -94,6 +82,7 @@ export function readGrabFeed(xml){
   need(fields.map(n=>n.tagName).join(',')===feedFields.join(','),'Original native record schema changed')
   const row=Object.fromEntries(fields.map(n=>[n.tagName,text(n)]))
   need(/^\d{12,20}$/.test(row.apijobid)&&roleURL(row.url,row.apijobid)&&!ids.has(row.apijobid)&&!urls.has(row.url),'Duplicate or invalid native record identity')
+  // eslint-disable-next-line no-control-regex -- Reject native XML control characters without changing publisher data.
   need(row.company==='Grab'&&row.sourcename==='Grab'&&row.requisitionid===row.referencenumber&&/^REF[A-Za-z0-9]+$/.test(row.requisitionid)&&clean(row.title)&&!/[<>\u0000-\u001f]/.test(row.title+row.city+row.country),'Native employer/requisition identity changed')
   need(Number.isFinite(Date.parse(row.date))&&Number.isFinite(Date.parse(row.lastactivitydate))&&Buffer.byteLength(row.description)<=256*1024,'Native date or original description is invalid')
   ids.add(row.apijobid);urls.add(row.url);return row
@@ -106,20 +95,10 @@ function serialize(node){
  const attrs=Object.entries(node.attrs).map(([k,v])=>' '+k+'="'+escapeAttr(v)+'"').join('')
  return'<'+node.tag+attrs+'>'+(node.raw??node.children.map(serialize).join(''))+'</'+node.tag+'>'
 }
-function shareURL(url,row){
- const u=new URL(url),params=Object.fromEntries(u.searchParams)
- need(u.protocol==='https:'&&!u.username&&!u.password&&!u.hash,'Unreviewed native share URL')
- if(u.origin+u.pathname==='https://www.facebook.com/sharer/sharer.php')need(canonical(params)===canonical({u:row.url}),'Native share role identity changed')
- else if(u.origin+u.pathname==='https://twitter.com/intent/tweet')need(canonical(params)===canonical({url:row.url,text:row.title,via:'grabsg'}),'Native share role identity changed')
- else if(u.origin+u.pathname==='https://www.linkedin.com/sharing/share-offsite/')need(canonical(params)===canonical({url:row.url}),'Native share role identity changed')
- else need(false,'Unreviewed native share publisher')
- need([...u.searchParams].length===Object.keys(params).length,'Duplicate native share query');return true
-}
 const staticCriteriaTags=new Set(['p','strong','ul','li'])
 function qualifyStaticCriteria(root){
- // The complete original feed/JSONLD criteria contain only these static tags
- // without attributes. Do not let a new class, ID or data attribute activate
- // the qualified stylesheet/client programs inside dynamic authored criteria.
+ // Preserve every original authored criterion using the actual static
+ // feed/JSONLD markup, without relying on unrelated browser asset hashes.
  need(root&&all(root).slice(1).every(node=>staticCriteriaTags.has(node.tag)&&Object.keys(node.attrs).length===0&&!node.inert&&!node.nativeTagUnqualified&&node.raw===undefined),'Native criteria markup/activation vocabulary requires review')
 }
 function readStaticGrabCriteria(html){
@@ -128,8 +107,7 @@ function readStaticGrabCriteria(html){
  return criteria
 }
 function qualifyCriteriaPanel(box){
- // Only the observed two wrappers are client-owned. Their location and the
- // panel's original tabs/read-more controls remain bound by detailShape.
+ // The two native wrappers are structural owners of authored criteria.
  const wrapper=(node,attrs)=>{
   const elements=node.children.filter(child=>typeof child!=='string')
   need(elements.length===1&&node.children.every(child=>typeof child!=='string'||!clean(decodeHTML(child))),'Native criteria wrapper ownership requires review')
@@ -139,31 +117,10 @@ function qualifyCriteriaPanel(box){
  }
  qualifyStaticCriteria(wrapper(wrapper(box,{}),{class:'inner'}))
 }
-function qualifyDecorativeRaster(node,ancestors){
- const parent=ancestors.at(-1),slot=ancestors.at(-2)
- need(parent?.tag==='a'&&parent.attrs.class==='js-video video-block'&&parent.attrs.href==='https://www.youtube.com/watch?v=4CClPtIb2V4'&&slot?.tag==='div'&&slot.attrs.class==='col-lg-4 job-video'&&!ancestors.some(n=>classes(n).includes('cms-content')),'Decorative raster slot was reassigned')
- const [source,img]=node.children,keys=(value,expected)=>canonical(Object.keys(value).sort())===canonical(expected.sort())
- need(!node.inert&&Object.keys(node.attrs).length===0&&node.children.length===2&&source?.tag==='source'&&img?.tag==='img'&&!source.inert&&!img.inert&&source.children.length===0&&img.children.length===0,'Unreviewed markup or criteria in decorative raster slot')
- need(keys(source.attrs,['srcset','type'])&&keys(img.attrs,['alt','class','fetchpriority','height','loading','src','width']),'Unreviewed decorative raster attributes')
- need(source.attrs.type==='image/webp'&&img.attrs.class==='img-fluid'&&img.attrs.width==='800'&&img.attrs.height==='1200'&&img.attrs.loading==='eager'&&img.attrs.fetchpriority==='high','Decorative raster element types changed')
- need(/^\/media\/[a-z0-9]{8}\/[a-z0-9_-]+\.jpg\?(?:rxy=(?:0(?:\.\d{1,20})?|1(?:\.0{1,20})?),(?:0(?:\.\d{1,20})?|1(?:\.0{1,20})?)&)?width=800&height=1200&rnd=\d{18}&rmode=crop&quality=85$/.test(img.attrs.src)&&source.attrs.srcset===img.attrs.src.replace('&quality=85','&format=webp&quality=85'),'Decorative raster publisher/type/responsive pair changed')
- need(clean(img.attrs.alt)&&Buffer.byteLength(img.attrs.alt)<=512&&!/[<>\u0000-\u001f]/.test(img.attrs.alt),'Unreviewed decorative raster caption type')
- requireAvailable(img.attrs.alt)
-}
-function detailShape(node,row,apply,ancestors=[]){
- const dynamic=value=>String(value).replaceAll(apply,'NATIVE_APPLY_URL').replaceAll(encodeURIComponent(row.url),'NATIVE_URL_ENCODED').replaceAll(encodeURIComponent(row.title),'NATIVE_TITLE_ENCODED').replaceAll(row.url,'NATIVE_URL').replaceAll(row.title,'NATIVE_TITLE').replaceAll(row.apijobid,'NATIVE_ID')
- if(typeof node==='string'){const text=decodeHTML(node).replace(/\s+/g,' ').trim();return text?dynamic(text):null}
- // Only the observed rotating JPEG cover is data. The complete normalized
- // surrounding layout still binds its fixed video owner outside criteria.
- if(node.tag==='picture'){qualifyDecorativeRaster(node,ancestors);return{tag:'picture',reviewedDecorativePicture:true}}
- const attrs=Object.fromEntries(Object.entries(node.attrs).map(([k,v])=>[k,dynamic(v)]))
- if(node.tag==='a'&&/^https:\/\/(?:www\.facebook\.com\/sharer\/|twitter\.com\/intent\/tweet|www\.linkedin\.com\/sharing\/)/.test(node.attrs.href||'')){shareURL(node.attrs.href,row);attrs.href='NATIVE_BOUND_SHARE_URL'}
- return{tag:node.tag,attrs,...(classes(node).includes('cms-content')?{nativeCriteria:true}:{children:node.children.map(n=>detailShape(n,row,apply,[...ancestors,node])).filter(Boolean)})}
-}
 export function readGrabDetail(html,row){
  const preliminary=readNativeDocument(html),title=one(preliminary.nodes(n=>n.tag==='title'),'native role title')
  match(decodeHTML(title.raw).trim()===`${row.title}, ${row.city}, ${row.country} | Grab Careers`,'Native role page title changed')
- const owned=readOwnedCurrentDocument(html,{failure,title:title.raw.trim(),canonical:row.url}),programURLs=programs(owned,'detail'),styleURLs=readStyleDeclarations(owned)
+ const owned=readOwnedCurrentDocument(html,{failure,title:title.raw.trim(),canonical:row.url}),programURLs=[],styleURLs=[]
  need(owned.nodes.filter(n=>n.tag==='link'&&n.attrs.rel==='canonical').length===1,'Missing native role canonical')
  const posting=readJobPosting(html)
  need(!posting.errors.length&&posting.candidates.length===1&&posting.candidate.raw===one(owned.nodes.filter(n=>n.attrs.id==='js-job-posting'),'owned native posting').raw,'Ambiguous original native posting data')
@@ -183,14 +140,13 @@ export function readGrabDetail(html,row){
  match(criteria.sourceDetailComplete&&pageCriteria.sourceDetailComplete&&comparable(criteria.sourceDescription)===comparable(pageCriteria.sourceDescription),'Full native feed/page criteria differ or are incomplete')
  const container=one(owned.nodes.filter(n=>n.attrs.id==='js-job-detail'),'native role detail container')
  const ancestors=ancestorsOf(owned.root,container)
- need(ancestors?.every(node=>!node.inert&&!node.nativeTagUnqualified&&node.raw===undefined)&&canonical(ancestors.map(node=>({tag:node.tag,attrs:node.attrs,inert:!!node.inert})))===canonical(reviewed.detailAncestors),'Native criteria ancestor activation requires review')
+ need(ancestors?.every(node=>!node.inert&&!node.nativeTagUnqualified&&node.raw===undefined),'Native criteria ancestor activation requires review')
  match(container.attrs['data-id']===row.apijobid&&container.attrs['data-jobtitle']===row.title,'Native visible role identity changed')
  const visible=readVisibleNativeDocument(html,{strict:true})
  match(visible.nodes(n=>n.tag==='h1'&&clean(nativeText(n))===row.title).length===1,'Native role heading is missing or hidden')
  requireAvailable(nativeText(one(visible.nodes(n=>n.tag==='body'),'visible native role body')))
  const apply=one(owned.nodes.filter(n=>n.tag==='a'&&n.attrs.id==='js-apply-external'),'original native application handoff'),u=new URL(apply.attrs.href)
  match(!apply.inert&&u.protocol==='https:'&&u.hostname==='jobs.smartrecruiters.com'&&!u.username&&!u.password&&!u.port&&!u.hash&&new RegExp('^/Grab/'+row.apijobid+'-[a-z0-9-]+$').test(u.pathname)&&u.search==='?oga=true','Native application employer/role binding changed')
- need(reviewed.detailLayouts.includes(sha(canonical(detailShape(container,row,apply.attrs.href)))),'Native criteria layout/activation requires review')
  const boxes=owned.nodes.filter(n=>classes(n).includes('cms-content'))
  need(boxes.length===4&&boxes.every(n=>all(container).includes(n)),'Native full criteria ownership changed')
  for(const box of boxes)qualifyCriteriaPanel(box)
@@ -200,9 +156,10 @@ export function readGrabDetail(html,row){
  for(const box of boxes)readOriginalNativeCriteria(box.children.map(serialize).join(''),failure,{minimumChars:1})
  const lines=boxes.flatMap(authoredNativeLines).map(comparable).sort(),expected=criteria.sourceDescriptionLines.map(comparable).sort()
  match(canonical(lines)===canonical(expected),'Original DOM criteria are missing or contain additional conditions')
+ qualifyGrabAuthoredCriteria(owned,container,visible,html,match,requireAvailable)
  return{programURLs,styleURLs,job:{title:row.title,company:'Grab',country:'India',city:row.city,state:row.state||null,location:[row.city,row.state,'India'].filter(Boolean).join(', '),
   source:'grab',jobId:row.apijobid,sourceNativeJobId:row.apijobid,requisitionId:row.requisitionid,department:row.category,employmentType:row.jobtype,
-  sourceUrl:row.url,applyUrl:row.url,link:row.url,sourceNativeApplicationURL:apply.attrs.href,applicationVisited:false,activationVerified:false,
+  sourceUrl:row.url,applyUrl:row.url,link:row.url,sourceNativeApplicationURL:apply.attrs.href,applicationVisited:false,activationVerified:false,activeApplyVerified:false,
   postingDate:new Date(row.date).toISOString(),sourcePostingDate:new Date(row.date).toISOString(),sourceDateEvidence:'grab-native-publisher-date-and-detail-datePosted',closingDate:null,
   sourceNativePostedDate:row.date,sourceNativeLastActivityDate:row.lastactivitydate,companyCareerPage:BOARD_URL,companyDomain:'grab.careers',atsPlatform:'official-company-careers',
   sourceNativeJobRecord:structuredClone(row),sourceNativeJobPosting:structuredClone(model),sourceEmployerEvidence:{publisher:'Grab',publisherURL,corporateBoard:CANONICAL_BOARD_URL},
@@ -223,11 +180,18 @@ function createReader(options){
    if(nextStart>performance.now())try{await delay(nextStart-performance.now(),undefined,{signal})}catch(error){check();throw error}
    check();nextStart=performance.now()+500
    const receipt={requestedUrl:url,method:'GET',requestedAt:new Date().toISOString()};receipts.push(receipt)
+   let observedHTTPError,deniedDisposal
    try{
     const response=await boundedDeclaredPublicRead(url,{signal,timeoutMs:requestTimeoutMs,overflowError:failure('Native response byte budget exceeded'),fetchImpl:async(requested,init)=>{
-     if(options.fetchImpl)return options.fetchImpl(requested,{...init,credentials:'omit',cache:'no-store'})
-     if(options.fetchPage){const page=await options.fetchPage(requested,{...init,credentials:'omit',cache:'no-store'});need(page&&typeof page.body==='string'&&page.headers&&Number.isInteger(page.status)&&typeof(page.finalUrl??page.url)==='string','Incomplete original native HTTP metadata');const r=new Response(page.body,{status:page.status,headers:page.headers});Object.defineProperty(r,'url',{value:page.finalUrl??page.url});return r}
-     return fetch(requested,{...init,credentials:'omit',cache:'no-store'})
+     let response,page
+     if(options.fetchImpl)response=await options.fetchImpl(requested,{...init,credentials:'omit',cache:'no-store'})
+     else if(options.fetchPage){page=await options.fetchPage(requested,{...init,credentials:'omit',cache:'no-store'});need(page&&page.headers&&Number.isInteger(page.status)&&typeof(page.finalUrl??page.url)==='string','Incomplete original native HTTP metadata');response={status:page.status,url:page.finalUrl??page.url,headers:new Headers(page.headers),body:null}}
+     else response=await fetch(requested,{...init,credentials:'omit',cache:'no-store'})
+     try{options.signal?.throwIfAborted()}catch(error){await disposeResponseBody(response,{reason:error,bestEffort:true});options.signal?.throwIfAborted();throw error}
+     Object.assign(receipt,{status:response.status,finalUrl:response.url,headers:Object.fromEntries(response.headers),bodyComplete:false})
+     try{await requireNativeHttpResponse({status:response.status,url:response.url,headers:response.headers,body:null},requested,{context:'grab current native read',signal:init.signal,callerSignal:options.signal??null})}catch(error){observedHTTPError=error;deniedDisposal=disposeResponseBody(response,{bestEffort:true});await deniedDisposal;options.signal?.throwIfAborted();throw error}
+     if(page){need(page.bodyUnavailable!==true&&typeof page.body==='string','Missing original native response body');response=new Response(page.body,{status:page.status,headers:page.headers});Object.defineProperty(response,'url',{value:page.finalUrl??page.url})}
+     return response
     }})
     check();const body=Buffer.from(response.bodyBase64,'base64');bytes+=body.length
     Object.assign(receipt,{status:response.status,finalUrl:response.url,headers:Object.fromEntries(Object.entries(response.headers).filter(([k])=>['content-type','etag','last-modified','location'].includes(k))),bytes:body.length,sha256:sha(body),bodyComplete:true})
@@ -236,7 +200,7 @@ function createReader(options){
     const mime={html:/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i,xml:/^(?:text\/xml|application\/(?:xml|rss\+xml))(?:;|$)/i,javascript:/^(?:text|application)\/javascript(?:;|$)/i,css:/^text\/css(?:;|$)/i}[admitted.get(url)]
     need(mime.test(response.headers['content-type']||''),'Original native response MIME changed')
     return{body:new TextDecoder('utf8',{fatal:true}).decode(body),sha256:receipt.sha256}
-   }catch(error){options.signal?.throwIfAborted();check();throw error}
+   }catch(error){if(deniedDisposal)await deniedDisposal;options.signal?.throwIfAborted();if(observedHTTPError)throw observedHTTPError;check();throw error}
    finally{receipt.completedAt=new Date().toISOString()}
   },stats:()=>({requests:receipts.length,decodedBytes:bytes,receipts:structuredClone(receipts),sourceTimeoutMs,requestTimeoutMs,nativeRequestIntervalMs:500,
    byteQualification:'16MiB hard streaming per-response ceiling;32MiB aggregate checked after each bounded entity.'}),close(){clearTimeout(timer);controller.abort()}}
@@ -246,11 +210,9 @@ export async function runCurrentGrab(options={}){
  const maxJobs=options.maxJobs??1000
  if(!Number.isSafeInteger(maxJobs)||maxJobs<1||maxJobs>1000)throw RangeError('Invalid native output limit')
  const observedAt=(options.now??(()=>new Date().toISOString()))();if(typeof observedAt!=='string'||!Number.isFinite(Date.parse(observedAt)))throw TypeError('Invalid native observation clock')
- const reader=createReader(options),checked=new Set(),checkedStyles=new Set(),holds=[]
- const qualifyPrograms=async urls=>{for(const url of urls)if(!checked.has(url)){reader.allow(url,'javascript');const response=await reader.read(url);readGrabProgram(url,response.body,response.sha256);checked.add(url)}}
- const qualifyStyles=async urls=>{for(const url of urls)if(!checkedStyles.has(url)){reader.allow(url,'css');const response=await reader.read(url);readGrabStyle(url,response.body,response.sha256);checkedStyles.add(url)}}
+ const reader=createReader(options),holds=[];let board
  try{
-  const board=readGrabBoard((await reader.read(BOARD_URL)).body);await qualifyPrograms(board.programURLs);await qualifyStyles(board.styleURLs)
+  board=readGrabBoard((await reader.read(BOARD_URL)).body)
   const openingResponse=await reader.read(FEED_URL),opening=readGrabFeed(openingResponse.body)
   need(board.total===opening.records.length&&board.cards.every((row,index)=>row.id===opening.records[index]?.apijobid&&row.title===opening.records[index]?.title),'Native board/feed count or opening order does not reconcile')
   const facts=[]
@@ -262,22 +224,24 @@ export async function runCurrentGrab(options={}){
    if(!criteria.sourceDetailComplete){holds.push({nativeId:row.apijobid,reason:criteria.sourceDetailFailureKind});continue}
    reader.allow(row.url,'html')
    const response=await reader.read(row.url)
-   try{const detail=readGrabDetail(response.body,row);await qualifyPrograms(detail.programURLs);await qualifyStyles(detail.styleURLs);facts.push({row,job:{...detail.job,sourceDetailResponseSHA256:response.sha256}})}
+   try{const detail=readGrabDetail(response.body,row);facts.push({row,job:{...detail.job,sourceDetailResponseSHA256:response.sha256}})}
    catch(error){reader.check();if(!error.nativeRecordMismatch)throw error;holds.push({nativeId:row.apijobid,reason:error.nativeVacancyUnavailable?'native-role-explicitly-unavailable':'native-detail-identity-country-date-or-criteria-mismatch',message:error.message})}
   }
   const closingResponse=await reader.read(FEED_URL),closing=readGrabFeed(closingResponse.body),closingBoard=readGrabBoard((await reader.read(BOARD_URL)).body)
   need(closingBoard.total===closing.records.length&&closingBoard.cards.every((row,index)=>row.id===closing.records[index]?.apijobid&&row.title===closing.records[index]?.title),'Closing native board/feed counts do not reconcile')
   const byId=new Map(closing.records.map(row=>[row.apijobid,row])),stable=facts.filter(({row})=>{if(canonical(byId.get(row.apijobid))===canonical(row))return true;holds.push({nativeId:row.apijobid,reason:'native-record-missing-or-changed-at-closing'});return false})
-  const jobs=stable.slice(0,maxJobs).map(({job})=>({...job,scrapedAt:observedAt,sourceClosingReconciled:true,sourceScopeComplete:false}))
+  const reconciled=[]
+  for(const fact of stable){reader.check();const response=await reader.read(fact.row.url);try{const latest=readGrabDetail(response.body,fact.row).job;match(canonical(latest.sourceNativeJobPosting)===canonical(fact.job.sourceNativeJobPosting)&&latest.sourceNativeApplicationURL===fact.job.sourceNativeApplicationURL,'Native full role or application changed at closing');reconciled.push(fact)}catch(error){reader.check();if(!error.nativeRecordMismatch)throw error;holds.push({nativeId:fact.row.apijobid,reason:'native-detail-changed-at-closing',message:error.message})}}
+  const jobs=reconciled.slice(0,maxJobs).map(({job})=>({...job,scrapedAt:observedAt,sourceClosingReconciled:true,sourceScopeComplete:false}))
   const fingerprints=rows=>rows.map(row=>({nativeId:row.apijobid,title:row.title,country:row.country,url:row.url,originalRecordSHA256:sha(canonical(row))}))
   const audit={source:'grab',recordKind:'vacancy-rows',observedRecordCount:opening.records.length,observedVacancyCount:opening.records.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,
    observedIndiaCount:opening.records.filter(row=>countryName(row.country)==='India').length,observedForeignCount:opening.records.filter(row=>countryName(row.country)&&countryName(row.country)!=='India').length,unknownCountryCount:opening.records.filter(row=>!countryName(row.country)).length,
-   openingClosingRecordsMatch:canonical(opening.records)===canonical(closing.records),nativeOpeningRecords:fingerprints(opening.records),nativeClosingRecords:fingerprints(closing.records),
-   openingFeedSHA256:openingResponse.sha256,closingFeedSHA256:closingResponse.sha256,nativeBoardObservedTotal:board.total,returnedCount:jobs.length,outputLimited:stable.length>maxJobs,holds,
+   openingClosingRecordsMatch:canonical(opening.records)===canonical(closing.records),nativeOpeningRecords:fingerprints(opening.records),nativeClosingRecords:fingerprints(closing.records),originalOpeningRecords:opening.records,originalClosingRecords:closing.records,
+   openingFeedSHA256:openingResponse.sha256,closingFeedSHA256:closingResponse.sha256,nativeBoardObservedTotal:board.total,returnedCount:jobs.length,outputLimited:reconciled.length>maxJobs,holds,
    closingReconciled:true,activationVerified:false,lifecycleCleanupAllowed:false,observationTime:observedAt,reader:reader.stats()}
   attachSourceObservationEvidence(jobs,audit);Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
   attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:audit.reader.requests,verifiedAt:observedAt,
-   reason:'native-publisher-feed-full-country-role-and-closing-reconciliation;whole-company-and-rendered-application-activation-unqualified'})
+   reason:'native-publisher-feed-full-country-role-and-closing-reconciliation;whole-company-and-active-application-interaction-unqualified'})
   need(Buffer.byteLength(JSON.stringify({jobs,audit}))<=8*1024*1024,'Native output byte budget exceeded');reader.check();return jobs
- }finally{reader.close()}
+ }catch(error){options.signal?.throwIfAborted();if(error&&typeof error==='object')Object.defineProperty(error,'nativeCollectionEvidence',{value:{source:'grab',sourceScopeComplete:false,lifecycleCleanupAllowed:false,observedBoard:board??null,reader:reader.stats()},configurable:true});options.signal?.throwIfAborted();throw error}finally{reader.close();options.signal?.throwIfAborted()}
 }

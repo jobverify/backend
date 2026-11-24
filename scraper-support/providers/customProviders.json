@@ -9643,6 +9643,7 @@
   },
   {
     "source": "dialpad",
+    "authoritativeCurrentPublication": true,
     "companyName": "Dialpad",
     "officialBrandName": "Dialpad",
     "adapter": "script",
@@ -14547,6 +14548,7 @@
   },
   {
     "source": "goldisolar",
+    "authoritativeCurrentPublication": true,
     "companyName": "Goldi Solar",
     "adapter": "script",
     "modulePath": "../goldisolar/script.js",
@@ -18260,6 +18262,7 @@
   },
   {
     "source": "jkfennerindialtd",
+    "authoritativeCurrentPublication": true,
     "companyName": "J.K.Fenner India Ltd",
     "adapter": "script",
     "modulePath": "../jkfennerindialtd/script.js",
@@ -19525,6 +19528,7 @@
   },
   {
     "source": "kreetitechnologies",
+    "authoritativeCurrentPublication": true,
     "companyName": "Kreeti Technologies",
     "adapter": "script",
     "modulePath": "../kreetitechnologies/script.js",
@@ -27325,6 +27329,7 @@
   },
   {
     "source": "raymond",
+    "authoritativeCurrentPublication": true,
     "companyName": "Raymond",
     "adapter": "script",
     "modulePath": "../raymond/script.js",
@@ -33087,7 +33092,8 @@
     "companyDomain": "techjays.com",
     "verifiedOn": "2026-09-13",
     "verifiedSurfaceSummary": "Verified on 2026-09-13 that the official Techjays careers page lists six public roles with matching first-party detail pages and hireflow.techjays.com applications. Two roles explicitly identify Coimbatore / Hybrid; four lack role-level location evidence and remain diagnostic-only. Published India jobs carry incomplete-listing metadata so prior vacancies are preserved.",
-    "dryRunFile": "techjays/jobs.json"
+    "dryRunFile": "techjays/jobs.json",
+    "authoritativeCurrentPublication": true
   },
   {
     "source": "techmaghi",
@@ -35139,6 +35145,7 @@
   },
   {
     "source": "vidyalai",
+    "authoritativeCurrentPublication": true,
     "companyName": "Vidyalai",
     "adapter": "script",
     "modulePath": "../vidyalai/script.js",
@@ -36724,6 +36731,7 @@
   },
   {
     "source": "specindia",
+    "authoritativeCurrentPublication": true,
     "companyName": "SPEC INDIA",
     "officialBrandName": "SPEC INDIA",
     "adapter": "script",
@@ -39123,6 +39131,7 @@
   },
   {
     "source": "shivaamicloudservices",
+    "authoritativeCurrentPublication": true,
     "companyName": "Shivaami Cloud Services",
     "officialBrandName": "Shivaami",
     "adapter": "script",

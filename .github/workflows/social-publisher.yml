@@ -1,0 +1,34 @@
+name: Jobverify Social Publisher
+on:
+  schedule:
+    - cron: '30 4,12 * * *'
+  workflow_dispatch:
+    inputs:
+      batch_id:
+        description: 'Optional active batch ID for recovery; content is selected in Jobverify admin'
+        required: false
+        type: string
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: jobverify-social-publisher-production
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: vars.SOCIAL_PUBLISHER_ENABLED == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Publish the approved job and save delivery results
+        run: node scripts/social-publisher.js
+        env:
+          SOCIAL_PUBLISHER_API_URL: https://api.jobverify.in/api/social-publisher/run
+          SOCIAL_BATCH_ID: ${{ inputs.batch_id }}

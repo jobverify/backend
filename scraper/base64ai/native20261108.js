@@ -50,6 +50,7 @@ export const createBase64AINativeScraper=(defaults={})=>({async run(options={}){
   control.check()
   const selected=rows().filter(row=>row.sourceCurrentNativeRoleQualified&&(filter==='Global'||row.country==='India')),jobs=structuredClone(settings.maxJobs===null?selected:selected.slice(0,settings.maxJobs)),audit=structuredClone(snapshot())
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit});Object.defineProperty(jobs,'sourceAudit',{value:audit});attachSourceObservationEvidence(jobs,audit)
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:control.requests,verifiedAt:qualifiedAt,reason:'Complete observed native roles and full authored criteria retained;whole-company inventory,India-zero,rendered criteria,current hiring/application and cleanup remain unqualified'})
- }catch(error){if(settings.signal?.aborted){failures.set(settings.signal,structuredClone(snapshot()));throw settings.signal.reason}throw error}finally{control.close()}
+  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:control.requests,verifiedAt:qualifiedAt,reason:'Complete observed native roles and full authored criteria retained;whole-company inventory,India-zero,rendered criteria,current hiring/application and cleanup remain unqualified'})
+  control.check();settings.signal?.throwIfAborted();return jobs
+ }catch(error){if(settings.signal?.aborted){failures.set(settings.signal,structuredClone(snapshot()));throw settings.signal.reason}throw error}finally{control.close();settings.signal?.throwIfAborted()}
 }})

@@ -1,0 +1,77 @@
+{
+  "source": "atos",
+  "reviewedOn": "2026-11-21",
+  "contract": "exact-current-selected-row-and-original-complete-role-publication",
+  "roles": [
+    {
+      "row": {
+        "url": "https://jobs.atos.net/job/Mumbai-LEAD-CONSULTANT/1459169833/",
+        "routeID": "1459169833",
+        "title": "LEAD CONSULTANT",
+        "locations": [
+          "Mumbai, IN"
+        ],
+        "publishDate": "Nov 20, 2026"
+      },
+      "document": {
+        "contextSHA256": [
+          "290d793939cec8bc000373af487411ff86a8df6376f4e7d20b37f4559dc46db2"
+        ]
+      },
+      "modelContextSHA256": "9798075ce36b2147205aabb8e616f038a1db9db518bedcf7f25afc48cdfe451d",
+      "responseContract": {
+        "status": 200,
+        "finalURL": "https://jobs.atos.net/job/Mumbai-LEAD-CONSULTANT/1459169833/",
+        "headerContext": {
+          "content-type": "text/html;charset=UTF-8",
+          "refresh": null,
+          "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.glassdoor.com *.addtoany.com *.atos.net rmk-map-12.jobs2web.com rmkcdn.successfactors.com performancemanager5.successfactors.eu *.sapsf.eu *.sapsf.com *.successfactors.com *.successfactors.eu *.sapsf.cn *.qualtrics.com d3537c9nadzkz1.cloudfront.net *.linkedin.com *.googleapis.com *.gstatic.com *.googletagmanager.com *.google-analytics.com *.googlesyndication.com *.tagmanager.google.com *.youtube.com *.youtu.be *.youtube-nocookie.com *.vimeo.com vimeo.com *.vimeocdn.com *.wistia.net *.pinterest.com *.xing-share.com *.xing.com *.facil-iti.com *.moatads.com *.ytimg.com *.twitter.com *.facebook.com *.facebook.net *.doubleclick.net *.adobedtm.com *.adobe.com sdk.openui5.org; frame-ancestors 'self' https://career5.successfactors.eu",
+          "content-security-policy-report-only": null,
+          "x-content-security-policy": null,
+          "x-webkit-csp": null,
+          "content-disposition": null,
+          "link": null,
+          "location": null,
+          "content-location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    },
+    {
+      "row": {
+        "url": "https://jobs.atos.net/job/Bangalore-CGO-Account-Sales-Executive/1448466833/",
+        "routeID": "1448466833",
+        "title": "CGO - Account Sales Executive",
+        "locations": [
+          "Bangalore, IN"
+        ],
+        "publishDate": "Nov 14, 2026"
+      },
+      "document": {
+        "contextSHA256": [
+          "dcb3dd7db2d803001d57ab7d10fcb9b16c33a3341ed50500057a310a480459b3"
+        ]
+      },
+      "modelContextSHA256": "5a330bb8b936cf6603f177dc10a8c1579219315583ead6102b3bc2d71eb32311",
+      "responseContract": {
+        "status": 200,
+        "finalURL": "https://jobs.atos.net/job/Bangalore-CGO-Account-Sales-Executive/1448466833/",
+        "headerContext": {
+          "content-type": "text/html;charset=UTF-8",
+          "refresh": null,
+          "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.glassdoor.com *.addtoany.com *.atos.net rmk-map-12.jobs2web.com rmkcdn.successfactors.com performancemanager5.successfactors.eu *.sapsf.eu *.sapsf.com *.successfactors.com *.successfactors.eu *.sapsf.cn *.qualtrics.com d3537c9nadzkz1.cloudfront.net *.linkedin.com *.googleapis.com *.gstatic.com *.googletagmanager.com *.google-analytics.com *.googlesyndication.com *.tagmanager.google.com *.youtube.com *.youtu.be *.youtube-nocookie.com *.vimeo.com vimeo.com *.vimeocdn.com *.wistia.net *.pinterest.com *.xing-share.com *.xing.com *.facil-iti.com *.moatads.com *.ytimg.com *.twitter.com *.facebook.com *.facebook.net *.doubleclick.net *.adobedtm.com *.adobe.com sdk.openui5.org; frame-ancestors 'self' https://career5.successfactors.eu",
+          "content-security-policy-report-only": null,
+          "x-content-security-policy": null,
+          "x-webkit-csp": null,
+          "content-disposition": null,
+          "link": null,
+          "location": null,
+          "content-location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "SAMEORIGIN"
+        }
+      }
+    }
+  ]
+}

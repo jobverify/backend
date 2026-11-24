@@ -85,9 +85,9 @@ export const createDassaultAviationIndiaScraper = (defaults={}) => ({
       const official=await read(FIRST_PARTY_ROOT_URL)
       if(!official.text(official.root).includes('Dassault Aviation'))throw gap('Corporate employer identity missing')
       firstParty=true
-      const nativeCollectionEvidence=await collectNative({read,official})
-      const jobs=attachInventoryEvidence([],{status:'discovery-only',surface:LISTING_URL,firstParty:true,listingComplete:false,pagesFetched:retainedResponses.length,
-        reportedTotal:null,indiaFacetCount:null,verifiedAt:now(),reason:'Current native parent-board pages and explicit non-India primary countries reconciled. India references retain unresolved secondary scope; exact Dassault Aviation India subsidiary coverage remains unverified; cleanup disabled.'})
+      const nativeCollectionEvidence=await collectNative({read,official,signal:controller.signal})
+      const jobs=attachInventoryEvidence(nativeCollectionEvidence.jobs??[],{status:'discovery-only',surface:LISTING_URL,firstParty:true,listingComplete:false,pagesFetched:retainedResponses.length,
+        reportedTotal:null,indiaFacetCount:null,verifiedAt:now(),reason:'Current native parent-board observations retain individually qualified India roles and explicit non-India countries. Secondary scope and exact Dassault Aviation India subsidiary coverage remain unverified; cleanup disabled.'})
       Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...nativeCollectionEvidence,retainedResponses,exactSubsidiaryScopeComplete:false,lifecycleCleanupAllowed:false}})
       return jobs
     }

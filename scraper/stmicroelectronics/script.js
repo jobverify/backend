@@ -1,3 +1,4 @@
+import {readRecruitmentConsumers} from './currentRenderer20261120.js'
 import {createHash} from 'node:crypto'
 import {decodeHTML} from 'entities'
 import {extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
@@ -11,7 +12,6 @@ const ORIGIN='https://stmicroelectronics.eightfold.ai',DOMAIN='stmicroelectronic
 const MAP='https://www.st.com/etc.clientlibs/st-crew/components/editorial/crew-industrialization/map/clientlibs.min.3e446492e60150ec26f6161b30b040db.js'
 const MAP_SHA='111cc410b1b340f78d3fb2cea118563c438873e201fdd0ebb39b027e6b8a1993'
 const INLINE_SHA='3d3b5b9fee46cbc0e7bf9c76b0c2e957586783f5fce3e6a61aba8210f8287cce'
-const RENDERER_SHA='522171badd24f647d7e4be09475e6b53a10493a156c742c6e617643f46ac27d8'
 const sha=v=>createHash('sha256').update(v).digest('hex'),text=v=>typeof v==='string'?v.replace(/\s+/gu,' ').trim():''
 const object=v=>v&&typeof v==='object'&&!Array.isArray(v)
 const stable=value=>JSON.stringify(value,(_,v)=>object(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v)
@@ -146,7 +146,7 @@ export async function run(options={}){
  const corporate=corporateOf(await read(OFFICIAL))
  need(sha((await read(MAP)).html)===MAP_SHA,'corporate map handoff client changed')
  const opening=modelOf(await read(SELECTED)),renderer=opening.rendererURL
- need(sha((await read(renderer)).html)===RENDERER_SHA,'native full criteria renderer changed')
+ const rendererPage=await read(renderer),rendererConsumers=readRecruitmentConsumers(rendererPage.html)
  const selected=selectedOf(receipts.find(p=>p.url===SELECTED),renderer),rows=selected.model.positions
  const openURL=ORIGIN+'/api/apply/v2/jobs/open?pids='+rows.map(r=>r.id).join(',')+'&domain='+DOMAIN
  const readOpen=async()=>{const value=parseEightfoldJson((await read(openURL)).html)
@@ -167,7 +167,8 @@ export async function run(options={}){
  }
  const closingOpen=await readOpen(),closing=selectedOf(await read(SELECTED),renderer)
  need(stable(closing.model.positions)===stable(rows)&&closing.model.count===selected.model.count,'closing selected native membership changed')
- need(sha((await read(renderer)).html)===RENDERER_SHA&&sha((await read(MAP)).html)===MAP_SHA
+ const closingRenderer=await read(renderer),closingConsumers=closingRenderer.html===rendererPage.html?rendererConsumers:readRecruitmentConsumers(closingRenderer.html)
+ need(stable(closingConsumers)===stable(rendererConsumers)&&sha((await read(MAP)).html)===MAP_SHA
   &&stable(corporateOf(await read(OFFICIAL)))===stable(corporate),'closing native renderer/corporate handoff changed')
  const confirmed=staged.filter(item=>{if(closingOpen[item.row.id])return true;held.push({id:item.row.id,reason:'native role closed before publication'});return false})
  need(confirmed.length>0,'coverage-gap: no fully verified current native India roles')
@@ -179,10 +180,11 @@ export async function run(options={}){
   nativeDateSemantics:'native create/update and generated schema SEO dates retained; original publication and real application deadline unqualified',
   sourceDetailComplete:true,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,scrapedAt:now,
   companyCareerPage:OFFICIAL,companyDomain:'st.com',atsPlatform:'eightfold-classic'}))
- Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'stmicroelectronics',nativeRecords:observations,heldRecords:held,receipts,reportedSelectedTotal:selected.model.count,
+ Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'stmicroelectronics',rendererEvidence:{url:renderer,sha256:sha(rendererPage.html),closingSHA256:sha(closingRenderer.html),fullRawEqual:closingRenderer.html===rendererPage.html,consumers:rendererConsumers,browserExecutionEstablished:false},nativeRecords:observations,heldRecords:held,receipts,reportedSelectedTotal:selected.model.count,
   selectedRowsObserved:rows.length,nativeListingTruncated:rows.length<selected.model.count,sourceScopeComplete:false,lifecycleCleanupAllowed:false}})
  attachSourceObservationEvidence(jobs,{source:'stmicroelectronics',recordKind:'vacancy-rows',observedRecordCount:rows.length,observedVacancyCount:rows.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
- return attachInventoryEvidence(jobs,{status:'discovery-only',surface:SELECTED,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,
+ const output=attachInventoryEvidence(jobs,{status:'discovery-only',surface:SELECTED,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:requests,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,
   reason:'current corporate map handoff; native own role/country/full criteria/current-open proof; bounded selected observations, whole-company scope unqualified'})
+ options.signal?.throwIfAborted();signal.throwIfAborted();return output
 }
 export default run

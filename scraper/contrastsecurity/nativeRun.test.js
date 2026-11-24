@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { run } from './script.js'
+import { runLegacyDeclaredContrastSecurity as run } from './script.js'
 import { replay, mutateJSON, mutateHTML, fixture } from '../../scraper-support/native-sources/declaredJobFeeds/fixtureReplay.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 const profile = fixture.profiles.contrastsecurity

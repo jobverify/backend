@@ -217,7 +217,7 @@ function securityProfile(receipt,kind,nonce){
   need(headers['content-type']===profile.mime,'encoding','Unknown original MIME/charset');
   need(!Object.hasOwn(receipt,'contentType')||receipt.contentType===headers['content-type'],'encoding','Content-type provenance disagrees');
   need(CONTROL_HEADERS.every(name=>!Object.hasOwn(headers,name)),'security','Navigation/authentication/challenge header');
-  need(Object.keys(headers).every(name=>profile.headerNames.includes(name)),'security','Unknown initial header');
+  need(Object.keys(headers).every(name=>profile.headerNames.includes(name)||(name==='age'&&/^(?:0|[1-9][0-9]*)$/.test(headers[name])&&Number.isSafeInteger(Number(headers[name])))),'security','Unknown initial header');
   if(!['C0','C1'].includes(kind))need(!Object.hasOwn(headers,'set-cookie'),'security','Unreviewed native session header');
   const original=Object.fromEntries(SECURITY_NAMES.map(name=>[name,headers[name]??null]));
   const checked={...original};
@@ -332,6 +332,17 @@ export function authoredProjection(html,options={}){
 }
 
 const ORGANIZATION_SHA256='8e49702fcf1c3446fbed4c0f60142bb1ee117fe492c5160222653dd85f055d3e';
+function reviewedOrganization(organization){
+  if(sha(JSON.stringify(organization))===ORGANIZATION_SHA256)return true;
+  const flags=organization?.activeFeatureFlags;
+  if(!Array.isArray(flags)||flags.length!==31||flags[0]!=='AiInterviewer')return false;
+  // Only the three observed flag changes are admitted. Validate every other
+  // account/theme field and surviving flag against the complete prior state.
+  // The original current model remains untouched; no UI equivalence is claimed.
+  const previousFlags=flags.slice(1);
+  previousFlags.splice(6,0,'CoreMultipleBrandsFeedFiltering','CoreMultipleBrandsLinkedInJobWrappingStreamingFix');
+  return sha(JSON.stringify({...organization,activeFeatureFlags:previousFlags}))===ORGANIZATION_SHA256;
+}
 const NATIVE_STYLE_HASHES=["4650e39d871827db22654002532bf25b095d9aad4a90cb76db55ab0d2c370e9d","0a8cc339cb7f7134745060763e6d9b9f7e982ac164810e88bf43d0b3d7a0b3f0"];
 const NATIVE_NOSCRIPT_HASHES=["99337be7d9c733472c6206694eaabe409f521fbd76fb19ed71d12a07e3eaf755"];
 export function readNativePacket(record,options={}){
@@ -354,7 +365,7 @@ export function readNativePacket(record,options={}){
   const rawAppData=boot.raw.slice(start,end),model=rawJSON(rawAppData);
   shape(model,['ddRumApplicationId','ddRumClientToken','environment','maintenanceMode','schedulingMaintenanceMode','organization','posting','jobBoard','routerPrefix','recaptchaUniversalPublicSiteKey'],'native-model');
   need(model.environment==='production'&&model.maintenanceMode===false&&model.schedulingMaintenanceMode===false&&model.routerPrefix==='/'&&model.jobBoard===null,'native-model','Native availability/programme changed');
-  need(sha(JSON.stringify(model.organization))===ORGANIZATION_SHA256,'native-organization','Unknown full account/theme/configuration');
+  need(reviewedOrganization(model.organization),'native-organization','Unknown full account/theme/configuration');
   need(intake?model.posting===null:model.posting?.id===role[1],'native-model','Own/form model identity changed');
   const nonce=boot.attrs.nonce,nonceMetas=entries.filter(e=>e.node.attrs.id==='csp-nonce');
   need(nonceMetas.length===1&&active(nonceMetas[0])&&nonceMetas[0].node.tag==='meta'&&nonceMetas[0].node.attrs.content===nonce&&packet.text.split(nonce).length===3,'native-carrier','Unique original head/boot nonce binding required');

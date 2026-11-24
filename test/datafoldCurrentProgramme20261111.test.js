@@ -161,7 +161,7 @@ for(const[title,change,reason]of[
  ['native current deployment drift',(h,c)=>c.url===BOARD?replace(h,'07ddf247e844137b3955a192112a7970230c6ccf','d178689c37e84f77a4158c88f884c0ffb8913a10'):h,/renderer\/bootstrap/],
  ['manifest dependency drift',(h,c)=>c.url===MANIFEST?json(h,d=>{d['index.html'].imports=['extra.js']}):h,/manifest\/dependency/],
  ['entry exact SRI drift',(h,c)=>c.url===ENTRY?h+'\n/* changed */':h,/renderer bytes\/SRI/],
- ['closing corporate authority loss',(h,c)=>c.url===HOME&&c.occurrence===1?h+'\n<!-- changed -->':h,/corporate programme/],
+ ['closing corporate authority loss',(h,c)=>c.url===HOME&&c.occurrence===1?replace(h,'const ASHBY_ORG = "datafold"','const ASHBY_ORG = "foreign"'):h,/corporate programme/],
  ['closing native board raw change',(h,c)=>c.url===BOARD&&c.occurrence===1?h+'\n<!-- changed -->':h,/Native board whole original/],
  ['closing exact role raw change',(h,c)=>c.url===firstURL&&c.occurrence===1?h+'\n<!-- changed -->':h,/Own role whole original/],
  ['closing full feed drift',(h,c)=>c.url===API&&c.occurrence===1?json(h,d=>{d.jobs[0].descriptionPlain+=' changed'}):h,/Native full feed whole original/],
@@ -457,3 +457,20 @@ for(const city of['Bengaluru','Bangalore'])
   }
   return html
  },/India|eligibility/i))
+
+test('actual current corporate marketing body and comment-only closing retain full two-role native comparison',async()=>{
+ const current=gunzipSync(fs.readFileSync(new URL('../scraper/datafold/fixtures/corporate-20261120.html.gz',import.meta.url))).toString()
+ const r=replay((html,c)=>c.url===HOME?current+(c.occurrence===1?'\n<!-- unrelated corporate publication -->':''):html),jobs=await r.run(),audit=jobs.nativeCollectionEvidence
+ assert.equal(r.calls.length,14);assert.equal(jobs.length,0);assert.equal(audit.roles.length,2)
+ assert.equal(audit.wholeCorporateBodyUnchanged,false);assert.equal(audit.currentDeclaredSourceProgramComplete,true)
+ assert.equal(audit.sourceScopeComplete,false);assert.equal(audit.lifecycleCleanupAllowed,false)
+ assert.equal(readSourceObservationEvidence(jobs,'datafold').observedVacancyCount,2)
+});
+
+test('actual current organization flags retain complete historical native role criteria and foreign country models',async()=>{
+ const current=JSON.parse(gunzipSync(fs.readFileSync(new URL('../scraper/datafold/fixtures/native-board-20261120.json.gz',import.meta.url)))),html=Buffer.from(current.bodyBase64,'base64').toString(),range=modelRange(html),organization=JSON.parse(html.slice(range.start,range.end)).organization
+ const r=replay((body,c)=>c.url===BOARD||c.url===firstURL||c.url===secondURL?model(body,data=>{data.organization=structuredClone(organization)}):body),jobs=await r.run(),audit=jobs.nativeCollectionEvidence
+ assert.equal(r.calls.length,14);assert.equal(jobs.length,0);assert.equal(audit.roles.length,2);assert.equal(audit.roles[0].country,'United States')
+ assert.deepEqual(audit.originalNativeOrganization.activeFeatureFlags,organization.activeFeatureFlags)
+ assert.equal(audit.sourceScopeComplete,false);assert.equal(audit.lifecycleCleanupAllowed,false)
+});

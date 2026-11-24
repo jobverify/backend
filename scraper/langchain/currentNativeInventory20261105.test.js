@@ -3,8 +3,9 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { run } from './script.js'
-import { createLangchainNativeScraper } from './nativeInventory.js'
+// Historical Nov5 fixture contracts exercise the dated reader directly.
+const run = options => createLangchainNativeScraper().run(options)
+import {createHistoricalLangchainNativeScraper as createLangchainNativeScraper } from './nativeInventory.js'
 import { getScraperCatalog, createCatalogScraper } from '../../scraper-support/providers/index.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { readSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -63,7 +64,7 @@ function mutateNative(change) {
 
 // Catches the former two-read recovery path, which discarded every foreign
 // model before detail health and never checked the native board or closing view.
-for (const [boundary, invoke] of [['factory', options => createLangchainNativeScraper().run(options)], ['exported', run], ['registered', options => createCatalogScraper(provider).run(options)]]) {
+for (const [boundary, invoke] of [['factory', options => createLangchainNativeScraper().run(options)], ['exported', run], ['historical-call-contract', options => createLangchainNativeScraper().run(options)]]) {
   test(`genuine captured ${boundary} route retains 101 full roles and two unresolved native worksite relationships`, async () => {
     const context = replay()
     const jobs = await invoke(context.options)

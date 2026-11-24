@@ -43,24 +43,12 @@ test('Futurism catalog records the blocked first-party careers surface', async (
   assert.match(FUTURISM_TECHNOLOGIES_CATALOG.verifiedSurfaceSummary, /no trustworthy public jobs surface/i)
 })
 
-test('Futurism sentinel returns [] only while the official careers URL is Cloudflare-blocked', async () => {
-  const futurism = await loadScript()
-
-  assert.equal(futurism.hasCloudflareBlockSignal(cloudflareBlockHtml), true)
-
-  const jobs = await futurism.run({
-    fetchText: async (url) => {
-      assert.equal(url, futurism.CAREERS_URL)
-      return cloudflareBlockHtml
-    },
-  })
-
-  assert.deepEqual(jobs, [])
-
-  await assert.rejects(
-    futurism.run({
-      fetchText: async () => '<html><body><h1>Software Engineer</h1><a href="/apply">Apply now</a></body></html>',
-    }),
-    /changed materially/i,
-  )
+test('Futurism current collector requires metadata and never treats a blocked body as company zero', async t => {
+  const futurism=await loadScript()
+  t.mock.method(globalThis,'fetch',()=>{throw Error('Real network prohibited in source regression')})
+  assert.equal(futurism.hasCloudflareBlockSignal(cloudflareBlockHtml),true)
+  await assert.rejects(futurism.run({fetchText:async()=>cloudflareBlockHtml}),/response metadata/)
+  const controller=new AbortController(),reason=Object.freeze({owner:'current source caller'})
+  controller.abort(reason)
+  await assert.rejects(futurism.run({signal:controller.signal}),error=>error===reason)
 })

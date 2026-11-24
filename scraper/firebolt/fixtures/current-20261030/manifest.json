@@ -1,0 +1,10 @@
+{
+  "source": "firebolt",
+  "requests": [
+    {
+      "url": "https://www.comeet.com/common/careers.js?rc-314-0",
+      "bodySHA256": "664680f59b3640c168c58230a2f95965ff334c15937555dfd33b39f7dfca1ea4",
+      "filename": "careers.rc-314-0.js.gz"
+    }
+  ]
+}

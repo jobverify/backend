@@ -1,0 +1,4 @@
+Synthetic parser test fixture, generated locally with FFmpeg 9.0.2.
+15 seconds of a solid color and a 330 Hz sine wave; no third-party media.
+1080x1920, 30 fps, libx264 ultrafast yuv420p, closed GOP, GOP60, AAC 128k target at 48 kHz stereo, faststart MP4.
+This is a media-validation test asset, not a narrated product preview.

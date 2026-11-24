@@ -1,7 +1,7 @@
 import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
 import { resumeFailure } from './resumeDiagnostics.js';
 
-export const RESUME_PIPELINE_POLICY = 'abey-pagination-v2';
+export const RESUME_PIPELINE_POLICY = 'abey-tailoring-v3';
 export const PAGINATION_REPAIR_MAX_TOKENS = 128;
 const paginationSchema = {
   type: 'object', additionalProperties: false, required: ['spacing', 'breakBefore'],

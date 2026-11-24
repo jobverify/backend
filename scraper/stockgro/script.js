@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { STOCKGRO_CATALOG } from './catalog.js'
+import { activeHead, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -28,12 +30,14 @@ export const HOMEPAGE_URL = PROVIDER_METADATA.homepageUrl
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const OFFICIAL_OPERATING_ENTITY = PROVIDER_METADATA.officialOperatingEntity
 
-const defaultFetchPage = async (url) => {
+const defaultFetchPage = async (url, { signal } = {}) => {
+  signal?.throwIfAborted()
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
+    signal,
     redirect: 'follow',
   })
 
@@ -94,16 +98,27 @@ export const pageExposesPublicJobListings = (html = '') =>
 export const hasOfficialCareersPageSignal = (html = '') => {
   const page = String(html ?? '')
   const normalized = normalizeWhitespace(page)
+  const document = readNativeDocument(page)
+  const titles = activeHead(page).titles
+  const canonicals = document.nodes(node => node.tag === 'link' && !node.inert
+    && String(node.attrs.rel ?? '').toLowerCase().split(/\s+/).includes('canonical'))
+  const reviewedTitles = ['Careers - easiest way to master trading & investments',
+    'Careers at StockGro: Explore Open Roles & Apply']
 
-  return /<title>\s*Careers - easiest way to master trading &amp; investments\s*<\/title>/i.test(page)
-    && /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/www\.stockgro\.club\/careers\/["']/i.test(page)
+  return titles.length === 1 && reviewedTitles.includes(titles[0])
+    && canonicals.length === 1 && canonicals[0].attrs.href === CAREERS_URL
+    && !document.nodes(node => node.tag === 'base' && !node.inert).length
     && normalized.includes('Explore our current job openings and join us!')
     && extractOperatingEntity(page) === OFFICIAL_OPERATING_ENTITY
   }
 
 export const createStockGroScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const careersPage = await fetchPage(CAREERS_URL)
+  async run({ fetchPage = defaultFetchPage, signal } = {}) {
+    signal?.throwIfAborted()
+    let careersPage
+    try { careersPage = await fetchPage(CAREERS_URL, { signal }) }
+    catch (error) { signal?.throwIfAborted(); throw error }
+    signal?.throwIfAborted()
 
     if (Number(careersPage.status) !== 200 || !matchesExpectedUrl(careersPage.url, CAREERS_URL)) {
       throw new Error('StockGro verified careers page changed materially')
@@ -119,7 +134,14 @@ export const createStockGroScraper = () => ({
       throw new Error('StockGro verified careers page changed materially')
     }
 
-    return []
+    const jobs = attachInventoryEvidence([], {
+      status: 'coverage-gap', surface: CAREERS_URL, firstParty: true,
+      listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 1,
+      reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
+      reason: 'current-own-publisher-careers-intake-without-verified-native-role-inventory;whole-company-totals-and-cleanup-unqualified',
+    })
+    signal?.throwIfAborted()
+    return jobs
   },
 })
 

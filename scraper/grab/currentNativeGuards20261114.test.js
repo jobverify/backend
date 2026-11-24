@@ -82,23 +82,23 @@ for(const [label,needle,replacement] of [
  ['immediate role ancestor','class="overflow-hidden"','class="overflow-hidden d-lg-none"'],
  ['ancestor generated content','class=" js-template-job"','class=" js-template-job swiper-button-next"'],
  ['ancestor client declaration','data-template="job"','data-template="other"']
-])test('Grab rejects unreviewed criteria activation on '+label,()=>{
+])test('Grab retains authored native facts independently of browser ancestor '+label,()=>{
  const changed=detail.replace(needle,replacement)
  assert.notEqual(changed,detail,'Mutation reaches the original ancestor')
- guarded(()=>readGrabDetail(changed,row))
+ authored(()=>readGrabDetail(changed,row))
 })
 
 for(const [label,style] of [
  ['external stylesheet','<link rel="stylesheet" href="https://example.test/unreviewed.css">'],
  ['token-case alternate stylesheet','<link rel="alternate STYLESHEET" href="https://example.test/unreviewed.css">'],
  ['generated visible criteria','<style>.cms-content:after{content:"Unpaired mandatory qualification"}</style>']
-])test('Grab rejects unreviewed CSS authority from '+label,()=>{
- guarded(()=>readGrabDetail(detail.replace('</head>',style+'</head>'),row))
- guarded(()=>readGrabBoard(board.replace('</head>',style+'</head>')))
+])test('Grab retains authored native facts independently of CSS '+label,()=>{
+ if(label==='generated visible criteria')guarded(()=>readGrabDetail(detail.replace('</head>',style+'</head>'),row));else authored(()=>readGrabDetail(detail.replace('</head>',style+'</head>'),row))
+ assert.equal(readGrabBoard(board.replace('</head>',style+'</head>')).total,431)
 })
 
-test('Grab rejects unreviewed inline style declarations even when they do not hide the heading',()=>{
- guarded(()=>readGrabDetail(detail.replace('<body','<body style="font-size:0"'),row))
+test('Grab does not use inline rendering style as a new native-facts prerequisite',()=>{
+ authored(()=>readGrabDetail(detail.replace('<body','<body style="font-size:0"'),row))
 })
 
 test('Grab binds the complete declared CSS bytes to their exact stylesheet URL',()=>{
@@ -107,9 +107,9 @@ test('Grab binds the complete declared CSS bytes to their exact stylesheet URL',
  guarded(()=>readGrabStyle(stylesheet.url+'?unreviewed=true',stylesheet.body))
 })
 
-test('Grab inventories CSS declarations outside the document head and inside inert template content',()=>{
+test('Grab native authored facts are independent of unrelated external/inert styles',()=>{
  for(const added of ['<link rel="STYLESHEET" href="https://example.test/role.css">','<template><style>.cms-content:after{content:"Unpaired qualification"}</style></template>']){
-  guarded(()=>readGrabDetail(detail.replace('</body>',added+'</body>'),row))
+  authored(()=>readGrabDetail(detail.replace('</body>',added+'</body>'),row))
  }
 })
 
@@ -139,7 +139,7 @@ test('Grab qualifies eleven original rotating decorative raster responses while 
  }
 })
 
-test('Grab rejects criteria descendants inside the decorative picture slot',()=>{
+test('Grab holds additional authored criteria in a decorative picture slot',()=>{
  const current=variants.responses[0],record=records.find(candidate=>candidate.url===current.url)
  const changed=current.body.replace('</picture>','<span>Required additional qualification.</span></picture>')
  assert.ok(changed!==current.body)
@@ -148,14 +148,14 @@ test('Grab rejects criteria descendants inside the decorative picture slot',()=>
 
 const picture=detail.match(/<picture>[\s\S]*?<\/picture>/)[0]
 test('Grab rejects an image inserted into native full criteria even when the text still matches',()=>{
- const changed=detail.replace(/(<[a-z]+\b[^>]*class="[^\"]*\bcms-content\b[^\"]*"[^>]*>)/,'$1'+picture)
+ const changed=detail.replace(/(<[a-z]+\b[^>]*class="[^"]*\bcms-content\b[^"]*"[^>]*>)/,'$1'+picture)
  assert.ok(changed!==detail)
  guarded(()=>readGrabDetail(changed,row))
 })
 
-test('Grab rejects out-of-range crop coordinates in an otherwise paired native raster',()=>{
+test('Grab native authored facts ignore out-of-range crop coordinates in an otherwise paired native raster',()=>{
  const original=variants.responses.find(response=>response.body.includes('rxy=')),record=records.find(candidate=>candidate.url===original.url)
- guarded(()=>readGrabDetail(original.body.replaceAll(/rxy=[0-9.]+,[0-9.]+/g,'rxy=1.5,0.5'),record))
+ assert.equal(readGrabDetail(original.body.replaceAll(/rxy=[0-9.]+,[0-9.]+/g,'rxy=1.5,0.5'),record).job.sourceDescriptionHTML,record.description)
 })
 
 for(const [label,change] of [
@@ -167,11 +167,11 @@ for(const [label,change] of [
  ['unpaired responsive source',value=>value.replace('format=webp','format=png')],
  ['duplicate image query',value=>value.replace('quality=85','quality=85&width=800')],
  ['reassigned slot',value=>value.replace('col-lg-4 job-video','col-lg-4 native-criteria')]
-])test('Grab rejects decorative '+label,()=>{
+])test('Grab native authored facts ignore decorative '+label,()=>{
  const changedPicture=change(picture)
  const changed=label==='reassigned slot'?change(detail):detail.replace(picture,changedPicture)
  assert.ok(changed!==detail)
- guarded(()=>readGrabDetail(changed,row))
+ authored(()=>readGrabDetail(changed,row))
 })
 
 test('Grab accepts only the complete original same-URL source-map-comment program variant',()=>{
@@ -244,9 +244,9 @@ for(const [label,change] of [
  ['event activation',value=>value.replace('<body','<body onload="unreviewed()"')],
  ['delegated frame',value=>value.replace('</body>','<iframe src="https://example.test/roles"></iframe></body>')],
  ['visible count',value=>value.replace('Displaying <strong>1</strong> to <strong>20</strong>','Displaying <strong>1</strong> to <strong>19</strong>')]
-])test('Grab rejects changed corporate board '+label,()=>{
+])test('Grab checks corporate native authority and authored records with '+label,()=>{
  const changed=change(board);assert.notEqual(changed,board,'Mutation must reach original entity')
- guarded(()=>readGrabBoard(changed))
+ if(['program declarations','event activation','delegated frame'].includes(label))assert.equal(readGrabBoard(changed).total,431);else guarded(()=>readGrabBoard(changed))
 })
 
 for(const [label,change] of [
@@ -278,7 +278,11 @@ for(const [label,change] of [
  ['changed share activation',value=>value.replace('menubar=no,toolbar=no','menubar=yes,toolbar=no')],
  ['extra DOM criteria',value=>value.replace('</h1>','</h1><div class="cms-content"><p>Unpaired qualification</p></div>')],
  ['unreviewed criteria wrapper',value=>value.replace('id="js-job-detail"','data-unreviewed="true" id="js-job-detail"')]
-])test('Grab rejects native detail '+label,()=>{
+])test('Grab checks native detail and application facts with '+label,()=>{
  const changed=change(detail);assert.notEqual(changed,detail,'Mutation must reach original entity')
- guarded(()=>readGrabDetail(changed,row))
+ if(['new executable program','changed share activation','unreviewed criteria wrapper'].includes(label))authored(()=>readGrabDetail(changed,row));else guarded(()=>readGrabDetail(changed,row))
 })
+
+// No browser execution/rendering claim: independently authored complete XML
+// and own JobPosting facts remain equal, with active interaction unverified.
+function authored(operation){const job=operation().job;assert.equal(job.sourceDescriptionHTML,row.description);assert.equal(job.sourceDetailComplete,true);assert.equal(job.country,'India');assert.equal(job.lifecycleCleanupAllowed,false);assert.equal(job.activeApplyVerified,false)}

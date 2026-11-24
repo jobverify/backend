@@ -197,6 +197,9 @@ function headAndDeclarations(response,parsed,model,boot,isRole){
  return{originalHead:head,headDescriptions:descriptions,documentTitle:expected,originalLinks,declaredDeployment:[...deployments][0],originalNonce:nonce,
   declarationLimits:{sourceBodiesQualified:false,rendererConsumptionQualified:false,browserExecutionQualified:false,activeDependenciesUnqualified:true}}
 }
+// Retained Nov11 organization and observed Nov21 variant. No feature behavior or application eligibility is inferred.
+const historicalOrganizationFeatures='AiInterviewerUpdatedTimeEstimates AiNotetakerCandidateConsentPolicies ApprovalNotesFromEmail BookingLinkRescheduleLimits CanonicalizeSchools CoreMultipleBrands CoreMultipleBrandsFeedFiltering CoreMultipleBrandsLinkedInJobWrappingStreamingFix DemoOrgBanners EducationHistoryFormField ExplicitAutomatedProcessingOptOutConfirmation JobBoardCookieConsentControls JobBoardEtagValidation JobPostingApplicationDeadlines JobPostingListV2 JobPostingWorkplaceTypeOverrideSecondaryLocationsToo LinkedInIntegrationRequireCompanyId LinkedInTOSUpdate LocationExternalName MigrateGoogleRecaptchaAutomatedLegal RejectBase64EncodedResumesFrontEnd RejectBase64EncodedResumesThrowErrorFrontEnd RejectInvalidFileTypeOnUpload RejectUrlsInCandidateName SchedulingDirectBookingLogDirectBookingEventsJson SchedulingGCalSendUpdatesForCancelEvents SchedulingRescheduleAndCancellationReasonsNonUser SchedulingUseLocaleInTimeFormatting ShowCountsOnJobBoardFilterOptions SocialSharingHtmlMetaSettings UseGoogleRecaptchaUniversalKey ValidateFileTypeOnUpload'.split(' ')
+const currentOrganizationFeatures=['AiInterviewer',...historicalOrganizationFeatures.filter(flag=>!['CoreMultipleBrandsFeedFiltering','CoreMultipleBrandsLinkedInJobWrappingStreamingFix'].includes(flag))]
 export function readNativeHtml(input,channel){
  const response=readResponse(input,channel),parsed=nativeDocument(response.text),{entries}=parsed,isRole=channel==='O'
  const allowed=new Set(['root','html','head','body','meta','link','title','script','div']),passiveTags=new Set(['style','noscript'])
@@ -223,7 +226,12 @@ export function readNativeHtml(input,channel){
  shape(model,'ddRumApplicationId ddRumClientToken environment maintenanceMode schedulingMaintenanceMode organization posting jobBoard routerPrefix recaptchaUniversalPublicSiteKey'.split(' '),'native-model')
  need(model.environment==='production'&&model.maintenanceMode===false&&model.schedulingMaintenanceMode===false&&model.routerPrefix==='/'
   &&(isRole?model.jobBoard===null&&model.posting?.id===response.id:model.posting===null),'native-model','Original native availability/account route changed')
- need(sha(JSON.stringify(model.organization))==='5788ed424102807586a96ac1034c1c4a7251ef7092cbb314a87273da9a7a284e','native-organization','Unreviewed Jasper organization/theme/publication class')
+ // Only the observed finite feature transition is admitted. Account, routing,
+ // theme, privacy and every other organization field retain the original class.
+ // Compare a separate projection; raw organization/flags and whole closing stay exact.
+ const organizationComparison=isDeepStrictEqual(model.organization?.activeFeatureFlags,currentOrganizationFeatures)
+  ?{...model.organization,activeFeatureFlags:historicalOrganizationFeatures}:model.organization
+ need(sha(JSON.stringify(organizationComparison))==='5788ed424102807586a96ac1034c1c4a7251ef7092cbb314a87273da9a7a284e','native-organization','Unreviewed Jasper organization/theme/publication class')
  const mounts=entries.filter(e=>e.node.attrs.id==='root'),visible=readVisibleNativeDocument(response.text,{strict:true})
  need(mounts.length===1&&mounts[0].node.tag==='div'&&mounts[0].ancestors.map(n=>n.tag).join('/')==='root/html/body'
   &&visible.nodes(n=>n.attrs.id==='root').length===1,'native-mount','Unique active native mount unavailable');shape(mounts[0].node.attrs,['id'],'native-mount')

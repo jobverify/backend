@@ -74,6 +74,21 @@ const publicClosingModel=phase=>{
  model.programs=model.programs.map(({kind,surface,protocol})=>({kind,surface,protocol})).sort((a,b)=>(a.surface+':'+a.kind).localeCompare(b.surface+':'+b.kind))
  return model
 }
+// A changed application-recording switch does not reconcile that role's
+// application DTO. Hold the entire affected role instead of discarding other
+// independently identical public records; every other full native field stays
+// in closing equality, including all employer/country/criteria/date controls.
+const reconcilePublicModels=(opening,closing)=>{
+ const before=publicClosingModel(opening),after=publicClosingModel(closing),unreconciled=[]
+ for(const [id,first]of Object.entries(before.forms)){
+  const last=after.forms[id],a=first.model?.config,b=last?.model?.config
+  if(!a||!b||!Object.hasOwn(a,'record_applicant')||!Object.hasOwn(b,'record_applicant')||typeof a.record_applicant!=='boolean'||typeof b.record_applicant!=='boolean'||a.record_applicant===b.record_applicant)continue
+  const candidate=structuredClone(last);candidate.model.config.record_applicant=a.record_applicant
+  if(isDeepStrictEqual(first,candidate)){after.forms[id]=candidate;unreconciled.push(id)}
+ }
+ need(isDeepStrictEqual(before,after),'full native public models changed at closing')
+ return unreconciled
+}
 const pagination=(payload,page,rowsKey,maxPages)=>{
  const p=payload?.pagination;need(Array.isArray(payload?.[rowsKey])&&p&&p.current_page===page&&Number.isSafeInteger(p.total_pages)&&p.total_pages>=1&&p.total_pages<=maxPages&&Number.isSafeInteger(p.total_count)&&p.total_count>=0&&p.total_count<=1000&&p.per_page===(rowsKey==='openings'?10:50)&&p.next_page===(page<p.total_pages?page+1:null),'native '+rowsKey+' pagination contract changed');return p
 }
@@ -130,10 +145,11 @@ export async function runCurrentCms(options={}){
    return{home,careers,boardShellSHA256:shell.sha256,programs,configuration,locationPages,locations,openingPages,rows,forms,representative:{nativeID:sample.id,nativeURL:sample.apply_url,redirectStatus:redirect.status,location:redirect.headers.location,applyURL,shellSHA256:applyShell.sha256,qualification:representative}}
   }
   const opening=await phase('opening'),closing=await phase('closing')
-  need(isDeepStrictEqual(publicClosingModel(opening),publicClosingModel(closing)),'full native public models changed at closing')
+  const unreconciledApplicationFormIDs=reconcilePublicModels(opening,closing),unreconciledForms=new Set(unreconciledApplicationFormIDs)
   const jobs=[],held=[];let lookupQualified=0,formQualified=0
   const at=typeof options.now==='function'?options.now():new Date().toISOString();need(Number.isFinite(Date.parse(at)),'invalid observation clock')
   for(const row of opening.rows){
+   if(unreconciledForms.has(row.id)){held.push({nativeID:row.id,title:row.title,reason:'native-application-recording-config-changed-at-closing',nativeOpening:row,nativeForm:opening.forms[row.id],nativeClosingForm:closing.forms[row.id],applicationControlsClosingReconciled:false});continue}
    const lookup=locationRecord(row,opening.locations,opening.configuration),fallback=opening.forms[row.id]
    let proof=lookup?{qualified:countryOf(lookup.title)==='India',country:countryOf(lookup.title),address:lookup.title,id:lookup.id,name:lookup.name,reason:'native-lookup-workplace-outside-India'}:qualifyForm(row,fallback,opening.configuration)
    if(fallback){const corroboration=qualifyForm(row,fallback,opening.configuration,lookup);if(!corroboration.qualified)proof=corroboration}
@@ -142,7 +158,7 @@ export async function runCurrentCms(options={}){
    if(lookup)lookupQualified++;else formQualified++
    jobs.push({source:SOURCE,company:'CMS Info Systems',jobId:row.id,requisitionId:null,title:row.title,location:proof.address,country:'India',city:null,state:null,sourceUrl:row.apply_url,applyUrl:row.apply_url,link:row.apply_url,postingDate:criteria.dates.publications[0]?.raw??null,closingDate:criteria.dates.expiries[0]?.raw??null,sourceNativeDates:criteria.dates,employmentType:row.job_type??null,experienceRequired:null,minimumQualification:null,preferredQualification:null,requiredSkills:[],jobDescription:criteria.description||null,sourceDescription:criteria.description||null,sourceNativeRecord:row,sourceNativeLocation:lookup??null,sourceNativeFormFunnel:fallback?.model?.funnel??null,sourceCountryEvidence:{basis:lookup?'unique-whole-current-vacancy-location-name-ID-address-join':'same-role-current-native-form-location-ID-name-address',nativeLocationID:proof.id,nativeLocationName:proof.name,nativeWorkplaceAddress:proof.address,country:'India',phoneCountryCodeUsed:false},sourceNativeEmployer:{corporatePublisher:HOME,nativeAccountSlug:'cms',nativeAccountID:profile.accountID,nativeBrandID:profile.brandID,nativeBrandName:'CMS'},sourceNativeApplication:{kind:'current-publisher-authored-own-account-role-apply-handoff',nativeURL:row.apply_url,nativeOpeningID:row.id,nativeSlug:slugOf(row),nativeFormFetched:Boolean(fallback),allRoleFormsVisited:false,fullControlsQualified:false,backendActivationVerified:false,applicationSubmitted:false},sourceDetailComplete:false,sourceDetailStatus:'partial',fullCriteriaRecovered:false,sourceDetailFailureKind:'published-native-opening-with-country-and-authored-handoff-full-rendered-criteria-and-application-controls-unqualified',sourceNativeClosingReconciled:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,backendApplicationActivationVerified:false,applicationSubmitted:false,scrapedAt:at})
   }
-  audit={...audit,observedRecordCount:opening.rows.length,observedVacancyCount:opening.rows.length,nativeObservedRecords:opening.rows.length,qualifiedIndiaRecords:jobs.length,lookupCountryQualifiedRecords:lookupQualified,formCountryQualifiedRecords:formQualified,partialCriteriaRecords:jobs.length,fullPublicModelsClosingReconciled:true,rawSignedMediaDTOEqualityClaimed:false,signedMediaQualification:'Only the exact four public brand logo/banner AWS lease queries are excluded from semantic closing equality; every original URL and native body remains retained.',heldRecords:held,opening,closing,wholeCorporateHTMLClosingReconciled:false,wholeApplicationControlsQualified:false,allRoleFormsVisited:false,wholeUIProgramClosingEqualityClaimed:false,programQualification:'Current declared filenames are discovered afresh; selected GET method/account/role/query bindings, production API origin, title-sort values and application route are read as AST data. UI programs are never executed; full original bodies remain in HTTP capture.'}
+  audit={...audit,observedRecordCount:opening.rows.length,observedVacancyCount:opening.rows.length,nativeObservedRecords:opening.rows.length,qualifiedIndiaRecords:jobs.length,lookupCountryQualifiedRecords:lookupQualified,formCountryQualifiedRecords:formQualified,partialCriteriaRecords:jobs.length,fullPublicModelsClosingReconciled:unreconciledApplicationFormIDs.length===0,qualifiedNativeModelsClosingReconciled:true,unreconciledApplicationFormIDs,rawSignedMediaDTOEqualityClaimed:false,signedMediaQualification:'Only the exact four public brand logo/banner AWS lease queries are excluded from semantic closing equality; every original URL and native body remains retained.',heldRecords:held,opening,closing,wholeCorporateHTMLClosingReconciled:false,wholeApplicationControlsQualified:false,allRoleFormsVisited:false,wholeUIProgramClosingEqualityClaimed:false,programQualification:'Current declared filenames are discovered afresh; selected GET method/account/role/query bindings, production API origin, title-sort values and application route are read as AST data. UI programs are never executed; full original bodies remain in HTTP capture.'}
   return finish(jobs.slice(0,maxJobs))
  }catch(error){io.check();if(error&&typeof error==='object'&&Object.isExtensible(error))error.sourceAudit={...audit,transport:io.stats()};throw error}finally{io.close()}
 }

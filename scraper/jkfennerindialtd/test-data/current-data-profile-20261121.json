@@ -1,0 +1,82 @@
+{
+  "source": "jkfennerindialtd",
+  "reviewedAt": "2026-11-21T08:16:57.358506+00:00",
+  "scope": "finite-native-data-only; no rendering/country/application/company-inventory qualification",
+  "homeURL": "https://jkfenner.com/",
+  "homeSHA256": "f25820d0f0d055e1af08ae9e2cf2b0ebee6fcb0f82c8617980ea44e4c2a218b5",
+  "careersURL": "https://jkfenner.com/about-us/careers",
+  "careersSHA256": "6eb0646b039e815f31d4c53618cce5ac66fbf40238404ae9c33f5c9bf84ef25c",
+  "corporateAssets": [
+    {
+      "url": "https://jkfenner.com/_next/static/chunks/25s9o_urvvs88.js",
+      "sha256": "c6b48631b5ade1a53084121e6caa599258a8fa9c85b99e32f8b6fa1e1b072b99"
+    },
+    {
+      "url": "https://jkfenner.com/_next/static/chunks/1iu9dyan278kd.js",
+      "sha256": "7b186c64bd1eaddca2fd3b69fde3d716fe51ffe2f090fcd93f9a771dbc71c58c"
+    }
+  ],
+  "frameURL": "https://zingnext.zinghr.com/zingtalent/career-website-config?CareerClientKey=d810dada-6d41-4a51-8243-c748e3835713",
+  "careerKey": "d810dada-6d41-4a51-8243-c748e3835713",
+  "apiOrigin": "https://mservices.zinghr.com/",
+  "configURL": "https://mservices.zinghr.com/recruitmentnext/v1/CareerConfiguration/GetCareerConfigurationDetailsByKey?CareerKey=d810dada-6d41-4a51-8243-c748e3835713",
+  "listingURL": "https://mservices.zinghr.com/recruitmentnext/v1/CareerConfiguration/GetCareerRequisitionList",
+  "listingBody": {
+    "filter": {
+      "industryIds": [],
+      "jobRoleIds": [],
+      "workIds": [],
+      "workExperience": {
+        "minRange": 0,
+        "maxRange": 60
+      },
+      "freshness": 0
+    },
+    "pageIndex": 1,
+    "pageSize": 12,
+    "searchText": "",
+    "careerKey": "d810dada-6d41-4a51-8243-c748e3835713"
+  },
+  "nativeAssets": [
+    {
+      "url": "https://zingnext.zinghr.com/zingtalent/_next/static/chunks/pages/career-website-config-f915b13ddb4a9969.js",
+      "sha256": "0258b581af1c0c8b0939b88f45576de574562c78e01bf8d7f105a0899810edc1"
+    },
+    {
+      "url": "https://zingnext.zinghr.com/zingtalent/_next/static/chunks/9513-478b8ce88bd0a122.js",
+      "sha256": "d399ad12532618e2775e998fdc1d7c554211bbb7d23dbd795c661c0f73c8611d"
+    },
+    {
+      "url": "https://zingnext.zinghr.com/zingtalent/_next/static/chunks/pages/_app-63c58f3f53b98f9f.js",
+      "sha256": "77987fbdc6887b38a59cd7e7f656187375a85e8c62c92db39535fda9d776f434"
+    },
+    {
+      "url": "https://zingnext.zinghr.com/extrajs/js/zingnext/production/update.js",
+      "sha256": "302427c6abf259d6161d1e55bcb8bd1514f208faa3cced151e2aec0f593a83eb"
+    }
+  ],
+  "frameSHA256": "13d391514ad30a46e0a9d4244afc91b6c368c63507db31dd13c8ac46a99cd856",
+  "configurationSHA256": "e9a19038604a336743b4138e23173bbf8e6a6966b02f40a84df25bf653670148",
+  "models": [
+    {
+      "requisitionId": "6afef8c18464bddc41f7f67e",
+      "listingSHA256": "6c93ef6b2f41f664fd1f7c050ae66676e741ce18547018aac7cf057335fa633e",
+      "modelSHA256": "8b6e0464159fddcf7a67d3bbef74344810e17065d62ab45f7bab1e7b57fd5117",
+      "carrierSHA256": "3904eb921964be240c53a5778f0f4d1b987a4abf50070ff19ddb1f307e7e2a35",
+      "carrierText": "J.K FENNER (INDIA) LIMITED\nJOB PROFILE \nJob Title   Branch Manager \nLocation   Ahmedabad\nReporting to   Regional Manager\nAge   35-40 years\nQualification:   Required   BE( Mechanical)-MBA\nExperience:   Required   8 - 10 YEARS\nIndustry/ Company\nPreference\nJob Responsibilities   >Responsible for industrial products west\n>Handling promotion activities of products\n>Expanding the market share\n>Improving sales promotion activities\n>In charge of stocks in the branches\n>Handling debtors\n>Generating new customers by creating awareness about the products\n>On the job training for sales engineers\n>Co-coordinating the superiors in building new schemes\n>Brand management by coordinating the advertisement department\n>Market forecast/Planning.\n>Customizing the product to the customers\n>Customer follow up in after sales services\n>Keep, tracking the market information\n>Managing the sales team efficiently\n>Inventory control\n>Co-coordinating with R& D Department for new product development\nKey Result Areas   Sales Turnover; Debtors; Bench Marking; Market Share(Volume/Value);\nAttend New Customers\nSkills / Competencies   Communication, Innovation, Achievement Orientation, Analytical\nSkills, Conceptual Thinking, Crisis management, Decision making,\nFlexibility, Influencing, Initiative, Integrity, Leadership, Learning and\nsharing, Negotiation, Planning, Prioritizing, Time Management,\nMentoring. ",
+      "carrierTextExtraction": "full one-page PDF positional-text extraction",
+      "nativeCriteriaConflict": null,
+      "nativeLocationLabel": "Ahmedabad"
+    },
+    {
+      "requisitionId": "6afefc328464bddc41f7f6a1",
+      "listingSHA256": "2398fe652fc690c116945ef46cb0451b761717f2d294a2189dae870b53d7b18c",
+      "modelSHA256": "0c73a45f4af66fc603e87380f9c9918973ef0b20f016c4d793b452fa0fd51d6b",
+      "carrierSHA256": "877d0b5f4036639b19e2d0d9bbc1ed3d4fdbcf5d10809a12ffc468f85d18dd5e",
+      "carrierText": "Job Title:      Team Leader  - Sales & Marketing\nGrade:           Senior Officer / Assistant Manager\nLocation:        Siliguri\nReporting to:  Business Head / Marketing Head\nAge:              Below 35 Years\nQualification:  Graduate with any stream\nJob Description:\nWorking on the marketing plan as framed by Marketing Head / Business Head\nWorking on Price List as per market input and Business Head\nEnsuring POP material is available as an when required \nLook for avenues of Branding of our products at customer end\nSupporting sales and lead generation efforts.\nCraft strategies for all Marketing teams, including Digital, Advertising, Communications and Creative\nSet, monitor, and report on team goals\nCreating and managing MIS of product portfolio and segment portfolio.\nKey Result areas:\n> 4 years experience in auto after market  industry\nDrive sales and build retail distribution\nEnsure sales force effectiveness\nSkills and Competencies:\nTechnical:\n Functional Knowledge\nManagerial:\nConfident leader\nExcellent Interpersonal and Communication skills\nStrong Performance & Development Orientation\nTeam Player       ",
+      "carrierTextExtraction": "all original DOCX XML paragraph/table/header/footer/note text; no media entries",
+      "nativeCriteriaConflict": "Authored criteria require 4+/>4 years, while structured work is 0-7 and relevant is 0-4; both retained without reconciliation",
+      "nativeLocationLabel": "Siliguri"
+    }
+  ]
+}

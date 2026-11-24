@@ -1,0 +1,61 @@
+{
+  "reviewedAt": "2026-11-21T01:02:53.184Z",
+  "client": "https://app.screenloop.com/assets/application-a8e3bf67bf79e7092bd3f3adec78323ad87c7e4f5762b885851e82f9c09890a2.js",
+  "originalClientSHA256": "720e567abc39a046a3c25385c82d2841f808e285a225a317db6f9b0c4a922a26",
+  "scope": "Exact public vacancy/pagination/criteria/plugin ASTs, new talent-community-only branches, direct React imports and referenced constants; private application modules remain unqualified.",
+  "functions": {
+    "getUrlOriginPath": "2dbcb45b2dfa55f7e35fb27e46a4c53b705af650a502403557fb1bbd291e0fb4",
+    "JobPostCardContainer": "7443c23618d2304ce70f5fd8ef5b2ed60cc3904336e843b95854404aaac6b622",
+    "JobPostCard": "c15916eae506a649c71b7c2c2cc3dd805f9bfc3c44cddb47964106bc2c5bc17a",
+    "getPageJobPosts": "51bf1e2331a04aa2894707cca84aeff22f4a686c6c8b94992d7b25fa169c070f",
+    "JobPostsList": "ef9cd13b8bbd584462126e444c8b169e911d7de2da07c6f9c911e47f342af2a7",
+    "filteredJobPosts": "ddbdb54d1376ac9221b2e7e32a88917d24f01e7ee7e0b176c70fde381249ca1c",
+    "getLocationOptions": "7386d74870240a837ff4877d760ef23cfd113315664a4a07df9a7a3916f516f3",
+    "getDepartmentOptions": "987d6d0e075e3bda48994de1e59e9f3d87832280bf0967e07057644be023c1ca",
+    "CareersPageBody": "ae4ba8c8b383e3e127e3cf8514b9005d245d62fc21dc8530fd3594d794d7e639",
+    "CareersPage": "82a7ab6bc5cea26e5e7de0b763573d15734b38bf7f1ad8cd909b48ecbf4bff74",
+    "OverviewTab2": "236a17690c907c10b01e73b39baffdb55a80f7767d7cec58d8ebb79f7241c768",
+    "JobPostPage": "ef5479b75dd54037bd2d020ac50cc871edfa22417299dc2aa7c24dbfec08ddb6",
+    "useFeatureFlags": "48a9ffcdae1f07542e244e9b6dc4b4d76221d678bb17637e98b914ead85da9c0",
+    "careersTalentPoolPath": "5dfae8addc0495f8eddc074de493c336051925361a3e6c6cf10f8373c0b0b432",
+    "TalentPoolSection": "7e39d9de757073c9d85e59b7e493c99c0503c7bf48d93f27cbe403f5102a0d30",
+    "TalentPoolButton": "798e5f6c0119939a2afe5d1218dc6910de2eab10711ecddcdeccca23a1e9f44d",
+    "EmptyList": "388e499d4d8c2daaa95d0acfe3af37df23ce2e50a9e0c1f772bd765918c2f915"
+  },
+  "classes": {
+    "PluginManager": "17ec882bbb9fd23a24f1fb1be2276233b3ffe3bcce19a04d03a71f6e60b969a5",
+    "ReactPlugin": "349432531df62400ed4c7db06000794e71a8cf621bb5297f45af1f2d14eade8b"
+  },
+  "imports": {
+    "import_react1407": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames458": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1410": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1411": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames459": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1413": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1629": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames508": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1631": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react231": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1409": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1408": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_client3": "1fc161ad46d39bb4e518bd7c99786f19c25023f55f9940d6ae879e332fd382b3",
+    "import_react1878": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef"
+  },
+  "bindings": {
+    "PAGE_SIZE3": "fe915500f59e283ece2c3d63948cb3d84d18ff8e46326777ad61cd7f4728d89d",
+    "MAX_WIDTH3": "7a1ce1d939a1a81475124c2b9710d5b9ea2ef82a46ed6ca0cce3f879f7b53bc7",
+    "FeatureFlagContext": "244b3e3e4fbc440e1038605cef77c4883e397289eb9ee69fc07c1c54581ca63d",
+    "styles_module_default234": "ba84d742b3d4356dee3bc9384ba5eeea7e60c644fe05e6eb5ff54b82bad3d680",
+    "styles_module_default235": "4c61f6b1ff9e6a9822fed1f34ce9b6d81c036ae81831778e8d3474c64e9890a5"
+  },
+  "registry": {
+    "name": "containers",
+    "component": "applicant_tracking/Careers/CareersPage",
+    "binding": "CareersPage"
+  },
+  "detailRegistry": {
+    "component": "applicant_tracking/Jobs/JobPostPage",
+    "binding": "JobPostPage"
+  }
+}

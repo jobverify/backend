@@ -7,6 +7,7 @@ import {readNativeDocument,activeScripts} from '../../scraper-support/utils/acti
 const root='https://smartcoin.keka.com/careers/'
 const identifier='a6d6f744-09bc-4a25-8a31-edb4868b09bc'
 const active=`${root}api/embedjobs/default/active/${identifier}`
+const legalPolicy='https://cdn.olyv.co.in/images/app/consent/document/english/smartcoin-privacy-policy.html'
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const decode=value=>String(value??'').replace(/&#x([\da-f]+);/gi,(_,v)=>String.fromCodePoint(parseInt(v,16))).replace(/&#(\d+);/g,(_,v)=>String.fromCodePoint(Number(v))).replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&quot;/gi,'"').replace(/&apos;|&#39;|&rsquo;/gi,"'").replace(/&lt;/gi,'<').replace(/&gt;/gi,'>')
 const text=value=>decode(decode(value)).replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim()
@@ -19,7 +20,20 @@ export async function runNativeInventory({fetchImpl=fetch,signal,maxJobs,maxPage
  const scope=createCurrentSourceScope({baselines,kekaRootUrl:root})
  const request=async url=>{signal?.throwIfAborted();const timeout=AbortSignal.timeout(20000);const r=await fetchImpl(url,{signal:signal?AbortSignal.any([signal,timeout]):timeout,headers:{Accept:'application/json,text/html,application/javascript','User-Agent':'JobverifyScraper/1.0'}});if(r.status!==200||r.url!==url)fail(`HTTP or redirect identity for ${url}`);const body=await r.text();if(url===`${root}api/embedjobs/js/${identifier}`)scope.observeRenderer(url,body);if(Object.hasOwn(baselines,url)||url.includes('/careerportal/'))scope.observe(url,body);signal?.throwIfAborted();timeout.throwIfAborted();return body}
  let raw,rawBody,unknown=[]
- const jobs=await createVerifiedFirstPartyKekaScraper(config).run({signal,fetchImpl:async url=>{const body=await request(url);if(url===config.officialUrl){const doc=readNativeDocument(body);if(!doc.nodes(n=>n.tag==='a'&&n.attrs.href?.replace(/\/$/,'')===config.handoffUrl).length||!doc.text(doc.nodes(n=>n.tag==='root')[0]).includes('SmartCoin Financials Pvt. Ltd.'))fail('missing active official employer handoff')}
+ const jobs=await createVerifiedFirstPartyKekaScraper(config).run({signal,fetchImpl:async url=>{const body=await request(url);if(url===config.officialUrl){
+   const doc=readNativeDocument(body)
+   if(!doc.nodes(n=>n.tag==='a'&&n.attrs.href?.replace(/\/$/,'')===config.handoffUrl).length)fail('missing active official employer handoff')
+   if(!doc.text(doc.nodes(n=>n.tag==='root')[0]).includes('SmartCoin Financials Pvt. Ltd.')){
+     // The current Olyv page moved its legal company name to its own linked
+     // privacy policy. Follow that explicit delegation and retain the exact
+     // SmartCoin-to-Olyv employer statement; the ATS link alone is insufficient.
+     if(doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'&&n.attrs.href===config.officialUrl).length!==1
+       ||!doc.nodes(n=>n.tag==='meta'&&n.attrs.property==='og:title'&&n.attrs.content==='Learn About Our Vision, Mission & Financial Expertise - Olyv').length
+       ||!doc.nodes(n=>n.tag==='a'&&n.attrs.href===legalPolicy).length)fail('missing current official employer provenance for handoff')
+     const policy=readNativeDocument(await request(legalPolicy))
+     if(!policy.text(policy.nodes(n=>n.tag==='root')[0]).includes('SmartCoin Financials Private Limited (us, We, Olyv or Company)'))fail('linked official legal employer changed for handoff')
+   }
+ }
 if(url===config.portalShellUrl&&!activeScripts(body).some(s=>s.includes('/ats/documents/'+identifier+'/careerportal/')))fail('missing active portal document handoff')
 if(url.includes('/careerportal/')){const doc=readNativeDocument(body);if(!hasActiveConfiguration(body)||doc.nodes(n=>n.tag==='script'&&n.attrs.src===config.handoffUrl+'/api/embedjobs/js/'+identifier).length!==1)fail('missing active portal configuration and renderer')}
 if(url!==active)return new Response(body,{status:200});rawBody=body;raw=JSON.parse(body);if(!Array.isArray(raw))fail('unexpected active inventory envelope');const seen=new Set();for(const job of raw){const id=String(job?.id??'');if(!/^[1-9]\d*$/.test(id)||!Number.isSafeInteger(Number(id))||seen.has(id))fail('invalid or duplicate raw identity');seen.add(id);if(!Array.isArray(job.jobLocations))fail(`missing geography array for ${id}`);if(unhandledKekaGeography(job).length){if(typeof job.title!=='string'||!job.title.trim()||typeof job.description!=='string'||!text(job.description))fail(`invalid unresolved-country role ${id}`);unknown.push(job)}}return new Response(JSON.stringify(raw.filter(job=>!unknown.includes(job))),{status:200})}})

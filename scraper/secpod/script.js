@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentSecPod } from './currentNative20261120.js'
 
 import { SECPOD_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -15,9 +15,6 @@ export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
 export const HOMEPAGE_URL = PROVIDER_METADATA.homepageUrl
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -38,15 +35,6 @@ const extractCurrentJobOpeningsSection = (html = '') => {
 
   return match?.[1] ?? ''
 }
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 20000,
-})
 
 export const hasOfficialCareersSignal = (html = '') => {
   const page = String(html ?? '')
@@ -69,20 +57,18 @@ export const hasPublicJobsSignal = (html = '') => {
 }
 
 export const createSecPodScraper = () => ({
-  async run({
-    fetchText = defaultFetchText,
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+  async run(options = {}) {
+    return runCurrentSecPod(options, careersHtml => {
+      if (hasPublicJobsSignal(careersHtml)) {
+        throw new Error('SecPod surface now appears to expose public jobs')
+      }
 
-    if (hasPublicJobsSignal(careersHtml)) {
-      throw new Error('SecPod surface now appears to expose public jobs')
-    }
+      if (!hasOfficialCareersSignal(careersHtml)) {
+        throw new Error('SecPod verified official careers page no longer matches the trusted first-party surface')
+      }
 
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('SecPod verified official careers page no longer matches the trusted first-party surface')
-    }
-
-    return []
+      return []
+    })
   },
 })
 

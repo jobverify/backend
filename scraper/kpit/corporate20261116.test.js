@@ -2,7 +2,9 @@ import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {run} from './script.js'
+// Historical Nov15/16 finite renderer-profile proof. Current registered acquisition
+// is verified by currentNativeFacts/nativeProtocol/currentNativeBoundaries20261121.
+import {runCurrentKpit as run} from './currentNative20261115.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const old=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))
 const current=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/corporate-20261116.json.gz',import.meta.url))))

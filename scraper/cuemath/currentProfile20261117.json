@@ -2,6 +2,12 @@
   "reviewedOn": "2026-11-17",
   "reviewedClientVersions": [
     {
+      "reviewedOn": "2026-11-20",
+      "bytes": 142265,
+      "sha256": "82f02357caa1d7e7e344c864a7e80d5944dba7a4d112ac468630cccc7c045e73",
+      "reviewSummary": "The complete 25-line diff from the reviewed November 18 program changes teaching-slot presentation (split two blocks with or, move earnings badge into title) and adds coach-story-3 video click tracking. Applicant eligibility, intake, authentication and fee semantics are unchanged. This remains applicant screening with vacancy inventory unknown; no code, form, authentication or fee action is executed."
+    },
+    {
       "reviewedOn": "2026-11-18",
       "bytes": 141691,
       "sha256": "86f9a467df2a2e71f639c3e26fd2c461a5b2ede79de9d816f61bd5c106dcca43",

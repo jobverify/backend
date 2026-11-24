@@ -3,7 +3,9 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { getScraperCatalog, createCatalogScraper } from '../../scraper-support/providers/index.js'
+// Historical Nov5 direct-module fixture, separate from the current registered v1 reader.
+import {createHistoricalLangchainNativeScraper} from './nativeInventory.js'
+import {getScraperCatalog} from '../../scraper-support/providers/index.js'
 import { extractionRawJobMetrics } from '../../scraper-support/utils/extractionRawJobMetrics.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { readSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -17,12 +19,11 @@ const responses = manifest.records.map(record => {
   return { ...record, url: record.finalUrl, body: bytes.toString('utf8') }
 })
 
-test('genuine current eight-response registered replay retains100 roles and148 typed countries with two worksite gaps', async () => {
+test('historical Nov5 eight-response direct-module replay retains100 roles and148 typed countries with two worksite gaps', async () => {
   assert.equal(manifest.fixtureProvenance.replayIsFreshNetwork, false)
   assert.equal(responses.length, 8)
-  const provider = getScraperCatalog().find(row => row.source === 'langchain')
   let index = 0
-  const jobs = await createCatalogScraper(provider).run({ acquisitionMode: 'captured-response-replay',
+  const jobs = await createHistoricalLangchainNativeScraper().run({ acquisitionMode: 'captured-response-replay',
     fetchDocument: async (url, { signal }) => {
       signal.throwIfAborted()
       const response = responses[index++]
@@ -48,6 +49,8 @@ test('genuine current eight-response registered replay retains100 roles and148 t
   assert.equal(audit.configuredBoardIndiaCount, null)
   assert.equal(jobs.length, 0)
   const inventory = readInventoryEvidence(jobs)
+  const provider = getScraperCatalog().find(row => row.source === 'langchain')
+  assert.ok(provider) // Static metadata only; the dated reader above owns this historical replay.
   assert.equal(extractionRawJobMetrics(provider, jobs, inventory).rawJobs, 100)
   assert.equal(readSourceObservationEvidence(jobs, 'langchain').observedVacancyCount, 100)
   assert.equal(inventory.listingComplete, false)

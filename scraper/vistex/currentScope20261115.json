@@ -26,6 +26,11 @@
         "programs": "9ae94c61a35630060181b3eeca591efa3beacabb4d8d4dc4e3177c05790648a3",
         "styles": "4d9623e5324ea4c9cc5fd9a38c47a6426dfc7965374b65930cbf3583b4a62e60",
         "authority": "08fd341345fe9528a9bf9e14b46481d905457e5cc64ad7978ffcf4fee3ebde4a"
+      },
+      {
+        "programs": "e0c2ffe5d6badc335e4d0b8fce89661f9c8ec91c49e2a9c6c52398c8ecb834c3",
+        "styles": "4d9623e5324ea4c9cc5fd9a38c47a6426dfc7965374b65930cbf3583b4a62e60",
+        "authority": "5672e142f86e86befa292aa9d14b7299a03ccfb7ad5d588e155a83970a9e0919"
       }
     ],
     "board": [
@@ -1539,6 +1544,66 @@
         "report-to": null,
         "reporting-endpoints": null
       }
+    },
+    "https://www.vistex.com/_next/static/chunks/7511-74f3ae4544bc5a7e.js": {
+      "bytes": 164387,
+      "sha256": "22fca03013f76d527b9f84a18a5224d44987035ee793436fac5a27643b7b18fc",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": "inline; filename=\"7511-74f3ae4544bc5a7e.js\"",
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null
+      }
+    },
+    "https://www.vistex.com/_next/static/736d346dd031f29f10c6e1259283809c87d17ece/_buildManifest.js": {
+      "bytes": 6216,
+      "sha256": "267051887d945051fe740c4267e440a15da39df552dee0b5f9e3ce584d31539c",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": "inline; filename=\"_buildManifest.js\"",
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null
+      }
+    },
+    "https://www.vistex.com/_next/static/736d346dd031f29f10c6e1259283809c87d17ece/_ssgManifest.js": {
+      "bytes": 866,
+      "sha256": "24a46bea6da7bb20ecd391bb12249fadae96d95012a21f3a181e0ec5537a2359",
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": "inline; filename=\"_ssgManifest.js\"",
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null
+      }
     }
   },
   "dependencies": {
@@ -1974,6 +2039,37 @@
       "attrs": {
         "data-section-id": "7ysw7x",
         "data-is-last-node": ""
+      }
+    }
+  ],
+  "corporateAssetBindings": [
+    {
+      "contract": {
+        "programs": "e0c2ffe5d6badc335e4d0b8fce89661f9c8ec91c49e2a9c6c52398c8ecb834c3",
+        "styles": "4d9623e5324ea4c9cc5fd9a38c47a6426dfc7965374b65930cbf3583b4a62e60",
+        "authority": "5672e142f86e86befa292aa9d14b7299a03ccfb7ad5d588e155a83970a9e0919"
+      },
+      "assets": {
+        "https://www.vistex.com/_next/static/chunks/webpack-a1e0400821380e5c.js": {
+          "bytes": 4631,
+          "sha256": "083225f7ed574326581cd20d9ad66d43f5fb4f08ea4717ec922ecde8d704280a",
+          "headers": {
+            "content-type": "application/javascript; charset=utf-8",
+            "refresh": null,
+            "content-security-policy": null,
+            "content-security-policy-report-only": null,
+            "x-content-security-policy": null,
+            "x-webkit-csp": null,
+            "content-disposition": "inline; filename=\"webpack-a1e0400821380e5c.js\"",
+            "link": null,
+            "location": null,
+            "content-location": null,
+            "x-content-type-options": null,
+            "x-frame-options": null,
+            "report-to": null,
+            "reporting-endpoints": null
+          }
+        }
       }
     }
   ]

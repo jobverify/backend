@@ -1,0 +1,10 @@
+{
+  "source": "firebolt",
+  "fixtureKind": "historical-client-complete-byte-reconstruction",
+  "retainedFixture": "scraper/firebolt/test-data-20261107/current-http.json.gz",
+  "retainedBodySHA256": "fcea099bc3113e6ea20e9baad0b9b35d70ec7a9c245a7472cb1420f859368d4c",
+  "method": "Inverse of the exact referral-default and release-comment delta independently recorded by currentClient20261107.test.js; complete reconstructed bytes must equal the existing pinned historical SHA256. This is reconstruction provenance, not an original network capture.",
+  "completeReconstructedSHA256": "664680f59b3640c168c58230a2f95965ff334c15937555dfd33b39f7dfca1ea4",
+  "originalAcquisitionMetadataAvailable": false,
+  "historicalOtherAssetsRestored": false
+}

@@ -91,7 +91,7 @@ const nextNativeTag = (html, from) => {
 
 // Small source-local tree reader: exact attributes, active elements only, and raw
 // script bodies kept separately. Inert markup cannot supply a title or full JD.
-const dom = (input, {excludeObjectFallback = true} = {}) => {
+const dom = (input, {excludeObjectFallback = true, sourceRanges = false} = {}) => {
   const html = String(input), root = {tag:'root', attrs:{}, children:[]}, stack = [root]
   const raw = new Set(['script','style','textarea','title','xmp','iframe','noembed','noframes','plaintext','noscript'])
   const voids = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'])
@@ -105,7 +105,10 @@ const dom = (input, {excludeObjectFallback = true} = {}) => {
     if (token.closing) {
       const at = stack.findLastIndex(node => node.tag === tag)
       const templateBoundary = stack.findLastIndex(node => node.tag === 'template')
-      if (at > 0 && at >= templateBoundary) stack.length = at
+      if (at > 0 && at >= templateBoundary) {
+        if (sourceRanges) Object.assign(stack[at], { sourceCloseStart: token.index, sourceEnd: token.end })
+        stack.length = at
+      }
       continue
     }
     const inherited = namespaces.get(parent) || 'html'
@@ -123,6 +126,7 @@ const dom = (input, {excludeObjectFallback = true} = {}) => {
     const hidden=Object.hasOwn(attrs,'hidden')||Object.hasOwn(attrs,'inert')||attrs['aria-hidden']?.toLowerCase()==='true'||/(?:^|;)\s*(?:display\s*:\s*none|visibility\s*:\s*(?:hidden|collapse)|content-visibility\s*:\s*hidden)\s*(?:!important\s*)?(?:;|$)/i.test(style)
     const node = {tag,attrs,children:[],activeFrame:tag==='iframe'&&!parent.inert&&!hidden,inert:parent.inert || hidden || !token.qualifiedTag || tag === 'template' || (excludeObjectFallback && tag === 'object') || (raw.has(tag) && !['script','title'].includes(tag)),...(token.qualifiedTag ? {} : {nativeTagUnqualified:true})}
     namespaces.set(node, namespace)
+    if (sourceRanges) Object.assign(node, { sourceStart: token.index, sourceOpenEnd: token.end, sourceNamespace: namespace })
     parent.children.push(node)
     // SVG commonly publishes <title/> in icons. Its self-closing flag ends
     // that foreign element; treating it as an HTML raw-text title swallows
@@ -134,6 +138,7 @@ const dom = (input, {excludeObjectFallback = true} = {}) => {
       if (end) end.lastIndex = cursor
       const closing = end?.exec(html)
       node.raw = html.slice(cursor, closing?.index ?? html.length)
+      if (sourceRanges && closing) Object.assign(node, { sourceCloseStart: closing.index, sourceEnd: end.lastIndex })
       cursor = closing ? end.lastIndex : html.length
       search = cursor
     } else if (!voids.has(tag)) stack.push(node)

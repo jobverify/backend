@@ -1,7 +1,7 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { runCurrentKpit } from './currentNative20261115.js'
+import { run as runCurrentKpit } from './currentNativeFacts20261121.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 

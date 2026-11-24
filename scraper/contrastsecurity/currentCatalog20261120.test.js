@@ -1,0 +1,6 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import metadata from './catalog.js'
+test('Contrast Security current catalog binds the exact source to the current Contrast Security publisher without legal-employer inference',()=>{assert.equal(metadata.source,'contrastsecurity');assert.equal(metadata.companyName,'Contrast Security');assert.equal(metadata.officialBrandName,'Contrast Security');assert.equal(metadata.companyCareerPage,'https://www.contrastsecurity.com/contrast-careers');assert.equal(metadata.adapter,'script');assert.equal(metadata.authoritativeCurrentPublication,true);assert.equal(metadata.backfillMode,'live-parser');assert.equal(metadata.parser,'custom-script')})
+test('Contrast Security current assessment never reuses historical sentinel dates or zero counts',()=>{for(const field of['verifiedOn','verifiedPublicJobCount','verifiedGlobalJobCount','verifiedIndiaJobCount'])assert.equal(metadata[field],null,field)})
+test('Contrast Security configured collection scope holds company completeness and cleanup',()=>{assert.equal(metadata.sourceScopeComplete,false);assert.equal(metadata.lifecycleCleanupAllowed,false);assert.equal(metadata.scraperTimeoutMs,180000)})

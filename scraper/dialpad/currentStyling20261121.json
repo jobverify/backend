@@ -1,0 +1,242 @@
+{
+  "id": "current-20261120",
+  "reviewedAt": "2026-11-21T00:21:19.541Z",
+  "scope": "Exact common corporate styling declaration set and all bytes; opening filtered capture is styling evidence only. Existing authority ancestry and all unfiltered inventory/native/full-detail/country/closing checks remain required.",
+  "stylingBySurface": {
+    "careers": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/0c0acb4b4eb12fe5.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/0c0acb4b4eb12fe5.css",
+          "sha256": "4b26787b4217b1024b235c002e57e22f817a276dc2857d5002c9dccd5de446b8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        },
+        {
+          "attributes": {
+            "href": "/_next/static/css/981cb09f8014508c.css",
+            "rel": "stylesheet",
+            "as": "style",
+            "data-precedence": "dynamic"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/981cb09f8014508c.css",
+          "sha256": "61457ce3b693bab940465dd224cbb840e0446723a818db726c2c407e42990914"
+        }
+      ]
+    },
+    "openings": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/0c0acb4b4eb12fe5.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/0c0acb4b4eb12fe5.css",
+          "sha256": "4b26787b4217b1024b235c002e57e22f817a276dc2857d5002c9dccd5de446b8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        }
+      ]
+    },
+    "role": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/0c0acb4b4eb12fe5.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/0c0acb4b4eb12fe5.css",
+          "sha256": "4b26787b4217b1024b235c002e57e22f817a276dc2857d5002c9dccd5de446b8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        }
+      ]
+    }
+  }
+}

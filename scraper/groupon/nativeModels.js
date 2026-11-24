@@ -21,7 +21,11 @@ export const CURRENT_20261117_MODULES={main:{path:'index-wTVOiLWE.js',sha:'5d840
 // generated support-desk methods and a wildcard page route; browser and company
 // scope remain held. Keep every original program byte pinned as a finite tuple.
 export const CURRENT_20261119_MODULES={main:{path:'index-CHl4g8nw.js',sha:'8220cf52e15a68aa735a9c0039423d1a0b0680d735d3760d4404da8a84922b29'},origins:{path:'src-BLzOSnaW.js',sha:'f14e8d4cb1c935dac309222e2b69eefbb5fe74d4227aa34235b73259fc195956'},roles:{path:'page-B1DyGGW_.js',sha:'c8281e89b42cf7f25ebf92bcf25be0391b9a7e8092db6474eaf90161d7384df4'},detail:{path:'useJob-D5vR3AG-.js',sha:'4065ace3a28f831ef1de0f539f804de763b62f72921ed79c058b67824e83a8d5'},locations:MODULES.locations}
-export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES,CURRENT_20261116_MODULES,CURRENT_20261117_MODULES,CURRENT_20261119_MODULES]
+// Nov20 retains the exact careers GET and full role renderer. The reviewed
+// functional additions are generated mcp_customers OAuth methods, which this
+// static reader never executes. Keep this complete graph pinned independently.
+export const CURRENT_20261120_MODULES={main:{path:'index-BJfNRE2S.js',sha:'656ed17311ad56406db62001c13c654ae8ce4715929a23798f4b05677c2e40f9'},origins:{path:'src-Chmq7nvF.js',sha:'0163484043633802bc95636e171feadcab7e4a8528b9728a6b8861199b2e1b1b'},roles:{path:'page-DnT3o9iZ.js',sha:'b147d82e05d3d191599bc493ec45acbc954617f81b9b3a1509cb46242b10022a'},detail:{path:'useJob-DwsXeAll.js',sha:'bba55531fb17ce79da8d12edb96987be627d77636af840a66edeeb7b0f4670fa'},locations:MODULES.locations}
+export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES,CURRENT_20261116_MODULES,CURRENT_20261117_MODULES,CURRENT_20261119_MODULES,CURRENT_20261120_MODULES]
 export const profileModuleURL=(key,modules)=>new URL('assets/'+modules[key].path,PRIMARY).href
 export const moduleURL=key=>profileModuleURL(key,MODULES)
 export function profileForPublisher(value){
@@ -59,7 +63,7 @@ export function loadingContract(programs){
  need(modules&&Object.keys(modules).every(key=>programs[key].url===profileModuleURL(key,modules)),'mixed reviewed native program graphs')
  // Nov16 changes minifier bindings in the complete pinned graph. Each exact
  // graph keeps its own route/client plan; mixed or unseen programs still fail.
- const recentBindings=modules===CURRENT_20261116_MODULES||modules===CURRENT_20261117_MODULES||modules===CURRENT_20261119_MODULES
+ const recentBindings=modules===CURRENT_20261116_MODULES||modules===CURRENT_20261117_MODULES||modules===CURRENT_20261119_MODULES||modules===CURRENT_20261120_MODULES
  const roleBinding=recentBindings?'eS':'nS'
  const productionClient=recentBindings?'function ev(){return c(`production`,!0)}function tv(){return s(`core`,ev())}function nv(){return $_({baseUrl:tv()})}':'function nv(){return d(`production`,!0)}function rv(){return a(`core`,nv())}function iv(){return tv({baseUrl:rv()})}'
  need(main.wholeProgram.includes(roleBinding+'=q(()=>$(()=>import(`./' + modules.roles.path + '`)')&&main.wholeProgram.includes('path:`roles`,element:(0,P.jsx)('+roleBinding+',{}'),'current roles route binding changed')

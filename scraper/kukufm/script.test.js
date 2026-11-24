@@ -1,3 +1,4 @@
+// Historical Nov15/16 finite fixture contract; current registered acquisition has separate source-original tests.
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import * as script from './script.js'
@@ -27,7 +28,7 @@ for (const [name, start] of [
   })
   test(name + ' rejects metadata-free body callbacks before any original Response reads', async () => {
     let calls = 0
-    await assert.rejects(() => start({fetchText: async () => '<title>Kuku FM</title>', fetchImpl: async () => {calls++}}), /Full original Response/)
+    await assert.rejects(() => start({fetchText: async () => '<title>Kuku FM</title>', fetchImpl: async () => {calls++}}), /original HTTP Response/i)
     assert.equal(calls, 0)
   })
 }

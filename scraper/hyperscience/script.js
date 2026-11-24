@@ -31,8 +31,24 @@ const freezeData = value => {
   return value
 }
 
+// The shared recovery races caller cancellation. Keep our already-started
+// native controller owned through its bounded response-disposal grace before
+// exposing that exact caller reason; this never starts another request.
+const settleNativeRun = async operation => {
+  if (!operation) return
+  let timer
+  try {
+    await Promise.race([
+      Promise.prototype.then.call(operation, () => undefined, () => undefined),
+      new Promise(resolve => { timer = setTimeout(resolve, 1000) }),
+    ])
+  } finally { clearTimeout(timer) }
+}
+
 export const run = async options => {
-  let nativeJobs
+  const callerSignal = options && typeof options === 'object' && !types.isProxy(options)
+    ? Object.getOwnPropertyDescriptor(options, 'signal')?.value : undefined
+  let nativeJobs, nativeOperation
   try {
     return await runWithCurrentProgrammeZero(options, {
       source: SOURCE,
@@ -42,11 +58,13 @@ export const run = async options => {
         for (const key of nativeOptions) {
           if (Object.hasOwn(programmeOptions, key)) projected[key] = programmeOptions[key]
         }
-        nativeJobs = await runCurrentHyperscienceProgramme(projected)
+        nativeOperation = runCurrentHyperscienceProgramme(projected)
+        nativeJobs = await nativeOperation
         return nativeJobs
       },
     })
   } catch (caught) {
+    await settleNativeRun(nativeOperation)
     const audit = nativeJobs && Object.getOwnPropertyDescriptor(nativeJobs, 'nativeCollectionEvidence')?.value
     if (!audit) throw caught
     const proxy = types.isProxy(caught)
@@ -66,6 +84,8 @@ export const run = async options => {
         { softFailure: true, abortRetries: true, failureKind: 'coverage_gap' })
     Object.defineProperty(error, 'nativeCollectionEvidence', { value: evidence, configurable: true })
     throw error
+  } finally {
+    if (callerSignal) AbortSignal.prototype.throwIfAborted.call(callerSignal)
   }
 }
 

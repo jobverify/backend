@@ -323,12 +323,18 @@ test('uncooperative body reader is cancelled at its request deadline',async t=>{
  assert.equal(cancelled,true)
 })
 
-for(const options of [{maxRequests:15},{maxPages:1},{sourceTimeoutMs:180001},{requestTimeoutMs:20001},{maxJobs:0}])
+for(const options of [{maxRequests:15},{sourceTimeoutMs:180001},{requestTimeoutMs:20001},{maxJobs:0}])
  test('insufficient or unbounded caller budget holds before all public reads '+JSON.stringify(options),async t=>{
   noNetwork(t);const r=replay()
   await assert.rejects(r.run(options),error=>error.code==='HOUSECALL_PROGRAMME_HOLD')
   assert.equal(r.calls.length,0)
  })
+
+test('the historical two-page deployment rejects a one-page budget before the second page or API is read',async t=>{
+ noNetwork(t);const r=replay()
+ await assert.rejects(r.run({maxPages:1}),/Every native listing page must fit the page budget/)
+ assert.equal(r.calls.length,3)
+})
 
 for(const[name,edit]of[
  ['additional unmatched API department membership',value=>{value.jobs[0].departments.push({id:990099,name:'India',child_ids:[],parent_id:null})}],

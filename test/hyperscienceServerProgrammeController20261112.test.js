@@ -147,12 +147,12 @@ test('controlled N6 with independent corporate/API order returns full models wit
 })
 
 for(const [label,mutate,gate,calls]of [
-  ['complete C0 context',(r,s)=>{if(s.url===C0&&s.phase==='opening')setBody(r,r.body.toString().replace('Careers at Hyperscience','Hireers at Hyperscience'));return r},'corporate-programme',1],
+  ['complete C0 context',(r,s)=>{if(s.url===C0&&s.phase==='opening')setBody(r,r.body.toString().replace('Careers at Hyperscience','Hireers at Hyperscience'));return r},'corporate',1],
   ['new visible C1 vacancy',(r,s)=>{if(s.url===C1&&s.phase==='opening')setBody(r,Buffer.concat([r.body,Buffer.from('<p>Current India vacancy: Engineer.</p>')]));return r},'corporate-programme',2],
   ['numeric apiVersion',(r,s)=>{if(s.url===A&&s.phase==='opening'){const a=JSON.parse(r.body);a.apiVersion=1;setBody(r,JSON.stringify(a))}return r},'api',3],
   ['empty full A',(r,s)=>{if(s.url===A&&s.phase==='opening'){const a=JSON.parse(r.body);a.jobs=[];setBody(r,JSON.stringify(a))}return r},'membership',3],
-  ['typed India work-country',(r,s)=>{if(s.url===A&&s.phase==='opening'){const a=JSON.parse(r.body);a.jobs[0].address.postalAddress.addressCountry='India';setBody(r,JSON.stringify(a))}return r},'country',3],
-  ['unknown API header',(r,s)=>{if(s.url===A){r.receipt.headers.age='21';r.receipt.headerEntries=Object.entries(r.receipt.headers)}return r},'security',3],
+  ['typed India work-country',(r,s)=>{if(s.url===A&&s.phase==='opening'){const a=JSON.parse(r.body);a.jobs[0].address.postalAddress.addressCountry='India';setBody(r,JSON.stringify(a))}return r},'country',4],
+  ['unknown API header',(r,s)=>{if(s.url===A){r.receipt.headers['x-unreviewed-native-policy']='21';r.receipt.headerEntries=Object.entries(r.receipt.headers)}return r},'security',3],
   ['actual selected S integrity',(r,s)=>{if(s.url===S&&s.phase==='opening')setBody(r,Buffer.concat([r.body,Buffer.from('\n')]));return r},'source-integrity',10],
   ['malformed opening Q',(r,s)=>{if(s.url===Q&&s.phase==='opening')setBody(r,Buffer.from('{}'));return r},null,11],
   ['closing Q consumption',(r,s)=>{if(s.url===Q&&s.phase==='closing')r.receipt.consumedBodyBytes--;return r},'transport',16],

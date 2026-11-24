@@ -1,5 +1,6 @@
 {
   "source": "taxbuddy",
+  "authoritativeCurrentPublication": true,
   "companyName": "TaxBuddy",
   "officialBrandName": "TaxBuddy.com",
   "adapter": "script",

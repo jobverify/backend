@@ -7,7 +7,7 @@ import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { getScraperCatalog, hydrateProviderCatalogEntry } from '../providers/index.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const modulePath = path.resolve(currentDir, '../../scraper/verintsystems/nativeCareers20261114.js')
+const modulePath = path.resolve(currentDir, '../../scraper/verintsystems/script.js')
 
 const loadCatalogModule = async () => {
   try {
@@ -50,17 +50,31 @@ test('Verint Systems current catalog registers own Ashby and retains historical 
   assert.equal(provider.boardToken, 'verint')
   assert.equal(provider.nativeBoardUrl, 'https://jobs.ashbyhq.com/27cfd344-670f-4dcd-8b13-0e18005b0d65')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'finite-current-native-board-and-public-feed-opening-closing')
+  assert.equal(provider.paginationStrategy, "paired-current-own-native-board-documented-feed-and-positive-India-role-partials")
   assert.equal(
     provider.extractionStrategy,
-    'current-corporate-declared-own-ashby+original-full-native-India-criteria-as-data',
+    "active-own-Verint-declaration;original-native-board-and-typed-feed-countries;full-same-role-state-schema-criteria-dates-unvisited-application",
   )
-  assert.equal(provider.verifiedOn, '2026-11-14')
+  assert.equal(provider.verifiedOn, null)
+  assert.equal(provider.verifiedAt, null)
+  assert.equal(provider.scraperTimeoutMs, 180000)
+  assert.equal(provider.parser, 'custom-script')
+  assert.equal(provider.backfillMode, 'live-parser')
+  assert.equal(provider.authoritativeCurrentPublication, true)
+  for (const field of ['verifiedPublicJobCount', 'verifiedGlobalJobCount', 'verifiedIndiaJobCount']) assert.equal(provider[field], null)
   assert.equal(provider.modulePath, modulePath)
-  assert.match(provider.verifiedSurfaceSummary, /Join Our Global Team/i)
+  assert.equal(provider.verifiedSurfaceSummary, VERINT_SYSTEMS_CATALOG.verifiedSurfaceSummary)
+  assert.match(provider.verifiedSurfaceSummary, /Current active Verint careers anchors declare the native board/i)
+  assert.match(provider.verifiedSurfaceSummary, /Only positive partials may qualify/i)
   assert.equal(provider.sourceScopeComplete, false)
   assert.equal(provider.lifecycleCleanupAllowed, false)
   const registered = getScraperCatalog().find(row => row.source === 'verintsystems')
+  assert.equal(registered.scraperTimeoutMs, 190000)
+  assert.equal(registered.currentProgrammeZeroProfile, null)
+  assert.equal(registered.verifiedOn, null)
+  assert.equal(registered.verifiedAt, null)
+  for (const field of ['verifiedPublicJobCount', 'verifiedGlobalJobCount', 'verifiedIndiaJobCount']) assert.equal(registered[field], null)
+  for (const key of ['paginationStrategy', 'extractionStrategy', 'parser', 'backfillMode', 'authoritativeCurrentPublication', 'verifiedSurfaceSummary']) assert.equal(registered[key], provider[key])
   for (const key of ['modulePath', 'atsPlatform', 'boardToken', 'nativeBoardUrl', 'sourceScopeComplete', 'lifecycleCleanupAllowed']) assert.equal(registered[key], provider[key])
 })
 

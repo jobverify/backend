@@ -11,6 +11,7 @@ export const RESUME_COMPILER_REASONS = Object.freeze({
 
 // Public Actions logs must never contain candidate data or raw exception text.
 const failures = {
+  prepared_resume_incompatible: 'Prepare your resume again to update its Abey format before tailoring it. Your previous successful version is unchanged.',
   tailoring_plan_invalid: 'The tailored resume edit plan was invalid. Please retry generation.',
   processing_failed: 'Resume processing failed. Your previous successful version is unchanged. Please retry.',
   source_invalid: 'The resume contains unreadable text or unsupported characters. Please upload a readable source document.',
@@ -64,8 +65,11 @@ export function safeResumeDiagnostic(event = {}) {
   for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'processedTokens', 'outputTokens', 'pageCount', 'targetPages', 'sourceBlockCount', 'editSlotCount', 'estimatedSeconds', 'remainingSeconds']) {
     if (typeof event[key] === 'number' && Number.isFinite(event[key]) && event[key] >= 0 && event[key] <= 1000000) result[key] = Math.round(event[key] * 100) / 100;
   }
-  if (event.policyVersion === 'abey-pagination-v2') result.policyVersion = event.policyVersion;
+  if (['abey-pagination-v2', 'abey-tailoring-v3'].includes(event.policyVersion)) result.policyVersion = event.policyVersion;
   if (['base', 'tailored'].includes(event.mode)) result.mode = event.mode;
+  if (['edits', 'layout', 'document'].includes(event.generationKind)) result.generationKind = event.generationKind;
+  if (['prepared', 'normalized', 'source', 'unavailable'].includes(event.baseKind)) result.baseKind = event.baseKind;
+  if (['missing_base', 'template_mismatch', 'invalid_base', 'no_editable_items'].includes(event.tailoringReason)) result.tailoringReason = event.tailoringReason;
   if (['pagination', 'document', 'edits'].includes(event.repairKind)) result.repairKind = event.repairKind;
   if (result.stage === 'validating' && result.code === 'factual_validation_failed' && event.issueCounts && typeof event.issueCounts === 'object') {
     const counts = {};

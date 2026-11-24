@@ -6,7 +6,7 @@ const current = JSON.parse(readFileSync(new URL('./reviewedCandidateReleases.jso
 // to the exact employer origins with fresh corporate and candidate receipts.
 // A known client in a changed shell still leaves scope incomplete in the caller.
 export function selectReviewedCandidateClient(spec, scripts) {
-  const releases = [spec.review]
+  const releases = [spec.review, ...(spec.review.previousReleases || [])]
   for (const release of [current, ...(current.additionalReleases || [])]) {
     if (release.sources[spec.source] === spec.origin) releases.push({
       clientUrl: spec.origin + release.clientPath,

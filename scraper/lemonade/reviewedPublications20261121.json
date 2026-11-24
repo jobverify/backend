@@ -1,0 +1,4136 @@
+{
+  "source": "lemonade",
+  "reviewedPhysicalDate": "2026-11-21",
+  "scope": "Finite authored own public page cohort only; no company-global or India inventory claim.",
+  "originals": [
+    {
+      "url": "https://www.mylemonade.io/",
+      "bodySHA256": "d92263ec020045c95f708dc0e8e38c82e1c251104903d4b4c5ddd865b0f100bd",
+      "bytes": 65741,
+      "provenance": "reports/scraper-20261120-continuation/native-contract-repairs-31/lemonade-certificate-host-20261121/result.json"
+    },
+    {
+      "url": "https://www.mylemonade.io/career/",
+      "bodySHA256": "474e666f969266d54b71a439749c5ea69a018309de3e0834e2c2c2c6f3c76695",
+      "bytes": 44040,
+      "provenance": "reports/scraper-20261120-continuation/native-contract-repairs-31/lemonade-canonical-career-20261121/result.json"
+    },
+    {
+      "url": "https://www.mylemonade.io/main.js",
+      "bodySHA256": "daa3138266a63c7714c5609b3d03a8105a15c3d486a3a4b9d39b3b4c18508e9b",
+      "bytes": 6532,
+      "provenance": "reports/scraper-20261120-continuation/native-contract-repairs-31/lemonade-declared-main-client-20261121/result.json"
+    }
+  ],
+  "home": {
+    "url": "https://www.mylemonade.io/",
+    "authoredText": "Lemonade Payments Products Platform PayIn Transfers Banking as a Service Virtual Card coming soon Multi-currency Accounts Financial Operations Bill Payments Invoicing coming soon Value Added Services Identity Verification coming soon Apps IOS App Android App Explore Demo Use Cases Developers Company Our Story Career Partnerships Blog Support Contact FAQs Login Get Started Home Products Use Cases Developers Company Support Login Get Started Main Menu Platform PayIn Transfers Banking as a Service Virtual Card Multi-currency Accounts Financial Operations Bill Payments Invoicing Value Added Services Identity Verification Apps IOS App Android App Explore Demo Main Menu Our Story Career Partnerships Blog Main Menu Contact FAQs Powerful platform. Simplified finances. Apply in 5 minutes for a business & personal payment platform that transforms how you operate. Open Account Contact Sales The Payment Solution Tailored For Your Business Growing a business can be challenging, but we’re here to support you. Lemonade provides fast and secure payment processing for businesses of all sizes and industries, including retail, e-commerce, marketing, hospitality, travel, consulting, and more. Zero complexity, Seamless execution Smooth onboarding process and rapid turnaround in executing our first bulk settlement. Platform handled salary disbursements flawlessly with multiple transfers options (bank transfers, mobile money). Henry Ohanga Founder at Code Particles Your browser does not support the video tag. Instant, Secure Payments Made Effortless Experience fast, secure, and private transactions with minimal transfer fees. Get Started Privacy-Powered Payments Keep your transactions confidential with our cutting-edge privacy features, giving you peace of mind with every transfer. Get Started Why Lemonade? Lemonade offers secure payment solutions to receive payments, make transfers, and scale your business. Responsive Support Lemonade offers its merchants dedicated account managers ranging from technical to relationship managers Easy Integration One API for offline and online payments processing Licensed and Certified Lemonade is certified by the highest compliance standards across its operational countries and regions Monitor Your Business In-depth dashboards and analytics give visibility over every aspect of the payment experience Continuous Improvement We’ve done 50 integrations and counting, while we ship features & improvements weekly Scalable and Reliable Lemonade systems operate with 99.95% uptime & guarantee scalability as your business grows Lemonade enables individuals and businesses of all sizes to operate at their highest level. Get Started Company Our Story Blog FAQs Legal Privacy Policy Contact Us Support Goodbye, transaction limbo. Get instant peace of mind with lightning-fast deliveries and real-time notifications. Have a problem, easily write or call us for support. Email: [email protected] Whatsapp: +254 711 894 422 Connect With Us Lemonade Payments Inc. 1007 N Orange St. 4th Floor Suite #1382, Wilmington, Delaware, 19801 © Lemonade. All rights reserved. Disclaimers and Footnotes Lemonade Payments is a fintech company, not an insured bank or microfinance company. Payment services are provided by officiall licensed banks, all regulated by the Central Bank of Kenya. All customers must share KYC details as required before opening and operating an account. This information contains certain “forward-looking statements,” which may be identified by the use of such words as “believe,” “expect,” “anticipate,” “should,” “planned,” “estimated,” “potential” and other similar terms.",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Powerful platform. Simplified finances."
+      },
+      {
+        "tag": "h2",
+        "text": "The Payment Solution Tailored For Your Business"
+      },
+      {
+        "tag": "h2",
+        "text": "Zero complexity, Seamless execution"
+      },
+      {
+        "tag": "h2",
+        "text": "Instant, Secure Payments Made Effortless"
+      },
+      {
+        "tag": "h2",
+        "text": "Privacy-Powered Payments"
+      },
+      {
+        "tag": "h2",
+        "text": "Lemonade offers secure payment solutions to receive payments, make transfers, and scale your business."
+      },
+      {
+        "tag": "h3",
+        "text": "Responsive Support"
+      },
+      {
+        "tag": "h3",
+        "text": "Easy Integration"
+      },
+      {
+        "tag": "h3",
+        "text": "Licensed and Certified"
+      },
+      {
+        "tag": "h3",
+        "text": "Monitor Your Business"
+      },
+      {
+        "tag": "h3",
+        "text": "Continuous Improvement"
+      },
+      {
+        "tag": "h3",
+        "text": "Scalable and Reliable"
+      },
+      {
+        "tag": "h3",
+        "text": "Company"
+      },
+      {
+        "tag": "h3",
+        "text": "Support"
+      },
+      {
+        "tag": "h3",
+        "text": "Connect With Us"
+      },
+      {
+        "tag": "h3",
+        "text": "Lemonade Payments Inc."
+      }
+    ],
+    "carriers": [
+      {
+        "tag": "html",
+        "attrs": {
+          "lang": "en"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "charset": "UTF-8"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "/images/fav-icon.png",
+          "rel": "icon",
+          "type": "image/svg+xml"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "width=device-width, initial-scale=1.0",
+          "name": "viewport"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Experience secure, seamless, and convenient payment solutions across Africa!",
+          "name": "description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Secure payments, Seamless transactions, Convenient, payment solutions, Payments in Africa, Online payment processing, Mobile payments, Fintech solutions, Digital payments, Cross-border payments, Payment security, African, fintech, Fast payments, Payment apps, E-commerce payments, Cashless transactions",
+          "name": "keywords"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Lemonade Payments",
+          "name": "author"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Lemonade Payments",
+          "property": "og:title"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Experience secure, seamless, and convenient payment solutions across Africa!",
+          "property": "og:description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "/images/lemon-thumbnail.webp",
+          "property": "og:image"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "https://www.mylemonade.io/",
+          "property": "og:url"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "website",
+          "property": "og:type"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "summary_large_image",
+          "name": "twitter:card"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Your Page Title",
+          "name": "twitter:title"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "A brief description of your page for Twitter.",
+          "name": "twitter:description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "/images/lemon-thumbnail.webp",
+          "name": "twitter:image"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "async": "",
+          "src": "https://www.googletagmanager.com/gtag/js?id=G-9SXBKTWM91"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "Identifier",
+                    "name": "window"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "dataLayer"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "right": {
+                  "type": "LogicalExpression",
+                  "left": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "Identifier",
+                      "name": "window"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "dataLayer"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "operator": "||",
+                  "right": {
+                    "type": "ArrayExpression",
+                    "elements": []
+                  }
+                }
+              }
+            },
+            {
+              "type": "FunctionDeclaration",
+              "id": {
+                "type": "Identifier",
+                "name": "local0"
+              },
+              "expression": false,
+              "generator": false,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "dataLayer"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "push"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "name": "arguments"
+                        }
+                      ],
+                      "optional": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "local0"
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "js"
+                  },
+                  {
+                    "type": "NewExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "Date"
+                    },
+                    "arguments": []
+                  }
+                ],
+                "optional": false
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "local0"
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "config"
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "G-9SXBKTWM91"
+                  }
+                ],
+                "optional": false
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css",
+          "rel": "stylesheet"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "style.css",
+          "rel": "stylesheet"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/logo-rounded.png",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/payin.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./payin"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "./images/transfers.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./transfers"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/bank-card.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/currency.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./multicurrency"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/bill.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./bill-pay"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/invoice.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/identity.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=6478176775 ",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://play.google.com/store/apps/details?id=com.nyasi01.lemonade",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./explore",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./usecase"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./api"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./our-story"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./career"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./partnerships"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./contact"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "./faq"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/menu-icon.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/usecase"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/api"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/payin"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/transfers"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/multicurrency"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/bill-pay"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=6478176775",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://play.google.com/store/apps/details?id=com.nyasi01.lemonade",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/our-story"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/career"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/partnerships"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/contact"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "faq"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter0_f_304_3)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter1_f_304_3)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter2_f_304_3)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "0.5",
+          "y": "130.5"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_3",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "220.415",
+          "y": "0.5"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_3",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "270.586",
+          "y": "307.5"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_3",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter0_f_304_7)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter1_f_304_7)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "g",
+        "attrs": {
+          "filter": "url(#filter2_f_304_7)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "0.5",
+          "y": "184.402"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_7",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "284.482",
+          "y": "0.5"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_7",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "filter",
+        "attrs": {
+          "color-interpolation-filters": "sRGB",
+          "filterunits": "userSpaceOnUse",
+          "x": "349.27",
+          "y": "434.792"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feflood",
+        "attrs": {
+          "flood-opacity": "0",
+          "result": "BackgroundImageFix"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "feblend",
+        "attrs": {
+          "in": "SourceGraphic",
+          "in2": "BackgroundImageFix",
+          "mode": "normal",
+          "result": "shape"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "fegaussianblur",
+        "attrs": {
+          "result": "effect1_foregroundBlur_304_7",
+          "stddeviation": "207.75"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://linktr.ee/lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "/contact"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/product-screen.webp",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "video",
+        "attrs": {
+          "autoplay": "",
+          "loop": "",
+          "muted": "",
+          "playsinline": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "source",
+        "attrs": {
+          "src": "/images/video-1.mp4",
+          "type": "video/mp4"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/feature-1.webp",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/feature-2.webp",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/lemonade-app.webp"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://play.google.com/store/apps/details?id=com.nyasi01.lemonade&hl=en",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "./images/andriod.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://apps.apple.com/app/id6478176775",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "./images/IOS.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "/images/logo-footer.webp"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../our-story/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../faq/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../terms-service/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../privacy-policy/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../contact/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "data-cfemail": "f784828787988583b79a8e9b929a9899969392d99e98",
+          "href": "/cdn-cgi/l/email-protection"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://twitter.com/lemonadepayment "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.facebook.com/lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.instagram.com/lemonadepayment/ "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.youtube.com/@lemonadepayment "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.linkedin.com/company/lemonadepayment/ "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "data-cfasync": "false",
+          "src": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "document"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "getElementById"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "value": "year"
+                      }
+                    ],
+                    "optional": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "textContent"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "right": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "NewExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "Date"
+                      },
+                      "arguments": []
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "getFullYear"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "arguments": [],
+                  "optional": false
+                }
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "FunctionDeclaration",
+              "id": {
+                "type": "Identifier",
+                "name": "local0"
+              },
+              "expression": false,
+              "generator": false,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "document"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "getElementById"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Literal",
+                              "value": "myForm"
+                            }
+                          ],
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "submit"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [],
+                      "optional": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "FunctionDeclaration",
+              "id": {
+                "type": "Identifier",
+                "name": "local1"
+              },
+              "expression": false,
+              "generator": false,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "name": "local2"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "local3"
+                }
+              ],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "local2"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "stopPropagation"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [],
+                      "optional": false
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "MemberExpression",
+                          "object": {
+                            "type": "Identifier",
+                            "name": "local3"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "classList"
+                          },
+                          "computed": false,
+                          "optional": false
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "toggle"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "value": "active"
+                        }
+                      ],
+                      "optional": false
+                    }
+                  },
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "console"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "log"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "value": "active class added"
+                        }
+                      ],
+                      "optional": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "Identifier",
+                    "name": "document"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "addEventListener"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "click"
+                  },
+                  {
+                    "type": "FunctionExpression",
+                    "id": null,
+                    "expression": false,
+                    "generator": false,
+                    "async": false,
+                    "params": [],
+                    "body": {
+                      "type": "BlockStatement",
+                      "body": [
+                        {
+                          "type": "VariableDeclaration",
+                          "declarations": [
+                            {
+                              "type": "VariableDeclarator",
+                              "id": {
+                                "type": "Identifier",
+                                "name": "local4"
+                              },
+                              "init": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "document"
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "querySelector"
+                                  },
+                                  "computed": false,
+                                  "optional": false
+                                },
+                                "arguments": [
+                                  {
+                                    "type": "Literal",
+                                    "value": ".clickable-box"
+                                  }
+                                ],
+                                "optional": false
+                              }
+                            }
+                          ],
+                          "kind": "const"
+                        },
+                        {
+                          "type": "IfStatement",
+                          "test": {
+                            "type": "CallExpression",
+                            "callee": {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "local4"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "classList"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "contains"
+                              },
+                              "computed": false,
+                              "optional": false
+                            },
+                            "arguments": [
+                              {
+                                "type": "Literal",
+                                "value": "active"
+                              }
+                            ],
+                            "optional": false
+                          },
+                          "consequent": {
+                            "type": "BlockStatement",
+                            "body": [
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "CallExpression",
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "object": {
+                                      "type": "MemberExpression",
+                                      "object": {
+                                        "type": "Identifier",
+                                        "name": "local4"
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "classList"
+                                      },
+                                      "computed": false,
+                                      "optional": false
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "remove"
+                                    },
+                                    "computed": false,
+                                    "optional": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "value": "active"
+                                    }
+                                  ],
+                                  "optional": false
+                                }
+                              },
+                              {
+                                "type": "ExpressionStatement",
+                                "expression": {
+                                  "type": "CallExpression",
+                                  "callee": {
+                                    "type": "MemberExpression",
+                                    "object": {
+                                      "type": "Identifier",
+                                      "name": "console"
+                                    },
+                                    "property": {
+                                      "type": "Identifier",
+                                      "name": "log"
+                                    },
+                                    "computed": false,
+                                    "optional": false
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Literal",
+                                      "value": "active class removed"
+                                    }
+                                  ],
+                                  "optional": false
+                                }
+                              }
+                            ]
+                          },
+                          "alternate": null
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "optional": false
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "document"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "getElementById"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "value": "myVideo"
+                      }
+                    ],
+                    "optional": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "playbackRate"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "right": {
+                  "type": "Literal",
+                  "value": 3
+                }
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "src": "./forms.js"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "src": "./main.js",
+          "type": "module"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "FunctionExpression",
+                  "id": null,
+                  "expression": false,
+                  "generator": false,
+                  "async": false,
+                  "params": [
+                    {
+                      "type": "Identifier",
+                      "name": "local0"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "local1"
+                    }
+                  ],
+                  "body": {
+                    "type": "BlockStatement",
+                    "body": [
+                      {
+                        "type": "VariableDeclaration",
+                        "declarations": [
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local2"
+                            },
+                            "init": {
+                              "type": "Literal",
+                              "value": "https://app.chatwoot.com"
+                            }
+                          }
+                        ],
+                        "kind": "var"
+                      },
+                      {
+                        "type": "VariableDeclaration",
+                        "declarations": [
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "init": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "local0"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "createElement"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "local1"
+                                }
+                              ],
+                              "optional": false
+                            }
+                          },
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local4"
+                            },
+                            "init": {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "local0"
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "getElementsByTagName"
+                                  },
+                                  "computed": false,
+                                  "optional": false
+                                },
+                                "arguments": [
+                                  {
+                                    "type": "Identifier",
+                                    "name": "local1"
+                                  }
+                                ],
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Literal",
+                                "value": 0
+                              },
+                              "computed": true,
+                              "optional": false
+                            }
+                          }
+                        ],
+                        "kind": "var"
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "src"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "BinaryExpression",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "local2"
+                            },
+                            "operator": "+",
+                            "right": {
+                              "type": "Literal",
+                              "value": "/packs/js/sdk.js"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "defer"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "async"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "Identifier",
+                                "name": "local4"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "parentNode"
+                              },
+                              "computed": false,
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "insertBefore"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            {
+                              "type": "Identifier",
+                              "name": "local4"
+                            }
+                          ],
+                          "optional": false
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "onload"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "FunctionExpression",
+                            "id": null,
+                            "expression": false,
+                            "generator": false,
+                            "async": false,
+                            "params": [],
+                            "body": {
+                              "type": "BlockStatement",
+                              "body": [
+                                {
+                                  "type": "ExpressionStatement",
+                                  "expression": {
+                                    "type": "CallExpression",
+                                    "callee": {
+                                      "type": "MemberExpression",
+                                      "object": {
+                                        "type": "MemberExpression",
+                                        "object": {
+                                          "type": "Identifier",
+                                          "name": "window"
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "chatwootSDK"
+                                        },
+                                        "computed": false,
+                                        "optional": false
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "run"
+                                      },
+                                      "computed": false,
+                                      "optional": false
+                                    },
+                                    "arguments": [
+                                      {
+                                        "type": "ObjectExpression",
+                                        "properties": [
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Identifier",
+                                              "name": "websiteToken"
+                                            },
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "vAnbTQXaqzT7pVv6gYcg6b7X"
+                                            },
+                                            "kind": "init"
+                                          },
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Identifier",
+                                              "name": "baseUrl"
+                                            },
+                                            "value": {
+                                              "type": "Identifier",
+                                              "name": "local2"
+                                            },
+                                            "kind": "init"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "optional": false
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "document"
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "script"
+                  }
+                ],
+                "optional": false
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "crossorigin": "anonymous",
+          "data-cf-beacon": "{\"version\":\"2024.11.0\",\"token\":\"ba84c24ebd634c92834f193e65240a77\",\"spa\":2}",
+          "integrity": "sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==",
+          "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "module"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      }
+    ]
+  },
+  "career": {
+    "url": "https://www.mylemonade.io/career/",
+    "authoredText": "Shape your career at Lemonade - Job opportunities in Fintech Products Platform PayIn Transfers Banking as a Service Virtual Card coming soon Multi-currency Accounts Financial Operations Bill Payments Invoicing coming soon Value Added Services Identity Verification coming soon Apps IOS App Android App Explore Demo Use Cases Developers Company Our Story Career Partnerships Blog Support Contact FAQs Login Get Started Home Products Use Cases Developers Company Support Login Get Started Main Menu Platform PayIn Transfers Banking as a Service Virtual Card Multi-currency Accounts Financial Operations Bill Payments Invoicing Value Added Services Identity Verification Apps IOS App Android App Explore Demo Main Menu Our Story Career Partnerships Blog Main Menu Contact FAQs Shape your career at Lemonade Join our team as we work to transform how the world operates. See Open Roles Our values. Your strengths. Care We prioritize empathy in everything we do, ensuring our solutions genuinely help those we serve. Communicate, Honestly and Directly Transparent communication builds trust and helps us solve problems efficiently, both internally and with customers. Stay Curious Curiosity drives us to innovate continuously, keeping us agile and responsive to new challenges and opportunities. Own Your Impact We take responsibility for our actions, knowing every contribution makes a difference. Obsess Over Customers Our customers are our focus, and we strive to exceed their expectations with every interaction. Be Yourself Authenticity enriches our work culture and strengthens our products, bringing diverse perspectives to everything we create. What to expect at Lemonade At Lemonade, we foster a dynamic, people-centered culture where you’re empowered to do your best work and supported at every step. A Remote-First Culture A Customer-Obsessed Mindset Ownership and Accountability Diverse and Inclusive Environment Employee benefits at a glance 12+ weeks of paid parental leave Annual $1K learning & development budget Monthly $50 cellphone reimbursement Pet-friendly offices with free tea and beverages, plus lunch and snacks Unlimited vacation policy (with a mandatory minimum) Open Roles no open roles at the moment Company Our Story FAQs Legal Privacy Policy Contact Us Support Goodbye, transaction limbo. Get instant peace of mind with lightning-fast deliveries and real-time notifications. Have a problem, easily write or call us for support. Email: [email protected] Whatsapp: +254 711 894 422 Connect With Us Lemonade Payments Inc. 1007 N Orange St. 4th Floor Suite #1382, Wilmington, Delaware, 19801 © Lemonade. All rights reserved. Disclaimers and Footnotes Lemonade Payments is a fintech company, not an insured bank or microfinance company. Payment services are provided by officiall licensed banks, all regulated by the Central Bank of Kenya. All customers must share KYC details as required before opening and operating an account. This information contains certain “forward-looking statements,” which may be identified by the use of such words as “believe,” “expect,” “anticipate,” “should,” “planned,” “estimated,” “potential” and other similar terms.",
+    "headings": [
+      {
+        "tag": "h1",
+        "text": "Shape your career at Lemonade"
+      },
+      {
+        "tag": "h2",
+        "text": "Our values. Your strengths."
+      },
+      {
+        "tag": "h3",
+        "text": "Care"
+      },
+      {
+        "tag": "h3",
+        "text": "Communicate, Honestly and Directly"
+      },
+      {
+        "tag": "h3",
+        "text": "Stay Curious"
+      },
+      {
+        "tag": "h3",
+        "text": "Own Your Impact"
+      },
+      {
+        "tag": "h3",
+        "text": "Obsess Over Customers"
+      },
+      {
+        "tag": "h3",
+        "text": "Be Yourself"
+      },
+      {
+        "tag": "h2",
+        "text": "What to expect at Lemonade"
+      },
+      {
+        "tag": "h2",
+        "text": "Employee benefits at a glance"
+      },
+      {
+        "tag": "h2",
+        "text": "12+ weeks of paid parental leave"
+      },
+      {
+        "tag": "h2",
+        "text": "Annual $1K learning & development budget"
+      },
+      {
+        "tag": "h2",
+        "text": "Monthly $50 cellphone reimbursement"
+      },
+      {
+        "tag": "h2",
+        "text": "Pet-friendly offices with free tea and beverages, plus lunch and snacks"
+      },
+      {
+        "tag": "h2",
+        "text": "Unlimited vacation policy (with a mandatory minimum)"
+      },
+      {
+        "tag": "h2",
+        "text": "Open Roles"
+      },
+      {
+        "tag": "h3",
+        "text": "Company"
+      },
+      {
+        "tag": "h3",
+        "text": "Support"
+      },
+      {
+        "tag": "h3",
+        "text": "Connect With Us"
+      },
+      {
+        "tag": "h3",
+        "text": "Lemonade Payments Inc."
+      }
+    ],
+    "carriers": [
+      {
+        "tag": "html",
+        "attrs": {
+          "lang": "en"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "charset": "UTF-8"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "width=device-width, initial-scale=1.0",
+          "name": "viewport"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "../images/fav-icon.png",
+          "rel": "icon",
+          "type": "image/svg+xml"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Experience secure, seamless, and convenient payment solutions across Africa!",
+          "name": "description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Secure payments, Seamless transactions, Convenient, payment solutions, Payments in Africa, Online payment processing, Mobile payments, Fintech solutions, Digital payments, Cross-border payments, Payment security, African, fintech, Fast payments, Payment apps, E-commerce payments, Cashless transactions",
+          "name": "keywords"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Lemonade Payments",
+          "name": "author"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Lemonade Payments",
+          "property": "og:title"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Experience secure, seamless, and convenient payment solutions across Africa!",
+          "property": "og:description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "../images/lemon-thumbnail.webp",
+          "property": "og:image"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "https://www.mylemonade.io/",
+          "property": "og:url"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "website",
+          "property": "og:type"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "summary_large_image",
+          "name": "twitter:card"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "Your Page Title",
+          "name": "twitter:title"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "A brief description of your page for Twitter.",
+          "name": "twitter:description"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "meta",
+        "attrs": {
+          "content": "../images/lemon-thumbnail.webp",
+          "name": "twitter:image"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "async": "",
+          "src": "https://www.googletagmanager.com/gtag/js?id=G-9SXBKTWM91"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "Identifier",
+                    "name": "window"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "dataLayer"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "right": {
+                  "type": "LogicalExpression",
+                  "left": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "Identifier",
+                      "name": "window"
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "dataLayer"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "operator": "||",
+                  "right": {
+                    "type": "ArrayExpression",
+                    "elements": []
+                  }
+                }
+              }
+            },
+            {
+              "type": "FunctionDeclaration",
+              "id": {
+                "type": "Identifier",
+                "name": "local0"
+              },
+              "expression": false,
+              "generator": false,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "BlockStatement",
+                "body": [
+                  {
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "object": {
+                          "type": "Identifier",
+                          "name": "dataLayer"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "push"
+                        },
+                        "computed": false,
+                        "optional": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "name": "arguments"
+                        }
+                      ],
+                      "optional": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "local0"
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "js"
+                  },
+                  {
+                    "type": "NewExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "Date"
+                    },
+                    "arguments": []
+                  }
+                ],
+                "optional": false
+              }
+            },
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "local0"
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "config"
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "G-9SXBKTWM91"
+                  }
+                ],
+                "optional": false
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css",
+          "rel": "stylesheet"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "link",
+        "attrs": {
+          "href": "../style.css",
+          "rel": "stylesheet"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/logo-rounded.png",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/payin.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../payin"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/transfers.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../transfers"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/bank-card.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/currency.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../multicurrency"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/bill.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../bill-pay"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/invoice.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/identity.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=6478176775 ",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://play.google.com/store/apps/details?id=com.nyasi01.lemonade",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../explore",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../usecase"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../api"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../our-story"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../career"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../partnerships"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../contact"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../faq"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/menu-icon.svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../usecase"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../api"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://lemons.mylemonade.io/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../payin"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../transfers"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../multicurrency"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../bill-pay"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=6478176775",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://play.google.com/store/apps/details?id=com.nyasi01.lemonade",
+          "target": "_blank"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "javascript:void(0)"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../our-story"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../career"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../partnerships"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://medium.com/@lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../contact"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "faq"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "#roles"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/work.jpg",
+          "srcset": ""
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/community.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/promotion.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/ask.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/gathering.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/online-chat.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/user.png"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/remote.jpg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "section",
+        "attrs": {
+          "id": "roles"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "section",
+        "attrs": {
+          "id": "roles"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "alt": "",
+          "src": "../images/logo-footer.webp"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../our-story/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../faq/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../terms-service/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../privacy-policy/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "../contact/"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "data-cfemail": "3c4f494c4c534e487c514550595153525d5859125553",
+          "href": "/cdn-cgi/l/email-protection"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://twitter.com/lemonadepayment "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.facebook.com/lemonadepayment"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.instagram.com/lemonadepayment/ "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.youtube.com/@lemonadepayment "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://www.linkedin.com/company/lemonadepayment/ "
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "svg",
+        "attrs": {
+          "xmlns": "http://www.w3.org/2000/svg"
+        },
+        "inert": false,
+        "style": []
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "data-cfasync": "false",
+          "src": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "MemberExpression",
+                  "object": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "object": {
+                        "type": "Identifier",
+                        "name": "document"
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "getElementById"
+                      },
+                      "computed": false,
+                      "optional": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "value": "year"
+                      }
+                    ],
+                    "optional": false
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "textContent"
+                  },
+                  "computed": false,
+                  "optional": false
+                },
+                "right": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "object": {
+                      "type": "NewExpression",
+                      "callee": {
+                        "type": "Identifier",
+                        "name": "Date"
+                      },
+                      "arguments": []
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "getFullYear"
+                    },
+                    "computed": false,
+                    "optional": false
+                  },
+                  "arguments": [],
+                  "optional": false
+                }
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "src": "../main.js",
+          "type": "module"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {},
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "FunctionExpression",
+                  "id": null,
+                  "expression": false,
+                  "generator": false,
+                  "async": false,
+                  "params": [
+                    {
+                      "type": "Identifier",
+                      "name": "local0"
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "local1"
+                    }
+                  ],
+                  "body": {
+                    "type": "BlockStatement",
+                    "body": [
+                      {
+                        "type": "VariableDeclaration",
+                        "declarations": [
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local2"
+                            },
+                            "init": {
+                              "type": "Literal",
+                              "value": "https://app.chatwoot.com"
+                            }
+                          }
+                        ],
+                        "kind": "var"
+                      },
+                      {
+                        "type": "VariableDeclaration",
+                        "declarations": [
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "init": {
+                              "type": "CallExpression",
+                              "callee": {
+                                "type": "MemberExpression",
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "local0"
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "createElement"
+                                },
+                                "computed": false,
+                                "optional": false
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "name": "local1"
+                                }
+                              ],
+                              "optional": false
+                            }
+                          },
+                          {
+                            "type": "VariableDeclarator",
+                            "id": {
+                              "type": "Identifier",
+                              "name": "local4"
+                            },
+                            "init": {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "local0"
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "getElementsByTagName"
+                                  },
+                                  "computed": false,
+                                  "optional": false
+                                },
+                                "arguments": [
+                                  {
+                                    "type": "Identifier",
+                                    "name": "local1"
+                                  }
+                                ],
+                                "optional": false
+                              },
+                              "property": {
+                                "type": "Literal",
+                                "value": 0
+                              },
+                              "computed": true,
+                              "optional": false
+                            }
+                          }
+                        ],
+                        "kind": "var"
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "src"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "BinaryExpression",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "local2"
+                            },
+                            "operator": "+",
+                            "right": {
+                              "type": "Literal",
+                              "value": "/packs/js/sdk.js"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "defer"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "async"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": true
+                          }
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "CallExpression",
+                          "callee": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "MemberExpression",
+                              "object": {
+                                "type": "Identifier",
+                                "name": "local4"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "name": "parentNode"
+                              },
+                              "computed": false,
+                              "optional": false
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "insertBefore"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            {
+                              "type": "Identifier",
+                              "name": "local4"
+                            }
+                          ],
+                          "optional": false
+                        }
+                      },
+                      {
+                        "type": "ExpressionStatement",
+                        "expression": {
+                          "type": "AssignmentExpression",
+                          "operator": "=",
+                          "left": {
+                            "type": "MemberExpression",
+                            "object": {
+                              "type": "Identifier",
+                              "name": "local3"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "name": "onload"
+                            },
+                            "computed": false,
+                            "optional": false
+                          },
+                          "right": {
+                            "type": "FunctionExpression",
+                            "id": null,
+                            "expression": false,
+                            "generator": false,
+                            "async": false,
+                            "params": [],
+                            "body": {
+                              "type": "BlockStatement",
+                              "body": [
+                                {
+                                  "type": "ExpressionStatement",
+                                  "expression": {
+                                    "type": "CallExpression",
+                                    "callee": {
+                                      "type": "MemberExpression",
+                                      "object": {
+                                        "type": "MemberExpression",
+                                        "object": {
+                                          "type": "Identifier",
+                                          "name": "window"
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "name": "chatwootSDK"
+                                        },
+                                        "computed": false,
+                                        "optional": false
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "name": "run"
+                                      },
+                                      "computed": false,
+                                      "optional": false
+                                    },
+                                    "arguments": [
+                                      {
+                                        "type": "ObjectExpression",
+                                        "properties": [
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Identifier",
+                                              "name": "websiteToken"
+                                            },
+                                            "value": {
+                                              "type": "Literal",
+                                              "value": "vAnbTQXaqzT7pVv6gYcg6b7X"
+                                            },
+                                            "kind": "init"
+                                          },
+                                          {
+                                            "type": "Property",
+                                            "method": false,
+                                            "shorthand": false,
+                                            "computed": false,
+                                            "key": {
+                                              "type": "Identifier",
+                                              "name": "baseUrl"
+                                            },
+                                            "value": {
+                                              "type": "Identifier",
+                                              "name": "local2"
+                                            },
+                                            "kind": "init"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "optional": false
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "document"
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "script"
+                  }
+                ],
+                "optional": false
+              }
+            }
+          ],
+          "sourceType": "script"
+        }
+      },
+      {
+        "tag": "script",
+        "attrs": {
+          "crossorigin": "anonymous",
+          "data-cf-beacon": "{\"version\":\"2024.11.0\",\"token\":\"ba84c24ebd634c92834f193e65240a77\",\"spa\":2}",
+          "integrity": "sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==",
+          "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "type": "module"
+        },
+        "inert": false,
+        "style": [],
+        "raw": {
+          "type": "Program",
+          "body": [],
+          "sourceType": "script"
+        }
+      }
+    ],
+    "openRoles": {
+      "authoredText": "Open Roles no open roles at the moment",
+      "headings": [
+        {
+          "tag": "h2",
+          "text": "Open Roles"
+        }
+      ]
+    }
+  },
+  "uiOriginalSemanticInspection": {
+    "contract": "closed-navigation-and-scroll-ui-effects",
+    "selectors": [
+      ".dropdown",
+      ".scroll-container",
+      "company-back",
+      "company-close",
+      "company-link",
+      "company-menu",
+      "nav-close",
+      "nav-menu",
+      "nav-toggle",
+      "product-link",
+      "product-menu",
+      "submenu-back",
+      "submenu-close",
+      "support-back",
+      "support-close",
+      "support-link",
+      "support-menu"
+    ],
+    "effectOwners": [
+      ".dropdown>.dropdown-content",
+      ".scroll-container",
+      "body"
+    ],
+    "recruitmentWrites": false,
+    "inventoryRequests": false,
+    "executed": false
+  }
+}

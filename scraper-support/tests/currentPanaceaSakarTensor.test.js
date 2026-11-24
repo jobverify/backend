@@ -12,19 +12,9 @@ const tensorBundle = 'const api="https://api.humains.one";get("/api/jobs");get("
 const tensorRow = (id,locations=['Hyderabad']) => ({id,slug:'engineer-'+id,title:'Engineer '+id,locations,department:'Engineering',type:'Full-time',yearsRange:'1 to 3 years',workMode:'WFO',short:'Build AI products.',datePosted:'2026-08-22'})
 const runTensor = (payload,detailChange={}) => tensor.run({fetchText:async url=>url.includes('/static/js/')?tensorBundle:tensorShell,fetchJson:async url=>url==='https://api.humains.one/api/jobs'?payload:{...payload.items.find(row=>url.endsWith('/'+row.slug)),description:'Design and build reliable AI systems for enterprise customers.',...detailChange}})
 
-test('TensorGo follows the current bundle API and validates India details instead of using static fallback jobs', async () => {
-  const jobs=await runTensor({items:[tensorRow('1'),tensorRow('2',['New York'])]})
-  assert.equal(jobs.length,1)
-  assert.equal(jobs[0].jobId,'1')
-  assert.equal(jobs[0].country,'India')
-  assert.match(jobs[0].jobDescription,/reliable AI/)
-})
+test('TensorGo follows original current native API and full role details with country facts preserved',async()=>{const{replay,fast}=await import('../../scraper/tensorgosoftwarepvtltd/nativeFixture20261120.js');await fast(async()=>{const io=replay(),jobs=await tensor.run(io);assert.equal(jobs.length,10);assert.equal(io.calls.length,38);assert.ok(jobs.every(j=>j.country===null&&j.sourcePublicLocationPolicyQualified&&j.sourceDetailComplete&&j.lifecycleCleanupAllowed===false));assert.ok(jobs.every(j=>j.jobDescription.length>1000))})})
 
-test('TensorGo rejects malformed, paginated, duplicate, mismatched-detail and unknown-scope snapshots', async () => {
-  for(const payload of [{items:[tensorRow('1'),tensorRow('1')]},{items:[tensorRow('1')],nextCursor:'more'},{items:[tensorRow('1',[])]}])await assert.rejects(runTensor(payload), /invalid|incomplete|duplicate|scope|pagination/i)
-  await assert.rejects(runTensor({items:[tensorRow('1')]},{id:'wrong'}), /detail|mismatch/i)
-  await assert.rejects(tensor.run({fetchText:async()=>tensorShell.replace('<script src="/static/js/main.fixture.js"></script>','')}), /bundle|inventory/i)
-})
+test('TensorGo rejects malformed, paginated, duplicate, mismatched-detail and body-only snapshots',async()=>{const{replay,fast,responseFor,API}=await import('../../scraper/tensorgosoftwarepvtltd/nativeFixture20261120.js');for(const mode of ['duplicate','pagination','locations','detail'])await fast(async()=>{const io=replay(({row})=>{if(row.requestedURL===API&&mode!=='detail'){const data=JSON.parse(Buffer.from(row.bodyBase64,'base64'));if(mode==='duplicate')data.items[1].id=data.items[0].id;if(mode==='pagination')data.nextCursor='more';if(mode==='locations')data.items[0].locations=[];return responseFor(row,JSON.stringify(data))}if(row.requestedURL===API+'/ai-engineer'&&mode==='detail'){const data=JSON.parse(Buffer.from(row.bodyBase64,'base64'));data.id='wrong';return responseFor(row,JSON.stringify(data))}});await assert.rejects(tensor.run(io),/invalid|incomplete|duplicate|scope|pagination|mismatched/i)});await assert.rejects(runTensor({items:[tensorRow('1')]}),/metadata|body-only/i);await assert.rejects(tensor.run({fetchText:async()=>tensorShell.replace('<script src="/static/js/main.fixture.js"></script>','')}),/metadata|body-only/i)})
 
 const sakarShell='<title>Sakar Robotics</title><meta name="description" content="Sakar builds general-purpose robots that perceive, decide, and act."><meta property="og:url" content="https://www.sakarrobotics.com/"><script src="/build/seo.js?v=206"></script><script src="/build/pages/company.js?v=206"></script><script src="/build/app.js?v=206"></script>'
 const widget='function Careers() {rec_embed_js.load({page_name:"sakarrobotics-career",site:"https://sakarrobotics.zohorecruit.in",source:"CareerSite"})} Careers at Sakar Robotics'

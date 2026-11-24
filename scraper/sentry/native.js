@@ -55,7 +55,8 @@ export const readCorporateInventory = html => {
     check(typeof row?.id === 'string' && /^[0-9a-f-]{36}$/.test(row.id) && !ids.has(row.id)
       && info?.isListed === true && norm(info.title) && norm(info.locationName)
       && info.applyLink === `https://jobs.ashbyhq.com/sentry/${row.id}` && typeof info.descriptionHtml === 'string', 'hydrated native employer, role identity or full description changed')
-    check(Object.keys(info).every(key => ['applyLink', 'departmentName', 'descriptionHtml', 'employmentType', 'isListed', 'locationName', 'teamName', 'title', 'locationIds', 'workplaceType', 'isRemote', 'compensationTierSummary'].includes(key)), 'unreviewed native role criteria field')
+    check(Object.keys(info).every(key => ['applyLink', 'departmentName', 'descriptionHtml', 'employmentType', 'isListed', 'locationName', 'teamName', 'title', 'locationIds', 'workplaceType', 'isRemote', 'compensationTierSummary', 'offersEquity'].includes(key)), 'unreviewed native role criteria field')
+    if (Object.hasOwn(info, 'offersEquity')) check(typeof info.offersEquity === 'boolean', 'unreviewed equity compensation criterion shape')
     ids.add(row.id); rows.set(row.id, row)
   }
   const seen = new Set()

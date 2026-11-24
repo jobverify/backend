@@ -24,6 +24,13 @@ const historicalProfile=Object.freeze({...currentProfile,
   entryPath:'/gen/js/pcsxPwa.6c903be3a68c07ae.js',entrySHA256:'c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111',
   roleRendererPath:'/gen/js/12480.612f8bee165df945.js',roleRendererSHA256:'48ab46e9fdd729f1117dc855913b9eff925eff8996519686eb31ed25d89eb385',
   configsSHA256:'b429a7eca36fe6127afb9a37f956eac9efae96cf3e2afd720ca7689aafb8d703'})
+// The current entry retains the complete reviewed account configuration and
+// declares the same role renderer. Only these exact new entry bytes are added.
+const november21CompanyParagraph="We like to solve problems, take initiative, pitch in when needed, and are always up for trying new things. That's why we seek out colleagues who embody our values — something we call Twilio Magic. Additionally, we empower employees to build positive change in their communities by supporting their volunteering and donation efforts."
+const november21Profile=Object.freeze({...currentProfile,
+  entryPath:'/gen/js/pcsxPwa.068e7dc3d3bb906d.js',entrySHA256:'25e0fea2b7eb2fc1f67f68538c63c8dd52c5d81272a2dcb5d4b8f93056f8c8ad',
+  companyParagraphNative:november21CompanyParagraph,
+  companyParagraphPublished:november21CompanyParagraph.replace('values — something','values -- something')})
 
 // Each reader closes over one immutable whole profile. A declared entry from
 // one build can never authorize another build's configuration or role renderer.
@@ -37,11 +44,22 @@ const norm=value=>String(value).normalize('NFC').replace(/\s+/gu,' ').trim()
 // The current publisher authors exactly these two 654-character company-intro
 // presentations. They differ only at three apostrophes. Every original byte is
 // retained; all text from the following hiring/role sections must still agree.
-const samePublishedCriteria=(native,published)=>native===published||native.slice(654).startsWith(' Hiring and how we work ')
+const reviewedIntroductionPair=(native,published)=>native.slice(654).startsWith(' Hiring and how we work ')
   &&published.slice(654).startsWith(' Hiring and how we work ')
   &&sha(native.slice(0,654))==='5ff4d2dfa4b6e268910cf392b37bb38ca65386f325c1364e1f5cba2b9302eff2'
   &&sha(published.slice(0,654))==='09cec8c71fe4fc732a1cea4ae3b4c7f53ecc7ecc1fa9b9e393b4c9dfeb56e40b'
   &&native.slice(654)===published.slice(654)
+const samePublishedCriteria=(native,published)=>{
+  if(native===published||reviewedIntroductionPair(native,published))return true
+  // This exact complete current paragraph differs at one authored dash. Keep
+  // both originals and compare every remaining character; punctuation in role
+  // criteria or a changed company authority paragraph is never normalized.
+  const original=profile.companyParagraphNative,projected=profile.companyParagraphPublished
+  if(!original||!projected)return false
+  const start=native.indexOf(original)
+  if(start<0||published.indexOf(projected)!==start||native.indexOf(original,start+1)!==-1||published.indexOf(projected,start+1)!==-1)return false
+  return reviewedIntroductionPair(native.slice(0,start)+projected+native.slice(start+original.length),published)
+}
 const keys=(value,allowed,label)=>need(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).every(key=>allowed.includes(key)),'unreviewed '+label+' fields')
 const body=page=>{need(page&&(typeof page.html==='string'||typeof page.text==='string'),'native response text unavailable');need(page.html==null||page.text==null||page.html===page.text,'ambiguous native text');return page.html??page.text}
 const response=(page,url)=>{need(page?.status===200&&page.url===url,'native response identity/status changed');return body(page)}
@@ -292,11 +310,11 @@ const readEightfoldPcsxTwilioRecruitment=async(descriptor,{
 }
 return{declaredEightfoldPcsxTwilioRecruitment,readEightfoldPcsxTwilioRecruitment}
 }
-const currentContract=createContract(currentProfile),historicalContract=createContract(historicalProfile)
+const currentContract=createContract(currentProfile),historicalContract=createContract(historicalProfile),november21Contract=createContract(november21Profile)
 export const {declaredEightfoldPcsxTwilioRecruitment,readEightfoldPcsxTwilioRecruitment}=currentContract
 export const selectCurrentTwilioContract=(page,config)=>{
   const failures=[]
-  for(const contract of[currentContract,historicalContract]){
+  for(const contract of[currentContract,historicalContract,november21Contract]){
     try{
       const descriptor=contract.declaredEightfoldPcsxTwilioRecruitment(page,config)
       if(descriptor)return{descriptor,readNative:contract.readEightfoldPcsxTwilioRecruitment}

@@ -9,13 +9,12 @@ import {
   SOURCE,
   buildJobDetailApiUrl,
   buildSearchUrl,
-  createVerintSystemsScraper,
   extractJobDetail,
   extractSearchResults,
   hasOfficialCandidateExperienceSignal,
   hasOfficialCareersPageSignal,
 } from './script.js'
-import { replayVerint } from './currentFixture20261114.js'
+import { replay as replayCurrent } from './currentFixture20261121.test-support.js'
 
 const careersHtml = `
   <html>
@@ -144,14 +143,16 @@ test('Verint extracts India listings and enriches a requisition detail payload',
   })
 })
 
-test('Verint runner follows the current corporate declaration and complete native Ashby responses', async () => {
-  const { jobs, requests } = await replayVerint(options => createVerintSystemsScraper(options).run())
-  assert.equal(jobs.length, 1)
+test('Verint stable public factory accepts constructor options and follows the current genuine contract', async () => {
+  const { jobs, calls, error } = await replayCurrent({factoryOptions:true})
+  assert.ifError(error)
+  assert.equal(jobs.length, 3)
   assert.equal(jobs[0].jobId, '698d571e-d45c-4624-8a01-7d36224a6673')
   assert.equal(jobs[0].source, 'verintsystems')
   assert.equal(jobs[0].country, 'India')
-  assert.equal(jobs[0].sourceClosingReconciled, true)
+  assert.equal(jobs[0].sourceClosingQualified, true)
+  assert.equal(jobs[0].sourceDetailComplete, false)
   assert.equal(jobs[0].lifecycleCleanupAllowed, false)
-  assert.equal(requests.length, 8)
-  assert(requests.every(row => !row.url.includes('oraclecloud.com')))
+  assert.equal(calls.length, 12)
+  assert(calls.every(row => !row.url.includes('oraclecloud.com')))
 })

@@ -1,0 +1,139 @@
+{
+  "source": "ameyo",
+  "admission": "Finite exact employer-declared corporate/current module20189+Recruiterbox2176; native Exotel data observed only, no Ameyo role authority",
+  "primary": {
+    "url": "https://www.ameyo.com/",
+    "status": 301,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "location": "https://exotel.com/ameyo-contact-center-by-exotel/"
+  },
+  "product": {
+    "url": "https://exotel.com/ameyo-contact-center-by-exotel/",
+    "status": 200,
+    "bytes": 218208,
+    "sha256": "f42fb0ebe2412849608fd7d42e3730af40f58e4a2c86de998c0ce5a0fa679cf1"
+  },
+  "careers": {
+    "url": "https://exotel.com/about-us/careers/",
+    "status": 200,
+    "bytes": 139157,
+    "sha256": "fadec258ee1cb2f5426d11af52a84bb919dafceeb3867d406a09f615b97c77d8"
+  },
+  "assets": [
+    {
+      "url": "https://exotel.com/_next/static/chunks/0-5ym0i88y-cp.js",
+      "status": 200,
+      "bytes": 31870,
+      "sha256": "279808d55b3a1788e0f94c764adef3b10dc82b05af2d8a283034045847fd825e"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/12tgwtilro2-8.js",
+      "status": 200,
+      "bytes": 226347,
+      "sha256": "fac43ff0e32c2236490a239d1dd85a4919fb9966bdd8556aee007e3cc5f505ee"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/08d8b_5d17mkn.js",
+      "status": 200,
+      "bytes": 137502,
+      "sha256": "5c9292d8022e45433f033f3f0414ab5a1584c280aa41b80695aa2f51b674bb74"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/0hep9_j4g2ttz.js",
+      "status": 200,
+      "bytes": 43948,
+      "sha256": "7f689ca5d6fbb260be4b4ed21e4f2c214510f765a1807cc04115e446316bea4c"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/turbopack-0dlz6_9_qa1o7.js",
+      "status": 200,
+      "bytes": 11074,
+      "sha256": "943bd32fb4876073b35399c73d3f9e1d749c6fc908fa0656b617adae5552adae"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/17ml3lbl8ttms.js",
+      "status": 200,
+      "bytes": 12906,
+      "sha256": "33f8f33673da90f8442fa626e7addf647c6f2abca398dac6d152d7452d94f211"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/05r_ps5hh61to.js",
+      "status": 200,
+      "bytes": 54643,
+      "sha256": "2eb1cb2ceaf6e1583636e20d1ba447876ab50e50d52e8c222ee423c44e32d39a"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/070dfn9kx.x.5.js",
+      "status": 200,
+      "bytes": 5853,
+      "sha256": "4cdc770804002fd966685dc7f123b446d5816cfa3cd3da4fa18fdeb6485528db"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/0ava8.2vdrt.o.js",
+      "status": 200,
+      "bytes": 24471,
+      "sha256": "5e2072ff9cd54a2fcd870d0b83b2d4c9b0b15fa698668953788e2cd7f48e5043"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/0vzyw5mvpbxvr.js",
+      "status": 200,
+      "bytes": 38025,
+      "sha256": "049ebb3287785b494b396ba48e8a35780222d3d6398f556e790d94d299dfe607"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/0vuo-w_44pjpi.js",
+      "status": 200,
+      "bytes": 97103,
+      "sha256": "2cd19155c757943f0ce729696054b1ac771e940b476df5ab96d615b3119b188b"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/0ron4gsg4ubd4.js",
+      "status": 200,
+      "bytes": 1996,
+      "sha256": "fb2010b39971e504c272ca4f9215fd849e07043c7e965e0b1d5d1b34c0ea7265"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/03~yq9q893hmn.js",
+      "status": 200,
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "url": "https://exotel.com/_next/static/chunks/06fa3wm2sf1zh.js",
+      "status": 200,
+      "bytes": 6544,
+      "sha256": "3e8929b768c23a6fc9a8feeeb25d8b2f321121bfb62939cfa5e60b6c84498204"
+    }
+  ],
+  "sdkAPI": {
+    "url": "https://w.recruiterbox.com/static/client-src-served/widget/2176/rbox_api.js",
+    "status": 200,
+    "bytes": 160042,
+    "sha256": "cb5899328c0abf23f116ef1c1edd0c48be6826e68bb5d36e4c4f7a55a557fb5f",
+    "programSkeletonSHA256": "7104101e774a3f9247e362dcd85b9e3f5ba87041c4ed6dc4892523fabd3d2628",
+    "typedNativeArguments": [
+      "openings",
+      "groups"
+    ]
+  },
+  "sdkRenderer": {
+    "url": "https://w.recruiterbox.com/static/client-src-served/widget/2176/rbox_impl.js",
+    "status": 200,
+    "bytes": 54810,
+    "sha256": "6d9940397501b4d80cc9ea51ffed3648e744ef562886ee88f062417b792cfeb5"
+  },
+  "nativeInventoryURL": "https://app.recruiterbox.com/widget/2176/openings/",
+  "module": {
+    "id": 20189,
+    "props": {
+      "id": 2176
+    },
+    "dormantModuleForbidden": 84048
+  },
+  "sourceScopeComplete": false,
+  "browserEquivalenceComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "reviewedOn": "2026-11-20",
+  "reviewSummary": "Current coherent product/careers deployment retains the exact active Careers handoff and literal module20189 Recruiterbox2176 props. All careers-declared scripts are retained and pinned; the recruiter renderer/module and native SDK program skeleton remain unchanged. Exotel rows remain unqualified for Ameyo employer authority."
+}

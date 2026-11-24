@@ -1,6 +1,7 @@
 import {structure,hasClass,within,inner,htmlEscape,need,publicRead,stable,sha} from './publicRead.js'
 import {projectRevealPolicy} from './revealPolicy.js'
 import reviewedReveal from './reveal-policy-20261103.js'
+import reviewedCurrentReveal from './reveal-policy-20261120.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 const SOURCE='alohatechnology',COMPANY='Aloha Technology'
@@ -36,7 +37,7 @@ export const runCurrentAloha=(options={})=>publicRead({source:SOURCE,company:COM
   const home=structure(await read(CURRENT_HOME,{phase})),html=await read(CURRENT_CAREERS,{phase}),{s,cards}=inspectCurrentCareers(html)
   need(home.visible(n=>n.tag==='a'&&new URL(n.attrs.href||'#',CURRENT_HOME).href===CURRENT_CAREERS).length>0,COMPANY,'current corporate careers handoff changed')
   need(s.scripts.filter(n=>n.executable&&n.attrs.src&&new URL(n.attrs.src,CURRENT_CAREERS).href===CURRENT_CLIENT).length===1,COMPANY,'current executable public reveal client missing')
-  const client=await read(CURRENT_CLIENT,{phase,kind:'javascript'}),policy=projectRevealPolicy(html,client),policyMatches=policy.errors.length===0&&stable(policy)===stable(reviewedReveal)
+  const client=await read(CURRENT_CLIENT,{phase,kind:'javascript'}),policy=projectRevealPolicy(html,client),policyMatches=policy.errors.length===0&&[reviewedReveal,reviewedCurrentReveal].some(profile=>stable(policy)===stable(profile))
   const records=extractCurrentCareerJobs(html),hiddenCandidates=cards.some(card=>within(card,n=>n.inert&&['div','li','p'].includes(n.tag)).length>0)
   return{records,policy,policyMatches,hiddenCandidates,rawRoles:cards.map(card=>({title:s.text(within(card,n=>hasClass(n,'role-title'))[0]),html:inner(card)}))}
  }

@@ -31,24 +31,31 @@ const detailHtml = `
   <!doctype html>
   <html lang="en">
     <body>
-      <h2>React Developer (3-5 years experience)</h2>
-      <div>Job Category: <a>Development</a></div>
-      <div>Job Type: <a>Full Time</a></div>
-      <div>Job Location: <a>Remote Job</a></div>
-      <section>
+     <div class="awsm-job-single-wrap">
+      <div class="awsm-job-entry-content entry-content">
+       <h2 class="elementor-heading-title">React Developer (3-5 years experience)</h2>
+       <section class="elementor-widget-text-editor">
         <h3>Job Brief</h3>
         <p>Build modern frontend experiences for school operations.</p>
         <ul>
           <li>Create reusable React components.</li>
           <li>Collaborate with product and design teams.</li>
         </ul>
-      </section>
-      <section>
+       </section>
+      </div>
+      <div class="awsm-job-specifications-container">
+       <div class="awsm-job-specification-job-category"><span class="awsm-job-specification-term">Development</span></div>
+       <div class="awsm-job-specification-job-type"><span class="awsm-job-specification-term">Full Time</span></div>
+       <div class="awsm-job-specification-job-location"><span class="awsm-job-specification-term">Remote Job</span></div>
+      </div>
+      <form id="awsm-application-form" method="post">
         <h3>Apply for this position</h3>
         <label>Full Name</label>
         <label>Email</label>
         <label>Upload CV/Resume</label>
-      </section>
+      </form>
+     </div>
+     <script type="application/ld+json">{"@context":"https://schema.org/","@type":"JobPosting","title":"React Developer (3-5 years experience)","hiringOrganization":{"@type":"Organization","name":"eduTinker"},"jobLocation":{"@type":"Place","address":"Remote Job"}}</script>
     </body>
   </html>
 `
@@ -65,7 +72,7 @@ test('extractListings reads first-party Edutinker job links from the careers pag
       title: 'Python Developer (3-6 years experience)',
       company: 'Edutinker',
       jobId: 'python-developer',
-      requisitionId: 'python-developer',
+      requisitionId: null,
       sourceUrl: 'https://edutinker.com/jobs/python-developer/',
       applyUrl: 'https://edutinker.com/jobs/python-developer/',
     },
@@ -73,7 +80,7 @@ test('extractListings reads first-party Edutinker job links from the careers pag
       title: 'React Developer (3-5 years experience)',
       company: 'Edutinker',
       jobId: 'react-developer',
-      requisitionId: 'react-developer',
+      requisitionId: null,
       sourceUrl: 'https://edutinker.com/jobs/react-developer/',
       applyUrl: 'https://edutinker.com/jobs/react-developer/',
     },
@@ -91,8 +98,8 @@ test('extractJobDetail maps Edutinker detail-page metadata and same-page apply f
   assert.equal(detail.title, 'React Developer (3-5 years experience)')
   assert.equal(detail.department, 'Development')
   assert.equal(detail.location, 'Remote Job')
-  assert.equal(detail.city, 'Remote')
-  assert.equal(detail.country, 'India')
+  assert.equal(detail.city, null)
+  assert.equal(detail.country, null)
   assert.equal(detail.employmentType, 'Full Time')
   assert.equal(detail.experienceRequired, '3-5 years experience')
   assert.equal(detail.applyUrl, 'https://edutinker.com/jobs/react-developer/')
