@@ -6,20 +6,24 @@ import {
   buildScrapers,
   getScraperCatalog,
 } from '../providers/index.js'
+import currentMetadata from '../../scraper/newgen/catalog.js'
 
-test('getScraperCatalog includes Newgen Software as an OmniRecruit script provider', () => {
-  const provider = getScraperCatalog().find((item) => item.source === 'newgen')
+test('Newgen own current catalog declares its qualified publication scope', () => {
+  const provider = currentMetadata
 
   assert.ok(provider)
   assert.equal(provider.companyName, 'Newgen Software')
   assert.equal(provider.adapter, 'script')
-  assert.equal(provider.atsPlatform, 'omnirecruit')
-  assert.equal(provider.companyCareerPage, 'https://newgensoft.com/in/company/careers/')
-  assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-public-jobs-portal-page')
-  assert.equal(provider.extractionStrategy, 'official-jobs-portal+html-job-cards+registration-apply')
+  assert.equal(provider.atsPlatform, 'current-own-declared-Omnirecruit-native-first-page')
+  assert.equal(provider.companyCareerPage, 'https://newgensoft.com/company/careers/')
+  assert.equal(provider.authoritativeCurrentPublication, true)
+  assert.equal(provider.backfillMode, 'live-parser')
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
+  assert.equal(provider.verifiedIndiaJobCount, null)
+  assert.equal(provider.verifiedGlobalJobCount, null)
+  assert.equal(provider.verifiedAt, null)
   assert.equal(provider.parser, 'custom-script')
-  assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.companyDomain, 'newgensoft.com')
   assert.match(provider.modulePath, /newgen[\\/]script\.js$/i)
 })

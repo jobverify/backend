@@ -7,12 +7,13 @@ import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/uti
 import {parseBoundedProgram,parseRemoteLiteral} from '../../scraper-support/utils/remoteScriptData.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {buildHttpError,isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
+import {classifyScraperError} from '../../scraper-support/utils/failureClassification.js'
 
 const profile=JSON.parse(fs.readFileSync(new URL('./currentScope20261115.json',import.meta.url),'utf8'))
 export const CURRENT_CORPORATE='https://www.sociowash.com/about'
 export const CURRENT_BOARD='https://sociowash.zohorecruit.com/jobs/Careers'
 const ORG='414709000000177005',PAGE='414709000000833001'
-const SWIPER='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
 const sha=value=>createHash('sha256').update(value).digest('hex'),norm=value=>String(value??'').replace(/\u200b/g,'').replace(/\s+/g,' ').trim(),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
 const problem=message=>Object.assign(Error('Sociowash current native: '+message),{softFailure:true,abortRetries:true,failureKind:'coverage_gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false})
 const need=(condition,message)=>{if(!condition)throw problem(message)}
@@ -64,7 +65,7 @@ function inactiveClosure(node){
  return definite&&all(node).every(n=>['div','p','span','template','noscript'].includes(n.tag)&&Object.entries(n.attrs).every(([k,v])=>k==='hidden'&&['','hidden'].includes(v)||k==='style'&&/^display\s*:\s*none\s*(?:!important)?\s*;?$/i.test(v)))
 }
 export function currentSociowashDocumentContract(html,kind){
- const initial=currentSociowashInitializers(html,kind),{nodes,script,source,csrf,dataNode}=initial
+ const initial=currentSociowashInitializers(html,kind),{script,source,csrf,dataNode}=initial
  let normalized=source
  if(script){
   const replacements=[{...csrf.init,value:'<ANONYMOUS-UUIDV4-TOKEN>'},...(dataNode?[{...dataNode,value:'<COMPLETE-NATIVE-ROLE-DATA>'}]:[])]
@@ -75,24 +76,14 @@ export function currentSociowashDocumentContract(html,kind){
  // bound. Only fully parsed native data and the exact token slot are projected.
  return{treeSHA256:sha(JSON.stringify(tree(rootOf(initial.document)))),commentsSHA256:sha(JSON.stringify([...html.matchAll(/<!--[\s\S]*?-->/g)].map(m=>m[0]))),doctype:html.match(/<!doctype[^>]*>/i)?.[0]??null}
 }
-const criticalHeaders=['content-type','content-disposition','content-security-policy','content-security-policy-report-only','refresh','link','location','content-location','x-content-type-options','x-frame-options','report-to','reporting-endpoints','nel','access-control-allow-origin','cross-origin-resource-policy']
-export function currentSociowashHeaders(headers,url){
- const lower=Object.fromEntries(Object.entries(headers).map(([key,value])=>[key.toLowerCase(),value])),result=Object.fromEntries(criticalHeaders.map(key=>[key,lower[key]??null]))
- if((new URL(url).hostname==='cdnjs.cloudflare.com'||url===SWIPER)&&(result['report-to']!==null||result.nel!==null)){
-  need(typeof result['report-to']==='string'&&typeof result.nel==='string','native Cloudflare NEL pair incomplete')
-  const report=strictSociowashJSON(result['report-to'])
-  own(report,['group','max_age','endpoints'],'Cloudflare NEL reporting model')
-  need(report.group==='cf-nel'&&report.max_age===604800&&Array.isArray(report.endpoints)&&report.endpoints.length===1,'native Cloudflare NEL group/model changed')
-  own(report.endpoints[0],['url'],'Cloudflare NEL endpoint')
-  const endpoint=new URL(report.endpoints[0].url),nel=strictSociowashJSON(result.nel)
-  need(endpoint.origin==='https://a.nel.cloudflare.com'&&endpoint.pathname==='/report/v4'&&!endpoint.username&&!endpoint.password&&!endpoint.hash&&[...endpoint.searchParams.keys()].length===1&&endpoint.searchParams.has('s')&&/^[A-Za-z0-9+/]{80,240}={0,2}$/.test(endpoint.searchParams.get('s')),'native Cloudflare NEL endpoint/path/token changed')
-  own(nel,['report_to','success_fraction','max_age'],'Cloudflare NEL binding')
-  need(nel.report_to==='cf-nel'&&nel.success_fraction===0.01&&nel.max_age===604800,'native Cloudflare NEL header group binding changed')
-  report.endpoints[0].url='https://a.nel.cloudflare.com/report/v4?s=<NATIVE-ANONYMOUS-REPORTING-TOKEN>'
-  result['report-to']=JSON.stringify(report)
- }
- return result
+// Network-error reporting metadata remains in original receipts. It is never
+// executed and cannot qualify employer, criteria, application or country.
+const criticalHeaders=['content-type','content-disposition','content-security-policy','content-security-policy-report-only','refresh','link','location','content-location','x-content-type-options','x-frame-options','access-control-allow-origin','cross-origin-resource-policy']
+export function currentSociowashHeaders(headers){
+ const lower=Object.fromEntries(Object.entries(headers).map(([key,value])=>[key.toLowerCase(),value]))
+ return Object.fromEntries(criticalHeaders.map(key=>[key,lower[key]??null]))
 }
+
 function qualifyMeta(meta,kind,url){
  need(meta&&meta.source==='CareerSite'&&meta.employee_portal===false&&meta.page_id===PAGE&&meta.page_name==='Careers'&&meta.list_url===CURRENT_BOARD&&meta.date_format==='dd/MM/yyyy'&&meta.portal_user?.is_loggedin===false,'current exact anonymous native page/source/date context changed')
  need(meta.org_info?.id===ORG&&meta.org_info.company_name==='Sociowash'&&meta.org_info.type==='internal'&&meta.org_info.hide_company_name===false&&meta.org_info.website==='www.sociowash.com','native original employer/reciprocal corporate domain changed')
@@ -178,27 +169,42 @@ export async function runCurrentSociowash(options={}){
  let now=typeof options.now==='function'?options.now():options.now??new Date().toISOString();if(now instanceof Date)now=now.toISOString()
  const duration=options.sourceTimeoutMs??90000,interval=options.requestIntervalMs??500
  need(Number.isFinite(Date.parse(now))&&Number.isSafeInteger(duration)&&duration>0&&duration<=90000&&Number.isSafeInteger(interval)&&interval>=0&&interval<=60000&&(interval>=500||options.fetchImpl),'invalid native clock/source deadline/per-host pacing')
- const controller=new AbortController(),timer=setTimeout(()=>controller.abort(problem('source deadline exceeded')),duration),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
+ const started=performance.now(),deadline=Object.assign(new DOMException('Sociowash source deadline exceeded','TimeoutError'),{softFailure:true,abortRetries:true,failureKind:'network_or_timeout',sourceScopeComplete:false,lifecycleCleanupAllowed:false}),controller=new AbortController(),timer=setTimeout(()=>controller.abort(deadline),duration),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
+ const check=()=>{options.signal?.throwIfAborted();if(performance.now()-started>=duration&&!controller.signal.aborted)controller.abort(deadline);signal.throwIfAborted()}
  const receipts=[],last=new Map(),byteLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'byteLength').get
  let reads=0,total=0,opening,closing
  async function read(url,kind,depth=0){
-  signal.throwIfAborted();need(Object.hasOwn(profile.headers,url)&&++reads<=80&&depth<=3,'unbound native URL/finite read bound exceeded')
+  check();need(Object.hasOwn(profile.headers,url)&&++reads<=80&&depth<=3,'unbound native URL/finite read bound exceeded')
   const origin=new URL(url).origin,wait=interval-(performance.now()-(last.get(origin)??-Infinity));if(wait>0)await delay(wait,undefined,{signal});last.set(origin,performance.now())
-  const packet=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,overflowError:problem('native response byte cap'),fetchImpl:async(value,init)=>{
-   const response=await(options.fetchImpl??globalThis.fetch)(value,{...init,credentials:'omit',headers:{...init.headers,Accept:kind==='form'?'application/json':kind==='asset'?'*/*':'text/html','User-Agent':'Mozilla/5.0 (compatible; Jobverify careers inventory check)'}});let size=0
+  const expected=profile.headers[url];let packet,metadataFailure
+  try{packet=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,overflowError:problem('native response byte cap'),fetchImpl:async(value,init)=>{
+   const response=await(options.fetchImpl??globalThis.fetch)(value,{...init,credentials:'omit',headers:{...init.headers,Accept:kind==='form'?'application/json':kind==='asset'?'*/*':'text/html','User-Agent':'Mozilla/5.0 (compatible; Jobverify careers inventory check)'}}),headers=Object.fromEntries(response.headers);let size=0
+   try{
+    if(isHttpAccessChallenge(response)||response.status!==200&&response.status!==expected.status){
+     const error=buildHttpError(response,url)
+     Object.assign(error,classifyScraperError(error),{abortRetries:true,sourceScopeComplete:false,lifecycleCleanupAllowed:false});throw error
+    }
+    need(response.url===url&&response.status===expected.status&&[expected.headers,...(expected.observedAlternatives??[])].some(model=>same(currentSociowashHeaders(headers),currentSociowashHeaders(model))),'native effective headers/full MIME, navigation, execution or final identity changed')
+    if([301,302,303,307,308].includes(response.status))need(kind==='asset'&&profile.assets[url]?.redirectTo===new URL(headers.location,url).href,'unreviewed native declared redirect')
+   }catch(error){
+    metadataFailure=error
+    receipts.push({requestedURL:url,kind,status:response.status,url:response.url,headers,bodyRead:false,acquisitionComplete:false,rejectionStage:'http-metadata-before-body'})
+    try{Promise.resolve(response.body?.cancel(error)).catch(()=>{})}catch{/* Preserve metadata failure over best-effort disposal failure. */}
+    options.signal?.throwIfAborted();throw error
+   }
    const body=response.body===null?null:{cancel:reason=>response.body.cancel(reason),getReader(){const reader=response.body.getReader();return{async read(){const item=await reader.read();if(!item.done){need(types.isUint8Array(item.value),'native response chunks must be bytes');const length=byteLength.call(item.value);need(length<=4_000_000-size&&length<=32_000_000-total,'native streaming entity/total byte cap');size+=length;total+=length}return item},cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}}}
    return{status:response.status,url:response.url,headers:response.headers,body}
-  }})
+  }})}catch(error){options.signal?.throwIfAborted();throw metadataFailure??error}
   const bytes=Buffer.from(packet.bodyBase64,'base64');receipts.push({requestedURL:url,kind,...packet,bodySHA256:sha(bytes)})
-  const effective=currentSociowashHeaders(packet.headers,url),expected=profile.headers[url]
-  need(packet.url===url&&packet.status===expected.status&&[expected.headers,...(expected.observedAlternatives??[])].some(model=>same(effective,model)),'native effective headers/full MIME, navigation, execution or final identity changed')
+  const effective=currentSociowashHeaders(packet.headers)
+  need(packet.url===url&&packet.status===expected.status&&[expected.headers,...(expected.observedAlternatives??[])].some(model=>same(effective,currentSociowashHeaders(model))),'native effective headers/full MIME, navigation, execution or final identity changed')
   if(kind==='asset')need(profile.assets[url]?.sha256===sha(bytes)&&profile.assets[url].bytes===bytes.length,'complete declared authoritative client/style bytes changed')
   if([301,302,303,307,308].includes(packet.status)){
    need(kind==='asset'&&profile.assets[url]?.redirectTo===new URL(packet.headers.location,url).href,'unreviewed native declared redirect')
    return read(profile.assets[url].redirectTo,kind,depth+1)
   }
   need(packet.status===200,'current anonymous native document unavailable')
-  try{return new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch{throw problem('native invalid UTF-8')}
+  let text;try{text=new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch{throw problem('native invalid UTF-8')}check();return text
  }
  async function pass(){
   const assets=new Set()
@@ -259,14 +265,15 @@ export async function runCurrentSociowash(options={}){
   return{rows:board.rows,held,jobs,observedVacancyCount:board.rows.filter(vacancyObservation).length}
  }
  try{
-  opening=await pass();closing=await pass();need(same(opening,closing),'fresh closing complete membership/original criteria/employer/geography/application changed');signal.throwIfAborted()
-  const jobs=opening.jobs,audit={source:'sociowash',opening,closing,originalResponses:receipts,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,applicationSubmissions:0,independentNativeClosingReconciled:true}
+  opening=await pass();closing=await pass();need(same(opening,closing),'fresh closing complete membership/original criteria/employer/geography/application changed');check()
+  const jobs=opening.jobs,audit={source:'sociowash',opening,closing,originalResponses:receipts,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,applicationSubmissions:0,reportingHeadersRetainedAsProvenance:true,reportingExecutionQualified:false,independentNativeClosingReconciled:true}
   attachSourceObservationEvidence(jobs,{source:'sociowash',recordKind:opening.observedVacancyCount===opening.rows.length?'vacancy-rows':'mixed',observedRecordCount:opening.rows.length,observedVacancyCount:opening.observedVacancyCount,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'sourceAudit',{value:audit,configurable:true});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CURRENT_CORPORATE,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'bounded-two-current-native-India-details;all-modern-board-rows-retained;full-original-criteria-and-readonly-application-metadata-independently-close;legacy-whole-company-zero-and-rendered-application-unqualified'})
+  const result=attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CURRENT_CORPORATE,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'bounded-two-current-native-India-details;all-modern-board-rows-retained;full-original-criteria-and-readonly-application-metadata-independently-close;legacy-whole-company-zero-and-rendered-application-unqualified'})
+  check();return result
  }catch(error){
   if(options.signal?.aborted)throw options.signal.reason
-  if(error&&typeof error==='object'&&Object.isExtensible(error))try{Object.defineProperty(error,'sourceAudit',{value:{source:'sociowash',opening,closing,originalResponses:receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false},enumerable:true,configurable:true})}catch{}
+  if(error&&typeof error==='object'&&Object.isExtensible(error))try{Object.defineProperty(error,'sourceAudit',{value:{source:'sociowash',opening,closing,originalResponses:receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false},enumerable:true,configurable:true})}catch{/* Preserve the original source/caller failure if optional audit attachment fails. */}
   throw error
  }finally{clearTimeout(timer)}
 }

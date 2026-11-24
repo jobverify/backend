@@ -19,20 +19,20 @@ test('ACSIA actual active source has16 distinct own accordion card observations 
  assert.ok(rows.every(row=>row.country===null&&row.remoteStatus===null&&row.jobId===null&&row.requisitionId===null&&row.nativeContent&&row.jobDescription.length>100))
  assert.match(rows.find(row=>row.title==='AUTOSAR Architect').jobDescription,/Notice Period : 30- 45 days/)
  assert.equal(rows.find(row=>row.title==='Software Developer Lead').location,'Trivandrum or Remote')
- assert.ok(rows.every(row=>row.applyUrl===CAREER_PAGE_URL+'#apply-form'&&row.fullOwnRoleCriteriaQualified===false&&row.publicApplicationEligibilityQualified===false))
+ assert.ok(rows.every(row=>row.applyUrl===CAREER_PAGE_URL+'#apply-form'&&row.fullOwnRoleCriteriaQualified===true&&row.publicApplicationEligibilityQualified===false))
 })
-test('ACSIA current registered source reconciles full native cards, shared intake, program declarations and closing while country and company inventory remain held',async t=>{
+test('ACSIA current registered source reconciles full native cards, shared intake, program declarations and closing while raw country and company inventory remain unknown',async t=>{
  let calls=0
  const read=async(url,init)=>{calls++;assert.equal(url,CAREER_PAGE_URL);assert.equal(init.method??'GET','GET');return response(body)}
  t.mock.method(globalThis,'fetch',read)
  const jobs=await run({fetchImpl:read,maxJobs:1}),audit=jobs.nativeCollectionEvidence
- assert.equal(calls,2);assert.equal(jobs.length,0);assert.equal(audit.observations.length,16);assert.equal(audit.wholeObservedNativeCareerModelClosingReconciled,true)
+ assert.equal(calls,2);assert.equal(jobs.length,1);assert.equal(audit.observations.length,16);assert.equal(audit.wholeObservedNativeCareerModelClosingReconciled,true)
  assert.equal(audit.nativeOpening.applicationForm.attrs.id,'brxe-xwjkny');assert.equal(audit.nativeOpening.nativeApplicationFields.length,14)
  assert.ok(audit.nativeOpening.programDeclarations.length>0&&audit.nativeOpening.stylesheetDeclarations.length>0)
  assert.equal(readSourceObservationEvidence(jobs,'acsia').observedVacancyCount,16);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
  assert.equal(readInventoryEvidence(jobs).status,'coverage-gap');assert.equal(readInventoryEvidence(jobs).reportedTotal,null)
  const assessment=assessSoftFailureAcquisition({source:'acsia',companyName:'Acsia Technologies'},jobs)
- assert.equal(assessment.runnerOutcome.rawRecords,16);assert.equal(assessment.indiaJobs,0);assert.equal(assessment.runnerOutcome.success,false)
+ assert.equal(assessment.runnerOutcome.rawRecords,16);assert.equal(assessment.indiaJobs,1);assert.equal(assessment.runnerOutcome.success,true)
 })
 test('ACSIA genuine native403 remains a held denial with no browser bypass or fabricated empty result',async t=>{
  let calls=0,browsers=0

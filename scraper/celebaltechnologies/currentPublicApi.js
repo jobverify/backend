@@ -12,6 +12,7 @@ const detailClients={
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-858fd4956ec3f8d0.js']:{sha256:'df3ba3e0d676bdc62f245d1dd230dc0219fec5176fd91023dc4705acc39d1744',plainTextOnly:true},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-98a56e5ce2d7e26b.js']:{sha256:'be3428682abdcd6ad34dc8c4411824e7bd3cb37b37f5168753215cffe99607b6',plainTextOnly:false},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-337a5d16861cc114.js']:{sha256:'f551c8cac732833001391d857155585daa7b777303093132865424731b563b08',plainTextOnly:true},
+ [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-0fe2cf7bb6d9d490.js']:{sha256:'e7661baa9984f0a1e9087905d05bb45c7530d97f99e11d519d41631b828a86e7',plainTextOnly:true},
 }
 const hashes={
  [listClient]:'d8013145d710b9e631af135f51e9384f757fcebc1281e5b09f829f168f2b2442',

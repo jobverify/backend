@@ -1,4 +1,5 @@
 import {parse} from 'acorn'
+import {verifyScopedJibeQuery} from './jibeScopedQuery20261120.js'
 import {createHash} from 'node:crypto'
 import {isIP} from 'node:net'
 import {literalRecruitmentPageData} from './recruitmentPageData.js'
@@ -9,9 +10,8 @@ const need=(value,message)=>{if(!value)throw Error('Jibe recruitment: '+message)
 const text=value=>typeof value==='string'?value.trim():''
 const country=value=>nativeCountryName(value)||(/^IND$/i.test(text(value))?'India':null)
 const verifiedClients=new Set()
-// This complete current program implements the reviewed anonymous internal
-// selector and searchOverride merge. Scoped portals fail closed on client drift.
-const scopedClientSHA='8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f'
+// Client digests cache reviewed syntax; scope authority comes from the native
+// anonymous query construction and independently matching row/detail scope.
 
 function scopeParams(config,context){
  const override=config.searchOverride
@@ -62,9 +62,11 @@ export function declaredJibeSearch(document,pageURL){
 function verifyPublicClient(script,mandatoryParams){
  need(typeof script==='string'&&script.length<=1.5e6,'public search client size bound')
  const digest=createHash('sha256').update(script).digest('hex')
- if(mandatoryParams)need(digest===scopedClientSHA,'current scoped public client program changed')
- if(verifiedClients.has(digest))return
- const stack=[parse(script,{ecmaVersion:'latest'})];let search=false,role=false,detail=false,nodes=0
+ const verificationKey=(mandatoryParams?'scoped:':'public:')+digest
+ if(verifiedClients.has(verificationKey))return
+ const ast=parse(script,{ecmaVersion:'latest'})
+ if(mandatoryParams)verifyScopedJibeQuery(ast)
+ const stack=[ast];let search=false,role=false,detail=false,nodes=0
  while(stack.length){
   const node=stack.pop()
   if(!node||typeof node!=='object')continue
@@ -88,7 +90,7 @@ function verifyPublicClient(script,mandatoryParams){
   }
  }
  need(search&&role&&detail,'current client does not declare the public GET search, detail and role routes')
- verifiedClients.add(digest)
+ verifiedClients.add(verificationKey)
 }
 
 function nativeQualification(data,cid,mandatoryParams){

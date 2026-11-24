@@ -6,6 +6,7 @@ import { nativeCountryName } from '../../scraper-support/shared/nativeJobPosting
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import authorityReview from './currentAuthority20261113.json' with { type: 'json' }
+import currentStylingReview from './currentStyling20261121.json' with { type: 'json' }
 
 const CAREERS = 'https://www.dialpad.com/careers/', OPENINGS = CAREERS + 'open-opportunities/'
 const API = 'https://boards-api.greenhouse.io/v1/boards/dialpad/', JOBS = API + 'jobs?content=true', OFFICES = API + 'offices'
@@ -141,6 +142,7 @@ export async function runCurrentDialpad(options = {}) {
     if (signal.aborted) abort()
   })
   const responses = [], failures = []
+  let corporateStylingDeployment = null
   const read = async url => {
     signal.throwIfAborted()
     const response = await wait((options.fetchImpl || fetch)(url, { method: 'GET', redirect: 'manual', credentials: 'omit',
@@ -161,14 +163,20 @@ export async function runCurrentDialpad(options = {}) {
     const declared = roots.flatMap(walk).filter(node => node.tag === 'link'
       && (decodeHTML(node.attrs.rel || '').toLowerCase().split(/\s+/).includes('stylesheet')
         || decodeHTML(node.attrs.as || '').trim().toLowerCase() === 'style')).map(node => node.attrs)
-    const expected = authorityReview.stylingBySurface[surface]
+    const profiles = [{ id: 'retained-20261113', stylingBySurface: authorityReview.stylingBySurface }, currentStylingReview]
     // The native publisher repeats this same complete button style per button.
     // Repetition count carries no rendering semantics; every body/attribute
     // contract must still be one of the exact reviewed original declarations.
-    need(expected && inline.length > 0 && inline.every(row => expected.inlineStyles.some(known => equal(row, known)))
+    const matches = expected => expected && inline.length > 0 && inline.every(row => expected.inlineStyles.some(known => equal(row, known)))
       && expected.inlineStyles.every(known => inline.some(row => equal(row, known)))
-      && equal(declared, expected.stylesheets.map(row => row.attributes)),
-      'current authority stylesheet declaration or inline styling changed')
+      && equal(declared, expected.stylesheets.map(row => row.attributes))
+    if (!corporateStylingDeployment) {
+      const selected = profiles.filter(profile => matches(profile.stylingBySurface[surface]))
+      need(surface === 'careers' && selected.length === 1, 'current authority stylesheet declaration or inline styling changed')
+      corporateStylingDeployment = selected[0]
+    }
+    const expected = corporateStylingDeployment.stylingBySurface[surface]
+    need(matches(expected), 'current authority stylesheet declaration or inline styling changed')
     for (const row of expected.stylesheets) {
       if (!cache.has(row.url)) cache.set(row.url, await read(row.url))
       need(hash(cache.get(row.url)) === row.sha256, 'current authority stylesheet bytes changed')
@@ -237,7 +245,7 @@ export async function runCurrentDialpad(options = {}) {
     indiaFacetCount: complete ? 0 : null, verifiedAt: new Date().toISOString(),
     reason: complete ? 'Current corporate-declared Dialpad tenant; complete native array, every full original visible detail, role-assigned office countries and memberships, final inventory after full closing details; foreign declared-board scope only, company cleanup forbidden.' : failures.map(row => row.reason).join(';') })
   attachSourceObservationEvidence(jobs, { source: 'dialpad', recordKind: 'vacancy-rows', observedRecordCount: opening.jobs.length, observedVacancyCount: opening.jobs.length, sourceScopeComplete: false })
-  const audit = { source: 'dialpad', opening, closing, openingOffices, closingOffices, details, closingDetails, countryProofs, failures, responses,
+  const audit = { source: 'dialpad', corporateStylingDeployment: corporateStylingDeployment.id, opening, closing, openingOffices, closingOffices, details, closingDetails, countryProofs, failures, responses,
     sourceScopeComplete: false, lifecycleCleanupAllowed: false, sourceCompanyWideScopeComplete: false, currentIndiaApplicationContractUnreviewed: true }
   Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: audit, configurable: true })
   Object.defineProperty(jobs, 'sourceAudit', { value: audit, configurable: true })

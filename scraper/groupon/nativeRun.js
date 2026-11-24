@@ -60,7 +60,16 @@ export function createNativeGrouponScraper({maxJobs:factoryCap=Infinity,now:fact
   const opening=await snapshot(),closing=await snapshot(opening);signal?.throwIfAborted();const completed=Date.now();let prior=started
   const fresh=receipts.every(r=>{const a=Date.parse(r.startedAt),b=Date.parse(r.completedAt),valid=r.requestedURL===r.url&&r.finalURL===r.url&&r.method==='GET'&&r.status&&r.contentType&&Number.isFinite(a)&&Number.isFinite(b)&&a>=prior&&b>=a&&b<=completed;prior=b;return Boolean(valid)})
   const audit={source:'groupon',openingRows:opening.details.length,closingRows:closing.details.length,originalResponses:receipts,rawNativeOriginals:originals,openingPrograms:opening.programs,closingPrograms:closing.programs,wholeNativeModelsClosingReconciled:true,transportEvidenceWithinRun:Boolean(fresh),applicationInteractions:0,publisherProgramsExecuted:false,companyInventoryComplete:false,lifecycleCleanupAllowed:false}
-  const observations=opening.details.map(first=>{const last=closing.details.find(j=>j.jobId===first.jobId);return{...first,nativeClosingRecord:last.nativeSourceRecord,nativeClosingPublication:last.nativePublication,sourceRawClosingNativeResponse:last.sourceRawNativeResponse,sourceRawClosingNativeResponseSHA256:last.sourceRawNativeResponseSHA256,sourceDetailComplete:Boolean(fresh&&first.nativeRoleCriteriaReconciled&&last.nativeRoleCriteriaReconciled&&first.activeApplyVerified&&last.activeApplyVerified),nativeRoleClosingReconciled:true}})
+  const observations=opening.details.map(first=>{
+   const last=closing.details.find(j=>j.jobId===first.jobId)
+   const declaration=opening.model.contract.publishedApplicationTemplate.replace('{literal-published-id}',String(first.jobId))
+   const applicationDeclared=declaration===first.nativePublishedApplyURL&&declaration===last.nativePublishedApplyURL
+   return{...first,nativeClosingRecord:last.nativeSourceRecord,nativeClosingPublication:last.nativePublication,
+    sourceRawClosingNativeResponse:last.sourceRawNativeResponse,sourceRawClosingNativeResponseSHA256:last.sourceRawNativeResponseSHA256,
+    nativePublicApplicationEntryDeclared:applicationDeclared,
+    nativeApplicationDeclaration:applicationDeclared?{url:declaration,kind:'publisher-declared-role-application-link',declaredBy:opening.model.contract.programs.roles,applicationVisited:false}:null,
+    sourceDetailComplete:Boolean(fresh&&first.nativeRoleCriteriaReconciled&&last.nativeRoleCriteriaReconciled&&applicationDeclared),nativeRoleClosingReconciled:true}
+  })
   if(options.onAudit)await abortable(()=>options.onAudit(structuredClone({...audit,observations})),signal)
   const clock=options.now||factoryNow,jobs=observations.slice(0,cap).map(job=>{let scrapedAt;try{scrapedAt=clock()}catch(error){signal?.throwIfAborted();throw error}signal?.throwIfAborted();return{...job,source:'groupon',company:'Groupon',companyDomain:'grouponcareers.com',companyCareerPage:ENTRY,scrapedAt}})
   Object.defineProperty(jobs,'sourceAudit',{value:audit})

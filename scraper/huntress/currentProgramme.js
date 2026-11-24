@@ -104,7 +104,8 @@ export async function readCurrentHuntressProgramme(options={}){
     throw error
    }
    const securityHashes=SECURITY.map(name=>header(receipt,name)===null?null:sha(header(receipt,name)))
-   need(securityHashes.every((value,index)=>value===SECURITY_PROFILE[url][index]),'Unreviewed native enforced/report-only CSP or security-header profile')
+   const securityProfiles=url===BOARD?[SECURITY_PROFILE[url],['b17fdaf38f91345ae5a1821aca3e175eaabf2c5b0f49c8c69561b1e1841edfad',...SECURITY_PROFILE[url].slice(1)]]:[SECURITY_PROFILE[url]]
+   need(securityProfiles.some(profile=>securityHashes.every((value,index)=>value===profile[index])),'Unreviewed native enforced/report-only CSP or security-header profile')
    receipt.securityProfile={enforcedCSPPresent:header(receipt,'content-security-policy')!==null,
     reportOnlyCSPPresent:header(receipt,'content-security-policy-report-only')!==null,
     headerSHA256:Object.fromEntries(SECURITY.map((name,index)=>[name,securityHashes[index]]))}
@@ -123,6 +124,7 @@ export async function readCurrentHuntressProgramme(options={}){
   check()
   stage='opening-native-board'
   const boardPage=await read(BOARD),board=nativeBoard(boardPage.text,now);audit.nativeBoard=board
+  need(board.securityProfileCSP===boardPage.receipt.securityProfile.headerSHA256['content-security-policy'],'Incoherent native security/programme deployment')
   check()
   stage='opening-native-api'
   const apiPage=await read(API)

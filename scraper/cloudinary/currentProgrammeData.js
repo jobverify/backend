@@ -13,11 +13,14 @@ export const CLIENT='c838d69f95171af41e1e568dc7e90fb01a67117732854e12c22c50444ea
 export const sha=x=>createHash('sha256').update(x).digest('hex')
 export const failure=message=>Object.assign(new Error('Cloudinary programme: '+message),{softFailure:true,abortRetries:true,upstreamOutage:false,failureKind:'coverage_gap'})
 const need=(value,message)=>{if(!value)throw failure(message)}
-const CSP='5e689a83f37fc631d27608b4abe4e3d1fbf96c54d5943b0e6b1ccc62db8a616d'
+// Exact complete publisher-authored policies paired with the unchanged whole
+// corporate/jobs HTML and client profiles below. These hashes do not authorize
+// execution or requests to any CSP-listed origin.
+const CSP=new Set(['5e689a83f37fc631d27608b4abe4e3d1fbf96c54d5943b0e6b1ccc62db8a616d','2109914d4d0617ea8ba48adeae569942908f0959bd7b7812b2ff61a07974b968'])
 const securityKeys=['content-security-policy','content-security-policy-report-only','x-content-type-options','cross-origin-embedder-policy','cross-origin-resource-policy','cross-origin-opener-policy','x-content-security-policy','x-webkit-csp']
 export function readCloudinarySecurity(headers,url){
  const native=url===API,policy=Object.fromEntries(securityKeys.map(key=>[key,headers.get(key)]))
- need(native?policy['content-security-policy']===null:sha(policy['content-security-policy']??'')===CSP,'Enforced CSP security policy changed or absent')
+ need(native?policy['content-security-policy']===null:[CORPORATE,JOBS].includes(url)&&CSP.has(sha(policy['content-security-policy']??'')),'Enforced CSP security policy changed or absent')
  need(policy['x-content-type-options']===(native?'nosniff':''),'Reviewed nosniff security policy changed')
  for(const key of securityKeys.slice(3))need(policy[key]===null,'Unreviewed response security policy: '+key)
  // The current captured no-Origin API responses have no CORS fields. Preserve
@@ -106,6 +109,9 @@ const authoredHTMLText=html=>{
 // programme, including the same native object's explicit London/GB pair. No
 // city-to-country inference or additional-location inheritance is introduced.
 const nativeCountryLocations=new Map([['United States','US'],['Israel','IL'],['London','GB']])
+// This one current native object explicitly publishes this US/location pair.
+// Its identity is part of the binding; other San Jose rows remain unqualified.
+const reviewedNativeRoleLocations=new Map([['e8b76222-c0ac-40c5-b589-81a26f1830e7',{country:'US',location:'San Jose, CA'}]])
 export function readCloudinaryNative(text){
  let rows;try{rows=parseEightfoldJson(text)}catch(error){throw failure('Native JSON: '+error.message)}
  need(Array.isArray(rows),'Native complete flat array/envelope changed');const seen=new Set()
@@ -117,7 +123,8 @@ export function readCloudinaryNative(text){
   for(const key of['team','location','commitment'])need(typeof row.categories[key]==='string'&&row.categories[key].trim(),'Native category/location missing')
   need(typeof row.country==='string'&&/^[A-Z]{2}$/.test(row.country)&&!['IN','ZZ','EU','UN','QO','XA','XB'].includes(row.country)&&display.of(row.country)!==row.country,'Native country unknown or India; zero withheld')
   need(Array.isArray(row.categories.allLocations)&&row.categories.allLocations.length===1&&row.categories.allLocations[0]===row.categories.location&&!/\bindia\b/i.test(row.categories.location),'Additional/contradictory/India native location country requires separate qualification')
-  need(nativeCountryLocations.get(row.categories.location)===row.country,'Current native country/location pair contradictory or unreviewed')
+  const reviewedLocation=reviewedNativeRoleLocations.get(row.id)
+  need(nativeCountryLocations.get(row.categories.location)===row.country||(reviewedLocation?.country===row.country&&reviewedLocation.location===row.categories.location),'Current native country/location pair contradictory or unreviewed')
   need(typeof row.createdAt==='number'&&Number.isSafeInteger(row.createdAt)&&row.createdAt>=0&&['remote','hybrid','onsite'].includes(row.workplaceType),'Native date/workplace schema changed')
   for(const field of fields)need(typeof row[field]==='string','Native full criteria field changed: '+field)
   need(Array.isArray(row.lists)&&row.lists.every(list=>list&&typeof list==='object'&&!Array.isArray(list)&&Object.keys(list).every(k=>['text','content'].includes(k))&&typeof list.text==='string'&&typeof list.content==='string'),'Native criteria lists schema changed')

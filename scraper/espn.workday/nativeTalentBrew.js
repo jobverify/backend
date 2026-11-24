@@ -7,7 +7,11 @@ import {classifyScraperError} from '../../scraper-support/utils/failureClassific
 
 const ROOT='https://www.disneycareers.com/en/search-jobs?acm=ALL&alrpm=ALL&ascf=%5B%7B%22key%22:%22custom_fields.IndustryCustomField%22,%22value%22:%22ESPN%22%7D%5D'
 const ENDPOINT='https://www.disneycareers.com/en/search-jobs/resultspost'
-const reviewedUSWorksites=new Set(['Bristol, Connecticut','Charlotte, North Carolina','Los Angeles, California','Connecticut'])
+const reviewedUSWorksites=new Set(['Bristol, Connecticut','Charlotte, North Carolina','Los Angeles, California','Connecticut','Southington, Connecticut'])
+const reviewedCountries=new Map([
+ ['6252001',{name:'United States',worksites:reviewedUSWorksites}],
+ ['3996063',{name:'Mexico',worksites:new Set(['Mexico City, Mexico'])}]
+])
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const hold=message=>{throw Object.assign(new Error('[espn] '+message),{softFailure:true,abortRetries:true,failureKind:'coverage_gap'})}
 const requireValue=(value,message)=>{if(!value)hold(message)}
@@ -67,11 +71,18 @@ const parse=(html,pageNumber,{opening=false}={})=>{
  }
  const countries=one(facetDocument,n=>n.attrs.id==='country-filters-section',filters)
  const countryRows=facetDocument.nodes(n=>n.tag==='input'&&n.attrs['data-facet-type']==='2',countries).map(n=>n.attrs)
- // The current exact brand inventory publishes all vacancies in the US.
- // Unknown, India, overlapping counts, and disabled facets stay held.
- requireValue(countries.attrs['data-enabled']==='true'&&countryRows.length===1
-  &&countryRows[0]['data-display']==='United States'&&countryRows[0]['data-id']==='6252001'
-  &&integer(countryRows[0]['data-count'])===total&&!Object.hasOwn(countryRows[0],'disabled'),'Country inventory is not an exhaustive non-India scope')
+ // Admit only the reviewed publisher country IDs and complete worksite labels.
+ // Every role must reconcile to their counts after all pages are enumerated.
+ // Unknown, India, duplicate/disabled facets and contradictory locations hold.
+ requireValue(countries.attrs['data-enabled']==='true'&&countryRows.length>0
+  &&countryRows.length<=reviewedCountries.size
+  &&new Set(countryRows.map(row=>row['data-id'])).size===countryRows.length
+  &&countryRows.every(row=>reviewedCountries.get(row['data-id'])?.name===row['data-display']
+   &&integer(row['data-count'])>0&&integer(row['data-count'])<=total
+   &&row['data-field-name']===''&&!Object.hasOwn(row,'disabled')&&!Object.hasOwn(row,'checked'))
+  &&countryRows.reduce((sum,row)=>sum+integer(row['data-count']),0)===total,
+ 'Country inventory is not an exhaustive reviewed non-India scope')
+ const countryIDs=new Set(countryRows.map(row=>row['data-id']))
  const list=one(d,n=>n.attrs.id==='search-results-jobs',result)
  requireValue(integer(list.attrs['data-results-count'])===total,'Native list count changed')
  const rows=d.nodes(n=>n.tag==='li',list).map(li=>{
@@ -81,14 +92,16 @@ const parse=(html,pageNumber,{opening=false}={})=>{
   const location=d.text(one(d,n=>(n.attrs.class||'').split(/\s+/).includes('job-location'),anchor)).trim()
   requireValue(/^\d+$/.test(id)&&url.origin===new URL(ROOT).origin
    &&new RegExp('^/en/job/[^/]+/[^/]+/391/'+id+'$').test(url.pathname)&&!url.search&&!url.hash
-   &&title&&location&&location.split(/\s*\/\s*/).every(site=>reviewedUSWorksites.has(site)),
-  'Native role identity or reviewed complete US worksite changed')
+   &&title&&location,'Native role identity changed')
+  const siteCountries=location.split(/\s*\/\s*/).map(site=>[...reviewedCountries].find(([,country])=>country.worksites.has(site))?.[0])
+  requireValue(siteCountries.every(id=>countryIDs.has(id))&&new Set(siteCountries).size===1,
+  'Native role reviewed complete foreign worksite changed')
   requireValue(!d.nodes(n=>n.attrs.itemprop==='applicantLocationRequirements',li).length,'Additional applicant eligibility requires review')
-  return {id,url:url.href,title,location}
+  return {id,url:url.href,title,location,countryFacetID:siteCountries[0]}
  })
  requireValue(rows.length===Math.min(size,total-(pageNumber-1)*size)
   &&new Set(rows.map(row=>row.id)).size===rows.length,'Native page rows are incomplete or duplicated')
- return {total,size,pages,rows,contentTotal:integer(a['data-total-content-results'])||0,
+ return {total,size,pages,rows,countryRows,contentTotal:integer(a['data-total-content-results'])||0,
   signature:JSON.stringify({total,size,pages,brand,countryRows})}
 }
 const criteria=(opening,page)=>({ActiveFacetID:0,CurrentPage:page,RecordsPerPage:opening.size,
@@ -152,6 +165,10 @@ export async function runESPN(options={}){
   requireValue(pages.every(page=>page.signature===opening.signature),'Opening native facet scope changed')
   const rows=pages.flatMap(page=>page.rows)
   requireValue(rows.length===opening.total&&new Set(rows.map(row=>row.id)).size===opening.total,'Native inventory duplicates or misses roles')
+  const nativeCountryCounts=Object.fromEntries(opening.countryRows.map(row=>[row['data-id'],0]))
+  for(const row of rows)nativeCountryCounts[row.countryFacetID]++
+  requireValue(opening.countryRows.every(row=>nativeCountryCounts[row['data-id']]===integer(row['data-count'])),
+   'Native country role counts do not reconcile with the advertised facets')
   // Close both the advertised root/facets and every paginated inventory page.
   for(let page=1;page<=opening.pages;page++){
    const closing=page===1?parseWithinDeadline(await read(ROOT),1,{opening:true}):parseWithinDeadline(await read(ENDPOINT,criteria(opening,page)),page)
@@ -163,9 +180,11 @@ export async function runESPN(options={}){
   accounting.attach(jobs)
   attachInventoryEvidence(jobs,{status:'verified-empty',surface:ROOT,firstParty:true,listingComplete:true,
    lifecycleCleanupAllowed:false,pagesFetched:receipts.length,reportedTotal:null,indiaFacetCount:0,verifiedAt:observedAt,
-   reason:'current exact ESPN brand-search India scope only; all enumerated US roles and facets stable on closing reads; company scope unverified; cleanup forbidden'})
+   reason:'current exact ESPN brand-search India scope only; all enumerated reviewed non-India worksites reconcile with country counts and remain stable on closing reads; company scope unverified; cleanup forbidden'})
   Object.defineProperty(jobs,Symbol.for('jobverify.verified-recruitment-observations'),{value:{source:'espn',observedAt,
-   requestCount:receipts.length,nativeRecords:rows.length,returnedIndiaJobs:0,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+   requestCount:receipts.length,nativeRecords:rows.length,nativeRows:rows,nativeCountryCounts,nativeCountryFacets:opening.countryRows,
+   nativeCountryAttribution:'Reviewed complete worksite labels reconciled to publisher country facets; not an authored per-role country field',
+   returnedIndiaJobs:0,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
    companyGlobalTotal:null,companyIndiaTotal:null,receipts,unresolved:['company-wide-source-scope-unverified'],nativeInventoryReads:[{kind:'talentbrew-brand-search',surface:ROOT,reportedTotal:opening.total}],failures:[]}})
   checkDeadline();return jobs
  }catch(error){

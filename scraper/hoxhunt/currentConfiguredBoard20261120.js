@@ -4,9 +4,11 @@ import {activeHead,readNativeDocument} from '../../scraper-support/utils/activeN
 import {nativeDate} from '../../scraper-support/shared/nativeJobPosting.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {need,one,all,norm,props,scalarFields,constraints,authoredLines,writtenPlaceCountries,nativeCountryName,schemas} from './currentFacts20261120.js'
+import {need,one,all,norm,props,scalarFields,constraints,authoredLines,writtenPlaceCountries,nativeCountryName,schemas,semanticCriteria,schemaCarrier} from './currentFacts20261120.js'
 import {currentReader,nativeUnavailable} from './currentRead20261120.js'
 import {currentNativeModel} from './currentModel20261120.js'
+import {readLiteralModel} from '../../scraper-support/native-sources/literalModel.js'
+import {schemaContext} from './currentFacts20261120.js'
 
 export const HOME='https://hoxhunt.com/careers',BOARD='https://jobs.ashbyhq.com/hoxhunt',FEED='https://api.ashbyhq.com/posting-api/job-board/hoxhunt'
 const COMPANY='Hoxhunt',SOURCE='hoxhunt',UUID=/^[a-f\d]{8}(?:-[a-f\d]{4}){3}-[a-f\d]{12}$/i
@@ -31,8 +33,16 @@ function publisher(html,url,at,{own=false}={}){
  if(own||canonicals.length){const canonical=one(canonicals,'current publisher canonical');need(safeURL(canonical.attrs.href,url).href===url,'native publisher canonical differs');carrier(p,canonical,at)}
  carrier(p,one(nodes.filter(n=>n.tag==='title'),'actual publisher title'),at)
  for(const meta of nodes.filter(n=>n.tag==='meta'&&['og:site_name','og:url','og:title'].includes(n.attrs.property))){if(meta.attrs.property==='og:site_name')need(meta.attrs.content===COMPANY,'native OG publisher differs');if(meta.attrs.property==='og:url')need(safeURL(meta.attrs.content,url).href===url,'native OG publisher URL differs');if(meta.attrs.property==='og:title')need(/\bHoxhunt\b/i.test(meta.attrs.content??''),'native OG title publisher differs');carrier(p,meta,at)}
- if(own){const heading=one(d.nodes(n=>n.tag==='h1'&&norm(d.text(n))==='Empowering human cyber defense'),'actual current own publisher heading');carrier(p,heading,at)}
- need(!schemas({d}).length,'additional native JobPosting requires role qualification rather than configured empty proof')
+ if(own){const headings=d.nodes(n=>n.tag==='h1');need(headings.length>0&&headings.length<=8,'current own publisher headings missing/excessive');for(const heading of headings)carrier(p,heading,at)}
+ let visited=0
+ function structured(value,inherited,depth=0){
+  need(depth<=32&&++visited<=20000,'finite current publisher structured scope exceeded');if(Array.isArray(value)){value.forEach(v=>structured(v,inherited,depth+1));return}if(!value||typeof value!=='object')return
+  const current=Object.hasOwn(value,'@context')?value['@context']:inherited,types=(Array.isArray(value['@type'])?value['@type']:[value['@type']]).map(t=>String(t??'').replace(/^https?:\/\/schema\.org\//,''))
+  need(!types.includes('JobPosting'),'additional native JobPosting requires role qualification rather than configured empty proof')
+  if(types.some(t=>['AboutPage','WebPage','WebSite','Organization'].includes(t))){need(typeof current==='string'&&/^https?:\/\/schema\.org\/?$/.test(current),'native publisher structured context differs');publisherFacts(value,at,[BOARD]);if(types.includes('Organization'))need(value.name===COMPANY,'native structured publisher differs');if(value.url!=null){const u=new URL(value.url,url);need(u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&(!types.includes('Organization')?u.href===url||own&&['hoxhunt.com','www.hoxhunt.com'].includes(u.hostname)&&u.pathname===new URL(url).pathname&&!u.search&&!u.hash:['hoxhunt.com','www.hoxhunt.com'].includes(u.hostname)),'native structured publisher URL differs')}if(value['@id']!=null){const u=new URL(value['@id'],url);need(u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&(['hoxhunt.com','www.hoxhunt.com'].includes(u.hostname)||u.origin===new URL(url).origin),'native structured publisher identifier differs')}}
+  for(const[field,child]of Object.entries(value))if(field!=='@context'&&child&&typeof child==='object')structured(child,current,depth+1)
+ }
+ for(const script of nodes.filter(n=>n.tag==='script'&&!n.attrs.src&&(n.attrs.type??'').toLowerCase()==='application/ld+json')){carrier(p,script,at);structured(readLiteralModel(script.raw??'').value)}
  return p
 }
 function authority(html,at){
@@ -51,12 +61,27 @@ function publication(model,at,countries,allowed){
  for(const[field,value]of Object.entries(model)){const name=key(field);if(['listed','islisted'].includes(name))need(value===true,'native role not listed');if(name==='isconfidential')need(value===false,'native employer/publication confidentiality differs')}
  if(model.publishedAt!=null){const value=model.publishedAt;need(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/.test(value),'native published date malformed');nativeDate(value.slice(0,10),{required:true});need(Number.isFinite(Date.parse(value))&&Date.parse(value)<=Date.parse(at),'native published date invalid/future')}
 }
-function foreignCountry(value){const country=nativeCountryName(value?.name??value);need(country&&country!=='India','native explicit workplace is India or unresolved');return country}
-function places(record){
+function publisherFacts(model,at,allowed){
+ const retained=Object.fromEntries(Object.entries(model).filter(([name])=>!countryKeys.has(key(name))))
+ for(const[field,value]of Object.entries(retained))if(employerKeys.has(key(field))&&value!=null){if(typeof value==='object'&&!Array.isArray(value))typed(value,'Organization');need((typeof value==='string'?value:value.name)===COMPANY,'native nested publisher employer differs')}
+ publication(retained,at,[],allowed)
+}
+function typed(value,type){if(value['@context']!=null)need(typeof value['@context']==='string'&&/^https?:\/\/schema\.org\/?$/.test(value['@context']),'native typed context differs');if(value['@type']!=null){const types=Array.isArray(value['@type'])?value['@type']:[value['@type']];need(types.length>0&&types.every(t=>[type,'https://schema.org/'+type,'http://schema.org/'+type].includes(t)),'native semantic type differs')}}
+function foreignCountry(value){
+ const object=value&&typeof value==='object'&&!Array.isArray(value);if(object)typed(value,'Country')
+ const raw=object?value.name:value,country=nativeCountryName(raw);need(country&&country!=='India','native explicit workplace is India or unresolved')
+ if(object)for(const[field,alias]of Object.entries(value))if(['country','countrycode','addresscountry','code','identifier','alternatename'].includes(key(field))&&alias!=null)need(typeof alias==='string'&&nativeCountryName(alias)===country,'native Country name/code contradicts current foreign workplace')
+ return country
+}
+function workplaceFacts(value,country,at,allowed){
+ for(const[field,entry]of Object.entries(value)){if(entry==null)continue;const name=key(field);if(countryKeys.has(name))need(foreignCountry(entry)===country,'native same-workplace explicit countries conflict');if(employerKeys.has(name)){if(typeof entry==='object'&&!Array.isArray(entry))typed(entry,'Organization');need((typeof entry==='string'?entry:entry.name)===COMPANY,'native workplace publisher differs')}}
+ publication(value,at,[country],allowed)
+}
+function places(record,at,allowed){
  need(Array.isArray(record.secondaryLocations)&&record.secondaryLocations.length<=64,'native secondary workplaces malformed')
  return[{location:record.location,address:record.address},...record.secondaryLocations].map(place=>{
   need(place&&typeof place==='object'&&!Array.isArray(place)&&typeof place.location==='string'&&norm(place.location)&&!/\b(?:worldwide|anywhere|global|APAC|EMEA)\b/i.test(place.location),'native whole workplace is unresolved')
-  const address=place.address?.postalAddress??place.address;need(address&&typeof address==='object'&&!Array.isArray(address),'native typed workplace address absent');const country=foreignCountry(address.addressCountry)
+  const address=place.address?.postalAddress??place.address;need(address&&typeof address==='object'&&!Array.isArray(address),'native typed workplace address absent');typed(place,'Place');typed(address,'PostalAddress');const country=foreignCountry(address.addressCountry);workplaceFacts(place,country,at,allowed);workplaceFacts(address,country,at,allowed);if(place.address?.postalAddress){typed(place.address,'PostalAddress');workplaceFacts(place.address,country,at,allowed)}
   for(const value of[place.location,address.name,address.addressLocality,address.addressRegion,address.streetAddress].filter(v=>v!=null)){need(typeof value==='string','native workplace text malformed');need(writtenPlaceCountries(value).every(c=>c===country||country==='United States'&&c==='Georgia'&&value===address.addressRegion&&value==='Georgia'),'native same-place authored country contradicts typed address')}
   for(const[field,value]of Object.entries(place))if(countryKeys.has(key(field))&&value!=null)need(foreignCountry(value)===country,'native same-workplace explicit countries conflict')
   return{country,location:place.location,originalAddress:structuredClone(place.address),address:structuredClone(address)}
@@ -66,12 +91,12 @@ function extraFacts(model,at,workplaces,allowed){
  const countries=[...new Set(workplaces.map(p=>p.country))]
  for(const[field,value]of Object.entries(model)){
   if(value==null)continue;const name=key(field)
-  if(employerKeys.has(name)){const employer=typeof value==='string'?value:value&&typeof value==='object'&&!Array.isArray(value)?value.name:null;need(employer===COMPANY,'native nested employer differs')}
+  if(employerKeys.has(name)){if(value&&typeof value==='object'&&!Array.isArray(value))typed(value,'Organization');const employer=typeof value==='string'?value:value&&typeof value==='object'&&!Array.isArray(value)?value.name:null;need(employer===COMPANY,'native nested employer differs')}
   if(countryKeys.has(name))need(countries.includes(foreignCountry(value)),'native explicit primary country differs')
   if(['applicantlocationrequirements','eligibleregion'].includes(name)){const entries=Array.isArray(value)?value:[value];need(entries.length>0&&entries.length<=32,'native applicant countries malformed');entries.forEach(foreignCountry)}
-  if(['joblocation','worklocation','primarylocation'].includes(name)){
+  if(['joblocation','joblocations','worklocation','worklocations','primarylocation','primarylocations'].includes(name)){
    const entries=Array.isArray(value)?value:[value];need(entries.length>0&&entries.length<=32,'native additional workplaces malformed')
-   const written=entries.map(place=>{need(place&&typeof place==='object'&&!Array.isArray(place),'native typed additional workplace malformed');const address=place.address?.postalAddress??place.address??place,country=foreignCountry(address.addressCountry??place.country??place.countryCode);for(const text of[place.name,address.name,address.addressLocality,address.addressRegion].filter(v=>v!=null))need(writtenPlaceCountries(text).every(c=>c===country),'native typed workplace country contradicts authored place');return{country,city:address.addressLocality??null}})
+   const written=entries.map(place=>{need(place&&typeof place==='object'&&!Array.isArray(place),'native typed additional workplace malformed');typed(place,'Place');const address=place.address?.postalAddress??place.address??place;typed(address,'PostalAddress');const country=foreignCountry(address.addressCountry??place.country??place.countryCode);workplaceFacts(place,country,at,allowed);workplaceFacts(address,country,at,allowed);for(const text of[place.name,address.name,address.addressLocality,address.addressRegion].filter(v=>v!=null))need(writtenPlaceCountries(text).every(c=>c===country),'native typed workplace country contradicts authored place');return{country,city:address.addressLocality??null}})
    need(written.some(place=>workplaces.some(known=>place.country===known.country&&(!place.city||!known.address.addressLocality||norm(place.city).toLowerCase()===norm(known.address.addressLocality).toLowerCase()))),'native additional typed primary workplace contradicts current role')
   }
  }
@@ -80,10 +105,10 @@ function extraFacts(model,at,workplaces,allowed){
 function criteria(record,at,workplaces,allowed){
  const countries=[...new Set(workplaces.map(p=>p.country))],html=record.descriptionHtml
  need(html==null||typeof html==='string','native original criteria HTML malformed');need(record.descriptionPlain==null||typeof record.descriptionPlain==='string','native original criteria text malformed')
- const d=readNativeDocument(html??''),root=one(d.nodes(n=>n.tag==='root'),'native criteria root'),nodes=all(root,()=>true),properties=props(nodes),lines=[...authoredLines(root),...(record.descriptionPlain??'').split(/\r?\n/).map(norm).filter(Boolean)]
+ const d=readNativeDocument(html??''),root=one(d.nodes(n=>n.tag==='root'),'native criteria root'),nodes=all(root,()=>true),semantic=semanticCriteria(root),properties=[...props(nodes),...semantic.properties],lines=[...authoredLines(root),...semantic.lines,...(record.descriptionPlain??'').split(/\r?\n/).map(norm).filter(Boolean)]
  applications(properties,allowed);constraints(properties,lines,context(at,countries))
  for(const line of lines){const label=/^(?:Location|Work Location|Job Location|Workplace)\s*:\s*(.+)$/i.exec(line);if(label)need(!/\b(?:worldwide|anywhere|global|APAC|EMEA)\b/i.test(label[1]),'authored native workplace is unresolved')}
- for(const schema of schemas({d})){if(schema.title!=null)need(norm(schema.title)===norm(record.title),'native criteria JobPosting title differs');if(schema.url!=null)need(schema.url===record.jobUrl,'native criteria JobPosting URL differs');extraFacts(schema,at,workplaces,allowed)}
+ for(const schema of schemas({d},{types:['JobPosting','WebPage']})){need(typeof schemaContext(schema)==='string'&&/^https?:\/\/schema\.org\/?$/.test(schemaContext(schema)),'native criteria structured context differs');carrier({d:{...d,root}},schemaCarrier(schema),at,{countries,allowed});if(schema.title!=null)need(norm(schema.title)===norm(record.title),'native criteria structured title differs');if(schema.url!=null)need(schema.url===record.jobUrl,'native criteria structured URL differs');const types=Array.isArray(schema['@type'])?schema['@type']:[schema['@type']];if(types.some(type=>['WebPage','https://schema.org/WebPage','http://schema.org/WebPage'].includes(type)))need(schema.url===record.jobUrl||schema['@id']===record.jobUrl,'native criteria WebPage role identity missing');extraFacts(schema,at,workplaces,allowed)}
  return{originalHTML:html??null,originalPlain:record.descriptionPlain??null}
 }
 function board(html,at){
@@ -93,15 +118,15 @@ function board(html,at){
  need(organization.__typename==='Organization'&&organization.name===COMPANY&&organization.hostedJobsPageSlug==='hoxhunt'&&organization.isDemoOrg===false&&UUID.test(organization.organizationId)&&safeURL(organization.publicWebsite).href==='https://hoxhunt.com/','native exact publisher/account/backlink differs')
  need(organization.customJobsPageUrl==null||safeURL(organization.customJobsPageUrl).href===HOME,'native custom publisher differs')
  need(collection?.__typename==='JobBoard'&&collection.stealthAccess===false&&Array.isArray(collection.jobPostings)&&collection.jobPostings.length>0&&collection.jobPostings.length<=2000,'native complete current listed collection unavailable')
- publication(Object.fromEntries(Object.entries(organization).filter(([name])=>!['country','location'].includes(key(name)))),at,[],[BOARD]);publication(collection,at,[],[BOARD])
+ publisherFacts(model,at,[BOARD]);publisherFacts(organization,at,[BOARD]);publisherFacts(collection,at,[BOARD])
  const selected=one(p.nodes.filter(n=>n.tag==='script'&&n.attrs===state.originalScriptAttributes),'actual original appData carrier');carrier(p,selected,at)
  return{model,rows:collection.jobPostings,organizationBinding:{id:organization.organizationId,name:organization.name,slug:organization.hostedJobsPageSlug,website:organization.publicWebsite},originalAssignment:state.originalAssignment}
 }
 function feed(text,currentBoard,at){
- const model=JSON.parse(text);need(model&&typeof model==='object'&&!Array.isArray(model)&&same(Object.keys(model).sort(),['apiVersion','jobs'])&&model.apiVersion==='1'&&Array.isArray(model.jobs)&&model.jobs.length<=2000,'native documented unfiltered public feed shape differs')
+ const model=readLiteralModel(text).value;need(model&&typeof model==='object'&&!Array.isArray(model)&&same(Object.keys(model).sort(),['apiVersion','jobs'])&&model.apiVersion==='1'&&Array.isArray(model.jobs)&&model.jobs.length<=2000,'native documented unfiltered public feed shape differs')
  const seen=new Set(),rows=[]
  for(const record of model.jobs){need(record&&typeof record==='object'&&!Array.isArray(record)&&UUID.test(record.id)&&!seen.has(record.id)&&typeof record.title==='string'&&norm(record.title)&&typeof record.isListed==='boolean','native identity/title/listed scope malformed');seen.add(record.id);if(!record.isListed)continue
-  const url=BOARD+'/'+record.id,apply=url+'/application';need(record.jobUrl===url&&record.applyUrl===apply,'native account/publicID/application differs');const workplaces=places(record),allowed=[url,apply];extraFacts(record,at,workplaces,allowed);const originalCriteria=criteria(record,at,workplaces,allowed)
+  const url=BOARD+'/'+record.id,apply=url+'/application';need(record.jobUrl===url&&record.applyUrl===apply,'native account/publicID/application differs');const allowed=[url,apply],workplaces=places(record,at,allowed);extraFacts(record,at,workplaces,allowed);const originalCriteria=criteria(record,at,workplaces,allowed)
   rows.push({id:record.id,title:norm(record.title),url,application:apply,countries:[...new Set(workplaces.map(p=>p.country))],workplaces,originalRecord:structuredClone(record),originalCriteria})
  }
  need(rows.length===currentBoard.rows.length&&new Set(currentBoard.rows.map(r=>r.id)).size===currentBoard.rows.length,'native board/feed membership count differs')

@@ -1,13 +1,15 @@
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
 import {setTimeout as delay} from 'node:timers/promises'
 import {types,isDeepStrictEqual} from 'node:util'
-import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {C0,C1,A,H,UUID,need,sha,exactFields,plainSnapshot,shape,rawJSON,readRawPacket,readNativePacket,
-  documentEntries,originalText,layout,authoredCharacters,authoredProjection} from './currentProgrammeRenderer.js'
+  layout,authoredCharacters,authoredProjection} from './currentProgrammeRenderer.js'
 import {readHyperscienceFormSelection,readHyperscienceFormClientContract} from './currentFormContract.js'
 import {compareHyperscienceServerFormCriteria} from './serverFormCriteriaComparison.js'
 import {reconcileHyperscienceAcquiredProgramme} from './currentProgrammeAcquisition.js'
+import {readInitialHyperscienceCorporate,hyperscienceCorporateComparison} from './currentProgrammeData.js'
 
 const SOURCE='hyperscience'
 const Q='https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm'
@@ -16,9 +18,6 @@ const requestBody=()=>Buffer.from(REQUEST_BASE64,'base64')
 const POST_HEADERS=Object.freeze({'Content-Type':'application/json',Accept:'*/*','Cache-Control':'no-store',Pragma:'no-cache'})
 // These are the same reviewed closed individual-publication families as the
 // frozen Data reader. Cross-model salary/criteria reconciliation stays there.
-const INITIAL_FAMILIES=[{"title":"Technical Deployment Lead","department":"Sales","team":"Sales Engineering","projectionSHA256":"a1845362077bbd3c6b0fd422d520bfc5e4dec3e53eba57490376434b3e35c094","projectionBytes":6447,"address":{"addressRegion":"Utah","addressCountry":"United States","addressLocality":"Park City"},"displayLocation":"[Remote] US","workplaceType":"Remote"},{"title":"Sr Technical Program Manager, Data","department":"Product","team":"Product","projectionSHA256":"21cc1c7da4696c5e00900e389025275938d72285128a573a6d8478873d1ca5d1","projectionBytes":8526,"address":{"addressRegion":"Utah","addressCountry":"United States","addressLocality":"Park City"},"displayLocation":"[Remote] US","workplaceType":"Remote"},{"title":"Lead Technical Product Manager (Platform)","department":"Product","team":"Product Management","projectionSHA256":"7b73a18c9158de5068aae9c6d30221643babd86e5de75b93f4a3eea23b560534","projectionBytes":7464,"address":{"addressRegion":"Sofia City Province","addressCountry":"Bulgaria","addressLocality":"Sofia"},"displayLocation":"[Hybrid] Sofia, Bulgaria","workplaceType":"Hybrid"},{"title":"Senior Software Engineer (Backend) ","department":"Engineering","team":"Software- Backend","projectionSHA256":"1f7bd31113688758d887313747f6faf03a4582fbf7ccf8258e69ecc04c42f9ce","projectionBytes":7618,"address":{"addressRegion":"Sofia City Province","addressCountry":"Bulgaria","addressLocality":"Sofia"},"displayLocation":"[Hybrid] Sofia, Bulgaria","workplaceType":"Hybrid"}]
-const C1_PROFILE={"prefixBytes":42299,"prefixSHA256":"eac8810d48a96c2c842d93724f2886efbe1a47991386abac1678c3518e60ac0d","suffixBytes":36340,"suffixSHA256":"f59503a8ed558832ea514809e7d2b8a237e7ee54f01289db998b3ec274ded2de","whitespaceUnits":["\n                                                            ","\n                                                ","\n                                            "]}
-const CARD_TEMPLATE="<a href=\"https://jobs.ashbyhq.com/hyperscience/[BOUND_hrefUUID]\" target=\"_blank\" class=\"job-opening\" id=\"[BOUND_idUUID]\" data-title=\"Open position - [BOUND_titleAttribute]\" data-track-ga=\"true\">\n                            <p class=\"location\">[BOUND_locationText]</p>\n                            <div class=\"separator\"></div>\n                            <div class=\"main-content\">\n                                <h3 class=\"title\">[BOUND_titleText]</h3>\n                                                                    <p class=\"location-details\">\n                                        <span class=\"department-team\">[BOUND_departmentTeamText]</span> / <span class=\"commitment\">[BOUND_employmentText]</span>                                    </p>\n                                                            </div>\n                            <p class=\"apply-text\">Apply for this Job -></p>\n                        </a>"
 const API_FIELDS=['id','title','department','team','employmentType','location','secondaryLocations','publishedAt','isListed','isRemote','workplaceType','address','jobUrl','applyUrl','descriptionHtml','descriptionPlain']
 const OWN_FIELDS=['id','title','departmentName','departmentExternalName','locationName','locationAddress','workplaceType','employmentType','descriptionHtml','isListed','isConfidential','teamNames','secondaryLocationNames','compensationTierSummary','compensationTiers','applicationDeadline','compensationTierGuideUrl','scrapeableCompensationSalarySummary','compensationPhilosophyHtml','applicationLimitCalloutHtml','shouldAskForTextingConsent','shouldAskForWhatsAppConsent','candidateTextingPrivacyPolicyUrl','candidateTextingTermsAndConditionsUrl','legalEntityNameForTextingConsent','automatedProcessingLegalNotice','__typename']
 const LD_FIELDS=['@context','@type','title','description','directApply','identifier','datePosted','hiringOrganization','jobLocation','employmentType','jobLocationType','applicantLocationRequirements']
@@ -70,7 +69,7 @@ function react(value,onValue){
   need(supportedPromise(value),'ownership','Custom Promise hooks/prototypes are unsupported')
   return nativeThen.call(value,onValue)
 }
-const ignore=operation=>{try{const value=operation();if(types.isPromise(value)&&supportedPromise(value))nativeThen.call(value,()=>{},()=>{})}catch{}}
+const ignore=operation=>{try{const value=operation();if(types.isPromise(value)&&supportedPromise(value))nativeThen.call(value,()=>{},()=>{})}catch{/* Cleanup/probing must not replace the primary failure. */}}
 // Rejection gets one microtask turn to publish already-received raw progress.
 // A pending/uncooperative operation is never awaited after cancellation.
 function wait(operation,signal,late){
@@ -86,58 +85,19 @@ function wait(operation,signal,late){
 const dataField=(value,key)=>value&&typeof value==='object'&&!types.isProxy(value)?Object.getOwnPropertyDescriptor(value,key)?.value:undefined
 function errorFacts(value){
   let name=dataField(value,'name'),message=dataField(value,'message')
-  if(value&&typeof value==='object'&&!types.isProxy(value)&&!types.isNativeError(value))try{name=Object.getOwnPropertyDescriptor(DOMException.prototype,'name').get.call(value);message=Object.getOwnPropertyDescriptor(DOMException.prototype,'message').get.call(value)}catch{}
+  if(value&&typeof value==='object'&&!types.isProxy(value)&&!types.isNativeError(value))try{name=Object.getOwnPropertyDescriptor(DOMException.prototype,'name').get.call(value);message=Object.getOwnPropertyDescriptor(DOMException.prototype,'message').get.call(value)}catch{/* Cleanup/probing must not replace the primary failure. */}
   return{name:typeof name==='string'?name:'Error',message:typeof message==='string'?message.slice(0,65536):typeof value==='string'?value.slice(0,65536):'Hyperscience operation held',
     ...Object.fromEntries(['code','gate','reason','failureKind'].flatMap(key=>typeof dataField(value,key)==='string'?[[key,dataField(value,key)]]:[]))}
 }
 function safeError(value){
   let native=!!(value&&typeof value==='object'&&!types.isProxy(value)&&types.isNativeError(value))
-  if(!native&&value&&typeof value==='object'&&!types.isProxy(value))try{Object.getOwnPropertyDescriptor(DOMException.prototype,'name').get.call(value);native=true}catch{}
+  if(!native&&value&&typeof value==='object'&&!types.isProxy(value))try{Object.getOwnPropertyDescriptor(DOMException.prototype,'name').get.call(value);native=true}catch{/* Cleanup/probing must not replace the primary failure. */}
   if(native&&Object.isExtensible(value))return value
   const error=Object.assign(new Error(errorFacts(value).message,native?{cause:value}:undefined),{softFailure:true,abortRetries:true,failureKind:'coverage_gap'},errorFacts(value))
   return error
 }
 const freeze=value=>{if(value&&typeof value==='object'){for(const child of Object.values(value))freeze(child);Object.freeze(value)}return value}
-const active=entry=>!entry.node.inert&&!entry.node.nativeTagUnqualified&&!entry.ancestors.some(n=>n.inert||n.nativeTagUnqualified||['svg','math','template','noscript','object'].includes(n.tag))
-function corporateInitial(record,kind){
-  const packet=readRawPacket(record,kind==='C0'?C0:C1,kind)
-  const entries=documentEntries(packet.text).entries,visible=readVisibleNativeDocument(packet.text,{strict:true})
-  const canonical=entries.filter(e=>e.node.tag==='link'&&e.node.attrs.rel==='canonical')
-  need(canonical.length===1&&active(canonical[0])&&canonical[0].node.attrs.href===(kind==='C0'?C0:C1),'corporate','Exact active corporate canonical required')
-  if(kind==='C0'){
-    need(packet.bytes.length===159204&&sha(packet.bytes)==='f1c70d6cd4078b90567df24a9ec08113a3b37edbfc24b427c416e459fc59b510','corporate-programme','Unknown complete corporate entry')
-    const links=visible.nodes(n=>n.tag==='a'&&n.attrs.href==='/about-us/careers/open-positions/')
-    need(links.length===2&&links.every(n=>new URL(n.attrs.href,C0).href===C1)
-      &&isDeepStrictEqual(links.map(n=>visible.text(n)),['Join the Team','Grow with Us']),'corporate','Exact active corporate positions handoff required')
-    return{packet,cards:[]}
-  }
-  need(packet.bytes.length>=C1_PROFILE.prefixBytes+C1_PROFILE.suffixBytes&&sha(packet.bytes.subarray(0,C1_PROFILE.prefixBytes))===C1_PROFILE.prefixSHA256
-    &&sha(packet.bytes.subarray(packet.bytes.length-C1_PROFILE.suffixBytes))===C1_PROFILE.suffixSHA256,'corporate-programme','Unknown complete positions surrounding publication')
-  const candidates=entries.filter(e=>e.node.tag==='a'&&e.node.attrs.class==='job-opening'),cards=[]
-  need(candidates.length>=1&&candidates.length<=6,'membership','Complete one..six ordinary positions required')
-  for(const entry of candidates){
-    const attrs=entry.node.attrs;shape(attrs,['href','target','class','id','data-title','data-track-ga'],'corporate-programme')
-    need(active(entry)&&UUID.test(attrs.id)&&attrs.href==='https://jobs.ashbyhq.com/hyperscience/'+attrs.id&&attrs.target==='_blank'&&attrs['data-track-ga']==='true'
-      &&visible.nodes(n=>n.tag==='a'&&n.attrs.href===attrs.href).length===1,'corporate-programme','Unqualified ordinary own declaration')
-    const descendants=entries.filter(e=>e.ancestors.includes(entry.node))
-    const text=(tag,cls)=>{const rows=descendants.filter(e=>e.node.tag===tag&&e.node.attrs.class===cls);need(rows.length===1&&active(rows[0]),'corporate-programme','Unknown card field');return originalText(rows[0].node)}
-    const title=text('h3','title'),family=INITIAL_FAMILIES.find(f=>f.title===title)
-    need(family&&text('p','location')===family.displayLocation&&text('span','department-team')===family.department+' - '+family.team&&text('span','commitment')==='FullTime','corporate-programme','Unreviewed complete authored card')
-    const values={hrefUUID:attrs.id,idUUID:attrs.id,titleAttribute:title,locationText:family.displayLocation,titleText:title,departmentTeamText:family.department+' - '+family.team,employmentText:'FullTime'}
-    const raw=CARD_TEMPLATE.replace(/\[BOUND_([A-Za-z]+)\]/g,(_token,key)=>values[key])
-    cards.push({id:attrs.id,url:attrs.href,title,department:family.department,team:family.team,location:family.displayLocation,employmentType:'FullTime',raw})
-  }
-  need(new Set(cards.map(c=>c.id)).size===cards.length,'membership','Repeated ordinary card')
-  const content=packet.bytes.subarray(C1_PROFILE.prefixBytes,packet.bytes.length-C1_PROFILE.suffixBytes).toString('utf8'),seen=new Set()
-  let at=0
-  while(at<content.length){
-    const space=C1_PROFILE.whitespaceUnits.find(s=>content.startsWith(s,at));if(space){at+=space.length;continue}
-    const matches=cards.filter(c=>content.startsWith(c.raw,at));need(matches.length===1&&!seen.has(matches[0].id),'corporate-programme','Unknown text/carrier/whole card inside current positions')
-    seen.add(matches[0].id);at+=matches[0].raw.length
-  }
-  need(seen.size===cards.length&&visible.nodes(n=>n.tag==='a'&&n.attrs.href===H).length===1,'membership','Exact whole positions/intake membership required')
-  return{packet,cards}
-}
+function corporateInitial(record,kind){return readInitialHyperscienceCorporate(record,kind)}
 function apiInitial(record,cards){
   const packet=readRawPacket(record,A,'A'),payload=rawJSON(packet.bytes)
   shape(payload,['jobs','apiVersion'],'api')
@@ -145,12 +105,11 @@ function apiInitial(record,cards){
   need(payload.jobs.length>=1&&payload.jobs.length<=6&&new Set(payload.jobs.map(j=>j?.id)).size===payload.jobs.length,'membership','Complete unique one..six native vacancies required')
   for(const job of payload.jobs){
     shape(job,API_FIELDS,'api');need(UUID.test(job.id)&&job.isListed===true&&job.jobUrl==='https://jobs.ashbyhq.com/hyperscience/'+job.id&&job.applyUrl===job.jobUrl+'/application','api','Exact listed own/application route required')
-    const family=INITIAL_FAMILIES.find(f=>f.title===job.title&&f.department===job.department&&f.team===job.team)
-    need(family,'criteria-family','Unknown whole authored publication family')
-    const projection=authoredProjection(job.descriptionHtml).comparisonText
-    need(layout(job.descriptionPlain)===projection&&sha(projection)===family.projectionSHA256&&Buffer.byteLength(projection)===family.projectionBytes,'criteria-family','New original primary criteria require review')
-    shape(job.address,['postalAddress'],'country');shape(job.address.postalAddress,['addressRegion','addressCountry','addressLocality'],'country')
-    need(isDeepStrictEqual(job.address.postalAddress,family.address)&&job.location===family.displayLocation&&job.workplaceType===family.workplaceType&&job.isRemote===true&&Array.isArray(job.secondaryLocations)&&job.secondaryLocations.length===0,'country','Unknown work-country/display/mode publication')
+    for(const key of ['title','department','team','location'])need(typeof job[key]==='string'&&job[key].length>0&&job[key].length<=1000,'api','Complete authored native role labels required');
+    const projection=authoredProjection(job.descriptionHtml).comparisonText;
+    need(projection.length>0&&layout(job.descriptionPlain)===projection,'criteria','Complete current HTML/plain source criteria disagree');
+    shape(job.address,['postalAddress'],'country');shape(job.address.postalAddress,['addressRegion','addressCountry','addressLocality'],'country');
+    need(Object.values(job.address.postalAddress).every(v=>typeof v==='string'&&v.length>0)&&['Remote','Hybrid'].includes(job.workplaceType)&&job.isRemote===true&&Array.isArray(job.secondaryLocations)&&job.secondaryLocations.length===0,'country','Unknown work-country/display/mode publication');
     need(job.employmentType==='FullTime'&&typeof job.publishedAt==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}\+00:00$/.test(job.publishedAt)&&Number.isFinite(Date.parse(job.publishedAt)),'employment-date','Unknown original employment/date')
     const card=cards.find(c=>c.id===job.id)
     need(card&&card.url===job.jobUrl&&['title','department','team','location','employmentType'].every(k=>card[k]===job[k]),'membership','Independent current corporate/API records disagree')
@@ -189,6 +148,14 @@ function ownInitial(record,api){
   // are mandatorily reparsed by the acquired adapter after real Qclose.
   return model
 }
+const settleNativeTransport=async pending=>{
+  if(!types.isPromise(pending)||!supportedPromise(pending))return;
+  let timer;
+  // Do not assimilate caller-controlled fulfillment/rejection values or inspect
+  // a Promise whose own hooks/prototype were rejected by the acquisition path.
+  const settled=new Promise(resolve=>nativeThen.call(pending,()=>resolve(),()=>resolve()));
+  try{await Promise.race([settled,new Promise(resolve=>{timer=setTimeout(resolve,1000)})])}finally{clearTimeout(timer)}
+}
 const progressBySignal=new WeakMap()
 /** The reader supplies actual {body,receipt}; observation clocks stay separate. */
 export async function readCurrentHyperscienceProgramme(options={}){
@@ -200,8 +167,8 @@ export async function readCurrentHyperscienceProgramme(options={}){
   const started=performance.now(),controller=new AbortController(),signal=parent?AbortSignal.any([parent,controller.signal]):controller.signal
   const expire=()=>controller.abort(new DOMException('Hyperscience source deadline exceeded','TimeoutError'))
   const timer=setTimeout(expire,bounds.source)
-  const check=()=>{if(performance.now()-started>=bounds.source&&!signalAborted.call(controller.signal))expire();aborted(signal)}
-  const audit={source:SOURCE,archiveNativeCollectionEvidence:true,controllerStartedAt:new Date().toISOString(),requests:0,nativeProgrammeRequests:0,rawPages:[],nativePayload:null,nativeRecords:null,nonVacancyRecords:[],
+  const check=()=>{if(parent)aborted(parent);if(performance.now()-started>=bounds.source&&!signalAborted.call(controller.signal))expire();aborted(signal)}
+  const audit={source:SOURCE,archiveNativeCollectionEvidence:true,controllerStartedAt:new Date().toISOString(),requests:0,nativeProgrammeRequests:0,rawPages:[],nativePayload:null,nativeRecords:null,partialOwnPublications:[],nonVacancyRecords:[],
     recordKind:'mixed',observedRecordCount:null,observedVacancyCount:null,reportedTotal:null,nativeIndiaCount:null,sourceScopeComplete:false,companyGlobalScopeQualified:false,companyGlobalTotal:null,companyIndiaTotal:null,
     applicantEligibilityQualified:false,legalEmployerQualified:false,rendererConsumptionQualified:false,UIOrApplicationEquivalent:false,applicationVisited:false,screeningCriteriaAcquired:false,
     sourceTimeSemanticsQualified:false,sideEffectFreeInitializationQualified:false,publisherScriptsExecuted:false,lifecycleCleanupAllowed:false,currentTransactionQualified:false,currentDeclaredSourceProgramComplete:false,
@@ -243,7 +210,8 @@ export async function readCurrentHyperscienceProgramme(options={}){
     const method=kind==='Q'?'POST':'GET',headers=kind==='Q'?POST_HEADERS:Object.freeze({Accept:kind==='A'||kind==='M'?'application/json':kind==='S'?'text/javascript':'text/html','Cache-Control':'no-store',Pragma:'no-cache'})
     const init=Object.freeze({method,cache:'no-store',credentials:'omit',redirect:'manual',headers,signal:requestSignal,maxBodyBytes:maximum,checkDeadline:requestCheck,...(kind==='Q'?{body:requestBody()}:{})})
     if(kind==='Q')observed.request={method,url,headers:{...POST_HEADERS},bodyBytes:1983,bodySHA256:'26301b880ec3355a303c0431fa61fdc78c804d4d3964711771061c44876e51a8',bodyBase64:REQUEST_BASE64}
-    let accounted=false,accepting=true,record
+    let accounted=false,accepting=true,record,pendingRead,transportSettlement
+    const settleTransport=()=>transportSettlement??=settleNativeTransport(pendingRead)
     const capture=value=>{
       if(!accepting)return
       const fields=exactFields(value,['body','receipt']),receipt=plainSnapshot(fields.receipt)
@@ -259,6 +227,7 @@ export async function readCurrentHyperscienceProgramme(options={}){
     try{
       await wait(()=>{
         const value=input.readPage(url,init)
+        if(types.isPromise(value))pendingRead=value
         return react(value,result=>{capture(result);return undefined})
       },requestSignal)
       requestCheck();need(record,'response','Original raw response unavailable')
@@ -269,7 +238,7 @@ export async function readCurrentHyperscienceProgramme(options={}){
       let model
       if(kind==='C0'||kind==='C1')model=corporateInitial(record,kind)
       else if(kind==='A')model=apiInitial(record,opening.C1Model.cards)
-      else if(kind==='O')model=ownInitial(record,apiRow)
+      else if(kind==='O'){model=ownInitial(record,apiRow);if(isOpening)audit.partialOwnPublications.push({id:apiRow.id,originalAPI:plainSnapshot(apiRow),originalAppData:plainSnapshot(model.originalAppData),originalLD:plainSnapshot(model.originalLD),headDescriptions:plainSnapshot(model.headDescriptions),fullCrossModelSupplementQualification:false,closingReconciled:false})}
       else if(kind==='H')model=readNativePacket(record,{intake:true})
       else if(kind==='M'||kind==='S')model={packet:readRawPacket(record,url,kind)}
       else{
@@ -284,30 +253,37 @@ export async function readCurrentHyperscienceProgramme(options={}){
       const security=model.securityFacts?.original??packet?.security?.original
       need(security,'security','Qualified original policy snapshot required')
       observed.securityPolicy=plainSnapshot(security);requestCheck()
-      if(isOpening){opened.set(url,{body:record.body,receipt:r,security,kind});closingBytes+=record.body.length}
+      if(isOpening){opened.set(url,{body:record.body,receipt:r,security,kind,corporateComparison:['C0','C1'].includes(kind)?hyperscienceCorporateComparison(model):null});closingBytes+=record.body.length}
       else{
         const previous=opened.get(url),equal=record.body.equals(previous.body)
         need(isDeepStrictEqual(security,previous.security),'closing','Original security policy changed')
-        if(kind!=='Q')need(equal,'closing','Whole non-Q source entity changed')
+        if(kind==='C0'||kind==='C1')need(isDeepStrictEqual(hyperscienceCorporateComparison(model),previous.corporateComparison),'closing','Current corporate authored recruitment facts changed')
+        else if(kind!=='Q')need(equal,'closing','Whole non-Q source entity changed')
         else{
           check();const pair=compareHyperscienceServerFormCriteria({opening:opening.Q,closing:record,requestBody:requestBody()});check()
           need(pair.serverDefinitionCriteriaEqual,'intake','Actual Q pair criteria differ')
         }
-        audit.openingClosingEquality.push({url,kind,openingSHA256:sha(previous.body),closingSHA256:sha(record.body),wholeRawEntityEqual:equal,securityPolicyEqual:true,
+        audit.openingClosingEquality.push({url,kind,openingSHA256:sha(previous.body),closingSHA256:sha(record.body),wholeRawEntityEqual:equal,securityPolicyEqual:true,...(['C0','C1'].includes(kind)?{corporateAuthoredFactsEqual:true,rawStyleTelemetryBrowserEquivalenceQualified:false}:{}),
           rawHeaderViewsEqual:isDeepStrictEqual(previous.receipt.headers,r.headers)&&isDeepStrictEqual(previous.receipt.headerEntries,r.headerEntries),...(kind==='Q'?{serverDefinitionCriteriaEqual:true}:{})})
         closingBytes-=previous.body.length;opened.delete(url)
       }
       observed.controllerCompletedAt=new Date().toISOString();requestCheck();return{record,model}
     }catch(caught){
-      const error=safeError(caught)
+      await settleTransport()
+      // Retain genuine acquired metadata/prefix before final caller ownership
+      // is rechecked by finally; opaque caller reasons must still win there.
+      const primary=progressBySignal.get(requestSignal)?.primaryFailure?.()
+      const error=safeError(primary??caught)
       if(!accounted){
         const state=progressBySignal.get(requestSignal),progress=state?.take()
         if(progress){Object.assign(observed,progress);aggregate+=progress.consumedBodyBytes;retained+=progress.bodyBytes}
       }
       observed.failure=errorFacts(error);observed.controllerCompletedAt=new Date().toISOString();throw error
     }finally{
-      accepting=false;progressBySignal.get(requestSignal)?.seal();progressBySignal.delete(requestSignal)
-      clearTimeout(requestTimer);requestController.abort()
+      accepting=false;clearTimeout(requestTimer);requestController.abort()
+      await settleTransport()
+      progressBySignal.get(requestSignal)?.seal();progressBySignal.delete(requestSignal)
+      if(parent)aborted(parent)
     }
   }
   const full=values=>{check();const result=reconcileHyperscienceAcquiredProgramme({entry:values.C0,positions:values.C1,api:values.A,
@@ -339,7 +315,7 @@ export async function readCurrentHyperscienceProgramme(options={}){
     closing.C0=(await acquire(C0,'C0',false)).record
     const closingResult=full(closing);audit.pureClosingResult=closingResult
     need(opened.size===0&&closingBytes===0&&audit.requests===14+2*N&&isDeepStrictEqual(openingResult.nativePayload,closingResult.nativePayload),'closing','Full protocol/models/native envelope did not reconcile')
-    Object.assign(audit,{allChannelsClosed:true,allWholeBodiesEqual:openingResult.intake.comparison.rawEntityEqual,QrawEntityEqual:openingResult.intake.comparison.rawEntityEqual,
+    Object.assign(audit,{allChannelsClosed:true,allWholeBodiesEqual:audit.openingClosingEquality.every(row=>row.wholeRawEntityEqual),QrawEntityEqual:openingResult.intake.comparison.rawEntityEqual,
       QserverDefinitionCriteriaEqual:true,allChannelSecurityEqual:true,nativeIndiaCount:0,completedAt:new Date().toISOString()})
     if(input.onAudit){
       audit.observerStartedAt=new Date().toISOString();check();const copy=plainSnapshot(audit);check()
@@ -358,7 +334,7 @@ export async function readCurrentHyperscienceProgramme(options={}){
     const evidence=snapshot(),existing=Object.getOwnPropertyDescriptor(error,'nativeCollectionEvidence')
     if(existing&&!existing.configurable)error=Object.assign(new Error('Hyperscience finite server programme held',{cause:error}),{softFailure:true,abortRetries:true,failureKind:'coverage_gap'})
     Object.defineProperty(error,'nativeCollectionEvidence',{value:evidence,configurable:true});throw error
-  }finally{clearTimeout(timer);controller.abort()}
+  }finally{clearTimeout(timer);controller.abort();if(parent)aborted(parent)}
 }
 
 const responseGetter=(response,key)=>{
@@ -395,25 +371,44 @@ export async function runCurrentHyperscienceProgramme(options={}){
     if(next>performance.now())await delay(next-performance.now(),undefined,{signal:init.signal})
     init.checkDeadline();next=performance.now()+interval
     const requestedAt=new Date().toISOString(),chunks=[]
-    let response,reader,base=null,size=0,discarded=0,complete=false,canceled=false,released=false,sealed=false
+    let response,reader,base=null,size=0,discarded=0,complete=false,canceled=false,released=false,sealed=false,pendingResponse,cleanupPromise,metadataFailure
     const current=()=>{const body=Buffer.concat(chunks,size);return{...(base?{receipt:{...base,bodyComplete:false,streamDone:false,decodedPrefixOnly:true,bodyBytes:body.length,bodySHA256:sha(body),
       consumedBodyBytes:size+discarded,discardedOverflowBytes:discarded,overflowBytes:discarded,completedAt:new Date().toISOString()}}:{}),bodyBase64:body.toString('base64'),bodyBytes:body.length,bodySHA256:sha(body),
       bodyComplete:false,streamDone:false,decodedPrefixOnly:true,consumedBodyBytes:size+discarded,discardedOverflowBytes:discarded,overflowBytes:discarded,
       cancellation:{requested:canceled,readerReleaseRequested:released},bodyRepresentation:'Genuinely acquired bounded Fetch-decoded prefix, not a complete entity or raw-wire bytes.'}}
-    progressBySignal.set(init.signal,{take:()=>base?current():null,seal:()=>{sealed=true}})
+    progressBySignal.set(init.signal,{take:()=>base?current():null,seal:()=>{sealed=true},primaryFailure:()=>metadataFailure})
     const release=()=>{if(released||!reader)return;released=true;ignore(()=>readerMethod(reader,'releaseLock')())}
-    const cancel=()=>{if(canceled||!reader&&!response)return;canceled=true;if(reader)ignore(()=>readerMethod(reader,'cancel')());else ignore(()=>cancelBody(response));release()}
-    const abort=()=>cancel()
+    const cancel=()=>{
+      if(cleanupPromise)return cleanupPromise
+      if(!reader&&!response)return Promise.resolve()
+      canceled=true
+      const owned={cancel:()=>reader?readerMethod(reader,'cancel')():cancelBody(response)}
+      cleanupPromise=disposeResponseReader(owned,{bestEffort:true})
+      return cleanupPromise
+    }
+    const abort=()=>{void cancel()}
     const captureHeaders=value=>{
-      if(sealed){ignore(()=>cancelBody(value));return}
-      response=value
+       response=value
       const headersValue=responseGetter(value,'headers')
       need(headersValue&&!types.isProxy(headersValue),'ownership','Native Fetch Headers required')
       let entries;try{entries=[...Headers.prototype.entries.call(headersValue)]}catch{need(false,'response','Native Fetch Headers required')}
       const headers=Object.fromEntries(entries)
       base={source:SOURCE,requestedURL:url,finalURL:responseGetter(value,'url'),status:responseGetter(value,'status'),method:init.method,cache:'no-store',credentials:'omit',redirect:'manual',requestHeaders:{...init.headers},
         requestedAt,responseAt:new Date().toISOString(),headers,headerEntries:entries,...(init.method==='POST'?{requestBodyBytes:1983,requestBodySHA256:sha(requestBody()),requestBodyBase64:REQUEST_BASE64}:{})}
-      if(signalAborted.call(init.signal))cancel()
+      const fail=(message,failureKind='coverage_gap')=>Object.assign(Error('[hyperscience] '+message),{
+        code:'HYPERSCIENCE_NATIVE_METADATA',status:base.status,httpStatus:base.status,
+        abortRetries:true,softFailure:failureKind!=='parser_or_contract_error',failureKind,
+      })
+      try{
+        if(base.finalURL!==url)throw fail('Native response URL does not match its declared source','parser_or_contract_error')
+        if(!Number.isInteger(base.status)||base.status<100||base.status>599)throw fail('Invalid native HTTP status','parser_or_contract_error')
+        if([401,403,429,451].includes(base.status)||isHttpAccessChallenge(headers))throw fail('Native publisher access denied or challenged','blocked_or_access_denied')
+        if(base.status!==200)throw fail('Native HTTP '+base.status,base.status>=500?'network_or_timeout':'coverage_gap')
+        if(['location','refresh','www-authenticate','proxy-authenticate'].some(key=>Object.hasOwn(headers,key)))throw fail('Native navigation/authentication header')
+        const mime=(headers['content-type']??'').split(';')[0].trim().toLowerCase()
+        const accepted=url===A||url===Q||url.endsWith('/.vite/manifest.json')?mime==='application/json':/\.js(?:\?|$)/.test(url)?['text/javascript','application/javascript'].includes(mime):mime==='text/html'
+        if(!accepted)throw fail('Native declared MIME does not match channel')
+      }catch(error){metadataFailure=error;throw error}
     }
     const captureChunk=part=>{
       if(sealed)return
@@ -428,7 +423,12 @@ export async function runCurrentHyperscienceProgramme(options={}){
       listen(init.signal,abort)
       await wait(()=>{
         const value=fetchImpl(url,{method:init.method,cache:'no-store',credentials:'omit',redirect:'manual',headers:init.headers,signal:init.signal,...(init.method==='POST'?{body:requestBody()}:{})})
-        return react(value,captureHeaders)
+        const pending=react(value,async response=>{
+          try{captureHeaders(response)}catch(error){await cancel();throw error}
+          if(sealed||signalAborted.call(init.signal))await cancel()
+        })
+        if(types.isPromise(pending))pendingResponse=pending
+        return pending
       },init.signal)
       init.checkDeadline();need(base,'response','Original Fetch headers unavailable')
       const advertised=base.headers['content-length']
@@ -445,6 +445,12 @@ export async function runCurrentHyperscienceProgramme(options={}){
       const bytes=Buffer.concat(chunks,size);init.checkDeadline()
       return{body:bytes,receipt:{...base,bodyBytes:bytes.length,bodySHA256:sha(bytes),bodyComplete:true,streamDone:true,decodedPrefixOnly:false,error:null,
         consumedBodyBytes:bytes.length,discardedOverflowBytes:0,overflowBytes:0,completedAt:new Date().toISOString(),bodyRepresentation:'Complete original Fetch-decoded entity bytes; not raw-wire bytes.'}}
-    }finally{unlisten(init.signal,abort);if(!complete)cancel();release()}
+    }finally{
+      unlisten(init.signal,abort)
+      const disposal=complete?Promise.resolve():cancel()
+      await Promise.all([disposal,settleNativeTransport(pendingResponse)])
+      release()
+      if(parent)aborted(parent)
+    }
   }})
 }

@@ -7,6 +7,8 @@ import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/uti
 import {parseEightfoldJson} from '../../scraper-support/utils/recruitmentEightfoldData.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {buildHttpError,isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
+import {classifyScraperError} from '../../scraper-support/utils/failureClassification.js'
 
 const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8'))
 const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -101,6 +103,19 @@ function role(html,proof,model,card){
   originalNativeRoleModel:structuredClone(detail),nativeLegalEmployerInCriteria:criteria.includes('RxLogix Corporation')?'RxLogix Corporation':null,passiveBindings:proof.passiveBindings}
 }
 
+function roleClosingModel(record){
+ const seeds=new Set(record.passiveBindings.initialAntispamSeeds.map(seed=>seed.id))
+ const normalize=value=>{
+  if(Array.isArray(value))return value.map(normalize)
+  if(!value||typeof value!=='object')return value
+  const result=Object.fromEntries(Object.entries(value).map(([key,child])=>[key,normalize(child)]))
+  if(result.tag==='input'&&result.attrs?.name==='_wpcf7_ak_js'&&seeds.has(result.attrs.id))result.attrs.value='RXLOGIX_EXACT_INITIAL_SEED'
+  return result
+ }
+ return normalize({url:record.url,title:record.title,location:record.location,department:record.department,employmentType:record.employmentType,
+  fullCriteria:record.criteria,originalNativeRoleModel:record.originalNativeRoleModel,application:record.application,schemas:record.originalSchemas})
+}
+
 export async function runCurrentRxLogix(options={}){
  options.signal?.throwIfAborted()
  need(!(options.fetchPage||options.fetchText||options.fetchJson)||options.fetchImpl,'original HTTP metadata required')
@@ -112,22 +127,37 @@ export async function runCurrentRxLogix(options={}){
  const signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal,receipts=[],last=new Map(),allowed=new Set([profile.board])
  let reads=0,total=0
  const read=async url=>{
-  signal.throwIfAborted();need(allowed.has(url)&&Object.hasOwn(profile.originalPackets,url)&&++reads<=72,'unbound current public URL or request cap')
+  signal.throwIfAborted();need(allowed.has(url)&&Object.hasOwn(profile.originalPackets,url)&&++reads<=2*(1+profile.roleModels.length),'unbound current public URL or request cap')
   const origin=new URL(url).origin,wait=Math.max(0,interval-(performance.now()-(last.get(origin)??-Infinity)))
   if(wait)await delay(wait,undefined,{signal});last.set(origin,performance.now())
-  const p=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,overflowError:problem('native stream byte bound'),fetchImpl:async(value,init)=>{
-   const response=await(options.fetchImpl||globalThis.fetch)(value,{...init,cache:'no-store',credentials:'omit'});let size=0
+  const expected=profile.originalPackets[url];let p,metadataFailure
+  try{p=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,overflowError:problem('native stream byte bound'),fetchImpl:async(value,init)=>{
+   const response=await(options.fetchImpl||globalThis.fetch)(value,{...init,cache:'no-store',credentials:'omit'}),headers=Object.fromEntries(response.headers);let size=0
+   try{
+    if(response.status!==200||isHttpAccessChallenge(response)){
+     const error=buildHttpError(response,url);Object.assign(error,classifyScraperError(error),{abortRetries:true});throw error
+    }
+    need(response.url===expected.finalURL&&!headers.location,'native HTTP status/final URL or redirect context changed')
+    need((headers['content-type']||'').split(';')[0].trim().toLowerCase()===expected.mime,'native MIME changed')
+    need(equal(Object.fromEntries(Object.keys(expected.effectiveHeaders).map(name=>[name,headers[name]??null])),expected.effectiveHeaders),'native navigation, CSP, disposition, Link or declared charset changed')
+   }catch(error){
+    metadataFailure=error
+    receipts.push({requestedURL:url,status:response.status,url:response.url,headers,bodyRead:false,acquisitionComplete:false,rejectionStage:'http-metadata-before-body'})
+    // Never open or drain a rejected entity. Disposal cannot delay its known
+    // metadata failure or replace an opaque caller-owned cancellation.
+    try{Promise.resolve(response.body?.cancel(error)).catch(()=>{})}catch{/* Preserve metadata failure if disposal itself fails. */}
+    options.signal?.throwIfAborted();throw error
+   }
    const body=response.body===null?null:{cancel:reason=>response.body.cancel(reason),getReader(){const reader=response.body.getReader();return{
     async read(){const part=await reader.read();if(!part.done){need(types.isUint8Array(part.value),'original stream must contain bytes');const length=nativeByteLength.call(part.value);need(length<=4000000-size&&length<=16000000-total,'native stream byte bound');size+=length;total+=length}return part},
     cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}}}
    return{status:response.status,url:response.url,headers:response.headers,body}
-  }})
-  const bytes=Buffer.from(p.bodyBase64,'base64'),expected=profile.originalPackets[url],digest=sha(bytes)
+  }})}catch(error){options.signal?.throwIfAborted();throw metadataFailure??error}
+  const bytes=Buffer.from(p.bodyBase64,'base64'),digest=sha(bytes)
   receipts.push({requestedURL:url,...p,bytes:bytes.length,sha256:digest})
   need(p.status===200&&p.status===expected.status&&p.url===expected.finalURL&&!p.headers.location,'native HTTP status/final URL or redirect context changed')
   need((p.headers['content-type']||'').split(';')[0].trim().toLowerCase()===expected.mime,'native MIME changed')
   need(equal(Object.fromEntries(Object.keys(expected.effectiveHeaders).map(name=>[name,p.headers[name]??null])),expected.effectiveHeaders),'native navigation, CSP, disposition, Link or declared charset changed')
-  if(!profile.documents[url])need((profile.reviewedWholeProgramVariants[url]||[expected]).some(program=>program.bytes===bytes.length&&program.sha256===digest),'whole current declared client or style changed')
   try{return new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw problem('original native UTF8 unavailable')}
  }
  const pass=async()=>{
@@ -138,19 +168,14 @@ export async function runCurrentRxLogix(options={}){
    const html=await read(model.url),proof=documentProof(html,model.url);pages.set(model.url,html);proofs.set(model.url,proof);selected.push(role(html,proof,model,card))
   }
   const declared=[...new Set([...proofs].flatMap(([url,proof])=>proof.nodes.filter(node=>node.tag==='script'&&node.attrs.src||node.tag==='link'&&node.attrs.rel==='stylesheet').map(node=>new URL(node.attrs.src||node.attrs.href,url).href)))]
-  const imported=new Set(Object.values(profile.cssImports).flat()),direct=profile.assetURLs.filter(url=>!imported.has(url))
-  need(equal(declared,direct),'current declared native client/style cohort changed')
-  for(let index=0;index<declared.length;index++){
-   const url=declared[index];allowed.add(url);const content=await read(url)
-   const imports=[...content.matchAll(/@import\s+(?:url\(\s*)?["']([^"']+)["']/gi)].map(match=>new URL(match[1],url).href)
-   need(equal(imports,profile.cssImports[url]||[]),'current literal stylesheet dependency changed')
-   for(const target of imports)if(!declared.includes(target))declared.push(target)
-  }
-  need(equal(declared,profile.assetURLs),'full declared external context not reconciled')
-  return{nativeRows,selected,documentProofs:[...proofs].map(([url,proof])=>({url,normalizedSHA256:proof.normalizedSHA256}))}
+  // Complete authored HTML supplies the native role/application data. These
+  // external declarations remain provenance; no style/telemetry program is
+  // fetched or executed and rendered visibility/activation are unqualified.
+  return{nativeRows,selected,declaredAssetURLs:declared,documentProofs:[...proofs].map(([url,proof])=>({url,normalizedSHA256:proof.normalizedSHA256}))}
  }
  try{
   const opening=await pass(),closing=await pass()
+  need(equal(opening.selected.map(roleClosingModel),closing.selected.map(roleClosingModel)),'fresh full own role criteria/application semantic closing mismatch')
   need(equal(opening.nativeRows,closing.nativeRows)&&equal(opening.documentProofs,closing.documentProofs),'fresh full original board/role/application closing mismatch');signal.throwIfAborted()
   const selectedURLs=new Set(profile.roleModels.map(model=>model.url)),holds=opening.nativeRows.filter(row=>!selectedURLs.has(row.url)).map(row=>({originalCard:row,reason:'full-own-native-role-and-independent-closing-not-qualified-in-bounded-subset'}))
   const jobs=opening.selected.map((r,index)=>({source:profile.source,company:profile.company,companyDomain:'rxlogix.com',companyCareerPage:profile.board,title:r.title,department:r.department,
@@ -160,16 +185,17 @@ export async function runCurrentRxLogix(options={}){
    nativeSourceRecord:{originalOwnRoleHTML:r.originalOwnRoleHTML,closingOwnRoleHTML:closing.selected[index].originalOwnRoleHTML,originalNativeFullCriteria:r.criteria,originalNativeRoleModel:r.originalNativeRoleModel,originalPublishedApplication:r.application,closingPublishedApplication:closing.selected[index].application,originalDocumentSchemas:r.originalSchemas},
    sourceNativeEmployerBinding:{configuredCorporateURL:profile.corporate,currentNativeCareers:profile.board,publisher:profile.publisher,nativeLegalEmployerInOwnFullCriteria:r.nativeLegalEmployerInCriteria},
    sourceNativeCountryProof:{nativeCardCountry:opening.nativeRows.find(row=>row.url===r.url).location,ownRoleHeaderCountry:r.location,applicationPreferencesAreWorksites:false,cityDictionaryUsed:false},
-   sourceDetailComplete:true,sourceNativeClosingReconciled:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,scrapedAt:observedAt}))
+   sourceDetailComplete:true,sourceNativeClosingReconciled:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,sourceRenderedVisibilityQualified:false,scrapedAt:observedAt}))
   const evidence={source:profile.source,observedAt,recordKind:'vacancy-rows',observedRecordCount:opening.nativeRows.length,observedVacancyCount:opening.nativeRows.length,nativeRows:opening.nativeRows,closingNativeRows:closing.nativeRows,holds,
-   originalResponses:receipts,fullOriginalCriteriaPreserved:true,applicationPreferenceCountriesRetained:true,companyGlobalTotal:null,companyIndiaTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,verifiedZero:false,applicationSubmitted:false}
+   originalResponses:receipts,declaredAssetURLs:{opening:opening.declaredAssetURLs,closing:closing.declaredAssetURLs},assetInteractions:0,applicationInteractions:0,externalProgramsExecuted:false,renderedVisibilityQualified:false,renderedApplicationQualified:false,fullSelectedRoleCriteriaApplicationClosingReconciled:true,fullOriginalCriteriaPreserved:true,applicationPreferenceCountriesRetained:true,companyGlobalTotal:null,companyIndiaTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,verifiedZero:false,applicationSubmitted:false}
   attachSourceObservationEvidence(jobs,{source:profile.source,recordKind:'vacancy-rows',observedRecordCount:opening.nativeRows.length,observedVacancyCount:opening.nativeRows.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:evidence,configurable:true})
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:profile.board,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,
-   reason:'current-own-two-full-native-India-roles+all-original-criteria-and-application-conditions+whole-declared-client/style-and-independent-full-document-closing;other-cards-held;company-inventory-and-zero-unqualified'})
+  const result=attachInventoryEvidence(jobs,{status:'coverage-gap',surface:profile.board,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,
+   reason:'current-own-two-full-native-India-roles+all-original-criteria-and-application-conditions+native-authored-criteria-as-data-and-independent-full-role/application-closing;unexecuted-assets-and-rendered-visibility/application-activation-unqualified;other-cards-held;company-inventory-and-zero-unqualified'})
+  signal.throwIfAborted();return result
  }catch(error){
   if(options.signal?.aborted)throw options.signal.reason
-  if(error&&typeof error==='object'&&Object.isExtensible(error))try{Object.assign(error,{softFailure:true,abortRetries:true,failureKind:error.failureKind||'coverage_gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false,sourceAudit:{source:profile.source,originalResponses:receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false}})}catch{}
+  if(error&&typeof error==='object'&&Object.isExtensible(error))try{Object.assign(error,{softFailure:error.softFailure??true,abortRetries:true,failureKind:error.failureKind||'coverage_gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false,sourceAudit:{source:profile.source,originalResponses:receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false}})}catch{/* Preserve the primary failure if optional audit attachment fails. */}
   throw error
  }finally{clearTimeout(timer)}
 }

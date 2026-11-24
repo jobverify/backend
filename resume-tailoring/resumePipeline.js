@@ -28,6 +28,27 @@ function readComparison(value) {
   return result;
 }
 
+function resolveTailoringInput({ source, facts, pagination, baseLatex, jobSnapshot }) {
+  let reason;
+  const options = { source, jobSnapshot, onIncompatible: value => { reason = value; } };
+  let plan = buildResumeTailoringPlan({ ...options, baseLatex });
+  if (plan) return { plan, baseKind: plan.baseKind };
+  const originalReason = reason;
+  // Never regenerate a whole tailored document just because a historic saved
+  // base is incompatible. Reuse the complete source-preservation path instead.
+  const layout = resumeSourceLayout(source, facts, { preserveOriginal: true });
+  const preserved = buildPreservedPreparationPlan(layout, pagination);
+  if (preserved) {
+    const middle = preserved.candidates.reduce((best, candidate) => !best
+      || Math.abs(candidate.token.index - preserved.body.length / 2) < Math.abs(best.token.index - preserved.body.length / 2) ? candidate : best, null);
+    const rebuilt = applyPaginationRepair(preserved, JSON.stringify({ spacing: 'compact',
+      breakBefore: pagination.exact && pagination.targetPages === 2 ? middle?.id : null }));
+    plan = buildResumeTailoringPlan({ ...options, baseLatex: rebuilt });
+    if (plan) return { plan, layout, baseKind: 'source', reason: originalReason };
+  }
+  return { baseKind: 'unavailable', reason: reason || originalReason };
+}
+
 export async function processResumeDocument(input, { deadline = Date.now() + RESUME_WORKER_BUDGET_MS,
   onPhase = async () => {}, onDiagnostic = () => {}, generate = generateResumeText, compile = compileResumeLatex } = {}) {
   remainingBudget(deadline, RESUME_WORKER_BUDGET_MS);
@@ -41,7 +62,14 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   const sectionTitles = resumeSectionTitles(source, facts);
   let layout = resumeSourceLayout(source, facts, { preserveOriginal: !tailored });
   const preparationPlan = tailored ? null : buildPreservedPreparationPlan(layout, pagination);
-  let tailoringPlan = tailored ? buildResumeTailoringPlan({ source, baseLatex: input.baseLatex, jobSnapshot: input.jobSnapshot }) : null;
+  const resolvedTailoring = tailored ? resolveTailoringInput({ source, facts, pagination, baseLatex: input.baseLatex, jobSnapshot: input.jobSnapshot }) : null;
+  let tailoringPlan = resolvedTailoring?.plan;
+  if (resolvedTailoring?.layout) layout = resolvedTailoring.layout;
+  if (tailored && !tailoringPlan) {
+    onDiagnostic(safeResumeDiagnostic({ stage: 'generating', code: 'prepared_resume_incompatible', policyVersion: RESUME_PIPELINE_POLICY,
+      mode: 'tailored', generationKind: 'edits', baseKind: 'unavailable', tailoringReason: resolvedTailoring.reason, editSlotCount: 0 }));
+    throw resumeFailure('prepared_resume_incompatible', { statusCode: 409 });
+  }
   // The bounded planner chooses a safe boundary rather than the word-count
   // estimate. Physical pagination and full factual checks remain mandatory.
   if (preparationPlan || tailoringPlan) layout = { ...layout, pageBreakBefore: undefined, preservationBreak: undefined };
@@ -70,7 +98,8 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       await phase(attempt === 1 ? 'generating' : 'repairing');
       diagnose('started', { policyVersion: RESUME_PIPELINE_POLICY, mode: tailored ? 'tailored' : 'base',
         targetPages: pagination.targetPages, sourceBlockCount: layout.preservationBlocks?.length || 0,
-        ...(tailoringPlan && !repairPlan ? { editSlotCount: tailoringPlan.slotCount } : {}),
+        generationKind: repairPlan || (attempt === 1 && preparationPlan) ? 'layout' : tailoringPlan ? 'edits' : 'document',
+        ...(tailored ? { editSlotCount: tailoringPlan.slotCount, baseKind: resolvedTailoring.baseKind, tailoringReason: resolvedTailoring.reason } : {}),
         ...(attempt === 2 ? { repairKind: repairPlan ? 'pagination' : tailoringPlan ? 'edits' : 'document' } : {}) });
       const generated = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal,
         allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic,
@@ -147,8 +176,10 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
         originalPrompt = buildPreparationPrompt({ ...input, source, facts, condenseOriginal: true });
         issues.push('Condense the narrative bullet text within its original finite entry and item slots. Preserve fixed headers, grades, dates, skill categories, useful links, and all substantive facts.');
       }
-      if (tailoringPlan && !repairPlan) tailoringPlan = buildResumeTailoringPlan({ source, baseLatex: input.baseLatex,
-        jobSnapshot: input.jobSnapshot, issues });
+      if (tailoringPlan && !repairPlan) {
+        tailoringPlan = buildResumeTailoringPlan({ source, baseLatex: tailoringPlan.baseLatex, jobSnapshot: input.jobSnapshot, issues });
+        if (!tailoringPlan) throw resumeFailure('prepared_resume_incompatible', { statusCode: 409 });
+      }
       prompt = repairPlan ? repairPlan.prompt : tailoringPlan ? tailoringPlan.prompt : buildLatexRepairPrompt({ originalPrompt, latex, issues });
       const estimatedMs = estimateResumeRepairMs({
         inputCharacters: prompt.length + (repairPlan || tailoringPlan ? 0 : RESUME_LATEX_PREAMBLE.length + (layout.contactHeader?.length || 0)),

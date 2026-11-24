@@ -16,8 +16,8 @@ const changeFlight=edit=>{
 const allPositions=records=>{let found;const walk=v=>{if(!v||typeof v!=='object')return;if(v.categories)found=v.categories.find(c=>c.categoryName==='ALL POSITIONS');for(const x of Object.values(v))walk(x)};for(const r of records.values())if(r.kind==='model')walk(r.value);assert.ok(found);return found}
 test('current Hidden Brains category duplicates do not invent requisitions and exact role descriptions are recovered',async()=>{
  const result=await replay(),jobs=result.nativeCollectionEvidence.observations
- assert.equal(result.length,0);assert.equal(jobs.length,15);assert.equal(new Set(jobs.map(j=>j.nativeObservationKey)).size,15);assert.ok(jobs.every(j=>j.jobId===null))
- assert.ok(jobs.every(j=>j.jobDescription?.length>100&&j.sourceNativeCriteriaComplete&&!j.sourceDetailComplete))
+ assert.equal(result.length,15);assert.equal(jobs.length,15);assert.equal(new Set(jobs.map(j=>j.nativeObservationKey)).size,15);assert.ok(jobs.every(j=>j.jobId===null))
+ assert.ok(jobs.every(j=>j.jobDescription?.length>100&&j.sourceNativeCriteriaComplete&&j.sourceDetailComplete))
  assert.ok(jobs.every(j=>j.location===null&&j.country===null&&j.requisitionId===null))
  assert.ok(jobs.find(j=>j.title==='Business Development Executive').jobDescription.includes('Communication'))
  assert.ok(jobs.find(j=>j.title==='AI/ML Engineer').jobDescription.includes('machine learning'))

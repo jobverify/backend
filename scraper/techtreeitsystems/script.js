@@ -5,6 +5,8 @@ import { extractJobFilterSignals } from '../../src/utils/jobFilterSignals.js'
 import { withRetry } from '../../scraper-support/utils/retry.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { classifyScraperError } from '../../scraper-support/utils/failureClassification.js'
+import { composeAbortSignals } from '../../scraper-support/utils/fetch.js'
+import { isNativeBareCityInPublicScope } from '../../scraper-support/shared/nativeCityScope.js'
 
 import { TECHTREE_IT_SYSTEMS_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -33,14 +35,14 @@ const createTimeoutSignal = (timeoutMs) => {
   return controller.signal
 }
 
-const defaultFetchPage = (url) => withRetry(async () => {
+const defaultFetchPage = (url, { signal } = {}) => withRetry(async () => {
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
-    signal: createTimeoutSignal(20000),
+    signal: composeAbortSignals(signal, createTimeoutSignal(20000)),
   })
 
   return {
@@ -52,16 +54,17 @@ const defaultFetchPage = (url) => withRetry(async () => {
   attempts: 3,
   baseDelayMs: 2000,
   label: SOURCE,
+  signal,
 })
 
-const defaultFetchJson = (url) => withRetry(async () => {
+const defaultFetchJson = (url, { signal } = {}) => withRetry(async () => {
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'application/json,text/plain;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
-    signal: createTimeoutSignal(20000),
+    signal: composeAbortSignals(signal, createTimeoutSignal(20000)),
   })
 
   if (!response.ok) {
@@ -76,6 +79,7 @@ const defaultFetchJson = (url) => withRetry(async () => {
   attempts: 3,
   baseDelayMs: 2000,
   label: SOURCE,
+  signal,
 })
 
 const decodeHtmlEntities = (value) => String(value ?? '')
@@ -249,15 +253,21 @@ export const enrichJobWithDetailJson = (job, detailPayload = {}) => {
   if (typeof rawGmt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(rawGmt)) reject('native-publication-invalid')
   const timestamp = new Date(`${rawGmt}Z`)
   if (!Number.isFinite(timestamp.getTime()) || timestamp.toISOString() !== `${rawGmt}.000Z`) reject('native-publication-invalid')
+  const explicitIndia = location => /(?:^|,)\s*India\s*$/i.test(location)
   if (!Array.isArray(job.locations) || !job.locations.length
-    || !job.locations.every(location => /(?:^|,)\s*India\s*$/i.test(location))) reject('native-india-country-unproven')
+    || !job.locations.every(location => explicitIndia(location)
+      || !/^remote$/i.test(location.trim()) && isNativeBareCityInPublicScope(location))) reject('native-india-country-unproven')
+  const country = job.locations.every(explicitIndia) ? 'India' : null
   const detailHtml = detailPayload?.content?.rendered || ''
   const jobDescription = extractVisibleText(detailHtml) || null
   if (!jobDescription) reject('native-description-missing')
 
   return {
     ...job,
-    country: 'India',
+    country,
+    sourceNativeCountryUnpublished: country === null,
+    sourcePublicLocationPolicyQualified: true,
+    sourceCountryScopeUnresolved: false,
     postingDate: timestamp.toISOString(),
     postedAt: timestamp.toISOString(),
     nativeDate: nativeFields.date,
@@ -267,13 +277,16 @@ export const enrichJobWithDetailJson = (job, detailPayload = {}) => {
     nativeId: nativeFields.id,
     nativeLink: nativeFields.link,
     nativeStatus: nativeFields.status,
-    sourceCountryEvidence: 'Every exact native inline role location explicitly names India',
+    sourceCountryEvidence: country === 'India'
+      ? 'Every exact native inline role location explicitly names India'
+      : 'Whole native role cities qualify under publicJobLocationScope; publisher country remains unpublished',
     jobDescription,
     experienceRequired: inferExperienceFromDescription(jobDescription) || null,
     publicExperienceChecked: Boolean(jobDescription),
     sourceDetailComplete: true,
     sourceListingComplete: false,
     sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
     sourceCompanyCoverageComplete: false,
     sourceGlobalJobCount: null,
     sourceIndiaJobCount: null,
@@ -313,15 +326,19 @@ export const createTechtreeItSystemsScraper = ({
   async run({
     fetchPage = defaultFetchPage,
     fetchJson = defaultFetchJson,
+    signal,
   } = {}) {
+    signal?.throwIfAborted()
     let careersPage
-    try { careersPage = await fetchPage(CAREERS_URL) } catch (error) {
+    try { careersPage = await fetchPage(CAREERS_URL, { signal }); signal?.throwIfAborted() } catch (error) {
+      signal?.throwIfAborted()
       throw sourceError('careers-fetch-failed', { reason: error.message }, error)
     }
 
     if (!isVerifiedCareersPage(careersPage)) {
       try {
-        const homepagePage = await fetchPage(HOMEPAGE_URL)
+        const homepagePage = await fetchPage(HOMEPAGE_URL, { signal })
+        signal?.throwIfAborted()
 
         if (
           isVerifiedSucuriChallengePage(careersPage)
@@ -330,6 +347,7 @@ export const createTechtreeItSystemsScraper = ({
           throw sourceError('careers-blocked', { status: careersPage.status, homepageStatus: homepagePage.status })
         }
       } catch (error) {
+        signal?.throwIfAborted()
         if (error.code === 'careers-blocked') throw error
         // Fall through to the fail-closed verified-surface error below.
       }
@@ -346,6 +364,7 @@ export const createTechtreeItSystemsScraper = ({
     const failures = []
 
     for (const card of cards) {
+      signal?.throwIfAborted()
       const baseJob = {
         title: card.title,
         company: COMPANY,
@@ -367,19 +386,27 @@ export const createTechtreeItSystemsScraper = ({
       }
 
       try {
-        const detailPayload = await fetchJson(buildDetailApiUrl(card.postId))
+        const detailPayload = await fetchJson(buildDetailApiUrl(card.postId), { signal })
+        signal?.throwIfAborted()
         jobs.push(enrichJobWithDetailJson(baseJob, detailPayload))
       } catch (error) {
+        signal?.throwIfAborted()
         failures.push({ postId: card.postId, sourceUrl: card.sourceUrl,
           code: error.code || 'detail-fetch-failed', reason: error.message, ...error.diagnostics })
       }
     }
 
-    if (failures.length) throw sourceError('detail-extraction-failed', { observedCards: cards.length, validatedDetails: jobs.length, failures })
+    if (failures.length && !jobs.length) throw sourceError('detail-extraction-failed', { observedCards: cards.length, validatedDetails: jobs.length, failures })
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: {
+      source: SOURCE, observedCards: cards.length, validatedDetails: jobs.length,
+      failures, listingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    } })
+    signal?.throwIfAborted()
     return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: CAREERS_URL,
-      firstParty: true, listingComplete: false, pagesFetched: 1, reportedTotal: null,
+      firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 1, reportedTotal: null,
       indiaFacetCount: null, verifiedAt: now(),
-      reason: 'Observed inline roles only; pagination, whole-company scope and application endpoints unverified' })
+      reason: 'Observed inline roles only; pagination, whole-company scope and application endpoints unverified'
+        + (failures.length ? `; failed-details=${failures.length}` : '') })
   },
 })
 

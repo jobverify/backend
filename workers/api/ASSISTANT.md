@@ -21,28 +21,28 @@ after rollout. Per-member quotas do not reserve capacity for every member.
 See [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 and [model documentation](https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/).
 
-1. Keep `ASSISTANT_ENABLED=false` in `wrangler.jsonc`. Run backend lint and focused
+1. Keep the assistant disabled in Admin Overview (the default for new installations). Run backend lint and focused
    assistant/search tests, then `npm run check` and `npm run test:runtime` here.
    Run frontend lint, unit tests, production build and assistant Playwright cases.
 2. Run `npm run assistant:evaluate` from the backend root with Cloudflare
    credentials supplied through the environment. Require all fifteen controlled
    cases to pass. Use only synthetic questions, never real transcripts.
-3. Release backend and frontend with the flag off. Check health/readiness, public
+3. Release backend and frontend with the saved assistant setting off. Check health/readiness, public
    settings (`assistantEnabled:false`), guest rejection and authenticated
    capabilities (`enabled:false`). Preview desktop/mobile layouts, both themes,
    CSRF, search and help; confirm the account still has Workers Free at zero cost.
-4. Set `ASSISTANT_ENABLED=true` and redeploy only after the preceding checks.
+4. Click **Enable assistant** in Admin Overview after the preceding checks.
    Confirm current jobs and approved help, disabled verification, Premium denial
    with one inference, and correctly timed explicit quota retries. Public settings
    refresh on navigation/focus and every thirty seconds in open tabs.
-5. Roll back by setting `ASSISTANT_ENABLED=false` and redeploying. The public gate
+5. Disable for all users by clicking **Disable assistant** in Admin Overview. The public gate
    unmounts the widget, clears its in-memory state and cancels pending display.
    No database rollback or migration is needed.
 
 Cloudflare defers updates to an active Durable Object for up to five minutes by
 default. Wait for the new settings and routes before declaring a deployment
-verified. For an urgent disable, pass
-`--durable-objects-code-update-mode immediate` to Wrangler to apply it immediately.
+verified. Assistant availability changes are read from MongoDB on each request and do not
+require a Worker or Durable Object deployment.
 See [Durable Objects code updates](https://developers.cloudflare.com/durable-objects/deployments/durable-objects-code-updates/).
 
 Conversation state survives client-side navigation only. Reload, logout, account

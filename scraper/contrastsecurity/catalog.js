@@ -1,62 +1,17 @@
-import path from'node:path'
-import{fileURLToPath}from'node:url'
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
 const currentDir=path.dirname(fileURLToPath(import.meta.url))
-const PROVIDER_METADATA={...{
-  "source": "contrastsecurity",
-  "companyName": "Contrast Security",
-  "adapter": "script",
-  "atsPlatform": "ashby",
-  "boardToken": "contrast-security",
-  "parser": "source-local-current-official-handoff-and-shared-Ashby-scoped-empty-guard",
-  "companyDomain": "contrastsecurity.com",
-  "companyCareerPage": "https://www.contrastsecurity.com/contrast-careers",
-  "officialHomepageUrl": "https://www.contrastsecurity.com/",
-  "jobsBoardUrl": "https://jobs.ashbyhq.com/contrast-security",
-  "boardIdentityVerified": true,
-  "officialBindingVerifiedAt": "2026-10-21T13:52:21.925Z",
-  "verifiedOn": null,
-  "verifiedAt": null,
-  "verifiedPublicJobCount": null,
-  "verifiedIndiaJobCount": null,
-  "verifiedInventoryStatus": "unverified",
-  "verificationDisposition": "diagnostic-current-empty-subboard-not-a-qualified-positive-repair",
-  "zeroResultPolicy": "evidence-required",
-  "sourceScopeComplete": false,
-  "remediationStatus": "diagnostic-scoped-empty-future-positive-extraction-unverified",
-  "backfillMode": "live-parser",
-  "originalModulePath": null,
-  "originalAdapter": null,
-  "originalAtsPlatform": null,
-  "countryFilter": "India",
-  "normalizationProfile": "engineering-default",
-  "paginationStrategy": "current-empty-public-native-board-and-Ashby-single-response-full-recheck",
-  "extractionStrategy": "active-corporate-careers-handoff+exact-Ashby-organization+strict-shared-API-schema+empty-only-qualification",
-  "bindingEvidence": {
-    "verified": true,
-    "checkedAt": "2026-10-21T13:52:21.925Z",
-    "officialURL": "https://www.contrastsecurity.com/",
-    "matchedLinks": [
-      "https://www.contrastsecurity.com/contrast-careers",
-      "https://jobs.ashbyhq.com/contrast-security"
-    ],
-    "bindingMethod": "current-active-corporate-career-native-anchors",
-    "proofs": [
-      {
-        "file": "../artifacts/full-catalog/qualified-ats-021-001/001-contrastsecurity.json",
-        "sha256": "7cd5bee791e93b264d433dbbae14eba5fc9c5fc8ee110464ade510a892be2afe"
-      },
-      {
-        "file": "../artifacts/full-catalog/qualified-ats-021-001/002-contrastsecurity.json",
-        "sha256": "b9e6fa8e2c867d488c96e60116b2dd3618ddd54cc11122697f36b34c3112d5bb"
-      },
-      {
-        "file": "../artifacts/full-catalog/qualified-ats-021-001/003-contrastsecurity.json",
-        "sha256": "f633f6febb057554adc700ebd4f4f2980b3ba660a5db3eb95314f471ad0b4064"
-      }
-    ]
-  },
-  "sourceScopeNotes": "Only the currently empty exact official-bound Ashby subboard is qualified; whole-company and India hiring scope remain unknown. Any new native role fails pending fresh full country/content/date/application qualification. Returned empty array always carries partial coverage evidence, never company-zero or cleanup authorization. No old/source count inheritance.",
-  "verifiedSurfaceSummary": "Current corporate and careers pages actively bind exact Ashby contrast-security; current native identity and both empty surfaces are rechecked on every attempt. Runtime metadata counts remain null."
-},modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json')}
+const PROVIDER_METADATA={
+ source:'contrastsecurity',companyName:'Contrast Security',officialBrandName:'Contrast Security',companyDomain:'contrastsecurity.com',
+ adapter:'script',modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json'),
+ homepageUrl:'https://www.contrastsecurity.com/',companyCareerPage:'https://www.contrastsecurity.com/contrast-careers',
+ atsPlatform:'ashby',boardToken:'contrast-security',jobsBoardUrl:'https://jobs.ashbyhq.com/contrast-security',officialHomepageUrl:'https://www.contrastsecurity.com/',countryFilter:'India',parser:'custom-script',normalizationProfile:'engineering-default',
+ authoritativeCurrentPublication:true,backfillMode:'live-parser',scraperTimeoutMs:180000,
+ paginationStrategy:'paired-current-own-native-unfiltered-listed-collection',
+ extractionStrategy:'current-own-publisher-and-direct-unfiltered-handoff+separate-filtered-navigation+native-board-literal-state+documented-public-feed+typed-primary-and-secondary-foreign-workplaces+configured-India-projection',
+ verifiedOn:null,verifiedPublicJobCount:null,verifiedGlobalJobCount:null,verifiedIndiaJobCount:null,
+ sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+ verifiedSurfaceSummary:'Current own publisher Contrast Security directly declares this exact Contrast Security source native account. Original unfiltered public state and officially documented anonymous GET must agree on every listed native identity, title, workplace, publisher, publication and same-role handoff in both observations. Only the configured typed-India collection projection can qualify as empty when every known primary and secondary workplace is explicitly foreign. No page, build, CSS, ID or roster pins; no publisher JavaScript execution. Whole company and India facet totals, legal employing entity, browser/application activation, backend and cleanup remain unverified.'
+}
 export default PROVIDER_METADATA
 export{PROVIDER_METADATA}

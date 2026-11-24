@@ -307,20 +307,21 @@ test('opaque caller abort during selected closing preserves reason and stops fol
   assert.equal(reached,true);assert.equal(cancelled,true);assert.equal(seen.at(-1).url,rolePackets[0].url)
 })
 
-const historicalCorporate=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/fresh-official-pages.json.gz',import.meta.url))))[0]
-for(const entry of ['factory','run'])test('current '+entry+' route preserves full native criteria and26 physical replay reads',async()=>{
-  // Separate-phase routing replay: genuine historical corporate200, actual
-  // current receipt1 body-unread403 metadata, current native19 packets and a
-  // synthetic session/closing reuse. No current live phase is manufactured.
+const corporateURL='https://www.purplle.com/careers'
+for(const entry of ['factory','run'])test('current '+entry+' corporate247 route preserves full native criteria and25 physical replay reads',async()=>{
+  // Separate-phase routing replay: simulated body-unread corporate247, saved
+  // native19 packets and synthetic session/closing reuse. This exercises the
+  // independent-channel outage route, never a refused LinkedIn origin.
   const seen=[],nativeSeen=[],native=fullReplay({seen:nativeSeen})
   const options={now:'2026-11-15T05:06:30Z',requestIntervalMs:0,fetchImpl:async(url,init)=>{
     seen.push(url)
-    if(url===historicalCorporate.url){const response=new Response(historicalCorporate.body,{status:historicalCorporate.status});Object.defineProperty(response,'url',{value:historicalCorporate.finalUrl});return response}
-    if(url==='https://www.linkedin.com/company/purplle-com/'){const response=new Response(null,{status:403});Object.defineProperty(response,'url',{value:url});return response}
+    if(url===corporateURL){const response=new Response('Corporate upstream unavailable',{status:247});Object.defineProperty(response,'url',{value:url});return response}
     return native(url,init)
   }}
   const jobs=entry==='factory'?await createPurplleScraper(options).run():await runCurrent(options)
-  assert.deepEqual(jobs.map(job=>job.jobId),selectedIDs);assert.equal(seen.length,26);assert.equal(nativeSeen.length,24)
+  assert.deepEqual(jobs.map(job=>job.jobId),selectedIDs);assert.equal(seen.length,25);assert.equal(nativeSeen.length,24)
+  assert.equal(seen.includes('https://www.linkedin.com/company/purplle-com/'),false)
+  assert.deepEqual(jobs[0].nativeSourceRecord.nativePublisher.corporateUnavailable,{url:corporateURL,status:247})
   assert.equal(supplement(getSourceDescription(jobs[0]),'Original native JobPosting').workHours,'40 hours per week')
   assert.ok(jobs.every(job=>job.sourceScopeComplete===false&&job.lifecycleCleanupAllowed===false))
 })

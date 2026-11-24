@@ -1,3 +1,4 @@
+import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
 import {isDeepStrictEqual,types} from 'node:util'
@@ -77,16 +78,28 @@ function representation(page,label){
  need(Buffer.isBuffer(page.bytes)&&typeof page.text==='string'&&Buffer.from(page.text).equals(page.bytes),'Original native UTF8/byte representation changed')
 }
 function staticPin(page,label,referenceLabel=label){
- representation(page,label);const pin=PROFILE.wholeCarriers.find(row=>row.label===referenceLabel)
- // Nov16's complete generic shell changes only the HiBob deployment and
- // runtime/main asset revisions. It still carries no role or application
- // authority; native feed/form data are independently qualified below.
- const currentShell=referenceLabel==='board'&&page.bytes.length===1342&&sha(page.bytes)==='49f0449b6d21924bb2da621f9601ecc6a3cce4f89d575bc49b5a7fdf4f680d89'
- need(currentShell||pin&&page.bytes.length===pin.bytes&&sha(page.bytes)===pin.sha256,'Reviewed native static carrier changed')
+ representation(page,label)
+ if(referenceLabel!=='board')return null // JSON tenant facts are checked semantically below.
+ const raw=readNativeDocument(page.text),nodes=raw.nodes(()=>true),one=(values,name)=>{need(values.length===1,'Native shell '+name+' owner changed');return values[0]},elements=node=>node.children.filter(child=>typeof child!=='string'),root=one(nodes.filter(node=>node.tag==='root'),'root'),html=one(elements(root).filter(node=>node.tag==='html'),'html'),head=one(elements(html).filter(node=>node.tag==='head'),'head'),body=one(elements(html).filter(node=>node.tag==='body'),'body')
+ need(['html','head','body'].every(tag=>nodes.filter(node=>node.tag===tag).length===1)&&![html,head,body].some(node=>node.inert),'Native shell active document changed')
+ const title=one(nodes.filter(node=>node.tag==='title'),'title'),base=one(nodes.filter(node=>node.tag==='base'),'base'),mount=one(nodes.filter(node=>node.tag==='careers-app-root'),'application mount')
+ need(elements(head).includes(title)&&title.raw==='Careers'&&elements(head).includes(base)&&base.attrs.href==='/'&&!base.inert,'Native shell title/base changed')
+ need(elements(body).includes(mount)&&!mount.inert&&Object.keys(mount.attrs).length===0&&mount.children.every(child=>typeof child==='string'&&!child.trim()),'Native shell mount owner changed')
+ const scripts=nodes.filter(node=>node.tag==='script'),programs=[];need(scripts.length===4,'Native shell program inventory changed')
+ let deployment=null
+ for(const [index,node]of scripts.entries()){
+  need(!node.inert&&!node.raw.trim()&&typeof node.attrs.src==='string'&&Object.keys(node.attrs).every(key=>['src','id','defer','type'].includes(key)),'Native shell program owner changed')
+  const match=/^(https:\/\/front[.]hibob[.]com\/master-[a-f0-9]{40})\/(deployment-info[.]js|careers\/(runtime|polyfills|main)[.][a-f0-9]{16}[.]js)$/.exec(node.attrs.src)
+  need(match&&(!deployment||deployment===match[1]),'Native shell declared program publisher/deployment changed');deployment=match[1]
+  need(index===0?match[2]==='deployment-info.js'&&node.attrs.id==='bob-deployment-info'&&Object.hasOwn(node.attrs,'defer'):match[3]===['runtime','polyfills','main'][index-1]&&node.attrs.type==='module','Native shell program declaration changed')
+  programs.push({...node.attrs})
+ }
+ need(!nodes.some(node=>['iframe','frame','frameset','object','embed'].includes(node.tag)||Object.hasOwn(node.attrs,'srcdoc')||Object.keys(node.attrs).some(key=>key.startsWith('on'))),'Native shell delegated owner changed')
+ return{originalHTML:page.text,declaredPrograms:programs,nativeApplicationQualified:false}
 }
-export function readSapiensBoard(page){staticPin(page,'board');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),roleSSRQualified:false}}
+export function readSapiensBoard(page){const shell=staticPin(page,'board');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),roleSSRQualified:false,...shell}}
 export function readSapiensClient(page){staticPin(page,'client');const value=readSapiensStrictJSON(page.text);need(same(value,PROFILE.nativeClient)&&value.companyName===COMPANY&&value.isPublished===true&&value.isBobCareerSite===true,'Own native tenant/company publication changed');return value}
-export function readSapiensLanding(page,id){need(uuid(id),'Invalid native role UUID');staticPin(page,'landing-'+id,'board');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),roleSSRQualified:false,canonicalQualified:false}}
+export function readSapiensLanding(page,id){need(uuid(id),'Invalid native role UUID');const shell=staticPin(page,'landing-'+id,'board');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),roleSSRQualified:false,canonicalQualified:false,...shell}}
 
 const closedNotice=/\b(?:(?:position|role|job|vacancy|opening|posting)\s+(?:(?:is|was|has\s+been)\s+(?:closed|filled|expired|unavailable|no\s+longer\s+(?:available|open))|has\s+expired)|no\s+longer\s+accepting\s+applications|applications\s+(?:for\s+(?:(?:this|the)\s+)?(?:position|role|job|vacancy|opening|posting)\s+)?are\s+closed)\b/i
 // Availability uses the text produced by the already-supported BR envelope
@@ -99,18 +112,19 @@ function nativeDate(value){
  const ms=Date.parse(value);need(Number.isFinite(ms)&&new Date(ms).toISOString().slice(0,19)===value.slice(0,19),'Invalid native publication calendar');return value
 }
 function locations(value,filters){
- need(Array.isArray(value)&&value.length<=2000,'Native postingLocations type/bound changed');const ids=new Set()
+ need(Array.isArray(value)&&value.length<=2000,'Native postingLocations type/bound changed');const ids=new Set(),facetOmissions=[]
  for(const location of value){
   need(exact(location,['sourceType','locationId','name','country','region','city','displayFormat','displayValue','showCity','showRegion']),'Native worksite schema changed')
   need(location.sourceType==='site'&&location.displayFormat==='name'&&positive(location.locationId)&&!ids.has(location.locationId),'Native worksite control/identity changed');ids.add(location.locationId)
   need(['name','country','city','displayValue'].every(key=>string(location[key]))&&(location.region===null||string(location.region))&&typeof location.showCity==='boolean'&&typeof location.showRegion==='boolean','Native worksite value types changed')
-  need(filters.get('sites').get(String(location.locationId))===location.name,'Native worksite site ID/name relationship changed')
+  const facetLabel=filters.get('sites').get(String(location.locationId));need(facetLabel===undefined||facetLabel===location.name,'Native worksite site ID/name relationship changed');if(facetLabel===undefined)facetOmissions.push({locationId:location.locationId,nativeWorksite:location,reason:'secondary-worksite-not-in-current-site-facet'})
   need(location.displayValue===location.name,'Native worksite name display relationship changed')
   // These are current native ID/label relationships, not geographic inference.
   // A worksite may differ from its role's primary site and country. Empty or
   // null native geography remains unknown data; it never establishes India.
   for(const[group,key]of [['countries','country'],['cities','city'],['regions','region']])if(location[key]!==null&&location[key]!=='')need(filters.get(group).get(location[key])===location[key],'Native worksite '+group+' relationship changed')
  }
+ return facetOmissions
 }
 export function readSapiensFeed(page){
  representation(page,'feed');const value=readSapiensStrictJSON(page.text)
@@ -118,31 +132,34 @@ export function readSapiensFeed(page){
  const filters=new Map()
  for(const name of filterNames){const entries=value.filterGroups[name];need(Array.isArray(entries)&&entries.length<=2000,'Native filter group bound changed');const values=new Map();for(const entry of entries){need(exact(entry,['serverId','value'])&&label(entry.serverId)&&label(entry.value)&&!values.has(entry.serverId),'Native filter item schema/identity changed');values.set(entry.serverId,entry.value)}filters.set(name,values)}
  need(Array.isArray(value.jobAdDetails)&&value.jobAdDetails.length<=2000,'Native complete feed bound changed')
- const ids=new Set(),eligible=[],held=[],countryConflicts=[]
+ const ids=new Set(),eligible=[],held=[],countryConflicts=[],worksiteFacetOmissions=[]
  for(const row of value.jobAdDetails){
-  need(exact(row,fields)&&uuid(row.id)&&!ids.has(row.id),'Native24-field row schema/identity changed');ids.add(row.id)
+  need((exact(row,fields)||exact(row,[...fields,'hideLocationInformation']))&&uuid(row.id)&&!ids.has(row.id),'Native24-field row schema/identity changed');ids.add(row.id)
   need(['title','departmentId','department','employmentTypeId','employmentType','site','language','workspaceTypeId','workspaceType'].every(key=>label(row[key]))&&string(row.country)&&positive(row.siteId),'Native row label/ID type changed')
   need(typeof row.description==='string'&&richFields.slice(1).every(key=>row[key]===null||string(row[key])),'Native authored section types changed')
   need(record(row.sectionLabels)&&Object.keys(row.sectionLabels).every(key=>richFields.includes(key)&&string(row.sectionLabels[key])),'Native section-label schema changed')
   need(salaryFields.slice(0,2).every(key=>row[key]===null||typeof row[key]==='number'&&Number.isFinite(row[key])&&row[key]>=0&&!Object.is(row[key],-0))&&salaryFields.slice(2).every(key=>row[key]===null||label(row[key])),'Native salary type changed')
-  nativeDate(row.publishedAt);locations(row.postingLocations,filters)
+  need(!Object.hasOwn(row,'hideLocationInformation')||row.hideLocationInformation===null||typeof row.hideLocationInformation==='boolean','Native location concealment value changed')
+  nativeDate(row.publishedAt);const facetOmissions=locations(row.postingLocations,filters);if(facetOmissions.length)worksiteFacetOmissions.push({id:row.id,omissions:facetOmissions})
   for(const[group,key,text]of [['departments','departmentId','department'],['sites','siteId','site'],['jobTypes','employmentTypeId','employmentType'],['workspaceTypes','workspaceTypeId','workspaceType']])need(filters.get(group).get(String(row[key]))===row[text],'Native row/filter relationship changed')
   const conflicting=row.postingLocations.some(location=>location.country!==row.country)
   if(conflicting)countryConflicts.push({id:row.id,primaryCountry:row.country,postingLocations:structuredClone(row.postingLocations)})
   let reason=null
-  if(row.country!=='India')reason='country-not-qualified-India'
+  if(row.hideLocationInformation===true)reason='publisher-hides-location-information'
+  else if(facetOmissions.length)reason='secondary-worksite-not-in-current-site-facet'
+  else if(row.country!=='India')reason='country-not-qualified-India'
   else if(row.postingLocations.some(location=>location.country!=='India'))reason='missing-or-conflicting-native-worksite-country'
   else if(!substantive(row.description)||richFields.some(key=>row[key]!==null&&!supportedRich(row[key])))reason='unsupported-or-incomplete-native-rich-criteria'
   if(reason)held.push({id:row.id,reason});else eligible.push(row)
  }
- return{value,rows:value.jobAdDetails,eligible,held,countryConflicts,declaredIndiaIds:value.jobAdDetails.filter(row=>row.country==='India').map(row=>row.id)}
+ return{value,rows:value.jobAdDetails,eligible,held,countryConflicts,worksiteFacetOmissions,declaredIndiaIds:value.jobAdDetails.filter(row=>row.country==='India').map(row=>row.id)}
 }
 const wrapped=(value,name)=>{need(exact(value,['value']),'Native '+name+' wrapper changed');return value.value}
 export function readSapiensForm(page,row){
  need(uuid(row?.id),'Unbound native form identity');representation(page,'form-'+row.id);const value=readSapiensStrictJSON(page.text)
  need(exact(value,['metadata','data'])&&same(value.metadata,referenceForm.metadata),'Native generic17 metadata/control definitions changed')
  need(exact(value.data,['jobAd','companyLists','agency','supportedFileTypes'])&&value.data.agency===null&&same(value.data.companyLists,referenceForm.data.companyLists),'Native public form authority/lookup controls changed')
- const job=value.data.jobAd;need(exact(job,Object.keys(referenceForm.data.jobAd))&&job.type==='api'&&job.title===row.title&&job.site===row.site+', '+row.country&&job.languageCode===row.language&&job.employmentType===row.employmentType&&job.workspaceType===row.workspaceType&&same(job.postingLocations,row.postingLocations),'Current native form/feed identity or country relationship changed')
+ const job=value.data.jobAd;need((exact(job,Object.keys(referenceForm.data.jobAd))||exact(job,[...Object.keys(referenceForm.data.jobAd),'hideLocationInformation']))&&Object.hasOwn(job,'hideLocationInformation')===Object.hasOwn(row,'hideLocationInformation')&&job.hideLocationInformation===row.hideLocationInformation&&job.hideLocationInformation!==true&&job.type==='api'&&job.title===row.title&&job.site===row.site+', '+row.country&&job.languageCode===row.language&&job.employmentType===row.employmentType&&job.workspaceType===row.workspaceType&&same(job.postingLocations,row.postingLocations),'Current native form/feed identity or country relationship changed')
  const actual=job.applicationForm;need(exact(actual,Object.keys(referenceIntake))&&positive(actual.id),'Native form ID/schema changed')
  const actualFields=wrapped(actual['/applicationForm/fields'],'fields'),documents=wrapped(actual['/applicationForm/documents'],'documents'),questions=wrapped(actual['/applicationForm/questions'],'questions')
  need(Array.isArray(actualFields)&&actualFields.length===intakePaths.length&&Array.isArray(documents)&&documents.length<=100&&Array.isArray(questions)&&questions.length===0,'Unsupported native intake/question control')
@@ -292,7 +309,7 @@ export async function runCurrentSapiensData(options={}){
   const observation={source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:feed.rows.length,observedVacancyCount:feed.rows.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null}
   attachSourceObservationEvidence(jobs,observation)
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...observation,observedAt,sourceListingComplete:false,lifecycleCleanupAllowed:false,firstParty:false,sourceCorporateBindingQualified:false,formalLegalEmployerQualified:false,currentCSSCoverage:false,clientDependencyCoverage:false,activationVerified:false,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,
-   nativeObservedRecordCount:feed.rows.length,declaredNativeIndiaCount:feed.declaredIndiaIds.length,qualifiedNativeIndiaIds:selected.map(row=>row.id),unhydratedIndiaIds:feed.declaredIndiaIds.filter(id=>!selected.some(row=>row.id===id)),otherObservedIds:feed.rows.filter(row=>row.country!=='India').map(row=>row.id),heldRows:feed.held,nativeCountryConflicts:feed.countryConflicts,
+   nativeObservedRecordCount:feed.rows.length,declaredNativeIndiaCount:feed.declaredIndiaIds.length,qualifiedNativeIndiaIds:selected.map(row=>row.id),unhydratedIndiaIds:feed.declaredIndiaIds.filter(id=>!selected.some(row=>row.id===id)),otherObservedIds:feed.rows.filter(row=>row.country!=='India').map(row=>row.id),heldRows:feed.held,nativeCountryConflicts:feed.countryConflicts,nativeWorksiteFacetOmissions:feed.worksiteFacetOmissions,
    nativeOpeningBoard:board,nativeClosingBoard:closingBoard,nativeClient:client,nativeClosingClient:closingClient,nativeOpeningFeed:feed.value,nativeClosingFeed:closingFeed.value,nativeCandidates:opened,originalResponses:stats.receipts,physicalReads:14,originalDecodedBytes:stats.decodedBytes,limits:stats.limits,allSevenWholeCurrentBodiesClosed:true,allOriginalNativeClosingReconciled:true,applicationInteractions:0,volatileFixtureValuesUsedAsAdmissionPins:false,exampleCountsAndIdsAreNotPermanentConstants:true},configurable:true})
   reader.check();return jobs
  }catch(error){

@@ -36,7 +36,8 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/docs/
+/docs/*
+!docs/social-publishing.md
 !docs/security-operations.md
 !docs/job-verification.md
 !docs/job-verification-notices.md

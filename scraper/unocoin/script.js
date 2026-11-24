@@ -39,9 +39,21 @@ export const createUnocoinScraper = (defaults = {}) => ({
     const collect = async () => {
       const read = async url => {
         controller.signal.throwIfAborted(); surface = url
-        const response = await fetchImpl(url,{signal:controller.signal,redirect:'manual',headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}})
-        controller.signal.throwIfAborted()
-        if(response.url !== url) throw gap('Native final URL changed')
+        let requestUrl=url,response
+        for(let hop=0;hop<2;hop++){
+          response=await fetchImpl(requestUrl,{signal:controller.signal,redirect:'manual',headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}})
+          controller.signal.throwIfAborted()
+          if(response.url!==requestUrl)throw gap('Native final URL changed')
+          if(![301,302,303,307,308].includes(response.status))break
+          const target=new URL(response.headers?.get('location'),requestUrl).href
+          if(url!==FIRST_PARTY_ROOT_URL||requestUrl!==FIRST_PARTY_ROOT_URL||response.status!==308||target!=='https://unocoin.com/in'){
+            void response.body?.cancel?.().catch(()=>{})
+            throw gap('Unreviewed native canonical redirect')
+          }
+          retainedResponses.push({url:requestUrl,finalUrl:response.url,status:response.status,location:target,redirectBodyNotConsumed:true,bodyUnavailable:true,capturedAt:now()})
+          void response.body?.cancel?.().catch(()=>{})
+          requestUrl=target;surface=target
+        }
         let body
         if(response.body?.getReader) {
           const reader = response.body.getReader(), chunks = []; let bytes = 0
@@ -61,7 +73,7 @@ export const createUnocoinScraper = (defaults = {}) => ({
         } else body = await response.text()
         controller.signal.throwIfAborted()
         if(typeof body !== 'string' || Buffer.byteLength(body)>3000000) throw gap('Native body absent or oversized')
-        retainedResponses.push({url,finalUrl:response.url,status:response.status,body,capturedAt:now(),bodySHA256:createHash('sha256').update(body).digest('hex')})
+        retainedResponses.push({url:requestUrl,finalUrl:response.url,status:response.status,body,capturedAt:now(),bodySHA256:createHash('sha256').update(body).digest('hex')})
         if(response.status!==200 || !body.trim()) throw Object.assign(gap('Native HTTP failure or empty body'), {status:response.status})
         const doc = document(body)
         const prune = (node, inherited = false) => {

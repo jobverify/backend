@@ -19,6 +19,12 @@ const REVIEWED_CLIENTS = new Map([
   // bundle. Validate the whole reviewed response, without executing it.
   ['/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-8f29d20962e24ab18283de5299e449c4.js',
     '5315697a3cc04890633705a8994fd6d00f06f24487fe37fb7516b0c95cc1d619'],
+  // The current advertised concatenation retains the complete local department
+  // AND location filter over existing cards, with change handlers on both
+  // selects. Role membership, native page state and full criteria are still
+  // independently reconciled below; this revision supplies no posting dates.
+  ['/wp-content/uploads/siteground-optimizer-assets/siteground-optimizer-combined-js-ecd6c26052a776d86c48b3c935605968.js',
+    'c0a4352fa94d1c6fb8a7cbd0f14333017a1e367d01e4f1903de95b5146ef1ac1'],
 ])
 const hash = value => createHash('sha256').update(value).digest('hex')
 const clean = value => typeof value === 'string' ? decodeNativeEntities(value).replace(/\s+/g, ' ').trim() : ''

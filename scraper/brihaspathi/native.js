@@ -6,6 +6,7 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 import {publicRead,structure,stable,bounded} from '../bizongo/publicRead.js'
 import {projectPublicClient} from './publicClient.js'
 import reviewedPublicClient from './public-client-20261103.js'
+import reviewedCurrentClient from './declared-client-20261121.js'
 
 export const SOURCE='brihaspathi'
 export const COMPANY='Brihaspathi Technologies Limited'
@@ -23,21 +24,34 @@ const timestamp=(value,label)=>{
  return value
 }
 
-export function inspectNativePage(html,client){
- check(typeof html==='string'&&typeof client==='string','page/client must be text')
+function inspectNativeAuthority(html){
+ check(typeof html==='string','page must be text')
  const doc=readNativeDocument(html)
  check(doc.nodes(n=>n.tag==='title').some(n=>/^Brihaspathi technologies limited$/i.test(clean(n.raw)||'')),'official employer title changed')
  const organizations=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json').flatMap(n=>{try{return[JSON.parse(n.raw)]}catch{return[]}})
  check(organizations.some(n=>n['@type']==='Organization'&&n.name===COMPANY&&n.url==='https://brihaspathi.com/'),'official employer organization missing')
- const clientNodes=structure(html).scripts.filter(n=>n.attrs.src===new URL(CLIENT_URL).pathname&&n.executable)
+ const current=sha256(html)===reviewedCurrentClient.documentSha256
+ const clientUrl=current?reviewedCurrentClient.clientUrl:CLIENT_URL
+ const clientNodes=structure(html).scripts.filter(n=>n.attrs.src===new URL(clientUrl).pathname&&n.executable)
  check(clientNodes.length===1,'current executable client delegation missing')
+ check(doc.nodes(n=>n.attrs.id==='vacancies').length===1,'native open roles section missing')
+ return{employer:COMPANY,clientUrl,declaredClientCohort:current?'reviewed-current-20261121':'reviewed-legacy-20261103',expectedClientSha256:current?reviewedCurrentClient.clientSha256:null}
+}
+
+function inspectDeclaredClient(authority,client){
+ check(typeof client==='string','client must be text')
+ const clientSha256=sha256(client)
+ check(!authority.expectedClientSha256||clientSha256===authority.expectedClientSha256,'reviewed current executable client bytes changed; re-review required')
  const publicContract=projectPublicClient(client)
  check(stable(publicContract)===stable(reviewedPublicClient),'reviewed public client contract changed; re-review required')
- check(doc.nodes(n=>n.attrs.id==='vacancies').length===1,'native open roles section missing')
  // The reviewed React client renders API strings as plain text, filters postedBy
  // globally and opens an application modal bound to the numeric posting id.
  // It exposes no full JD or role country/publication/expiry/requisition UI.
- return{employer:COMPANY,clientVerified:true,clientSha256:sha256(client),publicContract,sourceScopeComplete:false}
+ return{...authority,clientVerified:true,clientSha256,publicContract,sourceScopeComplete:false}
+}
+
+export function inspectNativePage(html,client){
+ return inspectDeclaredClient(inspectNativeAuthority(html),client)
 }
 
 const regionNames=new Intl.DisplayNames(['en'],{type:'region',fallback:'none'}),countryCodes=new Map(),countryNames=new Map()
@@ -114,8 +128,10 @@ export async function runNativeBrihaspathi(options={}){
    check(receipt?.status===200&&receipt.finalUrl===url&&receipt.responseIdentity==='validated-public-response','public HTTP response identity is required; bare text cannot qualify native inventory')
    return body
   }
-  const snapshot=async phase=>{
-   const page=inspectNativePage(await get(CAREERS_URL,phase,'html'),await get(CLIENT_URL,phase,'javascript')),payloads=[],parsed=[]
+  const snapshot=async(phase,expectedPage=null)=>{
+   const authority=inspectNativeAuthority(await get(CAREERS_URL,phase,'html'))
+   check(!expectedPage||authority.clientUrl===expectedPage.clientUrl&&authority.declaredClientCohort===expectedPage.declaredClientCohort,'native closing declared client cohort changed')
+   const page=inspectDeclaredClient(authority,await get(authority.clientUrl,phase,'javascript')),payloads=[],parsed=[]
    const parsePage=async(url,expectedPage)=>{const body=await get(url,phase,'json');let payload;try{payload=JSON.parse(body)}catch{check(false,'native JSON invalid')};payloads.push(payload);const current=inspectNativePayload(payload,{expectedPage});parsed.push(current);return current}
    const first=await parsePage(JOBS_API_URL,1)
    for(let page=2;page<=first.pagination.pageCount;page++){
@@ -126,13 +142,13 @@ export async function runNativeBrihaspathi(options={}){
    check(allRecords.length===first.reportedTotal&&new Set(allRecords.map(r=>r.jobId)).size===allRecords.length,'native inventory contains duplicate or missing posting identities')
    return{page,payloads,...first,allRecords,apiPagesEnumerated:parsed.length}
   }
-  const first=await snapshot('initial'),last=await snapshot('closing')
+  const first=await snapshot('initial'),last=await snapshot('closing',first.page)
   check(stable({contract:first.page.publicContract,payloads:first.payloads})===stable({contract:last.page.publicContract,payloads:last.payloads}),'native closing snapshot changed identities, fields, visibility or pagination')
   const complete=first.reportedTotal===0,reasons=complete?[]:[...first.reasons,'native-description-is-line-clamped-without-public-full-criteria-reveal',...(Number.isFinite(maxJobs)?['caller-cap-after-reconciliation']:[])]
   const observations=first.allRecords.map((row,index)=>({...row,kind:'native-active-api-record',publiclyRendered:index<100&&first.records.some(r=>r.jobId===row.jobId),originalDescription:row.jobDescription,descriptionSha256:sha256(row.jobDescription),jobDescription:null,criteriaComplete:false,sourceDetailComplete:false,jobId:row.jobId,postingDate:null,closingDate:null,applicationSubmitted:false}))
   const native={...first,reasons,observations,receipts:publicPages.map(({requestedUrl,sha256,phase})=>({url:requestedUrl,sha256,phase})),verifiedAt,observedNativeRecords:first.records.length,
    fullNativeDescriptionRecords:0,fullNativeHealthyIndiaJobs:0,eligibleFullIndiaJobs:0,closingReconciled:true,declaredBoardComplete:complete,declaredBoardIndiaAbsenceProven:complete,sourceScopeComplete:false,indiaAbsenceProven:false,lifecycleCleanupAllowed:false}
-  const evidence={status:complete?'verified-empty':'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:complete,pagesFetched:publicPages.length,reportedTotal:complete?0:null,indiaFacetCount:complete?0:null,verifiedAt,reason:complete?'declared-active-native-total-zero;all-public-default-filters-and-closing-reconciled':reasons.join(';')}
+  const evidence={status:complete?'verified-empty':'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:publicPages.length,reportedTotal:complete?0:null,indiaFacetCount:complete?0:null,verifiedAt,reason:complete?'declared-active-native-total-zero;all-public-default-filters-and-closing-reconciled':reasons.join(';')}
   if(options.onNativeEvidence)await bounded(()=>options.onNativeEvidence(native),signals)
   await audit({...native,inventoryEvidence:evidence,companyGlobalTotal:null,companyIndiaTotal:null})
   const jobs=attachInventoryEvidence([],evidence);Object.defineProperty(jobs,'nativeInventoryEvidence',{value:native,enumerable:false})

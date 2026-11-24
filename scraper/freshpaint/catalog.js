@@ -1,67 +1,17 @@
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const PROVIDER_METADATA = { ...{
-  "source": "freshpaint",
-  "companyName": "Freshpaint",
-  "adapter": "publicAts",
-  "catalogOverride": true,
-  "atsPlatform": "ashby",
-  "boardToken": "freshpaint",
-  "companyCareerPage": "https://www.freshpaint.io/careers",
-  "jobsBoardUrl": "https://jobs.ashbyhq.com/freshpaint",
-  "parser": "shared-native-public-ATS",
-  "countryFilter": "India",
-  "normalizationProfile": "engineering-default",
-  "paginationStrategy": "complete-single-native-API-response;native-schema-and-explicit-total-guards;reject-truncation",
-  "extractionStrategy": "native-India-location-evidence;full-native-description-and-publication-fields;no-application-requests",
-  "backfillMode": "live-shared-adapter",
-  "originalAdapter": "script",
-  "originalAtsPlatform": "workbook-exact-name-sentinel",
-  "originalModulePath": "../workbookbatch08/failClosedSentinel.js",
-  "zeroResultPolicy": "coverage-gap",
-  "sourceScopeComplete": false,
-  "lifecycleCleanupAllowed": false,
-  "bindingEvidence": {
-    "verified": true,
-    "verifiedAt": "2026-10-22T21:42:48.888Z",
-    "matchedLinks": [
-      "https://jobs.ashbyhq.com/freshpaint/embed"
-    ],
-    "officialCareerPage": "https://www.freshpaint.io/careers",
-    "bindingSurface": "https://www.freshpaint.io/careers",
-    "handoffType": "official-HTML-link",
-    "bindingScope": "current-company-advertised-native-board;whole-employer-and-location-scope-unresolved",
-    "scriptsExecuted": false,
-    "applicationsOpened": false
-  },
-  "verifiedOn": null,
-  "verifiedAt": null,
-  "verifiedPublicJobCount": null,
-  "verifiedIndiaJobCount": null,
-  "verifiedInventoryStatus": "unverified",
-  "runtimeQualification": "actual-isolated-native-API-and-loopback-zero-preservation-status-history-public-predicate-proof",
-  "remediationStatus": "live-native-API-connected;no-India-matches;whole-employer-and-location-scope-unresolved",
-  "sourceResearchObservedAt": "2026-10-22T21:42:48.302Z",
-  "sourceResearchNativeRecords": 4,
-  "sourceResearchIndiaLocationMatches": 0,
-  "verifiedSurfaceSummary": "Current official careers official-HTML-link identifies this native board. Actual restricted-worker GET completed 2026-10-22T21:50:45.502Z: 4 complete native records;0 India matches/0eligible. Native records do not establish explicit India eligibility. Loopback zero handling preserves prior inventory and complete-check clock/counts;0new realjobs/0visible under either setting. Full employer/location scope and current production publication remain unknown;not verified companyzero.",
-  "sourceScopeNotes": "Read the native public complete single-response inventory, including full descriptions, source publication timestamps, source application links and available location fields. Ashby validates apiVersion1, role/board identities and structured primary/secondary countries; Greenhouse reconciles meta.total. Generic remote/global scope is unresolved and cannot supply India eligibility. Explicit empty arrays remain observed board emptiness, not company-wide zero. Whole-employer scope and lifecycle cleanup stay disabled. Large JSON audit capture is bounded separately from HTML transport. No application/login/consent paths are requested.",
-  "verificationDisposition": "observed-native-records-without-India-matches;not-verified-company-zero",
-  "sourceLatestLiveAttemptedAt": "2026-10-22T21:50:45.011Z",
-  "sourceLatestLiveCompletedAt": "2026-10-22T21:50:45.502Z",
-  "sourceLatestLiveOutcome": "unverified-zero",
-  "sourceLatestLiveObservedRecords": 4,
-  "sourceLatestLiveIndiaJobs": 0,
-  "sourceLatestLiveEligibleJobs": 0,
-  "sourceLatestLiveNativeSingleResponseComplete": true,
-  "sourceLatestLiveHTTPStatus": 200,
-  "sourceLatestLiveNativeEmptyArray": false,
-  "localPersistenceNewRealJobsSaved": 0,
-  "localPreservationPriorJobControls": 1,
-  "localVisibilityExperiencedEnabled": 0,
-  "localVisibilityExperiencedDisabled": 0,
-  "sourceNativeObservationCompletedAt": "2026-10-22T21:50:45.502Z"
-}, modulePath: path.join(currentDir, 'script.js'), dryRunFile: path.join(currentDir, 'jobs.json') }
+import {fileURLToPath} from 'node:url'
+const currentDir=path.dirname(fileURLToPath(import.meta.url))
+const PROVIDER_METADATA={
+ source:'freshpaint',companyName:'Freshpaint',officialBrandName:'Freshpaint',companyDomain:'freshpaint.io',
+ adapter:'script',modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json'),
+ homepageUrl:'https://www.freshpaint.io/',companyCareerPage:'https://www.freshpaint.io/careers',
+ atsPlatform:'own-declared-native-ashby-v1-connected-embed-public-board',countryFilter:'India',parser:'custom-script',normalizationProfile:'engineering-default',
+ authoritativeCurrentPublication:true,backfillMode:'live-parser',scraperTimeoutMs:180000,
+ paginationStrategy:'paired-current-own-connected-v1-client-consumer-and-native-unfiltered-listed-collection',
+ extractionStrategy:'current-own-canonical-branded-head-Organization-WebSite+scoped-page-metadata+declared-v1-connected-client-consumer+native-board-literal-state+documented-public-feed+typed-primary-and-secondary-foreign-workplaces+configured-India-projection',
+ verifiedOn:null,verifiedPublicJobCount:null,verifiedGlobalJobCount:null,verifiedIndiaJobCount:null,
+ sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+ verifiedSurfaceSummary:'Current own publisher Freshpaint declares a native embed client whose connected iframe consumer must construct this exact source account board. Original unfiltered public state and officially documented anonymous GET must agree on every listed native identity, title, workplace, publisher, publication and same-role handoff in both observations. Only the configured typed-India collection projection can qualify as empty when every known primary and secondary workplace is explicitly foreign. No page, build, CSS, ID or roster pins; no publisher JavaScript execution. Whole company and India facet totals, legal employing entity, browser/application activation, backend and cleanup remain unverified.'
+}
 export default PROVIDER_METADATA
-export { PROVIDER_METADATA }
+export{PROVIDER_METADATA}

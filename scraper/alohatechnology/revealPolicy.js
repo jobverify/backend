@@ -101,10 +101,17 @@ export function projectRevealPolicy(html,client){
  // handlers, without executing JavaScript or changing any source text leaf.
  for(const n of s.nodes)if(hasClass(n,'reveal')&&!hasClass(n,'in'))n.attrs.class+=' in'
  for(const card of cards)if(!hasClass(card,'open'))card.attrs.class+=' open'
- const css=s.nodes.filter(n=>n.tag==='style').map(n=>n.raw||'').join('\n'),geometry=[]
+ const css=s.nodes.filter(n=>n.tag==='style').map(n=>n.raw||'').join('\n'),geometry=[],roleDecorations=[]
  for(const rule of rules(css)){
-  const selected=declarations(rule.body).filter(([key])=>flow.test(key));if(!selected.length)continue
+  const wholeDeclarations=declarations(rule.body),selected=wholeDeclarations.filter(([key])=>flow.test(key))
   for(const selector of split(rule.selector,',')){
+   // These two native checkmark carriers are compared in full against a
+   // finite reviewed profile, including content, backgrounds and geometry.
+   // No pseudo text is added to, or substituted for, authored role criteria.
+   if(['.role-body-inner li::before','.role-body-inner li:hover::before'].includes(selector.trim())){
+    roleDecorations.push({selector:selector.trim(),context:rule.context,declarations:wholeDeclarations});continue
+   }
+   if(!selected.length)continue
    const tokens=selector.match(/[.#][\w-]+/g)||[],present=token=>[...critical].some(n=>token[0]==='.'?hasClass(n,token.slice(1)):n.attrs.id===token.slice(1))
    const alternatives=/:(?:not|is|where|has)\(/.test(selector)
    if(tokens.length&&!(alternatives?tokens.some(present):tokens.every(present)))continue
@@ -124,5 +131,5 @@ export function projectRevealPolicy(html,client){
  const unique=values=>[...new Map(values.map(v=>[stable(v),v])).values()]
  const bindingContext=runtimeBindings(ast)
  if(bindingContext.globalMutations.length||bindingContext.globalBindings.some(b=>b.name==='IntersectionObserver'))errors.push('public-reveal-runtime-binding-mutated')
- return{scrollReveal:functions[0]?fingerprint(functions[0]):null,scrollStartup:calls[0]?fingerprint(calls[0]):null,clickReveal:handlers[0]||null,runtimeBindingContext:bindingContext,criticalFlow:unique(geometry),criticalInlineFlow:unique(inlines),errors}
+ return{scrollReveal:functions[0]?fingerprint(functions[0]):null,scrollStartup:calls[0]?fingerprint(calls[0]):null,clickReveal:handlers[0]||null,runtimeBindingContext:bindingContext,criticalFlow:unique(geometry),criticalInlineFlow:unique(inlines),...(roleDecorations.length?{criticalRoleDecorations:roleDecorations}:{}),errors}
 }

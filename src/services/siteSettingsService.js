@@ -3,6 +3,7 @@ import SiteSettings from "../models/SiteSettings.js";
 const publicSettings = (settings) => ({
   billingEnabled: settings?.billingEnabled === true,
   experiencedJobsEnabled: settings?.experiencedJobsEnabled !== false,
+  assistantEnabled: settings?.assistantEnabled === true,
 });
 
 let pendingRead;

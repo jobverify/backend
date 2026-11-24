@@ -22,6 +22,34 @@
           "title": "Careers | Contlo"
         }
       ]
+    },
+    {
+      "reviewedOn": "2026-11-20",
+      "reviewSummary": "Complete coherent corporate pair changes only the pinned build/style references and docs/help navigation. The current navigation executable is byte-identical to the prior program after replacing https://developers.contlo.com with /help#developers and https://docs.contlo.com with /help. The active Careers link, literal contlo workspace embed, full native criteria and application executables retain their existing semantic checks and profiles.",
+      "reviewedNavigation": {
+        "url": "https://contlo.com/_next/static/chunks/0dz-cb6-nmcnl.js",
+        "sha256": "7d9037e50eec8ed285ff7e66bfc5f80ea38a4da81bb0ba983c02329f9132a8bb"
+      },
+      "reviewedStylesheet": {
+        "url": "https://contlo.com/_next/static/chunks/3om7l0-rg02r5.css",
+        "sha256": "6b0598b5955c694c387235f43e4925533e5b782e993b7510bd1087b56e85acb1"
+      },
+      "corporate": [
+        {
+          "url": "https://contlo.com/",
+          "bytes": 298303,
+          "sha256": "eba2c3f1a379c6128682be38ba9e0dfc1a315d437a7873690333d57eb86cf00c",
+          "title": "Contlo – Autonomous marketing for e-commerce",
+          "status": 200
+        },
+        {
+          "url": "https://contlo.com/careers",
+          "bytes": 79671,
+          "sha256": "2f251c6e50f88ca34a4f718859406536b2b678fab14821eca9518a6885d96345",
+          "title": "Careers | Contlo",
+          "status": 200
+        }
+      ]
     }
   ],
   "corporate": [
@@ -439,7 +467,135 @@
         "3"
       ],
       "wholeWireModelSHA256": "9b3de352ef70527f88926c7193079e1e84d6f29c2ab985e62adcbdee2a5a66d1"
-    }
+    },
+    "bodyVersions": [
+      {
+        "reviewedOn": "2026-11-20",
+        "reviewSummary": "The entire current native role document differs only by removal of the exact final Cloudflare analytics declaration and its trailing newline. Native criteria, schema, application form, all remaining executable declarations and complete Flight models are identical to the earlier captured document.",
+        "bodyShapeSHA256": "77cbdcd9a59f73e474a022e92eb7837d0b602357a46711084b1f0d85bd27933e",
+        "programs": [
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/1255-31f47ebe9b12c7e5.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/main-app-05a5fe279f4f6e20.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/5854-747c7b525fb0ab5b.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/8918-dd2b8fa021ee73da.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/app/layout-1d4d0c52508b09a2.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/2870-dd7a1a8f9d59f36b.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/app/w/%5Bws%5D/apply/%5Btoken%5D/page-36e14ee7923b9f26.js",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {},
+            "sha256": "ee6bb81f4e9fc030a39a7c71affc4d1f2b900baa4b4c7af83361388d7c39599b"
+          },
+          {
+            "attrs": {
+              "src": "/_next/static/chunks/webpack-4304abfd6a771c04.js",
+              "id": "_R_",
+              "async": ""
+            }
+          },
+          {
+            "attrs": {},
+            "sha256": "93268a0726ec1efaa676ae5171f84267e72b7c3d215b6190794cb4069d5f58d8"
+          },
+          {
+            "attrs": {},
+            "sha256": "2dcb2e50c883929aebb7a64a7a22cfe2260d856a3c36a6926c082da19c552b7b"
+          },
+          {
+            "attrs": {},
+            "sha256": "8f1a66bb3132bd59867f5baedeb2e755bfbe69ce10d24878f5514897051fe90d"
+          },
+          {
+            "attrs": {},
+            "sha256": "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          },
+          {
+            "attrs": {},
+            "nativeLiteralFlightData": true
+          }
+        ]
+      }
+    ]
   },
   "payloadKeys": [
     "careersUrl",

@@ -208,23 +208,24 @@ test('both complete genuinely observed cache/session/nonce/component representat
  assert.equal(jobs.length,1);assert.equal(calls.length,24);assert.equal(jobs.nativeCollectionEvidence.observedRecordCount,12)
 })
 
-test('corporate cache stylesheet timestamps remain bound to all five declarations and Last-Modified',async()=>{
- await reject(p=>{if(p.kind==='corporate')setBody(p,b=>b.replace(/wpr_t=(\d{10})/,(_,v)=>'wpr_t='+(Number(v)+1)))})
- await reject(p=>{if(p.kind==='corporate')p.headers['last-modified']=new Date(Date.parse(p.headers['last-modified'])+1000).toUTCString()})
+test('corporate cache stylesheet timestamps and Last-Modified are provenance',async()=>{
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')setBody(p,b=>b.replace(/wpr_t=(\d{10})/,(_,v)=>'wpr_t='+(Number(v)+1)))}})).jobs.length,1)
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')p.headers['last-modified']=new Date(Date.parse(p.headers['last-modified'])+1000).toUTCString()}})).jobs.length,1)
 })
 
-test('corporate cache comment is limited to the exact native statistics/header coupling',async()=>{
- await reject(p=>{if(p.kind==='corporate')p.headers['cache-control']='max-age=1, must-revalidate'})
- await reject(p=>{if(p.kind==='corporate')setBody(p,b=>b.replace(/(<!--\n\tgenerated)/,'<!-- unreviewed condition -->$1'))})
+test('corporate cache comments are provenance while new authored hiring conditions hold',async()=>{
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')p.headers['cache-control']='max-age=1, must-revalidate'}})).jobs.length,1)
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')setBody(p,b=>b.replace(/(<!--\n\tgenerated)/,'<!-- unreviewed condition -->$1'))}})).jobs.length,1)
  await reject(p=>{if(p.kind==='corporate')setBody(p,b=>b+'<p>Applicants must hold an additional certification.</p>')})
 })
 
-test('corporate generated background UUIDs cannot acquire an extra or mismatched carrier',async()=>{
+test('corporate decorative background UUID and image carriers are provenance',async()=>{
  const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url))),slot=profile.corporate.variableSlots[0]
- await reject(p=>{if(p.kind==='corporate')setBody(p,b=>{const match=b.match(new RegExp('var\\(--wpr-bg-([a-f0-9-]+)\\)'));assert.ok(match);return b.replace(match[0],'var(--wpr-bg-00000000-0000-4000-8000-000000000000)')})})
- await reject(p=>{if(p.kind==='corporate')setBody(p,b=>{const hash=b.match(new RegExp('var\\(--wpr-bg-([a-f0-9-]+)\\)'))?.[1];assert.ok(hash);return b+'<!--'+hash+'-->'})})
- await reject(p=>{if(p.kind==='corporate')setBody(p,b=>{assert.ok(b.includes(slot.url));return b.replace(slot.url,slot.url+'?unreviewed-image=1')})})
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')setBody(p,b=>{const match=b.match(new RegExp('var\\(--wpr-bg-([a-f0-9-]+)\\)'));assert.ok(match);return b.replace(match[0],'var(--wpr-bg-00000000-0000-4000-8000-000000000000)')})}})).jobs.length,1)
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')setBody(p,b=>{const hash=b.match(new RegExp('var\\(--wpr-bg-([a-f0-9-]+)\\)'))?.[1];assert.ok(hash);return b+'<!--'+hash+'-->'})}})).jobs.length,1)
+ assert.equal((await replayCurrentHiver({change:p=>{if(p.kind==='corporate')setBody(p,b=>{assert.ok(b.includes(slot.url));return b.replace(slot.url,slot.url+'?unreviewed-image=1')})}})).jobs.length,1)
 })
+
 
 for(const kind of ['board','role'])test('passive '+kind+' image scope and all anonymous query carriers must agree',async()=>{
  await reject(p=>{if(p.kind===kind)setBody(p,b=>b.replace('/pd2uomwny6htdxkrsq18ntuki8ck','/another-native-object'))})

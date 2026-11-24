@@ -32,6 +32,30 @@
       "browserEquivalenceComplete": false,
       "sourceScopeComplete": false,
       "lifecycleCleanupAllowed": false
+    },
+    {
+      "reviewedAt": "2026-11-20T18:41:58.834Z",
+      "main": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/main.6ea280c0f662cb2a.desktop.js",
+        "bytes": 970418,
+        "sha256": "158cd7f3845178c9e76b314d584043542c14d42f23101003ce06d28bc726fb3f"
+      },
+      "routeChunks": [
+        {
+          "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/47863.99bc7c854dfff997.desktop.js",
+          "bytes": 1144,
+          "sha256": "c3eba6f3cf781358f753e629b1e5f4a65aa593844b8fe4a655f19a0f03498f42"
+        }
+      ],
+      "chunk": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/75004.e532da74aa920908.desktop.js",
+        "bytes": 37582,
+        "sha256": "cfb0500408deee6115ecea60fd6321c55a8fbf1caa14a8783daf7f3ed7ed49bd"
+      },
+      "proof": "Current own career/job-opening document declares the complete main. Its lexical Jobs route component resolves through the registered pages-Jobs bridge module20923 and its exported nested Jobs loader to module34905. The complete Jobs client declares the same exact amberstudent.keka.com tenant, identifier228f83f5-48b3-474a-b753-4fce2be7524f, GET active-array reader, native id/title/location fields and per-role jobdetails link. Current full descriptions and publishedOn instants are retained independently from the original native active array, paired at closing. Current UI also fetches department hierarchy for grouping; no browser/dependency/render equivalence, India total, company completeness or cleanup permission is asserted.",
+      "browserEquivalenceComplete": false,
+      "sourceScopeComplete": false,
+      "lifecycleCleanupAllowed": false
     }
   ]
 }

@@ -7,9 +7,9 @@
       "sha256": "87254f78c853f4f89c7d231c3512104c5a51bf8bc4957c9590e49d0dcdcdafd6"
     }
   ],
-  "clientUrl": "https://redhealth.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
-  "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
-  "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+  "clientUrl": "https://redhealth.darwinbox.in/ms/candidatev2/main.aad4e9f12624d60f.js",
+  "clientSha256": "7d18a53b8cde72423e953eee67317dd245113c4ed0078dbfa65376d04354cfe1",
+  "rendererSha256": "0b8f0c170d8e77ad96a38b379825cdb70ceff4f6623432800603e601cf782c26",
   "schemas": {
     "company": {
       "$": [
@@ -218,5 +218,12 @@
         "from"
       ]
     }
-  }
+  },
+  "previousReleases": [
+    {
+      "clientUrl": "https://redhealth.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
+      "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+      "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7"
+    }
+  ]
 }

@@ -2,13 +2,15 @@ import {readFileSync} from 'node:fs'
 import {createHash} from 'node:crypto'
 import {isDeepStrictEqual} from 'node:util'
 import {setTimeout as delay} from 'node:timers/promises'
-import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
+import {readNativeDocument,activeHead,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readLiteralModel} from '../../scraper-support/native-sources/literalModel.js'
 import {readOriginalNativeCriteria} from '../../scraper-support/native-sources/currentNativeCriteria20261106.js'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
+import {parse} from 'acorn'
+import {clientScriptDeclarations} from '../../scraper-support/utils/reviewedClientProgram.js'
 
 const profile=JSON.parse(readFileSync(new URL('./reviewedNative20261117.json',import.meta.url)))
 const HOME='https://fireflies.ai/',BOARD=profile.boardURL,API=profile.apiURL,sha=value=>createHash('sha256').update(value).digest('hex')
@@ -36,9 +38,9 @@ function reader(options){
  if(!Number.isSafeInteger(sourceMs)||sourceMs<1||sourceMs>180000||!Number.isSafeInteger(requestMs)||requestMs<1||requestMs>15000)throw RangeError('Fireflies native invalid deadline')
  const controller=new AbortController(),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
  const began=performance.now(),timer=setTimeout(()=>controller.abort(new DOMException('Fireflies native source deadline exceeded','TimeoutError')),sourceMs)
- const receipts=[],admittedRoles=new Set();let total=0,nextStart=0
+ const receipts=[],admittedRoles=new Set(),declaredClients=new Set(profile.clients.map(c=>c.url));let total=0,nextStart=0
  const check=()=>{options.signal?.throwIfAborted();if(performance.now()-began>=sourceMs&&!controller.signal.aborted)controller.abort(new DOMException('Fireflies native source deadline exceeded','TimeoutError'));signal.throwIfAborted()}
- return{check,receipts,allowRole(id){need(extID(id)&&admittedRoles.size<16,'invalid/excessive current native role admission');admittedRoles.add(id)},stats:()=>({requests:receipts.length,decodedBytes:total,sourceTimeoutMs:sourceMs,requestTimeoutMs:requestMs}),close:()=>{clearTimeout(timer);controller.abort()},
+ return{check,receipts,allowClient(url){need(/^https:\/\/static\.gem\.com\/scripts\/jobBoards\.[A-Za-z0-9_-]+\.v2\.min\.js$/.test(url),'unbound current Gem board module');declaredClients.add(url)},allowRole(id){need(extID(id)&&admittedRoles.size<16,'invalid/excessive current native role admission');admittedRoles.add(id)},stats:()=>({requests:receipts.length,decodedBytes:total,sourceTimeoutMs:sourceMs,requestTimeoutMs:requestMs}),close:()=>{clearTimeout(timer);controller.abort()},
   async read(url,query){
    check();need(receipts.length<72,'physical read limit exceeded')
    if(nextStart>performance.now())await delay(nextStart-performance.now(),undefined,{signal})
@@ -46,7 +48,7 @@ function reader(options){
    const requestBody=query?JSON.stringify(query):null
    const currentQueries=[profile.list.request,...[...admittedRoles].map(detailRequest)]
    const rolePages=[...admittedRoles].flatMap(id=>[BOARD+'/'+id,BOARD+'/'+id+'/application'])
-   need(query?url===API&&currentQueries.some(q=>JSON.stringify(q)===requestBody):[HOME,BOARD,...profile.clients.map(c=>c.url),...rolePages].includes(url),'unreviewed public read admission')
+   need(query?url===API&&currentQueries.some(q=>JSON.stringify(q)===requestBody):[HOME,BOARD,...declaredClients,...rolePages].includes(url),'unreviewed public read admission')
    need(!requestBody||Buffer.byteLength(requestBody)<=8192,'excessive native query body')
    const deadline=new AbortController(),requestSignal=AbortSignal.any([signal,deadline.signal]),start=performance.now()
    const requestTimer=setTimeout(()=>deadline.abort(new DOMException('Fireflies native read deadline exceeded','TimeoutError')),requestMs)
@@ -89,7 +91,13 @@ function home(html){
  need(doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'&&n.attrs.href==='https://fireflies.ai').length===1,'employer canonical changed')
  need(doc.nodes(n=>n.tag==='a'&&n.attrs.href===BOARD&&doc.text(n)==='Careers').length>0,'employer native board handoff changed')
 }
-function board(html){const doc=readNativeDocument(html);need(activeHead(html).titles[0]==='Fireflies Careers','native board title changed');need(doc.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src===profile.clients[0].url).length===1,'native current client declaration changed')}
+function board(html){
+ const doc=readNativeDocument(html),bases=doc.nodes(node=>node.tag==='base')
+ const modules=clientScriptDeclarations(html).filter(node=>node.attrs.type==='module')
+ need((html.match(/<base(?=[\t\n\f\r />])/gi)??[]).length===1&&bases.length===1&&JSON.stringify(bases[0].attrs)==='{"href":"/"}'&&JSON.stringify(activeHead(html).titles)==='["Fireflies Careers"]','native board title or effective base changed')
+ need(modules.length===1&&/^https:\/\/static\.gem\.com\/scripts\/jobBoards\.[A-Za-z0-9_-]+\.v2\.min\.js$/.test(modules[0].attrs.src??''),'native current client declaration changed')
+ return modules[0].attrs.src
+}
 function nativeJSON(response){
  readLiteralModel(response.body)
  const model=JSON.parse(response.body)
@@ -152,28 +160,52 @@ function detail(model,row){
  if(a.demographicSurvey!==null){keys(a.demographicSurvey,'extId surveyType questions','demographic survey');text(a.demographicSurvey.extId,'survey identity');text(a.demographicSurvey.surveyType,'survey type');questions(a.demographicSurvey.questions,true)}
  return d
 }
-function publicCarrier(html,d){
- const doc=readNativeDocument(html),root=doc.nodes(n=>n.tag==='root')[0],head=activeHead(html)
- need(head.titles.length===1&&head.titles[0]===d.title,'public role title differs')
- const one=key=>{const matches=head.metas.filter(m=>(m.name??m.property)===key);need(matches.length===1,'ambiguous public role metadata '+key);return matches[0].content}
- for(const k of ['og:title','twitter:title','apple-mobile-web-app-title','application-name'])need(one(k)===d.title,'public role metadata title differs')
- need(one('og:url')===BOARD+'/'+d.extId,'public role metadata native URL differs')
- const description=one('description');need(typeof description==='string'&&description.length>=300&&description.length<=256*1024&&one('og:description')===description&&one('twitter:description')===description,'public role metadata criteria unavailable')
- const walk=node=>{
-  if(typeof node==='string')return
-  if(Object.hasOwn(node.attrs,'nonce'))node.attrs.nonce='TECHNICAL_NONCE'
-  if(node.tag==='title')node.raw='NATIVE_ROLE_TITLE'
-  if(node.tag==='meta'){
-   const key=node.attrs.name??node.attrs.property
-   if(key==='csp-nonce')node.attrs.content='TECHNICAL_NONCE'
-   if(['description','og:description','twitter:description'].includes(key))node.attrs.content='NATIVE_ROLE_CRITERIA'
-   if(['og:title','twitter:title','apple-mobile-web-app-title','application-name'].includes(key))node.attrs.content='NATIVE_ROLE_TITLE'
-   if(key==='og:url')node.attrs.content='NATIVE_ROLE_URL'
-  }
-  node.children.forEach(walk)
- };walk(root)
- need(sha(JSON.stringify(root))===profile.publicCarrierSHA256,'complete published role/application carrier changed')
- return {head:{titles:head.titles,metas:head.metas.filter(m=>(m.name??m.property)!=='csp-nonce')},nativeMetadataCriteria:description,carrierSHA256:profile.publicCarrierSHA256}
+function publicCarrier(html,d,declaredClient){
+ const doc=readNativeDocument(html),head=activeHead(html)
+ const roleNeed=(ok,message)=>{if(!ok)throw firstPartyFailure('firefliesai','Fireflies native '+message,{nativeAuthorityFailure:true,nativeCarrierRoleConflict:true})}
+ const space=value=>value.replace(/\s+/gu,' ').trim()
+ const canonical=value=>space(value.normalize('NFC').replace(/\u2022/g,' ')).toLowerCase()
+ // Preserve the authored adjacency around inline elements. The generic tree
+ // reader separates every node, which invents spaces before inline punctuation.
+ const blocks=new Set(['root','address','article','aside','blockquote','br','dd','details','div','dl','dt','fieldset','figcaption','figure','footer','form','h1','h2','h3','h4','h5','h6','header','hr','li','main','nav','ol','p','pre','section','summary','table','tbody','td','th','thead','tr','ul'])
+ const plainNode=node=>{
+  if(typeof node==='string')return decodeNativeEntities(node)
+  if(node.inert||node.tag==='script')return ''
+  const content=node.children.map(plainNode).join('')
+  return blocks.has(node.tag)?' '+content+' ':content
+ }
+ const plain=value=>{const document=readNativeDocument(value);return plainNode(document.nodes(n=>n.tag==='root')[0])}
+ roleNeed(head.titles.length===1&&head.titles[0]===d.title,'public role title differs')
+ const one=key=>{const matches=head.metas.filter(m=>(m.name??m.property)===key);roleNeed(matches.length===1,'ambiguous public role metadata '+key);return matches[0].content}
+ for(const k of ['og:title','twitter:title','apple-mobile-web-app-title','application-name'])roleNeed(one(k)===d.title,'public role metadata title differs')
+ roleNeed(one('og:url')===BOARD+'/'+d.extId,'public role metadata native URL differs')
+ const description=one('description')
+ roleNeed(typeof description==='string'&&description.length>=300&&description.length<=256*1024&&one('og:description')===description&&one('twitter:description')===description,'public role metadata criteria unavailable')
+ try{roleNeed(board(html.replace(/<title>[\s\S]*?<\/title>/i,'<title>Fireflies Careers</title>'))===declaredClient,'public role current client declaration differs')}
+ catch(error){if(!error.nativeAuthorityFailure)throw error;roleNeed(false,'public role board authority differs: '+error.message)}
+
+ // Gem's metadata is a plain-text projection of this current API description.
+ // Its link annotations and bullet formatting carry no additional criteria.
+ // Compare the live fields to one another, never to a saved page or text digest.
+ const nativeDescription=readNativeDocument(d.descriptionHtml)
+ let metadataText=space(description)
+ for(const link of nativeDescription.nodes(n=>n.tag==='a'&&n.attrs.href)){
+  const label=space(plainNode(link))
+  if(label)metadataText=metadataText.replaceAll(label+' ('+link.attrs.href+')',label)
+ }
+ const nativeText=canonical(plainNode(nativeDescription.nodes(n=>n.tag==='root')[0]))
+ roleNeed(canonical(metadataText)===nativeText,'full public role metadata criteria differ from own native API')
+
+ // Unknown authored conditions remain an unsupported native contract. Styling,
+ // incidental metadata and element/attribute ordering are not such conditions.
+ need(doc.nodes(n=>n.tag==='script'&&/^application\/ld\+json$/i.test(n.attrs.type??'')).length===0,'unreviewed published structured role criteria')
+ const fullNativeText=canonical([d.jobPostSectionHtml.introHtml,d.descriptionHtml,d.compensationHtml,d.jobPostSectionHtml.outroHtml].filter(Boolean).map(plain).join(' '))
+ for(const node of doc.nodes(n=>['p','li','h1','h2','h3','h4','h5','h6','label','legend','dd','dt','div','section','article','span'].includes(n.tag))){
+  const authored=canonical(plainNode(node))
+  need(!authored||fullNativeText.includes(authored)||canonical(d.title)===authored,'unreviewed published native body condition')
+ }
+ return {qualified:true,authority:{title:d.title,url:BOARD+'/'+d.extId,declaredClient,nativeDescription:nativeText},
+  head:{titles:head.titles,metas:head.metas.filter(m=>(m.name??m.property)!=='csp-nonce')},nativeMetadataCriteria:description,rawCarrierBodySHA256:sha(html)}
 }
 const sameWorksites=(left,right)=>{
  // The actual Mobile App Designer posting orders the same six full typed
@@ -190,38 +222,62 @@ export async function runCurrentFireflies(options={}){
  const read=reader(options),phaseModels=[]
  try{
   for(const phase of ['opening','closing']){
-   home((await read.read(HOME)).body);board((await read.read(BOARD)).body)
-   for(const client of profile.clients)need((await read.read(client.url)).sha256===client.sha256,'published whole client changed')
+   home((await read.read(HOME)).body);const declaredClient=board((await read.read(BOARD)).body)
+   read.allowClient(declaredClient)
+   const clientProgram=await read.read(declaredClient)
+   try{parse(clientProgram.body,{ecmaVersion:'latest',sourceType:'module'})}catch{need(false,'published current client is not a JavaScript module')}
+   // The exact public GraphQL read contract below is independently bound to
+   // this employer's Gem board and full own role models. Browser deployment
+   // bytes are retained and closed, but do not certify rendered behavior.
+   if(declaredClient===profile.clients[0].url)for(const client of profile.clients.slice(1))need((await read.read(client.url)).sha256===client.sha256,'published whole client changed')
    const list=nativeJSON(await read.read(API,profile.list.request)),rows=listing(list),selected=rows.filter(r=>r.locations.some(l=>l.isoCountry==='IND'))
    need(selected.length<=8,'current India detail cohort exceeds reviewed bounded read budget')
    const details=[],pages=[]
    for(const row of selected){
     read.allowRole(row.extId)
     const model=nativeJSON(await read.read(API,detailRequest(row.extId))),d=detail(model,row)
-    for(const url of [BOARD+'/'+d.extId,BOARD+'/'+d.extId+'/application'])pages.push({url,...publicCarrier((await read.read(url)).body,d)})
+    for(const url of [BOARD+'/'+d.extId,BOARD+'/'+d.extId+'/application']){
+     const page=await read.read(url)
+     try{pages.push({url,...publicCarrier(page.body,d,declaredClient)})}
+     catch(error){
+      if(!error.nativeCarrierRoleConflict)throw error
+      pages.push({url,qualified:false,error:error.message,head:activeHead(page.body),rawCarrierBodySHA256:page.sha256})
+     }
+    }
     details.push(model)
    }
-   phaseModels.push({list,details,pages});read.check()
+   phaseModels.push({declaredClient,unexecutedClientSHA256:clientProgram.sha256,renderedBehaviorVerified:false,list,details,pages});read.check()
   }
-  need(isDeepStrictEqual(phaseModels[0],phaseModels[1]),'whole closing native models changed')
+   const nativePhase=phase=>({declaredClient:phase.declaredClient,unexecutedClientSHA256:phase.unexecutedClientSHA256,list:phase.list,details:phase.details})
+   need(isDeepStrictEqual(nativePhase(phaseModels[0]),nativePhase(phaseModels[1])),'whole closing native models changed')
+   const heldCarriers=new Set(),carrierHolds=[]
+   for(const model of phaseModels[0].details){
+    const id=model.data.oatsExternalJobPosting.extId,urls=[BOARD+'/'+id,BOARD+'/'+id+'/application']
+    const pages=phaseModels.map(phase=>phase.pages.filter(page=>urls.includes(page.url)))
+    if(pages.some(rows=>rows.length!==2||rows.some(page=>!page.qualified))
+     ||!isDeepStrictEqual(pages[0].map(page=>({url:page.url,authority:page.authority})),pages[1].map(page=>({url:page.url,authority:page.authority})))){
+     heldCarriers.add(id);carrierHolds.push({extId:id,reason:'own-public-role-carrier-unqualified-or-incoherent',opening:pages[0],closing:pages[1]})
+    }
+   }
   const observedAt=typeof options.now==='function'?options.now():new Date().toISOString();need(Number.isFinite(Date.parse(observedAt)),'invalid observation clock')
-  const jobs=phaseModels[0].details.map((model,index)=>{
+   const jobs=phaseModels[0].details.flatMap((model,index)=>{
    const data=model.data,d=data.oatsExternalJobPosting,sections=[d.jobPostSectionHtml.introHtml,d.descriptionHtml,d.compensationHtml,d.jobPostSectionHtml.outroHtml].filter(v=>typeof v==='string'&&v.trim())
+    if(heldCarriers.has(d.extId))return[]
    const criteria=readOriginalNativeCriteria(sections.join('\n'),fail);need(criteria.sourceDetailComplete,'full authored criteria incomplete')
    const locations=d.locations.filter(l=>l.isoCountry==='IND'),questions=data.oatsJobPostFieldsAndQuestions.questions
    need(Number.isSafeInteger(d.firstPublishedTsSec)&&d.firstPublishedTsSec*1000<=Date.parse(observedAt),'native publication timestamp unqualified')
    const applicationCriteria=questions.map(q=>[q.text,q.description,...(q.options??[]).map(o=>o.value)].filter(v=>typeof v==='string'&&v.trim()).join('\n')).join('\n')
-   return {...criteria,jobDescription:criteria.jobDescription+(applicationCriteria?'\n'+applicationCriteria:''),sourceDescription:criteria.sourceDescription+(applicationCriteria?'\n'+applicationCriteria:''),
+    return [{...criteria,jobDescription:criteria.jobDescription+(applicationCriteria?'\n'+applicationCriteria:''),sourceDescription:criteria.sourceDescription+(applicationCriteria?'\n'+applicationCriteria:''),
     source:'firefliesai',company:'Fireflies.ai',companyName:'Fireflies.ai',companyDomain:'fireflies.ai',companyCareerPage:'https://fireflies.ai/careers',atsPlatform:'gem',
     title:d.title,jobId:d.extId,requisitionId:d.job.requisitionId,department:d.job.department.name,country:'India',city:null,
     location:[...new Set(locations.map(l=>l.name==='India'?'India':l.name+', India'))].join('; '),employmentType:d.job.employmentType==='FULL_TIME'?'Full-time':null,remoteStatus:d.job.locationType==='REMOTE'?'Remote':null,
     postingDate:new Date(d.firstPublishedTsSec*1000).toISOString(),closingDate:null,sourceUrl:BOARD+'/'+d.extId,applyUrl:BOARD+'/'+d.extId+'/application',link:BOARD+'/'+d.extId+'/application',scrapedAt:observedAt,
     sourceNativeDetail:structuredClone(data),sourceNativeClosingDetail:structuredClone(phaseModels[1].details[index].data),sourceNativeWorksites:structuredClone(d.locations),sourceNativeApplication:structuredClone(data.oatsJobPostFieldsAndQuestions),sourceNativePublicPages:structuredClone(phaseModels[0].pages.filter(p=>p.url===BOARD+'/'+d.extId||p.url===BOARD+'/'+d.extId+'/application')),
-    sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,activationVerified:false,legalEmployer:null,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false}
+     sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,activationVerified:false,legalEmployer:null,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false}]
   }).slice(0,maxJobs)
   const nativeCount=phaseModels[0].list.data.oatsExternalJobPostings.jobPostings.length
   const audit={source:'firefliesai',recordKind:'vacancy-rows',observedRecordCount:nativeCount,observedVacancyCount:nativeCount,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,
-   nativeModelsClosingReconciled:true,unhydratedNativeRecordCount:nativeCount-phaseModels[0].details.length,opening:phaseModels[0],closing:phaseModels[1],reader:read.stats(),receipts:read.receipts}
+    nativeModelsClosingReconciled:true,unhydratedNativeRecordCount:nativeCount-phaseModels[0].details.length,unqualifiedPublicCarrierRoleCount:heldCarriers.size,publicCarrierHolds:carrierHolds,opening:phaseModels[0],closing:phaseModels[1],reader:read.stats(),receipts:read.receipts}
   attachSourceObservationEvidence(jobs,audit);Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
   attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:read.receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:observedAt,reason:'current-employer-declared-native-board/full-India-criteria/application-data-pairs-closing-reconciled;rendered-activation/legal/company-scope-held'})
   read.check();return jobs

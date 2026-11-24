@@ -19,6 +19,10 @@ const CLIENT_PROFILES = [
   { url: CLIENT, sha256: CLIENT_SHA },
   { url: 'https://ats.us1.rippling.com/_next/static/chunks/387-80356090a770fa21.js',
     sha256: '0d9f90c6a41441ccf8c5b4595c628716cdb50eb185178a21f7113cbff477fc51' },
+  // Current original client preserves the full GET/default-filter AST and adds
+  // only the language cache-key dimension. Bind that exact shape to its bytes.
+  { url: 'https://ats.us1.rippling.com/_next/static/chunks/387-77dfce139cfbd362.js',
+    sha256: 'f247d78f787b3d5215fe6acb63ee72759301c701de358a150c09c0bb7a74c248', queryLocale: 'en-US' },
 ]
 const PROOF = Symbol.for('jobverify.official-ats-discovery')
 const uuid = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/
@@ -106,16 +110,21 @@ function deadline(values, now) {
   need(new Set(dates.map(date => date.iso)).size <= 1, 'native closing deadline contradiction')
   return dates[0] ?? null
 }
-function listing(body, page, pageSize) {
+function listing(body, page, pageSize, expectedClient = null) {
   const query = { s: CAREERS, ...(pageSize !== 20 ? { pageSize: String(pageSize) } : {}), ...(page ? { page: String(page) } : {}), jobBoardSlug: 'evidation' }
   const { d, p, a } = next(body, '/embed/[jobBoardSlug]/jobs', query)
+  const declaredClients = CLIENT_PROFILES.filter(profile => d.nodes(node => node.tag === 'script' && node.attrs.src === profile.url).length > 0)
+  need(declaredClients.length === 1
+    && d.nodes(node => node.tag === 'script' && node.attrs.src === declaredClients[0].url).length === 1, 'current advertised pagination client missing')
+  const client = declaredClients[0]
+  need(!expectedClient || client.url === expectedClient.url, 'native advertised pagination deployment changed during pagination')
   need(a.jobBoardSlug === 'evidation' && same(a.filtersConfig, { workLocations: [], departments: [] }), 'native board filter identity changed')
   need(Array.isArray(p.dehydratedState?.queries), 'native listing queries missing')
   const queries = p.dehydratedState.queries.filter(q => q.queryKey?.[2] === 'job-posts')
   need(queries.length === 1, 'native listing query missing/ambiguous')
   const q = queries[0]
   need(same(q.queryKey, ['board', 'evidation', 'job-posts', false,
-    { searchQuery: '', departments: [], workplaceType: null, country: '', state: '', city: '', page, pageSize }])
+    { searchQuery: '', departments: [], workplaceType: null, country: '', state: '', city: '', page, pageSize }, ...(client.queryLocale ? [client.queryLocale] : [])])
     && q.state?.status === 'success' && q.state.error === null && q.state.fetchFailureCount === 0, 'native listing query filtered or failed')
   const value = q.state.data; envelope(value)
   need(Number.isSafeInteger(value.totalItems) && value.totalItems >= 0 && value.page === page && value.pageSize === pageSize
@@ -134,7 +143,7 @@ function listing(body, page, pageSize) {
   const links = [...new Set(d.nodes(node => node.tag === 'a' && node.attrs.href?.startsWith('https://ats.rippling.com/en-US/evidation/jobs/'))
     .map(node => node.attrs.href))].sort()
   need(same(expected, links), 'native rendered/listing role inventory mismatch')
-  return { d, value }
+  return { d, value, client }
 }
 function merge(rows) {
   const groups = new Map(), seen = new Set()
@@ -237,25 +246,22 @@ export async function runNativeEvidation({ signal: callerSignal, now = () => new
     const binding = corporate(await get(CAREERS))
     need(hash(await get(WIDGET)) === WIDGET_SHA, 'current widget delegation contract changed')
     const first = listing(await get(frameURL(0)), 0, pageSize)
-    const declaredClients = CLIENT_PROFILES.filter(profile => first.d.nodes(node => node.tag === 'script' && node.attrs.src === profile.url).length > 0)
-    need(declaredClients.length === 1
-      && first.d.nodes(node => node.tag === 'script' && node.attrs.src === declaredClients[0].url).length === 1, 'current advertised pagination client missing')
-    const client = declaredClients[0]
+    const client = first.client
     need(hash(await get(client.url)) === client.sha256, 'current pagination client contract changed')
     const total = first.value.totalItems, totalPages = first.value.totalPages
     need(total <= 10000 && totalPages <= maxPages, 'page limit leaves incomplete native inventory')
     const rows = [...first.value.items]
     for (let page = 1; page < totalPages; page++) {
-      const current = listing(await get(frameURL(page)), page, pageSize).value
+      const current = listing(await get(frameURL(page)), page, pageSize, client).value
       need(current.totalItems === total && current.totalPages === totalPages, 'native inventory total changed during pagination')
       rows.push(...current.items)
     }
-    const terminal = listing(await get(frameURL(Math.max(1, totalPages))), Math.max(1, totalPages), pageSize).value
+    const terminal = listing(await get(frameURL(Math.max(1, totalPages))), Math.max(1, totalPages), pageSize, client).value
     need(terminal.totalItems === total && terminal.totalPages === totalPages && terminal.items.length === 0 && rows.length === total,
       'native terminal inventory totals changed')
     const groups = merge(rows), facts = []
     for (const row of groups) facts.push(detail(await get('https://ats.rippling.com/en-US/evidation/jobs/' + row.id), row, checkedAt))
-    return { binding, rows, facts, pages: Math.max(1, totalPages) + 1 }
+    return { binding, rows, facts, pages: Math.max(1, totalPages) + 1, client: { url: client.url, queryLocale: client.queryLocale ?? null } }
   }
   const initial = await snapshot(), closing = await snapshot()
   need(same(initial, closing), 'native corporate/listing/full detail content changed during closing reconciliation')
@@ -283,7 +289,7 @@ export async function runNativeEvidation({ signal: callerSignal, now = () => new
   Object.defineProperty(jobs, PROOF, { value: { source: 'evidation', binding: initial.binding,
     nativeInventory: { observedNativeRows: initial.rows.length, observedUniqueRoles: initial.facts.length, observedIndiaRoles: india.length,
       snapshots: 2, pagesPerSnapshot: initial.pages, allDetailsValidated: true } } })
-  return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: FRAME, firstParty: true, listingComplete: false,
+  return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: FRAME, firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
     pagesFetched: initial.pages + closing.pages, reportedTotal: null, indiaFacetCount: null, verifiedAt: checkedAt,
     reason: `current-corporate-widget-native-pagination-all-details-and-closing-snapshot-reconciled;observedNativeRows=${initial.rows.length};observedUniqueRoles=${initial.facts.length};observedIndiaRoles=${india.length};whole-company-scope-unverified` })
 }

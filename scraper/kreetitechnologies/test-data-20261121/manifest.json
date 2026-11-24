@@ -1,0 +1,73 @@
+{
+  "source": "kreetitechnologies",
+  "fixtureSHA256": "4aaeac24d9c269d1826f0c5726d211cd8103a613b54a24bb45b1cd7ce1e2e60b",
+  "fixtureBytes": 635920,
+  "packets": [
+    {
+      "requestedURL": "https://www.kreeti.com/",
+      "bodyBytes": 77959,
+      "bodySHA256": "aa72b7c45804e4180328c06ba63795061a6abe95132ae91e000c8944fa01296a",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/kreetitechnologies/current-20261120224530683-37252/0001.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": []
+    },
+    {
+      "requestedURL": "https://app-dist.kawach.ai/cookie_consent/v1.0.0.js",
+      "bodyBytes": 23903,
+      "bodySHA256": "d1bd56a5a48a50c52255d7c022766a5c47de2ff71ff85736d964daba04c06446",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/consent-original/original.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": []
+    },
+    {
+      "requestedURL": "https://careers.kreeti.com/",
+      "bodyBytes": 15803,
+      "bodySHA256": "1142947e5a9b5a491e9306fee554941134efed7af9361c1a8dd1165d98a2b932",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/native-originals/0001.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": [
+        "set-cookie"
+      ]
+    },
+    {
+      "requestedURL": "https://careers.kreeti.com/students",
+      "bodyBytes": 43283,
+      "bodySHA256": "8b3677f29e804e399c5dcba35134de0f7d7f4cfe0b385294e2052dd3999173dc",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/native-originals/0002.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": [
+        "set-cookie"
+      ]
+    },
+    {
+      "requestedURL": "https://careers.kreeti.com/candidates",
+      "bodyBytes": 82391,
+      "bodySHA256": "f7ccce60da29ea9610a652c6b80aa93d8598994d5baab43fb3b18e9d6d92c889",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/native-originals/0003.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": [
+        "set-cookie"
+      ]
+    },
+    {
+      "requestedURL": "https://assets.kreeti.com/assets/new_style-4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508.js",
+      "bodyBytes": 1191472,
+      "bodySHA256": "4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/native-originals/0004.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": []
+    },
+    {
+      "requestedURL": "https://assets.kreeti.com/assets/new_style-09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac.css",
+      "bodyBytes": 134985,
+      "bodySHA256": "09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac",
+      "originalBodyArtifact": "reports/scraper-20261120-133018/agent8/kreeti-current/native-originals/0005.body.gz",
+      "originalEntityUnmodified": true,
+      "omittedResponseHeaders": []
+    }
+  ],
+  "currentOriginalPackets": 7,
+  "fixtureClosingIsSimulated": true,
+  "legacyRedactedExportsExcluded": true,
+  "HTTPRequestsForAssembly": 0
+}

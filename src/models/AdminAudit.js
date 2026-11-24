@@ -21,7 +21,7 @@ const AdminAuditSchema = new Schema(
     },
     targetType: {
       type: String,
-      enum: ["Job", "User", "ScraperStatus", "TelegramBroadcastSettings"],
+      enum: ["Job", "User", "ScraperStatus", "TelegramBroadcastSettings", "SocialPost", "SocialDelivery", "SocialAccount", "SocialSettings"],
       required: true,
       immutable: true,
     },

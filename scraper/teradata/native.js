@@ -272,6 +272,14 @@ export const createNativeTeradataScraper = (defaults = {}) => ({async run(option
           return !changed
         })
       }
+      const accessCodes = [...new Set((Array.isArray(result.errors) ? result.errors : [])
+        .map(error => error?.extensions?.code).filter(code => code === 'UNAUTHENTICATED' || code === 'FORBIDDEN'))]
+      if (accessCodes.length) throw Object.assign(Error('Teradata native: public search access denied (' + accessCodes.join(',') + ')'), {
+        code: 'TERADATA_NATIVE_ACCESS_DENIED', status: 200, requestUrl: API, finalUrl: API,
+        softFailure: true, upstreamOutage: true, failureKind: 'blocked_or_access_denied',
+        publisherAccessHeld: true, abortRetries: true, lifecycleCleanupAllowed: false,
+        nativeSearchEvidence: {httpStatus: 200, applicationErrorCodes: accessCodes, responseSHA256: receipts.at(-1).sha256},
+      })
       need(!result.errors && result.data?.searchJobs?.results, 'native search result or error envelope changed')
       const page = result.data.searchJobs.results
       need(Number.isSafeInteger(page.totalCount) && page.totalCount >= 0 && page.totalCount <= 1000
@@ -320,6 +328,16 @@ export const createNativeTeradataScraper = (defaults = {}) => ({async run(option
   } catch (error) {
     settings.signal?.throwIfAborted()
     gaps.push({stage: 'native-full-model-read', status: error.status ?? null, message: error.message})
+    const unavailableInventory = {status: 'coverage-gap', surface: BOARD, firstParty: true, listingComplete: false,
+      reportedTotal: null, indiaFacetCount: null, pagesFetched: receipts.length, verifiedAt: clock, reason: error.message}
+    // HTTP200 can still carry an explicit denial of this anonymous operation.
+    // Keep it distinct from schema drift. Previously acquired facts follow
+    // the existing incomplete-observation policy for an unavailable closing.
+    const applicationDenied = error.code === 'TERADATA_NATIVE_ACCESS_DENIED'
+    if (applicationDenied) {
+      Object.assign(audit, {publisherAccessHeld: true, failureKind: 'blocked_or_access_denied',
+        nativeSearchEvidence: copy(error.nativeSearchEvidence)})
+    }
     if (!openingInventoryComplete && !jobs.length && openingRows.length && slugger) {
       const places = nativePlaceCountries(openingRows)
       for (const row of openingRows) {
@@ -328,9 +346,9 @@ export const createNativeTeradataScraper = (defaults = {}) => ({async run(option
       }
     }
     if (jobs.length) return finish(jobs.slice(0, cap))
-    Object.assign(error, {source: SOURCE, failureKind: 'incomplete_listing', abortRetries: true, recruitmentObservations: audit,
-      inventoryEvidence: {status: 'coverage-gap', surface: BOARD, firstParty: true, listingComplete: false,
-        reportedTotal: null, indiaFacetCount: null, pagesFetched: receipts.length, verifiedAt: clock, reason: error.message}})
+    Object.assign(error, {source: SOURCE, failureKind: applicationDenied ? 'blocked_or_access_denied' : 'incomplete_listing', abortRetries: true,
+      recruitmentObservations: applicationDenied ? {...audit, receipts: receipts.map(receipt => ({...receipt}))} : audit,
+      inventoryEvidence: unavailableInventory})
     throw error
   } finally {clearTimeout(deadline)}
 }})

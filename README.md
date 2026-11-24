@@ -1,10 +1,29 @@
 # Backend
 
+## Manual WhatsApp Channel digest
+
+Administrators can prepare daily posts at **Admin > WhatsApp digest**. The
+read-only `GET /api/admin/whatsapp-digest?date=YYYY-MM-DD&limit=20` endpoint returns
+currently public, available jobs first added on that calendar day in
+`Asia/Kolkata`. It defaults to today and 20 jobs, accepts 1–50 jobs, and splits
+text at complete job boundaries into posts of at most 3,500 characters. The
+response is administrator-only and uncached. The existing public visibility,
+location, category and availability rules apply when the digest is generated.
+
+An administrator reviews, optionally edits and copies each post, then pastes and
+sends it in the official WhatsApp app. This feature does not connect a WhatsApp
+account, send messages, schedule publication or require a paid messaging API.
+Draft edits remain in the current screen and are replaced on regeneration or
+navigation. `date` refers to addition to Jobverify, not the employer posting date.
+
+Validate with `node --test test/whatsappDigest.test.js test/whatsappDigestHttp.test.js`.
+
 ## Member assistant
 
 The floating member assistant uses an injected Cloudflare `AI` binding. Ordinary
-Node deployments have no adapter and report it disabled. The committed Worker
-configuration keeps `ASSISTANT_ENABLED=false` and `JOB_VERIFICATION_ENABLED=false`.
+Node deployments have no adapter and report it disabled. Admins enable or disable it for all users from Admin Overview. The setting is
+stored in global site settings and defaults to disabled; no environment flag or
+redeployment is needed. Worker configuration keeps `JOB_VERIFICATION_ENABLED=false`.
 See [assistant operation and rollout](workers/api/ASSISTANT.md).
 
 Authenticated, uncached endpoints use the existing API envelope:

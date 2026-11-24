@@ -3,10 +3,11 @@ import {setTimeout as delay} from 'node:timers/promises'
 import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/boundedDeclaredPublicRead.js'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
 import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
+import {hasClientDocumentBase} from '../../scraper-support/utils/reviewedClientProgram.js'
 const SOURCE='harbingersystems',CAREERS='https://www.harbingergroup.com/current-openings/'
 const USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 const BOARD='https://harbingergroup.darwinbox.in/ms/candidatev2/main/careers/home',MAIN='https://harbingergroup.darwinbox.in/ms/candidatev2/main.819c4120b20f8091.js',INFO='https://harbingergroup.darwinbox.in/ms/candidateapi/getCompanyConfig?is_preview=false&companyId=main'
-const CORPORATE_SHA='a888ae16b998944e8fd60cd6854b9f67a846fe5b64588682051fada188c5e9cd',BOARD_SHA='bda2aa6dd1e12529a2cf9198959c0baff4a8837417d660ea3d34f07d19d71437',CLIENT_SHA='ee0926eab1aaa71ffd022d8a0b2898f90b058543b857491c889648cd0ca10b5d'
+const BOARD_SHA='bda2aa6dd1e12529a2cf9198959c0baff4a8837417d660ea3d34f07d19d71437',CLIENT_SHA='ee0926eab1aaa71ffd022d8a0b2898f90b058543b857491c889648cd0ca10b5d'
 const PREVIEW_SHA='e9151a12e7be4b1b19e814ea061a7c3522e6fb8460c1c43de4f951445c21844f'
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const fail=(message,fields)=>{throw firstPartyFailure(SOURCE,message,fields)}
@@ -34,7 +35,8 @@ export async function runCurrentHarbinger(options={}){
  try{
   const corporate=await read(CAREERS);need(corporate.status===200,'Native corporate HTTP '+corporate.status,{status:corporate.status})
   const doc=readNativeDocument(corporate.body),links=doc.nodes(n=>n.tag==='a'&&n.attrs.href===BOARD).map(n=>doc.text(n))
-  need(sha(corporate.body)===CORPORATE_SHA&&activeHead(corporate.body).titles[0]==='Current Job Openings at Harbinger Group'&&JSON.stringify(links)==='["Current Openings","click here"]','Whole current native employer HTML/handoff changed')
+  const tenantLinks=doc.nodes(n=>n.tag==='a'&&/darwinbox/i.test(n.attrs.href??'')).map(n=>n.attrs.href)
+  need(!hasClientDocumentBase(corporate.body)&&JSON.stringify(activeHead(corporate.body).titles)==='["Current Job Openings at Harbinger Group"]'&&JSON.stringify(links)==='["Current Openings","click here"]'&&tenantLinks.every(url=>url===BOARD),'Current native employer identity/handoff changed')
   const board=await read(BOARD)
   if(board.status===200&&sha(board.body)===PREVIEW_SHA&&activeHead(board.body).titles[0]==='Harbingergroup'){
    currentAuthority={officialCareers:CAREERS,employerDeclaredBoard:BOARD,representation:'native-tenant-metadata-preview',nativeClientDeclared:false}

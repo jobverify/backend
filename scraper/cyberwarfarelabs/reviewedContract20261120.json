@@ -1,0 +1,36 @@
+{
+  "main": {
+    "apiBase": "/api",
+    "method": "GET",
+    "endpoint": "/careers",
+    "apiURL": "https://cyberwarfare.live/api/careers",
+    "pdfOrigin": "https://cwl-main-website.s3.us-east-1.amazonaws.com",
+    "ownCareerRoute": "careers"
+  },
+  "career": {
+    "cardInput": "career",
+    "nativeFields": [
+      "_id",
+      "title",
+      "location",
+      "description",
+      "email",
+      "jd"
+    ],
+    "nativeKey": "_id",
+    "rendered": {
+      "title": 1,
+      "location": 1,
+      "description": 1
+    },
+    "application": "aaccdeb2fc7aaace53705e4ef9b0c73e96d1aaebe017f9ea2b102d830ce1f145",
+    "hrefs": [
+      "6ea5e90ee64a21ad926dc7dcae55c0bfad0ae1bfa66d9867e1bd47bd0b35b84f",
+      "82f2b6d2b1c05063f27d99077eae1e73ce68ec9c4a37c00e7724f6a8cdd13e0f",
+      "6ea5e90ee64a21ad926dc7dcae55c0bfad0ae1bfa66d9867e1bd47bd0b35b84f"
+    ],
+    "providerField": "careers",
+    "providerLinked": true,
+    "pdfOrigin": "https://cwl-main-website.s3.us-east-1.amazonaws.com"
+  }
+}

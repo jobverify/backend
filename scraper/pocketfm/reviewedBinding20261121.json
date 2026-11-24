@@ -1,0 +1,20 @@
+{
+  "source": "pocketfm",
+  "reviewedAt": "2026-11-21",
+  "parent": {
+    "url": "https://pocketfm.com/_next/static/chunks/2xh6tjf2c5fwa.js",
+    "sha256": "3f309f950087380d76ccb35368b094c90c7ec2cd310527248998f9a41d3d44d0",
+    "bytes": 16588,
+    "programSHA256": "a7ee5ee32d54522ababebad656896579db29656fbdd8bfb78ede3cf84414c3a2"
+  },
+  "footer": {
+    "url": "https://pocketfm.com/_next/static/chunks/163mtopasvko5.js",
+    "sha256": "7ad14d7ac768a1b13212bf8b26ba9be1dfc38719c208d8ab70093c12583e3316",
+    "bytes": 15228,
+    "programSHA256": "554a4637c39dd9cf3d68f1cb04559c8fdcff81e1a43694b3ee46d3a5f5901f7b"
+  },
+  "review": "Exact complete original current parent/footer tuple. Complete module-aligned AST review against both retained releases finds26unchanged modules including the exact512169footer loader targeting516114. Actual parent changes are the BFCache retention bound1to3, layout-router Activity visibility and server-only validation context, a new lazy registration561995targeting244380, two other lazy deployment filenames and Sentry metadata. These changes are not erased or called browser-equivalent. The selected loader's complete AST and all three chunk literals are unchanged. Its current explicitly declared footer was acquired once and is byte-identical to both prior releases, including the exacthttps://jobs.lever.co/pocketfm handoff. Admission proves this finite static selected handoff only; it does not qualify the whole corporate browser, styles, other lazy branches or company-wide recruitment authority. Original current and historical programmes remain distinct and fail closed on any unknown raw bytes, URL or AST.",
+  "browserEquivalenceComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

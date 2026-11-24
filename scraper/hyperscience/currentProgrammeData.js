@@ -1,4 +1,5 @@
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js';
+import {decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js';
 import {hasSourceDescription} from '../../src/utils/jobSourceContent.js';
 import {readHyperscienceFormContract} from './currentFormContract.js';
 import {C0,C1,A,H,UUID,sha,need,exactFields,ownArray,plainSnapshot,shape,readRawPacket,rawJSON,
@@ -7,44 +8,78 @@ import {C0,C1,A,H,UUID,sha,need,exactFields,ownArray,plainSnapshot,shape,readRaw
 const API_FIELDS=['id','title','department','team','employmentType','location','secondaryLocations','publishedAt','isListed','isRemote','workplaceType','address','jobUrl','applyUrl','descriptionHtml','descriptionPlain'];
 const POSTING_FIELDS=['id','title','departmentName','departmentExternalName','locationName','locationAddress','workplaceType','employmentType','descriptionHtml','isListed','isConfidential','teamNames','secondaryLocationNames','compensationTierSummary','compensationTiers','applicationDeadline','compensationTierGuideUrl','scrapeableCompensationSalarySummary','compensationPhilosophyHtml','applicationLimitCalloutHtml','shouldAskForTextingConsent','shouldAskForWhatsAppConsent','candidateTextingPrivacyPolicyUrl','candidateTextingTermsAndConditionsUrl','legalEntityNameForTextingConsent','automatedProcessingLegalNotice','__typename'];
 const LD_FIELDS=['@context','@type','title','description','directApply','identifier','datePosted','hiringOrganization','jobLocation','employmentType','jobLocationType','applicantLocationRequirements'];
+// Retain the existing reviewed native work-address/display models independently of dynamic titles/criteria.
+const WORK_ADDRESSES={'United States':{addressRegion:'Utah',addressCountry:'United States',addressLocality:'Park City'},Bulgaria:{addressRegion:'Sofia City Province',addressCountry:'Bulgaria',addressLocality:'Sofia'}};
 const PUBLISHER_PROFILES={"WebSite":"5bbcb7bb5548a2c61db7292a06f77955dda682ebfd46238bb3c85977e41c4b72","Organization":"865c9a2bed6a179a425a50a1f6b58cd62ab1dc9a9f1dfba668f86a592a4a2e89"};
 // Closed reviewed complete authored families; inventory IDs, order and N remain dynamic.
-const REVIEWED_CONTENT_FAMILY=[{"title":"Technical Deployment Lead","department":"Sales","team":"Sales Engineering","projectionSHA256":"a1845362077bbd3c6b0fd422d520bfc5e4dec3e53eba57490376434b3e35c094","projectionBytes":6447,"address":{"addressRegion":"Utah","addressCountry":"United States","addressLocality":"Park City"},"displayLocation":"[Remote] US","workplaceType":"Remote"},{"title":"Sr Technical Program Manager, Data","department":"Product","team":"Product","projectionSHA256":"21cc1c7da4696c5e00900e389025275938d72285128a573a6d8478873d1ca5d1","projectionBytes":8526,"address":{"addressRegion":"Utah","addressCountry":"United States","addressLocality":"Park City"},"displayLocation":"[Remote] US","workplaceType":"Remote"},{"title":"Lead Technical Product Manager (Platform)","department":"Product","team":"Product Management","projectionSHA256":"7b73a18c9158de5068aae9c6d30221643babd86e5de75b93f4a3eea23b560534","projectionBytes":7464,"address":{"addressRegion":"Sofia City Province","addressCountry":"Bulgaria","addressLocality":"Sofia"},"displayLocation":"[Hybrid] Sofia, Bulgaria","workplaceType":"Hybrid"},{"title":"Senior Software Engineer (Backend) ","department":"Engineering","team":"Software- Backend","projectionSHA256":"1f7bd31113688758d887313747f6faf03a4582fbf7ccf8258e69ecc04c42f9ce","projectionBytes":7618,"address":{"addressRegion":"Sofia City Province","addressCountry":"Bulgaria","addressLocality":"Sofia"},"displayLocation":"[Hybrid] Sofia, Bulgaria","workplaceType":"Hybrid"}];
-const CORPORATE_C1_PROFILE={"prefixBytes":42299,"prefixSHA256":"eac8810d48a96c2c842d93724f2886efbe1a47991386abac1678c3518e60ac0d","suffixBytes":36340,"suffixSHA256":"f59503a8ed558832ea514809e7d2b8a237e7ee54f01289db998b3ec274ded2de","whitespaceUnits":["\n                                                            ","\n                                                ","\n                                            "]};
-const CORPORATE_CARD_TEMPLATE="<a href=\"https://jobs.ashbyhq.com/hyperscience/[BOUND_hrefUUID]\" target=\"_blank\" class=\"job-opening\" id=\"[BOUND_idUUID]\" data-title=\"Open position - [BOUND_titleAttribute]\" data-track-ga=\"true\">\n                            <p class=\"location\">[BOUND_locationText]</p>\n                            <div class=\"separator\"></div>\n                            <div class=\"main-content\">\n                                <h3 class=\"title\">[BOUND_titleText]</h3>\n                                                                    <p class=\"location-details\">\n                                        <span class=\"department-team\">[BOUND_departmentTeamText]</span> / <span class=\"commitment\">[BOUND_employmentText]</span>                                    </p>\n                                                            </div>\n                            <p class=\"apply-text\">Apply for this Job -></p>\n                        </a>";
 const isActive=entry=>!entry.node.inert&&!entry.node.nativeTagUnqualified&&!entry.ancestors.some(n=>n.inert||n.nativeTagUnqualified||['svg','math','template','noscript','object'].includes(n.tag));
 const hiring=/\b(?:careers?|jobs?|vacanc(?:y|ies)|openings?|open\s+positions?|hiring|apply|talent\s+community|join\s+(?:our|the)\s+team|load\s+more)\b/i;
-const ATS=/ashbyhq|greenhouse|lever\.co|workdayjobs|smartrecruiters|icims|recruit|\/careers?\/|\/jobs?\/|\/vacanc/i;
+const ATS=/ashbyhq|greenhouse|lever\.co|workdayjobs|smartrecruiters|icims|recruit|\/(?:careers?|jobs?|openings?|positions?)(?:[/?#]|$)|\/vacanc/i;
 
-function corporateGrammar(packet,kind,jobs){
-  if(kind==='C0'){
-    need(packet.bytes.length===159204&&sha(packet.bytes)==='f1c70d6cd4078b90567df24a9ec08113a3b37edbfc24b427c416e459fc59b510','corporate-programme','Unknown complete corporate entry publication');
-    return {profile:'complete-original-C0-entity',bodyBytes:packet.bytes.length,bodySHA256:sha(packet.bytes),rawEntityRetained:true};
-  }
-  const profile=CORPORATE_C1_PROFILE;
-  need(packet.bytes.length>=profile.prefixBytes+profile.suffixBytes,'corporate-programme','Incomplete original corporate positions context');
-  need(sha(packet.bytes.subarray(0,profile.prefixBytes))===profile.prefixSHA256&&sha(packet.bytes.subarray(packet.bytes.length-profile.suffixBytes))===profile.suffixSHA256,'corporate-programme','Unknown complete corporate positions surrounding publication');
-  const content=packet.bytes.subarray(profile.prefixBytes,packet.bytes.length-profile.suffixBytes).toString('utf8');
-  const productions=jobs.map(job=>{
-    const values={hrefUUID:job.id,idUUID:job.id,titleAttribute:job.title,locationText:job.location,titleText:job.title,departmentTeamText:job.department+' - '+job.team,employmentText:job.employmentType};
-    for(const value of Object.values(values)){
-      need(typeof value==='string'&&value.length>0&&!/[<>&"'`]/.test(value),'corporate-programme','Unreviewed raw card scalar/attribute grammar');authoredCharacters(value);
+const APPROVED_RECRUITMENT_TEXT={"C0":["Careers","Join the Team","Hyperscience has always been a remote culture, focused on employing the best people wherever they are in the world. Because of that, we have focused on inclusive and flexible interview practices to make it possible for all candidates to bring their best to conversations with our teams.","All of our interviews can be virtual, at your request. While we do like to meet in person when possible and safe, it’s not required to get through our interview process.","Our interview process is designed to get to know you, so we can mutually evaluate if it’s the right fit. Video conferencing helps with that, we do encourage you to turn video on and get to know our Hiring Managers and team!","We’ve tailored our onboarding process to set you up for success, ensuring a sense of community from the moment your new hire class starts. Our curriculum is self-serve, and is set up for you to choose the pace and focus you need as you start your career with us.","We provide flexible PTO globally, in addition to complying with all local regulations. We have a strong culture of supporting employees to take the time they need.","We provide 3 months of paid parental leave to all employees, with an additional 1 month for the birthing parent. Where required by law, we offer plans that comply with all local regulations.","Benefits are offered where applicable and where required by law, and are subject to change at any time at Hyperscience’s sole discretion.","Join Our Team","We are an equal opportunity employer. We welcome people of different backgrounds, experiences, abilities and perspectives. Qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, sexual orientation, gender identity, disability or protected veteran status.","If you’ve got drive, we’ve got jobs. We’re building a world-class company with the ethos of a small start-up."],"C1":["Careers","Open Positions","Join the Hyperscience Talent Community and our hiring team will proactively review your profile against upcoming roles.","Hyperscience is growing fast, and our talent needs evolve every day. By joining our Talent Community, we’ll keep you in mind for upcoming opportunities and reach out the moment a match opens up.","Join the Talent Community"]};
+// Additional authored vacancy/eligibility channels cannot disappear from the
+// corporate projection merely because their markup or JSON MIME differs.
+const roleType=/(?:^|[/#:])JobPosting$/i;
+const roleField=/^(?:qualifications|experienceRequirements|educationRequirements|skills|applicantLocationRequirements|jobLocation|jobLocationType|hiringOrganization|validThrough|directApply|baseSalary)$/i;
+const closure=/\b(?:applications?|vacancies|openings|positions|jobs|recruitment|hiring)\b[^.!?]{0,120}\b(?:closed|paused|suspended|filled|cancelled|canceled|frozen|freeze|no\s+longer\s+(?:open|available|accepted))\b|\b(?:not|no\s+longer)\s+accepting\b[^.!?]{0,100}\bapplications?\b|\b(?:no|zero)\s+(?:(?:current|open|available)\s+)?(?:vacancies|openings|positions|jobs)\b/i;
+function corporateCarriers(items){
+  for(const {node,ancestors}of items){
+    const attrs=node.attrs;
+    for(const name of ['itemtype','typeof']){
+      for(const type of decodeNativeEntities(attrs[name]??'').split(/\s+/))
+        need(!roleType.test(type),'corporate-programme','Additional structured corporate vacancy publication');
     }
-    const raw=CORPORATE_CARD_TEMPLATE.replace(/\[BOUND_([A-Za-z]+)\]/g,(_token,name)=>values[name]);
-    return {id:job.id,raw};
-  });
-  const cards=[],separators=[],seen=new Set();let at=0;
-  while(at<content.length){
-    const separator=profile.whitespaceUnits.find(raw=>content.startsWith(raw,at));
-    if(separator){separators.push({startCharacter:at,endCharacter:at+separator.length,raw:separator});at+=separator.length;continue;}
-    const matching=productions.filter(card=>content.startsWith(card.raw,at));
-    need(matching.length===1,'corporate-programme','Unreviewed text/carrier/card bytes inside the complete declared list');
-    const card=matching[0];need(!seen.has(card.id),'membership','Repeated whole corporate vacancy production');seen.add(card.id);
-    cards.push({id:card.id,startCharacter:at,endCharacter:at+card.raw.length,raw:card.raw,bodyBytes:Buffer.byteLength(card.raw),bodySHA256:sha(card.raw)});at+=card.raw.length;
+    for(const name of ['itemprop','property','data-field','data-schema-field']){
+      for(const field of decodeNativeEntities(attrs[name]??'').split(/\s+/))
+        need(!roleField.test(field.split(/[/#:]/).at(-1)),'corporate-programme','Additional unbound corporate role criterion');
+    }
+    if(node.tag==='script'&&(/json/i.test(attrs.type??'')||['[','{'].includes((node.raw??'').trimStart()[0]))){
+      // Read every JSON string token, including escaped values and duplicate
+      // keys. This rejection scan grants no execution or JSON-record authority.
+      for(const match of (node.raw??'').matchAll(/"(?:\\.|[^"\\])*"/g)){
+        let value;try{value=JSON.parse(match[0])}catch{continue;}
+        need(!roleType.test(value)&&!roleField.test(value),'corporate-programme','Additional structured native recruitment data');
+      }
+    }
+    if(![node,...ancestors].some(n=>['script','style','svg','math'].includes(n.tag))){
+      need(!closure.test(layout(decodeNativeEntities(originalText(node)))),'corporate-programme','Corporate recruitment availability or closure changed');
+    }
+    if(['iframe','object','embed'].includes(node.tag)){
+      const value=decodeNativeEntities(Object.values(attrs).join(' '));
+      need(!ATS.test(value)&&!hiring.test(value)&&!/\bJobPosting\b/i.test(value)&&!closure.test(value),'corporate-programme','Additional embedded hiring programme');
+    }
+    if(['noscript','template'].includes(node.tag)){
+      const value=decodeNativeEntities(node.raw??'');
+      need(!ATS.test(value)&&!/\bJobPosting\b/i.test(value)&&!closure.test(value),'corporate-programme','Additional inert native recruitment publication');
+    }
   }
-  need(cards.length===jobs.length&&jobs.every(job=>seen.has(job.id)),'membership','Whole original corporate/native card set differs');
-  return {profile:'complete-original-C1-context-and-typed-cards',prefixBytes:profile.prefixBytes,prefixSHA256:profile.prefixSHA256,
-    suffixBytes:profile.suffixBytes,suffixSHA256:profile.suffixSHA256,cardTemplateSHA256:sha(CORPORATE_CARD_TEMPLATE),cards,separators,rawEntityRetained:true};
+}
+function corporateGrammar(packet,kind,jobs){
+  const entries=documentEntries(packet.text).entries;
+  const keyword=/\b(?:applications?|careers?|jobs?|vacanc(?:y|ies)|openings?|open\s+positions?|hiring|apply|talent\s+community|join\s+(?:our|the)\s+team|applicants?|candidates?|eligib\w*|requirements?|required|must|certification|India|Indian|worldwide|anywhere|globally)\b/i;
+  const recruitmentContext=[];
+  for(const entry of entries){
+    const {node,ancestors}=entry;
+    for(const[key,value]of Object.entries(node.attrs)){
+      need(!/^data-(?:country|location|eligibility|applicant|condition|requirement|filter)/i.test(key),'corporate-programme','Unbound corporate eligibility/filter carrier');
+      if(key==='itemprop')need(!/\b(?:qualifications|experienceRequirements|applicantLocationRequirements|jobLocation|hiringOrganization)\b/i.test(value),'corporate-programme','New unbound corporate criteria/schema field');
+    }
+    if([node,...ancestors].some(n=>['script','style','svg','math'].includes(n.tag)||n.attrs.class==='job-opening'))continue;
+    const text=layout(node.children.filter(n=>typeof n==='string').map(n=>originalText(n)).join(' '));
+    if(!keyword.test(text))continue;
+    need(APPROVED_RECRUITMENT_TEXT[kind].includes(text),'corporate-programme','New authored corporate recruitment or eligibility instruction');
+    recruitmentContext.push({text,active:isActive(entry)});
+  }
+  if(kind==='C1'){
+    const archives=entries.filter(e=>e.node.attrs.class==='posts-archive');
+    need(archives.length===1&&isActive(archives[0]),'corporate-programme','Unique active native positions container required');
+    shape(archives[0].node.attrs,['class'],'corporate-programme');
+    const children=archives[0].node.children;
+    need(children.every(n=>typeof n==='string'?layout(n)==='':n.tag==='a'&&n.attrs.class==='job-opening'&&jobs.some(j=>j.id===n.attrs.id)),'corporate-programme','Unaccounted positions-container content');
+  }
+  return {profile:'semantic-authored-recruitment-publication',recruitmentContext,rawEntityRetained:true,
+    bodyBytes:packet.bytes.length,bodySHA256:sha(packet.bytes),
+    qualification:'Original corporate entities retained; active publisher, declarations, complete typed cards and explicit authored recruitment instructions bind data. Styles, telemetry, unrelated copy and browser execution are not authority or equivalence proofs.'};
 }
 
 function readCorporate(record,kind,jobs){
@@ -54,7 +89,8 @@ function readCorporate(record,kind,jobs){
   need(canonical.length===1&&isActive(canonical[0])&&canonical[0].node.attrs.href===(kind==='C0'?C0:C1),'corporate','Unique original corporate canonical required');
   const title=items.filter(e=>e.node.tag==='title');
   need(title.length===1&&isActive(title[0])&&title[0].node.raw===(kind==='C0'?'Careers at Hyperscience - Remote, Inclusive, Flexible':'Open Positions - Jobs at Hyperscience'),'corporate','Corporate title/identity changed');
-  const schemas=items.filter(e=>e.node.tag==='script'&&e.node.attrs.type==='application/ld+json');
+  corporateCarriers(items);
+  const schemas=items.filter(e=>e.node.tag==='script'&&(e.node.attrs.type??'').split(';')[0].trim().toLowerCase()==='application/ld+json');
   need(schemas.length===1&&isActive(schemas[0]),'corporate','Unique active corporate publisher schema required');
   const schema=rawJSON(schemas[0].node.raw),graph=schema['@graph'];
   shape(schema,['@context','@graph'],'corporate');need(schema['@context']==='https://schema.org'&&Array.isArray(graph),'corporate','Unknown corporate publisher envelope');
@@ -79,10 +115,12 @@ function readCorporate(record,kind,jobs){
     shape(attrs,['href','target','class','id','data-title','data-track-ga'],'corporate-programme');
     need(attrs.class==='job-opening'&&attrs.id===own[1]&&attrs.target==='_blank'&&attrs['data-track-ga']==='true','corporate-programme','Unknown original vacancy card');
     const job=jobs.find(j=>j.id===own[1]);need(job,'membership','Corporate advert not in full native programme');
+    for(const value of [job.title,job.location,job.department,job.team,job.employmentType])need(typeof value==='string'&&value.length>0&&!/[<>&"'\x60]/.test(value),'corporate-programme','Unreviewed raw card scalar/attribute grammar');
     const descendants=items.filter(e=>e.ancestors.includes(node));
     const find=(tag,cls)=>descendants.filter(e=>e.node.tag===tag&&e.node.attrs.class===cls);
     const get=(tag,cls)=>{const rows=find(tag,cls);need(rows.length===1&&isActive(rows[0]),'corporate-programme','Unknown vacancy card fields');shape(rows[0].node.attrs,['class'],'corporate-programme');return originalText(rows[0].node);};
     need(descendants.length===8&&descendants.every(e=>isActive(e)&&['p','div','h3','span'].includes(e.node.tag)),'corporate-programme','Unknown extra authored vacancy card criterion');
+    for(const entry of descendants)shape(entry.node.attrs,['class'],'corporate-programme');
     need(attrs['data-title']==='Open position - '+job.title&&get('h3','title')===job.title&&get('p','location')===job.location
       &&get('span','department-team')===job.department+' - '+job.team&&get('span','commitment')===job.employmentType
       &&get('p','apply-text')==='Apply for this Job ->','corporate-programme','Corporate/native authored vacancy metadata disagrees');
@@ -100,16 +138,38 @@ function readCorporate(record,kind,jobs){
   return {packet,schema,originalTitle:title[0].node.raw,declarations,ownURLs,cards,rawGrammar,publisherBrand:'Hyperscience',legalRegistryQualified:false};
 }
 
+export function readInitialHyperscienceCorporate(record,kind){
+  need(kind==='C0'||kind==='C1','corporate','Known corporate channel required');
+  const packet=readRawPacket(record,kind==='C0'?C0:C1,kind),entries=documentEntries(packet.text).entries;
+  const jobs=kind==='C0'?[]:entries.filter(e=>e.node.tag==='a'&&e.node.attrs.class==='job-opening').map(entry=>{
+    const attrs=entry.node.attrs,descendants=entries.filter(e=>e.ancestors.includes(entry.node));
+    const field=(tag,cls)=>{const values=descendants.filter(e=>e.node.tag===tag&&e.node.attrs.class===cls);need(values.length===1,'corporate-programme','Unique complete card field required');return originalText(values[0].node);};
+    const title=field('h3','title'),parts=field('span','department-team').split(' - ');
+    need(parts.length===2&&parts.every(v=>typeof v==='string'&&v.length>0),'corporate-programme','Unambiguous native department/team required');
+    return{id:attrs.id,url:attrs.href,title,department:parts[0],team:parts[1],location:field('p','location'),employmentType:field('span','commitment')};
+  });
+  need(kind==='C0'||jobs.length>=1&&jobs.length<=6,'membership','Bounded nonempty current corporate positions required');
+  const publication=readCorporate(record,kind,jobs);
+  return{packet:publication.packet,cards:jobs,publication};
+}
+export function hyperscienceCorporateComparison(model){
+  const p=model.publication;
+  return{title:p.originalTitle,publisher:p.schema['@graph'].filter(v=>['WebSite','Organization'].includes(v['@type'])),
+    declarations:p.declarations.map(({literalHref,resolvedURL,label,active})=>({literalHref,resolvedURL,label,active})).sort((a,b)=>a.resolvedURL.localeCompare(b.resolvedURL)||a.label.localeCompare(b.label)),
+    cards:model.cards.toSorted((a,b)=>a.id.localeCompare(b.id)),recruitmentContext:p.rawGrammar.recruitmentContext};
+}
+
 function geography(text){
   authoredCharacters(text);
   need(!/\b(?:India|Indian|Bengaluru|Bangalore|Karnataka|Hyderabad|Chennai|Mumbai|Pune|Gurugram|Noida|New Delhi)\b/i.test(text),'geography','Possible India work/applicant geography');
   need(!/\bwork\s+(?:country|location)\s*:/i.test(text),'geography','New explicit work metadata is unreviewed');
+  need(!/\b(?:applicants?|candidates?|employees?|you|team members?)\s+(?:may|can|must|are\s+eligible\s+to)\s+(?:work|apply|reside|be based)\b/i.test(text),'geography','New explicit authored work/applicant eligibility requires qualification');
   need(!/\b(?:applicants?|candidates?|employees?|you|team members?)\s+(?:may|can|must|are\s+eligible\s+to)\s+(?:work|apply|reside|be based)[^.!?]{0,120}\b(?:any\s+(?:country|location)|globally|worldwide|anywhere)\b/i.test(text)
     &&!/\b(?:remote\s+)?work\s+(?:is\s+available|may\s+be\s+performed|from)[^.!?]{0,120}\b(?:any\s+(?:country|location)|globally|worldwide|anywhere)\b/i.test(text)
     &&!/\b(?:position|role|job|employee|you)\s+(?:is|are|must be)\s+(?:based|located|resident)\s+(?:in|at)\s+/i.test(text),'geography','Unknown authored work/applicant geography');
 }
 
-function workCountry(api,native,ld,family){
+function workCountry(api,native,ld){
   shape(api.address,['postalAddress'],'country');const address=api.address.postalAddress;
   shape(address,['addressRegion','addressCountry','addressLocality'],'country');
   need(['United States','Bulgaria'].includes(address.addressCountry)&&[address.addressLocality,address.addressRegion].every(v=>typeof v==='string'&&v.length>0),'country','Explicit reviewed primary native country required');
@@ -120,7 +180,9 @@ function workCountry(api,native,ld,family){
   need(ld.applicantLocationRequirements['@type']==='Country'&&ld.applicantLocationRequirements.name===address.addressCountry,'country','Published applicant country unknown/contradictory');
   need(native.locationAddress===null&&Array.isArray(api.secondaryLocations)&&api.secondaryLocations.length===0&&Array.isArray(native.secondaryLocationNames)&&native.secondaryLocationNames.length===0,'country','Unreviewed additional/native-address country scope');
   for(const value of Object.values(address))authoredCharacters(value);
-  need(Object.entries(family.address).every(([key,value])=>address[key]===value)&&api.location===family.displayLocation&&api.workplaceType===family.workplaceType,'country','Full published address/display/mode is outside its reviewed complete content family');
+  need(Object.entries(WORK_ADDRESSES[address.addressCountry]).every(([key,value])=>address[key]===value),'country','Native work-address/display model requires review');
+  const titleCountry=/\(\s*(UK|United Kingdom|India|United States|Bulgaria)\s*\)\s*$/.exec(api.title)?.[1];
+  if(titleCountry)need((titleCountry==='UK'?'United Kingdom':titleCountry)===address.addressCountry,'country','Explicit per-role country label conflicts with typed own work country');
   const expected=address.addressCountry==='United States'?'[Remote] US':'[Hybrid] Sofia, Bulgaria';
   need(api.location===expected&&native.locationName===api.location,'country','Explicit primary native label contradicts reviewed typed country');
   return address.addressCountry;
@@ -164,10 +226,8 @@ function roleFacts(own,api){
   need(own.headDescriptions.every(text=>layout(text)===layout(api.descriptionPlain)),'native-head','Full published own head description differs');
   for(const text of [api.title,api.location,api.descriptionPlain,projection.comparisonText])geography(text);
   const contentFamily={title:api.title,department:api.department,team:api.team,projectionSHA256:sha(projection.comparisonText),projectionBytes:Buffer.byteLength(projection.comparisonText)};
-  const family=REVIEWED_CONTENT_FAMILY.find(profile=>Object.keys(contentFamily).every(key=>profile[key]===contentFamily[key]));
-  need(family,'criteria-family','Novel complete authored content or role labels require independent review');
   need(!/(?:base|annual|salary|compensation)[^.!?]{0,80}[$€][0-9]/i.test(projection.comparisonText),'salary','New primary authored salary clause requires review');
-  const country=workCountry(api,native,ld,family);
+  const country=workCountry(api,native,ld);
   need(['Remote','Hybrid'].includes(api.workplaceType)&&native.workplaceType===api.workplaceType&&api.isRemote===true&&ld.jobLocationType==='TELECOMMUTE'
     &&api.workplaceType===(country==='United States'?'Remote':'Hybrid'),'mode','Published mode representations unknown/contradictory');
   need(api.employmentType==='FullTime'&&native.employmentType==='FullTime'&&ld.employmentType==='FULL_TIME'&&native.applicationDeadline===null,'employment-date','Employment/deadline disagreement');
@@ -181,7 +241,7 @@ function roleFacts(own,api){
   const sourceDescription=api.descriptionHtml+(compensation?'<h2>Published compensation</h2><p>'+compensation.summary+'</p>'+compensation.tiers.map(t=>'<p>'+t.tierSummary+'</p>').join('')+'<h2>Compensation philosophy</h2>'+compensation.philosophyHtml:'');
   return {id:api.id,title:api.title,country,workplaceType:native.workplaceType,employmentType:native.employmentType,
     applicantCountry:plainSnapshot(ld.applicantLocationRequirements),applicantEligibilityQualified:false,
-    reviewedContentFamily:contentFamily,reviewedAddressFamily:{...family.address},sourceDescription,originalAPI:api,originalNativeModel:own.originalAppData,originalLD:ld,originalHead:own.head,
+    reviewedContentFamily:contentFamily,reviewedAddressFamily:{...api.address.postalAddress},criteriaComparisonScope:'Complete current own/API/LD/head authored criteria, not a finite title/content hash allowlist',sourceDescription,originalAPI:api,originalNativeModel:own.originalAppData,originalLD:ld,originalHead:own.head,
     originalHTML:own.packet.text,originalRawAppData:own.rawAppData,originalRawLD:own.rawLD,originalHeadResources:own.links,
     compensation,rawDates:{publishedAt:api.publishedAt,datePosted:ld.datePosted,applicationDeadline:native.applicationDeadline},
     publishedCountryScope:'finite-server-published-work-country',nativeAddressKnownNull:true,legalEmployerQualified:false,

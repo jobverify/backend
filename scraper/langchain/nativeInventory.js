@@ -156,7 +156,7 @@ function publishedDate(value) {
     sourceField: 'publishedAt', provenance: 'native-public-posting-api', firstEverPublication: null }
 }
 
-function fullModels(payload, bootstrap, check) {
+export function fullModels(payload, bootstrap, check) {
   check()
   requireValue(object(payload) && payload.apiVersion === '1' && Array.isArray(payload.jobs)
     && Object.keys(payload).every(key => ['jobs', 'apiVersion'].includes(key)) && payload.jobs.length <= LIMITS.nativeRows, 'Invalid native inventory envelope or schema')
@@ -204,7 +204,8 @@ function fullModels(payload, bootstrap, check) {
   check(); return { models, relations }
 }
 
-export const createLangchainNativeScraper = () => ({
+// Dated Nov5-7 controlled fixtures retain this historical reader explicitly.
+export const createHistoricalLangchainNativeScraper = () => ({
   async run(options = {}) {
     const { signal, sourceTimeoutMs = 90000 } = options
     requireValue(Number.isSafeInteger(sourceTimeoutMs) && sourceTimeoutMs > 0 && sourceTimeoutMs <= 120000, 'Source timeout must be between 1 and 120000 milliseconds')
@@ -375,3 +376,5 @@ export const createLangchainNativeScraper = () => ({
     } finally { clearTimeout(timer) }
   },
 })
+
+export {createLangchainNativeScraper} from './currentNative20261121.js'

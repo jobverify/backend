@@ -30,6 +30,7 @@ import { declaredEightfoldPcsxRecruitment, readEightfoldPcsxRecruitment } from '
 import { declaredEightfoldPcsxTwilioRecruitment, readEightfoldPcsxTwilioRecruitment } from './recruitmentEightfoldPcsxTwilio.js'
 import { structuredRecruitmentPublisherState, recruitmentSchemaContext } from './recruitmentPublisher.js'
 import { darwinboxRecruitmentBoard, readDarwinboxRecruitment } from './recruitmentDarwinbox.js'
+import { reconcileRecruitmentStreamedHtml } from './recruitmentStreamedHtml.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
 const sha = value => createHash('sha256').update(value).digest('hex')
@@ -668,8 +669,12 @@ export function createVerifiedRecruitmentScraper(config) {
     const seenPages = new Set(), schemaSeen = new Set()
     while (queue.length && seenPages.size < maxPages && observed.requestCount < maxRequests) {
       const value = queue.shift(); if (seenPages.has(value)) continue; seenPages.add(value)
-      let page, doc
-      try { page = await read(value); doc = readNativeDocument(normalizeNativeAttributeBoundaries(page.html)) }
+      let page, doc, activeHTML
+      try {
+        page = await read(value)
+        activeHTML = reconcileRecruitmentStreamedHtml(normalizeNativeAttributeBoundaries(page.html))
+        doc = readNativeDocument(activeHTML)
+      }
       catch (error) { problem('official-page', error); continue }
       const pageURL = new URL(page.url)
       const corporatePage = official(pageURL)
@@ -919,8 +924,8 @@ export function createVerifiedRecruitmentScraper(config) {
       }
       const next = []
       const links = doc.nodes(node => node.tag === 'a' && node.attrs.href).map(node => ({ href: node.attrs.href, label: doc.text(node), carrier: 'anchor' }))
-      links.push(...activeIframeDeclarations(page.html))
-      links.push(...activeRecruitmentNavigationDeclarations(page.html))
+      links.push(...activeIframeDeclarations(activeHTML))
+      links.push(...activeRecruitmentNavigationDeclarations(activeHTML))
       links.push(...doc.nodes(node => node.tag === 'script' && node.attrs.src && !Object.hasOwn(node.attrs, 'nomodule')
         && /^(?:|module|(?:text|application)\/javascript)$/i.test(node.attrs.type || '')).map(node => ({ href: node.attrs.src, label: /\/embed/.test(node.attrs.src) ? 'careers embed' : '' })))
       for (const link of links) {

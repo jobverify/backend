@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { runCurrentNativeData } from './currentNativeData20261121.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -151,7 +152,18 @@ const defaultFetchText = (url) =>
 export const createJkFennerIndiaLtdScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    const hasInjectedFetchText = Object.hasOwn(options, 'fetchText')
+    const { fetchText: suppliedFetchText, fetchImpl, ...nativeOptions } = options
+    const fetchText = hasInjectedFetchText ? suppliedFetchText : defaultFetchText
+    if (typeof fetchImpl === 'function' || !hasInjectedFetchText || typeof fetchText !== 'function') {
+      const cap = Object.hasOwn(nativeOptions, 'maxJobs') ? nativeOptions.maxJobs : maxJobs
+      return runCurrentNativeData({
+        ...nativeOptions,
+        fetchImpl,
+        maxJobs: cap,
+      })
+    }
     const homepageHtml = await fetchText(HOMEPAGE_URL)
 
     if (!hasOfficialHomepageSignal(homepageHtml)) {

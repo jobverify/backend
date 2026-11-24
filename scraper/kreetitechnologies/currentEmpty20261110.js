@@ -12,6 +12,9 @@ const STYLE_SHA = '09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47
 const PROGRAM = 'https://assets.kreeti.com/assets/new_style-' + PROGRAM_SHA + '.js'
 const STYLE = 'https://assets.kreeti.com/assets/new_style-' + STYLE_SHA + '.css'
 const COMPANY_SHA = 'a649437a026e6a3aae164e9f14f2cf267c6c2c9804cd35e9cd8795f58343049d'
+const CURRENT_COMPANY_SHA = 'aa72b7c45804e4180328c06ba63795061a6abe95132ae91e000c8944fa01296a'
+const CONSENT = 'https://app-dist.kawach.ai/cookie_consent/v1.0.0.js'
+const CONSENT_SHA = 'd1bd56a5a48a50c52255d7c022766a5c47de2ff71ff85736d964daba04c06446'
 const SCRIPTS = [PROGRAM,
   'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/moment.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js',
@@ -93,13 +96,15 @@ function context(bytes, url) {
     url: absolute(node.attrs.href, url), label: document.text(node),
   }))
   if (url === COMPANY) {
-    // This exact current corporate document publishes the complete reviewed
-    // careers navigation. Future programs/handoffs need their own review.
-    need(sha(bytes) === COMPANY_SHA, 'current corporate publisher document requires review')
+    // Each complete document has a separately reviewed consent programme.
+    // The current document's exact SRI-bound script is read in both phases;
+    // no publisher scripts, remote consent config or submissions are executed.
+    const corporateDocumentSHA256 = sha(bytes)
+    need([COMPANY_SHA, CURRENT_COMPANY_SHA].includes(corporateDocumentSHA256), 'current corporate publisher document requires review')
     need(links.some(link => link.url === JOBS && link.label === 'Jobs')
       && links.some(link => link.url === STUDENTS && link.label === 'Students')
       && links.some(link => link.url === HOME && link.label === 'Careers'), 'current corporate careers handoff changed')
-    return { publisher: titles[0], careersLinks: links.filter(link => link.url.startsWith(HOME)) }
+    return { publisher: titles[0], corporateDocumentSHA256, careersLinks: links.filter(link => link.url.startsWith(HOME)) }
   }
   need(!/<style\b/i.test(html), 'unreviewed native inline style program')
   need(same(document.nodes(node => node.tag === 'script' && node.attrs.src).map(node => absolute(node.attrs.src, url)), SCRIPTS)
@@ -191,20 +196,20 @@ export async function runCurrentKreetiEmpty(options = {}) {
   const signal = AbortSignal.any([...(options.signal ? [options.signal] : []), AbortSignal.timeout(90000)])
   const fetchImpl = options.fetchImpl || globalThis.fetch
   const allowed = new Set([COMPANY, HOME, JOBS, STUDENTS, PROGRAM, STYLE]), receipts = []
-  let aggregate = 0
+  let aggregate = 0, requestLimit = 12
   const read = async url => {
     signal.throwIfAborted()
-    need(allowed.has(url) && receipts.length < 12, 'request outside the current complete empty contract')
+    need(allowed.has(url) && receipts.length < requestLimit, 'request outside the current complete empty contract')
     const requestSignal = AbortSignal.any([signal, AbortSignal.timeout(15000)])
     const response = await abortable(fetchImpl(url, {method:'GET', credentials:'omit', redirect:'error', cache:'no-store',
-      signal:requestSignal, headers:{Accept:url === PROGRAM ? 'application/javascript' : url === STYLE ? 'text/css' : 'text/html'}}), requestSignal, disposeResponse)
+      signal:requestSignal, headers:{Accept:url === PROGRAM || url === CONSENT ? 'application/javascript' : url === STYLE ? 'text/css' : 'text/html'}}), requestSignal, disposeResponse)
     let reader, mime
     try {
       requestSignal.throwIfAborted()
       need(response.url === url, 'native response URL authority changed')
       need(response.status === 200, 'native public HTTP ' + response.status)
       mime = (response.headers.get('content-type') || '').split(';')[0].trim().toLowerCase()
-      need(mime === (url === PROGRAM ? 'application/javascript' : url === STYLE ? 'text/css' : 'text/html'), 'native response MIME changed')
+      need(mime === (url === PROGRAM || url === CONSENT ? 'application/javascript' : url === STYLE ? 'text/css' : 'text/html'), 'native response MIME changed')
       need(Number(response.headers.get('content-length')) <= 1500000, 'native response body exceeds bounds')
       reader = response.body?.getReader()
       need(reader, 'native response body unavailable')
@@ -241,6 +246,11 @@ export async function runCurrentKreetiEmpty(options = {}) {
   }
   const opening = {}
   opening.company = context(await read(COMPANY), COMPANY)
+  const currentConsent = opening.company.corporateDocumentSHA256 === CURRENT_COMPANY_SHA
+  if (currentConsent) {
+    allowed.add(CONSENT); requestLimit = 14
+    need(sha(await read(CONSENT)) === CONSENT_SHA, 'reviewed corporate consent program bytes changed')
+  }
   opening.home = context(await read(HOME), HOME)
   opening.students = context(await read(STUDENTS), STUDENTS)
   opening.jobs = context(await read(JOBS), JOBS)
@@ -251,6 +261,8 @@ export async function runCurrentKreetiEmpty(options = {}) {
   closing.students = context(await read(STUDENTS), STUDENTS)
   closing.home = context(await read(HOME), HOME)
   closing.company = context(await read(COMPANY), COMPANY)
+  need(same(opening.company, closing.company), 'closing native company context changed')
+  if (currentConsent) need(sha(await read(CONSENT)) === CONSENT_SHA, 'closing reviewed corporate consent program bytes changed')
   need(sha(await read(PROGRAM)) === PROGRAM_SHA && sha(await read(STYLE)) === STYLE_SHA, 'closing reviewed renderer or CSS program changed')
   for (const key of Object.keys(opening)) need(same(opening[key], closing[key]), 'closing native ' + key + ' context changed')
   signal.throwIfAborted()
@@ -258,10 +270,12 @@ export async function runCurrentKreetiEmpty(options = {}) {
   need(typeof at === 'string' && Number.isFinite(Date.parse(at)), 'current observation time unavailable')
   const jobs = attachInventoryEvidence([], {status:'verified-empty',surface:JOBS,firstParty:true,listingComplete:true,
     lifecycleCleanupAllowed:false,pagesFetched:receipts.length,reportedTotal:0,indiaFacetCount:0,verifiedAt:at,
-    reason:'Current company-bound unfiltered public Jobs explicitly declares No Open Positions; Students only returns to the same general-interest intake. Opening/closing publisher, both career surfaces, student program, native JS/CSS reconciled. Global active public vacancies=0, so India=0; cleanup forbidden.'})
+    reason:'The reviewed unfiltered public Jobs programme explicitly declares No Open Positions; Students only returns to the same general-interest intake. Opening/closing publisher, career surfaces and reviewed programme assets reconcile. Zero is limited to these native surfaces; company-wide inventory and cleanup remain unqualified.'})
   Object.defineProperty(jobs, 'nativeCollectionEvidence', {configurable:true,value:{source:'kreetitechnologies',
-    recordKind:'vacancy-rows',observedRecordCount:0,observedVacancyCount:0,sourceScopeComplete:true,
-    companyGlobalTotal:0,companyIndiaTotal:0,lifecycleCleanupAllowed:false,currentContextRechecked:true,
+    recordKind:'vacancy-rows',observedRecordCount:0,observedVacancyCount:0,sourceScopeComplete:false,nativeProgrammeScopeComplete:true,
+    companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,currentContextRechecked:true,
+    reviewedCorporateConsentProgramSHA256:currentConsent ? CONSENT_SHA : null,
+    consentRemoteConfigQualified:false,publisherConsentProgramExecuted:false,browserExecutionQualified:false,
     opening,closing,reviewedNativeProgramSHA256:PROGRAM_SHA,reviewedNativeStyleSHA256:STYLE_SHA,receipts}})
   return jobs
 }

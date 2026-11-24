@@ -1,0 +1,17 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {readEnerparcListing,readEnerparcRouteClient,runCurrentEnerparc} from './currentNative.js'
+import {changeHiddenCarrier,replay} from './test-data/replay20261114.js'
+const f=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/current-listing-20261120.json.gz',import.meta.url)))),bytes=Buffer.from(f.bodyBase64,'base64'),html=bytes.toString()
+test('Enerparc actual current literal hidden native cohort survives unrelated CDN and presentation revisions',()=>{const listing=readEnerparcListing(html);assert.equal(listing.jobs.length,25);assert.ok(listing.jobs.every(row=>row.Country==='India'));assert.equal(listing.meta.org_info.company_name,'Enerparc Energy Private Limited.');assert.equal(listing.nativeClients.length,1);assert.match(listing.nativeClients[0],/career-website-common[.]5d760a87446385b0a4896c0b55098b2c[.]js$/);assert.equal(listing.originalHTML,html)})
+test('Enerparc harmless authored style change preserves only independently parsed literal facts',()=>{const changed=html.replace('<style>','<style>\n.native-neutral-style{color:navy}');assert.equal(readEnerparcListing(changed).jobs.length,25)})
+for(const [kind,change]of [['foreign employer',v=>{v.org_info.company_name='Other Employer'}],['foreign owned board',v=>{v.list_url='https://other.invalid/jobs'}]])test('Enerparc current literal employer and own route cannot borrow static branding '+kind,()=>assert.throws(()=>readEnerparcListing(changeHiddenCarrier(bytes,'meta',change).toString()),/employer|listing|native|model/i))
+test('Enerparc duplicate literal data owners remain a contract error',()=>assert.throws(()=>readEnerparcListing(html.replace('</body>','<input id="jobs" type="hidden" value="[]"></body>')),/carrier|native|owner/i))
+
+const original=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/current-native-20261114.json.gz',import.meta.url)))),client=Buffer.from(original.packets.find(row=>row.phase==='literal-declared-native-common-client').bodyBase64,'base64').toString()
+test('Enerparc reviewed native route semantics tolerate unrelated current client bytes',()=>{const result=readEnerparcRouteClient(client+'\n// Unrelated publisher deployment note.');assert.equal(result.nativeSerializerQualified,true);assert.match(result.originalSerializer,/getJobViewUrl|internal_list_url/);assert.equal(result.originalClient,client+'\n// Unrelated publisher deployment note.')})
+test('Enerparc native role serializer change cannot borrow previous whole client authority',()=>{const changed=client.replace('o.external_url?o.external_url:o.list_url','o.external_url?o.external_url:"https://other.invalid"');assert.notEqual(changed,client);assert.throws(()=>readEnerparcRouteClient(changed),/routing serializer changed/)})
+
+test('Enerparc a smaller paired literal native cohort stays partial without a frozen25-count requirement',async()=>{const io=replay(({url,bytes})=>url.endsWith('/jobs/Careers')?{bytes:changeHiddenCarrier(bytes,'jobs',rows=>rows.slice(0,-1))}:{}),jobs=await runCurrentEnerparc(io.options);assert.equal(jobs.length,1);assert.equal(jobs.nativeCollectionEvidence.observedRecordCount,24);assert.equal(jobs.nativeCollectionEvidence.unhydratedRecordCount,23);assert.equal(jobs.nativeCollectionEvidence.companyIndiaTotal,null);assert.equal(jobs.nativeCollectionEvidence.lifecycleCleanupAllowed,false)})

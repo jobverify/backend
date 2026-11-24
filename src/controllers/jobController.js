@@ -486,7 +486,7 @@ const getFreshWorkdayApplicationState = (job = {}, applicationUrl = "") => {
     : resolvedState;
 };
 
-const buildApplicationState = (job = {}) => {
+export const buildApplicationState = (job = {}) => {
   const applicationUrl = getSafeExternalApplicationUrl(job.applyUrl)
     || getSafeExternalApplicationUrl(job.sourceUrl);
 

@@ -1,0 +1,14 @@
+{
+  "board.html": {
+    "bytes": 505778,
+    "sha256": "8899193554cb9b577b05fb0b203b217942295ae081fe35838760d7ba532b30cd",
+    "originalPhysicalResult": "reports/scraper-20261120-continuation/remaining-soft-parallel-rechecks/bookingholdings/registered-default-parallel-20261120/result.json",
+    "ordinal": 1
+  },
+  "client.js": {
+    "bytes": 615357,
+    "sha256": "d654bbb278b072e4825ee8880f3f1678ddfda05d20959202b9e480cad7fa7b89",
+    "originalPhysicalResult": "reports/scraper-20261120-continuation/remaining-soft-parallel-rechecks/bookingholdings/registered-default-parallel-20261120/result.json",
+    "ordinal": 2
+  }
+}

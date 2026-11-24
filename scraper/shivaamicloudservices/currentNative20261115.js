@@ -9,7 +9,8 @@ import {normalizeNativeAttributeBoundaries} from '../../scraper-support/utils/na
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
-const profile=JSON.parse(readFileSync(new URL('./currentScope20261115.json',import.meta.url),'utf8'))
+const legacyProfile=JSON.parse(readFileSync(new URL('./currentScope20261115.json',import.meta.url),'utf8'))
+const reviewedProfiles=[legacyProfile,JSON.parse(readFileSync(new URL('./currentScope20261121.json',import.meta.url),'utf8'))]
 const SOURCE='shivaamicloudservices',COMPANY='Shivaami Cloud Services',sha=value=>createHash('sha256').update(value).digest('hex')
 const problem=message=>Object.assign(Error('Shivaami current native: '+message),{softFailure:true,abortRetries:true,failureKind:'coverage_gap',sourceScopeComplete:false,lifecycleCleanupAllowed:false})
 const need=(value,message)=>{if(!value)throw problem(message)}
@@ -17,7 +18,7 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
 const one=(values,label)=>{need(values.length===1,'missing or ambiguous '+label);return values[0]}
 const key=node=>node?.type==='Identifier'?node.name:node?.type==='Literal'?node.value:null
 const program=source=>{try{return parse(source,{ecmaVersion:'latest',sourceType:'module'})}catch{throw problem('unreviewed native program syntax')}}
-function nativeArrays(source){
+function nativeArrays(source,profile){
  const ast=program(source),declarations=ast.body.filter(n=>n.type==='VariableDeclaration').flatMap(n=>n.declarations)
  const read=(name,allowed)=>{
   const array=one(declarations.filter(n=>n.id.type==='Identifier'&&n.id.name===name),'native '+name+' declaration').init
@@ -46,9 +47,9 @@ export async function runCurrentShivaami(options={}){
  need(Number.isSafeInteger(interval)&&interval>=0&&interval<=60000&&(interval>=500||options.fetchImpl),'invalid native host pacing')
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(problem('source deadline exceeded')),duration)
  const signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal,fetchImpl=options.fetchImpl||globalThis.fetch
- const receipts=[],lastReads=new Map(),allowed=new Set([profile.home,profile.board]);let reads=0,total=0
+ const receipts=[],lastReads=new Map(),allowed=new Set([legacyProfile.home,legacyProfile.board]);let reads=0,total=0,profile=null
  const read=async url=>{
-  signal.throwIfAborted();need(allowed.has(url)&&Object.hasOwn(profile.assets,url)&&++reads<=30,'unbound native URL or request limit')
+  signal.throwIfAborted();need(allowed.has(url)&&(!profile||Object.hasOwn(profile.assets,url))&&++reads<=30,'unbound native URL or request limit')
   const origin=new URL(url).origin,wait=Math.max(0,interval-(performance.now()-(lastReads.get(origin)??-Infinity)))
   if(wait)await delay(wait,undefined,{signal});lastReads.set(origin,performance.now())
   const packet=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,overflowError:problem('native streaming byte bound'),fetchImpl:async(value,init)=>{
@@ -58,15 +59,20 @@ export async function runCurrentShivaami(options={}){
     cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}}}
    return{status:response.status,url:response.url,headers:response.headers,body}
   }})
-  const bytes=Buffer.from(packet.bodyBase64,'base64'),expected=profile.assets[url]
-  receipts.push({requestedURL:url,...packet,bodySHA256:sha(bytes)})
+  const bytes=Buffer.from(packet.bodyBase64,'base64'),digest=sha(bytes)
+  receipts.push({requestedURL:url,...packet,bodySHA256:digest})
   need(packet.status===200&&packet.url===url,'native HTTP status or final URL changed')
+  // Select one exact private deployment from the first whole homepage. Keep
+  // that cohort fixed for all role, dependency, stylesheet and closing reads.
+  if(!profile)profile=one(reviewedProfiles.filter(candidate=>candidate.home===url&&candidate.board===legacyProfile.board&&candidate.assets[url]?.bytes===bytes.length&&candidate.assets[url]?.sha256===digest),'reviewed coherent native deployment')
+  const expected=profile.assets[url]
   need((packet.headers['content-type']||'').split(';')[0].trim().toLowerCase()===expected.mime,'native response MIME changed')
-  need(bytes.length===expected.bytes&&sha(bytes)===expected.sha256,'whole current native document/program/style changed')
+  need(bytes.length===expected.bytes&&digest===expected.sha256,'whole current native document/program/style changed')
   try{return new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch{throw problem('invalid native UTF-8')}
  }
  const pass=async()=>{
-  const pages=new Map([[profile.home,await read(profile.home)],[profile.board,await read(profile.board)]]),html=pages.get(profile.board)
+  const home=await read(legacyProfile.home)
+  const pages=new Map([[profile.home,home],[profile.board,await read(profile.board)]]),html=pages.get(profile.board)
   const doc=readNativeDocument(normalizeNativeAttributeBoundaries(html)),entries=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src)
   const entry=one(entries,'active own module entry');need(new URL(entry.attrs.src,profile.board).href===profile.mainURL,'current own module declaration changed')
   need(doc.nodes(n=>n.tag==='div'&&n.attrs.id==='root').length===1&&!doc.nodes(n=>n.tag==='base').length,'own native mount/base changed')
@@ -74,7 +80,7 @@ export async function runCurrentShivaami(options={}){
   const careerRelative=new URL(profile.careersURL).pathname.split('/').at(-1)
   need(main.includes('import("./'+careerRelative+'")')&&main.includes('path:"/careers"')&&main.includes(' Shivaami Cloud Services. All rights reserved.'),'own active native careers route or employer declaration changed')
   allowed.add(profile.careersURL);const career=await read(profile.careersURL);pages.set(profile.careersURL,career)
-  const models=nativeArrays(career);need(same(models.imports,profile.careerImports),'native complete controller imports changed')
+  const models=nativeArrays(career,profile);need(same(models.imports,profile.careerImports),'native complete controller imports changed')
   const styles=doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='stylesheet').map(n=>new URL(n.attrs.href,profile.board).href)
   for(const url of[...new Set([...models.imports,...styles])]){
    need(Object.hasOwn(profile.assets,url),'unreviewed declared native import or style');allowed.add(url)

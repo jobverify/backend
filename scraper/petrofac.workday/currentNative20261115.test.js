@@ -2,7 +2,8 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import { gunzipSync } from 'node:zlib'
-import { run } from './script.js'
+import { runCurrentPetrofac as run } from './currentNative20261115.js'
+globalThis.fetch = async () => { throw Error('Network forbidden in historical Petrofac controls') }
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const fixture = JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz', import.meta.url))))
@@ -24,7 +25,7 @@ function replay(change = () => {}, options = {}) {
   return { calls, mutations, promise: run({ fetchImpl, requestIntervalMs: 0, now: () => fixture.capturedAt, ...options }) }
 }
 
-test('registered current Petrofac preserves two complete explicit India roles and all four native featured rows', async () => {
+test('dated historical certificate preserves two explicit India roles and four original featured rows', async () => {
   const reader = replay(), jobs = await reader.promise
   assert.equal(jobs.length, 2)
   assert.deepEqual(jobs.map(j => j.title), ['HR Digital Associate - Data Management', 'Senior Engineer- Electrical'])

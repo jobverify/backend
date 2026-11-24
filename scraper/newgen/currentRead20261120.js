@@ -3,7 +3,8 @@ import {types} from 'node:util'
 import {setTimeout as delay} from 'node:timers/promises'
 import {disposeResponseBody,disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 export function currentReader(initial,origins,options={}){
- const need=(ok,message)=>{if(!ok)throw Object.assign(Error('Current native transport: '+message),{abortRetries:true})}
+ const need=(ok,message)=>{if(!ok)throw Object.assign(Error('Current native transport: '+message),{abortRetries:true,nativeContradiction:true,failureKind:'parser_or_contract_error'})}
+ const decode=bytes=>{try{return new TextDecoder('utf8',{fatal:true}).decode(bytes)}catch(cause){throw Object.assign(Error('Current native transport: complete document UTF8 differs',{cause}),{abortRetries:true,nativeContradiction:true,failureKind:'parser_or_contract_error'})}}
  const timeout=options.sourceTimeoutMs??180000,interval=options.requestIntervalMs??1200,requestMs=options.requestTimeoutMs??15000
  need(Number.isSafeInteger(timeout)&&timeout>0&&timeout<=180000&&Number.isSafeInteger(requestMs)&&requestMs>0&&requestMs<=20000&&Number.isSafeInteger(interval)&&interval>=0&&(interval>=1000||options.fetchImpl),'invalid finite deadlines/pacing')
  const controller=new AbortController(),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal,timer=setTimeout(()=>controller.abort(new DOMException('Current source deadline','TimeoutError')),timeout),allowed=new Set(initial),perOrigin=new Map(),denied=new Set(),receipts=[]
@@ -24,10 +25,10 @@ export function currentReader(initial,origins,options={}){
    if([202,401,402,403,406,407,429,451].includes(response.status))denied.add(u.origin)
    const chunks=[];let byteCount=0;if(response.body){reader=response.body.getReader();for(;;){const part=await race(reader.read(),requestSignal);requestSignal.throwIfAborted();if(part.done){complete=true;break}need(types.isUint8Array(part.value),'original byte chunk unavailable');const chunk=Buffer.from(part.value);if(chunk.length>4000000-byteCount||chunk.length>32000000-total){exhausted=true;throw Object.assign(Error('Finite original body budget exhausted'),{nativeUnavailable:true})}byteCount+=chunk.length;total+=chunk.length;chunks.push(chunk)}}else complete=true
    const bytes=Buffer.concat(chunks);Object.assign(receipt,{url:response.url,status:response.status,redirected:response.redirected,headers:Object.fromEntries(response.headers),bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),bodyBase64:bytes.toString('base64'),bodyComplete:true})
-   if(navigation&&[301,302,307,308].includes(response.status))return{...receipt,text:new TextDecoder('utf8',{fatal:true}).decode(bytes)}
+   if(navigation&&[301,302,307,308].includes(response.status))return{...receipt,text:decode(bytes)}
    if(response.status!==200)throw Object.assign(Error('Native HTTP '+response.status),{status:response.status,nativeUnavailable:denied.has(u.origin)||response.status>=500})
    need(kind==='html'?/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i.test(response.headers.get('content-type')??''):kind==='program'&&/^(?:text|application)\/(?:javascript|ecmascript)(?:;|$)/i.test(response.headers.get('content-type')??''),'native declared document MIME differs')
-   return{...receipt,text:new TextDecoder('utf8',{fatal:true}).decode(bytes)}
+   return{...receipt,text:decode(bytes)}
   }catch(error){receipt.error=error.message;check();throw error}finally{if(reader&&!complete)await disposeResponseReader(reader,{bestEffort:true});else if(!reader&&response&&!complete)await disposeResponseBody(response,{bestEffort:true});try{reader?.releaseLock()}catch{}}
  }}
 }

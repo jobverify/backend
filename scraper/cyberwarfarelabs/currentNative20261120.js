@@ -1,0 +1,29 @@
+import {isDeepStrictEqual} from 'node:util'
+import reviewed from './reviewedContract20261120.json' with {type:'json'}
+import {createNativeReader} from './nativeRead20261120.js'
+import {SOURCE,CAREERS_URL,CAREERS_API_URL,need,readCareersPage,readMainContract,readCareerContract,extractCareerJobs} from './nativeContract20261120.js'
+import {extractPdfTextWorkerCore} from '../../scraper-support/shared/pdfTextWorkerCore.js'
+import {hasSourceDescription} from '../../src/utils/jobSourceContent.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+export async function runCurrentNative(options={}){
+ options.signal?.throwIfAborted();const maxJobs=options.maxJobs??Infinity;need(maxJobs===Infinity||Number.isSafeInteger(maxJobs)&&maxJobs>=0,'Invalid caller cap');const io=createNativeReader(options);let opening,closing,lastEntity,reconciled=false
+ const read=async url=>{lastEntity=await io.read(url);return lastEntity}
+ const audit=()=>({source:SOURCE,recordKind:opening&&opening.payload.data.length!==opening.records.length?'mixed':'vacancy-rows',observedRecordCount:opening?.payload.data.length??null,observedVacancyCount:opening?.records.length??null,observations:opening?.records??[],nativeOpening:opening,nativeClosing:closing,lastEntity:lastEntity?{url:lastEntity.url,kind:lastEntity.kind,sha256:lastEntity.sha256}:null,wholeNativeModelsClosingReconciled:reconciled,sourceScopeComplete:false,lifecycleCleanupAllowed:false,companyGlobalTotal:null,companyIndiaTotal:null,nativeCountryUnpublished:opening?opening.records.some(record=>record.listing.sourceNativeCountry===null):null,remoteIsIndia:false,stipendOrTDSIsWorkCountry:false,applicationInteractions:0,readEvidence:io.stats()})
+ async function collect(){
+  const page=readCareersPage((await read(CAREERS_URL)).body);io.allow(page.mainURL,'javascript');const main=readMainContract((await read(page.mainURL)).body,page.mainURL);io.allow(main.careerURL,'javascript');const career=readCareerContract((await read(main.careerURL)).body,main.careerURL,page.mainURL,main)
+  need(isDeepStrictEqual({main:main.model,career},reviewed),'Current native API/PDF/application declarations require review');io.allow(CAREERS_API_URL,'json');const payload=JSON.parse((await read(CAREERS_API_URL)).body),listings=extractCareerJobs(payload),records=[]
+  for(const listing of listings){io.allow(listing.sourceUrl,'pdf');const pdf=await read(listing.sourceUrl);need(pdf.bytes.subarray(0,5).toString()==='%PDF-','Native PDF signature changed');records.push({listing,pdfSHA256:pdf.sha256,pdfBytes:pdf.bytes.length})}
+  return{page,main,career,payload,records}
+ }
+ try{
+  opening=await collect();const detailRecords=[]
+  for(const record of opening.records){io.check();const receipt=io.stats().originalResponses.find(r=>r.requestedURL===record.listing.sourceUrl),pdf=await extractPdfTextWorkerCore(Buffer.from(receipt.bodyBase64,'base64'),{check:io.check,wait:io.wait,maxPages:20,includePageTextItems:true,includePageLinks:true});io.check();const text=pdf.text,words=record.listing.title.toLowerCase().match(/[a-z0-9]+/g)??[],identityWords=words.filter(w=>!['side','team','the','and','for','of'].includes(w)),normalized=text.toLowerCase().replace(/[^a-z0-9]+/g,' '),employer=/Company\s*:\s*CyberWarFare\s+Labs/i.test(text),criteria=hasSourceDescription({sourceDescription:text})&&/responsibilit/i.test(text)&&/quali[\s\w]*cations|requirements/i.test(text),titleMatches=identityWords.every(word=>new RegExp('(?:^| )'+word+'(?: |$)').test(normalized));detailRecords.push({...record,sourceDetailComplete:employer&&criteria&&titleMatches,pdf:{...pdf,sourceURL:record.listing.sourceUrl,sha256:record.pdfSHA256},nativeEmployerQualified:employer,nativeTitleQualified:titleMatches,criteriaQualified:criteria})}
+  opening.records=detailRecords;closing=await collect();need(isDeepStrictEqual({...opening,records:opening.records.map(({listing,pdfSHA256,pdfBytes})=>({listing,pdfSHA256,pdfBytes}))},closing),'Closing whole native API/PDF/application model changed');reconciled=true;io.check()
+  const verifiedAt=typeof options.now==='function'?options.now():options.now??new Date().toISOString();need(typeof verifiedAt==='string'&&Number.isFinite(Date.parse(verifiedAt)),'Invalid observation clock')
+  const jobs=opening.records.filter(r=>r.sourceDetailComplete).slice(0,maxJobs).map(r=>({...r.listing,jobDescription:r.pdf.text,sourceDescription:r.pdf.text,sourceDetailComplete:true,sourceNativePDF:structuredClone(r.pdf),sourceNativeApplicationDeclaration:{contract:structuredClone(reviewed),apiEmail:r.listing.sourceNativeRecord.email??null,publisherDefaultEmail:'careers@cyberwarfare.live',applyURL:r.listing.applyUrl},sourceNativeClosingReconciled:true,publicExperienceChecked:true,scrapedAt:verifiedAt}))
+  attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_API_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:io.stats().requests,reportedTotal:null,indiaFacetCount:null,verifiedAt,reason:'current-own-API-cohort-and-complete-PDF-criteria-reconciled;Remote-work-country-and-whole-company-inventory-unpublished'})
+  attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:opening.payload.data.length===opening.records.length?'vacancy-rows':'mixed',observedRecordCount:opening.payload.data.length,observedVacancyCount:opening.records.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit(),configurable:true});io.check();return jobs
+ }catch(error){options.signal?.throwIfAborted();try{if(error&&typeof error==='object')Object.defineProperty(error,'recruitmentObservations',{value:audit(),configurable:true})}catch{}options.signal?.throwIfAborted();throw error}
+ finally{io.close();options.signal?.throwIfAborted()}
+}

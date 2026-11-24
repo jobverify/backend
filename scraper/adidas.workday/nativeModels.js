@@ -16,6 +16,11 @@ const local=(v,origin,path)=>{try{const u=new URL(v);return u.origin===origin&&!
 export const isRoleURL=v=>local(v,'https://jobs.adidas-group.com',u=>/^\/job\/[^/]+\/\d+\/$/.test(u.pathname)&&(!u.search||u.search==='?feedId=301201&utm_source=j2w'))
 export const isClientURL=v=>local(v,'https://careers.adidas-group.com',u=>/^\/build\/js\/external-[a-f0-9]+\.js$/.test(u.pathname)&&!u.search)
 export const INDIA=JOBS+'?location='+encodeURIComponent(JSON.stringify([{country:'India'}]))
+export const isListingURL=value=>value===INDIA||local(value,'https://careers.adidas-group.com',u=>{
+ const offset=u.searchParams.get('offset')
+ return /^\d+$/.test(offset??'')&&Number(offset)>0&&Number(offset)<=480&&Number(offset)%20===0
+  &&u.href===INDIA+'&offset='+Number(offset)
+})
 const doc=html=>{need(typeof html==='string','original HTML required');const d=readNativeDocument(html),root=one(d.nodes(n=>n.tag==='root'),'document');need(!all(root,n=>n.tag==='base').length,'unreviewed base URL');return {d,root,head:activeHead(html)}}
 const scoped=(d,n,visible)=>{
  need(!all(n,x=>['script','style','template','noscript','iframe','object','embed','form','svg','img'].includes(x.tag)).length,'delegated or inactive role content requires review')
@@ -60,22 +65,25 @@ export function readPublisher(html,{index=false}={}){
 export function readClient(text){
  const digest=hash(text);need(digest==='dc373f5276ad3993f27a409f0e008d2f3dffb2b9fadfb273c50c91834b6157f0','declared search program changed; review required')
  need(text.includes('window.ac.jobSearchForm.find("input#location").val(JSON.stringify(t))')&&text.includes('$.getJSON("/jobs",window.getFilterOptions()'),'native GET encoding unavailable')
- return {sha256:digest,executed:false,method:'GET',action:'/jobs',locationParameter:'location',locationValue:JSON.stringify([{country:'India'}]),derivedURL:INDIA}
+ need(text.includes('e+=20,window.ac.jobSearchForm.find("input#offset").val(e),$.getJSON("/jobs",window.getFilterOptions()'),'native offset pagination declaration changed')
+ return {sha256:digest,executed:false,method:'GET',action:'/jobs',locationParameter:'location',locationValue:JSON.stringify([{country:'India'}]),derivedURL:INDIA,pagination:{parameter:'offset',pageSize:20,firstOffset:0}}
 }
-export function readListing(html){
+export function readListing(html,{offset=0}={}){
+ need(Number.isSafeInteger(offset)&&offset>=0&&offset<=480&&offset%20===0,'invalid native page offset')
  const {d,root,head}=doc(html);noSchema(root);need(head.titles.length===1&&head.titles[0].startsWith('adidas Careers '),'listing brand identity missing')
  form(d,'search__form');const grid=one(d.nodes(n=>n.tag==='ul'&&n.attrs.id==='jobs'),'whole native jobs grid');scoped(d,grid,readVisibleNativeDocument(html,{strict:true}))
  const items=all(grid,n=>n.tag==='li'&&cls(n,'job-list__job'));need(items.length>0&&items.length<=20,'native row/page bound')
  const countLabel=one(d.nodes(n=>n.attrs.id==='search-result__count-number'),'observed search count').attrs['data-count-to']
- need(/^\d+$/.test(countLabel)&&Number(countLabel)===items.length,'additional pages require review')
- const more=one(d.nodes(n=>n.attrs.id==='search-result__load-more'),'load more state');need(cls(more,'is-invisible'),'additional declared pages require review')
+ need(/^\d+$/.test(countLabel)&&Number(countLabel)<=500&&items.length===Math.min(20,Number(countLabel)-offset),'native page row/count/offset mismatch')
+ const more=one(d.nodes(n=>n.attrs.id==='search-result__load-more'),'load more state')
+ if(offset===0)need(cls(more,'is-invisible')===(Number(countLabel)<=20),'native declared load more state contradicts count')
  const rows=items.map(n=>{const a=one(all(n,x=>x.tag==='a'),'native role link');need(isRoleURL(a.attrs.href)&&cls(a,'job-list__brand--adidas'),'native own Adidas role link missing')
   const title=d.text(one(all(n,x=>x.tag==='h3'&&cls(x,'job-list__title')),'listing title')),facts=d.text(one(all(n,x=>cls(x,'job-list__facts')),'listing location/team'))
   const numberDate=d.text(one(all(n,x=>cls(x,'number-and-date')),'native date/number'));need(title&&facts&&numberDate,'blank native row')
   const location=/^(.+), ([^|]+) \| (.+)$/.exec(facts);need(location,'native location/country/team labels changed')
   const u=new URL(a.attrs.href);u.search='';return {title,requestedURL:a.attrs.href,sourceUrl:u.href,facts,locationLabel:location[1],countryLabel:location[2],teamLabel:location[3],numberDate,card:tree(n)}})
  need(new Set(rows.map(r=>r.sourceUrl)).size===rows.length,'duplicate canonical native role identity')
- return {title:head.titles[0],observedCount:Number(countLabel),observedCountIsCompanyTotal:false,rows}
+ return {title:head.titles[0],observedCount:Number(countLabel),observedCountIsCompanyTotal:false,offset,rows}
 }
 export function readRole(html,row){
  const {d,root,head}=doc(html);noSchema(root)

@@ -1,5 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runCurrentIndiaPublications } from './currentCollection20261121.js'
+
+export { catalog } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -252,7 +255,7 @@ const defaultFetchText = async (url) => {
   return response.text()
 }
 
-export const createWonksknowScraper = () => ({
+export const createLegacyWonksknowScraper = () => ({
   async run({ fetchText = defaultFetchText, now = () => new Date().toISOString() } = {}) {
     const homepageHtml = await fetchText(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
@@ -309,6 +312,7 @@ export const createWonksknowScraper = () => ({
   },
 })
 
+export const createWonksknowScraper = () => ({ run: runCurrentIndiaPublications })
 export const run = async (options = {}) => createWonksknowScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { createLangchainNativeScraper } from './nativeInventory.js'
+import {createHistoricalLangchainNativeScraper as createLangchainNativeScraper } from './nativeInventory.js'
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 const frontendFixture = new URL('./test-data/frontend-contract-20261105/', import.meta.url)

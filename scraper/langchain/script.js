@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createLangchainNativeScraper } from './nativeInventory.js'
+import { createLangchainNativeScraper } from './currentNative20261121.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const provider = {

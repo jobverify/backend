@@ -10,16 +10,19 @@ export function createAssistantRouter({ model, service = createAssistantService(
   const router = express.Router();
   router.use((_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
   router.use(protect);
-  router.get('/capabilities', (_req, res) => res.json({ success: true, data: service.capabilities() }));
+  router.get('/capabilities', async (_req, res, next) => {
+    try { res.json({ success: true, data: service.capabilities(await getSiteSettings()) }); }
+    catch (error) { next(error); }
+  });
   router.post('/messages', async (req, res) => {
     const controller = new AbortController();
     const abort = () => { if (!res.writableEnded) controller.abort(); };
     res.once('close', abort);
     try {
-      if (!service.capabilities().enabled) throw new AssistantError(503, 'assistant_disabled', 'The assistant is not currently available.', 30);
+      const siteSettings = await getSiteSettings();
+      if (!service.capabilities(siteSettings).enabled) throw new AssistantError(503, 'assistant_disabled', 'The assistant is not currently available.', 30);
       // Invalid requests never use an inference or an account turn.
       validateAssistantInput(req.body, req.assistantBodyBytes);
-      const siteSettings = await getSiteSettings();
       await consumeQuota(req.user._id);
       const data = await service.ask(req.body, {
         user: req.user, siteSettings, signal: controller.signal, rawBytes: req.assistantBodyBytes,

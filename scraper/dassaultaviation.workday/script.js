@@ -1,12 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRecruitmentBatchSource } from '../../scraper-support/utils/recruitmentBatch20261103.js'
+import {runCurrentDassault} from './currentNative20261121.js'
 
 export const SOURCE = "dassaultaviation"
 export const COMPANY = "Dassault Aviation"
 export const CAREERS_URL = "https://www.dassault-aviation.com/en/group/careers/"
 export const DISPOSITION = 'runtime-verified-recruitment'
-export const run = options => runRecruitmentBatchSource(SOURCE, options)
+export const run = options => runCurrentDassault(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

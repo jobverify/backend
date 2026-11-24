@@ -9,6 +9,7 @@ export const EMPLOYER_URL='https://www.linkedin.com/company/xto10x-tech'
 export const INDIA_URL='https://www.linkedin.com/jobs/search/?f_C=14628973&location=India'
 export const WORLDWIDE_URL='https://www.linkedin.com/jobs/search/?f_C=14628973&location=Worldwide'
 export const RECRUITING_EMAIL='mailto:hungryforimpact@xto10x.com'
+const genericInvitations=new Set([RECRUITING_EMAIL,'mailto:growth-team@xto10x.com'])
 export const NATIVE_POSTS=[{id:1728041,title:'Strategy Consultant',url:'https://www.iimjobs.com/j/strategy-consultant-1728041'},{id:1728042,title:'Engagement Manager',url:'https://www.iimjobs.com/j/engagement-manager-1728042'}]
 export const apiURL=id=>'https://gladiator.iimjobs.com/job/detail?jobcode='+id
 export function activeDocument(html) {
@@ -23,18 +24,20 @@ export function verifyCorporate(html,{about=false}={}) {
  const doc=activeDocument(html),text=doc.text(doc.root)
  requireNative(text.includes('xto10x Technologies'),'Official xto10x employer identity missing')
  const careers=doc.nodes(n=>n.tag==='a'&&doc.text(n)==='Careers')
- requireNative(careers.length>0&&careers.every(n=>n.attrs.href===RECRUITING_EMAIL),'Active corporate careers destination changed')
+ requireNative(careers.length>0&&careers.every(n=>genericInvitations.has(n.attrs.href)),'Active corporate careers destination changed')
  requireNative(!doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json').some(n=>/JobPosting/.test(n.raw)),'New corporate JobPosting requires role-level review')
  if(about){
-  requireNative(doc.nodes(n=>n.tag==='a'&&doc.text(n)==='Join Us'&&n.attrs.href===RECRUITING_EMAIL).length>0,'Active corporate Join Us invitation missing')
+  requireNative(doc.nodes(n=>n.tag==='a'&&doc.text(n)==='Join Us'&&genericInvitations.has(n.attrs.href)).length>0,'Active corporate Join Us invitation missing')
   const next=JSON.parse(oneNative(doc.nodes(n=>n.tag==='script'&&n.attrs.id==='__NEXT_DATA__'),'Next data').raw)
   const body=next.props?.pageProps?.story?.content?.body
-  requireNative(Array.isArray(body)&&body.length===5&&body.every(b=>['abouthero','beliefs','founders','team','offices'].includes(b.component)),'Unreviewed corporate body component')
+  requireNative(Array.isArray(body)&&body.length===5&&body.every(b=>['abouthero','aboutwall','beliefs','founders','team','offices'].includes(b.component)),'Unreviewed corporate body component')
   const team=oneNative(body.filter(b=>b.component==='team'),'corporate team')
-  requireNative(team.joinUsLink?.linktype==='email'&&team.joinUsLink.email==='hungryforimpact@xto10x.com'&&team.joinLink?.length===1&&team.joinLink[0].link===RECRUITING_EMAIL,'Native corporate invitation destination changed')
+  requireNative(team.joinUsLink?.linktype==='email'&&genericInvitations.has('mailto:'+team.joinUsLink.email)&&team.joinLink?.length===1&&team.joinLink[0].link==='mailto:'+team.joinUsLink.email,'Native corporate invitation destination changed')
   requireNative(doc.nodes(n=>n.tag==='h2'&&doc.text(n)===team.description).length>0,'Corporate generic invitation heading not active')
  }
- return {careersDestination:RECRUITING_EMAIL,firstParty:true,kind:'generic-email-invitation',specificJob:false}
+ // The current server-rendered Join Us anchors and JSON email may differ.
+ // Both are generic invitations; neither establishes an individual vacancy.
+ return {careersDestination:careers[0].attrs.href,firstParty:true,kind:'generic-email-invitation',specificJob:false}
 }
 export function verifyNativeEmployerPost(html,record,{now=()=>new Date().toISOString()}={}) {
  const envelope=JSON.parse(html),row=envelope.data

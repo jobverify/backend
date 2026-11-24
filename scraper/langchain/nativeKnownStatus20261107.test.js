@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {readNativePublicDocument} from './nativeTransport.js'
-import {createLangchainNativeScraper} from './nativeInventory.js'
+import {createHistoricalLangchainNativeScraper as createLangchainNativeScraper} from './nativeInventory.js'
 const URL='https://www.langchain.com/careers'
 const failure=()=>Error('Original response stream failed')
 for(const status of [200,403]) test('original HTTP '+status+' body failure keeps primary transport provenance',async t=>{

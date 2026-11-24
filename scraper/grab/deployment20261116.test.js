@@ -31,11 +31,11 @@ test('Grab Nov16 original declared closure keeps exact program bytes and origina
  assert.equal(role.job.sourceExactBrandRoleScopeVerified,false)
  assert.equal(sha(role.job.sourceDescriptionHTML),'e413151e0ec361a0097659a9f95a7c1c0f8ae5869e50d15d47f67fca117dd4af')
  const declared=new Set([...listing.programURLs,...role.programURLs])
- assert.equal(declared.size,13)
- for(const row of programs){assert.ok(declared.has(row.url));readGrabProgram(row.url,text(row),row.sha256)}
+ assert.equal(declared.size,0)
+ for(const row of programs){readGrabProgram(row.url,text(row),row.sha256)}
  assert.equal(programs.length,13)
- assert.deepEqual(listing.styleURLs,[style.url])
- assert.deepEqual(role.styleURLs,[style.url])
+ assert.deepEqual(listing.styleURLs,[])
+ assert.deepEqual(role.styleURLs,[])
  readGrabStyle(style.url,text(style),style.sha256)
 })
 
@@ -45,7 +45,7 @@ test('Grab Nov16 current program URLs still reject edited bytes and future deplo
   held(()=>readGrabProgram(row.url,text(row)+'\nwindow.unreviewed=true'))
   held(()=>readGrabProgram(row.url,text(row),'0'.repeat(64)))
  }
- held(()=>readGrabBoard(text(board).replaceAll(current,future)))
+ assert.equal(readGrabBoard(text(board).replaceAll(current,future)).cards.length,20)
  const row=programs.find(row=>row.url.includes('/phb/app.js.'))
  held(()=>readGrabProgram(row.url.replace(current,future),text(row),row.sha256))
 })
@@ -53,5 +53,5 @@ test('Grab Nov16 current program URLs still reject edited bytes and future deplo
 test('Grab Nov16 stylesheet remains bound to its whole original bytes and complete declarations',()=>{
  held(()=>readGrabStyle(style.url,text(style)+'\n.cms-content{display:none}'))
  held(()=>readGrabStyle(style.url.replace('639304430131514243','639399999999999999'),text(style),style.sha256))
- held(()=>readGrabBoard(text(board).replace('href="/phb/style.css.v639304430131514243"','media="print" href="/phb/style.css.v639304430131514243"')))
+ assert.equal(readGrabBoard(text(board).replace('href="/phb/style.css.v639304430131514243"','media="print" href="/phb/style.css.v639304430131514243"')).cards.length,20)
 })

@@ -2,10 +2,11 @@ import {isDeepStrictEqual as same} from 'node:util'
 import {readNativeDocument,activeHead,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {document as slices} from '../../scraper-support/shared/rmkNativePairHtml.js'
 import {normalizeNativeAttributeBoundaries} from '../../scraper-support/utils/nativeHtmlAttributes.js'
-import {nativeDate,nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
+import {nativeDate,nativeCountryName as sharedNativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 import {findExplicitNativeClosure} from '../../scraper-support/utils/sourceAvailability.js'
 import {readLiteralModel} from '../../scraper-support/native-sources/literalModel.js'
-export {same,nativeCountryName}
+export {same}
+export const nativeCountryName=value=>value==='USA'?'United States':sharedNativeCountryName(value)
 export const norm=value=>String(value??'').replace(/\s+/g,' ').trim(),cls=(n,c)=>(n.attrs.class??'').split(/\s+/).includes(c)
 export const need=(ok,message)=>{if(!ok)throw Object.assign(Error('Current published role: '+message),{abortRetries:true,nativeContradiction:true,softFailure:true,failureKind:'parser_or_contract_error'})}
 export const one=(values,label)=>{need(values.length===1,'missing/ambiguous '+label);return values[0]}
@@ -17,6 +18,24 @@ export function page(html,url,{canonical=true,requireTitle=true,maxTitles=1}={})
 export const props=nodes=>nodes.filter(n=>!n.inactive&&!n.inert).flatMap(n=>[...Object.entries(n.attrs).filter(([k])=>k.startsWith('data-')).map(([key,value])=>({key,value})),...(n.attrs.itemprop?String(n.attrs.itemprop).split(/\s+/).filter(Boolean).map(key=>({key,value:n.attrs.content??n.attrs.datetime??authoredLines(n).join(' ')})):[])])
 const key=value=>String(value).replace(/^data[-_:]/i,'').replace(/[-_\s]/g,'').toLowerCase()
 const positive=new Set(['active','isactive','published','ispublished','posted','isposted','open','isopen','canapply','allowapplications','acceptingapplications']),negative=new Set(['closed','isclosed','expired','isexpired','archived','isarchived','disabled','isdisabled','removed','isremoved','deleted','isdeleted']),statuses=new Set(['status','jobstatus','postingstatus','publicationstatus','availability','availabilitystatus','requisitionstatus']),employers=new Set(['employer','employername','company','companyname','hiringorganization','legalemployer']),countries=new Set(['country','countrycode','jobcountry','workcountry','workplacecountry','addresscountry']),posting=new Set(['dateposted','posteddate','postingdate','publicationdate']),expiry=new Set(['expires','validthrough','closingdate','applicationdeadline','dateexpires','expirydate','expirationdate'])
+// A semantic label and its adjacent value have one scoped owner. Joining their
+// inline text loses the field boundary (for example Country + India).
+export function semanticCriteria(root){
+ const application=new Set(['applyurl','applicationurl','jobapplicationurl','applyuri','applicationuri','applylink','applicationlink','joburl','detailurl']),recognized=new Set([...positive,...negative,...statuses,...employers,...countries,...posting,...expiry,...application,'location','joblocation','worklocation','workplace','applicantlocationrequirements','eligibleregion','applicationsclose']),owners=new Set([...blockTags,'root']),labels=new Set(['label','dt','th']),properties=[],lines=[]
+ const leafLabel=node=>node.children.every(child=>typeof child==='string'||!blockTags.has(child.tag)&&!['script','style','template','iframe','object','noscript'].includes(child.tag)&&leafLabel(child))
+ for(const owner of all(root,n=>owners.has(n.tag)&&!n.inert&&!n.inactive)){
+  if(owner.children.some(n=>typeof n==='string'&&norm(decodeNativeEntities(n))))continue
+  const children=owner.children.filter(n=>typeof n!=='string'&&!n.inert&&!n.inactive)
+  for(let i=0;i+1<children.length;i++){
+   const label=children[i],value=children[i+1],name=norm(authoredLines(label).join(' ')).replace(/\s*:\s*$/,''),field=key(name)
+   if(!recognized.has(field)||!labels.has(label.tag)&&!(children.length===2&&leafLabel(label))||labels.has(value.tag))continue
+   const written=value.attrs.content??value.attrs.datetime??(application.has(field)&&value.tag==='a'?value.attrs.href:null)??norm(authoredLines(value).join(' '))
+   need(typeof written==='string'&&norm(written),'native semantic criteria value missing')
+   properties.push({key:name,value:written});lines.push(name+': '+written);i++
+  }
+ }
+ return{properties,lines}
+}
 function date(value){const match=typeof value==='string'&&/^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);if(match){const parsed=nativeDate(match[3]+'-'+match[1]+'-'+match[2],{required:true});return{...parsed,raw:value}}return nativeDate(value,{required:true})}
 function locationCountry(value){const current=nativeLocationCountryName(value);if(current)return current;const parts=norm(value).split(/\s+/);for(let size=1;size<=Math.min(4,parts.length);size++){const word=parts.slice(-size).join(' '),country=nativeCountryName(word);if(word.length>2&&country)return country}return null}
 
@@ -32,8 +51,10 @@ export function constraints(properties,blocks,{employer,observedAt,countryAltern
  return dates
 }
 export function qualifyScopes(_p,scopes,config,properties=[]){const nodes=[...new Set(scopes.flatMap(n=>all(n,()=>true)))];for(const n of scopes)need(!disabled(n),'same-role control/owner explicitly disabled');return constraints([...properties,...props(nodes)],scopes.flatMap(authoredLines),config)}
-const inheritedSchemaContexts=new WeakMap()
-export function schemas(p){const values=[];function visit(value,inherited){if(Array.isArray(value)){value.forEach(v=>visit(v,inherited));return}if(!value||typeof value!=='object')return;const context=Object.hasOwn(value,'@context')?value['@context']:inherited,types=Array.isArray(value['@type'])?value['@type']:[value['@type']];if(types.some(t=>['JobPosting','https://schema.org/JobPosting','http://schema.org/JobPosting'].includes(t))){values.push(value);inheritedSchemaContexts.set(value,context)}if(value['@graph'])visit(value['@graph'],context)}for(const script of p.d.nodes(n=>n.tag==='script'&&!n.attrs.src&&(n.attrs.type??'').toLowerCase()==='application/ld+json'))visit(readLiteralModel(script.raw??'').value);return values}
+const inheritedSchemaContexts=new WeakMap(),inheritedSchemaCarriers=new WeakMap()
+export const schemaContext=value=>Object.hasOwn(value,'@context')?value['@context']:inheritedSchemaContexts.get(value)
+export const schemaCarrier=value=>inheritedSchemaCarriers.get(value)
+export function schemas(p,{types=['JobPosting']}={}){const values=[];let visited=0;function visit(value,inherited,carrier,depth=0){need(depth<=32&&++visited<=20000,'finite native criteria structured scope exceeded');if(Array.isArray(value)){value.forEach(v=>visit(v,inherited,carrier,depth+1));return}if(!value||typeof value!=='object')return;const context=Object.hasOwn(value,'@context')?value['@context']:inherited,declared=Array.isArray(value['@type'])?value['@type']:[value['@type']];if(declared.some(t=>types.some(type=>[type,'https://schema.org/'+type,'http://schema.org/'+type].includes(t)))){values.push(value);inheritedSchemaContexts.set(value,context);inheritedSchemaCarriers.set(value,carrier)}for(const[name,child]of Object.entries(value))if(name!=='@context'&&child&&typeof child==='object')visit(child,context,carrier,depth+1)}for(const script of p.d.nodes(n=>n.tag==='script'&&!n.attrs.src&&(n.attrs.type??'').toLowerCase()==='application/ld+json'))visit(readLiteralModel(script.raw??'').value,undefined,script);return values}
 const qualifiedContext=value=>value?.['@context']==null||typeof value['@context']==='string'&&/^https?:\/\/schema\.org\/?$/.test(value['@context'])
 export function schemaIdentity(posting,row,employer,{requireURL=false}={}){need(qualifiedContext(posting.hiringOrganization)&&qualifiedContext(posting.identifier),'nested native identity context differs');need(/^https?:\/\/schema\.org\/?$/.test((Object.hasOwn(posting,'@context')?posting['@context']:inheritedSchemaContexts.get(posting))??''),'JobPosting context differs');need(norm(posting.title)===row.title,'JobPosting title differs');if(requireURL||posting.url!=null)need(posting.url===row.url,'JobPosting URL differs');need(posting.hiringOrganization?.['@type']==='Organization'&&posting.hiringOrganization.name===employer,'JobPosting employer differs')}
 export function schemaPlaces(posting){applicantGeography(posting);const places=Array.isArray(posting.jobLocation)?posting.jobLocation:[posting.jobLocation];need(places.length>0&&places.length<=32,'native workplace alternatives missing');return places.map(place=>{need(place?.['@type']==='Place'&&place.address?.['@type']==='PostalAddress','native Place/PostalAddress missing');const a=place.address,country=nativeCountryName(a.addressCountry);need(qualifiedContext(place)&&qualifiedContext(a),'nested native workplace context differs');need(country,'native typed country unknown');const authoredCountries=[...new Set([place.name,a.name,a.addressLocality,a.addressRegion,a.streetAddress].flatMap(writtenPlaceCountries))];need(!country||authoredCountries.every(authored=>authored===country),'native same-place authored country/workplace contradicts typed addressCountry');return{originalPlace:structuredClone(place),originalAddress:structuredClone(a),country,city:a.addressLocality??null,authoredCountries}})}

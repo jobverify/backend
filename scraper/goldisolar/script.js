@@ -115,14 +115,17 @@ export const extractSearchResults = (html) => {
     .sort((left, right) => left.title.localeCompare(right.title))
 }
 
-const defaultFetchText = async (url) => {
+const defaultFetchText = async (url, { signal } = {}) => {
+  signal?.throwIfAborted()
   const response = await fetch(url, {
+    signal,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
   })
 
+  signal?.throwIfAborted()
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} for ${url}`)
   }
@@ -134,8 +137,12 @@ export const createGoldiSolarScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
   async run(options = {}) {
+    options.signal?.throwIfAborted()
     const fetchText = options.fetchText || defaultFetchText
-    const html = await fetchText(buildSearchUrl())
+    let html
+    try { html = await fetchText(buildSearchUrl(), { signal: options.signal }) }
+    catch (error) { options.signal?.throwIfAborted(); throw error }
+    options.signal?.throwIfAborted()
 
     if (/Password Protect WordPress plugin/i.test(html)
       && /<input\b[^>]*type=["']password["']/i.test(html)) {

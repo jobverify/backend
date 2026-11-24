@@ -7,7 +7,8 @@ import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.j
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))
-const BOARD='https://rxlogix.com/careers/',ARCH='https://rxlogix.com/technical-architect/',PERF='https://rxlogix.com/performance-test-engineer/'
+test.beforeEach(t=>t.mock.method(globalThis,'fetch',()=>{throw Error('Real network prohibited in retained source tests')}))
+const BOARD='https://rxlogix.com/careers/',ARCH='https://rxlogix.com/technical-architect/'
 const ANALYTICS='https://www.googletagmanager.com/gtag/js?id=G-5N9GRWCJB3',GLOBALCSS='https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/global.css'
 const grouped=new Map(),body=p=>Buffer.from(p.bodyBase64,'base64').toString('utf8')
 for(const p of fixture.packets){if(!grouped.has(p.requestedURL))grouped.set(p.requestedURL,[]);grouped.get(p.requestedURL).push(p)}
@@ -35,26 +36,26 @@ test('registered current reader preserves two full own India roles, all22 raw ca
  assert.deepEqual(jobs.map(j=>j.employmentType),['Full Time',null])
  for(const job of jobs){assert.equal(job.company,'RxLogix Corporation');assert.equal(job.country,'India');assert.equal(job.location,'Noida, India');assert.equal(job.jobId,null);assert.equal(job.requisitionId,null);assert.equal(job.postingDate,null);assert.equal(job.sourceDetailComplete,true);assert.equal(job.sourceNativeClosingReconciled,true);assert.equal(job.sourceScopeComplete,false);assert.equal(job.lifecycleCleanupAllowed,false);assert.equal(job.sourceRenderedApplicationQualified,false);assert.equal(job.nativeSourceRecord.originalNativeFullCriteria,originalCriteria(job.sourceUrl));assert.ok(job.jobDescription.includes(originalCriteria(job.sourceUrl)));assert.ok(job.jobDescription.includes('Only PDF or DOCX type files are allowed'));assert.ok(job.jobDescription.includes('Please select your preferred location'));assert.deepEqual(job.nativeSourceRecord.originalPublishedApplication.preferredLocations,['India','Japan','United Kingdom','United States']);assert.equal(job.nativeSourceRecord.originalPublishedApplication.preferredLocationsAreWorksites,false);assert.equal(job.nativeSourceRecord.originalPublishedApplication.authoredHref,'#')}
  assert.ok(jobs[0].jobDescription.includes('Travel Expectations 0%'));assert.ok(jobs[1].jobDescription.includes('Willingness to learn and adapt'))
- const e=jobs.nativeCollectionEvidence;assert.equal(e.nativeRows.length,22);assert.equal(new Set(e.nativeRows.map(r=>r.url)).size,21);assert.equal(e.holds.length,20);assert.equal(e.originalResponses.length,66);assert.equal(e.closingNativeRows.length,22);assert.equal(e.companyIndiaTotal,null);assert.equal(e.verifiedZero,false)
- assert.equal(r.calls.length,66);assert.ok(r.calls.every(c=>c.init.method==='GET'&&c.init.redirect==='manual'&&c.init.credentials==='omit'))
+ const e=jobs.nativeCollectionEvidence;assert.equal(e.nativeRows.length,22);assert.equal(new Set(e.nativeRows.map(r=>r.url)).size,21);assert.equal(e.holds.length,20);assert.equal(e.originalResponses.length,6);assert.equal(e.closingNativeRows.length,22);assert.equal(e.companyIndiaTotal,null);assert.equal(e.verifiedZero,false)
+ assert.equal(r.calls.length,6);assert.ok(r.calls.every(c=>c.init.method==='GET'&&c.init.redirect==='manual'&&c.init.credentials==='omit'))
  const inventory=readInventoryEvidence(jobs);assert.equal(inventory.listingComplete,false);assert.equal(inventory.lifecycleCleanupAllowed,false);assert.equal(inventory.reportedTotal,null);assert.equal(inventory.indiaFacetCount,null)
 })
-test('both exact genuine analytics programs and mixed closing variants preserve current positives',async()=>{
+test('historical analytics variants are not requested for native authored qualification',async()=>{
  for(const variant of[0,1]){const r=replay((p,url)=>{if(url===ANALYTICS)p.body=body(grouped.get(url)[variant])});assert.equal((await r.promise).length,2)}
 })
-test('third actual whole analytics build preserves the same complete own India roles',async()=>{
+test('third historical analytics build is irrelevant to native authored role facts',async()=>{
  const actual=grouped.get(ANALYTICS)[2];assert.ok(actual,'third complete actual program packet retained')
- const r=replay((p,url)=>{if(url===ANALYTICS)p.body=body(actual)});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,2)
+ const r=replay((p,url)=>{if(url===ANALYTICS)p.body=body(actual)});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,0);assert.ok(r.calls.every(c=>c.url!==ANALYTICS))
 })
-test('fresh closing may publish the third reviewed complete analytics build',async()=>{
- const r=replay((p,url,index)=>{if(url===ANALYTICS&&index===1)p.body=body(grouped.get(ANALYTICS)[2])});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,1)
+test('native closing does not request a historical analytics release',async()=>{
+ const r=replay((p,url,index)=>{if(url===ANALYTICS&&index===1)p.body=body(grouped.get(ANALYTICS)[2])});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,0);assert.ok(r.calls.every(c=>c.url!==ANALYTICS))
 })
-test('an unknown same-length change cannot inherit the third exact analytics program',async()=>{
+test('unread same-length analytics change cannot deny native authored roles',async()=>{
  const actual=body(grouped.get(ANALYTICS)[2]),changed=actual.replace('R(206)','R(999)');assert.notEqual(changed,actual);assert.equal(changed.length,actual.length)
- const r=replay((p,url)=>{if(url===ANALYTICS)p.body=changed});await assert.rejects(r.promise,e=>e.softFailure===true);assert.ok(r.mutations.length)
+ const r=replay((p,url)=>{if(url===ANALYTICS)p.body=changed});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,0);assert.ok(r.calls.every(c=>c.url!==ANALYTICS))
 })
-test('the third whole program cannot inherit authority at another declared client URL',async()=>{
- const r=replay((p,url)=>{if(url==='https://rxlogix.com/wp-includes/js/jquery/jquery.min.js')p.body=body(grouped.get(ANALYTICS)[2])});await assert.rejects(r.promise,e=>e.softFailure===true);assert.ok(r.mutations.length)
+test('unread jQuery replacement cannot change independently authored role qualification',async()=>{
+ const r=replay((p,url)=>{if(url==='https://rxlogix.com/wp-includes/js/jquery/jquery.min.js')p.body=body(grouped.get(ANALYTICS)[2])});assert.equal((await r.promise).length,2);assert.equal(r.mutations.length,0);assert.equal(r.calls.length,6)
 })
 test('only exact coupled native translator references and overwritten initial hidden seeds may vary',async()=>{
  const r=replay(p=>{if(!p.headers['content-type'].includes('html'))return;const id=/id="gt-wrapper-(\d{8})"/.exec(p.body)[1];p.body=p.body.replaceAll(id,'99112233').replace(/(<input type="hidden" id="ak_js_[12]" name="_wpcf7_ak_js" value=")[0-9]+("\/>)/g,'$1'+'999999999'+'$2')})
@@ -67,7 +68,7 @@ const roleMutations=[
  ['unknown worksite country',p=>{p.body=p.body.replace('Noida, India','Noida')}],
  ['extra original criterion',p=>{p.body=p.body.replace('Minimum Requirements','Mandatory additional licence. Minimum Requirements')}],
  ['omitted original criterion',p=>{p.body=p.body.replace('Travel Expectations','Removed Expectations')}],
- ['new unknown required input',p=>{p.body=p.body.replace(/<form\b[^>]*action="\/technical-architect\/[^\"]*"[^>]*>/,'$&<input name="mandatory_licence" required value="yes">')}],
+ ['new unknown required input',p=>{p.body=p.body.replace(/<form\b[^>]*action="\/technical-architect\/[^"]*"[^>]*>/,'$&<input name="mandatory_licence" required value="yes">')}],
  ['unknown native data context',p=>{p.body=p.body.replace('class="job-detail"','class="job-detail" DATA-role="closed"')}],
  ['changed required input value',p=>{p.body=p.body.replace('value="Technical Architect"','value="A Different Role"')}],
  ['omitted application preference',p=>{p.body=p.body.replace('<option value="Japan">Japan</option>','')}],
@@ -96,13 +97,18 @@ for(const[name,mutate]of roleMutations)test(name+' cannot inherit the current wh
  const r=replay((p,url)=>{if(url===ARCH)mutate(p)});await assert.rejects(r.promise,error=>error.softFailure===true&&error.lifecycleCleanupAllowed===false);assert.ok(r.mutations.length,'mutation actually reached a genuine role packet')
 })
 for(const[name,change]of[
- ['closing full criterion',(p,url,index)=>{if(url===ARCH&&index===1)p.body=p.body.replace('Minimum Requirements','Closing-only additional requirement. Minimum Requirements')}],
- ['closing application condition',(p,url,index)=>{if(url===ARCH&&index===1)p.body=p.body.replace('PDF or DOCX','PDF only')}],
- ['closing raw duplicate membership',(p,url,index)=>{if(url===BOARD&&index===1)p.body=p.body.replace('Bilingual BQA','Other Role')}],
  ['closing CSS',(p,url,index)=>{if(url===GLOBALCSS&&index===1)p.body+='\n.job-detail{display:none}'}],
  ['closing whole analytics',(p,url,index)=>{if(url===ANALYTICS&&index===1)p.body=p.body.replace('releaseExperiment','releaseExperimenx')}],
  ['wrong whole analytics MIME',(p,url)=>{if(url===ANALYTICS)p.headers['content-type']='text/plain'}],
  ['unknown complete analytics',(p,url)=>{if(url===ANALYTICS)p.body+=';window.closed=true;'}],
+])test(name+' is not requested and grants no rendered visibility/activation claim',async()=>{
+ const r=replay(change),jobs=await r.promise;assert.equal(jobs.length,2);assert.equal(r.calls.length,6);assert.equal(r.mutations.length,0)
+ assert.ok(jobs.every(job=>job.sourceRenderedApplicationQualified===false&&job.sourceRenderedVisibilityQualified===false))
+})
+for(const[name,change]of[
+ ['closing full criterion',(p,url,index)=>{if(url===ARCH&&index===1)p.body=p.body.replace('Minimum Requirements','Closing-only additional requirement. Minimum Requirements')}],
+ ['closing application condition',(p,url,index)=>{if(url===ARCH&&index===1)p.body=p.body.replace('PDF or DOCX','PDF only')}],
+ ['closing raw duplicate membership',(p,url,index)=>{if(url===BOARD&&index===1)p.body=p.body.replace('Bilingual BQA','Other Role')}],
  ['wrong native final origin',(p,url)=>{if(url===ARCH)p.url='https://other.example/technical-architect/'}],
  ['unsupported native MIME',(p,url)=>{if(url===ARCH)p.headers['content-type']='text/plain'}],
  ['public denial',(p,url)=>{if(url===BOARD)p.status=403}],
@@ -115,16 +121,16 @@ for(const reason of['opaque-stop',Object.freeze({abort:'opaque-stop'})])test('op
 })
 test('uncooperative fetch cannot outlive the bounded source deadline',async()=>{await assert.rejects(replay(undefined,{sourceDeadlineMs:20,fetchImpl:()=>new Promise(()=>{})}).promise,/deadline/)})
 test('a late aborted fetch body is cancelled',async()=>{
- let cancelled=0;const c=new AbortController(),r=replay(undefined,{signal:c.signal,fetchImpl:value=>new Promise(resolve=>setTimeout(()=>resolve({status:200,url:String(value),headers:new Headers({'content-type':'text/html'}),body:{cancel(){cancelled++}}}),30))});setTimeout(()=>c.abort('late-stop'),5)
+ let cancelled=0;const c=new AbortController(),r=replay(undefined,{signal:c.signal,fetchImpl:value=>new Promise(resolve=>setTimeout(()=>resolve({status:200,url:String(value),headers:new Headers(grouped.get(String(value))[0].headers),body:{cancel(){cancelled++}}}),30))});setTimeout(()=>c.abort('late-stop'),5)
  await assert.rejects(r.promise,e=>e==='late-stop');await new Promise(resolve=>setTimeout(resolve,45));assert.equal(cancelled,1)
 })
 test('an uncooperative original reader is cancelled and released on abort',async()=>{
- let cancelled=0,released=0;const c=new AbortController(),r=replay(undefined,{signal:c.signal,fetchImpl:async value=>({status:200,url:String(value),headers:new Headers({'content-type':'text/html'}),body:{cancel(){cancelled++},getReader(){return{read:()=>new Promise(()=>{}),cancel(){cancelled++},releaseLock(){released++}}}}})});setTimeout(()=>c.abort('reader-stop'),5)
+ let cancelled=0,released=0;const c=new AbortController(),r=replay(undefined,{signal:c.signal,fetchImpl:async value=>({status:200,url:String(value),headers:new Headers(grouped.get(String(value))[0].headers),body:{cancel(){cancelled++},getReader(){return{read:()=>new Promise(()=>{}),cancel(){cancelled++},releaseLock(){released++}}}}})});setTimeout(()=>c.abort('reader-stop'),5)
  await assert.rejects(r.promise,e=>e==='reader-stop');assert.equal(cancelled,1);assert.equal(released,1)
 })
 test('oversized native streams are cancelled before parsing or acceptance',async()=>{
- let cancelled=false;const r=replay(undefined,{fetchImpl:async value=>{const response=new Response(new ReadableStream({start(controller){controller.enqueue(new Uint8Array(4000001))},cancel(){cancelled=true}}),{status:200,headers:{'content-type':'text/html'}});Object.defineProperty(response,'url',{value:String(value)});return response}})
- await assert.rejects(r.promise,e=>e.softFailure===true);assert.equal(cancelled,true)
+ let cancelled=false;const r=replay(undefined,{fetchImpl:async value=>{const response=new Response(new ReadableStream({start(controller){controller.enqueue(new Uint8Array(4000001))},cancel(){cancelled=true}}),{status:200,headers:grouped.get(String(value))[0].headers});Object.defineProperty(response,'url',{value:String(value)});return response}})
+ await assert.rejects(r.promise,/stream byte bound/);assert.equal(cancelled,true)
 })
 for(const[name,change]of[
  ['native Refresh navigation',(p,url)=>{if(url===ARCH)p.headers.refresh='0;url=https://unrelated.example/'}],
@@ -140,7 +146,7 @@ for(const[name,change]of[
 })
 test('review regression: intrinsic native byte length rejects a decorated oversized first chunk',async()=>{
  const stats={reads:0,cancels:0,releases:0},chunk=new Uint8Array(4000001);Object.defineProperty(chunk,'byteLength',{value:1})
- const r=replay(undefined,{sourceDeadlineMs:60,fetchImpl:async value=>({status:200,url:String(value),headers:new Headers({'content-type':'text/html; charset=utf-8'}),body:{getReader(){return{read(){stats.reads++;return stats.reads===1?Promise.resolve({done:false,value:chunk}):new Promise(()=>{})},cancel(){stats.cancels++},releaseLock(){stats.releases++}}}}})})
+ const r=replay(undefined,{sourceDeadlineMs:60,fetchImpl:async value=>({status:200,url:String(value),headers:new Headers(grouped.get(String(value))[0].headers),body:{getReader(){return{read(){stats.reads++;return stats.reads===1?Promise.resolve({done:false,value:chunk}):new Promise(()=>{})},cancel(){stats.cancels++},releaseLock(){stats.releases++}}}}})})
  await assert.rejects(r.promise,/stream byte bound/);assert.deepEqual(stats,{reads:1,cancels:1,releases:1})
 })
 test('genuine bounded native byte chunks preserve positives even with a shadowed public length property',async()=>{
@@ -150,5 +156,5 @@ test('genuine bounded native byte chunks preserve positives even with a shadowed
   const bytes=new Uint8Array(Buffer.from(p.bodyBase64,'base64'));Object.defineProperty(bytes,'byteLength',{value:1});let delivered=false
   reads++;return{status:p.status,url:p.url,headers:new Headers(p.headers),body:{getReader(){return{read:async()=>delivered?{done:true}:(delivered=true,{done:false,value:bytes}),cancel(){},releaseLock(){}}}}}
  }})
- assert.equal((await r.promise).length,2);assert.equal(reads,66)
+ assert.equal((await r.promise).length,2);assert.equal(reads,6)
 })

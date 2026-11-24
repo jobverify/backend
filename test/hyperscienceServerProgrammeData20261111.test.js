@@ -230,11 +230,18 @@ for(const [name,edit]of [
   ['response error',r=>{r.error={name:'Error',message:'synthetic incomplete entity'};}],
 ])test(`explicit ${name} cannot qualify otherwise complete original raw records`,()=>{const value=input();edit(value.api.receipt);held(value,'transport');});
 
-for(const text of ['Applicants may work around the world.','Applicants may work in the UK.','Additional mandatory certification is required.'])test(`novel aligned complete authored content requires family review: ${text}`,()=>{
-  const value=input();alignedCriterion(value,text);held(value,'criteria-family');
+for(const text of ['Applicants may work around the world.','Applicants may work in the UK.'])test('aligned new explicit applicant geography remains held: '+text,()=>{
+  const value=input();alignedCriterion(value,text);held(value,'geography');
+});
+test('complete aligned current authored criterion flows as native data across API/own/LD/head',()=>{
+  const value=input(),text='Additional mandatory certification is required.';alignedCriterion(value,text);
+  const result=reconcileHyperscienceServerProgramme(value);
+  assert.equal(result.nativeRecords[0].sourceDescription.includes(text),true);
+  assert.equal(result.nativeRecords[0].originalLD.description,result.nativeRecords[0].originalAPI.descriptionHtml);
+  assert.equal(result.qualificationFacts.sourceScopeComplete,false);
 });
 
-for(const key of ['title','team'])test(`novel consistently published ${key} requires independent family review`,()=>{
+for(const key of ['title','team'])test(`consistent current ${key} is data; explicit conflicting country remains held`,()=>{
   const value=input(),api=JSON.parse(value.api.body),old=api.jobs[0][key];
   const next=key==='title'?'Technical Deployment Lead (UK)':'Sales Engineering Worldwide';
   const original=nativeParts(value.roles[0]);
@@ -250,7 +257,8 @@ for(const key of ['title','team'])test(`novel consistently published ${key} requ
     setBody(value.roles[0],Buffer.from(html));
   }else{assert(value.roles[0].body.toString().includes(old));setBody(value.roles[0],Buffer.from(value.roles[0].body.toString().replaceAll(old,next)));}
   assert.equal(nativeParts(value.roles[0]).app.posting.descriptionHtml,original.app.posting.descriptionHtml,'Only metadata changed; primary retained');
-  held(value,'criteria-family');
+  if(key==='title')held(value,'country');
+  else{const result=reconcileHyperscienceServerProgramme(value);assert.equal(result.nativeRecords[0].originalAPI.team,next);assert.equal(result.qualificationFacts.sourceScopeComplete,false);}
 });
 
 for(const [name,transform]of [['inline emphasis',s=>s.replace('At Hyperscience','At Hyper<em>science</em>')],['entity',s=>s.replace('At Hyperscience','At Hyperscienc&#101;')]])test(`supported source-equivalent ${name} retains the whole reviewed projection`,()=>{
@@ -270,13 +278,19 @@ for(const [name,fragment,where]of [
   ['hidden current C1 vacancy','<p hidden>Current opening: Senior Engineer — India.</p>','tail'],
   ['unlinked current C1 vacancy inside list','<p>Current opening: Senior Engineer — India.</p>','inside'],
   ['duplicate archive','<div class="posts-archive"></div>','tail'],
-  ['unchecked card comment','<!--Additional mandatory work condition-->','card'],
 ])test(`final5 ${name} is not erased by corporate card slots`,()=>{
   const value=input(),html=value.positions.body.toString();let next;
   if(where==='tail')next=html+fragment;
   else if(where==='inside')next=html.replace('<div class="posts-archive">','<div class="posts-archive">'+fragment);
   else next=html.replace('<div class="separator"></div>','<div class="separator"></div>'+fragment);
   assert.notEqual(next,html);setBody(value.positions,Buffer.from(next));held(value,'corporate-programme');
+});
+test('inert card comment adds no authored requirement and original HTML remains retained',()=>{
+  const value=input(),comment='<!--Additional mandatory work condition-->';
+  setBody(value.positions,Buffer.from(value.positions.body.toString().replace('<div class="separator"></div>','<div class="separator"></div>'+comment)));
+  const result=reconcileHyperscienceServerProgramme(value);
+  assert.equal(Buffer.from(result.rawPackets.positions.bodyBase64,'base64').includes(Buffer.from(comment)),true);
+  assert.equal(result.qualificationFacts.UIOrApplicationEquivalent,false);
 });
 test('final5 unchecked archive attribute cannot add an unaccounted declaration',()=>{const value=input();setBody(value.positions,Buffer.from(value.positions.body.toString().replace('<div class="posts-archive">','<div class="posts-archive" data-country="India">')));held(value,'corporate-programme');});
 test('final5 complete C0 context includes non-anchor new hiring content',()=>{const value=input();setBody(value.entry,Buffer.from(value.entry.body.toString()+'<p>Current India vacancy. Contact recruiting to apply.</p>'));held(value,'corporate-programme');});

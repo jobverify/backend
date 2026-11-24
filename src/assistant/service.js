@@ -19,14 +19,14 @@ function jobCard(row) {
 
 export function createAssistantService({
   model, search = searchJobs,
-  enabled = () => process.env.ASSISTANT_ENABLED === 'true',
+  enabled = (siteSettings) => siteSettings?.assistantEnabled === true,
   verificationEnabled = () => process.env.JOB_VERIFICATION_ENABLED === 'true',
   deadlineMs = ASSISTANT_LIMITS.deadlineMs, now = Date.now,
 } = {}) {
-  const capabilities = () => ({ enabled: Boolean(enabled() && typeof model === 'function'),
+  const capabilities = (siteSettings) => ({ enabled: Boolean(enabled(siteSettings) && typeof model === 'function'),
     verificationEnabled: Boolean(verificationEnabled()) });
   async function ask(body, context = {}) {
-    if (!capabilities().enabled) throw disabled();
+    if (!capabilities(context.siteSettings).enabled) throw disabled();
     const input = validateAssistantInput(body, context.rawBytes);
     const controller = new AbortController();
     let timer;

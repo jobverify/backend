@@ -1,9 +1,9 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-
 import { BITWISE_SOLUTIONS_CATALOG } from './catalog.js'
+import {runCurrentBitwise} from './currentCollection20261121.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,9 +14,6 @@ export const HOMEPAGE_URL = PROVIDER_METADATA.homepageUrl
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const OPENINGS_URL = PROVIDER_METADATA.openingsPageUrl
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value = '') => String(value)
   .replace(/<[^>]+>/g, ' ')
@@ -62,17 +59,11 @@ export const hasNoOpeningsSignal = (html = '') => {
     && !hasJobRecordSignal(html)
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
 export const createBitwiseSolutionsScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (options.maxJobs === 0 || options.maxPages === 0 || options.maxRequests === 0
+      || options.fetchImpl || typeof options.fetchText !== 'function') return runCurrentBitwise(options)
+    const {fetchText} = options
     const careersHtml = await fetchText(CAREERS_URL)
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Bitwise Solutions verified careers page no longer matches the trusted first-party contract')
@@ -83,7 +74,7 @@ export const createBitwiseSolutionsScraper = () => ({
       throw new Error('Bitwise Solutions current openings page no longer matches the verified zero-openings contract')
     }
 
-    return []
+    return attachInventoryEvidence([], {status:'coverage-gap',surface:CAREERS_URL,firstParty:false,listingComplete:false,pagesFetched:2,reportedTotal:null,indiaFacetCount:null,verifiedAt:null,lifecycleCleanupAllowed:false,reason:'explicit-legacy-body-only-observation;original-Response-current-publication-and-inventory-unverified'})
   },
 })
 

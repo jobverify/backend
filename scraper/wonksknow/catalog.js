@@ -1,0 +1,2 @@
+export const catalog={source:'wonksknow',companyName:'Wonksknow',companyCareerPage:'https://www.wonksknow.com/',companyDomain:'wonksknow.com',atsPlatform:'Vinterview',countryFilter:'India',paginationStrategy:'paired-own-country-declaration-native-overview-selected-role-pages',extractionStrategy:'current-own-India-Careers-account-membership+selected-public-role-partials+literal-unvisited-apply-handoff',normalizationProfile:'engineering-default',sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null,lifecycleCleanupAllowed:false}
+export default catalog

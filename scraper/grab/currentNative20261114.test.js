@@ -149,9 +149,12 @@ for(const [label,change] of [
  ['CSS entity gains a UTF-8 BOM',(url,row)=>url.includes('/phb/style.css.')?{...row,body:'\ufeff'+row.body}:row],
  ['CSS bytes add a qualification',(url,row)=>url.includes('/phb/style.css.')?{...row,body:row.body+'\n.cms-content:after{content:"Unpaired mandatory qualification"}'}:row],
  ['CSS MIME changes',(url,row)=>url.includes('/phb/style.css.')?{...row,headers:{'content-type':'text/html'}}:row]
-])test('Grab registered collector fails closed when '+label,async()=>{
+])test('Grab registered native-facts contract handles '+label,async()=>{
  const transport=replay(change)
- await assert.rejects(scraper().run({fetchImpl:transport.read}),error=>error.softFailure===true&&error.lifecycleCleanupAllowed===false)
+ if(/renderer|JS entity|CSS/.test(label)){const jobs=await scraper().run({fetchImpl:transport.read});assert.equal(jobs.length,10);assert.equal(transport.requests.some(url=>/\.(?:js|css)(?:\.|$)/.test(url)),false)}else await assert.rejects(scraper().run({fetchImpl:transport.read}),error=>{
+  if(label==='HTTP redirect changes'||label==='final URL changes')return error.httpStatus===(label==='HTTP redirect changes'?302:200)&&error.requestedUrl===BOARD_URL&&error.responseUrl===(label==='HTTP redirect changes'?BOARD_URL:'https://example.test/jobs/')&&error.failureKind==='parser_or_contract_error'&&error.lifecycleCleanupAllowed===false&&error.sourceScopeComplete===false
+  return error.softFailure===true&&error.lifecycleCleanupAllowed===false
+ })
 })
 
 test('Grab preserves opaque pre-aborted caller cancellation without reads',async()=>{

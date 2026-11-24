@@ -143,7 +143,7 @@ export const hasPublicJobsSignal = (html) =>
   PUBLIC_JOBS_SIGNAL_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
 
 export const isVerifiedMissingCareersRoute = (page = {}) =>
-  Number(page?.status) === 200
+  [200, 404].includes(Number(page?.status))
   && has404ShellSignal(page?.html)
   && !hasFirstPartyCareerLikeLink(page?.html)
   && !hasPublicJobsSignal(page?.html)

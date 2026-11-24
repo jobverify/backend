@@ -122,6 +122,11 @@ function headLinks(entries,source){
   need(sha(JSON.stringify(comparison))==='cf7c71c6d6af4384c0ea3d9666a51a3075cac3bfe6205acec82a19e12a807bf5','native-head','Unreviewed complete native head declarations')
 }
 
+// Exact independently compared Nov11/Nov21 flag declarations. This admits one
+// server-publication variant only; it does not qualify browser/app semantics.
+const reviewedCurrentFlags20261121=["AiInterviewer","AiInterviewerUpdatedTimeEstimates","AiNotetakerCandidateConsentPolicies","ApprovalNotesFromEmail","BookingLinkRescheduleLimits","CanonicalizeSchools","CoreMultipleBrands","DemoOrgBanners","EducationHistoryFormField","ExplicitAutomatedProcessingOptOutConfirmation","JobBoardCookieConsentControls","JobBoardEtagValidation","JobPostingApplicationDeadlines","JobPostingListV2","JobPostingWorkplaceTypeOverrideSecondaryLocationsToo","LinkedInIntegrationRequireCompanyId","LinkedInTOSUpdate","LocationExternalName","MigrateGoogleRecaptchaAutomatedLegal","RejectBase64EncodedResumesFrontEnd","RejectBase64EncodedResumesThrowErrorFrontEnd","RejectInvalidFileTypeOnUpload","RejectUrlsInCandidateName","SchedulingDirectBookingLogDirectBookingEventsJson","SchedulingGCalSendUpdatesForCancelEvents","SchedulingRescheduleAndCancellationReasonsNonUser","SchedulingUseLocaleInTimeFormatting","ShowCountsOnJobBoardFilterOptions","SocialSharingHtmlMetaSettings","UseGoogleRecaptchaUniversalKey","ValidateFileTypeOnUpload"]
+const reviewedPreviousFlags20261111=["AiInterviewerUpdatedTimeEstimates","AiNotetakerCandidateConsentPolicies","ApprovalNotesFromEmail","BookingLinkRescheduleLimits","CanonicalizeSchools","CoreMultipleBrands","CoreMultipleBrandsFeedFiltering","CoreMultipleBrandsLinkedInJobWrappingStreamingFix","DemoOrgBanners","EducationHistoryFormField","ExplicitAutomatedProcessingOptOutConfirmation","JobBoardCookieConsentControls","JobBoardEtagValidation","JobPostingApplicationDeadlines","JobPostingListV2","JobPostingWorkplaceTypeOverrideSecondaryLocationsToo","LinkedInIntegrationRequireCompanyId","LinkedInTOSUpdate","LocationExternalName","MigrateGoogleRecaptchaAutomatedLegal","RejectBase64EncodedResumesFrontEnd","RejectBase64EncodedResumesThrowErrorFrontEnd","RejectInvalidFileTypeOnUpload","RejectUrlsInCandidateName","SchedulingDirectBookingLogDirectBookingEventsJson","SchedulingGCalSendUpdatesForCancelEvents","SchedulingRescheduleAndCancellationReasonsNonUser","SchedulingUseLocaleInTimeFormatting","ShowCountsOnJobBoardFilterOptions","SocialSharingHtmlMetaSettings","UseGoogleRecaptchaUniversalKey","ValidateFileTypeOnUpload"]
+
 export function readFrontNativeHtml({text,url,headers,headerEntries}={}){
   need(typeof text==='string'&&Buffer.byteLength(text)>0&&Buffer.byteLength(text)<=4194304,'native-carrier','Original native HTML unavailable/oversize')
   const roleURL=new RegExp('^'+BOARD.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'/([a-f0-9-]{36})$').exec(url)
@@ -134,7 +139,9 @@ export function readFrontNativeHtml({text,url,headers,headerEntries}={}){
   const boot=boots[0].node,range=literal(boot.raw),rawAppData=boot.raw.slice(range.start,range.end),model=originalJSON(rawAppData)
   shape(model,['ddRumApplicationId','ddRumClientToken','environment','maintenanceMode','schedulingMaintenanceMode','organization','posting','jobBoard','routerPrefix','recaptchaUniversalPublicSiteKey'],'native-model')
   need(model.environment==='production'&&model.maintenanceMode===false&&model.schedulingMaintenanceMode===false&&model.routerPrefix==='/','native-model','Native availability/routing changed')
-  need(sha(JSON.stringify(model.organization))==='24ce17e83fecb9fe502e4dab9ff977d76eb04da3e087a3fbaef496548a661434','native-organization','Front account/theme/programme changed')
+  const comparisonOrganization={...model.organization}
+  if(isDeepStrictEqual(comparisonOrganization.activeFeatureFlags,reviewedCurrentFlags20261121))comparisonOrganization.activeFeatureFlags=reviewedPreviousFlags20261111
+  need(sha(JSON.stringify(comparisonOrganization))==='24ce17e83fecb9fe502e4dab9ff977d76eb04da3e087a3fbaef496548a661434','native-organization','Front account/theme/programme changed')
   const nonce=boot.attrs.nonce,metas=entries.filter(e=>e.node.tag==='meta'),nonces=entries.filter(e=>e.node.attrs.id==='csp-nonce')
   need(typeof nonce==='string'&&/^[A-Za-z0-9_-]{43}$/.test(nonce)&&nonces.length===1&&active(nonces[0])
     &&nonces[0].node.tag==='meta'&&nonces[0].ancestors.map(n=>n.tag).join('/')==='root/html/head','native-carrier','Unique original native nonce unavailable')

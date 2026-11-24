@@ -26,7 +26,7 @@ const loadScriptModule = async () => {
   }
 }
 
-test('SecPod local catalog captures the verified first-party careers page with no trustworthy public jobs surface without alias churn', async () => {
+test('SecPod local catalog describes the current first-party client and native Keka acquisition without alias churn', async () => {
   const { SECPOD_CATALOG, default: defaultCatalog } = await loadCatalogModule()
   const secpod = await loadScriptModule()
   const provider = hydrateProviderCatalogEntry(SECPOD_CATALOG)
@@ -39,22 +39,23 @@ test('SecPod local catalog captures the verified first-party careers page with n
   assert.equal(provider.homepageUrl, 'https://www.secpod.com/')
   assert.equal(provider.companyCareerPage, 'https://www.secpod.com/careers')
   assert.equal(provider.companyDomain, 'secpod.com')
-  assert.equal(provider.atsPlatform, 'official-company-careers-no-public-jobs')
+  assert.equal(provider.atsPlatform, 'first-party-declared-keka')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-careers-page-empty-openings-validation')
+  assert.equal(provider.paginationStrategy, 'current-declared-careers-client-and-keka-active-array')
   assert.equal(
     provider.extractionStrategy,
-    'verified-careers-page+verified-empty-current-openings-section+no-public-jobs-return-empty',
+    'verified-corporate-client-declaration+keka-renderer+native-account+active-native-india-records',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(provider.verifiedOn, '2026-07-17')
+  assert.equal(provider.verifiedOn, '2026-11-20')
   assert.match(provider.dryRunFile, /secpod[\\/]jobs\.json$/i)
   assert.equal(provider.modulePath, modulePath)
-  assert.match(provider.verifiedSurfaceSummary, /Friday, July 17, 2026/i)
+  assert.match(provider.verifiedSurfaceSummary, /Friday, November 20, 2026/i)
   assert.match(provider.verifiedSurfaceSummary, /https:\/\/www\.secpod\.com\/careers/i)
   assert.match(provider.verifiedSurfaceSummary, /Current Job Openings/i)
-  assert.match(provider.verifiedSurfaceSummary, /no trustworthy public job listings/i)
+  assert.match(provider.verifiedSurfaceSummary, /seven.*India.*roles/i)
+  assert.match(provider.verifiedSurfaceSummary, /incomplete.*cleanup.*disabled/i)
   assert.equal(Object.prototype.hasOwnProperty.call(companyAliases, 'SecPod'), false)
 
   assert.equal(secpod.PROVIDER_METADATA.source, SECPOD_CATALOG.source)
@@ -86,7 +87,7 @@ test('SecPod hydrated local catalog stays script-runner compatible for central r
   assert.equal(provider.companyName, 'SecPod')
   assert.equal(provider.companyCareerPage, 'https://www.secpod.com/careers')
   assert.equal(provider.companyDomain, 'secpod.com')
-  assert.equal(provider.atsPlatform, 'official-company-careers-no-public-jobs')
+  assert.equal(provider.atsPlatform, 'first-party-declared-keka')
   assert.match(provider.modulePath, /secpod[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /secpod[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')

@@ -60,13 +60,13 @@ const loadScriptModule = async () => {
   }
 }
 
-test('SecPod sentinel helpers stay pinned to the verified official careers page and empty current openings section', async () => {
+test('SecPod retains its legacy surface guards alongside the current native acquisition', async () => {
   const secpod = await loadScriptModule()
 
   assert.equal(secpod.SOURCE, 'secpod')
   assert.equal(secpod.COMPANY, 'SecPod')
   assert.equal(secpod.OFFICIAL_BRAND_NAME, 'SecPod')
-  assert.equal(secpod.VERIFIED_ON, '2026-07-17')
+  assert.equal(secpod.VERIFIED_ON, '2026-11-20')
   assert.equal(secpod.HOMEPAGE_URL, 'https://www.secpod.com/')
   assert.equal(secpod.CAREERS_URL, 'https://www.secpod.com/careers')
   assert.equal(secpod.hasOfficialCareersSignal(CAREERS_PAGE_HTML), true)

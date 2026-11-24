@@ -7,6 +7,7 @@ import{createBoundedPublicCareerTransport}from'../../scraper-support/utils/bound
 import{attachInventoryEvidence}from'../../scraper-support/utils/inventoryEvidence.js'
 import{attachSourceObservationEvidence}from'../../scraper-support/utils/sourceObservationEvidence.js'
 import{readCurrentAsipListings}from'./currentNative.js'
+import{getValidIndiaCityForJob}from'../../src/utils/publicJobLocationScope.js'
 const source='asiptechnologies',company='ASIP Technologies',origin='https://asip-tech.com',home=origin+'/careers/',ajax=origin+'/wp-admin/admin-ajax.php'
 const norm=x=>String(x??'').replace(/\s+/g,' ').trim(),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
 const need=(ok,message)=>{if(!ok)throw Object.assign(Error('ASIP qualified native: '+message),{abortRetries:true})}
@@ -74,20 +75,22 @@ export function asipQualifiedDetail(html,listing,{observedAt=new Date().toISOStr
  need(values['job-location']==='Hyderabad','exact whole native municipality unqualified')
  const place=posting.jobLocation,address=place?.address
  need(place?.['@type']==='Place'&&!Array.isArray(place)&&(address==='Hyderabad'||address&&typeof address==='object'&&address.addressLocality==='Hyderabad'&&nativeCountryName(address.addressCountry)==='India'),'native schema workplace/country conflict')
- // Hyderabad exists in India and Pakistan. Repeated municipality-only labels,
- // the employer's footer and the company's industry do not disambiguate a role.
+ // Admission follows the existing public city policy using only this role's
+ // matching listing/schema workplace. The native country remains unpublished.
  const country=address&&typeof address==='object'?nativeCountryName(address.addressCountry):['country','countryCode','workCountry'].some(k=>nativeCountryName(posting[k])==='India')?'India':null
+ const publicCity=getValidIndiaCityForJob({country,city:values['job-location'],location:listing.location}),locationQualified=publicCity==='Hyderabad'
  const content=doc.nodes(n=>doc.hasClass(n,'awsm-job-entry-content'));need(content.length<=1,'native criteria ambiguous')
  const raw=content.length?doc.inner(content[0]):null,schema=posting.description??null
  need(schema==null||typeof schema==='string','native authored criteria type unqualified')
  const roleScope=one(doc.nodes(n=>doc.hasClass(n,'awsm-job-main')),'native role/application availability scope'),expiry=constraints(posting,[raw,schema,doc.inner(roleScope)],observedAt),visibleText=extractActiveDescription(raw),schemaText=extractActiveDescription(schema),hiddenCriteria=visibilityUnreviewed(raw)||visibilityUnreviewed(schema),match=Boolean(visibleText&&schemaText&&norm(visibleText)===norm(schemaText)),complete=match&&!hiddenCriteria,application=formModel(doc,listing)
  const posted=posting.datePosted==null?null:date(posting.datePosted);need(!posted||Date.parse(posted)<=Date.parse(observedAt),'native publication date in future')
- return{...listing,company,nativeEmployer:company,nativeLegalEmployer:null,country,city:'Hyderabad',sourceCountryScopeUnresolved:country===null,
-  sourceCountryEvidence:{kind:country?'explicit-same-role-native-country':'ambiguous-municipality-only-native-workplace',nativeLabel:'Hyderabad',nativeCountry:address?.addressCountry??null,reason:country?null:'Hyderabad string alone does not distinguish India from Pakistan; no footer/HQ inference'},
+ return{...listing,company,nativeEmployer:company,nativeLegalEmployer:null,country,city:'Hyderabad',sourceCountryScopeUnresolved:!locationQualified,sourceNativeCountryUnpublished:country===null,sourcePublicLocationQualified:locationQualified,
+  sourcePublicLocationScopeEvidence:{policy:'publicJobLocationScope.getValidIndiaCityForJob',kind:country?'explicit-same-role-native-country':'repository-allowlisted-native-role-city',rawNativeCountry:address?.addressCountry??null,nativeRoleLabel:values['job-location'],matchingSchemaAddress:address,canonicalCity:publicCity,derived:true,corporateAddressUsed:false},
+  sourceCountryEvidence:{kind:country?'explicit-same-role-native-country':'native-country-unpublished-public-city-policy-admission',nativeLabel:'Hyderabad',nativeCountry:address?.addressCountry??null,reason:country?null:'Native country unpublished; public location admission derives only from the matched same-role Hyderabad label under the existing repository policy'},
   sourceDescription:visibleText||schemaText||null,jobDescription:visibleText||schemaText||null,sourceNativeDescriptionHTML:raw,sourceNativeSchemaDescription:schema,sourceNativeJobPosting:posting,
   sourceNativeApplication:application,sourceDetailComplete:complete,sourceDetailStatus:complete?'complete':'partial',sourceDetailFailureKind:complete?null:'native-authored-criteria-missing-inconsistent-or-visibility-unreviewed',sourceCriteriaConflict:Boolean(visibleText&&schemaText&&!match),sourceCriteriaVisibilityUnreviewed:hiddenCriteria,
   sourceNativeDetailQualified:true,postingDate:posted,closingDate:expiry[0]?.value??null,sourceNativeDates:{datePosted:posting.datePosted??null,recognizedExpiryFields:expiry},
-  sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceCompanyScopeUnresolved:false}
+  sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceCompanyScopeUnresolved:true}
 }
 function fact(job){return{listing:job.sourceNativeListingHTML,posting:job.sourceNativeJobPosting,criteria:job.sourceNativeDescriptionHTML,application:{url:job.sourceNativeApplication.url,jobId:job.sourceNativeApplication.jobId,action:job.sourceNativeApplication.nativeAction,ajax:job.sourceNativeApplication.nativeAjaxURL,controls:job.sourceNativeApplication.comparisonControls}}}
 export async function runAsipQualified(options={}){
@@ -103,12 +106,13 @@ export async function runAsipQualified(options={}){
   for(const row of opening){const html=await read(row.sourceUrl);try{const job=asipQualifiedDetail(html,row,{observedAt:(options.now||(()=>new Date().toISOString()))()});byId.set(row.jobId,job);openingDetails.push({id:row.jobId,fact:fact(job)})}catch(error){held.push({id:row.jobId,stage:'opening',reason:error.message,originalListing:row,originalHTML:html})}}
   const closing=readCurrentAsipListings(await read(home)),jobs=[],observations=[]
   for(const row of opening){const html=await read(row.sourceUrl),old=byId.get(row.jobId);if(!old)continue
-   try{need(closing.some(r=>same(r,row)),'native closing listing changed');const current=asipQualifiedDetail(html,row,{observedAt:(options.now||(()=>new Date().toISOString()))()});closingDetails.push({id:row.jobId,fact:fact(current)});need(same(fact(old),fact(current)),'native closing full criteria/application changed');old.sourceClosingQualified=true;old.scrapedAt=(options.now||(()=>new Date().toISOString()))();observations.push(old);if(old.country==='India')jobs.push(old);else held.push({id:row.jobId,stage:'country',reason:'same-role Hyderabad country remains ambiguous; no role-level state/country binding',originalRecord:old})}catch(error){held.push({id:row.jobId,stage:'closing',reason:error.message,originalListing:row,originalHTML:html})}
+   try{need(closing.some(r=>same(r,row)),'native closing listing changed');const current=asipQualifiedDetail(html,row,{observedAt:(options.now||(()=>new Date().toISOString()))()});closingDetails.push({id:row.jobId,fact:fact(current)});need(same(fact(old),fact(current)),'native closing full criteria/application changed');old.sourceClosingQualified=true;old.scrapedAt=(options.now||(()=>new Date().toISOString()))();observations.push(old);if(old.sourcePublicLocationQualified&&old.sourceDetailComplete)jobs.push(old);else held.push({id:row.jobId,stage:'qualification',reason:old.sourceDetailComplete?'native workplace outside public location policy':old.sourceDetailFailureKind,originalRecord:old})}catch(error){held.push({id:row.jobId,stage:'closing',reason:error.message,originalListing:row,originalHTML:html})}
   }
   const audit={source,openingRecords:opening,closingRecords:closing,openingDetails,closingDetails,observations,held,originalResponses:raw,sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null,lifecycleCleanupAllowed:false,backendActivationVerified:false,applicationSubmitted:false}
   const selected=Number.isSafeInteger(options.maxJobs)&&options.maxJobs>=0?jobs.slice(0,options.maxJobs):jobs
   attachSourceObservationEvidence(selected,{source,recordKind:'vacancy-rows',observedRecordCount:opening.length,observedVacancyCount:opening.length,sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null})
   Object.defineProperty(selected,'nativeCollectionEvidence',{value:audit,configurable:true});if(options.onAudit)await observe(io,options.onAudit,structuredClone(audit));io.signal.throwIfAborted()
-  return attachInventoryEvidence(selected,{status:'coverage-gap',surface:home,firstParty:true,pagesFetched:raw.length,listingComplete:false,reportedTotal:null,indiaFacetCount:null,verifiedAt:(options.now||(()=>new Date().toISOString()))(),reason:'current-own-role-identity-and-native-application-qualified;ambiguous-Hyderabad-country-original-dates-company-inventory-and-backend-activation-held'})
- }finally{io.close()}
+  attachInventoryEvidence(selected,{status:'coverage-gap',surface:home,firstParty:true,pagesFetched:raw.length,listingComplete:false,reportedTotal:null,indiaFacetCount:null,verifiedAt:(options.now||(()=>new Date().toISOString()))(),reason:'current-own-role-criteria-application-and-public-city-policy-qualified;native-country-unpublished-original-posting-dates-preserved-company-inventory-and-cleanup-held'})
+  io.signal.throwIfAborted();options.signal?.throwIfAborted();return selected
+ }finally{io.close();options.signal?.throwIfAborted()}
 }

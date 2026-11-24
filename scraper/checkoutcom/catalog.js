@@ -14,15 +14,15 @@ export const PROVIDER_METADATA = { ...{
   "parser": "company-native-script",
   "countryFilter": "India",
   "normalizationProfile": "engineering-default",
-  "paginationStrategy": "finite-native-api-board-and-corporate-proxy-reconciliation",
-  "extractionStrategy": "all-native-role-details-primary-secondary-countries-and-closing-state",
-  "verifiedOn": "2026-10-27",
-  "sourceScopeComplete": null,
-  "lifecycleCleanupAllowed": null,
+  "paginationStrategy": "paired-configured-listed-proxy-owned-native-board-and-documented-feed",
+  "extractionStrategy": "current-own-jobs-inline-default-unfiltered-consumer-and-every-native-record-primary-secondary-criteria-reconciliation",
+  "verifiedOn": "2026-11-21",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
   "runtimeSourceScopeVerification": true,
   "verifiedPublicJobCount": null,
   "verifiedIndiaJobCount": null,
-  "zeroResultPolicy": "coverage-gap",
-  "verifiedSurfaceSummary": "Current corporate hiring paths and exact language-menu client-derived locale routes are reconciled with the public Railway proxy, exact employer Ashby board/feed, full role details and closing states. Unanswered routes, native/proxy drift or unknown geography keep source totals unresolved; healthy India candidates remain available."
+  "zeroResultPolicy": "paired-current-configured-listed-projection-only-with-every-row-explicit-foreign-country-and-criteria",
+  "verifiedSurfaceSummary": "Only the configured current careers-to-jobs handoff, connected default unfiltered inline proxy consumer, owned native board, documented listed feed and every current primary/secondary workplace and criteria may qualify the configured India projection. Company totals, country facets, legal employer, UI/backend activation and cleanup remain unverified. The explicit legacy factory preserves the previous localized-route implementation."
 }, modulePath:path.join(dir,'script.js'),dryRunFile:path.join(dir,'jobs.json') }
 export default PROVIDER_METADATA

@@ -44,11 +44,15 @@ import { observeLoginFailures } from './monitoring/errorEvents.js';
 import { captureLoginFailure } from './monitoring/sentry.js';
 import { SECURITY_DISCLOSURE } from './security/disclosurePolicy.js';
 import { createAssistantRouter } from './routes/assistantRoutes.js';
+import { socialVideoRouter } from './social/videoRoutes.js';
+import { socialPublisherRouter, socialAssetRouter } from './social/routes.js';
 
-export function createApp({ isReady = () => mongoose.connection.readyState === 1, ingressLimit = 1200, assistantModel } = {}) {
+export function createApp({ isReady = () => mongoose.connection.readyState === 1, ingressLimit = 1200, assistantModel, socialAssets, socialAssetBridge = false } = {}) {
   const env = process.env;
   const app = express();
   app.locals.assistantAvailable = typeof assistantModel === 'function';
+  app.locals.socialAssets = socialAssets;
+  app.locals.socialAssetBridge = socialAssetBridge;
   app.set("trust proxy", parseTrustProxy(env.TRUST_PROXY));
   app.disable("x-powered-by");
   app.use(requestDiagnostics);
@@ -122,6 +126,10 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   // Dedicated bearer credential only: this router does not accept session
   // cookies. Keep existing cookie/CSRF protection for every other API route.
   app.use('/api/seo', createSeoToolsRouter());
+  // This isolated machine router verifies GitHub OIDC before its bounded JSON
+  // parser. It never accepts a browser session in place of that identity.
+  app.use('/api/social-publisher', socialPublisherRouter);
+  app.use('/api/social-video-drafts', socialVideoRouter);
 
   app.use(express.json({
     limit: "32kb",
@@ -138,6 +146,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
     // Only this authenticated file endpoint accepts binary mutations. CSRF and
     // API rate limits below still run before its bounded, route-local parser.
     if (req.method === 'PUT' && req.path === '/user/resume' && req.is('application/octet-stream')) return next();
+    if (req.method === 'PUT' && /^\/admin\/social-posts\/[a-f0-9]{24}\/image$/i.test(req.path) && req.is('image/jpeg')) return next();
     return requireJsonMutation(req, res, next);
   });
   app.use(
@@ -224,6 +233,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   app.use("/api/auth", noStore, authRoutes);
   app.use("/api/jobs", jobRoutes);
   app.use('/api/publishing', publishingRoutes);
+  app.use('/api/social-assets', socialAssetRouter);
   app.use("/api/companies", companyRoutes);
   app.use("/api/user", noStore, userRoutes);
   app.use('/api/job-verifications', noStore, jobVerificationRoutes);

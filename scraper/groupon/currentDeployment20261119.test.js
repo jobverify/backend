@@ -60,7 +60,9 @@ test('Groupon current 72-response imported workflow preserves whole criteria and
  assert.equal(jobs.length,28)
  assert.equal(jobs.nativeCollectionEvidence.wholeNativeModelsClosingReconciled,true)
  assert.equal(jobs.filter(job=>job.sourceCountryScopeUnresolved).length,27)
- assert.ok(jobs.every(job=>job.sourceDetailComplete===false&&job.sourceScopeComplete===false&&job.activeApplyVerified===false))
+ assert.ok(jobs.every(job=>job.sourceScopeComplete===false&&job.activeApplyVerified===false))
+ assert.equal(jobs.filter(job=>job.sourceDetailComplete).length,1)
+ assert.ok(jobs.every(job=>job.nativePublicApplicationEntryDeclared===true))
  for(const job of jobs){
   const original=workflow.responses.find(packet=>packet.requestedURL===API+'/'+job.jobId)
   assert.equal(job.sourceDescription,JSON.parse(Buffer.from(original.bodyBase64,'base64').toString('utf8')).job.contentHtml)

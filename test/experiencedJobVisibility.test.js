@@ -126,7 +126,7 @@ test('experienced job visibility is reversible and consistent across public surf
     await SiteSettings.create({ _id: 'global', billingEnabled: true });
     const response = await fetch(base + '/settings', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ experiencedJobsEnabled: false }) });
     assert.equal(response.status, 200);
-    assert.deepEqual((await response.json()).data, { billingEnabled: true, experiencedJobsEnabled: false });
+    assert.deepEqual((await response.json()).data, { billingEnabled: true, experiencedJobsEnabled: false, assistantEnabled: false });
   });
   // Keep downstream tests independent of the settings-update assertion.
   await SiteSettings.collection.updateOne({ _id: 'global' }, { $set: { billingEnabled: false, experiencedJobsEnabled: false } }, { upsert: true });

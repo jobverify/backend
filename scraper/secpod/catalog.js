@@ -11,16 +11,16 @@ export const SECPOD_CATALOG = {
   homepageUrl: 'https://www.secpod.com/',
   companyCareerPage: 'https://www.secpod.com/careers',
   companyDomain: 'secpod.com',
-  atsPlatform: 'official-company-careers-no-public-jobs',
+  atsPlatform: 'first-party-declared-keka',
   countryFilter: 'India',
-  paginationStrategy: 'single-careers-page-empty-openings-validation',
+  paginationStrategy: 'current-declared-careers-client-and-keka-active-array',
   extractionStrategy:
-    'verified-careers-page+verified-empty-current-openings-section+no-public-jobs-return-empty',
+    'verified-corporate-client-declaration+keka-renderer+native-account+active-native-india-records',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-07-17',
+  verifiedOn: '2026-11-20',
   verifiedSurfaceSummary:
-    'Verified on Friday, July 17, 2026 that https://www.secpod.com/careers is the official first-party SecPod careers page. The page still presents the branded "Current Job Openings" section, but it exposes no trustworthy public job listings, ATS handoff links, or public requisition detail pages. The local provider therefore fails closed and returns an empty result until SecPod publishes a trustworthy public jobs surface.',
+    'Verified on Friday, November 20, 2026 that https://www.secpod.com/careers renders its Current Job Openings mount and declares the current careers client containing the SecPod Keka configuration and renderer. The exact current native account and active feed advertise seven explicit India roles with authored descriptions and original publication dates. The reader validates the current declared client, native renderer, account, role identities and explicit countries. Company-wide inventory remains incomplete and lifecycle cleanup is disabled; the portal publisher is SecPod Careers, while legal employers remain unverified. The historical July 17, 2026 surface guards remain available for the earlier layout.',
   modulePath: path.resolve(currentDir, 'script.js'),
   dryRunFile: 'secpod/jobs.json',
 }

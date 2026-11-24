@@ -26,8 +26,8 @@ const integer=value=>Number.isSafeInteger(value)&&value>0
 const integerList=value=>Array.isArray(value)&&value.every(integer)&&new Set(value).size===value.length
 const ids=value=>Array.isArray(value)&&value.every(row=>integer(row.id))&&new Set(value.map(row=>row.id)).size===value.length
 const json=raw=>{try{return parseNativeJSON(raw)}catch(error){throw failure('Unqualified original JSON: '+error.message)}}
-const contentTags=new Set(['root','div','p','strong','ul','li','em','a','span','h3','br','h4'])
-const blockTags=new Set(['div','p','ul','li','h3','br','h4'])
+const contentTags=new Set(['root','div','p','strong','ul','li','em','a','span','h2','h3','br','h4'])
+const blockTags=new Set(['div','p','ul','li','h2','h3','br','h4'])
 const publishedText=node=>{
  const value=node.children.map(child=>typeof child==='string'?decodeHTML(child):publishedText(child)).join('')
  return blockTags.has(node.tag)?' '+value+' ':value
@@ -42,13 +42,31 @@ const publishedContent=raw=>{
  need(!/\bIndia\b/i.test(decoded)&&!/\bIndia\b/i.test(publishedText(root)),'Published native content has unresolved India scope')
 }
 
-// These are complete reviewed current representations. Only the two observed
-// delivery components below are comparison-only variants; all other bytes stay
+// These are complete reviewed current representations. Only the reviewed
+// delivery slots below are comparison-only variants; all other bytes stay
 // pinned, including hidden declarations, original loader data and CSP carriers.
-const CORPORATE_PROFILE='7af639dcd2c5a0cf865fb95358d3301b31cd978405a2ee56746ed92c59744cf5'
+const CORPORATE_PROFILES=[
+ {entry:'/assets/entry.client-BnfsZT6Y.js',canonical:'7af639dcd2c5a0cf865fb95358d3301b31cd978405a2ee56746ed92c59744cf5'},
+ // November 20 originals retain the complete FAQ/country declarations and all
+ // recruitment links. The new Hero adds "Join the Hunt", the locale switcher
+ // adds English/Spanish links, and the current router/experiment programmes
+ // remain bound in full. Their bytes are never executed or treated as proof
+ // of own-role UI/application screening or company-wide hiring scope.
+ {entry:'/assets/entry.client-C6PEECM2.js',canonical:'b17924d55fc00299c72c8d1fb1dca46c358f46445ffcdc4199178162dd547f15',
+  experiment:'c01abd916a631d3518f16565bd9279c5189c88cd7a7b5bd456f8881f858a1afa'},
+]
 const RUNTIME={clock:'ee6bb81f4e9fc030a39a7c71affc4d1f2b900baa4b4c7af83361388d7c39599b',
  replacement:'4009527b06902e2fcd3c2ce78c0652caf43bda1783d1577198d0c3919782c607',
  close:'a7b184efc6db3070eb138216ce988c4adb40b13a54bbbc308b9ff0be71f9e0eb'}
+const comparisonExperiment=program=>{
+ // Three independent original GETs differ only at this issued anonymous
+ // Optimizely visitor metadata literal. Keep the entire programme and all
+ // experiment/country/loader declarations bound; retain original bytes in
+ // the audit. This slot is neither a publication date nor hiring authority.
+ const visitor=one([...program.matchAll(/"metadata":\{"logs":\[\],"visitorData":\{"id":"(oeu[0-9]{13}r0\.[0-9]{1,20})"\}\}/g)],'anonymous experiment visitor metadata')[1]
+ need(program.split(visitor).length-1===1,'Unbound anonymous experiment visitor reference')
+ return program.replace(visitor,'CURRENT_ANONYMOUS_OPTIMIZELY_VISITOR')
+}
 export function corporateProgramme(original){
  let html=original
  const gallery=/<div id="photo-gallery-section-([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})-carousel" class="flex flex-col w-full justify-center items-center carousel-wrapper-style ">/g
@@ -61,12 +79,17 @@ export function corporateProgramme(original){
  const scripts=[...html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
  const enqueue=one(scripts.filter(m=>m[1]===''&&m[2].startsWith('window.__reactRouterContext.streamController.enqueue(')),'corporate loader enqueue')
  const close=one(scripts.filter(m=>m[1]===''&&m[2]==='window.__reactRouterContext.streamController.close();'),'corporate loader close')
- const marker='import("/assets/entry.client-BnfsZT6Y.js");</script>'
+ const deployment=one(CORPORATE_PROFILES.filter(profile=>html.includes('import("'+profile.entry+'");</script>')),'reviewed corporate entry deployment')
+ const marker='import("'+deployment.entry+'");</script>'
  need(html.split(marker).length-1===1,'Corporate current entry boundary changed')
  const at=html.indexOf(marker)+marker.length,prefix=html.slice(0,at),tail=html.slice(at)
- const complete='<!--$-->'+enqueue[0]+'<!--$-->'+close[0]+'<!--/$--><!--/$--></body></html>'
+ const experimentNode=deployment.experiment?one(scripts.filter(m=>m[1]===' type="text/javascript"'),'complete corporate experiment programme'):null
+ const experiment=experimentNode?.[0]??'',normalizedExperiment=experimentNode?comparisonExperiment(experimentNode[2]):''
+ need(!deployment.experiment||sha(normalizedExperiment)===deployment.experiment,'Unreviewed complete corporate experiment programme')
+ const complete='<!--$-->'+enqueue[0]+'<!--$-->'+close[0]+'<!--/$--><!--/$-->'+experiment+'</body></html>'
  let variant='completed-react-stream'
  if(tail!==complete){
+  need(!deployment.experiment,'Unreviewed current corporate stream envelope or experiment programme')
   const clock=one(scripts.filter(m=>m[1]===' id="_R_"'&&sha(m[2])===RUNTIME.clock),'reviewed stream clock')
   const replacement=one(scripts.filter(m=>m[1]===''&&sha(m[2])===RUNTIME.replacement),'reviewed stream replacement')
   const closing=one(scripts.filter(m=>m[1]===''&&sha(m[2])===RUNTIME.close),'reviewed stream completion')
@@ -76,14 +99,30 @@ export function corporateProgramme(original){
   for(const id of ['B:0','B:1','S:0','S:1','_R_'])need(html.split('id="'+id+'"').length-1===1,'Ambiguous corporate stream boundary')
   variant='pending-react-stream-with-exact-reviewed-runtime'
  }
- const canonical=prefix+enqueue[0]+close[0]+'</body></html>',canonicalSHA256=sha(canonical)
- need(canonicalSHA256===CORPORATE_PROFILE,'Unreviewed corporate authority/programme/loader bytes')
+ const canonical=prefix+enqueue[0]+close[0]+(experimentNode?experiment.replace(experimentNode[2],()=>normalizedExperiment):'')+'</body></html>',canonicalSHA256=sha(canonical)
+ need(canonicalSHA256===deployment.canonical,'Unreviewed corporate authority/programme/loader bytes')
  return {canonicalSHA256,variant,declaredNativeProgramme:BOARD,originalHrefRetained:true,
   galleryInstance:galleries[0][1],comparisonOnly:true,unknownDifferencesIgnored:false}
 }
 
 const STATIC_MODEL='85c4ec231a9605b4815b9d5409c5e045a04a69a6d58286dbff2274e1d125980e'
 const STATIC_SHELL='764b1510c80a39177b49aaf6af8286eaae59be9f4cce0f6ea0e0427675beb5ee'
+const NATIVE_DEPLOYMENTS=[{model:STATIC_MODEL,shell:STATIC_SHELL,csp:'57755a728c840458183872d6bc8af36915c881cef4266d2ba1932fe4056b9b54'},
+ // These are a pair: the current commit disables LinkedIn quick apply and
+ // updates the displayed department tree. Empty filters, account identity,
+ // exact cards, full published API fields and closing checks remain required.
+ {model:'330209d9d76f881df4081f72b16a52a4a86b7163cc5fe3cb7f3cf2b0848f426d',
+  shell:'1a26947b80963e188c33315d304f565c827909edabb12e8efacab960f0a7510d',
+  csp:'b17fdaf38f91345ae5a1821aca3e175eaabf2c5b0f49c8c69561b1e1841edfad'},
+ // Original current 50-role packets add only the Operations/Accounting
+ // taxonomy and its matching rendered group for Procurement Specialist.
+ // The 49 previous full API records, every other model/shell byte, native
+ // renderer declarations and paired CSP are unchanged. Keep this complete
+ // model/shell tuple bound; full API/card/country and closing checks still run.
+ {model:'4a2140e2a191d89005c8ef0663ad4e78d06d33fe7a0af85b2f6f124733305e6e',
+  shell:'dae2648da1d8a38c3b0f6983ff52710766661029cf1d29e42552f769e751e53c',
+  csp:'b17fdaf38f91345ae5a1821aca3e175eaabf2c5b0f49c8c69561b1e1841edfad'},
+]
 const ROW=/<tr class="job-post">[\s\S]*?<\/tr>/g
 const COUNT=/<h2[^>]*data-testid="job-count-header"[^>]*>[\s\S]*?<\/h2>/g
 const POST_KEYS=['id','title','internal_job_id','updated_at','requisition_id','location','absolute_url','published_at','department','is_featured']
@@ -122,7 +161,8 @@ export function nativeBoard(html,now){
   &&posts.page===1&&posts.total_pages===1&&posts.count===posts.data.length&&posts.total===posts.data.length,
  'Incomplete/filtered native programme paging/count')
  const fixed=structuredClone(model);delete fixed.state.loaderData['routes/$url_token'].jobPosts
- need(sha(JSON.stringify(fixed))===STATIC_MODEL,'Unreviewed native scope/filter/config/employer model')
+ const deployment=NATIVE_DEPLOYMENTS.find(profile=>sha(JSON.stringify(fixed))===profile.model)
+ need(deployment,'Unreviewed native scope/filter/config/employer model')
  need(ids(posts.data),'Duplicate native posting identity')
  for(const row of posts.data){
   need(exact(row,POST_KEYS)&&integer(row.internal_job_id)&&typeof row.title==='string'&&norm(row.title)
@@ -164,9 +204,9 @@ export function nativeBoard(html,now){
  need(headings.length===1&&headings[0][0]===`<h2 class="section-header section-header--large font-primary" data-testid="job-count-header">${posts.data.length} jobs</h2>`,
   'Native published visible count changed')
  const shell=html.replace(carrier.raw,'<reviewed-native-model>').replace(ROW,'').replace(COUNT,'<reviewed-job-count>')
- need(sha(shell)===STATIC_SHELL,'Unreviewed native page programme/carrier/control/criterion bytes')
+ need(sha(shell)===deployment.shell,'Unreviewed native page programme/carrier/control/criterion bytes')
  return {model,posts:posts.data,cards,reportedTotal:posts.total,canonicalMetadataURL:'http://job-boards.greenhouse.io/huntress',
-  requestedHTTPSURL:BOARD,canonicalHTTPMetadataRetained:true,revisionDifferenceCauseVerified:false}
+  requestedHTTPSURL:BOARD,canonicalHTTPMetadataRetained:true,revisionDifferenceCauseVerified:false,securityProfileCSP:deployment.csp}
 }
 
 export function nativeAPI(raw,board,now){

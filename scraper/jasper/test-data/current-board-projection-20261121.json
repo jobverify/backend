@@ -1,0 +1,150 @@
+{
+  "source": "jasper",
+  "mode": "Public native board projection from actual privacy-qualified retained HTML only",
+  "physicalDate": "2026-11-21T03:12:21.160Z",
+  "originalSHA256": "3da2d13014750fd3eaa611a04b2d5cf3590c6c1e31eea7918ed4ba863c8ab43a",
+  "persistedSHA256": "7490ed18e49bba56ccabf305903791778e85f392a9507fb86ea8ddd2817b36a5",
+  "bodyOriginalUnmodified": false,
+  "jobBoard": {
+    "stealthAccess": false,
+    "teams": [
+      {
+        "id": "65e907b4-3924-4eae-b0b4-71351e9a8047",
+        "name": "Finance",
+        "externalName": null,
+        "parentTeamId": null,
+        "__typename": "Team"
+      },
+      {
+        "id": "5ed052c0-aadb-4b90-a03f-5db28050873c",
+        "name": "Customer Success",
+        "externalName": null,
+        "parentTeamId": null,
+        "__typename": "Team"
+      },
+      {
+        "id": "5cde30f5-a577-464c-8def-7f6d754c0970",
+        "name": "Account Management Enterprise ",
+        "externalName": null,
+        "parentTeamId": "5ed052c0-aadb-4b90-a03f-5db28050873c",
+        "__typename": "Team"
+      },
+      {
+        "id": "1a428ded-cb96-4a9a-8f53-d7020f37991a",
+        "name": "Accounting",
+        "externalName": null,
+        "parentTeamId": "65e907b4-3924-4eae-b0b4-71351e9a8047",
+        "__typename": "Team"
+      },
+      {
+        "id": "8f55552e-3cd3-4e1a-8c82-060655df9f4b",
+        "name": "Marketing",
+        "externalName": null,
+        "parentTeamId": null,
+        "__typename": "Team"
+      },
+      {
+        "id": "288dbfb8-88be-4cee-83fb-62d1cf368fe1",
+        "name": "Product Marketing",
+        "externalName": null,
+        "parentTeamId": "8f55552e-3cd3-4e1a-8c82-060655df9f4b",
+        "__typename": "Team"
+      },
+      {
+        "id": "f4d27968-7151-4c68-b18d-3f2173e81de6",
+        "name": "Design",
+        "externalName": null,
+        "parentTeamId": null,
+        "__typename": "Team"
+      }
+    ],
+    "jobPostings": [
+      {
+        "id": "630c8ab8-d9a0-4a4c-847c-c9d17161a91e",
+        "title": "Director, Strategic Finance",
+        "teamId": "65e907b4-3924-4eae-b0b4-71351e9a8047",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "788b07a9-1d7c-4c07-9dac-0d6b230238fc",
+        "title": "Enterprise Account Manager",
+        "teamId": "5cde30f5-a577-464c-8def-7f6d754c0970",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "e85a9104-c15a-429c-a7f1-d7f581c402ca",
+        "title": "Senior Accountant",
+        "teamId": "1a428ded-cb96-4a9a-8f53-d7020f37991a",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "fda28123-986d-4071-ae4e-4a17479d496b",
+        "title": "Senior Director, Product Marketing",
+        "teamId": "288dbfb8-88be-4cee-83fb-62d1cf368fe1",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "6c949b3c-bbd9-4dc6-8818-0366f77778bf",
+        "title": "Senior Manager, Customer & Experiential Marketing",
+        "teamId": "8f55552e-3cd3-4e1a-8c82-060655df9f4b",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "06305db2-fd8d-488e-8a19-d5faa847b731",
+        "title": "Senior Product Designer ",
+        "teamId": "f4d27968-7151-4c68-b18d-3f2173e81de6",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      },
+      {
+        "id": "365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+        "title": "Strategic AI Outcomes Manager",
+        "teamId": "5ed052c0-aadb-4b90-a03f-5db28050873c",
+        "locationId": "4fab2cb9-4c0c-40ac-b1d6-73924b0895ef",
+        "locationName": "United States",
+        "workplaceType": "Remote",
+        "employmentType": "FullTime",
+        "secondaryLocations": [],
+        "compensationTierSummary": null,
+        "__typename": "JobPostingBriefsWithIdsAndTeamId"
+      }
+    ],
+    "__typename": "JobBoard"
+  },
+  "qualification": "Exact public jobBoard model survives privacy transformation. This projection is not a complete response, security proof, own-role original or transaction."
+}

@@ -33,7 +33,8 @@ export function detailBasis(html,row){
  return{doc,criteria,schema,description,bodyShapeSHA256:sha(JSON.stringify(shape(body))),programs:detailPrograms(html),formats,form:tree(forms[0]),nativeBody:tree(body)}
 }
 export function detailModel(html,row,profile){
- const basis=detailBasis(html,row);check(basis.bodyShapeSHA256===profile.bodyShapeSHA256&&equal(basis.programs,profile.programs),'whole native body/executable structure changed outside full typed role criteria/metadata/data')
+ const basis=detailBasis(html,row),versions=[profile,...(profile.bodyVersions||[])]
+ check(versions.some(version=>basis.bodyShapeSHA256===version.bodyShapeSHA256&&equal(basis.programs,version.programs)),'whole native body/executable structure changed outside full typed role criteria/metadata/data')
  check(equal(schemaShape(basis.schema),profile.schemaShape),'whole native schema fields/types changed outside reviewed structure')
  const nativeHydrationModel=bindNativeFlight(html,row,basis.schema,profile.hydration)
  const fits=n=>typeof n==='string'||!n.inert&&profile.criteriaFormats.some(f=>f.tag===n.tag&&equal(f.attrs,n.attrs))&&n.children.every(fits)

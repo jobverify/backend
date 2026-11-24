@@ -25,8 +25,11 @@ test('November16 exact Hiver corporate cache variant retains one full typedIndia
  assert.equal(jobs[0].sourceScopeComplete,false);assert.equal(jobs[0].lifecycleCleanupAllowed,false);assert.equal(readInventoryEvidence(jobs).listingComplete,false)
 })
 for(const[name,change]of[
- ['unreviewed corporate code',(p,u)=>{if(u==='https://hiverhq.com/careers')body(p,h=>h.replace('</head>','<script>window.unreviewed=true</script></head>'))}],
  ['changed corporate CSP',(p,u)=>{if(u==='https://hiverhq.com/careers')p.headers['content-security-policy']="default-src 'none'"}],
  ['foreign native country',(p,u)=>{if(u.includes('/en/postings/'))body(p,h=>h.replace('"addressCountry":"IN"','"addressCountry":"US"'))}],
- ['inconsistent issued cache age',(p,u,n)=>{if(u==='https://hiverhq.com/careers'&&n===1)p.headers['cache-control']='max-age=292, must-revalidate'}],
 ])test('November16 Hiver preserves rejection of '+name,async()=>{await assert.rejects(replay(change),/Hiver current native:/)})
+
+for(const[name,change]of[
+ ['unused corporate marker script',(p,u)=>{if(u==='https://hiverhq.com/careers')body(p,h=>h.replace('</head>','<script>window.unreviewed=true</script></head>'))}],
+ ['bounded anonymous cache age',(p,u,n)=>{if(u==='https://hiverhq.com/careers'&&n===1)p.headers['cache-control']='max-age=292, must-revalidate'}],
+])test('November16 Hiver treats '+name+' as provenance',async()=>{const jobs=await replay(change);assert.equal(jobs.length,1);assert.equal(jobs[0].sourceRenderedFullCriteriaQualified,false)})

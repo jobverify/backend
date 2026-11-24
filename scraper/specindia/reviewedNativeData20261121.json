@@ -1,0 +1,1247 @@
+{
+  "version": "2026-11-21-finite-native-data-only",
+  "source": "specindia",
+  "entryURL": "https://www.spec-india.com/career/",
+  "homeURL": "https://spec-india.com/",
+  "careerURL": "https://spec-india.com/about/career",
+  "boardURL": "https://spec-india.com/current-opening",
+  "originals": [
+    {
+      "url": "https://www.spec-india.com/career/",
+      "status": 308,
+      "bytes": 7,
+      "sha256": "afcd58bf817110b2502264818af25110d72408b087005aa39b9a0d2389cdedf6"
+    },
+    {
+      "url": "https://spec-india.com/",
+      "status": 200,
+      "bytes": 853618,
+      "sha256": "8693c12afcec2a6d56df48c8344d15b34f5cef4ddd2a8e0c322746e1cdaaed86",
+      "nativeDataProjectionSHA256": "a757ddd63ec7c8b1d5436a2853acddb174225fd216d679369d6a1fed161120d8"
+    },
+    {
+      "url": "https://spec-india.com/about/career",
+      "status": 200,
+      "bytes": 767043,
+      "sha256": "f85857320042f82d7f59aab61dfe5641fdabc8a11f3ee3558c5bc1d6cfdfe27e",
+      "nativeDataProjectionSHA256": "c8b46273d5959b24f20e1bb7a0893097689818be945a9aecc6957cd3a340b78b",
+      "nativeDataDeliveryProjectionSHA256": "deadcc10b094ef7262c59c7b9af55418bd29cb432771dc8909bdc3b840cf0360",
+      "additionalNativeDataProjectionSHA256s": ["89d828392353d0dcb3c69301472763f76cb4bab802d3ebc88f469d5c521b5957"]
+    },
+    {
+      "url": "https://spec-india.com/current-opening",
+      "status": 200,
+      "bytes": 726584,
+      "sha256": "ba3dac7e2ab8775b11e347e2357bdb290ed2e3840a2b12dc9e03bbae294ffd3e",
+      "nativeDataProjectionSHA256": "a43460dbc37fb3014d47895c3fd110858b790d6d65a3bf4b8bdb454a78d5812c",
+      "nativeDataDeliveryProjectionSHA256": "4262a5ab25c6735cf5c2563279fd19ce6a5d67c0d595fc67a3ab21d31f53c76e",
+      "additionalNativeDataProjectionSHA256s": ["57f7d5ba94f9ed5e2f3727cc3c74c5ba7a7df58f116dc2dc0155dfdaaa666aac"]
+    }
+  ],
+  "jobOwner": {
+    "record": "34",
+    "path": [
+      3,
+      "children",
+      1,
+      3,
+      "children",
+      1
+    ],
+    "reference": "$L4d",
+    "moduleId": 50160,
+    "exportName": "JobOpeningsExplorer",
+    "chunks": [
+      "/_next/static/chunks/2t3np3c1ice2k.js",
+      "/_next/static/chunks/0jwksjko160xg.js",
+      "/_next/static/chunks/13kh_5wclf3sx.js",
+      "/_next/static/chunks/3b2ybatueoda6.js",
+      "/_next/static/chunks/44swdr4ng0jd8.js"
+    ]
+  },
+  "props": {
+    "departments": [
+      {
+        "id": 6,
+        "documentId": "lwd5532qhw78vjs2s49hol9j",
+        "title": "All Departments",
+        "slug": "all-departments"
+      },
+      {
+        "id": 7,
+        "documentId": "s3s4zjeh73vqx8m0hhby44e1",
+        "title": "Business Development",
+        "slug": "business-development"
+      },
+      {
+        "id": 8,
+        "documentId": "ww7swls0lsk9poxe1oq7z5lg",
+        "title": "Design",
+        "slug": "design"
+      },
+      {
+        "id": 9,
+        "documentId": "y07oczd67jo22bqjuxkivag7",
+        "title": "Human Resource",
+        "slug": "human-resource"
+      },
+      {
+        "id": 10,
+        "documentId": "vcttxo3k41er4c6llk830oxg",
+        "title": "Tech Roles",
+        "slug": "tech-roles"
+      }
+    ],
+    "active": "all-departments",
+    "jobs": [
+      {
+        "id": 19,
+        "documentId": "ohnegxet2jw9lgg4ell8r0wp",
+        "title": "Senior Java Developer",
+        "slug": "senior-java-developer",
+        "experience": "4-6 Years",
+        "openings": 1,
+        "jobType": "Full Time",
+        "jobLocation": "Ahmedabad, India",
+        "responsibilities": [
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Role Overview",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We are looking for a skilled Java Developer to design, develop and maintain scalable software applications. The ideal candidate should have hands-on experience in Java development, Spring Boot, REST APIs and database management, along with a strong understanding of software engineering principles and application development practices.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Key Responsibilities",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Design, develop, test and maintain scalable backend applications using Java and related technologies.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Develop RESTful APIs and microservices using Spring Boot and associated frameworks.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Write clean, reusable and efficient code following established development standards.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work with relational and NoSQL databases to design queries, manage data and optimize application performance.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Integrate backend services with frontend applications, third-party APIs and enterprise systems.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Identify, troubleshoot and resolve application issues, bugs and performance bottlenecks.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Participate in code reviews, technical discussions and application architecture decisions.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Collaborate with developers, QA engineers, business analysts and project managers to deliver quality software solutions.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Follow Agile development practices and contribute to continuous improvement across the development lifecycle.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Required Skills & Qualifications",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Bachelor's degree in Computer Science, Information Technology or a related field.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "2–6 years of hands-on experience in Java application development.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Strong proficiency in Java, OOP concepts, collections, exception handling and multithreading.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Hands-on experience with Spring Boot, Spring MVC, Spring Data JPA and Hibernate.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Experience in developing and integrating RESTful APIs and microservices.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Familiarity with Git, Maven or Gradle and application debugging tools.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Preferred Qualifications (Nice to Have)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Experience with cloud platforms such as AWS, Microsoft Azure or Google Cloud.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Familiarity with Docker, Kubernetes and CI/CD pipelines.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Understanding of Agile/Scrum methodologies and enterprise application development.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Why Join Us",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Young Team, Thriving Culture",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Flat-hierarchical, friendly, engineering-oriented, and growth-focused culture.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Well-balanced learning and growth opportunities",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Free health insurance.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "thrId": "572",
+        "category": [
+          {
+            "id": 10,
+            "documentId": "vcttxo3k41er4c6llk830oxg",
+            "title": "Tech Roles",
+            "slug": "tech-roles"
+          }
+        ],
+        "skills": [
+          {
+            "id": 18,
+            "documentId": "sou6yv3ee3p9wycmssj39h7n",
+            "title": "Java"
+          },
+          {
+            "id": 20,
+            "documentId": "f7x0bpj9ok2z2edwlk9rpaqz",
+            "title": "Spring Boot"
+          },
+          {
+            "id": 22,
+            "documentId": "bc99es5jpu0719urpuha0txw",
+            "title": "Microservices"
+          },
+          {
+            "id": 24,
+            "documentId": "enoqo7co4xcnozdvvast5uz5",
+            "title": "REST APIs"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "documentId": "mp4fuc6coprcdzy8sfe63qfj",
+        "title": "Senior HR Executive",
+        "slug": "senior-hr-executive",
+        "experience": "3-4 Years",
+        "openings": 1,
+        "jobType": "Full Time",
+        "jobLocation": "Ahmedabad, India",
+        "responsibilities": [
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Role Overview",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We are looking for a proactive and people-oriented HR Executive to manage day-to-day human resource activities, support talent acquisition and contribute to employee engagement initiatives. The ideal candidate should have hands-on experience in recruitment, employee lifecycle management, HR operations and coordination, with strong interpersonal and organizational skills.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Key Responsibilities",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Manage end-to-end recruitment activities, including job posting, candidate sourcing, screening, interview coordination and offer management.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Coordinate onboarding and joining formalities for new employees.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Maintain employee records, HR documentation and personnel databases.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Handle day-to-day HR operations, employee queries and policy-related coordination.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Support employee engagement initiatives, internal events and organizational activities.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Coordinate performance appraisal processes, feedback collection and employee development activities.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Assist with attendance, leave management, payroll inputs and related HR administration.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Ensure HR policies and procedures are communicated and followed across the organization.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Prepare HR reports, recruitment updates and employee-related documentation.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work closely with department heads and management to support workforce planning and employee requirements.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Required Skills & Qualifications",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Bachelor's degree in Human Resources, Business Administration or a related field. MBA in HR is preferred.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Hands-on experience in end-to-end recruitment and interview coordination.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Good understanding of HR policies, employee lifecycle management and HR administration.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Strong communication, interpersonal and coordination skills.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Ability to manage multiple HR activities, maintain confidentiality and handle employee queries professionally.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Preferred Qualifications (Nice to Have)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Familiarity with HRMS platforms and recruitment management tools.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Knowledge of employee engagement, performance management and retention initiatives.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Understanding of applicable employment practices and statutory HR documentation.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Why Join Us",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Young Team, Thriving Culture",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Flat-hierarchical, friendly, engineering-oriented, and growth-focused culture.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Well-balanced learning and growth opportunities",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Free health insurance.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "thrId": "571",
+        "category": [
+          {
+            "id": 9,
+            "documentId": "y07oczd67jo22bqjuxkivag7",
+            "title": "Human Resource",
+            "slug": "human-resource"
+          }
+        ],
+        "skills": [
+          {
+            "id": 12,
+            "documentId": "cnaje5feparlcrv07kkv93fb",
+            "title": "Talent Acquisition"
+          },
+          {
+            "id": 14,
+            "documentId": "p81jd7chwpszed11yyyldgo7",
+            "title": "Payroll Coordination"
+          },
+          {
+            "id": 16,
+            "documentId": "shn4ycm8jsvqtvknntwa2s1d",
+            "title": "HRMS"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "documentId": "w9esx4o712osf50p7e0d95no",
+        "title": "Business Development Head (IT)",
+        "slug": "business-development-head",
+        "experience": "12-15 Years",
+        "openings": 1,
+        "jobType": "Full Time",
+        "jobLocation": "Ahmedabad, India",
+        "responsibilities": [
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Role Overview",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We are looking for an experienced Business Development Head to lead business growth initiatives for our IT services portfolio. The ideal candidate will have a strong background in IT services sales, enterprise client acquisition, strategic partnerships and revenue generation, with the ability to build relationships and drive business across global markets.",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Key Responsibilities",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Develop and execute business development strategies to achieve revenue targets and expand market presence.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Identify and pursue new business opportunities across international markets, industries and enterprise accounts.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Build and maintain strong relationships with CXOs, CTOs, CIOs, business leaders and key decision-makers.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Drive the complete sales lifecycle, including lead generation, prospecting, client meetings, proposal development, negotiations and deal closures.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Promote IT services such as custom software development, enterprise solutions, AI/ML, application development and digital transformation.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Lead and mentor the business development team, establish performance goals and monitor sales pipeline progress.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Collaborate with delivery, marketing and technical teams to develop tailored solutions and competitive proposals.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Monitor market trends, competitor activities and emerging technology opportunities to identify new growth areas.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Required Skills & Qualifications",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Bachelor's degree in Business Administration, Marketing, Information Technology or a related field. ",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "12–15 years of experience in business development, sales or client acquisition within the IT services industry.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Proven experience in leading business development teams and achieving revenue targets.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Strong understanding of custom software development, enterprise applications, AI/ML and digital transformation services.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Experience in international business development, particularly North American, European or Middle Eastern markets.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Preferred Qualifications (Nice to Have)",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Existing network of enterprise clients and strategic business relationships.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Exposure to account-based marketing, strategic partnerships and global market expansion.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Experience working with CRM platforms and structured sales forecasting processes.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 5,
+            "children": [
+              {
+                "text": "Why Join Us",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Young Team, Thriving Culture",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Opportunities to build strategic relationships and expand international business.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Flat-hierarchical, friendly, engineering-oriented, and growth-focused culture.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Well-balanced learning and growth opportunities",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Free health insurance.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "thrId": "347",
+        "category": [
+          {
+            "id": 7,
+            "documentId": "s3s4zjeh73vqx8m0hhby44e1",
+            "title": "Business Development",
+            "slug": "business-development"
+          }
+        ],
+        "skills": [
+          {
+            "id": 4,
+            "documentId": "anv07gf90jqsbhtexp5ff5m4",
+            "title": "Enterprise Sales"
+          },
+          {
+            "id": 6,
+            "documentId": "ocecseyro1893r0ou4w9moii",
+            "title": "Lead Generation"
+          },
+          {
+            "id": 8,
+            "documentId": "tkr01oedley6a858ijm6vzjc",
+            "title": "Client Acquisition"
+          },
+          {
+            "id": 10,
+            "documentId": "p6gpvoq60q9b49o4d7r63vvd",
+            "title": "International Sales"
+          }
+        ]
+      }
+    ]
+  },
+  "rootModelSHA256": "20412f0d75fa1446eb44d8c1a600cb93970e7327a72d9ad01fdc553e7ddc71b8",
+  "reviewContextOnlyAssets": [
+    {
+      "url": "https://spec-india.com/_next/static/chunks/2t3np3c1ice2k.js",
+      "sha256": "25a9d54360f5eb7134005933c8b03e46e02cb0c5063a60f1b5568e685e936b76",
+      "bytes": 31887
+    },
+    {
+      "url": "https://spec-india.com/_next/static/chunks/0jwksjko160xg.js",
+      "sha256": "8d30db2870c5ecc38c6520a1e3dddd4cef41049b0c4cac5607a57ac931f630e9",
+      "bytes": 127494
+    },
+    {
+      "url": "https://spec-india.com/_next/static/chunks/13kh_5wclf3sx.js",
+      "sha256": "a90391f25340a111321e6529a2ad9273a9d108c84b96794bf4fb41ddbfabd04f",
+      "bytes": 153890
+    },
+    {
+      "url": "https://spec-india.com/_next/static/chunks/3b2ybatueoda6.js",
+      "sha256": "72fffa552e695d61ac666004ecd0d3f35ac9380c88a9123426b9e4a2b966a42f",
+      "bytes": 143477
+    },
+    {
+      "url": "https://spec-india.com/_next/static/chunks/44swdr4ng0jd8.js",
+      "sha256": "b86319435545e91c0d4436c57cf8db910a75e60baf66536f20fd6d1ace616edd",
+      "bytes": 58874
+    }
+  ],
+  "renderedDetailsQualified": false,
+  "clientQualified": false,
+  "cssQualified": false,
+  "applicationsQualified": false,
+  "companyInventoryQualified": false,
+  "dataProjectionScope": "DATA only: exact remaining original bytes, complete framed records including empty-ID and duplicate occurrence order, and decoded contact bytes; stream placement and browser execution/rendering remain unqualified"
+}

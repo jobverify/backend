@@ -1,0 +1,16 @@
+{
+  "url": "https://www.comeet.com/common/careers.js?rc-315-10",
+  "finalURL": "https://www.comeet.com/common/careers.js?rc-315-10",
+  "method": "GET",
+  "status": 200,
+  "headers": {
+    "content-type": "application/javascript"
+  },
+  "bodySHA256": "d11567c0662fae4372fcea166c0aa5915ba630a6caefb5590a058a80b3945625",
+  "capturedAt": "2026-11-20T19:33:03.821Z",
+  "provenance": {
+    "retainedCapture": "reports/scraper-20261120-133018/agent1/native-followup/firebolt-registered-live-packets.json.gz",
+    "kind": "original-public-GET-response",
+    "bodyBytes": 169220
+  }
+}

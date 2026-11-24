@@ -48,7 +48,7 @@ const replay = async (edit = (packet) => packet, options = {}) => {
   return { jobs, requests }
 }
 
-test('registered Kreeti retains explicit complete global-empty proof from current public Jobs and intake-only Students', async () => {
+test('registered Kreeti retains finite empty public Jobs and intake-only Students without company-global zero', async () => {
   const { jobs, requests } = await replay()
   assert.equal(jobs.length, 0)
   const evidence = readInventoryEvidence(jobs)
@@ -59,8 +59,9 @@ test('registered Kreeti retains explicit complete global-empty proof from curren
   assert.equal(evidence.listingComplete, true)
   assert.equal(evidence.lifecycleCleanupAllowed, false)
   assert.equal(requests.length, 12)
-  assert.equal(jobs.nativeCollectionEvidence.companyGlobalTotal, 0)
-  assert.equal(jobs.nativeCollectionEvidence.companyIndiaTotal, 0)
+  assert.equal(jobs.nativeCollectionEvidence.companyGlobalTotal, null)
+  assert.equal(jobs.nativeCollectionEvidence.companyIndiaTotal, null)
+  assert.equal(jobs.nativeCollectionEvidence.sourceScopeComplete, false)
   assert.equal(jobs.nativeCollectionEvidence.opening.jobs.emptyText, 'No Open Positions')
   assert.equal(jobs.nativeCollectionEvidence.opening.students.intakeUrl, 'https://careers.kreeti.com/candidates')
   assert.equal(jobs.nativeCollectionEvidence.currentContextRechecked, true)

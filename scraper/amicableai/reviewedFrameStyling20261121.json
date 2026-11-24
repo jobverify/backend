@@ -1,0 +1,255 @@
+{
+  "reviewedAt": "2026-11-21T00:21:19.533Z",
+  "scope": "Complete declared styles, including the preload onload style; current original Swiper is a separately acquired dependency. Native client/API/country/date contracts unchanged.",
+  "deployments": [
+    {
+      "id": "retained-20261103",
+      "corporateStyleDeclarations": [
+        {
+          "href": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.b21433efd.min.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-shQz79AmFdLRZwdRwmGWYG3RyxuDnPY3Q9IUzZd7HdKUi3HeoQUqMvEy86Nqppbk",
+          "crossorigin": "anonymous"
+        },
+        {
+          "rel": "preload",
+          "href": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "as": "style",
+          "onload": "this.onload=null;this.rel='stylesheet'"
+        }
+      ],
+      "corporateFrameCss": [
+        {
+          "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.b21433efd.min.css",
+          "sha256": "6b4bba34d2074a13de17fd62282417a729609181b4f0f5dada5d496b34ed8d91"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "sha256": "322d15d99efb792c941a5202fa8fc7ee9e932847227383ff9605163338a08eac"
+        }
+      ],
+      "corporateInlineCss": [
+        "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+        "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+        "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+        "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+      ],
+      "corporateFramePath": [
+        {
+          "tag": "iframe",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "iframe-wrapper"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "embed-form ef-styled w-embed w-iframe"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-full"
+          }
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "id": "explore-vacancies",
+            "class": "section-primary sp-pb-default bg-light"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "class": "page-wrapper pw-relative"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {}
+        },
+        {
+          "tag": "root",
+          "attrs": {}
+        }
+      ]
+    },
+    {
+      "id": "retained-20261113",
+      "corporateStyleDeclarations": [
+        {
+          "href": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.43c8ea875.min.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-Q8jqh1ojYwYr94cwV3tJDnPkMtULewDCMWKlJvl2gshJOY//+NlQDgukSii/nC3m",
+          "crossorigin": "anonymous"
+        },
+        {
+          "rel": "preload",
+          "href": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "as": "style",
+          "onload": "this.onload=null;this.rel='stylesheet'"
+        }
+      ],
+      "corporateFrameCss": [
+        {
+          "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.43c8ea875.min.css",
+          "sha256": "3c406ab746309ad78fc54f00592837d47270be1bab6f4c2573d85062f732ab1b"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "sha256": "322d15d99efb792c941a5202fa8fc7ee9e932847227383ff9605163338a08eac"
+        }
+      ],
+      "corporateInlineCss": [
+        "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+        "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+        "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+        "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+      ],
+      "corporateFramePath": [
+        {
+          "tag": "iframe",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "iframe-wrapper"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "embed-form ef-styled w-embed w-iframe"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-full"
+          }
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "id": "explore-vacancies",
+            "class": "section-primary sp-pb-default bg-light"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "class": "page-wrapper pw-relative"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {}
+        },
+        {
+          "tag": "root",
+          "attrs": {}
+        }
+      ]
+    },
+    {
+      "id": "current-20261120",
+      "corporateStyleDeclarations": [
+        {
+          "href": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.5070af064.min.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-UHCvBkmzxlJj6Sv86/mEt+NuFmxHNd4jZo4Y9Jaa5lpcvkvCz4zWOfm+RiAKx1bn",
+          "crossorigin": "anonymous"
+        },
+        {
+          "rel": "preload",
+          "href": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "as": "style",
+          "onload": "this.onload=null;this.rel='stylesheet'"
+        }
+      ],
+      "corporateFrameCss": [
+        {
+          "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.5070af064.min.css",
+          "sha256": "f55113811ca27181280ab46d6bbcff301619008f5aed8eb901f257693027f6bf"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "sha256": "322d15d99efb792c941a5202fa8fc7ee9e932847227383ff9605163338a08eac"
+        }
+      ],
+      "corporateInlineCss": [
+        "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+        "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+        "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+        "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+      ],
+      "corporateFramePath": [
+        {
+          "tag": "iframe",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "iframe-wrapper"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "embed-form ef-styled w-embed w-iframe"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-full"
+          }
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "id": "explore-vacancies",
+            "class": "section-primary sp-pb-default bg-light"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "class": "page-wrapper pw-relative"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {}
+        },
+        {
+          "tag": "root",
+          "attrs": {}
+        }
+      ]
+    }
+  ]
+}

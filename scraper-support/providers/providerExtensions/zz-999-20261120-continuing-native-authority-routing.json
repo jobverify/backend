@@ -1,0 +1,17 @@
+[
+  {
+    "source": "atos",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "datafold",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "hiver",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  }
+]

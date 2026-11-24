@@ -52,8 +52,14 @@ const { default: TelegramLinkToken } = await import('../src/models/TelegramLinkT
 const { default: TelegramChannelSchedule } = await import('../src/models/TelegramChannelSchedule.js');
 const { default: TelegramChannelDelivery } = await import('../src/models/TelegramChannelDelivery.js');
 const { default: TelegramBroadcastSettings } = await import('../src/models/TelegramBroadcastSettings.js');
+const { default: SocialPost } = await import('../src/models/SocialPost.js');
+const { default: SocialDelivery } = await import('../src/models/SocialDelivery.js');
+const { default: SocialAccount } = await import('../src/models/SocialAccount.js');
+const { default: SocialSettings } = await import('../src/models/SocialSettings.js');
 
 const MODELS = [
+  ['SocialPost', SocialPost], ['SocialDelivery', SocialDelivery],
+  ['SocialAccount', SocialAccount], ['SocialSettings', SocialSettings],
   ["Job", Job],
   ['JobAlertOutbox', JobAlertOutbox],
   ['JobAlertDelivery', JobAlertDelivery],

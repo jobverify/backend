@@ -8,6 +8,8 @@ import {buildHttpError} from '../../scraper-support/utils/fetch.js'
 import {PROFILE,PRIMARY,EMBED,BOARD,API,API_FIELDS,POST_FIELDS,need,strictJSON,primary,embed,board,own,ownURL,publication,roleEvidence,applicationOnlyFields} from './data20261108.js'
 import {settingsFor,runtime,bounded,combineNativeSignals,annotateFailure,errorValue} from './runtime20261108.js'
 import {nativeTransport} from './transport20261108.js'
+import {qualifyDoximityPrimaryLabel,readDoximityRoleLocationCriteria,qualifyDoximityRoleCountryScope} from './nativeLabel20261121.js'
+import {qualifyDoximityConfiguredBoard} from './configuredBoard20261121.js'
 const failures=new WeakMap(),sha=bytes=>createHash('sha256').update(bytes).digest('hex')
 export const readDoximityFailureEvidence=signal=>{const value=failures.get(signal);return value?structuredClone(value):null}
 export const createDoximityNativeScraper=(defaults={})=>({run:async(options={})=>{
@@ -86,6 +88,9 @@ export const createDoximityNativeScraper=(defaults={})=>({run:async(options={})=
    row.sourceNativeAdmissionPublication=publication(value.opening.model,value.listing,row.sourceNativeRecord,admissionAt);row.sourceNativeAdmissionAt=admissionAt
    row.sourceNativeTemporalQualified=Boolean(row.sourceNativeRoleEvidencePairQualified&&row.sourceNativePublishedContractQualified&&value.opening.publication.qualified&&value.closing.publication.qualified&&row.sourceNativeAdmissionPublication.qualified)
    row.sourceCountryScopeUnresolved=row.sourceCountryScopeUnresolved||!row.sourceNativePublishedContractQualified
+   if(row.sourceCountryScopeUnresolved){const label=qualifyDoximityPrimaryLabel(row);row.sourceNativePrimaryLabelEvidence=label;if(label.qualified){row.country=label.country;row.sourceCountryScopeUnresolved=false}}
+   const criteria=readDoximityRoleLocationCriteria(row);row.sourceNativeRoleLocationCriteriaEvidence=criteria;if(criteria.conflict){row.country=null;row.sourceCountryScopeUnresolved=true;row.sourceNativeCountryConflict=true}
+   const countryScope=qualifyDoximityRoleCountryScope(row,criteria);row.sourceNativeRoleCountryScopeEvidence=countryScope;row.sourceNativeCountryScopeReconciled=countryScope.qualified;if(countryScope.conflict){row.country=null;row.sourceCountryScopeUnresolved=true;row.sourceNativeCountryConflict=true}else if(countryScope.qualified)row.sourceCountryScopeUnresolved=false
    row.sourceCurrentNativePostingIdentityQualified=row.sourceNativeTemporalQualified
    row.sourceCurrentNativeRoleQualified=row.sourceNativeTemporalQualified&&row.sourceNativePostKind==='job'&&row.country!==null&&!row.sourceCountryScopeUnresolved&&!row.sourceNativeCountryConflict
    row.sourceNativeIssues=[...new Set([...(row.sourceNativeIssues??[]),...value.opening.publication.issues,...value.closing.publication.issues,...row.sourceNativeAdmissionPublication.issues,...(row.sourceNativeRoleEvidencePairQualified?[]:['complete-native-opening-closing-evidence-changed']),...(row.sourceNativePublishedContractQualified?[]:['unmapped-native-publication-fields'])])]
@@ -105,9 +110,9 @@ export const createDoximityNativeScraper=(defaults={})=>({run:async(options={})=
   let jobs=structuredClone(settings.maxJobs===null?all:all.slice(0,settings.maxJobs));control.check();refresh(()=>control.check())
   const current=new Map(rows.filter(eligible).map(row=>[row.jobId,row]));jobs=jobs.filter(row=>current.has(row.jobId))
   for(const row of jobs){const latest=current.get(row.jobId);row.sourceNativeAdmissionAt=latest.sourceNativeAdmissionAt;row.sourceNativeAdmissionPublication=structuredClone(latest.sourceNativeAdmissionPublication);row.sourceNativeIssues=[...latest.sourceNativeIssues]}
-  control.check();const audit=snapshot()
+  control.check();const audit=snapshot(),configured=qualifyDoximityConfiguredBoard({opening,closing,apiAudit,apiListingHistory,rows,jobs,maxJobs:settings.maxJobs,pagesFetched:control.requests,responses,pendingReads:activeReads.size,stopped,observedAt,admissionAt});audit.configuredPublicBoardEvidence=configured
   Object.defineProperty(jobs,'sourceAudit',{value:audit});Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit});attachSourceObservationEvidence(jobs,{...audit,observedRecordCount:rows.length,observedVacancyCount:rows.filter(v=>v.sourceNativePostKind==='job').length})
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:control.requests,verifiedAt:admissionAt,reason:'full-native-API-plus-current-hosted-model-and-visible-criteria;unresolved-worksite-company-India-zero-hiring-application-and-publication-scope-held'})
+  return attachInventoryEvidence(jobs,configured.qualified?{status:'complete-inventory',surface:configured.surface,firstParty:true,listingComplete:true,reportedTotal:configured.reportedTotal,indiaFacetCount:null,pagesFetched:control.requests,verifiedAt:admissionAt,lifecycleCleanupAllowed:false,reason:'complete-declared-unfiltered-doximity-public-account;whole-company-india-facet-hiring-application-ui-and-lifecycle-cleanup-held'}:{status:'coverage-gap',surface:PRIMARY,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null,pagesFetched:control.requests,verifiedAt:admissionAt,reason:'full-native-API-plus-current-hosted-model-and-visible-criteria;unresolved-worksite-company-India-zero-hiring-application-and-publication-scope-held'})
  }catch(cause){
   if(!settings.signal?.aborted)apiAudit??=errorValue(cause,'nativeEvidence')??errorValue(cause,'sourceAudit')??null;acquisition.abort(cause);await Promise.allSettled([...activeReads]);rows=baseRows().map(row=>({...row,sourceCurrentNativePostingIdentityQualified:false,sourceCurrentNativeRoleQualified:false,sourceNativeTemporalQualified:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,incompleteCollection:true}));const evidence=structuredClone(snapshot())
   if(settings.signal?.aborted){failures.set(settings.signal,evidence);throw settings.signal.reason}

@@ -1,5 +1,6 @@
 {
   "source": "pocketfm",
+  "authoritativeCurrentPublication": true,
   "companyName": "Pocket FM",
   "officialBrandName": "Pocket FM",
   "adapter": "script",

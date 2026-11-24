@@ -194,7 +194,7 @@ export const createAapkaPainterScraper = () => ({
       throw new Error('Aapka Painter embedded Zimyo widget state changed materially')
     }
 
-    let unavailableWidget = null
+    let unavailableWidget
     try {
       const widgetScript = await fetchPage(WIDGET_SCRIPT_URL)
       if (widgetScript.url !== WIDGET_SCRIPT_URL) {
@@ -226,7 +226,8 @@ export const createAapkaPainterScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createAapkaPainterScraper().run(options)
+// Registered current acquisition requires original HTTP metadata; historical pure helpers remain available.
+export const run = async (options = {}) => (await import('./currentNative20261120.js')).runCurrentAapkaPainter(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

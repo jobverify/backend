@@ -23,7 +23,8 @@ function structuredJobPostings(models){
 }
 export function readCurrentArchiesCorporate(html,url){
  const doc=readNativeDocument(html),head=activeHead(html),title=one(head.titles,'corporate document title'),structuredData=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json').map(n=>readLiteralModel(n.raw).value)
- need(title.endsWith('Archies Online')&&(url===HOMEPAGE_URL?title.startsWith('Buy Gifts, Greeting Cards, Cakes & Flowers Online | Archies'):title.startsWith('About Us')),'Current own branded corporate title changed')
+ const currentHomeTitle=url===HOMEPAGE_URL&&title==='Buy Gifts, Greeting Cards, Cakes & Flowers Online | Archies'
+ need(currentHomeTitle||title.endsWith('Archies Online')&&(url===HOMEPAGE_URL?title.startsWith('Buy Gifts, Greeting Cards, Cakes & Flowers Online | Archies'):title.startsWith('About Us')),'Current own branded corporate title changed')
  need(one(doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'),'corporate canonical').attrs.href===url&&!doc.nodes(n=>n.tag==='base').length,'Current corporate canonical/base changed')
  const organization=structuredData.filter(v=>v?.['@type']==='Organization')
  need(organization.length===1&&organization[0].name==='Archies Online'&&organization[0].url==='https://archiesonline.com','Current structured employer identity changed')
@@ -41,7 +42,13 @@ export function readCurrentArchiesCorporate(html,url){
 export async function runCurrentArchies(options={}){
  options.signal?.throwIfAborted();need(options.maxJobs===undefined||Number.isSafeInteger(options.maxJobs)&&options.maxJobs>0,'Invalid output bound; unknown inventory cannot be truncated')
  const reader=createCurrentNativeReader(options,{source:SOURCE,admitted:[[HOMEPAGE_URL,'html'],[ABOUT_URL,'html']]});let opening,closing
- async function authority(){const home=await reader.read(HOMEPAGE_URL),homeModel=readCurrentArchiesCorporate(home.body,HOMEPAGE_URL),about=await reader.read(ABOUT_URL),aboutModel=readCurrentArchiesCorporate(about.body,ABOUT_URL);return {home:homeModel,about:aboutModel,wholeOriginalHomeHTML:home.body,wholeOriginalAboutHTML:about.body}}
+ async function authority(){
+  const home=await reader.read(HOMEPAGE_URL),homeModel=readCurrentArchiesCorporate(home.body,HOMEPAGE_URL),about=await reader.read(ABOUT_URL),aboutModel=readCurrentArchiesCorporate(about.body,ABOUT_URL)
+  // The authority-level fields retain each complete original document. Avoid
+  // serializing a second identical copy inside each parsed page model.
+  delete homeModel.wholeOriginalHTML;delete aboutModel.wholeOriginalHTML
+  return {home:homeModel,about:aboutModel,wholeOriginalHomeHTML:home.body,wholeOriginalAboutHTML:about.body}
+ }
  const observed=model=>Object.fromEntries(['home','about'].map(key=>{const {url,title,structuredData,pageLinks,contacts,nativeAboutDeclaration,wholeAboutContent,wholeAboutText,recruitmentDeclarations,nativeJobPostingModels}=model[key];return [key,{url,title,structuredData,pageLinks,contacts,nativeAboutDeclaration,wholeAboutContent,wholeAboutText,recruitmentDeclarations,nativeJobPostingModels}]}))
  try{
   opening=await authority();closing=await authority();need(isDeepStrictEqual(observed(opening),observed(closing)),'Closing whole observed corporate About/navigation models changed');reader.check()

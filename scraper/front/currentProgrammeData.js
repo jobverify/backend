@@ -51,7 +51,12 @@ export function readFrontCorporate({text,url}={}){
   shape(carriers[0].node.attrs,['id','type'],'corporate-carrier')
   need(carriers[0].node.attrs.type==='application/json','corporate-carrier','Unreviewed corporate data carrier')
   const originalNextData=originalJSON(carriers[0].node.raw)
-  shape(originalNextData,['props','page','query','buildId','isFallback','gsp','scriptLoader'],'corporate-carrier')
+  const rootKeys=['props','page','query','buildId','isFallback','gsp','scriptLoader']
+  if(Object.hasOwn(originalNextData,'isExperimentalCompile')){
+    need(originalNextData.isExperimentalCompile===false,'corporate-carrier','Unreviewed experimental corporate compilation')
+    rootKeys.push('isExperimentalCompile')
+  }
+  shape(originalNextData,rootKeys,'corporate-carrier')
   shape(originalNextData.props,['pageProps','__N_SSG'],'corporate-carrier')
   shape(originalNextData.props.pageProps,['entry','jobs','global','metadata'],'corporate-carrier')
   need(originalNextData.page==='/jobs'&&same(originalNextData.query,{})&&originalNextData.isFallback===false

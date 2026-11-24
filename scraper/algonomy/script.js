@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { activeHead, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 
 import { ALGONOMY_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -162,13 +163,46 @@ const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
   },
   label: SOURCE,
   timeoutMs: 15000,
+  includeResponseMetadata: url === CAREERS_URL,
 })
+
+const hasCurrentParentHomepageSignal = page => {
+  if (page?.status !== 200 || page?.url !== 'https://adaglobal.com/' || typeof page.html !== 'string') return false
+  const doc = readNativeDocument(page.html), titles = activeHead(page.html).titles
+  const canonical = doc.nodes(node => node.tag === 'link' && String(node.attrs.rel ?? '').toLowerCase().split(/\s+/).includes('canonical'))
+  const headings = doc.nodes(node => node.tag === 'h1')
+  const acquisition = doc.nodes(node => node.tag === 'a' && doc.text(node) === "Learn more about ADA's acquisition of Algonomy")
+    .filter(node => { try { const url = new URL(node.attrs.href); return url.origin === 'https://adaglobal.com' && !url.username && !url.password
+      && url.pathname === '/newsroom/ada-acquires-algonomy-strengthening-its-intelligent-growth-platform-for-a-fully-agentic-experience/' } catch { return false } })
+  const careers = doc.nodes(node => node.tag === 'a' && ['Careers', 'Careers at ADA'].includes(doc.text(node)) && node.attrs.href === 'https://adaglobal.com/careers/')
+  return titles.length === 1 && titles[0] === 'ADA Global | The Data & AI Experience Company'
+    && canonical.length === 1 && canonical[0].attrs.href === 'https://adaglobal.com/'
+    && !doc.nodes(node => node.tag === 'base').length
+    && headings.length === 1 && doc.text(headings[0]) === 'We are the Data and AI Experience Company'
+    && acquisition.length === 1 && careers.length > 0
+}
 
 export const createAlgonomyScraper = ({ now = () => new Date().toISOString() } = {}) => ({
   async run({ fetchText = defaultFetchText, now: overrideNow, signal } = {}) {
     signal?.throwIfAborted()
-    const careersHtml = await fetchText(CAREERS_URL, { signal })
+    let careersPage
+    try { careersPage = await fetchText(CAREERS_URL, { signal }) }
+    catch (error) { signal?.throwIfAborted(); throw error }
     signal?.throwIfAborted()
+    const careersHtml = typeof careersPage === 'string' ? careersPage : careersPage?.html
+    if (hasCurrentParentHomepageSignal(careersPage)) {
+      const jobs = attachInventoryEvidence([], {
+        status: 'coverage-gap', surface: CAREERS_URL, firstParty: true,
+        listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 1,
+        reportedTotal: null, indiaFacetCount: null, verifiedAt: (overrideNow || now)(),
+        reason: 'current-Algonomy-careers-response-redirects-to-ADA-parent-homepage;Algonomy-specific-role-inventory-unknown;parent-careers-not-an-Algonomy-snapshot',
+      })
+      signal?.throwIfAborted()
+      return jobs
+    }
+    if (typeof careersPage !== 'string' && (careersPage?.status !== 200 || careersPage?.url !== CAREERS_URL)) {
+      throw new Error('Algonomy current first-party or parent publisher response identity changed')
+    }
     if (/<title[^>]*>[^<]*ADA Global<\/title>/i.test(careersHtml)
       && String(careersHtml).includes('https://adaglobal.darwinbox.com/ms/candidatev2/main/careers/allJobs')) {
       return attachInventoryEvidence([], {
@@ -176,6 +210,7 @@ export const createAlgonomyScraper = ({ now = () => new Date().toISOString() } =
         surface: CAREERS_URL,
         firstParty: true,
         listingComplete: false,
+        lifecycleCleanupAllowed: false,
         pagesFetched: 1,
         reportedTotal: null,
         indiaFacetCount: null,

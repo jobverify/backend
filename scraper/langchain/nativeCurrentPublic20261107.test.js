@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto'
 import {readFileSync} from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-import {createLangchainNativeScraper, CAREERS_URL, BOARD_URL, API_URL} from './nativeInventory.js'
+import {createHistoricalLangchainNativeScraper as createLangchainNativeScraper, CAREERS_URL, BOARD_URL, API_URL} from './nativeInventory.js'
 import {declaredNativeFrontend, nativeFrontendEntry, verifyNativeFrontend} from './nativeFrontendContract.js'
 
 const fixture = new URL('./test-data/current-public-profile-20261107/', import.meta.url)
@@ -89,9 +89,9 @@ test('current client cannot consume an absent public access declaration from ano
   assert.deepEqual(calls, responses.map(row=>row.requestedUrl))
 })
 
-test('genuine actual8 registered DEFAULT replay retains99 full roles, two worksite holds and unknown India total', async () => {
-  const {replayGenuineRegisteredDefault}=await import('./test-data/registered-default-current-20261107/replay.mjs')
-  const proof=await replayGenuineRegisteredDefault()
+test('historical Nov7 exact8 registered capture replay through dated factory retains99 full roles, two worksite holds and unknown India total', async () => {
+  const {replayHistoricalRegisteredCapture}=await import('./test-data/registered-default-current-20261107/replay.mjs')
+  const proof=await replayHistoricalRegisteredCapture()
   assert.equal(proof.replayedOriginalRequests,8)
   assert.equal(proof.entireSerializedOutputEqualExceptExplicitClocks,true)
   assert.equal(proof.ignoredRuntimeFields.length,21)

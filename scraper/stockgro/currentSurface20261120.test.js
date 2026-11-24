@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {readFileSync}from'node:fs'
+import {gunzipSync}from'node:zlib'
+import {createStockGroScraper,hasOfficialCareersPageSignal,CAREERS_URL}from'./script.js'
+import {readInventoryEvidence}from'../../scraper-support/utils/inventoryEvidence.js'
+const original=gunzipSync(readFileSync(new URL('./test-data/current-careers-20261120.html.gz',import.meta.url))).toString('utf8')
+const run=(html=original,options={})=>createStockGroScraper().run({fetchPage:async url=>({status:200,url,html}),...options})
+test('actual own current title is accepted without turning Typeform intake into a vacancy or company zero',async()=>{assert.equal(hasOfficialCareersPageSignal(original),true);const jobs=await run();assert.equal(jobs.length,0);const e=readInventoryEvidence(jobs);assert.equal(e?.status,'coverage-gap');assert.equal(e?.listingComplete,false);assert.equal(e?.lifecycleCleanupAllowed,false);assert.equal(e?.reportedTotal,null);assert.equal(e?.indiaFacetCount,null)})
+test('current active title/canonical identity rejects unrelated, duplicated and inert declarations',()=>{assert.equal(hasOfficialCareersPageSignal(original.replace('<title>Careers at StockGro: Explore Open Roles &amp; Apply</title>','<title>Other Publisher</title>')),false);assert.equal(hasOfficialCareersPageSignal(original.replace('href="https://www.stockgro.club/careers/"','href="https://other.example/careers/"')),false);assert.equal(hasOfficialCareersPageSignal(original.replace('</head>','<title>Careers at StockGro: Explore Open Roles &amp; Apply</title></head>')),false);assert.equal(hasOfficialCareersPageSignal('<template>'+original+'</template>'),false)})
+test('style-only edits preserve current native publisher identity',()=>assert.equal(hasOfficialCareersPageSignal(original.replace('</head>','<style>.irrelevant{color:red}</style></head>')),true))
+for(const reason of[Object.freeze({cause:'caller cancellation'}),null])test('exact caller reason wins before reading and after the publisher read '+String(reason),async()=>{const before=new AbortController();before.abort(reason);let called=0;await assert.rejects(run(original,{signal:before.signal,fetchPage:async()=>{called++;throw Error('must not read')}}),e=>e===reason);assert.equal(called,0);const after=new AbortController();await assert.rejects(run(original,{signal:after.signal,fetchPage:async url=>{after.abort(reason);return{status:200,url,html:original}}}),e=>e===reason)})
+test('public job declaration continues to require a real job reader',async()=>{await assert.rejects(run(original.replace('</body>','<script type="application/ld+json">{"@type":"JobPosting","title":"New role"}</script></body>')),/public jobs surface/i)})

@@ -1,0 +1,6 @@
+Generated with the built-in image_gen.imagegen tool.
+transparent_background: true
+Saved asset: backend/scripts/social-video/assets/cartoon-girl.png
+
+Prompt:
+Use case: illustration-story. Asset type: a small transparent mascot overlay for JobVerify.in's colourful Instagram job announcement videos. Create one original friendly young adult Indian woman, full body from head to shoes, in a polished simple 2D cartoon illustration style, cheerful and professional. She has dark shoulder-length hair, expressive brown eyes, a warm smile, a violet business-casual blazer over a mint top, navy trousers and simple white shoes. Three-quarter pose facing slightly to the right, one hand giving a small welcoming wave and the other relaxed, as a supportive cartoon career guide. Clear chunky shapes and clean outlines so she stays readable when only 150 pixels wide. Single character only, isolated on a genuinely transparent background with alpha; no scenery, floor, backdrop, ground shadow, text, logos, decorative shapes, borders, panels or watermark. Entire body and waving hand comfortably inside the image, with minimal transparent padding. Portrait composition, clean flat colours matching violet, mint and navy JobVerify cards.

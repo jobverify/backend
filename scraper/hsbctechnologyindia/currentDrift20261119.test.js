@@ -10,21 +10,20 @@ const within=(promise,milliseconds=120)=>Promise.race([promise,new Promise((_,re
  const timer=setTimeout(()=>reject(new Error('HSBC acquisition did not settle within its configured deadline')),milliseconds)
  promise.finally(()=>clearTimeout(timer)).catch(()=>{})
 })])
-test('HSBC current changed whole classic client remains unqualified instead of yielding a false empty inventory',async()=>{
+test('HSBC current declared client drift advances to independent native facts without yielding an empty inventory',async()=>{
  let reads=0
  await assert.rejects(run({now:fixture.startedAt,fetchImpl:async(url,init)=>{
-  const packet=fixture.packets[reads++];assert.ok(packet,'Only original public responses')
+  const packet=fixture.packets[reads++];if(!packet)throw Error('Required selected role originals not captured')
   assert.equal(String(url),packet.url);assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit')
   const raw=Buffer.from(packet.bodyBase64,'base64')
   assert.equal(createHash('sha256').update(raw).digest('hex'),packet.bodySHA256)
   const response=new Response(raw,{status:packet.status,headers:packet.headers})
   Object.defineProperty(response,'url',{value:packet.finalURL});return response
- }}),error=>error.softFailure===true&&error.failureKind==='surface_drift_or_fail_closed'
-  &&/native renderer criteria contract changed/.test(error.message)
+ }}),error=>/Required selected role originals not captured/.test(error.message)
   &&error.nativeCollectionEvidence.receipts.length===3
   &&error.nativeCollectionEvidence.receipts.every((receipt,index)=>receipt.sha256===fixture.packets[index].bodySHA256)
   &&error.nativeCollectionEvidence.sourceScopeComplete===false)
- assert.equal(reads,3)
+ assert.equal(reads,4)
 })
 
 test('HSBC pre-aborted caller starts zero public reads and retains its exact opaque reason',async()=>{

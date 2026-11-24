@@ -64,7 +64,7 @@ for(const [name,change,reason]of[
  ['stylesheet-hidden corporate popup links',p=>{const packet=p['https://www.st.com/content/st_com/en/about/careers/job-categories.html'];packet.html=packet.html.replace('</head>','<style>a{display:none!important}</style></head>')},/corporate.*(?:stylesheet|visibility)/],
  ['an unreviewed corporate base',p=>{const packet=p['https://www.st.com/content/st_com/en/about/careers/job-categories.html'];packet.html=packet.html.replace('</head>','<base href="https://unrelated.invalid/"></head>')},/corporate.*base/],
  ['a changed corporate map controller',p=>{const u=Object.keys(p).find(u=>u.includes('/map/clientlibs.'));p[u].html+=';/*changed*/'},/map handoff client/],
- ['a changed classic criteria renderer',p=>{const u=Object.keys(p).find(u=>u.includes('/smartApply.'));p[u].html+=';/*changed*/'},/criteria renderer/],
+ ['a changed classic criteria renderer',p=>{const u=Object.keys(p).find(u=>u.includes('/smartApply.'));p[u].html=p[u].html.replaceAll('/api/apply/v2/jobs/open?pids=','/api/apply/v2/jobs/open?changed=')},/renderer.*current-open/],
  ['empty selected observations with a positive reported total',p=>rewriteCarrier(p['https://stmicroelectronics.eightfold.ai/careers?location=India'],v=>{v.positions=[]}),/coverage-gap/],
 ])test('ST refuses '+name,async()=>{
  const packets=structuredClone(original);change(packets)

@@ -12,4 +12,20 @@ export function toJobs(result){return result.roles.map(role=>({id:null,jobId:nul
  location:role.locationOriginal,city:role.sitesOriginal[0],country:role.countryEvidence.country,isIndia:role.countryEvidence.country==='India',jobLocations:role.sitesOriginal.map(city=>({city,country:role.countryEvidence.country})),
  nativeFacts:role,nativeCollectionEvidence:result,rawArticleHTML:role.rawArticleHTML,nativePublicJobId:null,nativeRequisitionId:null,nativePublication:null,firstEverPublication:null,nativeClosingDate:null,explicitLifecycleStatus:null,nativeLegalEmployer:null,
  postingDate:null,postedAt:null,originalPublicationDate:null,legalEmployer:null,lifecycle:null,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,publicEligibility:null}))}
-export async function runNative(options={}){const r=await collect(options);if(r.status!=='retained-native-shape-valid'){const error=Object.assign(new Error('Epson native collection incomplete; cleanup forbidden'),{code:'EPSON_NATIVE_INCOMPLETE',nativeEvidence:r});throw error}const jobs=attachInventoryEvidence(toJobs(r),{status:'coverage-gap',surface:CAREERS,firstParty:true,listingComplete:false,pagesFetched:r.retainedResponses.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:null,reason:'regional-full-native-role-facts-only;provisional-Epson-brand-association;legal-employer-and-global-company-inventory-unknown;cleanup-forbidden'});Object.defineProperty(jobs,Symbol.for('jobverify.epson-native-evidence'),{value:r});return jobs}
+export async function runNative(options={}){
+ const r=await collect(options)
+ // A fully parsed sibling's unresolved country does not invalidate another
+ // complete own role. Keep every original article/error, and admit only the
+ // parser's independently qualified India models. Publisher, criterion,
+ // schema, application, pagination and document failures remain fail closed.
+ const qualified=r.roles.filter(role=>role.countryEvidence.country==='India')
+ const isolatedCountryHolds=r.roles.length===r.observedArticleCount&&qualified.length>0&&r.errors.length>0&&r.errors.every(error=>error.code==='country-unverified-or-conflicting'&&Number.isInteger(error.articleIndex)&&r.roles[error.articleIndex]?.countryEvidence.country!== 'India')
+ if(r.status!=='retained-native-shape-valid'&&!isolatedCountryHolds){
+  throw Object.assign(new Error('Epson native collection incomplete; cleanup forbidden'),{code:'EPSON_NATIVE_INCOMPLETE',nativeEvidence:r})
+ }
+ r.heldRoles=r.roles.flatMap((role,articleIndex)=>role.countryEvidence.country==='India'?[]:[{articleIndex,reason:'native-role-country-unqualified-or-conflicting',role}])
+ r.qualifiedRegionalRoleCount=qualified.length
+ const jobs=attachInventoryEvidence(toJobs(r).filter(job=>job.country==='India'),{status:'coverage-gap',surface:CAREERS,firstParty:true,listingComplete:false,pagesFetched:r.retainedResponses.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:null,reason:'regional-full-native-role-facts-only;country-unqualified-rows-held;provisional-Epson-brand-association;legal-employer-and-global-company-inventory-unknown;cleanup-forbidden'})
+ Object.defineProperty(jobs,Symbol.for('jobverify.epson-native-evidence'),{value:r})
+ return jobs
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "source": "metricstream",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "opsera",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  },
+  {
+    "source": "aapkapainter",
+    "catalogOverride": true,
+    "authoritativeCurrentPublication": true
+  }
+]

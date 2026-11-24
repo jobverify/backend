@@ -1,4 +1,6 @@
 import {setTimeout as delay} from 'node:timers/promises'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
 import {types,isDeepStrictEqual} from 'node:util'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -46,6 +48,13 @@ const wait=(operation,signal,disposeLate)=>new Promise((resolve,reject)=>{
     if(settled){if(disposeLate)ignore(()=>disposeLate(value));return}finish(resolve,value)
   },error=>finish(reject,error))
 })
+// Let the owned adapter settle its bounded disposal after an abort race.
+const settleTransport=async pending=>{
+  if(!pending)return
+  let timer
+  try{await Promise.race([pending.then(()=>{},()=>{}),new Promise(resolve=>{timer=setTimeout(resolve,1000)})])}
+  finally{clearTimeout(timer)}
+}
 const arrayValues=(value,label)=>{
   need(Array.isArray(value)&&!types.isProxy(value)&&Object.getPrototypeOf(value)===Array.prototype,'headers','Original '+label+' must be a plain array')
   const size=Object.getOwnPropertyDescriptor(value,'length')?.value
@@ -87,9 +96,9 @@ function security(headers,url){
     need(!/(?:content-security-policy|permissions-policy|document-policy|cross-origin-(?:embedder|opener|resource)-policy)/.test(name)||policyNames.includes(name),
       'security','Unreviewed security policy field')
   }
-  need((headers['content-disposition']??null)===(corporate?'inline':null),'security','Unreviewed source-channel disposition')
+  need(corporate?[null,'inline'].includes(headers['content-disposition']??null):(headers['content-disposition']??null)===null,'security','Unreviewed source-channel disposition')
   const expectedOrigin=corporate||api?'*':null
-  for(const name of corsNames)need((headers[name]??null)===(name==='access-control-allow-origin'?expectedOrigin:null),'security','Unreviewed source-channel CORS policy')
+  for(const name of corsNames)need(corporate&&name==='access-control-allow-origin'?[null,'*'].includes(headers[name]??null):(headers[name]??null)===(name==='access-control-allow-origin'?expectedOrigin:null),'security','Unreviewed source-channel CORS policy')
   need((headers['referrer-policy']??null)===(corporate||feed?'origin-when-cross-origin':'same-origin'),'security','Unreviewed source-channel referrer policy')
   need((headers['strict-transport-security']??null)===(corporate||feed?'max-age=63072000; includeSubDomains; preload':'max-age=31536000; includeSubDomains; preload'),
     'security','Unreviewed source-channel transport policy')
@@ -147,9 +156,9 @@ export async function readCurrentFrontProgramme(options={}){
     const request=new AbortController(),requestSignal=AbortSignal.any([signal,request.signal]),requestStarted=performance.now()
     const requestTimer=setTimeout(()=>request.abort(new DOMException('Front request deadline exceeded','TimeoutError')),bound.request)
     const checkRequest=()=>{check();if(performance.now()-requestStarted>=bound.request&&!request.signal.aborted)request.abort(new DOMException('Front request deadline exceeded','TimeoutError'));requestSignal.throwIfAborted()}
-    let responseAccounted=false
+    let responseAccounted=false,pendingRead
     try{
-      const page=await wait(()=>readPage(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:{Accept:url===FEED||url===API?'application/json':'text/html','Cache-Control':'no-store',Pragma:'no-cache'},signal:requestSignal,maxBodyBytes:maximum}),requestSignal)
+      const page=await wait(()=>pendingRead=Promise.resolve(readPage(url,{method:'GET',cache:'no-store',credentials:'omit',redirect:'manual',headers:{Accept:url===FEED||url===API?'application/json':'text/html','Cache-Control':'no-store',Pragma:'no-cache'},signal:requestSignal,maxBodyBytes:maximum})),requestSignal)
       need(plain(page),'transport','Original complete response metadata unavailable')
       const requestedURL=own(page,'requestedURL',false),finalURL=own(page,'finalURL',false),status=own(page,'status',false)
       if(typeof finalURL==='string')receipt.finalURL=finalURL
@@ -192,12 +201,14 @@ export async function readCurrentFrontProgramme(options={}){
       }
       return{model,receipt}
     }catch(caught){
-      const error=extensibleError(caught),evidence=!responseAccounted&&(responseFailures.get(error)??responseProgress.get(requestSignal)?.())
+      const callerAborted=parentSignal?.aborted,error=callerAborted?parentSignal.reason:extensibleError(caught)
+      const evidence=!responseAccounted&&(responseFailures.get(error)??responseProgress.get(requestSignal)?.())
       if(evidence){Object.assign(receipt,evidence);aggregate+=evidence.bodyBytes??0}
+      if(callerAborted){receipt.failure={name:'AbortError',message:'Caller canceled the native transaction'};throw error}
       if([401,403,429,451].includes(receipt.status)||Object.keys(receipt.headers??{}).some(challenge))Object.assign(error,{failureKind:'blocked_or_access_denied',softFailure:true,abortRetries:true,upstreamOutage:true})
       receipt.failure={name:error.name??'Error',message:String(error.message??error),...(error.failureKind?{failureKind:error.failureKind}:{})}
       throw error
-    }finally{responseProgress.delete(requestSignal);clearTimeout(requestTimer);request.abort()}
+    }finally{responseProgress.delete(requestSignal);clearTimeout(requestTimer);request.abort();await settleTransport(pendingRead);parentSignal?.throwIfAborted()}
   }
   try{
     const corporate=(await read(CORPORATE,'opening-corporate',true)).model
@@ -235,12 +246,22 @@ export async function readCurrentFrontProgramme(options={}){
       reportedTotal:null,indiaFacetCount:0,verifiedAt:audit.completedAt,reason:'Complete current finite Front corporate SSR/feed/named-account API and every own server LD/raw boot publication; all original primary/supplementary criteria,identity,typed published work-country and whole raw closing interval reconciled. Real observed vacancies only,no reported company total. Native board,renderer/UI,application/screening,unpublished applicant eligibility,global scope,legal registry identity and cleanup remain unqualified.'})
     check();return result
   }catch(caught){
-    const error=extensibleError(caught);audit.currentDeclaredSourceProgramComplete=false;audit.currentTransactionQualified=false;audit.aggregateBytes=aggregate
+    audit.currentDeclaredSourceProgramComplete=false;audit.currentTransactionQualified=false;audit.aggregateBytes=aggregate
+    if(parentSignal?.aborted){
+      const reason=parentSignal.reason
+      // Preserve the exact caller value. Native extensible errors retain the
+      // historical audit channel; frozen/null/arbitrary values are not rewritten.
+      if(reason&&typeof reason==='object'&&!types.isProxy(reason)&&Object.isExtensible(reason)&&(types.isNativeError(reason)||reason instanceof DOMException)){
+        try{Object.defineProperty(reason,'nativeCollectionEvidence',{value:audit,configurable:true})}catch{/* Caller ownership remains authoritative. */}
+      }
+      throw reason
+    }
+    const error=extensibleError(caught)
     try{Object.defineProperty(error,'nativeCollectionEvidence',{value:audit,configurable:true})}catch{
       const wrapped=failure('held','Current server publication proof held');wrapped.cause=error;Object.defineProperty(wrapped,'nativeCollectionEvidence',{value:audit,configurable:true});throw wrapped
     }
     throw error
-  }finally{clearTimeout(timer);controller.abort()}
+  }finally{clearTimeout(timer);controller.abort();parentSignal?.throwIfAborted()}
 }
 
 export async function runCurrentFrontProgramme(options={}){
@@ -260,7 +281,7 @@ export async function runCurrentFrontProgramme(options={}){
   return readCurrentFrontProgramme({...forwarded,readPage:async(url,init)=>{
     if(next>performance.now())await delay(next-performance.now(),undefined,{signal:init.signal})
     init.signal.throwIfAborted();next=performance.now()+interval
-    let response,reader,canceled=false,complete=false,size=0,discardedOverflowBytes=0,base=null
+    let response,pendingResponse,reader,cancellation,canceled=false,complete=false,size=0,discardedOverflowBytes=0,base=null
     const chunks=[]
     const acquiredEvidence=()=>{
       const body=Buffer.concat(chunks,size)
@@ -268,14 +289,32 @@ export async function runCurrentFrontProgramme(options={}){
         consumedBodyBytes:body.length+discardedOverflowBytes,completedAt:new Date().toISOString(),bodyRepresentation:'Genuinely acquired bounded Fetch-decoded prefix;not a complete entity or raw-wire bytes.'}
     }
     const release=()=>{try{reader?.releaseLock()}catch{}}
-    const cancel=reason=>{if(canceled)return;canceled=true;ignore(()=>reader?reader.cancel(reason):response?.body?.cancel(reason));release()}
+    const cancel=reason=>{
+      if(!canceled){
+        canceled=true
+        cancellation=disposeResponseReader({cancel:async()=>{
+          if(reader)return reader.cancel(reason)
+          const acquired=response??await pendingResponse
+          return acquired?.body?.cancel(reason)
+        }},{bestEffort:true}).finally(release)
+      }
+      return cancellation
+    }
     const aborted=()=>cancel(init.signal.reason)
     try{
-      response=await wait(()=>fetchImpl(url,init),init.signal,late=>late?.body?.cancel())
+      response=await wait(()=>pendingResponse=Promise.resolve(fetchImpl(url,init)),init.signal)
       need(response&&typeof response.url==='string','transport','Original Fetch response URL unavailable')
       const headers=Object.fromEntries(response.headers),headerEntries=[...response.headers]
       base={requestedURL:url,finalURL:response.url,status:response.status,headers,headerEntries,bodyComplete:false,responseAt:new Date().toISOString()}
       responseProgress.set(init.signal,acquiredEvidence)
+      // HTTP and effective source metadata must refuse a denied/misdirected
+      // entity before its first stream reader. Original metadata stays in audit.
+      await requireNativeHttpResponse({status:response.status,url:response.url,headers:response.headers,body:null},url,
+        {context:'Front current native read',signal:init.signal,callerSignal:parentSignal??null})
+      const expectedMime=url===FEED||url===API?'application/json':'text/html'
+      need(new RegExp('^'+expectedMime.replace('/','\\/')+'(?:\\s*;\\s*charset\\s*=\\s*(?:utf-8|"utf-8"))?\\s*$','i').test(headers['content-type']??''),'encoding','Unreviewed original MIME/UTF8 declaration')
+      need(!headers['content-encoding']||/^(?:gzip|br|deflate)$/i.test(headers['content-encoding']),'encoding','Unreviewed original content encoding')
+      security(originalHeaders(headers,headerEntries),url)
       const advertised=response.headers.get('content-length')
       need(advertised===null||/^\d+$/.test(advertised),'body','Invalid original advertised entity length')
       need(advertised===null||Number(advertised)<=init.maxBodyBytes,'body','Advertised entity/aggregate byte bound exceeded')
@@ -292,6 +331,7 @@ export async function runCurrentFrontProgramme(options={}){
       }
       init.signal.throwIfAborted();return{...base,body:Buffer.concat(chunks,size),bodyComplete:true}
     }catch(caught){
+      parentSignal?.throwIfAborted()
       const error=extensibleError(caught)
       if(base){
         const evidence=acquiredEvidence()
@@ -299,6 +339,6 @@ export async function runCurrentFrontProgramme(options={}){
         try{Object.defineProperty(error,'nativeResponseEvidence',{value:evidence,configurable:true})}catch{}
       }
       throw error
-    }finally{init.signal.removeEventListener('abort',aborted);if(!complete)cancel();release()}
+    }finally{init.signal.removeEventListener('abort',aborted);if(!complete||canceled)await cancel(init.signal.reason);release();parentSignal?.throwIfAborted()}
   }})
 }

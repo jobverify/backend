@@ -2,7 +2,9 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-import {run} from './script.js'
+// Historical Nov16 full48 original fixture contract.
+import {createHistoricalKukuFMScraper} from './nativeData20261115.js'
+const run=options=>createHistoricalKukuFMScraper().run(options)
 import {clock,fixture as previous,profile,sha} from './fixtures/replayNativeData20261115.js'
 import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
 const compressed=fs.readFileSync(new URL('./fixtures/native-data-20261116.json.gz',import.meta.url))

@@ -5,9 +5,12 @@ import {types} from 'node:util'
 import {setTimeout as delay} from 'node:timers/promises'
 import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/boundedDeclaredPublicRead.js'
 import {readNativeDocument,decodeNativeEntities,readNativeAttributeTokens} from '../../scraper-support/utils/activeNativeHtml.js'
+import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 import {parseEightfoldJson} from '../../scraper-support/utils/recruitmentEightfoldData.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {projectAtosNativeListing} from './currentListing20261121.js'
+import {projectAtosCorporateAuthority} from './currentCorporateAuthority20261121.js'
 
 const {parse}=createRequire(import.meta.url)('acorn')
 const ORIGIN='https://jobs.atos.net'
@@ -16,6 +19,7 @@ const HEADER_NAMES=['content-type','refresh','content-security-policy','content-
 const SCRIPT_TYPES=new Set(['','text/javascript','application/javascript'])
 const criterionTags=new Set(['span','div','p','strong','b','em','i','u','ul','ol','li','br','a','h1','h2','h3','h4','h5','h6','table','thead','tbody','tr','td','th','sup','sub','s','hr'])
 const DESCRIPTION_MARKER='CURRENT_COMPLETE_OWN_NATIVE_DESCRIPTION'
+const corporateAuthorityContracts=JSON.parse(fs.readFileSync(new URL('./currentCorporateAuthorityContracts20261121.json',import.meta.url)))
 const criterionAuthority=[
  // Authority-bearing subjects pin the complete original paragraph regardless
  // of punctuation, intervening words or affirmative sentence grammar. We do
@@ -174,6 +178,52 @@ export function currentAtosHeaders(headers){
  return Object.fromEntries(HEADER_NAMES.map(name=>[name,name==='content-security-policy'&&nonce?cspBoundaryWhitespace(headers[name].replace("'nonce-"+nonce+"'","'nonce-CURRENT_CORPORATE_NONCE'")):headers[name]??null]))
 }
 
+// Publisher identity and jobs delegation do not supersede authored hiring
+// authority. Bind the complete original authority model separately from the
+// positively reviewed marketing carriers and deployment identifiers.
+function qualifyCorporateDeclaration(proof,url,profile){
+ const visible=readVisibleNativeDocument(proof.originalHTML,{strict:true})
+ const publisher='https://www.atos.ai',current=new URL(url)
+ need([profile.corporate,profile.careers].includes(url)&&current.origin===publisher,'unqualified original corporate publisher')
+ need(one(visible.nodes(node=>node.tag==='html'),'current corporate HTML owner').attrs.lang==='en','current corporate language changed')
+ const canonical=one(visible.nodes(node=>node.tag==='link'&&node.attrs.rel==='canonical'),'current corporate canonical owner')
+ need(typeof canonical.attrs.href==='string'&&new URL(canonical.attrs.href).href===new URL(current.pathname,publisher).href,'current corporate canonical owner changed')
+ const data=one(proof.nodes.filter(node=>node.tag==='script'&&node.attrs.id==='__NEXT_DATA__'),'current corporate data carrier')
+ const next=parseEightfoldJson(data.raw),props=next.props?.pageProps
+ need(next.locale==='en'&&next.defaultLocale==='en'&&props?.locale==='en'&&props.session===null&&props.systemRoute?.status===200,'current corporate original route/bootstrap changed')
+ const schemas=proof.nodes.filter(node=>node.tag==='script'&&node.attrs.type==='application/ld+json').flatMap(node=>{
+  const model=parseEightfoldJson(node.raw)
+  return Array.isArray(model)?model:Array.isArray(model['@graph'])?model['@graph']:[model]
+ })
+ const website=one(schemas.filter(model=>model?.['@type']==='WebSite'),'current corporate website identity')
+ need(website['@id']===publisher+'/#website'&&website.url===publisher+'/'&&website.name==='Atos'&&website.publisher?.['@id']===publisher+'/#organization'&&website.inLanguage==='en','current corporate website identity changed')
+ const links=visible.nodes(node=>node.tag==='a')
+ if(url===profile.corporate){
+  need(links.some(node=>node.attrs.href==='/en/careers')&&links.some(node=>node.attrs.href===profile.board),'current visible corporate jobs delegation missing')
+ }else need(links.some(node=>['https://jobs.atos.net','https://jobs.atos.net/'].includes(node.attrs.href)),'current visible careers native account delegation missing')
+ const kind=url===profile.corporate?'corporate':'careers'
+ const authority=projectAtosCorporateAuthority(proof,kind,corporateAuthorityContracts)
+ need(corporateAuthorityContracts.authorityModelSHA256[kind].includes(authority.modelSHA256),'unqualified complete authored corporate hiring/country/employer/application/closure authority')
+ return authority
+}
+
+function currentIndiaFacet(model){
+ const keys=(value,expected)=>value&&typeof value==='object'&&!Array.isArray(value)&&same(Object.keys(value).sort(),[...expected].sort())
+ need(keys(model,['facets'])&&keys(model.facets,['map'])&&keys(model.facets.map,['country','city','customfield2']),'current native facet envelope schema changed')
+ for(const[name,records]of Object.entries(model.facets.map)){
+  need(Array.isArray(records)&&records.length>0&&records.length<=5000,'current native facet records changed')
+  const ids=new Set()
+  for(const record of records){
+   need(keys(record,['translated','name','count'])&&typeof record.name==='string'&&record.name.length>0&&record.name.length<=512&&typeof record.translated==='string'&&record.translated.length<=512&&Number.isSafeInteger(record.count)&&record.count>=0&&record.count<=1000000&&!ids.has(record.name),'current native facet record schema or identity changed')
+   ids.add(record.name)
+   if(name==='country')need(/^[A-Z]{2}$/.test(record.name)&&record.translated.length>0,'current typed country identity changed')
+  }
+ }
+ const india=one(model.facets.map.country.filter(record=>record.name==='IN'),'current original India country record')
+ need(india.translated==='India'&&india.count>0,'native IN is not the current typed selected India country')
+ return india
+}
+
 // Whole surrounding HTML remains authoritative. The exact own description
 // field admits current plain criteria; every attributed descendant and native
 // identity/workplace/employer/date/application declaration stays guarded.
@@ -260,7 +310,7 @@ export function currentAtosDocument(html,{url,headers={}}){
  replacements.sort((a,b)=>b.start-a.start)
  let context=html,last=html.length
  for(const r of replacements){need(r.end<=last,'overlapping native projection spans');context=context.slice(0,r.start)+r.value+context.slice(r.end);last=r.start}
- return{document,nodes,token,options,bootstrap,programs,descriptionBinding:ownDescription,contextSHA256:currentAtosSHA(context+(ownDescription?'\nCURRENT_NATIVE_DESCRIPTION_AUTHORITY\n'+JSON.stringify({attributes:ownDescription.attributes,declarations:ownDescription.authorityDeclarations}):'')),headerContext:currentAtosHeaders(headers),originalHTML:html,resources:nodes.filter(n=>n.tag==='script'&&n.attrs.src||n.tag==='link'&&n.attrs.href).map(n=>({tag:n.tag,attrs:n.attrs}))}
+ return{document,nodes,token,options,bootstrap,programs,descriptionBinding:ownDescription,projectedHTML:context,contextSHA256:currentAtosSHA(context+(ownDescription?'\nCURRENT_NATIVE_DESCRIPTION_AUTHORITY\n'+JSON.stringify({attributes:ownDescription.attributes,declarations:ownDescription.authorityDeclarations}):'')),headerContext:currentAtosHeaders(headers),originalHTML:html,resources:nodes.filter(n=>n.tag==='script'&&n.attrs.src||n.tag==='link'&&n.attrs.href).map(n=>({tag:n.tag,attrs:n.attrs}))}
 }
 
 export function currentAtosUTC(value){
@@ -388,6 +438,8 @@ export function currentAtosFilledContext(proof,binding){
 export async function runCurrentAtos(options={}){
  const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8'))
  need(profile.source==='atos'&&profile.company==='Atos','current source profile unavailable')
+ const currentRoles=JSON.parse(fs.readFileSync(new URL('./currentRoleContracts20261121.json',import.meta.url),'utf8'))
+ need(currentRoles.source==='atos'&&currentRoles.contract==='exact-current-selected-row-and-original-complete-role-publication'&&Array.isArray(currentRoles.roles),'current reviewed row contracts unavailable')
  options.signal?.throwIfAborted()
  need(!(options.fetchText||options.fetchPage||options.fetchJson)||typeof options.fetchImpl==='function','original native response metadata required')
  const duration=options.sourceDeadlineMs??85000,interval=options.requestIntervalMs??500
@@ -398,8 +450,9 @@ export async function runCurrentAtos(options={}){
  const allowed=new Set([profile.root]),receipts=[],paceTails=new Map(),last=new Map(),byteLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'byteLength').get
  let reads=0,total=0
  const pace=origin=>{const previous=paceTails.get(origin)||Promise.resolve(),next=previous.then(async()=>{signal.throwIfAborted();const wait=interval-(performance.now()-(last.get(origin)??-Infinity));if(wait>0)await delay(wait,undefined,{signal});signal.throwIfAborted();last.set(origin,performance.now())});paceTails.set(origin,next.catch(()=>{}));return next}
- const read=async(url,request={method:'GET'},token)=>{
-  signal.throwIfAborted();need(allowed.has(url)&&Object.hasOwn(profile.responseContracts,url)&&++reads<=68,'unbound current publication or native request cap')
+ const read=async(url,request={method:'GET'},token,roleContract=null)=>{
+  const expected=roleContract?.responseContract??profile.responseContracts[url]
+  signal.throwIfAborted();need(allowed.has(url)&&expected&&++reads<=68,'unbound current publication or native request cap')
   need(request.method==='GET'&&Object.keys(request).length===1||url===profile.query.url&&same(request,{method:'POST',body:profile.query.body})&&UUID.test(token??''),'unqualified current public native method/body')
   await pace(new URL(url).origin);let size=0
   const p=await boundedDeclaredPublicRead(url,{signal,timeoutMs:15000,request,overflowError:failure('intrinsic native streaming byte bound'),fetchImpl:async(value,init)=>{
@@ -407,16 +460,22 @@ export async function runCurrentAtos(options={}){
    const r=await(options.fetchImpl||globalThis.fetch)(value,{...init,headers,credentials:'omit',cache:'no-store'})
    return{status:r.status,url:r.url,headers:r.headers,body:r.body===null?null:{cancel:reason=>r.body.cancel(reason),getReader(){const reader=r.body.getReader();return{async read(){const part=await reader.read();if(!part.done){need(types.isUint8Array(part.value),'native response did not contain original bytes');const n=byteLength.call(part.value);need(n<=4000000-size&&n<=16000000-total,'intrinsic native streaming byte bound');size+=n;total+=n}return part},cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}}}}
   }})
-  const bytes=Buffer.from(p.bodyBase64,'base64'),expected=profile.responseContracts[url]
+  const bytes=Buffer.from(p.bodyBase64,'base64')
   receipts.push({requestedURL:url,request:{...request,...(token?{anonymousDeclaredCSRF:token}:{})},...p,bytes:bytes.length,sha256:currentAtosSHA(bytes)})
   need(p.status===expected.status&&p.url===expected.finalURL,'current native HTTP status/final URL changed')
   need(same(currentAtosHeaders(p.headers),expected.headerContext),'native effective header/navigation/MIME/CSP context changed')
   let html;try{html=new TextDecoder('utf8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw failure('original native UTF8 bytes unavailable')}
   return{html,headers:p.headers,url:p.url,status:p.status}
  }
- const document=async url=>{
-  const p=await read(url),proof=currentAtosDocument(p.html,p),expected=profile.documents[url],filledBinding=profile.filledDocumentContract?.originalNativeRoleBindings.find(binding=>binding.url===url)
-  if(filledBinding&&!proof.nodes.some(node=>node.attrs.itemtype==='http://schema.org/JobPosting')){
+ const document=async(url,roleContract=null)=>{
+  const p=await read(url,undefined,undefined,roleContract),proof=currentAtosDocument(p.html,p),expected=roleContract?.document??profile.documents[url],filledBinding=profile.filledDocumentContract?.originalNativeRoleBindings.find(binding=>binding.url===url)
+  if([profile.corporate,profile.careers].includes(url))proof.corporateAuthority=qualifyCorporateDeclaration(proof,url,profile)
+  else if(url===profile.selectedURL){
+   const contract=projectAtosNativeListing(proof,currentAtosRows(proof),profile.rows)
+   need(contract.contextSHA256==='f249effc1be989d3de00aa329ea8bfface9eaa76be0406dc0a3597fddac2a96c','whole native selected-listing executable/control/style context changed')
+   proof.nativeListingContract=contract
+  }
+  else if(filledBinding&&!proof.nodes.some(node=>node.attrs.itemtype==='http://schema.org/JobPosting')){
    need(currentAtosFilledContext(proof,filledBinding)===profile.filledDocumentContract.contextSHA256,'whole current native filled-document contract changed');proof.qualifiedFilledDocument=true
   }else need(expected?.contextSHA256.includes(proof.contextSHA256),'whole current authored publication/control/style context changed')
   return proof
@@ -433,9 +492,7 @@ export async function runCurrentAtos(options={}){
   need(clientURL===profile.optionsClientURL,'current declared country client URL changed');allowed.add(clientURL)
   const client=await read(clientURL);need(currentAtosSHA(client.html)===profile.optionsClientSHA256,'whole current declared country client changed')
   allowed.add(profile.query.url);const response=await read(profile.query.url,{method:'POST',body:profile.query.body},board.token),countryModel=parseEightfoldJson(response.html)
-  need(currentAtosSHA(JSON.stringify(countryModel))===profile.countryModelSHA256,'complete current original native country facet model changed')
-  const india=one(countryModel.facets?.map?.country?.filter(c=>c.name==='IN')||[],'current original India country record')
-  need(india.translated==='India'&&india.count===profile.nativeCardCount&&india.count>0,'native IN is not the current typed selected India country')
+  const india=currentIndiaFacet(countryModel)
   const form=one(board.nodes.filter(n=>n.tag==='form'&&n.attrs.name==='keywordsearch'),'original native public search form')
   need(form.attrs.method==='get','native public search form method changed')
   const controls=all(form).filter(n=>['input','select'].includes(n.tag)&&n.attrs.name&&!Object.hasOwn(n.attrs,'disabled')&&!['submit','button'].includes(n.attrs.type))
@@ -445,15 +502,38 @@ export async function runCurrentAtos(options={}){
   for(const n of controls)url.searchParams.append(n.attrs.name,n===country?india.name:n.attrs.value||'')
   need(url.href===profile.selectedURL,'current native selected GET form descriptor changed');allowed.add(url.href)
   const listing=await document(url.href),rows=currentAtosRows(listing)
-  need(rows.length===india.count&&same(rows,profile.rows)&&listing.document.text(one(listing.document.nodes(n=>n.tag==='body'),'native selected listing body')).includes('Results 1 – '+rows.length+' of '+rows.length+' Page 1 of 1'),'current original country membership or terminal listing changed')
+  need(rows.length===india.count&&listing.document.text(one(listing.document.nodes(n=>n.tag==='body'),'native selected listing body')).includes('Results 1 – '+rows.length+' of '+rows.length+' Page 1 of 1'),'current original country membership or terminal listing changed')
   const roles=Array(rows.length);let next=0,firstFailure
-  const worker=async()=>{while(!firstFailure){const index=next++;if(index>=rows.length)return;try{const row=rows[index],expected=profile.roles[index];need(row.url===expected.url,'native role row/profile mismatch');allowed.add(row.url);const page=await document(row.url),role=currentAtosRole(page,row.url);if(role.nativeObservationKind==='explicit-unavailable-without-JobPosting')need(page.qualifiedFilledDocument===true&&role.held,'unqualified filled native negative observation');else need(currentAtosRoleContext(role)===expected.modelContextSHA256,'complete current native role/employer/country/criterion/application model changed');if(!role.held)need(Date.parse(role.datePostedISO)<=Date.parse(observedAt)&&monthDay(row.publishDate)<=observedAt.slice(0,10),'native publication calendar is in the future');roles[index]={row,role,originalHTML:page.originalHTML,contextSHA256:page.contextSHA256}}catch(error){if(!firstFailure){firstFailure=error;controller.abort(error)}}}}
+  const worker=async()=>{while(!firstFailure){
+   const index=next++;if(index>=rows.length)return
+   try{
+    const row=rows[index]
+    const identity=value=>['url','routeID','title','locations','publishDate'].map(key=>value[key])
+    // A changed publication is a coherent row/document/model contract. Match
+    // the complete original row tuple before selecting its response and role
+    // model; a familiar URL never borrows a different publication's metadata.
+    const matches=currentRoles.roles.filter(contract=>same(identity(contract.row),identity(row)))
+    need(matches.length<=1,'ambiguous current reviewed row contract')
+    const roleContract=matches[0]??null,expected=roleContract??profile.roles.find(role=>role.url===row.url),reviewed=roleContract?.row??profile.rows.find(role=>role.url===row.url)
+    if(!expected||!reviewed||!same(identity(row),identity(reviewed))){
+     roles[index]={row,role:{routeID:row.routeID,url:row.url,nativeObservationKind:'selected-native-row-with-unqualified-role-contract',held:true,holdReason:'current-native-row-role-programme-criteria-or-publication-contract-unqualified',nativeListingPublishDate:row.publishDate,originalNativeSelectedRow:row}}
+     continue
+    }
+    allowed.add(row.url)
+    const page=await document(row.url,roleContract),role=currentAtosRole(page,row.url)
+    if(role.nativeObservationKind==='explicit-unavailable-without-JobPosting')need(page.qualifiedFilledDocument===true&&role.held,'unqualified filled native negative observation')
+    else need(currentAtosRoleContext(role)===expected.modelContextSHA256,'complete current native role/employer/country/criterion/application model changed')
+    if(!role.held)need(Date.parse(role.datePostedISO)<=Date.parse(observedAt)&&monthDay(row.publishDate)<=observedAt.slice(0,10),'native publication calendar is in the future')
+    roles[index]={row,role,originalHTML:page.originalHTML,contextSHA256:page.contextSHA256}
+   }catch(error){if(!firstFailure){firstFailure=error;controller.abort(error)}}
+  }}
   await Promise.allSettled([worker(),worker()]);if(firstFailure)throw firstFailure
-  return{countryModel,india,rows,roles}
+  return{countryModel,india,rows,roles,nativeListingContract:listing.nativeListingContract,corporateAuthority:{corporate:corporate.corporateAuthority,careers:careers.corporateAuthority}}
  }
  try{
   const opening=await pass(),closing=await pass(),closedAt=clock()
   need(Date.parse(closedAt)>=Date.parse(observedAt),'closing observation clock precedes opening')
+  need(same(Object.values(opening.corporateAuthority).map(value=>value.model),Object.values(closing.corporateAuthority).map(value=>value.model)),'fresh current authored corporate recruitment authority changed')
   need(same(opening.rows,closing.rows)&&same(opening.roles.map(r=>r.role),closing.roles.map(r=>r.role)),'fresh current original full native closing changed')
   const holds=[],selected=[]
   for(const entry of opening.roles){const r=entry.role
@@ -476,7 +556,9 @@ export async function runCurrentAtos(options={}){
     sourceNativePublishedApplication:{url:r.applyURL,originalAnchors:r.originalApplicationAnchors,originalNativeRouteID:r.routeID,declaredByOwnHTML:true,renderedEnabledQualified:false,operationQualified:false},sourceDetailComplete:true,sourceNativeClosingReconciled:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,sourceNativeMetadataAuthorityOnly:true,scrapedAt:observedAt}
   })
   const observedVacancyCount=opening.roles.filter(entry=>entry.role.nativeObservationKind==='native-JobPosting').length
-  const evidence={source:'atos',observedAt,closingObservedAt:closedAt,recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,companyGlobalTotal:null,companyIndiaTotal:null,observationCountSemantics:`original native record shapes before country/eligibility/expiry/caller limits: ${observedVacancyCount} native JobPostings include eligibility/country holds; ${opening.rows.length-observedVacancyCount} filled/no-JobPosting observations are nonvacancy`,nativeRows:opening.rows,closingNativeRows:closing.rows,openingModels:opening.roles.map(e=>e.role),closingModels:closing.roles.map(e=>e.role),originalResponses:receipts,holds,nativeCountrySelectorRecord:opening.india,originalCountryFacetModel:opening.countryModel,currentNativeSelectedListingTerminal:true,
+  const unqualifiedNativeRowCount=opening.roles.filter(entry=>entry.role.nativeObservationKind==='selected-native-row-with-unqualified-role-contract').length
+  const evidence={source:'atos',observedAt,closingObservedAt:closedAt,recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,unqualifiedNativeRowCount,companyGlobalTotal:null,companyIndiaTotal:null,observationCountSemantics:`original native record shapes before country/eligibility/expiry/caller limits: ${observedVacancyCount} native JobPostings include eligibility/country holds; ${opening.rows.length-observedVacancyCount-unqualifiedNativeRowCount} explicit filled/no-JobPosting observations are nonvacancy; ${unqualifiedNativeRowCount} selected native rows have unqualified role contracts and remain held`,nativeRows:opening.rows,closingNativeRows:closing.rows,openingModels:opening.roles.map(e=>e.role),closingModels:closing.roles.map(e=>e.role),originalResponses:receipts,holds,nativeCountrySelectorRecord:opening.india,originalCountryFacetModel:opening.countryModel,nativeListingContract:opening.nativeListingContract,currentNativeSelectedListingTerminal:true,
+   openingCorporateAuthority:opening.corporateAuthority,closingCorporateAuthority:closing.corporateAuthority,corporateAuthorityClosingReconciled:true,
    independentNativeClosingReconciled:true,completeNativeCriteriaPreserved:true,metadataAuthorityOnly:true,externalProgramsExecuted:false,externalResourceBytesUsedAsRoleData:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,verifiedZero:false,renderedApplicationQualified:false,applicationSubmitted:false}
   attachSourceObservationEvidence(jobs,{source:'atos',recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:evidence,configurable:true})

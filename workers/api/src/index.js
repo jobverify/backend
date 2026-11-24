@@ -1,3 +1,4 @@
+import { restoreSocialAssetLength } from '../adapters/socialAssets.js';
 import { DurableObject } from 'cloudflare:workers';
 import { httpServerHandler } from 'cloudflare:node';
 import { createUnavailableResponse, forwardClientRequest, redirectInsecureRequest, validateWorkerConfiguration } from './config.js';
@@ -30,7 +31,7 @@ export class JobverifyApi extends DurableObject {
         assertSecureMongoConnection(this.environment.MONGO_URI);
         this.mongoose = mongoose;
         const app = createApp({ isReady: () => mongoose.connection.readyState === 1,
-          assistantModel: createWorkersAssistantModel(this.environment.AI) });
+          assistantModel: createWorkersAssistantModel(this.environment.AI), socialAssetBridge: true, socialAssets: this.environment.SOCIAL_ASSETS });
         app.listen(3000);
         this.handler = httpServerHandler({ port: 3000 });
       })().catch(error => { this.initializing = undefined; throw error; });
@@ -74,7 +75,7 @@ export class JobverifyApi extends DurableObject {
     try {
       await this.initialize();
       if (request.method !== 'OPTIONS' && new URL(request.url).pathname !== '/health') await this.connect();
-      return await this.handler.fetch(request, this.environment, this.ctx);
+      return restoreSocialAssetLength(await this.handler.fetch(request, this.environment, this.ctx), this.ctx);
     } catch (error) {
       console.error(JSON.stringify({ event: 'api_unavailable', name: error?.name || 'Error' }));
       return createUnavailableResponse(request, this.environment);

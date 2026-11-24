@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "method": "complete-authored-authority-and-positive-reviewed-marketing-models",
+  "unknownAuthoredText": "unqualified-authority-hold",
+  "marketing": {
+    "blogModelSHA256": [
+      "d1cff727537b47a87faf2696be4bbd67b84561960236ce7ef9543406e9938923",
+      "62d65e3f808a01b97ff468ed29f7943ea2bae69126dd529dc4cb039d4cfcf7be"
+    ],
+    "descriptionTexts": [
+      "Atos AI combines agentic AI, cybersecurity and sovereignty expertise to help organisations innovate with confidence and drive impossible outcomes.",
+      "Atos AI combines current AI, cybersecurity and sovereignty expertise to help organisations innovate with confidence and drive impossible outcomes."
+    ]
+  },
+  "authorityModelSHA256": {
+    "corporate": [
+      "0d663751c9e54df001fd64c4f978e938d4dc282b46316fbb11a24da91a22b327",
+      "866158fe07b54d05615f712e0397531266b3f9f87187f210fab6e3fd5b10ef42"
+    ],
+    "careers": [
+      "d043bcbba501058f04589d65c88f3dba5ac056c9ce68fae1f05c3301e005268e",
+      "2bfb3a1553a07d025eabd8801ba65e2a077717cdba4a22437bd2f9acf7aa72bb"
+    ]
+  }
+}

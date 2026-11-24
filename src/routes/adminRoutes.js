@@ -4,6 +4,8 @@
  */
 
 import express from "express";
+import { adminSocialRouter } from '../social/routes.js';
+import { getAdminWhatsAppDigest } from '../controllers/adminWhatsAppDigestController.js';
 import { getPipelineSchedule, savePipelineSchedule } from '../controllers/pipelineController.js';
 import { updateSiteSettings } from "../controllers/siteSettingsController.js";
 import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs, clearAdminTelegramAlertQueue, clearAdminTelegramAlertHistory } from '../controllers/adminTelegramAlertsController.js';
@@ -78,6 +80,8 @@ const descriptionTriggerLimiter = createRateLimiter({
 // Apply authentication and administrator role guard to all routes
 router.use(protect);
 router.use(authorize("admin"));
+router.use(adminSocialRouter);
+router.get('/whatsapp-digest', getAdminWhatsAppDigest);
 router.get('/content-reports', contentReportHandlers.list);
 router.put('/content-reports/:reference', contentReportHandlers.review);
 router.put("/site-settings", updateSiteSettings);

@@ -217,7 +217,8 @@ export const createOpseraScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createOpseraScraper().run(options)
+// Registered current acquisition requires original HTTP metadata; historical pure helpers remain available.
+export const run = async (options = {}) => (await import('./currentNative20261120.js')).runCurrentOpsera(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

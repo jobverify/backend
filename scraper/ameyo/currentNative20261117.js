@@ -8,7 +8,7 @@ import {attachInventoryEvidence}from'../../scraper-support/utils/inventoryEviden
 import {attachSourceObservationEvidence}from'../../scraper-support/utils/sourceObservationEvidence.js'
 import {currentAmeyoTransport}from'./currentTransport20261117.js'
 import {nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
-const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
+const profiles=['./currentProfile20261117.json','./currentProfile20261120.json'].map(path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8')))
 const sha=s=>createHash('sha256').update(s).digest('hex'),equal=isDeepStrictEqual
 const check=(ok,message)=>{if(!ok)throw Object.assign(Error('Ameyo current native contract: '+message),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,label)=>{check(rows.length===1,'unique '+label);return rows[0]}
@@ -21,7 +21,7 @@ function literal(node,state={nodes:0},depth=0){
   check(typeof key==='string'&&!['__proto__','prototype','constructor'].includes(key)&&!keys.has(key),'unique safe native key');keys.add(key);out[key]=literal(p.value,state,depth+1)}
  return out
 }
-function sdk(source){
+function sdk(source,profile){
  const ast=parse(source,{ecmaVersion:'latest'}),calls=[]
  const walk=n=>{if(!n||typeof n!=='object')return;if(n.type==='NewExpression'&&n.callee?.name==='Rbox')calls.push(n)
   for(const value of Object.values(n))if(Array.isArray(value))value.forEach(walk);else if(value&&typeof value==='object')walk(value)}
@@ -38,7 +38,7 @@ function sdk(source){
  check(ids.size===grouped.size,'whole native groups cover every row')
  return{metadata,groups,programSkeletonSHA256:sha(skeleton)}
 }
-function careers(html){
+function careers(html,profile){
  check(equal(activeHead(html).titles,['Careers | Exotel']),'current careers title')
  const records=readLiteralFlightRecords(html),imports=[...records].filter(([,r])=>r.raw.startsWith('I')&&JSON.parse(r.raw.slice(1))[0]===profile.module.id)
  const[key]=one(imports,'current Recruiterbox module declaration'),refs=[]
@@ -48,15 +48,19 @@ function careers(html){
 }
 export async function runCurrentAmeyo(options={}){
  options.signal?.throwIfAborted()
- const allowed=new Set([profile.primary.url,profile.product.url,profile.careers.url,...profile.assets.map(p=>p.url),profile.sdkAPI.url,profile.sdkRenderer.url,profile.nativeInventoryURL])
+ let profile=profiles[0],selectedProfile=null
+ const allowed=new Set(profiles.flatMap(profile=>[profile.primary.url,profile.product.url,profile.careers.url,...profile.assets.map(p=>p.url),profile.sdkAPI.url,profile.sdkRenderer.url,profile.nativeInventoryURL]))
  const io=currentAmeyoTransport({...options,allowedURL:url=>allowed.has(url)}),now=new Date().toISOString()
  const exact=async(entry,kind='html')=>{const p=await io.read(entry.url,kind);check(p.status===entry.status&&p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'finite current original profile '+entry.url);return p}
  const round=async()=>{
-  await exact(profile.primary);const product=await exact(profile.product),doc=readNativeDocument(product.text)
+  await exact(profile.primary);const product=await io.read(profile.product.url)
+  const candidate=profiles.find(profile=>product.status===profile.product.status&&product.bodyBytes===profile.product.bytes&&product.bodySHA256===profile.product.sha256)
+  check(candidate&&(!selectedProfile||candidate===selectedProfile),'finite current original profile '+profile.product.url)
+  profile=candidate;selectedProfile=candidate;const doc=readNativeDocument(product.text)
   check(equal(activeHead(product.text).titles,['Ameyo Contact Center by Exotel'])&&doc.nodes(n=>n.tag==='a'&&n.attrs.href==='/about-us/careers/'&&doc.text(n)==='Careers').length>0,'current Ameyo product to parent careers handoff')
-  const page=await exact(profile.careers);careers(page.text)
+  const page=await exact(profile.careers);careers(page.text,profile)
   for(const asset of profile.assets)await exact(asset,'js')
-  const script=await io.read(profile.sdkAPI.url,'js'),native=sdk(script.text);await exact(profile.sdkRenderer,'js')
+  const script=await io.read(profile.sdkAPI.url,'js'),native=sdk(script.text,profile);await exact(profile.sdkRenderer,'js')
   const fullRows=(await io.read(profile.nativeInventoryURL,'json')).value
   check(Array.isArray(fullRows)&&fullRows.length===native.metadata.length,'complete native published inventory')
   const views=fullRows.map(row=>{check(row&&typeof row.description==='string'&&Array.isArray(row.application_fields)

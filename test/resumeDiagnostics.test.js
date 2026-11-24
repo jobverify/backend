@@ -18,6 +18,16 @@ test('model progress permits bounded counters and excludes slot contents', () =>
   assert.equal(safeResumeDiagnostic({ stage: 'generating', code: 'progress', processedTokens: 'private' }).processedTokens, undefined);
 });
 
+test('tailoring path diagnostics expose only fixed compatibility reasons and base kinds', () => {
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'generating', code: 'started', policyVersion: 'abey-tailoring-v3',
+    generationKind: 'edits', baseKind: 'source', tailoringReason: 'template_mismatch', editSlotCount: 12 }), {
+    stage: 'generating', code: 'started', editSlotCount: 12, policyVersion: 'abey-tailoring-v3', generationKind: 'edits',
+    baseKind: 'source', tailoringReason: 'template_mismatch',
+  });
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'generating', code: 'started',
+    generationKind: 'private', baseKind: 'private@example.test', tailoringReason: 'private source' }), { stage: 'generating', code: 'started' });
+});
+
 test('deployment and repair diagnostics allow only fixed policy values and bounded measurements', () => {
   const event = safeResumeDiagnostic({ stage: 'repairing', code: 'repair_budget_insufficient',
     policyVersion: 'abey-pagination-v2', mode: 'base', repairKind: 'pagination', targetPages: 2, sourceBlockCount: 54,

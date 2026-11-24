@@ -20,6 +20,7 @@ const reviewedNovember9 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20
 const reviewedNovember9Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109Evening.json', import.meta.url), 'utf8'))
 const reviewedNovember10 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261110.json', import.meta.url), 'utf8'))
 const reviewedNovember16 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261116.json', import.meta.url), 'utf8'))
+const reviewedData = JSON.parse(fs.readFileSync(new URL('./reviewedData20261121.json', import.meta.url), 'utf8'))
 const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening, reviewedNovember10, reviewedNovember16]
 // The current board still declares this public alias. November 10 original
 // manual GETs proved the exact publisher redirect and the full font-only CSS
@@ -122,7 +123,7 @@ const visibleSection = value => {
   requireProof(visible && !hiddenCriteria(root) && visible === extractActiveDescription(value), 'hidden or incomplete role criteria')
   return visible
 }
-const validateRow = (raw, review = reviewed, noteGap = () => {}) => {
+const validateRow = (raw, review = reviewed, noteGap = () => {}, countryMap = countries) => {
   requireProof(keysAre(raw, Object.keys(review.observedRowFieldTypes)), 'native role fields changed')
   for (const [key, allowed] of Object.entries(review.observedRowFieldTypes)) {
     const type = raw[key] === null ? 'null' : Array.isArray(raw[key]) ? 'array' : typeof raw[key]
@@ -133,8 +134,8 @@ const validateRow = (raw, review = reviewed, noteGap = () => {}) => {
     &&['title','department','site','country','language','employmentType','workspaceType'].every(key=>typeof raw[key]==='string'&&raw[key].trim()),'native role identity missing or malformed')
   if (review.version) validateSnowplowPostingLocations(raw.postingLocations)
   requireProof(keysAre(raw.sectionLabels, Object.keys(raw.sectionLabels)) && Object.keys(raw.sectionLabels).every(k => [...sections, 'payTransparencySalary'].includes(k) && typeof raw.sectionLabels[k] === 'string'), 'section label criteria changed')
-  requireProof(countries.has(raw.country), 'unresolved typed native country')
-  requireProof(!countries.has(raw.site) || countries.get(raw.site) === countries.get(raw.country), 'native site country conflict')
+  requireProof(countryMap.has(raw.country), 'unresolved typed native country')
+  requireProof(!countryMap.has(raw.site) || countryMap.get(raw.site) === countryMap.get(raw.country), 'native site country conflict')
   requireProof(['publishedAt', 'validThrough', 'closingDate'].every(k => calendar(raw[k])), 'native calendar date invalid')
   const nativeSections = Object.fromEntries(sections.map(k => [k, visibleSection(raw[k])]))
   requireProof(nativeSections.description, 'full description missing')
@@ -143,9 +144,9 @@ const validateRow = (raw, review = reviewed, noteGap = () => {}) => {
   const reviewedCriteria = review.forms[raw.id]?.fullRawRoleCriteriaSha256 === hash(stable(raw))
   if (!reviewedCriteria) noteGap('unreviewed-complete-native-role-criteria:' + raw.id)
   const rawPostingLocations = review.version ? structuredClone(raw.postingLocations) : []
-  requireProof(rawPostingLocations.every(location => countries.has(location.country)), 'unresolved typed native posting country')
-  const countryCodes = [...new Set([countries.get(raw.country), ...rawPostingLocations.map(location => countries.get(location.country))])]
-  return {jobId: raw.id, countryCode: countries.get(raw.country), rawCountry: raw.country, rawSite: raw.site, nativeSections,
+  requireProof(rawPostingLocations.every(location => countryMap.has(location.country)), 'unresolved typed native posting country')
+  const countryCodes = [...new Set([countryMap.get(raw.country), ...rawPostingLocations.map(location => countryMap.get(location.country))])]
+  return {jobId: raw.id, countryCode: countryMap.get(raw.country), rawCountry: raw.country, rawSite: raw.site, nativeSections,
     rawPostingLocations, countryCodes, countryDisagreement: countryCodes.length > 1, reviewedCriteria}
 }
 const validateForm = (payload, raw, row, review = reviewed, noteGap = () => {}) => {
@@ -213,7 +214,7 @@ const reconcileCorporateRoles = (html, rows) => {
 const legacyFeedScopeSha256 = 'a6d4b75f6d60faf5294c16ab8c8d62040435bc274fec06c8cb8dfd05b08607bb'
 const canonicalFeed = (feed, review) => stable(review.version
   ? {...feed, jobAdDetails: [...feed.jobAdDetails].sort((a, b) => a.id.localeCompare(b.id))} : feed)
-const validateFeedShape = (payload, review) => {
+const validateFeedShape = (payload, review, countryMap = countries) => {
   requireProof(keysAre(payload,review.version?['filterGroups','jobAdDetails','jobOpeningMetadata']:['filterGroups','jobAdDetails'])
     &&Array.isArray(payload.jobAdDetails)&&payload.jobAdDetails.length<=2000,'unreviewed native feed envelope schema')
   const groups=['departments','sites','jobTypes','workspaceTypes',...(review.version?['cities','regions','countries']:[])]
@@ -223,7 +224,7 @@ const validateFeedShape = (payload, review) => {
     requireProof(Array.isArray(group)&&group.length<=2000&&group.every(item=>keysAre(item,['serverId','value'])
       &&['string','number'].includes(typeof item.serverId)&&String(item.serverId).trim()&&typeof item.value==='string'&&item.value.trim()
       &&!ids.has(String(item.serverId))&&Boolean(ids.add(String(item.serverId)))),'unknown nested filter identity/criteria')
-    if(name==='countries')requireProof(group.every(item=>countries.has(item.value)),'unresolved typed native filter country')
+    if(name==='countries')requireProof(group.every(item=>countryMap.has(item.value)),'unresolved typed native filter country')
   }
   if(review.version)requireProof(hash(stable(payload.jobOpeningMetadata))===openingMetadataSha256,'unreviewed native filter/opening metadata or geographic scope')
   requireProof(new Set(payload.jobAdDetails.map(row=>row?.id)).size===payload.jobAdDetails.length,'duplicate native role identity')
@@ -496,6 +497,132 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
 const errorValue=(error,key)=>{for(let item=error,depth=0;item&&typeof item==='object'&&depth<5;item=Object.getPrototypeOf(item),depth++){const field=Object.getOwnPropertyDescriptor(item,key);if(field)return field.value}}
 const safeFailure=error=>({name:errorValue(error,'name')??null,code:errorValue(error,'code')??null,message:typeof errorValue(error,'message')==='string'?errorValue(error,'message').slice(0,500):typeof error==='string'?error.slice(0,500):null})
 const inventory=(receipts,firstParty=false,reason='Snowplow native incomplete')=>normalizeInventoryEvidence({status:'coverage-gap',surface:NATIVE_CONFIG.careers,firstParty,listingComplete:false,pagesFetched:receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:null,reason})
+
+// This exact public DATA deployment is independent of the unqualified renderer
+// and application-form programmes. It never activates the archived diagnostic,
+// adds countries to legacy profiles, or turns finite foreign observations into
+// India/company zero. All original records survive in the audit; none become
+// publishable jobs without the separately held application/criteria projection.
+const currentDataCorporateProfile = body => {
+ if(typeof body!=='string')return null
+ const bodySHA256=hash(body)
+ return [reviewedData.requests[0],...(reviewedData.additionalCorporateProfiles??[])].find(profile=>profile.bodySHA256===bodySHA256)??null
+}
+
+const readCurrentSnowplowData = async(settings, firstCorporate, mode) => {
+ const resources=reviewedData.requests,ids=['corporate','entry','main','runtime','routes','site','feed']
+ const corporateProfile=currentDataCorporateProfile(firstCorporate?.body)
+ requireProof(corporateProfile,'current native DATA complete corporate profile requires review')
+ requireProof(resources.length===ids.length&&resources.every((row,index)=>row.id===ids[index]),'current native DATA profile structure changed')
+ const audit={source:'snowplow',status:'partial',nativeDataOnly:true,nativeInventoryCount:null,
+  currentCorporateProfileSHA256:corporateProfile.bodySHA256,
+  rawOpeningSite:null,rawClosingSite:null,rawOpeningFeed:null,rawClosingFeed:null,
+  nativeDataObservations:[],countryProofs:[],canonicalCountryCounts:{},corporateRoleProofs:[],
+  reviewedNativeDataRecordCount:0,reviewedNativeRecordCount:0,unreviewedNativeRecordCount:null,
+  applicationCriteriaReviewed:false,nativeDataClosingReconciled:false,sourceScopeComplete:false,cleanupAllowed:false,
+  gaps:['current-native-renderer-complete-scope-unverified','current-native-application-criteria-unreviewed','company-and-India-inventory-scope-unresolved']}
+ await settings.onAudit?.(audit)
+ const noteGap=reason=>{if(!audit.gaps.includes(reason))audit.gaps.push(reason)}
+ const currentCountries=new Map([...countries,['Australia','AU'],['Colombia','CO'],['Greece','GR']])
+ const openingBodies=new Map()
+ const read=async(resource,phase)=>{
+  const json=resource.id==='site'||resource.id==='feed'
+  const expected=resource.id==='corporate'?corporateProfile:resource
+  const response=phase==='opening'&&resource.id==='corporate'?firstCorporate:await settings.fetchPage(resource.requestUrl,
+   {method:'GET',headers:{Accept:json?'application/json':'*/*',...(json?{companyIdentifier:'snowplow'}:{})},signal:settings.signal})
+  requireProof(response?.status===200&&response.url===resource.requestUrl&&response.bodyComplete===true
+   &&response.contentType===expected.contentType&&typeof response.body==='string'
+   &&Buffer.byteLength(response.body)===expected.bodyBytes&&hash(response.body)===expected.bodySHA256,
+  'current native DATA '+phase+' original response requires review: '+resource.id)
+  if(resource.id==='entry')requireProof(response.headers?.['content-security-policy']===reviewedData.entryCSP,
+   'current native DATA entry security policy requires review')
+  if(phase==='opening')openingBodies.set(resource.id,response.body)
+  else requireProof(response.body===openingBodies.get(resource.id),'current native DATA closing channel changed: '+resource.id)
+  return json?parseNativeJSON(response.body):response.body
+ }
+ const first=await read(resources[0],'opening')
+ mode.onHome?.()
+ if(settings.maxPages!==null&&settings.maxPages<14)throw failure('Current Snowplow DATA needs fourteen observations','SNOWPLOW_PAGE_BUDGET')
+ if(settings.maxRequests<14)throw failure('Current Snowplow DATA needs fourteen observations','SNOWPLOW_REQUEST_BUDGET')
+ const visible=readVisibleNativeDocument(first,{strict:true})
+ requireProof(visible.nodes(node=>node.tag==='a'&&node.attrs.href===resources[1].requestUrl).length===1,
+  'current native DATA published role entry missing or ambiguous')
+ const corporateBindings=(html,rawRows)=>{
+  const document=readVisibleNativeDocument(html,{strict:true}),lists=document.nodes(node=>node.tag==='ul'&&node.attrs.id==='rlist')
+  requireProof(lists.length===1,'current native DATA corporate list missing or ambiguous')
+  const cards=lists[0].children.filter(node=>typeof node!=='string'),native=new Map(rawRows.map(raw=>[raw.id,raw])),seen=new Set()
+  requireProof(cards.length===native.size,'current native DATA corporate membership changed')
+  const descendants=node=>node.children.filter(child=>typeof child!=='string').flatMap(child=>[child,...descendants(child)])
+  return cards.map(card=>{
+   const nodes=descendants(card),links=nodes.filter(node=>node.tag==='a')
+   const match=links.length===1&&links[0].attrs.href?.match(/^https:\/\/snowplow\.careers\.hibob\.com\/jobs\/([a-f0-9-]{36})$/)
+   const raw=match&&native.get(match[1])
+   requireProof(card.tag==='li'&&raw&&!seen.has(raw.id),'current native DATA corporate/native identity changed')
+   seen.add(raw.id)
+   const field=name=>{const cells=nodes.filter(node=>document.hasClass(node,name));requireProof(cells.length===1,'current native DATA corporate field missing');return document.text(cells[0])}
+   const nativeLocation=raw.site===raw.country?raw.country:raw.site+', '+raw.country,corporateLocation=card.attrs['data-l']
+   if(corporateLocation!==nativeLocation){
+    const known=reviewedData.countryConflicts.find(item=>item.jobId===raw.id)
+    requireProof(known&&known.rawCountry===raw.country&&known.rawSite===raw.site&&known.corporateLocation===corporateLocation
+     &&raw.postingLocations.some(location=>location.country===known.postingCountry),'current native DATA corporate/native geography changed')
+    noteGap('corporate-native-country-disagreement:'+raw.id)
+   }
+   requireProof(field('rt')===raw.title&&field('rd')===raw.department&&field('rl')===corporateLocation+' · '+raw.workspaceType
+    &&card.attrs['data-d']===raw.department&&card.attrs['data-t']===raw.title.toLowerCase(),
+   'current native DATA corporate/native role criteria changed')
+   return{jobId:raw.id,title:raw.title,department:raw.department,corporateLocation,rawNativeLocation:nativeLocation}
+  })
+ }
+ for(const phase of ['opening','closing']){
+  let corporate=first
+  for(const resource of resources){
+   if(phase==='opening'&&resource.id==='corporate')continue
+   const value=await read(resource,phase)
+   if(resource.id==='corporate')corporate=value
+   if(resource.id==='site'){
+    requireProof(keysAre(value,['color','typography','sections','companyName','isPublished','isBobCareerSite','language'])
+     &&value.companyName==='Snowplow'&&value.isPublished===true&&value.isBobCareerSite===true&&value.language==='en-GB',
+    'current native DATA employer publication or identity changed')
+    audit[phase==='opening'?'rawOpeningSite':'rawClosingSite']=value
+   }
+   if(resource.id==='feed'){
+    validateFeedShape(value,reviewedData,currentCountries)
+    const rows=value.jobAdDetails.map(raw=>{
+     requireProof(raw.hideLocationInformation===null,'current native DATA native location visibility changed')
+     const proof=validateRow(raw,reviewedData,noteGap,currentCountries)
+     requireProof(proof.reviewedCriteria,'current native DATA complete original criteria changed')
+     return proof
+    })
+    audit[phase==='opening'?'rawOpeningFeed':'rawClosingFeed']=value
+    audit.corporateRoleProofs=corporateBindings(corporate,value.jobAdDetails)
+    if(phase==='opening'){
+     audit.nativeInventoryCount=value.jobAdDetails.length
+     audit.unreviewedNativeRecordCount=value.jobAdDetails.length
+     audit.countryProofs=rows
+     audit.nativeDataObservations=value.jobAdDetails.map((raw,index)=>({...rows[index],rawNativeRecord:raw,
+      publishedAt:raw.publishedAt,validThrough:raw.validThrough,closingDate:raw.closingDate,
+      dataCriteriaReviewed:true,applicationCriteriaReviewed:false,sourceDetailComplete:false,nativeDataClosingReconciled:false}))
+     for(const row of rows){audit.canonicalCountryCounts[row.countryCode]=(audit.canonicalCountryCounts[row.countryCode]||0)+1
+      if(row.countryDisagreement)noteGap('native-posting-country-disagreement:'+row.jobId)}
+     mode.onFeed?.({payload:value,rows})
+    }else requireProof(stable(value)===stable(audit.rawOpeningFeed),'current native DATA complete closing cohort changed')
+   }
+  }
+ }
+ settings.signal?.throwIfAborted()
+ audit.nativeDataClosingReconciled=true
+ audit.reviewedNativeDataRecordCount=audit.nativeInventoryCount
+ for(const observation of audit.nativeDataObservations)observation.nativeDataClosingReconciled=true
+ const jobs=attachSourceObservationEvidence(attachInventoryEvidence([],inventory([],true,'snowplow-current-native-DATA-partial;application-renderer-company-and-India-scope-unresolved')),
+  {source:'snowplow',recordKind:'vacancy-rows',observedRecordCount:audit.nativeInventoryCount,observedVacancyCount:audit.nativeInventoryCount,sourceScopeComplete:false})
+ Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'snowplow',nativeDataOnly:true,nativeInventoryCount:audit.nativeInventoryCount,
+   currentCorporateProfileSHA256:corporateProfile.bodySHA256,
+  nativeDataClosingReconciled:true,nativeDataObservations:audit.nativeDataObservations,
+  applicationCriteriaReviewed:false,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,
+  companyGlobalTotal:null,companyIndiaTotal:null,gaps:[...audit.gaps]},enumerable:false})
+ return jobs
+}
+
 export const createCurrentSnowplowScraper=(defaults={})=>({async run(options={}){
  const settings=settingsFor(defaults,options),control=runtime(settings),receipts=[],attempts=[]
  let audit,result,firstError,failureObserved=false,feedFacts=null,homeQualified=false
@@ -517,7 +644,18 @@ export const createCurrentSnowplowScraper=(defaults={})=>({async run(options={})
  }
  try{
   if(settings.maxJobs===0||settings.maxPages===0){audit={source:'snowplow',status:'skipped',nativeInventoryCount:null,receipts,attempts,gaps:[],sourceScopeComplete:false};result=attachInventoryEvidence([],inventory(receipts,false,'caller-zero-cap-no-source-observation'))}
-  else result=await createReviewedSnowplowScraper({...settings,fetchPage,signal:control.signal,onAudit:value=>{audit=value},now:()=>{control.check();const value=(settings.now??(()=>new Date().toISOString()))();control.check();return value}},{onFeed:value=>{feedFacts=value},onHome:()=>{homeQualified=true},onCorporateDOMEquivalent:proof=>{corporateDOMEquivalences.push(proof)}}).run()
+  else{
+   const firstCorporate=await fetchPage(NATIVE_CONFIG.careers,{method:'GET',headers:{Accept:'text/html'},signal:control.signal})
+   const mode={onFeed:value=>{feedFacts=value},onHome:()=>{homeQualified=true},onCorporateDOMEquivalent:proof=>{corporateDOMEquivalences.push(proof)}}
+   const common={...settings,signal:control.signal,onAudit:value=>{audit=value},now:()=>{control.check();const value=(settings.now??(()=>new Date().toISOString()))();control.check();return value}}
+   if(currentDataCorporateProfile(firstCorporate?.body))
+    result=await readCurrentSnowplowData({...common,fetchPage},firstCorporate,mode)
+   else{
+    let replayed=false
+    const legacyFetch=async(url,init)=>{if(!replayed&&url===NATIVE_CONFIG.careers){replayed=true;return firstCorporate}return fetchPage(url,init)}
+    result=await createReviewedSnowplowScraper({...common,fetchPage:legacyFetch},mode).run()
+   }
+  }
  }catch(error){firstError=error;failureObserved=true}
  try{
   settings.signal?.throwIfAborted()

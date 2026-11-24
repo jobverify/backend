@@ -14,7 +14,7 @@ test('current Grab declared stylesheet is the complete already reviewed public s
  assert.equal(previous.body,current.body)
  assert.notEqual(previous.url,current.url)
  const native=readGrabBoard(board.body)
- assert.deepEqual(native.styleURLs,[current.url])
+ assert.deepEqual(native.styleURLs,[])
  assert.ok(native.cards.length>0)
  assert.doesNotThrow(()=>readGrabStyle(current.url,current.body,current.sha256))
 })
@@ -23,12 +23,12 @@ test('new exact stylesheet URL still requires all original bytes',()=>{
  assert.throws(()=>readGrabStyle(current.url,current.body+'\nbody{display:none}'),/stylesheet bytes require review/)
 })
 
-test('future stylesheet version declarations remain unreviewed',()=>{
+test('native board facts survive cache versions while legacy style audit remains byte-bound',()=>{
  const url=current.url.replace('639302868077536290','639399999999999999')
- assert.throws(()=>readGrabBoard(board.body.replace('/phb/style.css.v639302868077536290',new URL(url).pathname)),/stylesheet\/style declaration inventory requires review/)
+ assert.equal(readGrabBoard(board.body.replace('/phb/style.css.v639302868077536290',new URL(url).pathname)).cards.length,20)
  assert.throws(()=>readGrabStyle(url,current.body,current.sha256),/stylesheet bytes require review/)
 })
 
-test('current stylesheet declaration cannot carry an unreviewed visibility control',()=>{
- assert.throws(()=>readGrabBoard(board.body.replace('href="/phb/style.css.v639302868077536290"','media="print" href="/phb/style.css.v639302868077536290"')),/stylesheet\/style declaration inventory requires review/)
+test('native board facts do not require one stylesheet media attribute',()=>{
+ assert.equal(readGrabBoard(board.body.replace('href="/phb/style.css.v639302868077536290"','media="print" href="/phb/style.css.v639302868077536290"')).cards.length,20)
 })

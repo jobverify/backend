@@ -1,0 +1,30 @@
+{
+  "source": "groupon",
+  "fixture": "current-graph.json.gz",
+  "bytes": 262825,
+  "sha256": "2b90d56a8b96e240eaf7d48a98a7db8bce7a7cf4ce829612a749ec291b70e379",
+  "originalGraphResponses": 7,
+  "profile": {
+    "main": {
+      "path": "index-BJfNRE2S.js",
+      "sha": "656ed17311ad56406db62001c13c654ae8ce4715929a23798f4b05677c2e40f9"
+    },
+    "origins": {
+      "path": "src-Chmq7nvF.js",
+      "sha": "0163484043633802bc95636e171feadcab7e4a8528b9728a6b8861199b2e1b1b"
+    },
+    "roles": {
+      "path": "page-DnT3o9iZ.js",
+      "sha": "b147d82e05d3d191599bc493ec45acbc954617f81b9b3a1509cb46242b10022a"
+    },
+    "detail": {
+      "path": "useJob-DwsXeAll.js",
+      "sha": "bba55531fb17ce79da8d12edb96987be627d77636af840a66edeeb7b0f4670fa"
+    },
+    "locations": {
+      "path": "locations-C3ZnT-yL.js",
+      "sha": "f8cc099c0deb019e88e81611f1e496878de18723dcb971e5206b9d9ece35b971"
+    }
+  },
+  "inventoryResponsesIncluded": false
+}

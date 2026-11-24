@@ -1,0 +1,137 @@
+{
+  "profile": "techjays-reviewed-publication-20261121",
+  "qualification": "Finite original publication and declared deployment only. This is not a general future Next.js or browser-execution qualification. Refreshing a document/client/CSS hash without original-byte programme, schema, visibility, employer, country, full-criteria and date review is not sufficient.",
+  "reviewEvidence": "reports/scraper-20261120-133018/agent2/techjays-current/deployment-review.json",
+  "originalPagePhase": "current-20261120225230356-25072",
+  "roles": 1,
+  "roleCountry": null,
+  "companyScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "documents": [
+    {
+      "url": "https://www.techjays.com/",
+      "sha256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+      "csp": "frame-ancestors 'none'",
+      "cspReportOnly": ""
+    },
+    {
+      "url": "https://www.techjays.com/careers",
+      "sha256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+      "csp": "frame-ancestors 'none'",
+      "cspReportOnly": ""
+    },
+    {
+      "url": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+      "sha256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+      "csp": "frame-ancestors 'none'",
+      "cspReportOnly": ""
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/12yt460qmi7b4.css",
+      "sha256": "767cbb17d150516c1b831d025394af6ceb0c23885e5fcb95a13a17bc6aa39f0a",
+      "type": "style"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+      "sha256": "f08281b6472fc7374f672b0394a7b29f224780485223751a71e2120dcd329610",
+      "type": "style"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/170eb3owr05sg.css",
+      "sha256": "5df3a05a75292aaa4e6bdeeb62aed564e8164ddccbb1ed8b3a8ae40a8866b8fd",
+      "type": "style"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3ff77lahkleny.js",
+      "sha256": "63f3174bbed111b3007ea0bb1ba5c3950d1078c803a4d2377df8b3be5e7bc370",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3_7igea-fxuju.js",
+      "sha256": "9104cbf66e72e1bd5f81450d3c084e7961589081a95411fc8efaff4ef76526d3",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+      "sha256": "5e5e98496cb4e6880c50d466a258c68186aabf129c1863eca7e08a295d50855b",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/00igo-tw8tkav.js",
+      "sha256": "e08e5b3961db911e7aaae3c538dd5f3d47e52fdaa409a0463202e2c24b53747e",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+      "sha256": "0162fd9a73d63454e132d399d91c2a74618bad4de353d45676b5eff61187491d",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/214w9orxuei3i.js",
+      "sha256": "c367c286241e7c90a633747f1100cd1241e9c1d371ea32c7169de8cbf3f1a834",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+      "sha256": "5038a58bf3e658b27d0f132504a0dfcc4052daa6128958fbe7f0fe3e87e5071a",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+      "sha256": "915defb20fa49147ff11ad4587302451b54d2f094dc2b080cca3b3789d2c9553",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+      "sha256": "917b9d602dbee6de0ce526f840b51e07e56e6725994345cfea79c97318fd844a",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/29_ma9a076t5a.js",
+      "sha256": "54a561ebcccb3c3aa8207c45df1a3e9b84ab2739817016a267a0dd7e0e06b569",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+      "sha256": "cc319a8ad4e213d88e628d5d888561e083631ef9f097b6a09e08a7129ca56859",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/1h1akm-zbgm9b.js",
+      "sha256": "669dcfc1a17c03edbac5d515f8fde73075ce0b785fd77f54ed0167db13764013",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3qp6pnc62corf.js",
+      "sha256": "9682f5fea08bf3a45d32cc6d0af71bd9cf11b1fa76acfb35c3f7f4445f6765ce",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+      "sha256": "5e0f33951d7422493bad4f7d4cb713fe01cdb630757bd917b66dee9d0987fd07",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+      "sha256": "e68e40867fc03662c6917a4a61f557e014974ea1a6e0ac6ce7cd9227a02c30d2",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/20s-4ogx47ho1.js",
+      "sha256": "2c28b10b43012601f2e12cf98a8e1002bd2897cf4822cf723c58f27fd9a01ab2",
+      "type": "script"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/2tu30sjradlz-.js",
+      "sha256": "07a945ae3203d0eeaa1e20e2ab0128e8a6b52a4cb9a927e679f910a1f04100e0",
+      "type": "script"
+    }
+  ]
+}

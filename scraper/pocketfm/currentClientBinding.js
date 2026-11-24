@@ -16,7 +16,10 @@ const FOOTER_SHA256 = '994447fba92c4b0e2d1b4a0ce8c0480d42dbdb6a462be524ee2bc66f8
 // erased at runtime and whole-browser equivalence remains unproved.
 const CURRENT_20261117 = JSON.parse(readFileSync(new URL('./reviewedBinding20261117.json', import.meta.url), 'utf8'))
 const CURRENT_20261119 = JSON.parse(readFileSync(new URL('./reviewedBinding20261119.json', import.meta.url), 'utf8'))
-const CURRENT_PROFILES = [CURRENT_20261117, CURRENT_20261119]
+// November21 changes router caching/Activity handling. Keep its complete raw
+// programme tuple separate; it is not normalized into an older browser model.
+const CURRENT_20261121 = JSON.parse(readFileSync(new URL('./reviewedBinding20261121.json', import.meta.url), 'utf8'))
+const CURRENT_PROFILES = [CURRENT_20261117, CURRENT_20261119, CURRENT_20261121]
 const exactCurrentProgram = (url, body, expected) => url === expected.url
   && Buffer.byteLength(body) === expected.bytes
   && createHash('sha256').update(body).digest('hex') === expected.sha256

@@ -5,6 +5,7 @@ import {boundedDeclaredPublicRead} from '../../scraper-support/native-sources/bo
 import {decodeNativeEntities,extractActiveDescription,readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {createRecruitmentObservationAccounting} from '../../scraper-support/utils/recruitmentObservationAccounting.js'
+import reviewedClient20261121 from './reviewedClient20261121.json' with {type:'json'}
 
 const ORIGIN='https://raymondcareers.peoplestrong.com',PARTS='basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied'
 const accountURL=ORIGIN+'/api/cp/rest/altone/cp/urlinfo'
@@ -124,9 +125,28 @@ export async function collectRaymondNative(options,contract){
   const portal=await read(JOB_LISTINGS_URL,{kind:'html',portal:true});requireValue(hasPublicPortalShell(portal),'Current public portal shell changed')
   const document=readNativeDocument(portal),mains=document.nodes(n=>n.tag==='script'&&/^main-[A-Z0-9]+\.js$/.test(n.attrs.src||''));requireValue(mains.length===1,'Active native client bundle missing')
   const mainURL=new URL(mains[0].attrs.src,ORIGIN+'/').href,main=await read(mainURL,{kind:'js'})
-  requireValue(main.includes('"./'+roleName+'"')&&main.includes('"./'+coreName+'"'),'Current native role client declaration changed')
-  const role=await read(ORIGIN+'/'+roleName,{kind:'js'}),core=await read(ORIGIN+'/'+coreName,{kind:'js'})
-  requireValue(sha(main)===nativeProgramSHA.main&&sha(role)===nativeProgramSHA.role&&sha(core)===nativeProgramSHA.core,'Reviewed complete native client executable changed')
+  // Keep the original complete programme contract. This finite additional
+  // deployment binds complete raw programs and all portal markup/inline CSS;
+  // compiler names, comments and unknown programmes are never normalized.
+  const current=reviewedClient20261121,profile=mainURL===current.main.url&&Buffer.byteLength(main)===current.main.bytes&&sha(main)===current.main.sha256?current:null
+  const selectedCore=profile?new URL(profile.core.url).pathname.slice(1):coreName,selectedRole=profile?new URL(profile.role.url).pathname.slice(1):roleName
+  if(profile){
+   const loader=/<script type="text\/javascript" src="\/_Incapsula_Resource\?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=[0-9]+" async><\/script>/g
+   const matches=[...portal.matchAll(loader)];requireValue(matches.length===1,'Reviewed current portal loader declaration changed')
+   const match=matches[0],projected=portal.slice(0,match.index)+match[0].replace(/&cb=[0-9]+/,'&cb=0')+portal.slice(match.index+match[0].length)
+   requireValue(sha(projected)===profile.portalProjectedSHA256,'Reviewed complete current portal authority or styles changed')
+  }
+  requireValue(main.includes('"./'+selectedRole+'"')&&main.includes('"./'+selectedCore+'"'),'Current native role client declaration changed')
+  const role=await read(ORIGIN+'/'+selectedRole,{kind:'js'}),core=await read(ORIGIN+'/'+selectedCore,{kind:'js'})
+  if(profile){
+   requireValue(Buffer.byteLength(role)===profile.role.bytes&&sha(role)===profile.role.sha256&&Buffer.byteLength(core)===profile.core.bytes&&sha(core)===profile.core.sha256,'Reviewed complete native client executable changed')
+   for(const program of profile.additionalPrograms){
+    const url=new URL(program.url);requireValue(url.origin===ORIGIN&&/^\/(?:scripts|chunk)-[A-Z0-9]+\.js$/.test(url.pathname)&&!url.search&&!url.hash,'Reviewed selected client publisher changed')
+    const owner=program.declaredBy==='main'?main:program.declaredBy==='core'?core:null
+    requireValue(owner?owner.includes('"./'+url.pathname.slice(1)+'"'):program.declaredBy==='portal'&&document.nodes(n=>n.tag==='script'&&n.attrs.src===url.pathname.slice(1)).length===1,'Reviewed selected client declaration changed')
+    const content=await read(url.href,{kind:'js'});requireValue(Buffer.byteLength(content)===program.bytes&&sha(content)===program.sha256,'Reviewed complete selected native executable changed')
+   }
+  }else requireValue(sha(main)===nativeProgramSHA.main&&sha(role)===nativeProgramSHA.role&&sha(core)===nativeProgramSHA.core,'Reviewed complete native client executable changed')
   requireValue(role.includes('getJobDetails(this.requisitionCode,"'+PARTS+'")')&&role.includes('getJobSecuritywithEntity(this.requisition.entityID)')
    &&core.includes('baseUrl:"/api/cp/rest/altone/cp/"')&&core.includes('"job/"+t+"/v2?part="+r+"&isReqId="+o')
    &&core.includes('getJobSecuritywithEntity(t){return this.makeSecuredGetReq("security/job/"+t)}'),'Public native detail/render contract changed')

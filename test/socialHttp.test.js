@@ -1,0 +1,64 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { once } from 'node:events';
+import { fileURLToPath } from 'node:url';
+import { generateKeyPairSync } from 'node:crypto';
+import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
+import { createCanvas } from '@napi-rs/canvas';
+import { MongoMemoryReplSet } from 'mongodb-memory-server';
+import User from '../src/models/User.js';
+import Job from '../src/models/Job.js';
+import SocialPost from '../src/models/SocialPost.js';
+import SocialDelivery from '../src/models/SocialDelivery.js';
+import SocialAccount from '../src/models/SocialAccount.js';
+import SocialSettings from '../src/models/SocialSettings.js';
+import AdminAudit from '../src/models/AdminAudit.js';
+
+Object.assign(process.env, { JWT_SECRET: 'social-http-fixture-secret-at-least-32-characters', NODE_ENV: 'test', CORS_ORIGIN: 'http://localhost:5173', SOCIAL_GITHUB_REPOSITORY_ID: '123', SOCIAL_GITHUB_OWNER_ID: '456', SOCIAL_GITHUB_REPOSITORY: 'jobverify/backend', SOCIAL_OIDC_AUDIENCE: 'https://api.jobverify.in/api/social-publisher/run' });
+const { createApp } = await import('../src/app.js');
+
+test('social HTTP boundaries protect admin writes, private previews and the OIDC-only runner', { timeout: 90_000 }, async t => {
+  const mongo = await MongoMemoryReplSet.create({ binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) }, replSet: { count: 1 } });
+  t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
+  await mongoose.connect(mongo.getUri()); await Promise.all([User, Job, SocialPost, SocialDelivery, SocialAccount, SocialSettings, AdminAudit].map(model => model.init()));
+  const admin = await User.create({ email: 'social-admin@example.test', role: 'admin', isVerified: true });
+  const member = await User.create({ email: 'social-member@example.test', isVerified: true });
+  const objects = new Map(); const assets = { put: async (key, bytes) => objects.set(key, Buffer.from(bytes)), get: async key => objects.has(key) ? { arrayBuffer: async () => objects.get(key) } : null };
+  const server = createApp({ socialAssets: assets }).listen(0, '127.0.0.1'); await once(server, 'listening'); t.after(() => new Promise(resolve => server.close(resolve)));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  const request = async (path, { user = admin, method = 'GET', body, headers = {}, csrf = true } = {}) => {
+    const response = await fetch(base + path, { method, headers: { ...(csrf ? { origin: 'http://localhost:5173', 'x-csrf-token': 'fixture' } : {}), cookie: `${csrf ? 'jobverify_csrf=fixture;' : ''}${user ? `jobverify_token=${jwt.sign({ id: String(user._id) }, process.env.JWT_SECRET)}` : ''}`, 'content-type': Buffer.isBuffer(body) ? 'image/jpeg' : 'application/json', ...headers }, ...(body === undefined ? {} : { body: Buffer.isBuffer(body) ? body : JSON.stringify(body) }) });
+    return { response, data: response.headers.get('content-type')?.includes('application/json') ? await response.json() : await response.arrayBuffer() };
+  };
+  assert.equal((await request('/api/admin/social-posts', { user: null })).response.status, 401);
+  assert.equal((await request('/api/admin/social-settings', { user: member })).response.status, 403);
+  assert.equal((await request('/api/admin/social-posts', { method: 'POST', body: {}, csrf: false })).response.status, 403);
+  const job = await Job.create({ title: 'Software Engineer', company: 'Example', city: 'Pune', country: 'India', jobType: 'Full-time Fresher', status: 'active', fingerprint: 'social-http', sourceUrl: 'https://careers.example/1', description: 'Build and maintain software services. Work with the engineering team to develop, test and support reliable applications for customers.', sourceDescription: 'Build and maintain software services. Work with the engineering team to develop, test and support reliable applications for customers.' });
+  const created = await request('/api/admin/social-posts', { method: 'POST', body: { jobId: String(job._id) } }); assert.equal(created.response.status, 201);
+  let post = created.data.data;
+  const jpeg = createCanvas(1080, 1350).toBuffer('image/jpeg');
+  const uploaded = await request(`/api/admin/social-posts/${post._id}/image`, { method: 'PUT', body: jpeg, headers: { 'x-social-revision': String(post.revision) } });
+  assert.equal(uploaded.response.status, 200); post = uploaded.data.data;
+  assert.equal((await request(`/api/social-assets/${post.image.hash}.jpg`, { user: null })).response.status, 404);
+  const preview = await request(`/api/admin/social-posts/${post._id}/image`); assert.equal(preview.response.status, 200); assert.deepEqual(Buffer.from(preview.data), jpeg);
+  await SocialAccount.create([{ _id: 'linkedin', destination: 'urn:li:organization:1', status: 'ready', revision: 1, expiresAt: new Date(Date.now() + 60 * 86400_000) }, { _id: 'instagram', destination: '2', status: 'ready', revision: 1, expiresAt: new Date(Date.now() + 60 * 86400_000) }]);
+  const tomorrow = new Date(); tomorrow.setUTCDate(tomorrow.getUTCDate() + 1); tomorrow.setUTCHours(4, 30, 0, 0);
+  const approved = await request(`/api/admin/social-posts/${post._id}/approve`, { method: 'POST', body: { revision: post.revision, slot: tomorrow.toISOString() } });
+  assert.equal(approved.response.status, 200);
+  const publishedAsset = await request(`/api/social-assets/${post.image.hash}.jpg`, { user: null });
+  assert.equal(publishedAsset.response.status, 200); assert.deepEqual(Buffer.from(publishedAsset.data), jpeg);
+  assert.match(publishedAsset.response.headers.get('cache-control'), /immutable/);
+  assert.equal((await request(`/api/admin/social-posts/${post._id}/image`, { user: null })).response.status, 401);
+  assert.equal((await request(`/api/admin/social-posts/${post._id}/image`, { method: 'PUT', body: Buffer.alloc(2 * 1024 * 1024 + 1), headers: { 'x-social-revision': String(post.revision) } })).response.status, 413);
+  assert.equal((await request('/api/social-publisher/run', { method: 'POST', body: {}, csrf: false })).response.status, 401);
+  assert.equal((await request('/api/social-publisher/run', { method: 'POST', body: {}, csrf: false, headers: { authorization: 'Bearer invalid' } })).response.status, 401);
+  const { privateKey, publicKey } = generateKeyPairSync('rsa', { modulusLength: 2048 });
+  const actualFetch = globalThis.fetch;
+  t.mock.method(globalThis, 'fetch', (url, options) => String(url) === 'https://token.actions.githubusercontent.com/.well-known/jwks'
+    ? Promise.resolve(Response.json({ keys: [{ ...publicKey.export({ format: 'jwk' }), kid: 'http', alg: 'RS256', use: 'sig' }] })) : actualFetch(url, options));
+  const identity = jwt.sign({ repository_id: '123', repository_owner_id: '456', repository: 'jobverify/backend', ref: 'refs/heads/main', workflow_ref: 'jobverify/backend/.github/workflows/social-publisher.yml@refs/heads/main', event_name: 'workflow_dispatch', run_id: '1', sub: 'repo:jobverify/backend:ref:refs/heads/main' }, privateKey, { algorithm: 'RS256', keyid: 'http', issuer: 'https://token.actions.githubusercontent.com', audience: process.env.SOCIAL_OIDC_AUDIENCE, expiresIn: 300 });
+  const machine = await request('/api/social-publisher/run', { method: 'POST', body: {}, user: null, csrf: false, headers: { authorization: `Bearer ${identity}` } });
+  assert.equal(machine.response.status, 200); assert.equal(machine.data.data.outcome, 'paused');
+  assert.equal((await request('/api/social-publisher/run', { method: 'POST', body: { jobId: String(job._id) }, user: null, csrf: false, headers: { authorization: `Bearer ${identity}` } })).response.status, 400);
+});

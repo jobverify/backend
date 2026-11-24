@@ -472,56 +472,80 @@ export const extractIndiaJobFromDetail = (listing = {}, detailHtml = '') => {
   }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   },
   label: `${SOURCE}-html`,
   timeoutMs: 20000,
+  signal,
 })
 
 export const createEpassiIndiaScraper = ({ maxJobs = null } = {}) => ({
-  async run({ fetchText = defaultFetchText, now = () => new Date().toISOString() } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+  async run({ fetchText = defaultFetchText, now = () => new Date().toISOString(), signal } = {}) {
+    signal?.throwIfAborted()
+    const careersHtml = await fetchText(CAREERS_URL, { signal })
+    signal?.throwIfAborted()
     if (!hasOfficialCareersPageSignal(careersHtml)) {
       throw new Error('Epassi India verified official careers page changed materially')
     }
 
     assertNoUnexpectedAlternativePublicJobsSurface(careersHtml, CAREERS_URL)
 
-    const embedJs = await fetchText(JOBYLON_EMBED_URL)
+    const embedJs = await fetchText(JOBYLON_EMBED_URL, { signal })
+    signal?.throwIfAborted()
     const listings = extractJobylonListings(embedJs)
     const selectedListings = Number.isInteger(maxJobs)
       ? listings.slice(0, maxJobs)
       : listings
 
     const jobs = []
+    const failures = []
+    let firstFailure
     const scrapedAt = now()
 
     for (const listing of selectedListings) {
-      const detailHtml = await fetchText(listing.sourceUrl)
-      const job = extractIndiaJobFromDetail(listing, detailHtml)
+      signal?.throwIfAborted()
+      try {
+        const detailHtml = await fetchText(listing.sourceUrl, { signal })
+        signal?.throwIfAborted()
+        const job = extractIndiaJobFromDetail(listing, detailHtml)
 
-      if (!job) continue
+        if (!job) continue
 
-      jobs.push({
-        ...job,
-        source: SOURCE,
-        link: job.applyUrl || job.sourceUrl,
-        scrapedAt,
-      })
+        jobs.push({ ...job, source: SOURCE, link: job.applyUrl || job.sourceUrl, scrapedAt })
+      } catch (error) {
+        signal?.throwIfAborted()
+        firstFailure ??= error
+        failures.push({ jobId: listing.jobId, sourceUrl: listing.sourceUrl,
+          message: error.message, code: error.code ?? null, status: error.status ?? null })
+      }
     }
 
     const limited = selectedListings.length < listings.length
-    const result = limited ? jobs.map(job => ({ ...job, sourceListingComplete: false })) : jobs
+    if (failures.length && !jobs.length) throw firstFailure
+    const incompleteDetails = jobs.filter(job => !job.jobDescription).length
+    const incomplete = limited || failures.length > 0 || incompleteDetails > 0
+    const result = incomplete ? jobs.map(job => ({ ...job, sourceListingComplete: false,
+      sourceDetailComplete: Boolean(job.jobDescription),
+      ...(!job.jobDescription ? { sourceDetailStatus: 'partial', sourceDetailFailureKind: 'native-description-unavailable' } : {}),
+      lifecycleCleanupAllowed: false })) : jobs
+    if (failures.length || incompleteDetails) Object.defineProperty(result, 'nativeCollectionEvidence', { configurable: true, value: {
+      source: SOURCE, observedListings: listings.length, inspectedListings: selectedListings.length,
+      failures, incompleteDetails, listingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    } })
+    signal?.throwIfAborted()
     const pagesFetched = Math.max(1, [...embedJs.matchAll(/class="jobylon-job-list-page[^"\r\n]*\bjs-jobylon-page-(\d+)\b[^"\r\n]*"/g)].length)
     return attachInventoryEvidence(result, {
-      status: limited ? 'coverage-gap' : 'complete-inventory',
-      surface: CAREERS_URL, firstParty: true, listingComplete: !limited,
-      pagesFetched, reportedTotal: listings.length, indiaFacetCount: jobs.length,
+      status: incomplete ? 'coverage-gap' : 'complete-inventory',
+      surface: CAREERS_URL, firstParty: true, listingComplete: !incomplete,
+      ...(incomplete ? { lifecycleCleanupAllowed: false } : {}),
+      pagesFetched, reportedTotal: listings.length, indiaFacetCount: incomplete ? null : jobs.length,
       verifiedAt: scrapedAt,
-      reason: limited ? 'configured-jobylon-listing-limit'
+      reason: incomplete ? [failures.length ? `jobylon-detail-failures=${failures.length}` : null,
+        incompleteDetails ? `jobylon-incomplete-native-details=${incompleteDetails}` : null,
+        limited ? 'configured-jobylon-listing-limit' : null].filter(Boolean).join('; ')
         : 'all-embedded-pages-and-detail-identities-employers-countries-verified',
     })
   },

@@ -6,7 +6,7 @@ import {
   JOBS_PORTAL_URL,
   extractJobs,
   run,
-} from '../../scraper/newgen/script.js'
+} from '../../scraper/newgen/legacyInline20260717.js'
 
 const listingHtml = `
   <div class="job-card">
@@ -28,12 +28,12 @@ const listingHtml = `
   </div>
 `
 
-test('Newgen scraper pins the verified official careers page and OmniRecruit portal', () => {
+test('Historical July Newgen helper retains its old configured page and portal constants', () => {
   assert.equal(CAREERS_URL, 'https://newgensoft.com/in/company/careers/')
   assert.equal(JOBS_PORTAL_URL, 'https://omnirecruit.newgen.co.in/IShareReferral/CareerPortal.aspx')
 })
 
-test('extractJobs parses inline OmniRecruit job cards', () => {
+test('Historical synthetic Newgen job-card parser retains its original test behavior', () => {
   assert.deepEqual(extractJobs(listingHtml), [
     {
       title: 'Senior Software Engineer',
@@ -64,7 +64,7 @@ test('extractJobs parses inline OmniRecruit job cards', () => {
   ])
 })
 
-test('run fetches the pinned portal and returns runner metadata', async () => {
+test('Historical synthetic Newgen helper preserves original mock transport behavior', async () => {
   const jobs = await run({ fetchImpl: async (url) => {
     assert.equal(url, JOBS_PORTAL_URL)
     return { ok: true, text: async () => listingHtml }

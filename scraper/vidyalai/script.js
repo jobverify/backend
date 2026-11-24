@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import {readNativeDocument,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
+import {runNativeVidyalai} from './nativeData20261121.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -12,9 +14,6 @@ export const HOMEPAGE_URL = 'https://www.vidyalai.com/'
 export const JOBS_PAGE_URL = 'https://erp.vidyalai.com/jobs'
 export const JOBS_API_URL =
   'https://erp.vidyalai.com/api/resource/Job%20Opening?fields=%5B%22name%22,%22job_title%22,%22route%22,%22company%22,%22department%22,%22employment_type%22,%22location%22,%22status%22%5D&filters=%5B%5B%22company%22,%22%3D%22,%22Vidyalai%22%5D,%5B%22status%22,%22%3D%22,%22Open%22%5D%5D&limit_page_length=200'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<[^>]+>/g, ' ')
@@ -65,39 +64,9 @@ const normalizeLocation = (value) => {
     location: normalized,
     city: parts[0] || null,
     state: parts.length > 2 ? parts[1] : null,
-    country: parts.at(-1) || null,
+    country: parts.length > 1 ? parts.at(-1) : null,
     remoteStatus: 'On-site',
   }
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-const defaultFetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'application/json,text/plain,*/*',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.json()
 }
 
 export const hasOfficialHomepageSignal = (html) => {
@@ -106,6 +75,7 @@ export const hasOfficialHomepageSignal = (html) => {
   const title = normalizeWhitespace(page.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]) || ''
   const hasOfficialTitle = /^Vidyalai$/i.test(title)
     || /Vidyalai\.com:\s*One to One Online Tuitions/i.test(title)
+    || title === 'Vidyalai: One-to-One Online Lessons for IB, IGCSE, A Levels and AP'
   const hasVerifiedJobsLink = /href=["']https?:\/\/erp\.vidyalai\.com\/jobs\/?["']/i.test(page)
 
   return hasOfficialTitle
@@ -127,16 +97,6 @@ export const buildDetailUrl = (route) => {
   }
 }
 
-const isValidApiRecord = (record = {}) =>
-  normalizeWhitespace(record.company) === COMPANY
-  && normalizeWhitespace(record.status) === 'Open'
-  && Boolean(normalizeWhitespace(record.name))
-  && Boolean(normalizeWhitespace(record.job_title))
-  && Boolean(normalizeWhitespace(record.route))
-  && Boolean(normalizeWhitespace(record.department))
-  && Boolean(normalizeWhitespace(record.employment_type))
-  && Boolean(normalizeWhitespace(record.location))
-
 export const hasVerifiedDetailPage = (page = {}, record = {}) => {
   const html = String(page.html ?? '')
   const title = normalizeWhitespace(record.job_title)
@@ -152,6 +112,12 @@ export const hasVerifiedDetailPage = (page = {}, record = {}) => {
     && normalizeWhitespace(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]) === title
     && /Vidyalai/i.test(html)
     && /Apply Now/i.test(html)
+    && (() => {
+      try {
+        const doc=readNativeDocument(html),owners=doc.nodes(node=>node.tag==='div'&&(node.attrs.class??'').split(/\s+/).includes('ql-editor')&&(node.attrs.class??'').split(/\s+/).includes('read-mode'))
+        return owners.length===1&&Boolean(extractActiveDescription(doc.text(owners[0])))
+      } catch { return false }
+    })()
 }
 
 export const extractOpenJobs = (payload = {}) =>
@@ -167,6 +133,7 @@ export const extractOpenJobs = (payload = {}) =>
       city,
       state,
       country,
+      ...(country == null ? {sourceCountryScopeUnresolved:true} : {}),
       jobId: normalizeWhitespace(record.name),
       requisitionId: normalizeWhitespace(record.name),
       sourceUrl: detailUrl,
@@ -186,48 +153,7 @@ export const extractOpenJobs = (payload = {}) =>
 export const createVidyalaiScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({
-    fetchPage = defaultFetchPage,
-    fetchJson = defaultFetchJson,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Response is not the verified official Vidyalai homepage')
-    }
-
-    const jobsPage = await fetchPage(JOBS_PAGE_URL)
-    const jobsPageCount = extractJobsPageCount(jobsPage.html)
-    if (jobsPage.status !== 200 || !Number.isInteger(jobsPageCount)) {
-      throw new Error('Response is not the verified Vidyalai jobs page')
-    }
-
-    const payload = await fetchJson(JOBS_API_URL)
-    if (!Array.isArray(payload?.data) || payload.data.some((record) => !isValidApiRecord(record))) {
-      throw new Error('Vidyalai filtered public jobs api no longer returns the verified open-job payload')
-    }
-
-    const jobs = extractOpenJobs(payload)
-    if (jobsPageCount !== jobs.length) {
-      throw new Error('Vidyalai jobs page count no longer matches the filtered public jobs api')
-    }
-
-    const selectedJobs = Number.isInteger(maxJobs) ? jobs.slice(0, maxJobs) : jobs
-
-    for (const [index, job] of selectedJobs.entries()) {
-      const detailPage = await fetchPage(job.sourceUrl)
-      if (!hasVerifiedDetailPage(detailPage, payload.data[index])) {
-        throw new Error('Vidyalai detail pages no longer match the verified public jobs surface')
-      }
-    }
-
-    return selectedJobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: now(),
-    }))
-  },
+  run: (options = {}) => runNativeVidyalai({...options,maxJobs}),
 })
 
 export const run = async (options = {}) => createVidyalaiScraper().run(options)

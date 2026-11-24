@@ -3,7 +3,7 @@ import {types} from 'node:util'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {parseEightfoldJson as parseNativeJSON} from '../../scraper-support/utils/recruitmentEightfoldData.js'
-import {CORPORATE,CLIENT,API,ASSETS,ASSET_HASHES,sha,failure,need,htmlEncoding,
+import {CORPORATE,CLIENT,API,ASSETS,NATIVE_DEPLOYMENTS,sha,failure,need,htmlEncoding,
  corporateProgramme,classicClient,nativeBoard,nativeAPI} from './currentProgrammeData.js'
 
 const HTML_BYTES=4*1024*1024,ASSET_BYTES=6*1024*1024,TOTAL_BYTES=24*1024*1024
@@ -18,6 +18,7 @@ const BOARD_SECURITY=['57755a728c840458183872d6bc8af36915c881cef4266d2ba1932fe40
  'f495210addd4c5882999afa5e924569823b6f504f3c95c760b36a0e1ba9e633e',null,null,null,null,null,null]
 const SECURITY_PROFILE={corporate:[null,null,null,null,null,null,'9ab20121fd60b35996b52a26b83f7b6deb287d4ffb1402386011783016ea1bac',null,null],
  client:NONE,page1:BOARD_SECURITY,page2:BOARD_SECURITY,api:NONE,module:NONE,entry:NONE,vendor:NONE}
+const assetKind=kind=>Object.values(NATIVE_DEPLOYMENTS).some(profile=>Object.hasOwn(profile.assets,kind))
 const header=(page,name)=>page.headers?.get?.(name)??page.headers?.[name]??null
 const unreviewedResponseHeader=name=>['refresh','location','content-location','content-disposition','x-amzn-waf-action','x-sucuri-block'].includes(name)
  ||/(?:^|-)(?:authenticate|authentication-info|captcha|challenge|mitigated)(?:-|$)/i.test(name)||/^cf-chl(?:-|$)/i.test(name)
@@ -33,7 +34,7 @@ const limits=options=>{
  need(Number.isSafeInteger(source)&&source>0&&source<=180000&&Number.isSafeInteger(request)&&request>0&&request<=20000
   &&Number.isSafeInteger(interval)&&interval>=0&&interval<=5000,'Invalid native source/request deadline or pacing')
  need(options.maxRequests===undefined||Number.isSafeInteger(options.maxRequests)&&options.maxRequests>=16,'Sixteen opening/closing native reads unavailable')
- need(options.maxPages===undefined||Number.isSafeInteger(options.maxPages)&&options.maxPages>=2,'Both native listing pages unavailable')
+ need(options.maxPages===undefined||Number.isSafeInteger(options.maxPages)&&options.maxPages>=1,'Native listing page budget unavailable')
  need(options.maxJobs===undefined||Number.isSafeInteger(options.maxJobs)&&options.maxJobs>0,'A caller job limit cannot qualify zero')
  return {source,request,interval}
 }
@@ -49,7 +50,7 @@ const wait=(fn,signal,disposeLate)=>new Promise((resolve,reject)=>{
  },error=>{if(!settled){settled=true;detach();reject(signal.aborted?signal.reason:error)}})
 })
 
-// Explicit zero-only reader for the reviewed two-page API-published programme.
+// Explicit zero-only reader for the reviewed finite API-published programmes.
 // Unknown or India scope holds; it never suppresses a separately valid positive.
 export async function readCurrentHousecallProgramme(options={}){
  options.signal?.throwIfAborted()
@@ -66,12 +67,12 @@ export async function readCurrentHousecallProgramme(options={}){
   ownRolePagesAcquired:false,ownRoleSchemaAcquired:false,applicationScreeningAcquired:false,applicationVisited:false,
   legalRegistryIdentityVerified:false,nativeJavaScriptExecuted:false,stylesheetBytesAcquired:false,
   scope:'current-corporate-declared-Housecall-Greenhouse-API-published-programme-only',
-  completenessLimit:'Complete original API-published fields and both unfiltered SSR page identities/countries only. Own-role UI/schema, lazy application/screening, registry legal identity and all other company hiring programmes remain unqualified.'}
+  completenessLimit:'Complete original API-published fields and all unfiltered SSR page identities/countries only. Own-role UI/schema, lazy application/screening, registry legal identity and all other company hiring programmes remain unqualified.'}
  const allowed={corporate:CORPORATE,client:CLIENT,api:API,...ASSETS},opened=[]
- let total=0,stage='opening-corporate'
+ let total=0,stage='opening-corporate',requestLimit=16
  const read=async(kind,url)=>{
-  check();need(allowed[kind]===url&&rawResponses.length<16,'Unreviewed public URL or request reserve exceeded')
-  const cap=Object.hasOwn(ASSETS,kind)?ASSET_BYTES:HTML_BYTES
+  check();need(allowed[kind]===url&&rawResponses.length<requestLimit,'Unreviewed public URL or request reserve exceeded')
+  const cap=assetKind(kind)?ASSET_BYTES:HTML_BYTES
   const receipt={kind,stage,requestedURL:url,method:'GET',requestedAt:new Date().toISOString()};rawResponses.push(receipt)
   const request=new AbortController(),requestSignal=AbortSignal.any([signal,request.signal]),requestStarted=performance.now()
   const checkRequest=()=>{check();if(performance.now()-requestStarted>=bound.request&&!request.signal.aborted)request.abort(new DOMException('Housecall request deadline exceeded','TimeoutError'));requestSignal.throwIfAborted()}
@@ -96,10 +97,13 @@ export async function readCurrentHousecallProgramme(options={}){
     throw error
    }
    const security=SECURITY.map(name=>header(receipt,name)===null?null:sha(header(receipt,name)))
-   need(security.every((value,index)=>value===SECURITY_PROFILE[kind][index]),'Unreviewed native enforced/report-only CSP or embedding security-header profile')
+   const knownSecurity=['page1','page2'].includes(kind)
+    ?Object.values(NATIVE_DEPLOYMENTS).some(profile=>security.every((value,index)=>value===(index===0?profile.cspSHA256:BOARD_SECURITY[index])))
+    :security.every((value,index)=>value===(SECURITY_PROFILE[kind]??NONE)[index])
+   need(knownSecurity,'Unreviewed native enforced/report-only CSP or embedding security-header profile')
    receipt.securityProfile={headerSHA256:Object.fromEntries(SECURITY.map((name,index)=>[name,security[index]])),
     enforcedCSPPresent:header(receipt,'content-security-policy')!==null,reportOnlyCSPPresent:header(receipt,'content-security-policy-report-only')!==null}
-   media(header(receipt,'content-type'),Object.hasOwn(ASSETS,kind)?'application/javascript':kind==='api'?'application/json':'text/html')
+   media(header(receipt,'content-type'),assetKind(kind)?'application/javascript':kind==='api'?'application/json':'text/html')
    let text;try{text=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw failure('Original native UTF-8 invalid')}
    if(['corporate','page1','page2'].includes(kind))htmlEncoding(text)
    checkRequest();return {kind,url,text,receipt}
@@ -111,8 +115,21 @@ export async function readCurrentHousecallProgramme(options={}){
   const client=await open('client',CLIENT);audit.client=classicClient(client.text);check()
   Object.assign(allowed,{page1:audit.client.frameURL,page2:audit.client.secondPageURL})
   const first=await open('page1',allowed.page1),firstBoard=nativeBoard(first.text,allowed.page1,1,now);check()
-  const second=await open('page2',allowed.page2),secondBoard=nativeBoard(second.text,allowed.page2,2,now);check()
-  audit.nativePages=[firstBoard,secondBoard]
+  const deployment=NATIVE_DEPLOYMENTS[firstBoard.nativeDeploymentID]
+  const verifyNativeSecurity=page=>need(page.receipt.securityProfile.headerSHA256['content-security-policy']===deployment.cspSHA256,
+   'Native security profile does not match the reviewed model/shell/dependency deployment')
+  verifyNativeSecurity(first)
+  need(options.maxPages===undefined||options.maxPages>=deployment.pages,'Every native listing page must fit the page budget')
+  requestLimit=2*(3+deployment.pages+Object.keys(deployment.assets).length)
+  need(options.maxRequests===undefined||options.maxRequests>=requestLimit,'Full native opening/closing request reserve unavailable')
+  Object.assign(allowed,deployment.assets)
+  audit.nativeDeploymentID=deployment.id
+  audit.nativePages=[firstBoard]
+  if(deployment.pages===2){
+   const second=await open('page2',allowed.page2),secondBoard=nativeBoard(second.text,allowed.page2,2,now);check()
+   need(secondBoard.nativeDeploymentID===deployment.id,'Native pages use different reviewed deployments')
+   verifyNativeSecurity(second);audit.nativePages.push(secondBoard)
+  }
   const apiPage=await open('api',API)
   try{audit.nativePayload=parseNativeJSON(apiPage.text);audit.nativeAPI=audit.nativePayload}
   catch(error){throw failure('Invalid full original native API JSON: '+error.message)}
@@ -122,8 +139,8 @@ export async function readCurrentHousecallProgramme(options={}){
    fullOriginalAPIPublishedFieldsRetained:true,SSRAndAPIRevisionsInterchangeable:false,
    originalNativeOfficeHierarchy:api.officeHierarchy,nativeOfficeGroupingSemantics:api.groupingSemantics,
    nativeDepartmentHierarchyBinding:api.departmentHierarchyBinding})
-  for(const[kind,url]of Object.entries(ASSETS)){
-   const page=await open(kind,url);need(page.receipt.bodySHA256===ASSET_HASHES[kind],'Unreviewed current native '+kind+' renderer/dependency bytes');check()
+  for(const[kind,url]of Object.entries(deployment.assets)){
+   const page=await open(kind,url);need(page.receipt.bodySHA256===deployment.assetHashes[kind],'Unreviewed current native '+kind+' renderer/dependency bytes');check()
   }
   audit.allOpeningReadsComplete=true;audit.nativePageClosings=[]
   for(const opening of [...opened].reverse()){
@@ -153,8 +170,8 @@ export async function readCurrentHousecallProgramme(options={}){
    }
    check()
   }
-  need(rawResponses.length===16&&audit.nativePageClosings.length===2,'Complete original closing reserve unavailable')
-  Object.assign(audit,{requests:16,nativeProgrammeRequests:16,totalDecodedBytes:total,currentPublishedProgrammeComplete:true,nativeIndiaCount:0,
+  need(rawResponses.length===requestLimit&&audit.nativePageClosings.length===deployment.pages,'Complete original closing reserve unavailable')
+  Object.assign(audit,{requests:requestLimit,nativeProgrammeRequests:requestLimit,totalDecodedBytes:total,currentPublishedProgrammeComplete:true,nativeIndiaCount:0,
    currentCorporateAuthorityRechecked:true,currentRendererRechecked:true,allOpeningReadsBeforeAllClosingReads:true,
    programmeQualification:{status:'qualified-zero',kind:'API-published-finite-programme',reportedTotal:api.value.meta.total,indiaCount:0}})
   check();if(options.onAudit)await wait(()=>options.onAudit(structuredClone(audit)),signal);check()
@@ -163,8 +180,8 @@ export async function readCurrentHousecallProgramme(options={}){
    observedVacancyCount:api.value.jobs.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
   return attachInventoryEvidence(jobs,{status:'complete-inventory',surface:allowed.page1,firstParty:true,listingComplete:true,
-   lifecycleCleanupAllowed:false,pagesFetched:16,reportedTotal:api.value.meta.total,indiaFacetCount:0,verifiedAt:now,
-   reason:'Complete current corporate-declared Housecall API-published finite programme: both unfiltered native SSR pages reconcile every full original API record and explicit foreign country; client/token, API, renderer and criteria/identity close unchanged under two exact reviewed presentation labels. Native employer Housecall Pro remains intact. Own-role UI/schema, applications/screening, legal registry identity, company-global inventory and cleanup remain unqualified.'})
+   lifecycleCleanupAllowed:false,pagesFetched:requestLimit,reportedTotal:api.value.meta.total,indiaFacetCount:0,verifiedAt:now,
+   reason:'Complete current corporate-declared Housecall API-published finite programme: all unfiltered native SSR pages reconcile every full original API record and explicit foreign country; client/token, API, renderer and criteria/identity close unchanged under two exact reviewed presentation labels. Native employer Housecall Pro remains intact. Own-role UI/schema, applications/screening, legal registry identity, company-global inventory and cleanup remain unqualified.'})
  }catch(original){
   let error=original
   if(!error?.softFailure&&!['AbortError','TimeoutError'].includes(error?.name))error=failure('Unqualified native response: '+String(error?.message||error))
@@ -189,7 +206,7 @@ export async function runCurrentHousecallProgramme(options={}){
    const page=await wait(()=>options.fetchPage(url,init),init.signal)
    need(page&&typeof page.bodyBase64==='string','Injected response must retain original raw bytes');return page
   }
-  const asset=Object.values(ASSETS).includes(url)
+  const asset=Object.values(NATIVE_DEPLOYMENTS).some(profile=>Object.values(profile.assets).includes(url))
   const response=await wait(()=>fetcher(url,{method:'GET',cache:'no-store',redirect:'manual',credentials:'omit',signal:init.signal,
    headers:{Accept:asset?'application/javascript':url===API?'application/json':'text/html'}}),init.signal,value=>value?.body?.cancel())
   let reader,done=false

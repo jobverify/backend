@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { readFileSync } from 'node:fs'
+import { gunzipSync } from 'node:zlib'
 import { classifyScraperError } from '../../scraper-support/utils/failureClassification.js'
 import { withRetry, getRetryMetadata } from '../../scraper-support/utils/retry.js'
 import { applyRetryPolicyToScraperError } from '../../scraper-support/runner.js'
@@ -96,10 +98,22 @@ for (const [name, patch, code] of [
 ]) test(name, () => {
   assert.throws(() => enrichJobWithDetailJson(job, { ...detail, ...patch }), error => error.code === code && error.diagnostics.nativeFields.modified === detail.modified)
 })
-test('ambiguous city-only country evidence is rejected without adding India', () => {
+test('whole native cities use the shared public location policy without inventing a country', () => {
   const cards = extractJobCards(careers(card('Mumbai')))
   assert.equal(cards[0].location, 'Mumbai')
-  assert.throws(() => enrichJobWithDetailJson({ ...job, locations: ['Mumbai'] }, detail), error => error.code === 'native-india-country-unproven')
+  const output = enrichJobWithDetailJson({ ...job, locations: ['Mumbai'], location: 'Mumbai', city: 'Mumbai' }, detail)
+  assert.equal(output.country, null)
+  assert.equal(output.location, 'Mumbai')
+  assert.equal(output.sourceNativeCountryUnpublished, true)
+  assert.equal(output.sourcePublicLocationPolicyQualified, true)
+  assert.equal(output.sourceScopeComplete, false)
+  assert.equal(output.lifecycleCleanupAllowed, false)
+})
+
+test('unknown and composite location labels cannot pass as whole native role cities', () => {
+  for (const location of ['Remote', 'Mumbai or London', 'Bengaluru / London', 'Unknown']) {
+    assert.throws(() => enrichJobWithDetailJson({ ...job, locations: [location], location, city: location }, detail), error => error.code === 'native-india-country-unproven')
+  }
 })
 test('explicit foreign and mixed locations cannot be relabeled India', () => {
   for (const locations of [['London, United Kingdom'], ['Mumbai, India', 'London, United Kingdom']]) {
@@ -114,6 +128,60 @@ test('detail HTTP failure never publishes an incomplete base job', async () => {
 })
 test('one failed detail cannot silently turn a partial set into a healthy result', async () => {
   await assert.rejects(runFixture({ fetchJson: async () => ({ ...detail, status: 'draft' }) }), error => error.code === 'detail-extraction-failed' && error.diagnostics.failures[0].code === 'native-status-not-published')
+})
+
+test('one invalid detail preserves independently validated roles with an explicit cleanup hold', async () => {
+  const second = card().replaceAll('12193', '12190').replaceAll('ui-developer', 'second-role')
+  const jobs = await runFixture({
+    fetchPage: async () => ({ ...page, html: careers(card() + second) }),
+    fetchJson: async url => url.endsWith('/12193') ? detail : { ...detail, id: 12190, status: 'draft', link: 'https://www.techtreeit.com/jobs/second-role/' },
+  })
+  assert.equal(jobs.length, 1)
+  assert.equal(jobs[0].nativeId, 12193)
+  assert.equal(jobs[0].sourceDetailComplete, true)
+  assert.equal(readInventoryEvidence(jobs).status, 'coverage-gap')
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed, false)
+  assert.equal(jobs.nativeCollectionEvidence.failures[0].code, 'native-status-not-published')
+  assert.equal(jobs.nativeCollectionEvidence.observedCards, 2)
+})
+
+test('TechTree does no I/O after caller cancellation', async () => {
+  const controller = new AbortController()
+  const reason = new Error('Caller cancelled this source')
+  controller.abort(reason)
+  let reads = 0
+  await assert.rejects(runFixture({ signal: controller.signal, fetchPage: async () => { reads++; return page } }), error => error === reason)
+  assert.equal(reads, 0)
+})
+
+test('TechTree propagates cancellation during a detail read instead of wrapping or continuing it', async () => {
+  const controller = new AbortController()
+  const reason = new Error('Caller cancelled details')
+  await assert.rejects(runFixture({
+    signal: controller.signal,
+    fetchJson: async (_url, options) => {
+      assert.equal(options.signal, controller.signal)
+      controller.abort(reason)
+      throw reason
+    },
+  }), error => error === reason)
+})
+
+test('the November 20 native capture retains all nine dated role details and unpublished countries', async () => {
+  const fixture = JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261120.json.gz', import.meta.url))))
+  const responses = new Map(fixture.responses.map(response => [response.url, response]))
+  const jobs = await createTechtreeItSystemsScraper().run({
+    fetchPage: async url => { const response = responses.get(url); return { status: response.status, url: response.responseUrl, html: response.body } },
+    fetchJson: async url => JSON.parse(responses.get(url).body),
+  })
+  assert.equal(jobs.length, 9)
+  assert.ok(jobs.every(job => job.country === null && job.sourceNativeCountryUnpublished === true))
+  assert.ok(jobs.every(job => job.sourcePublicLocationPolicyQualified && job.sourceDetailComplete))
+  assert.equal(jobs.find(job => job.nativeId === 12193).postingDate, '2024-08-28T06:04:25.000Z')
+  assert.equal(jobs.nativeCollectionEvidence.failures.length, 0)
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed, false)
 })
 test('healthy observed role keeps explicit native India, publication and incomplete pagination evidence', async () => {
   const jobs = await runFixture()

@@ -10,6 +10,7 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 import candidate from './catalog-candidate.json' with {type:'json'}
 
 const PROFILE=JSON.parse(readFileSync(new URL('./reviewedNativeData20261115.json',import.meta.url),'utf8'))
+const PROFILES=[PROFILE,JSON.parse(readFileSync(new URL('./reviewedNativeData20261121.json',import.meta.url),'utf8'))]
 export const SOURCE='yournest',COMPANY='YourNest',BOARD_URL=PROFILE.boardUrl,LIST_URL=PROFILE.listUrl
 export const PROVIDER_METADATA={...candidate,modulePath:fileURLToPath(import.meta.url)}
 const sha=value=>createHash('sha256').update(value).digest('hex'),same=isDeepStrictEqual
@@ -24,19 +25,20 @@ const ignore=operation=>{try{Promise.resolve(operation()).catch(()=>{})}catch{}}
 const typedArray=Object.getPrototypeOf(Uint8Array.prototype),intrinsic=name=>Object.getOwnPropertyDescriptor(typedArray,name).get
 const byteLength=intrinsic('byteLength'),byteOffset=intrinsic('byteOffset'),arrayBuffer=intrinsic('buffer')
 
-function pin(page,label){
- const expected=entities.get(page.url)
+function pin(page,label,profile=PROFILE){
+ need(PROFILES.includes(profile),'Caller-supplied native data profile is unsupported')
+ const expected=profile.entities.find(entity=>entity.requestedUrl===page.url)
  need(expected&&expected.label===label&&Buffer.isBuffer(page.bytes)&&typeof page.text==='string'&&Buffer.from(page.text).equals(page.bytes),'Original native carrier/representation identity changed')
  need(page.bytes.length===expected.bytes&&sha(page.bytes)===expected.sha256,'Complete original '+label+' bytes changed')
 }
 function json(text){try{return JSON.parse(text)}catch{throw gap('Original JSON representation changed')}}
 const allNodes=root=>[root,...root.children.filter(child=>typeof child!=='string').flatMap(allNodes)]
-function ownedData(page,role){
+function ownedData(page,role,profile=PROFILE){
  const doc=readNativeDocument(page.text),root=doc.nodes(node=>node.tag==='root')[0],nodes=allNodes(root)
  const scripts=nodes.filter(node=>node.tag==='script'&&node.attrs.id==='__NEXT_DATA__')
  need(scripts.length===1&&doc.nodes(node=>node===scripts[0]).length===1&&scripts[0].attrs.type==='application/json'&&!Object.hasOwn(scripts[0].attrs,'src'),'Original active native SSR owner changed')
  const ssr=json(scripts[0].raw)
- need(same(ssr,role?role.FullSSR:PROFILE.boardFullSSR)&&same(ssr.props?.pageProps?.companyDetails,PROFILE.company),'Complete native SSR/company model changed')
+ need(same(ssr,role?role.FullSSR:profile.boardFullSSR)&&same(ssr.props?.pageProps?.companyDetails,profile.company),'Complete native SSR/company model changed')
  const company=ssr.props.pageProps.companyDetails
  need(company.id===6566&&company.uuid==='987EE7EF32'&&company.name==='YourNest Venture Capital'&&company.url==='https://yournest.in/'&&company.slug==='yournest-venture-capital','Original native account/employer binding changed')
  if(!role)return{ssr}
@@ -46,10 +48,10 @@ function ownedData(page,role){
  need(same(schema,role.JobPosting)&&links.length===1&&links[0].attrs.href===role.rawApplyHref,'Complete native schema or original unresolved Apply declaration changed')
  return{ssr,schema,rawApplyHref:links[0].attrs.href}
 }
-export function readYourNestBoard(page){pin(page,'board');return ownedData(page)}
-export function readYourNestListing(page){
- pin(page,'listing');const value=json(page.text)
- need(same(value,PROFILE.listing)&&value.count===4&&value.results.length===4&&value.next===null&&value.previous===null,'Whole ordered four-record native listing changed')
+export function readYourNestBoard(page,profile=PROFILE){pin(page,'board',profile);return ownedData(page,undefined,profile)}
+export function readYourNestListing(page,profile=PROFILE){
+ pin(page,'listing',profile);const value=json(page.text)
+ need(same(value,profile.listing)&&value.count===4&&value.results.length===4&&value.next===null&&value.previous===null,'Whole ordered four-record native listing changed')
  need(new Set(value.results.map(row=>row.id)).size===4,'Duplicate original native row')
  return value
 }
@@ -63,12 +65,12 @@ const clock=value=>{
  const raw=typeof value==='function'?value():value??new Date(),ms=raw instanceof Date?raw.getTime():typeof raw==='string'?Date.parse(raw):NaN
  need(Number.isFinite(ms),'Invalid native source clock');return ms
 }
-export function readYourNestPair(apiPage,publicPage,row,now=new Date()){
- const role=PROFILE.roles.find(role=>role.id===row.id)
- need(role&&same(row,PROFILE.listing.results.find(value=>value.id===row.id)),'Unreviewed native role/listing identity')
- pin(apiPage,'api-'+row.id);pin(publicPage,'html-'+row.id)
+export function readYourNestPair(apiPage,publicPage,row,now=new Date(),profile=PROFILE){
+ const role=profile.roles.find(role=>role.id===row.id)
+ need(role&&same(row,profile.listing.results.find(value=>value.id===row.id)),'Unreviewed native role/listing identity')
+ pin(apiPage,'api-'+row.id,profile);pin(publicPage,'html-'+row.id,profile)
  need(apiPage.url===role.apiUrl&&publicPage.url===role.publicUrl,'Original API/public role URL changed')
- const api=json(apiPage.text),publicData=ownedData(publicPage,role),schema=publicData.schema
+ const api=json(apiPage.text),publicData=ownedData(publicPage,role,profile),schema=publicData.schema
  need(Object.keys(api).length===35&&same(api,role.APIRecord)&&same(api,publicData.ssr.props.pageProps.jobDetails),'Full35-field native API/SSR data changed')
  need(api.id===row.id&&api.uuid===role.uuid&&api.title===row.title&&schema.title===api.title&&schema.identifier.value===api.id&&api.email_domain==='yournest.in'&&api.published_internally===false,'Original own native identity/status changed')
  need(api.country==='India'&&row.country==='India'&&schema.jobLocation.address.addressCountry==='India'&&schema.applicantLocationRequirements.name==='India','Explicit native country disagreement')
@@ -146,11 +148,14 @@ export function createYourNestOriginalReader(options={}){
 export async function runCurrentYourNestData(options={}){
  const reader=createYourNestOriginalReader(options),observations=[]
  try{
-  const now=clock(options.now),board=readYourNestBoard(await reader.read(BOARD_URL)),listing=readYourNestListing(await reader.read(LIST_URL))
-  const readPair=async row=>{const known=PROFILE.roles.find(role=>role.id===row.id),api=await reader.read(known.apiUrl);pin(api,'api-'+row.id);return readYourNestPair(api,await reader.read(known.publicUrl),row,new Date(now))}
+  const now=clock(options.now),boardPage=await reader.read(BOARD_URL)
+  const profile=PROFILES.find(profile=>profile.entities.some(entity=>entity.label==='board'&&entity.requestedUrl===boardPage.url&&entity.bytes===boardPage.bytes.length&&entity.sha256===sha(boardPage.bytes)))
+  need(profile,'Complete original board bytes changed')
+  const board=readYourNestBoard(boardPage,profile),listing=readYourNestListing(await reader.read(LIST_URL),profile)
+  const readPair=async row=>{const known=profile.roles.find(role=>role.id===row.id),api=await reader.read(known.apiUrl);pin(api,'api-'+row.id,profile);return readYourNestPair(api,await reader.read(known.publicUrl),row,new Date(now),profile)}
   for(const row of listing.results)observations.push(await readPair(row))
   reader.beginClosing()
-  const lastBoard=readYourNestBoard(await reader.read(BOARD_URL)),lastListing=readYourNestListing(await reader.read(LIST_URL))
+  const lastBoard=readYourNestBoard(await reader.read(BOARD_URL),profile),lastListing=readYourNestListing(await reader.read(LIST_URL),profile)
   need(same(board,lastBoard)&&same(listing,lastListing),'Complete native board/ordered listing closing changed')
   for(const observed of observations){const closing=await readPair(observed.row);need(same(observed,closing),'Complete original API/public role closing changed');observed.closingData=closing}
   const stats=reader.stats();need(stats.requests===20&&stats.reservedClosingReads===0&&stats.reservedClosingBytes===0,'All20 original observations must close')

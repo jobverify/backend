@@ -16,10 +16,10 @@ test('Sapiens Nov16 complete native deployment shell remains data-only without g
  assert.equal(landing.canonicalQualified,false)
 })
 
-test('Sapiens still rejects an unreviewed native shell program',()=>{
+test('Sapiens a new own declared asset revision remains only generic shell evidence',()=>{
  const text=page.text.replace('main.e982b7319a1ce329.js','main.0000000000000000.js')
  assert.notEqual(text,page.text)
- assert.throws(()=>readSapiensBoard({...page,text,bytes:Buffer.from(text)}),/static carrier changed/)
+ assert.equal(readSapiensBoard({...page,text,bytes:Buffer.from(text)}).roleSSRQualified,false)
 })
 
 test('Sapiens Nov16 current original14-response run retains both distinct India native criteria and intake records',async()=>{

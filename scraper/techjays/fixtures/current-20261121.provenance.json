@@ -1,0 +1,1296 @@
+{
+  "fixture": "scraper/techjays/fixtures/current-20261121.json.gz",
+  "sha256": "7124ba1781e8d24a4f1301d8985c44ff40be15947adb7496964a2645e9b9d727",
+  "pages": [
+    {
+      "requestedUrl": "https://www.techjays.com/",
+      "url": "https://www.techjays.com/",
+      "status": 200,
+      "headers": {
+        "age": "128",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 20 Nov 2026 22:23:18 GMT",
+        "etag": "W/\"17s6xdhv18050hj\"",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/",
+        "x-nextjs-prerender": "1",
+        "x-nextjs-stale-time": "300",
+        "x-powered-by": "Next.js",
+        "x-vercel-cache": "STALE",
+        "x-vercel-id": "bom1::yul1::wnq4z-1795215200057-0dc8eedaf605"
+      },
+      "sha256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+      "bodyOriginalUnmodified": true,
+      "originalArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/techjays/current-20261120225230356-25072/0001.body.gz"
+    },
+    {
+      "requestedUrl": "https://www.techjays.com/careers",
+      "url": "https://www.techjays.com/careers",
+      "status": 200,
+      "headers": {
+        "age": "0",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 20 Nov 2026 22:53:20 GMT",
+        "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/immutable/chunks/12yt460qmi7b4.css>; rel=preload; as=\"style\", </_next/static/immutable/chunks/0u8dh09kk9-um.css>; rel=preload; as=\"style\", </_next/static/immutable/chunks/170eb3owr05sg.css>; rel=preload; as=\"style\"",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/careers",
+        "x-powered-by": "Next.js",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "bom1::bom1::m9cxd-1795215200446-961b2d30caa6"
+      },
+      "sha256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+      "bodyOriginalUnmodified": true,
+      "originalArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/techjays/current-20261120225230356-25072/0002.body.gz"
+    },
+    {
+      "requestedUrl": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+      "url": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+      "status": 200,
+      "headers": {
+        "age": "0",
+        "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Fri, 20 Nov 2026 22:53:21 GMT",
+        "link": "</>; rel=preconnect; crossorigin=\"\", </_next/static/immutable/chunks/12yt460qmi7b4.css>; rel=preload; as=\"style\", </_next/static/immutable/chunks/0u8dh09kk9-um.css>; rel=preload; as=\"style\", </_next/static/immutable/chunks/170eb3owr05sg.css>; rel=preload; as=\"style\"",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/careers/[slug]",
+        "x-powered-by": "Next.js",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "bom1::bom1::4x5gs-1795215201846-c830719d3c93"
+      },
+      "sha256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+      "bodyOriginalUnmodified": true,
+      "originalArtifact": "reports/scraper-20261120-133018/unassessed-current-rechecks/techjays/current-20261120225230356-25072/0005.body.gz"
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/12yt460qmi7b4.css",
+      "type": "style",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/12yt460qmi7b4.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/12yt460qmi7b4.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/12yt460qmi7b4.css",
+            "data-precedence": "next"
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:05.651Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/12yt460qmi7b4.css",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47684",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"12yt460qmi7b4.css\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:51 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/12yt460qmi7b4.css\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/12yt460qmi7b4.css",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::2ltk7-1795224891957-f41570bba613"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 2233,
+      "sha256": "767cbb17d150516c1b831d025394af6ceb0c23885e5fcb95a13a17bc6aa39f0a",
+      "bodyFile": "767cbb17d150516c1b831d025394af6ceb0c23885e5fcb95a13a17bc6aa39f0a.gz",
+      "completedAt": "2026-11-21T01:34:06.104Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+      "type": "style",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+            "data-precedence": "next"
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.106Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47684",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"0u8dh09kk9-um.css\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/0u8dh09kk9-um.css\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/0u8dh09kk9-um.css",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::6twrd-1795224892056-76d4a57f908f"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 2233,
+      "sha256": "f08281b6472fc7374f672b0394a7b29f224780485223751a71e2120dcd329610",
+      "bodyFile": "f08281b6472fc7374f672b0394a7b29f224780485223751a71e2120dcd329610.gz",
+      "completedAt": "2026-11-21T01:34:06.174Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/170eb3owr05sg.css",
+      "type": "style",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/170eb3owr05sg.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/170eb3owr05sg.css",
+            "data-precedence": "next"
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/immutable/chunks/170eb3owr05sg.css",
+            "data-precedence": "next"
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.176Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/170eb3owr05sg.css",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47684",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"170eb3owr05sg.css\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "text/css; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/170eb3owr05sg.css\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/170eb3owr05sg.css",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::j6bwz-1795224892132-a9cc3207f11f"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 187777,
+      "sha256": "5df3a05a75292aaa4e6bdeeb62aed564e8164ddccbb1ed8b3a8ae40a8866b8fd",
+      "bodyFile": "5df3a05a75292aaa4e6bdeeb62aed564e8164ddccbb1ed8b3a8ae40a8866b8fd.gz",
+      "completedAt": "2026-11-21T01:34:06.293Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3ff77lahkleny.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3ff77lahkleny.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3ff77lahkleny.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3ff77lahkleny.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.296Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3ff77lahkleny.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47681",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3ff77lahkleny.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3ff77lahkleny.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3ff77lahkleny.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::hrgst-1795224892247-5c1ee35f6af6"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 177124,
+      "sha256": "63f3174bbed111b3007ea0bb1ba5c3950d1078c803a4d2377df8b3be5e7bc370",
+      "bodyFile": "63f3174bbed111b3007ea0bb1ba5c3950d1078c803a4d2377df8b3be5e7bc370.gz",
+      "completedAt": "2026-11-21T01:34:06.383Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3_7igea-fxuju.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3_7igea-fxuju.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3_7igea-fxuju.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3_7igea-fxuju.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.386Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3_7igea-fxuju.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47681",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3_7igea-fxuju.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3_7igea-fxuju.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3_7igea-fxuju.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::7fsx5-1795224892347-94d1386254ae"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 233698,
+      "sha256": "9104cbf66e72e1bd5f81450d3c084e7961589081a95411fc8efaff4ef76526d3",
+      "bodyFile": "9104cbf66e72e1bd5f81450d3c084e7961589081a95411fc8efaff4ef76526d3.gz",
+      "completedAt": "2026-11-21T01:34:06.508Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.510Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "7510",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"turbopack-1slapfm344510.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/turbopack-1slapfm344510.js\"",
+        "last-modified": "Fri, 20 Nov 2026 23:29:42 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/turbopack-1slapfm344510.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::2ltk7-1795224892464-8658758285da"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 9649,
+      "sha256": "5e5e98496cb4e6880c50d466a258c68186aabf129c1863eca7e08a295d50855b",
+      "bodyFile": "5e5e98496cb4e6880c50d466a258c68186aabf129c1863eca7e08a295d50855b.gz",
+      "completedAt": "2026-11-21T01:34:06.623Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/00igo-tw8tkav.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/00igo-tw8tkav.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/00igo-tw8tkav.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/00igo-tw8tkav.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.626Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/00igo-tw8tkav.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47685",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"00igo-tw8tkav.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/00igo-tw8tkav.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/00igo-tw8tkav.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::7fsx5-1795224892577-ea24b4aa5e1c"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 24937,
+      "sha256": "e08e5b3961db911e7aaae3c538dd5f3d47e52fdaa409a0463202e2c24b53747e",
+      "bodyFile": "e08e5b3961db911e7aaae3c538dd5f3d47e52fdaa409a0463202e2c24b53747e.gz",
+      "completedAt": "2026-11-21T01:34:06.695Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.697Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "227574",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"0ja4ee6ek9x4g.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/0ja4ee6ek9x4g.js\"",
+        "last-modified": "Wed, 18 Nov 2026 10:21:58 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/0ja4ee6ek9x4g.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::rqdzp-1795224892656-741f3ff49b1d"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 120818,
+      "sha256": "0162fd9a73d63454e132d399d91c2a74618bad4de353d45676b5eff61187491d",
+      "bodyFile": "0162fd9a73d63454e132d399d91c2a74618bad4de353d45676b5eff61187491d.gz",
+      "completedAt": "2026-11-21T01:34:06.804Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/214w9orxuei3i.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/214w9orxuei3i.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/214w9orxuei3i.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/214w9orxuei3i.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.807Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/214w9orxuei3i.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47685",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"214w9orxuei3i.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/214w9orxuei3i.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/214w9orxuei3i.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::rqdzp-1795224892762-0d235a14c2b6"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 69934,
+      "sha256": "c367c286241e7c90a633747f1100cd1241e9c1d371ea32c7169de8cbf3f1a834",
+      "bodyFile": "c367c286241e7c90a633747f1100cd1241e9c1d371ea32c7169de8cbf3f1a834.gz",
+      "completedAt": "2026-11-21T01:34:06.881Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.885Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47682",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3dw3a3rq3va7a.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:52 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3dw3a3rq3va7a.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3dw3a3rq3va7a.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::fn2wd-1795224892837-82490aee3959"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 1587,
+      "sha256": "5038a58bf3e658b27d0f132504a0dfcc4052daa6128958fbe7f0fe3e87e5071a",
+      "bodyFile": "5038a58bf3e658b27d0f132504a0dfcc4052daa6128958fbe7f0fe3e87e5071a.gz",
+      "completedAt": "2026-11-21T01:34:06.951Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:06.954Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "0",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3kaqzyq0ndrc6.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3kaqzyq0ndrc6.js\"",
+        "last-modified": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3kaqzyq0ndrc6.js",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "bom1::9ftn5-1795224892907-39aae5851e8c"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 27856,
+      "sha256": "915defb20fa49147ff11ad4587302451b54d2f094dc2b080cca3b3789d2c9553",
+      "bodyFile": "915defb20fa49147ff11ad4587302451b54d2f094dc2b080cca3b3789d2c9553.gz",
+      "completedAt": "2026-11-21T01:34:07.283Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.286Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47685",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"0tkdew_gst4gj.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/0tkdew_gst4gj.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/0tkdew_gst4gj.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::h5brd-1795224893237-807e158c819e"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 39606,
+      "sha256": "917b9d602dbee6de0ce526f840b51e07e56e6725994345cfea79c97318fd844a",
+      "bodyFile": "917b9d602dbee6de0ce526f840b51e07e56e6725994345cfea79c97318fd844a.gz",
+      "completedAt": "2026-11-21T01:34:07.359Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/29_ma9a076t5a.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/29_ma9a076t5a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/29_ma9a076t5a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/29_ma9a076t5a.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.362Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/29_ma9a076t5a.js",
+      "headers": {
+        "accept-ranges": "bytes",
+        "access-control-allow-origin": "*",
+        "age": "47682",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"29_ma9a076t5a.js\"",
+        "content-length": "225",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "\"_next/static/immutable/chunks/29_ma9a076t5a.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/29_ma9a076t5a.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::h5brd-1795224893317-ea8f4f4bd438"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 225,
+      "sha256": "54a561ebcccb3c3aa8207c45df1a3e9b84ab2739817016a267a0dd7e0e06b569",
+      "bodyFile": "54a561ebcccb3c3aa8207c45df1a3e9b84ab2739817016a267a0dd7e0e06b569.gz",
+      "completedAt": "2026-11-21T01:34:07.447Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+            "async": "",
+            "crossorigin": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.451Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47682",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3giuvgkhjff9k.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3giuvgkhjff9k.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3giuvgkhjff9k.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::2ltk7-1795224893546-abbd80efbc3a"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 32707,
+      "sha256": "cc319a8ad4e213d88e628d5d888561e083631ef9f097b6a09e08a7129ca56859",
+      "bodyFile": "cc319a8ad4e213d88e628d5d888561e083631ef9f097b6a09e08a7129ca56859.gz",
+      "completedAt": "2026-11-21T01:34:07.679Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/1h1akm-zbgm9b.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/1h1akm-zbgm9b.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.682Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/1h1akm-zbgm9b.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47686",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"1h1akm-zbgm9b.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/1h1akm-zbgm9b.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:07 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/1h1akm-zbgm9b.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::mtxx7-1795224893647-7e6c38b8dc6a"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 28395,
+      "sha256": "669dcfc1a17c03edbac5d515f8fde73075ce0b785fd77f54ed0167db13764013",
+      "bodyFile": "669dcfc1a17c03edbac5d515f8fde73075ce0b785fd77f54ed0167db13764013.gz",
+      "completedAt": "2026-11-21T01:34:07.792Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/3qp6pnc62corf.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/3qp6pnc62corf.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.795Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/3qp6pnc62corf.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "7511",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"3qp6pnc62corf.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:53 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/3qp6pnc62corf.js\"",
+        "last-modified": "Fri, 20 Nov 2026 23:29:42 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/3qp6pnc62corf.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::2ltk7-1795224893747-6e68821e909a"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 62951,
+      "sha256": "9682f5fea08bf3a45d32cc6d0af71bd9cf11b1fa76acfb35c3f7f4445f6765ce",
+      "bodyFile": "9682f5fea08bf3a45d32cc6d0af71bd9cf11b1fa76acfb35c3f7f4445f6765ce.gz",
+      "completedAt": "2026-11-21T01:34:07.878Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+            "nomodule": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+            "nomodule": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+            "nomodule": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:07.881Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "0",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"0c0hxoamwjsbw.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/0c0hxoamwjsbw.js\"",
+        "last-modified": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "x-vercel-cache": "MISS",
+        "x-vercel-id": "bom1::fn2wd-1795224893843-ac4bf05408ae"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "bodyFile": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683.gz",
+      "completedAt": "2026-11-21T01:34:08.311Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/",
+          "pageSHA256": "7912f2aab925f1fbf628e6122227c8a3c94b1e40cc6a8bce782216a09627f720",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+            "id": "_R_",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+            "id": "_R_",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+            "id": "_R_",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:08.313Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47683",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"2k2sjg5sw72ue.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/2k2sjg5sw72ue.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:10 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/2k2sjg5sw72ue.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::7fsx5-1795224894263-ab0ebecfe03b"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 19035,
+      "sha256": "5e0f33951d7422493bad4f7d4cb713fe01cdb630757bd917b66dee9d0987fd07",
+      "bodyFile": "5e0f33951d7422493bad4f7d4cb713fe01cdb630757bd917b66dee9d0987fd07.gz",
+      "completedAt": "2026-11-21T01:34:08.405Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+            "async": ""
+          }
+        },
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:08.406Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "47682",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"07anm7gn-r7ry.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/07anm7gn-r7ry.js\"",
+        "last-modified": "Fri, 20 Nov 2026 12:20:11 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/07anm7gn-r7ry.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::7fsx5-1795224894357-98da20bdeb9a"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 27875,
+      "sha256": "e68e40867fc03662c6917a4a61f557e014974ea1a6e0ac6ce7cd9227a02c30d2",
+      "bodyFile": "e68e40867fc03662c6917a4a61f557e014974ea1a6e0ac6ce7cd9227a02c30d2.gz",
+      "completedAt": "2026-11-21T01:34:08.503Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/20s-4ogx47ho1.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/careers",
+          "pageSHA256": "6c83d73278a8eeadd4b49322da004b5ace5349d7cdcd2245f1ace662198ecc8a",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/20s-4ogx47ho1.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:08.505Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/20s-4ogx47ho1.js",
+      "headers": {
+        "access-control-allow-origin": "*",
+        "age": "44591",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"20s-4ogx47ho1.js\"",
+        "content-encoding": "br",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "etag": "W/\"_next/static/immutable/chunks/20s-4ogx47ho1.js\"",
+        "last-modified": "Fri, 20 Nov 2026 13:11:43 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "transfer-encoding": "chunked",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/20s-4ogx47ho1.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::tvkg9-1795224894457-066b08fabc22"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 39121,
+      "sha256": "2c28b10b43012601f2e12cf98a8e1002bd2897cf4822cf723c58f27fd9a01ab2",
+      "bodyFile": "2c28b10b43012601f2e12cf98a8e1002bd2897cf4822cf723c58f27fd9a01ab2.gz",
+      "completedAt": "2026-11-21T01:34:08.576Z"
+    },
+    {
+      "url": "https://www.techjays.com/_next/static/immutable/chunks/2tu30sjradlz-.js",
+      "type": "script",
+      "declarations": [
+        {
+          "page": "https://www.techjays.com/careers/-_XqzlxISa-lBr5iUvOFOg",
+          "pageSHA256": "8d6ad318e3a76d8a299b5a055d8c786f25ece2c1877d61ad3a2df13c4b5fa7b3",
+          "attributes": {
+            "src": "/_next/static/immutable/chunks/2tu30sjradlz-.js",
+            "async": ""
+          }
+        }
+      ],
+      "method": "GET",
+      "mode": "live-http-original-directly-declared-immutable-asset",
+      "requestedAt": "2026-11-21T01:34:08.578Z",
+      "status": 200,
+      "finalURL": "https://www.techjays.com/_next/static/immutable/chunks/2tu30sjradlz-.js",
+      "headers": {
+        "accept-ranges": "bytes",
+        "access-control-allow-origin": "*",
+        "age": "44576",
+        "cache-control": "public,max-age=31536000,immutable",
+        "content-disposition": "inline; filename=\"2tu30sjradlz-.js\"",
+        "content-length": "680",
+        "content-security-policy": "frame-ancestors 'none'",
+        "content-type": "application/javascript; charset=utf-8",
+        "date": "Sat, 21 Nov 2026 01:34:54 GMT",
+        "etag": "\"_next/static/immutable/chunks/2tu30sjradlz-.js\"",
+        "last-modified": "Fri, 20 Nov 2026 13:11:57 GMT",
+        "server": "Vercel",
+        "strict-transport-security": "max-age=63072000",
+        "x-frame-options": "DENY",
+        "x-matched-path": "/_next/static/immutable/chunks/2tu30sjradlz-.js",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "bom1::rxwbc-1795224894552-fea6da457a39"
+      },
+      "bodyOriginalUnmodified": true,
+      "bytes": 680,
+      "sha256": "07a945ae3203d0eeaa1e20e2ab0128e8a6b52a4cb9a927e679f910a1f04100e0",
+      "bodyFile": "07a945ae3203d0eeaa1e20e2ab0128e8a6b52a4cb9a927e679f910a1f04100e0.gz",
+      "completedAt": "2026-11-21T01:34:08.673Z"
+    }
+  ],
+  "originalResponsesUnmodified": true,
+  "nativeJavaScriptExecuted": false,
+  "newPageHTTPRequests": 0,
+  "newDeclaredAssetHTTPRequests": 21,
+  "priorPagePhase": "current-20261120225230356-25072"
+}

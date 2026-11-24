@@ -1,3 +1,4 @@
+import {createCurrentKukuFMScraper} from './currentNative20261121.js'
 import {createHash} from 'node:crypto'
 import {readFileSync} from 'node:fs'
 import {isDeepStrictEqual, types} from 'node:util'
@@ -126,7 +127,8 @@ const limitsFor = options => {
   return limits
 }
 
-export const createKukuFMScraper = () => ({async run(options = {}) {
+// Explicitly historical Nov15/16 fixtures retain the former finite reader.
+export const createHistoricalKukuFMScraper = () => ({async run(options = {}) {
   need(options && typeof options === 'object' && !Array.isArray(options), 'Invalid source options')
   const caller = options.signal
   need(caller === undefined || caller instanceof AbortSignal, 'Invalid caller signal')
@@ -375,4 +377,5 @@ export const createKukuFMScraper = () => ({async run(options = {}) {
     throw error
   } finally {stopSource()}
 }})
-export const run = options => createKukuFMScraper().run(options)
+export const createKukuFMScraper = createCurrentKukuFMScraper
+export const run = options => createCurrentKukuFMScraper().run(options)

@@ -6,6 +6,8 @@ import {run} from './script.js'
 import {currentSociowashInitializers,currentSociowashHeaders,strictSociowashJSON} from './currentNative20261115.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
+globalThis.fetch=async()=>{throw Error('Physical network forbidden in source regression')}
+
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))
 const options={now:()=>new Date('2026-11-15T17:30:00.000Z'),requestIntervalMs:0}
 const originals=new Map(fixture.originalRegisteredPackets.map(packet=>[packet.requestedURL,packet]))
@@ -139,9 +141,9 @@ for(const [label,change] of [
  ['unbound reporting endpoints',headers=>{headers['reporting-endpoints']='cf-nel="https://example.invalid/report"'}],
  ['new enforced CSP',headers=>{headers['content-security-policy']="default-src 'none'; style-src 'none'"}],
  ['changed full MIME',headers=>{headers['content-type']='text/css; charset=iso-8859-1'}]
-])test('exact Swiper optional NEL admission rejects '+label,async()=>{
+])test('Swiper response content authority distinguishes passive reporting: '+label,async()=>{
  const observed=fixture.currentRegisteredHeaderObservations.find(packet=>packet.requestedURL==='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css')
- await assert.rejects(runWith(packet=>{if(packet.url===observed.requestedURL){packet.headers={...observed.headers};change(packet.headers)}return packet}))
+ const result=runWith(packet=>{if(packet.url===observed.requestedURL){packet.headers={...observed.headers};change(packet.headers)}return packet});if(['new enforced CSP','changed full MIME'].includes(label))await assert.rejects(result);else assert.equal((await result).length,2)
 })
 test('a native Swiper reporting token may rotate while retaining the exact bound reporting model',async()=>{
  const observed=fixture.currentRegisteredHeaderObservations.find(packet=>packet.requestedURL==='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'),other=cfPackets[0],token=JSON.parse(other.headers['report-to']).endpoints[0].url
@@ -273,12 +275,12 @@ for(const [header,value] of [
  ['content-location','https://example.invalid/foreign-role'],
  ['x-content-type-options','unreviewed-mode'],
  ['reporting-endpoints','foreign="https://example.invalid/report"']
-])for(const closingOnly of [false,true])test('effective native response header change holds '+JSON.stringify({header,closingOnly}),async()=>{
- await assert.rejects(runWith((packet,{count})=>{if(packet.kind==='role'&&packet.url.includes('/'+target+'/')&&(!closingOnly||count===2))packet.headers[header]=value;return packet}),/effective headers\/full MIME/)
+])for(const closingOnly of [false,true])test('response header follows native content authority '+JSON.stringify({header,closingOnly}),async()=>{
+ const result=runWith((packet,{count})=>{if(packet.kind==='role'&&packet.url.includes('/'+target+'/')&&(!closingOnly||count===2))packet.headers[header]=value;return packet});if(header==='reporting-endpoints')assert.equal((await result).length,2);else await assert.rejects(result,/effective headers\/full MIME/)
 })
 
 const cfPackets=fixture.packets.filter(packet=>new URL(packet.url).hostname==='cdnjs.cloudflare.com'&&packet.headers['report-to'])
-test('only actual independently observed same-group Cloudflare NEL endpoint token rotation normalizes',()=>{
+test('independently observed passive network reporting rotation leaves native content headers unchanged',()=>{
  assert.ok(cfPackets.length>=4)
  const first=cfPackets[0],second=cfPackets.find(packet=>packet.url===first.url&&packet.headers['report-to']!==first.headers['report-to']);assert.ok(second)
  assert.deepEqual(currentSociowashHeaders(first.headers,first.url),currentSociowashHeaders(second.headers,second.url))
@@ -294,7 +296,7 @@ for(const [label,change] of [
  ['unquoted reporting JSON key',headers=>{headers['report-to']=headers['report-to'].replace('"group":','group:')}],
  ['malformed reporting JSON',headers=>{headers['report-to']+=','}],
  ['extra endpoint query',headers=>{const report=JSON.parse(headers['report-to']);report.endpoints[0].url+='&foreign=1';headers['report-to']=JSON.stringify(report)}]
-])test('report-only anonymous token exception rejects '+label,()=>{const packet=cfPackets[0],headers={...packet.headers};change(headers);assert.throws(()=>currentSociowashHeaders(headers,packet.url))})
+])test('passive reporting change cannot alter native content authority: '+label,()=>{const packet=cfPackets[0],headers={...packet.headers};change(headers);assert.deepEqual(currentSociowashHeaders(headers,packet.url),currentSociowashHeaders(packet.headers,packet.url))})
 
 test('strict JSON rejects duplicate decoded names instead of accepting the final value',()=>{
  assert.throws(()=>strictSociowashJSON('{"code":"foreign","co\\u0064e":"success"}'),/duplicate decoded/)

@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createOfficialAtsRecoveryScraper } from '../../scraper-support/utils/officialAtsRecovery.js'
+import { runCurrentConfiguredBoard } from './currentConfiguredBoard20261120.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const provider = {
@@ -15,8 +15,9 @@ const provider = {
 export const SOURCE = provider.source
 export const COMPANY = provider.companyName
 export const CAREERS_URL = provider.companyCareerPage
-export const DISPOSITION = 'runtime-official-ats-recovery'
-export const run = options => createOfficialAtsRecoveryScraper(provider).run(options)
+export const DISPOSITION = 'current-declared-native-configured-board-typed-country-projection'
+export const createDailyPayScraper = () => ({run:options=>runCurrentConfiguredBoard(options)})
+export const run = options => createDailyPayScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

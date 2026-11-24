@@ -1,0 +1,37 @@
+{
+  "id": "greenhouse-current-20261120",
+  "fixedModelSHA256": "5830b5a43f650146153f9b26c44e4ac71461564942a5b780efe78865a0ba8b60",
+  "shellSHA256": {
+    "1": "cb1bf337ccfabc43f331a9e95edb2533a1b761df0f4cb83355b7c124f39be8d4"
+  },
+  "pages": 1,
+  "cspSHA256": "b17fdaf38f91345ae5a1821aca3e175eaabf2c5b0f49c8c69561b1e1841edfad",
+  "officeCountryBindings": [
+    {
+      "id": 4001613004,
+      "name": "Denver",
+      "location": "Denver, Colorado, United States",
+      "countryLiteral": "United States"
+    },
+    {
+      "id": 4001614004,
+      "name": "San Diego",
+      "location": "San Diego, California, United States",
+      "countryLiteral": "United States"
+    }
+  ],
+  "assets": {
+    "manifest": "https://job-boards.cdn.greenhouse.io/assets/manifest-a77419c5.js",
+    "entry": "https://job-boards.cdn.greenhouse.io/assets/entry.client-DC94RlXZ.js",
+    "vendor": "https://job-boards.cdn.greenhouse.io/assets/vendor-43TFuiWl.js",
+    "root": "https://job-boards.cdn.greenhouse.io/assets/root-CfgK_qbt.js",
+    "module": "https://job-boards.cdn.greenhouse.io/assets/embed.job_board-PABKrW4v.js"
+  },
+  "assetHashes": {
+    "manifest": "c80bf71d71981707498008505495a4ab60826ce4eab459fb5386881a7c2593f1",
+    "entry": "bfe78d1c24579bc5bfe7bd9de365aca34253c851ba745ffd6155ca6594ba15eb",
+    "vendor": "69705c2529e83f645baa55e8923b43635b970d7dcb77371df4e00a79bc10a754",
+    "root": "dc8ab2fae6d25af585432884a5eb43b5f462e716e9d7c460188379709833c593",
+    "module": "b692e8cf0de8df9299fb526387fdde00c492800e466ee2000b5aada918b2374a"
+  }
+}

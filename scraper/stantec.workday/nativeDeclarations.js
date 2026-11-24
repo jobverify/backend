@@ -36,12 +36,21 @@ const CURRENT_NATIVE_CLIENTS=[
  ['Cd6C8PDS.js','c00f2dedd4f5a41d2d5958863a9ed650267d6a4150118b31e2b7943b7b91a3e3'],
  ...NATIVE_CLIENTS.slice(3).map(contract=>[new URL(contract.url).pathname.split('/').at(-1),contract.sha256]),
 ].map(([file,sha256])=>({url:BOARD+'_nuxt/'+file,sha256}))
+// The November 19 deployment has the same complete entry, search and role
+// source after import filenames are projected, with byte-identical API helpers.
+// Admit the complete reviewed deployment together; never union file versions.
+const NOV19_NATIVE_CLIENTS=[
+ ['Bi2VLHgt.js','eaffd0cd4ac78dcc606746ce8703fd30eb76469fef7b8520fb47e8855ec8c1bd'],
+ ['s-lmbCgk2.js','a7ca4a332297afc87490fa177a6a619da1cd85e047dd56711bbdc3dbc4df1b1b'],
+ ['ANCFKaDQ.js','8dbe2821f54b723e4aed67da04dd93c10e1bf7cd0f4a524e1817594876df1697'],
+ ...NATIVE_CLIENTS.slice(3).map(contract=>[new URL(contract.url).pathname.split('/').at(-1),contract.sha256]),
+].map(([file,sha256])=>({url:BOARD+'_nuxt/'+file,sha256}))
 const nativeClientProfile=doc=>{
  const scriptType=node=>(node.attrs.type||'').trim().toLowerCase()
  need(!doc.nodes(n=>n.tag==='script'&&scriptType(n)==='importmap').length,'unreviewed native importmap')
  const entries=doc.nodes(n=>n.tag==='script'&&scriptType(n)==='module')
  need(entries.length===1&&!Object.hasOwn(entries[0].attrs,'nomodule'),'active reviewed Nuxt entry missing or ambiguous')
- const clients=[NATIVE_CLIENTS,CURRENT_NATIVE_CLIENTS].find(profile=>entries[0].attrs.src===new URL(profile[0].url).pathname)
+ const clients=[NATIVE_CLIENTS,CURRENT_NATIVE_CLIENTS,NOV19_NATIVE_CLIENTS].find(profile=>entries[0].attrs.src===new URL(profile[0].url).pathname)
  need(clients,'active reviewed Nuxt entry missing or ambiguous')
  return clients.map(contract=>({...contract}))
 }

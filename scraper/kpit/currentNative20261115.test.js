@@ -2,7 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {run} from './script.js'
+// Historical Nov15/16 finite renderer-profile proof. Current registered acquisition
+// is verified by currentNativeFacts/nativeProtocol/currentNativeBoundaries20261121.
+import {runCurrentKpit as run} from './currentNative20261115.js'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))

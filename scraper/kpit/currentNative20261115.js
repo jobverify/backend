@@ -23,7 +23,8 @@ const UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
 // stored or replayed. Every other observed or new header remains part of the
 // effective-context guard, including MIME/CSP/CORS/refresh/location policies.
 const transportHeaders=new Set(['date','age','etag','expires','last-modified','cf-ray','x-azure-ref','x-ms-request-id','x-request-id','x-runtime','x-sucuri-cache','content-length','content-encoding','connection','keep-alive','transfer-encoding','server','alt-svc','cache-control','via','set-cookie','x-cache','cf-cache-status','fly-request-id','content-digest','x-ms-blob-content-md5','x-fd-int-roxy-purgeid'])
-export const currentKpitHeaders=headers=>Object.fromEntries(Object.entries(headers).filter(([name])=>!transportHeaders.has(name)).sort(([a],[b])=>a.localeCompare(b)))
+const normalizeVary=value=>typeof value==='string'?[...new Set(value.split(',').map(token=>token.trim()))].join(','):value
+export const currentKpitHeaders=headers=>Object.fromEntries(Object.entries(headers).filter(([name])=>!transportHeaders.has(name)).map(([name,value])=>[name,name==='vary'?normalizeVary(value):value]).sort(([a],[b])=>a.localeCompare(b)))
 
 // Two current TranslatePress language controls receive generated PHP IDs.
 // Validate the complete unique local control/dropdown bindings before replacing
@@ -140,7 +141,7 @@ export async function runCurrentKpit(options={}){
    // header set on this exact unchanged program. It is never ignored globally.
    const headerVariants=expected.reviewedHeaderVariants
    need(!headerVariants||(url===reviewedFormLoaderURL&&headerVariants.length===2&&same(headerVariants[0],expected.headers)),'unreviewed effective header variant contract')
-   need((headerVariants??[expected.headers]).some(headers=>same(currentKpitHeaders(packet.headers),headers)),'native effective HTTP header context changed')
+   need((headerVariants??[expected.headers]).some(headers=>same(currentKpitHeaders(packet.headers),currentKpitHeaders(headers))),'native effective HTTP header context changed')
    let text
    if(profile.documents.includes(url)){
     try{text=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw problem('native document original UTF8 unavailable')}

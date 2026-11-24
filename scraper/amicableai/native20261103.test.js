@@ -3,6 +3,9 @@ import{run,HOMEPAGE_URL,CAREERS_URL,SCREENLOOP_BOARD_URL}from'./script.js'
 import{readInventoryEvidence}from'../../scraper-support/utils/inventoryEvidence.js'
 import{decodeNativeEntities}from'../../scraper-support/utils/activeNativeHtml.js'
 const packets=JSON.parse(gunzipSync(readFileSync(new URL('./test-data/native-20261103.json.gz',import.meta.url)))),comment=value=>'/*'+value.replace(/\*\//g,'* /')+'*/'
+// A separately retained current original dependency completes the stylesheet
+// preload checks. Its bytes are not represented as a historical acquisition.
+packets.push(...JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/corporate-styling-20261121.json.gz',import.meta.url)))).packets.filter(p=>p.requestedUrl.includes('swiper@8')))
 async function replay(mutate=()=>{},options={}){const pages=new Map(structuredClone(packets).map(row=>[row.requestedUrl,row])),calls=[],visits=new Map();let audit
  const jobs=await run({...options,fetchPage:async(url,init)=>{const page=structuredClone(pages.get(url));assert.ok(page,'native fixture URL '+url);calls.push(url);const visit=(visits.get(url)||0)+1;visits.set(url,visit);mutate(page,{url,visit,pages,calls});return page},onAudit:value=>{audit=value}});return{jobs,audit,calls}}
 const propsEdit=(html,component,change)=>html.replace(new RegExp('(data-react-class="'+component.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'"[^>]*data-react-props=")([^"]*)(")'),(all,open,encoded,close)=>{const value=JSON.parse(decodeNativeEntities(encoded));change(value);return open+JSON.stringify(value).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')+close})
