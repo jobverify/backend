@@ -222,6 +222,15 @@ export function sourceGuardedClassification(job, { now = new Date(), mode = 'sha
       || collectRecruitmentFacts({ ...input, title: '' }).experienced)) {
     sourceQualityIssues.push('conflicting_role_eligibility')
   }
+  // A categorical waiver and an independently positive work requirement
+  // contradict each other. A domain-specific waiver or degree alternative
+  // does not waive the applicant's overall experience requirement.
+  const noExperienceRequired = ['description', 'minimumQualification', 'qualifications', 'requirements', 'experienceRequired']
+    .some(field => /(?:^|[.!?;\n])\s*(?:[-*\u2022]\s*)?(?:(?:(?:required|minimum|basic|work|professional)\s+)*(?:experience|qualifications?|requirements?)\s*:\s*)?(?:[-*\u2022]\s*)?no\s+(?:(?:prior|previous|professional|work)\s+)*experience\s+(?:is\s+)?(?:required|necessary)(?=\s*(?:$|[.!?;\n]|(?:[,\u2013\u2014-]\s*)?just\b))/i.test(input.sourceFields[field]))
+  if (noExperienceRequired && result.resolved.employerExperienceProfile?.minimumYears > 0
+    && !hasAlternativeFresherPath({ ...input, title }) && !sourceQualityIssues.includes('conflicting_role_eligibility')) {
+    sourceQualityIssues.push('conflicting_role_eligibility')
+  }
   sourceQualityIssues.push(...sourceAvailabilityIssues(input, { unresolved: result.resolved.jobType === 'Unspecified' }))
   if (sourceQualityIssues.length) {
     const reason = sourceQualityIssues.includes('non_vacancy_test_posting') ? 'non_vacancy_test_posting'
@@ -278,7 +287,7 @@ export function resolvePostScrapeClassification(job, prediction, { now = new Dat
   if (modelFallback) {
     const employerInput = postScrapeInput({ ...job, descriptionRewrite: null }, { now })
     if (prediction.modelLabel === 'Contract'
-      && /\b(?:review|manage|administer|negotiate|defined\s+by)\b[^.;\n]{0,100}\b(?:customer\s+|vendor\s+|supplier\s+)?contracts?\b|\b(?:manage|monitor|supervise|oversee)\b[^.;\n]{0,100}\bcontractors?\b|\b(?:vendors?|suppliers?)\s*(?:,|and|or|\/)\s*contractors?\b/i.test(employerInput.body)) {
+      && /\b(?:review|manage|administer|negotiate|defined\s+by)\b[^.;\n]{0,100}\b(?:customer\s+|vendor\s+|supplier\s+)?contracts?\b|\b(?:manage|monitor|supervise|oversee)\b[^.;\n]{0,100}\bcontractors?\b|\b(?:vendors?|suppliers?)\s*(?:,|and|or|\/)\s*contractors?\b|\b(?:deliver|meet|fulfil|fulfill)\b[^.;\n]{0,100}\bcontractual\s+(?:commitments|obligations)\b|\banalysis\s+of\s+(?:the\s+)?contract\b/i.test(employerInput.body)) {
       fallbackIssues.push('model_contract_from_third_party_duties')
     }
     if (prediction.modelLabel === 'Intern'

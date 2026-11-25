@@ -6,8 +6,12 @@ import { attachSourceObservationEvidence } from '../../scraper-support/utils/sou
 
 const HOME = 'https://www.anaptyss.com/'
 const CAREERS = HOME + 'careers/openings'
-const TAB_CLIENT = HOME + '_next/static/chunks/1sr4oigy47isl.js'
-const TAB_CLIENT_SHA = '10353e3fcff9aff0ffea54a071344e1183caf2d7ae91467355c253948c9f30cd'
+// Both exact published clients carry the identical qualification-tab module.
+// The newer bundle changes only two navigation-label capitalizations.
+const TAB_CLIENTS = Object.freeze({
+  '/_next/static/chunks/1sr4oigy47isl.js': '10353e3fcff9aff0ffea54a071344e1183caf2d7ae91467355c253948c9f30cd',
+  '/_next/static/chunks/05sfgikk--cx9.js': '2c846a0f327be9322c3f0b65b4b8d0cf026278eafce8886b7bfe2358b126a979',
+})
 const hash = value => createHash('sha256').update(value).digest('hex')
 const need = (ok, why) => { if (!ok) throw Error('Anaptyss current native: ' + why) }
 const one = (rows, label) => { need(rows.length === 1, 'expected one active ' + label); return rows[0] }
@@ -147,12 +151,16 @@ export async function runNativeAnaptyss(options = {}) {
     return cards(await read(CAREERS))
   }
   const inspect = async (rows, phase) => {
-    let clientRead = false
+    const clientsRead = new Set()
     for (const row of rows) {
       try {
         const html = await read(row.url), doc = readNativeDocument(html)
-        one(doc.nodes(node => node.tag === 'script' && node.attrs.src === new URL(TAB_CLIENT).pathname && !Object.hasOwn(node.attrs, 'nomodule')), 'current qualification executable client')
-        if (!clientRead) { need(hash(await read(TAB_CLIENT)) === TAB_CLIENT_SHA, 'unreviewed public qualification tab client contract'); clientRead = true }
+        const client = one(doc.nodes(node => node.tag === 'script' && Object.hasOwn(TAB_CLIENTS, node.attrs.src)
+          && !Object.hasOwn(node.attrs, 'nomodule')), 'current qualification executable client')
+        if (!clientsRead.has(client.attrs.src)) {
+          need(hash(await read(new URL(client.attrs.src, HOME).href)) === TAB_CLIENTS[client.attrs.src], 'unreviewed public qualification tab client contract')
+          clientsRead.add(client.attrs.src)
+        }
         const job = description(html, row)
         if (phase === 'opening') observed.set(job.jobId, job)
         else if (!equal(observed.get(job.jobId), job)) failures.push({ id: job.jobId, phase, reason: 'full same-ID criteria changed at closing' })

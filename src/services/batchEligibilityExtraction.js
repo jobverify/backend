@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { REWRITE_MODEL } from './jobDescriptionPolicy.js';
 import { prepareRewriteRuntime, startRewriteWorker } from '../../rewriting/worker.js';
-import { batchHash, batchYears, validBatchYear, hasGraduationYearEvidence } from '../utils/jobBatchEligibility.js';
+import { batchHash, batchYears, validBatchYear, hasGraduationYearEvidence, isPreferredBatchSection } from '../utils/jobBatchEligibility.js';
 
 const samples = JSON.parse(readFileSync(new URL('../../test/test-data/batchEligibilityExtraction.json', import.meta.url), 'utf8'));
 export const BATCH_EXTRACTION_IDENTITY = batchHash([REWRITE_MODEL.sha256, REWRITE_MODEL.runtimeTag,
@@ -119,7 +119,8 @@ export function batchEvidenceFacts(chunk) {
   let section = 'unspecified';
   const facts = [];
   for (const part of chunk.split(/\n|(?<=[.!?])\s+/).map(normalized).filter(Boolean)) {
-    if (/^(?:preceding section:|[^:]{0,60}(?:qualifications?|requirements?|responsibilities|experience|about us|description|title):\s*$)/i.test(part)) {
+    const heading = /^(?:(?:required|minimum|basic|preferred|desirable|optional|educational|academic|professional|work|technical|job)\s+){0,3}(?:qualifications?|requirements?|responsibilities|experience|about us|description|title)\s*$/i.test(sectionWords(part));
+    if (heading || /^(?:preceding section:|[^:]{0,60}(?:qualifications?|requirements?|responsibilities|experience|about us|description|title):\s*$)/i.test(part)) {
       section = part.replace(/^Preceding section:\s*/i, ''); continue;
     }
     facts.push({ id: facts.length + 1, section, text: part });
@@ -148,7 +149,8 @@ export async function extractBatchChunk(worker, chunk, { signal, onCompletion })
     return raw;
   };
   const quote = id => facts.find(fact => fact.id === id)?.text || invalid();
-  const graduationFacts = facts.filter(fact => hasGraduationYearEvidence(fact.text));
+  const graduationFacts = facts.filter(fact => !isPreferredBatchSection(fact.section)
+    && !/\b(?:preferred|desirable|optional)\b/i.test(fact.text) && hasGraduationYearEvidence(fact.text));
   if (graduationFacts.length) {
     const graduation = await request('Extract explicitly eligible graduation years for this vacancy. Never infer from experience or posting dates. Return years, maximumYear (only for YEAR and earlier), and sourceIds of the clauses that state them. If absent or excluded, return empty arrays and null.', {
       type: 'object', additionalProperties: false, properties: { years: properties.graduationYears,

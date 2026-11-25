@@ -255,6 +255,15 @@
       "clientUrl": "https://datapatterns.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
       "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
       "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7"
+    },
+    {
+      "reviewedAt": "2026-11-25",
+      "clientUrl": "https://datapatterns.darwinbox.in/ms/candidatev2/main.f5e76c3f4b395062.js",
+      "clientSha256": "fca478943f06f1e5ce96b92bb2184c39c65c75e92d859eb7ec4738e9995f9766",
+      "apiContract": "candidate-v2-post-alljobs-v1",
+      "rendererSha256": "0b8f0c170d8e77ad96a38b379825cdb70ceff4f6623432800603e601cf782c26",
+      "rendererReview": "Prior renderer pin deliberately retained. The current whole shell and its other executable/verification contexts remain unqualified; source completeness and lifecycle cleanup must stay held.",
+      "clientReview": "Exact current full client fetched from this employer-declared native origin. All eight reviewed company/group/listing/detail read and transform methods preserve complete structural AST after minifier-local identifier renaming; member/property names, literals, operators and operations remain exact. Full source bodies/AST hashes retained in batch-darwinbox-current/client-method-review.json.gz. No native schema, employer, country, full criteria, application or closing guard is relaxed."
     }
   ]
 }

@@ -199,8 +199,8 @@ test('durability baseline RED: coherent new IDs and changed ordered inventory co
  const packets=futureScenario((listing,details)=>{for(const[index,detail]of details.entries()){const row=listing.reqDetailsBOList.find(row=>row.reqId===detail.data.reqDetailsBO.reqId);row.reqId=146-index;detail.data.reqDetailsBO.reqId=row.reqId}const extra=structuredClone(listing.reqDetailsBOList[0]);extra.reqId=999;listing.reqDetailsBOList=[...listing.reqDetailsBOList.reverse(),extra]}),io=futureReplay(packets)
  const jobs=await withDaloopaReplayClock(()=>script.run({fetchImpl:io.fetchImpl}));assert.deepEqual(jobs.map(job=>job.jobId),['145','146']);assert.equal(jobs.nativeCollectionEvidence.nativeObservedRecordCount,12);assert.equal(io.calls.length,14)
 })
-test('durability baseline RED: even two observed opaque v values cannot switch inside one current role pair',async()=>{
- const io=createDaloopaReplay((bytes,item,count)=>count===11?alterJSON(bytes,value=>value.v=profile.roles[1].nativeVersion):bytes)
+test('durability: an unreviewed opaque v cannot switch inside one current role pair',async()=>{
+ const io=createDaloopaReplay((bytes,item,count)=>count===11?alterJSON(bytes,value=>value.v='d17-unreviewed-20261125123456'):bytes)
  await withDaloopaReplayClock(()=>assert.rejects(script.run({fetchImpl:io.fetchImpl}),authority));assert.equal(io.calls.length,11)
 })
 test('durability baseline RED: new bounded opaque v metadata is independent of example values and role ID',async()=>{
@@ -242,7 +242,7 @@ for(const[name,change]of [
 ])test('durability: full detail typed-country/control/availability rejects '+name,()=>assert.throws(()=>readDaloopaDetail(page('detail-46',bytes=>alterJSON(bytes,change)),46),authority))
 test('durability: Remote/city/currency never supplies missing current role-owned country',async()=>{
  const io=createDaloopaReplay((bytes,item)=>item.label==='listing'?alterJSON(bytes,value=>{for(const row of value.reqDetailsBOList)row.jdDisplay=row.jdDisplay.replace('Location: India (Remote)','Location: Remote')}):bytes)
- await withDaloopaReplayClock(()=>assert.rejects(script.run({fetchImpl:io.fetchImpl}),error=>authority(error)&&/Fewer than two/.test(error.message)));assert.equal(io.calls.length,3)
+ await withDaloopaReplayClock(()=>assert.rejects(script.run({fetchImpl:io.fetchImpl}),error=>authority(error)&&/No qualified/.test(error.message)));assert.equal(io.calls.length,3)
 })
 
 for(const[name,change,expectedReads]of [

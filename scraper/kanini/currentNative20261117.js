@@ -13,8 +13,14 @@ const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',im
 const currentForm={bytes:10070,sha256:'223a1ced48129dacbd41e4742c65a7e608852d7c64a30c42078bb610ece5771d',program:{
  url:'https://static.zohocdn.com/recruit/javascript/new-webform-render.5e1789cf0193bff12e8805c3fd83a57f.js',
  bytes:2046159,sha256:'0dc9cb788835fae70d207e1c56b871073064dce2ccb96315d7fa483ad485699e'}}
+// Exact current form changes only its CSS and renderer references. The reviewed
+// renderer adds video-interview field visibility guards to native validation;
+// retain all form data without asserting application validation equivalence.
+const reviewedForms=[currentForm,{bytes:10070,sha256:'5c96c018c54b427e96b7b4e031b8f88044245daabf51f5957bcf9b55632eedec',program:{
+ url:'https://static.zohocdn.com/recruit/javascript/new-webform-render.cf31892f523c34063f88f17e9e07e474.js',
+ bytes:2046436,sha256:'8f2d95c7a40d8339dacb5de3c837e07d2481b942d1d8587012056b08dba96c85'}}]
 export async function runCurrentKanini(options={}){
- options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(c=>c.url),profile.form.url,profile.formProgram.url,currentForm.program.url,profile.formAPI])
+ options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(c=>c.url),profile.form.url,profile.formProgram.url,...reviewedForms.map(form=>form.program.url),profile.formAPI])
  const io=currentKaniniTransport({...options,allowedRequest:(url,method,body)=>method==='POST'?url===profile.listingClient.endpoint&&/^search=&location=&action=get_all_jobs&page=(?:[1-9]|1\d|20)&limit=12$/.test(body):allowed.has(url)}),verifiedAt=new Date().toISOString()
  const exact=async(entry,kind)=>{const p=await io.read(entry.url,kind);check(p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'whole exact native form/client original');return p}
  const round=async()=>{
@@ -30,10 +36,10 @@ export async function runCurrentKanini(options={}){
   for(let page=1;page<=20;page++){const body=profile.listingClient.bodyPrefix+page+profile.listingClient.bodySuffix,p=await io.read(profile.listingClient.endpoint,'html',body),batch=cards(p.text);pages.push({page,body,html:p.text});for(const row of batch){check(!ids.has(row.id),'unique native role across whole pagination');ids.add(row.id);rows.push(row)}if(!batch.length){terminal=true;break}}
   check(terminal,'actual native terminal response not reached');const details=[]
   for(const row of rows){if(nativeCountryName(row.country)!=='India')continue;allowed.add(row.url);const p=await io.read(row.url);details.push(detail(p.text,row,profile))}
-  const formPage=await io.read(profile.form.url,'html'),current=formPage.bodyBytes===currentForm.bytes&&formPage.bodySHA256===currentForm.sha256
+  const formPage=await io.read(profile.form.url,'html'),current=reviewedForms.find(form=>formPage.bodyBytes===form.bytes&&formPage.bodySHA256===form.sha256)
   check(current||formPage.bodyBytes===profile.form.bytes&&formPage.bodySHA256===profile.form.sha256,'whole exact native form original')
-  await exact(current?currentForm.program:profile.formProgram,'js');const form=application((await io.read(profile.formAPI,'json')).value,profile)
-  return{rows,pages,details,application:form}
+  const program=current?.program??profile.formProgram;await exact(program,'js');const form=application((await io.read(profile.formAPI,'json')).value,profile)
+  return{rows,pages,details,application:form,nativeApplicationDeclarations:{url:formPage.url,fullNativeHTML:formPage.text,bodyBytes:formPage.bodyBytes,bodySHA256:formPage.bodySHA256,program}}
  }
  try{
   const opening=await round(),closing=await round();check(equal(opening,closing),'whole closing native card/criteria/application/passive-context model changed')
@@ -43,7 +49,7 @@ export async function runCurrentKanini(options={}){
    jobs.push({source:'kanini',company:'KANINI SOFTWARE SOLUTIONS',title:row.title,jobId:row.id,requisitionId:row.id,sourceUrl:row.url,applyUrl:row.url,link:row.url,
     location:row.location.split('|')[0].trim()+', India',country:'India',jobDescription:model.description,sourceDescription:model.descriptionHTML,experienceRequired:row.experience,employmentType:model.employment.join(' ')||null,
     postingDate:null,nativePublicationDateProvenance:null,nativeListingRecord:row,nativeDetailModel:model,nativeApplicationModel:opening.application,nativeApplicationFormURL:profile.form.url,
-    applicationVisited:false,publicEligibility:null,nativeApplicationContext:'generic-employer-candidate-form;manual-Applied_Job_ID-required;no-automatic-role-prefill-asserted',sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+    applicationVisited:false,publicEligibility:null,applicationValidationQualified:false,nativeApplicationContext:'generic-employer-candidate-form;manual-Applied_Job_ID-required;no-automatic-role-prefill-asserted',sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
     companyCareerPage:profile.corporate[2].url,companyDomain:'kanini.com',atsPlatform:'official-site-with-zohorecruit-form',scrapedAt:verifiedAt})
   }
   attachInventoryEvidence(jobs,{status:'coverage-gap',firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,surface:profile.corporate[2].url,pagesFetched:io.receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt,
@@ -52,7 +58,7 @@ export async function runCurrentKanini(options={}){
   Object.defineProperty(jobs,'nativeCollectionEvidence',{configurable:true,value:{...jobs.nativeCollectionEvidence,source:'kanini',observedListingCount:opening.rows.length,candidateDetails:opening.details.length,
    extractedDetailJobs:jobs.length,excludedDetailJobs:exclusions.length,failures,exclusions,nativeOpeningInventory:opening,nativeClosingInventory:closing,retainedResponses:io.receipts,
    nativeCountryUnknownRows:opening.rows.filter(r=>!nativeCountryName(r.country)).length,nativeExplicitForeignRows:opening.rows.filter(r=>nativeCountryName(r.country)&&nativeCountryName(r.country)!=='India').length,
-   closingFullNativeInventoryMatch:true,listingPaginationComplete:true,companyGlobalTotal:null,companyIndiaTotal:null,applicationVisited:false,publicEligibility:null,sourceScopeComplete:false,browserEquivalenceComplete:false,lifecycleCleanupAllowed:false}})
+   closingFullNativeInventoryMatch:true,listingPaginationComplete:true,companyGlobalTotal:null,companyIndiaTotal:null,applicationVisited:false,publicEligibility:null,applicationValidationQualified:false,sourceScopeComplete:false,browserEquivalenceComplete:false,lifecycleCleanupAllowed:false}})
   return jobs
  }finally{io.close()}
 }

@@ -1,10 +1,12 @@
 import { createHash } from 'node:crypto';
 import { getSourceDescription } from './jobSourceContent.js';
 
-export const BATCH_ELIGIBILITY_VERSION = 'academic-batches-v2';
+export const BATCH_ELIGIBILITY_VERSION = 'academic-batches-v3';
 export const validBatchYear = value => Number.isInteger(value) && value >= 1900 && value <= 2199;
 export const batchYears = values => [...new Set((Array.isArray(values) ? values : []).filter(validBatchYear))].sort((a, b) => a - b);
 export const batchMaximum = job => validBatchYear(job?.eligibleBatchRange?.maxYear) ? job.eligibleBatchRange.maxYear : null;
+export const isPreferredBatchSection = value => /^(?:preferred|desirable|optional)(?:\s+(?:[a-z]+\s+){0,3}(?:qualifications?|requirements?|experience|skills|education)\b|\s*(?::|$))/i
+  .test(String(value ?? '').replace(/([a-z])([A-Z])/g, '$1 $2').trim());
 
 // "Graduate" in a role/degree name does not make nearby recruitment or
 // legislation dates graduation years. Keep candidate graduation predicates

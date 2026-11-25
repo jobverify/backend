@@ -6,7 +6,7 @@ import { readVisibleNativeDocument, readNativeStatusLayout } from './visibleNati
 const PROVENANCE = 'source-validated-native-role-availability-v1'
 const CONFIG = {
   enphaseenergy: { brand: 'Enphase Energy', employers: ['Enphase Energy'] },
-  disney: { brand: 'Disney', employers: ['Disney (India) Private Limited', 'Lucasfilm Visual Effects (India) Private Limited', 'Disney HR Strategies & Services, LLC'] },
+  disney: { brand: 'Disney', employers: ['Disney (India) Private Limited', 'Lucasfilm Visual Effects (India) Private Limited', 'Disney HR Strategies & Services, LLC', 'Walt Disney Attractions Technology LLC'] },
   datahub: { brand: 'DataHub', employers: ['DataHub'] },
 }
 const norm = value => typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : ''
@@ -88,6 +88,8 @@ function identity(job) {
       && ['Bengaluru, India', 'Mumbai, India'].includes(norm(job.nativeListingLocation)), 'Disney typed native role metadata is unqualified')
     role.nativePostingBrand = norm(job.nativePostingBrand)
     role.nativeListingLocation = norm(job.nativeListingLocation)
+    if (employer === 'Walt Disney Attractions Technology LLC') need(role.nativePostingBrand === 'Disney Experiences',
+      'Disney Attractions employer business brand is unqualified')
   }
   return role
 }
@@ -133,6 +135,19 @@ function scopes(html, role) {
       && ['391,', '391,' + role.employer].includes(meta('gtm_tbcn_division')), 'Disney native requisition/title/employer metadata differs')
     need(meta('gtm_tbcn_location') === (role.nativeListingLocation === 'Mumbai, India'
       ? 'Mumbai~Maharashtra~India' : 'Bengaluru~Karnataka~India'), 'Disney typed native country metadata differs')
+    if (role.employer === 'Walt Disney Attractions Technology LLC') {
+      const excluded = new Set(['blockquote', 'q', 'pre', 'code', 'template', 'script', 'style', 'noscript'])
+      const containsExcluded = node => excluded.has(node.tag)
+        || node.children.some(child => typeof child !== 'string' && containsExcluded(child))
+      const paragraphs = node => node.inert || readNativeStatusLayout(node)?.visibility === 'excluded'
+        || excluded.has(node.tag) ? []
+        : [...(node.tag === 'p' ? [node] : []), ...node.children.filter(child => typeof child !== 'string').flatMap(paragraphs)]
+      const allowed = new Set(paragraphs(root[0]))
+      const statements = statusNodes(node => allowed.has(node) && /^This position is with\b/.test(d.text(node)))
+      need(statements.length === 1 && !containsExcluded(statements[0])
+        && d.text(statements[0]) === 'This position is with Walt Disney Attractions Technology LLC, which is part of a business we call Disney Experiences.',
+        'Disney native employer/business declaration is missing or contradictory')
+    }
     descriptions = statusNodes(n => d.hasClass(n, 'ats-description') && root.some(r => within(r, n)))
   } else {
     header = statusNodes(n => d.hasClass(n, 'job__header'))

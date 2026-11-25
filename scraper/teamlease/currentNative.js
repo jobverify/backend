@@ -123,6 +123,13 @@ function workplace(posting,listing){
  const raw=posting.jobLocation==null?[]:Array.isArray(posting.jobLocation)?posting.jobLocation:[posting.jobLocation]
  need(raw.length<=32,'Native workplace bound exceeded')
  const locations=raw.map(item=>{
+  // Place.address also permits native Text. Preserve that label without
+  // converting a city name into typed country or locality evidence.
+  if(typeof item?.address==='string'){
+   const label=norm(item.address)
+   need(label&&item.address.length<=1000&&!/[<>\u0000-\u001f]/.test(item.address),'Malformed native workplace')
+   return {country:null,city:null,region:null,location:label,raw:structuredClone(item)}
+  }
   need(item&&item.address&&typeof item.address==='object'&&!Array.isArray(item.address),'Malformed native workplace')
   const address=item.address,value=address.addressCountry
   const label=typeof value==='object'&&value?value.name??value.countryCode:value

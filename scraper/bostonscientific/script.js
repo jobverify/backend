@@ -18,7 +18,7 @@ function page(payload,{country=false}={}){
  ensure(JSON.stringify(data.appliedFilters)===JSON.stringify(country?{country:['India']}:{}),'Unexpected native search filters')
  return data
 }
-export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.parse(await nativeFetch(u,o)),signal,now=()=>new Date().toISOString(),maxJobs=1000,timeoutMs=120000}={}){
+async function runAttempt({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.parse(await nativeFetch(u,o)),signal,now=()=>new Date().toISOString(),maxJobs=1000,timeoutMs=120000}={}){
  ensure(Number.isSafeInteger(maxJobs)&&maxJobs>=0&&maxJobs<=1000&&Number.isFinite(timeoutMs)&&timeoutMs>0&&timeoutMs<=180000,'Invalid limits')
  const startedAt=now();ensure(typeof startedAt==='string'&&Number.isFinite(Date.parse(startedAt)),'Invalid check time')
  const controller=new AbortController(),abort=()=>controller.abort(signal?.reason),timer=setTimeout(()=>controller.abort(new Error('Boston Scientific deadline exceeded')),timeoutMs)
@@ -32,7 +32,10 @@ export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.pars
   const rows=[],ids=new Set(),unresolvedScopes=[],scopeById=new Map(),globalPages=new Map();let total=null,pages=0
   for(let start=0;start<=1000;start+=10){
    const data=page(await request(fetchJson,search(start)));pages++
-   if(total===null)total=data.count;else ensure(total===data.count,'Native total drift')
+   if(total===null)total=data.count;else if(total!==data.count)throw Object.assign(Error('Boston Scientific: Native total drift'),{
+    incompleteScope:true,code:'BOSTON_NATIVE_INVENTORY_CHANGED',nativeInventoryChange:{expectedTotal:total,reportedTotal:data.count,start,
+     opening:{pages:[...globalPages].map(([start,snapshot])=>({start,data:JSON.parse(snapshot)}))},currentPage:structuredClone(data)},
+   })
    globalPages.set(start,JSON.stringify(data))
    if(start>=total){ensure(data.positions.length===0,'Terminal page not empty');break}
    ensure(data.positions.length===Math.min(10,total-start),'Truncated native page')
@@ -101,4 +104,28 @@ export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.pars
   Object.defineProperty(selected,'nativeCollectionEvidence',{value:{source:'bostonscientific',observedNativeRecords:total,observedFacetRecords:facetTotal,verifiedIndiaRecords:observedIndia.size,quarantinedFacetRecords:quarantinedFacetRoles.size,quarantinedFacetRoles:[...quarantinedFacetRoles.values()],unresolvedGlobalRoles:unresolvedScopes,sourceScopeComplete:complete,...(!complete?{lifecycleCleanupAllowed:false}:{}),terminalPageVerified:true,finalFirstPageRechecked:true},configurable:true})
   return attachInventoryEvidence(selected,{status:complete?(total?'complete-inventory':'verified-empty'):'coverage-gap',surface:BOARD,firstParty:true,listingComplete:complete,...(!complete?{lifecycleCleanupAllowed:false}:{}),pagesFetched:pages,reportedTotal:total,indiaFacetCount:facetTotal,verifiedAt:now(),reason:complete?'global-native-pages-country-facet-details-and-terminal-reconciled':unresolvedScopes.length?'unresolved-native-geography; individually-verified-India-subset':searchCeilingUnresolved?'observed-native-search-ceiling-without-uncapped-contract':'configured-cap-or-incomplete-detail-health'})
  }finally{controller.abort();clearTimeout(timer);signal?.removeEventListener('abort',abort)}
+}
+export async function run(options={}){
+ const timeoutMs=options.timeoutMs??120000
+ ensure(Number.isFinite(timeoutMs)&&timeoutMs>0&&timeoutMs<=180000,'Invalid limits')
+ const deadline=AbortSignal.timeout(Math.ceil(timeoutMs)),signal=options.signal?AbortSignal.any([options.signal,deadline]):deadline,attempts=[]
+ for(let attempt=1;attempt<=2;attempt++){
+  signal.throwIfAborted()
+  try{
+   const jobs=await runAttempt({...options,signal})
+   signal.throwIfAborted()
+   if(attempts.length)Object.defineProperty(jobs,'nativeCollectionEvidence',{configurable:true,value:{...jobs.nativeCollectionEvidence,
+    nativeCaptureAttempts:[...attempts,{attempt,status:'reconciled',reportedTotal:readInventoryEvidence(jobs)?.reportedTotal}],
+   }})
+   return jobs
+  }catch(error){
+   signal.throwIfAborted()
+   if(error?.code==='BOSTON_NATIVE_INVENTORY_CHANGED'){
+    attempts.push({attempt,status:'discarded-inventory-change',code:error.code,message:error.message,nativeInventoryChange:error.nativeInventoryChange})
+    if(attempt===1)continue
+   }
+   if(attempts.length)error.nativeCaptureAttempts=attempts
+   throw error
+  }
+ }
 }

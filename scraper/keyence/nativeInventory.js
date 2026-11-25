@@ -1,4 +1,5 @@
 import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import { createHash } from 'node:crypto'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { selectReviewedCandidateClient } from '../darwinbox/reviewedCandidateClient.js'
@@ -44,6 +45,7 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
   fail(options.maxJobs == null && options.maxPages == null, 'inventory caps unsupported')
   const origin = spec.origin, seed = origin + '/ms/candidatev2/main/careers/allJobs', api = origin + '/ms/candidateapi/'
   const checkedAt = new Date(options.now ? options.now() : Date.now()).toISOString()
+  let currentPostListing
   async function request(url, init = {}, cancel = false) {
     signal?.throwIfAborted()
     const deadline = signal ? AbortSignal.any([signal, AbortSignal.timeout(30000)]) : AbortSignal.timeout(30000)
@@ -116,6 +118,8 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     const scripts = doc.nodes(n => n.tag === 'script' && n.attrs.src).map(n => new URL(n.attrs.src, base).href)
     const release = selectReviewedCandidateClient(spec, scripts)
     fail(release, 'active candidate client changed')
+    const releaseUsesPostListing = release.apiContract === 'candidate-v2-post-alljobs-v1'
+    if (currentPostListing == null) currentPostListing = releaseUsesPostListing
     const shellSignature = hash(body)
     if (shellSignature !== release.rendererSha256) reasons.add('unreviewed-native-candidate-shell')
     const visible = readVisibleNativeDocument(body), root = visible.nodes(n => n.tag === 'root')[0]
@@ -123,6 +127,7 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
       // The complete byte pin includes all active text, attributes, inline and
       // external executables, forms, frames and additional hiring channels.
       shellSignature, visibleTextSha256: hash(root ? visible.text(root) : ''),
+      apiContract: releaseUsesPostListing ? 'candidate-v2-post-alljobs-v1' : 'legacy-get-v1',
       activeAttributesSha256: hash(doc.nodes(n => Object.keys(n.attrs).length > 0).map(n => ({ tag: n.tag, attrs: n.attrs }))),
       scripts, forms: doc.nodes(n => n.tag === 'form').map(n => n.attrs),
       frames: doc.nodes(n => n.tag === 'iframe').map(n => n.attrs),
@@ -132,19 +137,31 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     fail(script.response.status === 200 && hash(script.body) === release.clientSha256, 'reviewed public API client changed')
     return scope
   }
-  async function json(path) {
+  async function json(path, listingBody = null) {
     // A separate fresh public session is released immediately before each API
     // request. Cookies stay in memory and never enter receipts or output jobs.
     for (let attempt = 1; attempt <= 2; attempt++) {
-    const session = await request(seed, {}, true)
+    const session = await request(seed, currentPostListing ? { headers: {
+      'User-Agent': CHROME, Accept: 'text/html', 'Accept-Language': 'en',
+    } } : {}, true)
     fail(session.response.status === 200, 'public session seed unavailable')
     const cookies = session.response.headers.getSetCookie?.().map(value => value.split(';')[0]).filter(Boolean).join('; ')
     fail(Boolean(cookies), 'public anonymous session unavailable')
-    const { response, body } = await request(api + path, { headers: { 'User-Agent': USER_AGENT,
-      Accept: 'application/json,text/plain;q=0.9,*/*;q=0.8', 'Content-Type': 'application/json', Cookie: cookies, Origin: origin, Referer: seed } })
+    const headers = currentPostListing ? { 'User-Agent': CHROME,
+      Accept: 'application/json, text/plain, */*', 'Accept-Language': 'en', Cookie: cookies, Referer: seed,
+      ...(listingBody ? { 'Content-Type': 'application/json' } : {}),
+    } : { 'User-Agent': USER_AGENT, Accept: 'application/json,text/plain;q=0.9,*/*;q=0.8',
+      'Content-Type': 'application/json', Cookie: cookies, Origin: origin, Referer: seed }
+    const { response, body } = await request(api + path, { headers,
+      ...(listingBody ? { method: 'POST', body: JSON.stringify(listingBody) } : {}),
+    })
     // Match the existing Darwinbox engine's bounded anonymous-session refresh.
     // Repeat the identical public read once; persistent denials fail closed.
     if (response.status === 403 && attempt === 1) continue
+    await requireNativeHttpResponse(response, api + path, {
+      context: `[${spec.source}] native Darwinbox: native API HTTP status/content type changed: ${path}`,
+      signal, callerSignal: signal ?? null,
+    })
     fail(response.status === 200 && /^application\/json\b/i.test(response.headers.get('content-type') || ''), 'native API HTTP status/content type changed: ' + path)
     let payload; try { payload = JSON.parse(body) } catch { fail(false, 'invalid native JSON') }
     fail(payload && payload.status === 'success' && !['error', 'errors', 'errorCode', 'exception', 'fault'].some(key => Object.hasOwn(payload, key)), 'native failure envelope')
@@ -157,23 +174,34 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     fail(company && company.company_name === spec.brand && company.subdomain === spec.tenant && company.tenant_id === spec.tenantId
       && company.recruitment_enabled === true && company.new_careers === true && company.is_preview === false && company.id === '', 'native employer/account/main-board identity changed')
     if (company.group_company_site || company.custom_weblink) reasons.add('additional-native-recruiting-channel-unresolved')
-    const group = await json('groupcompanycareersetting?companyId=main')
+    const group = await json(currentPostListing ? 'groupcompanycareersetting' : 'groupcompanycareersetting?companyId=main')
     globalCriteriaUnknown = fields(group, '$', spec.review.schemas.groups, 'group') || globalCriteriaUnknown
     fail(group.message?.code === 0, 'additional native company boards unresolved')
-    const rows = [], details = [], detailPayloads = [], unreviewedRoleIds = new Set(), seen = new Set(); let total
+    const rows = [], details = [], detailPayloads = [], listingPayloads = [], unreviewedRoleIds = new Set(), seen = new Set(); let total
+    // The current pinned program publishes a read-only POST and a new envelope.
+    // Keep the original role schema: newly supplied fields remain unqualified.
+    const listingSchema = currentPostListing ? { '$': ['status', 'data', 'job_counts'],
+      ...Object.fromEntries(Object.entries(spec.review.schemas.listing)
+        .filter(([path]) => path.startsWith('$.message.jobs[]'))
+        .map(([path, keys]) => [path.replace('$.message.jobs[]', '$.data[]'), keys])),
+    } : spec.review.schemas.listing
     for (let page = 1; page <= 500; page++) {
-      const payload = await json(`job?page=${page}&companyId=main`)
-      fields(payload, '$', spec.review.schemas.listing, 'listing')
-      if (payload.message && typeof payload.message === 'object') globalCriteriaUnknown = fields({ ...payload,
-        message: { ...payload.message, jobs: [] } }, '$', spec.review.schemas.listing, 'listing') || globalCriteriaUnknown
-      const count = payload.message?.jobscount, records = payload.message?.jobs
+      const payload = await json(currentPostListing ? 'job/alljobs?companyId=main' : `job?page=${page}&companyId=main`,
+        currentPostListing ? { companyId: 'main', page, sort_option: 'new', limit: 10 } : null)
+      listingPayloads.push(payload)
+      fields(payload, '$', listingSchema, 'listing')
+      if (currentPostListing) globalCriteriaUnknown = fields({ ...payload, data: [] }, '$', listingSchema, 'listing') || globalCriteriaUnknown
+      else if (payload.message && typeof payload.message === 'object') globalCriteriaUnknown = fields({ ...payload,
+        message: { ...payload.message, jobs: [] } }, '$', listingSchema, 'listing') || globalCriteriaUnknown
+      const count = currentPostListing ? payload.job_counts : payload.message?.jobscount
+      const records = currentPostListing ? payload.data : payload.message?.jobs
       fail(Number.isSafeInteger(count) && count >= 0 && Array.isArray(records), 'invalid authoritative native total')
       if (total == null) total = count
       fail(count === total && records.length === Math.min(10, total - rows.length), 'native pagination incomplete or count changed')
       for (const row of records) {
         fail(typeof row.id === 'string' && /^[a-z0-9]+$/.test(row.id) && typeof row.title === 'string' && row.title.trim() && !seen.has(row.id), 'native listing role identity missing or repeated')
         seen.add(row.id); rows.push(row)
-        if (fields(row, '$.message.jobs[]', spec.review.schemas.listing, 'listing')) unreviewedRoleIds.add(row.id)
+        if (fields(row, currentPostListing ? '$.data[]' : '$.message.jobs[]', listingSchema, 'listing')) unreviewedRoleIds.add(row.id)
       }
       if (rows.length === total) break
       fail(page < 500, 'native inventory safety limit reached')
@@ -189,8 +217,8 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
       detailPayloads.push(payload)
       if (unknownDetail) unreviewedRoleIds.add(row.id)
     }
-    return { companyPayload, group, rows, details, detailPayloads, unreviewedRoleIds: [...unreviewedRoleIds], globalCriteriaUnknown,
-      total, signature: hash(canonical({ companyPayload, group, rows, detailPayloads })) }
+    return { companyPayload, group, rows, details, detailPayloads, listingPayloads, unreviewedRoleIds: [...unreviewedRoleIds], globalCriteriaUnknown,
+      total, signature: hash(canonical({ companyPayload, group, rows, listingPayloads, detailPayloads })) }
   }
   const openingCorporate = await corporate(), openingClient = await client()
   const opening = await snapshot(), closing = await snapshot(), closingClient = await client(), closingCorporate = await corporate()
@@ -213,8 +241,18 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
       && new Set(locationIds).size === locationIds.length
     const displayMatches = value => typeof value === 'string' && (locationKey(value) === 'multiple locations'
       ? idsResolved && areas.length > 1 : areas?.some(area => locationKey(area) === locationKey(value)))
+    const codedListingLocationsMatch = (record, value) => {
+      if (!currentPostListing || typeof value !== 'string' || !Array.isArray(record.officelocations_area)
+        || !sameLocations(record.officelocations_area, areas)) return false
+      // The new listing concatenates each independently reconciled full address
+      // and one opaque office code. Codes never supply country or extra places.
+      const normalized = locationKey(value), codes = normalized.match(/ \([a-z0-9_-]+\)(?=,|$)/g)
+      return codes?.length === record.officelocations_area.length
+        && locationKey(normalized.replace(/ \([a-z0-9_-]+\)(?=,|$)/g, '')) === locationKey(record.officelocations_area.join(','))
+    }
     const suppliedGeographyMatches = (record, isListing) => {
-      for (const key of ['locations', 'officelocation_show_arr']) if (Object.hasOwn(record, key) && !displayMatches(record[key])) return false
+      for (const key of ['locations', 'officelocation_show_arr']) if (Object.hasOwn(record, key) && !displayMatches(record[key])
+        && !(isListing && key === 'officelocation_show_arr' && codedListingLocationsMatch(record, record[key]))) return false
       if (Object.hasOwn(record, 'country') && record.country !== 'India') return false
       for (const key of ['officelocations_area', 'tool_tip_locations']) if (Object.hasOwn(record, key) && !sameLocations(record[key], areas)) return false
       if (Object.hasOwn(record, 'officelocations_without_area')) {
@@ -251,8 +289,16 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     const detailComplete = !criteriaUnknown && !visibilityUnknown
     const published = detail.job_posting?.careers?.from
     fail(Number.isSafeInteger(published) && published > 0 && published === detail.posted_on && published * 1000 <= Date.parse(checkedAt), 'native original publication timestamp missing or conflicting')
+    let nativePosting = detail.job_posting
+    if (currentPostListing) {
+      fail(listing.posted_on === published && listing.job_posting?.careers?.from === published,
+        'native listing/detail publication timestamps disagree')
+      const window = listing.job_posting.careers, detailWindow = detail.job_posting.careers
+      fail(!Object.hasOwn(detailWindow, 'to') || detailWindow.to === window.to, 'native listing/detail closing epochs disagree')
+      nativePosting = { ...detail.job_posting, careers: { ...window, ...detailWindow } }
+    }
     const locations = [...new Set(detail.officelocations_area.map(value => clean(value).replace(/\s*,\s*/g, ', '))) ]
-    mapped.push({ ...detail, locations: locations.join(' / '), country: 'India', department_name: detail.department, emp_type_name: detail.emp_type,
+    mapped.push({ ...detail, job_posting: nativePosting, locations: locations.join(' / '), country: 'India', department_name: detail.department, emp_type_name: detail.emp_type,
       jd: description, detailComplete,
       postingDate: new Date(published * 1000).toISOString(), nativeLocationAlternatives: locations, nativeRaw: detail })
   }
@@ -271,6 +317,7 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     ...(!native.detailComplete ? { sourceDetailFailureKind: 'native-criteria-schema-or-visibility-unreviewed' } : {}),
     sourceDescription: native.jd, jobDescription: native.jd, sourceNativeJob: native.nativeRaw,
     sourceNativeListingRecord: closing.rows.find(row => row.id === job.jobId),
+    sourceNativeListingPayload: closing.listingPayloads.find(payload => (payload.data || payload.message?.jobs)?.some(row => row.id === job.jobId)),
     sourceNativeDetailPayload: closing.detailPayloads.find(payload => payload.message.job[0].id === job.jobId),
     sourceNativeLocations: native.nativeLocationAlternatives, locations: native.nativeLocationAlternatives,
     sourceNativeLocationIds: native.nativeRaw.officelocation_arr,

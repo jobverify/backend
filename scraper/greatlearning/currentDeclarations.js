@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto'
 import {isDeepStrictEqual} from 'node:util'
 import {parseNativeJSON} from '../aecom.workday/nativeJSON.js'
 import {document,one,within,cls,norm,flow,snapshot,byClass,childByClass} from './currentHtml.js'
-import {INLINE_STYLE_CONTRACT,STYLESHEET_DECLARATIONS,CSS_CONTRACT} from './currentStyleContract.js'
+import {INLINE_STYLE_CONTRACT,CURRENT_HOME_STYLE_CONTRACT,STYLESHEET_DECLARATIONS,CSS_CONTRACT} from './currentStyleContract.js'
 import {CRITICAL_ANCESTRY,STYLE_ATTRIBUTES} from './currentRendererContract.js'
 import {need,failure} from './currentErrors.js'
 export {need,failure,isFailure} from './currentErrors.js'
@@ -21,7 +21,7 @@ export function verifyStyles(doc,kind){
  // Their own visual inert flag cannot select CSS metadata. Template/noscript
  // contents, however, are outside the normal static document's style inputs.
  const semantic=node=>typeof node==='string'||['template','noscript','object','iframe','script','textarea'].includes(node.tag)?[]:[node,...node.children.flatMap(semantic)]
- const root=one(doc.nodes(n=>n.tag==='root'),'renderer document'),nodes=semantic(root),styleNodes=nodes.filter(n=>n.tag==='style'),styles=styleNodes.map(n=>sha(n.raw||''));profileCheck(isDeepStrictEqual(styles,INLINE_STYLE_CONTRACT[kind]),'unreviewed '+kind+' renderer style inputs')
+ const root=one(doc.nodes(n=>n.tag==='root'),'renderer document'),nodes=semantic(root),styleNodes=nodes.filter(n=>n.tag==='style'),styles=styleNodes.map(n=>sha(n.raw||''));profileCheck([INLINE_STYLE_CONTRACT[kind],...(kind==='home'?[CURRENT_HOME_STYLE_CONTRACT]:[])].some(profile=>isDeepStrictEqual(styles,profile)),'unreviewed '+kind+' renderer style inputs')
  const nonces=styleNodes.filter(n=>Object.hasOwn(n.attrs,'nonce')).map(n=>n.attrs.nonce);profileCheck(nonces.every(v=>/^[a-f0-9]{24}$/.test(v))&&new Set(nonces).size===1,'unreviewed document style nonce carrier')
  const styleAttributes=styleNodes.map(n=>Object.fromEntries(Object.entries(n.attrs).map(([k,v])=>[k,k==='nonce'?'<per-document-style-nonce>':v])));profileCheck(isDeepStrictEqual(styleAttributes,STYLE_ATTRIBUTES[kind]),'unreviewed style-element attributes')
  const links=nodes.filter(n=>n.tag==='link'&&(n.attrs.rel||'').split(/[\t\n\f\r ]+/).some(v=>v.toLowerCase()==='stylesheet')).map(n=>({...n.attrs}));profileCheck(isDeepStrictEqual(links,STYLESHEET_DECLARATIONS[kind]),'unreviewed stylesheet declarations')

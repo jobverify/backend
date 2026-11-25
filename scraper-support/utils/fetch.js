@@ -115,7 +115,7 @@ export const buildHttpError = (response, url) => {
     error.abortRetries = true
   }
 
-  if (response.status === 429) {
+  if (response.status === 429 || response.status === 503) {
     const retryDelayMs = parseRetryAfterHeader(response.headers?.get?.('retry-after'))
     if (retryDelayMs != null) {
       error.retryDelayMs = retryDelayMs

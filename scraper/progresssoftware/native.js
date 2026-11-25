@@ -7,6 +7,11 @@ const PREFIX = 'https://www.progress.com/company/careers/open-positions/'
 const fail = message => { throw new Error('Progress Software native inventory: ' + message) }
 const requireOne = (nodes, label) => { if (nodes.length !== 1) fail('missing or ambiguous ' + label); return nodes[0] }
 const readable = value => value?.replace(/&(rsquo|lsquo|rdquo|ldquo);/gi, (_, entity) => ({ rsquo: '\u2019', lsquo: '\u2018', rdquo: '\u201d', ldquo: '\u201c' })[entity.toLowerCase()]) || null
+// The publisher's structured description omits paired quotation marks around
+// prose labels such as "Guide". Keep the full visible text as the description;
+// tolerate only those paired word quotes when comparing its schema carrier.
+// Numeric measurements and unmatched quotes retain their meaning and must agree.
+const descriptionKey = value => value.replace(/(^|[\s([{])"(\p{L}[\p{L}\p{M} '-]*)"(?=$|[\s.,;:!?)}\]])/gu, '$1$2').replace(/\s+/g, '')
 const proseText = node => !node || node.inactive || /^(?:h[1-6]|script|style)$/.test(node.tag) ? ''
   : node.children.map(child => typeof child === 'string' ? child : proseText(child)).join(' ')
 export const urlKey = value => {
@@ -123,7 +128,7 @@ export const parseNativeDetail = (html, row) => {
   // Headings organize employer prose; they cannot supply a missing JD alone.
   const description = contentNode && extractActiveDescription(proseText(contentNode)) ? readable(extractActiveDescription(doc.inner(contentNode))) : null
   const schemaDescription = readable(extractActiveDescription(schema.description))
-  if (description && schemaDescription && description.replace(/\s+/g, '') !== schemaDescription.replace(/\s+/g, '')) fail('visible/schema source description mismatch')
+  if (description && schemaDescription && descriptionKey(description) !== descriptionKey(schemaDescription)) fail('visible/schema source description mismatch')
   return { title, company: 'Progress Software', source: 'progresssoftware', jobId: id, requisitionId: id, nativeListingId: row.nativeId,
     sourceUrl: row.detailUrl, applyUrl: row.detailUrl, link: row.detailUrl, department: row.department,
     location: fullLocations[0], locations: fullLocations, city: fullLocations[0] === row.country ? null : fullLocations[0].split(',')[0], country: row.country,

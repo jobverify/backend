@@ -10,12 +10,20 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 import DALOOPA_CATALOG from './catalog.js'
 
 const PROFILE=JSON.parse(readFileSync(new URL('./reviewedNativeData20261115.json',import.meta.url),'utf8'))
+const CURRENT_CLIENT=JSON.parse(readFileSync(new URL('./reviewedClient20261125.json',import.meta.url),'utf8'))
 export const SOURCE='daloopa',COMPANY='Daloopa',BOARD_URL=PROFILE.nativeBoardUrl,PROVIDER_METADATA=DALOOPA_CATALOG
 const baseDescriptors=PROFILE.readDescriptors.slice(0,3),staticCarriers=new Map(PROFILE.staticCarriers.map(row=>[row.label,row]))
 const detailURL=PROFILE.readDescriptors.find(row=>row.label.startsWith('detail-')).url
 const publicJD=PROFILE.nativeClientPublicCareerURLs.find(row=>row.pageType==='jd').url
 const listFields=Object.keys(PROFILE.listing.reqDetailsBOList[0]),roleFields=Object.keys(PROFILE.roles[0].data.reqDetailsBO)
 const sha=value=>createHash('sha256').update(value).digest('hex'),same=isDeepStrictEqual
+// Only these observed replica pairs may differ while every remaining original
+// envelope/data byte closes. Retain both version tokens as native metadata;
+// this grants no renderer, employer, application or company-scope authority.
+const reviewedReplicaPairs=[
+ new Set(['d17-at-20261103052156','d17-wq-20261103052123']),
+ new Set(['d17-ae-20261124072427','d17-8o-20261123230732']),
+]
 const escapeNativeText=value=>value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
 const completeCriteria=role=>role.detail.record.jdDisplay
  +'\n<h2>Original native listing description (plain text)</h2><pre>'+escapeNativeText(role.listRow.jdDisplay)+'</pre>'
@@ -70,14 +78,14 @@ function descriptor(label){
  return match[1]==='detail'?{label,kind:'json',counter:'detail',url:detailURL,method:'POST',body:JSON.stringify({source:'careers',id:'',code:'',reqId:id})}:{label,kind:'html',counter:'detail',url:buildDaloopaPublicJDURL(id),method:'GET'}
 }
 function representation(page,label){const expected=descriptor(label);need(page.label===label&&page.url===expected.url&&page.method===expected.method&&page.requestBody===(expected.body??null),'Original literal native descriptor changed');need(Buffer.isBuffer(page.bytes)&&typeof page.text==='string'&&Buffer.from(page.text).equals(page.bytes),'Original native UTF8/byte representation changed')}
-function pin(page,label){representation(page,label);const expected=staticCarriers.get(label.startsWith('landing-')?'board':label);need(expected&&page.bytes.length===expected.bytes&&sha(page.bytes)===expected.sha256,'Complete original '+label+' carrier changed')}
+function pin(page,label){representation(page,label);const expected=staticCarriers.get(label.startsWith('landing-')?'board':label),variants=label==='client'?[expected,CURRENT_CLIENT]:[expected];need(variants.some(row=>row&&(label!=='client'||page.url===row.url&&row.label==='client')&&page.bytes.length===row.bytes&&sha(page.bytes)===row.sha256),'Complete original '+label+' carrier changed')}
 export function readDaloopaBoard(page){pin(page,'board');const doc=readNativeDocument(page.text);need(doc.nodes(node=>node.tag==='app-root').length===1&&doc.nodes(node=>node.tag==='title').length===1,'Original static app-root carrier owner changed');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),scope:'Static carrier only; no roleSSR/JobPosting/rendered authority'}}
 export function readDaloopaClient(page){
  pin(page,'client');const value=readDaloopaStrictJSON(page.text).value
  need(same(Object.keys(value),PROFILE.nativeClientOriginalKeys)&&same({clientId:value.clientId,clientName:value.clientName,companyWebsite:value.companyWebsite},PROFILE.nativeClientIdentity),'Original own native client identity changed')
  need(same(value.tenantPreferencesMap?.career_page_url?.url,PROFILE.nativeClientPublicCareerURLs),'Original native public route declarations changed')
  // Complete client controls remain pinned. Opaque cookie-like data is not used.
- return{...PROFILE.nativeClientIdentity,publicCareerURLs:structuredClone(PROFILE.nativeClientPublicCareerURLs),unqualifiedCookiePresent:typeof value.cookie==='string'&&value.cookie.length>0,formalLegalEmployerQualified:false}
+ return{...PROFILE.nativeClientIdentity,publicCareerURLs:structuredClone(PROFILE.nativeClientPublicCareerURLs),carrierSHA256:sha(page.bytes),unqualifiedCookiePresent:typeof value.cookie==='string'&&value.cookie.length>0,formalLegalEmployerQualified:false}
 }
 const nullListFields=['buDescription','buURL','stagewiseCounts','questionList','formFieldDetails','buHierarchy','mandatorySkillList','nonMandatorySkillList','educationList','reqPositionsBOs','hiringManagerName','coordinatorName','coordinatorEmployeeMobile','skillFamily','requisitionLocationGroup','countryCode','complianceNotices']
 const stringListFields=['buName','reqTitle','location','locationAddress','jdDisplay','approvedOn','employmentType','roleName','designation','careerStream','jobLevel','reqCurrency']
@@ -110,10 +118,16 @@ function envelopeView(page){
  need(request&&/^"[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}"$/.test(request.raw),'Native requestId must be raw canonical ASCII UUIDv4')
  need(version&&typeof value.v==='string'&&value.v.isWellFormed()&&Buffer.byteLength(value.v)>=1&&Buffer.byteLength(value.v)<=256&&!/[\u0000-\u001f\u007f-\u009f]/.test(value.v),'Unsupported opaque native v metadata')
  need(data&&record,'Complete original native data/role token unavailable')
- // Only these two already-reviewed diagnostics may vary WITHIN a run. Opaque v
- // is data, not a guessed replica/protocol discriminator, and is never masked.
+ // Version metadata is retained separately. Only finite observed replica pairs
+ // can use the additional version-neutral comparison below.
  const nonDiagnostic=page.text.slice(0,ts.start)+'<ts>'+page.text.slice(ts.end,request.start)+'<requestId>'+page.text.slice(request.end)
- return{value,rawDataJSON:data.raw,rawRoleJSON:record.raw,rawVersionToken:version.raw,nonDiagnosticBodyBase64:Buffer.from(nonDiagnostic).toString('base64')}
+ const replicaNeutral=page.text.slice(0,ts.start)+'<ts>'+page.text.slice(ts.end,request.start)+'<requestId>'+page.text.slice(request.end,version.start)+'<reviewed-version>'+page.text.slice(version.end)
+ return{value,rawDataJSON:data.raw,rawRoleJSON:record.raw,rawVersionToken:version.raw,nonDiagnosticBodyBase64:Buffer.from(nonDiagnostic).toString('base64'),replicaNeutralBodyBase64:Buffer.from(replicaNeutral).toString('base64')}
+}
+function sameNativeDetail(opening,closing){
+ if(opening.nonDiagnosticBodyBase64===closing.nonDiagnosticBodyBase64)return true
+ const canonicalVersion=view=>view.rawVersionToken===JSON.stringify(view.value.v)
+ return canonicalVersion(opening)&&canonicalVersion(closing)&&reviewedReplicaPairs.some(pair=>pair.has(opening.value.v)&&pair.has(closing.value.v))&&opening.replicaNeutralBodyBase64===closing.replicaNeutralBodyBase64
 }
 function richIndia(value){
  need(string(value)&&value.length>=100,'Incomplete original rich criteria')
@@ -134,7 +148,7 @@ export function readDaloopaDetail(page,id,row){
  need(exact(record,roleFields)&&record.reqId===id&&record.reqTitle===row.reqTitle&&record.statusId===3&&record.requisitionPublished===true&&record.fresher===false,'Current native role identity/control/availability changed')
  need(record.mandatorySkillList===null&&record.nonMandatorySkillList===null&&Array.isArray(record.requisitionLocationGroup)&&record.requisitionLocationGroup.length===0&&Array.isArray(record.educationList)&&record.educationList.length<=100&&record.educationList.every(plainText)&&numeric(record.expMin)&&numeric(record.expMax),'Unsupported native education/experience/null/control model')
  worksite(record.locationList);need(same(record.locationList,row.locationList),'Native plain/detail worksite contradiction');richIndia(record.jdDisplay)
- return{roleId:id,envelope:value,data,record,rawDataJSON:original.rawDataJSON,rawRoleJSON:original.rawRoleJSON,rawDataSHA256:sha(Buffer.from(original.rawDataJSON)),rawDataBase64:Buffer.from(original.rawDataJSON).toString('base64'),nativeVersion:value.v,rawVersionToken:original.rawVersionToken,nonDiagnosticBodyBase64:original.nonDiagnosticBodyBase64}
+ return{roleId:id,envelope:value,data,record,rawDataJSON:original.rawDataJSON,rawRoleJSON:original.rawRoleJSON,rawDataSHA256:sha(Buffer.from(original.rawDataJSON)),rawDataBase64:Buffer.from(original.rawDataJSON).toString('base64'),nativeVersion:value.v,rawVersionToken:original.rawVersionToken,nonDiagnosticBodyBase64:original.nonDiagnosticBodyBase64,replicaNeutralBodyBase64:original.replicaNeutralBodyBase64}
 }
 export function readDaloopaLanding(page,id){pin(page,'landing-'+id);const doc=readNativeDocument(page.text);need(page.url===buildDaloopaPublicJDURL(id)&&doc.nodes(node=>node.tag==='app-root').length===1,'Original literal public JD carrier changed');return{url:page.url,bytes:page.bytes.length,sha256:sha(page.bytes),sourceRoleDataQualified:false,sourceCanonicalQualified:false}}
 function observationTime(options){const value=typeof options.now==='function'?options.now():options.now??new Date(),ms=value instanceof Date?value.getTime():typeof value==='string'?Date.parse(value):NaN;need(Number.isFinite(ms),'Invalid native observation clock');return new Date(ms).toISOString()}
@@ -148,7 +162,7 @@ export function createDaloopaOriginalReader(options={}){
  const reduced=(names,maximum)=>{const values=names.map(name=>options[name]).filter(value=>value!==undefined&&value!==null);need(values.every(value=>Number.isSafeInteger(value)&&value>0&&value<=maximum),'Invalid '+names.join('/')+' ceiling');return Math.min(maximum,...values)}
  const limits=Object.fromEntries(Object.entries(defaults).map(([name,maximum])=>[name,reduced(name==='sourceTimeoutMs'?['timeoutMs',name]:name==='maxPages'?[name,'maxDiscoveryReads']:[name],maximum)]))
  const controller=new AbortController(),signal=caller?AbortSignal.any([caller,controller.signal]):controller.signal,started=performance.now(),receipts=[],lastStarts=new Map()
- let phase='opening',reservedReads=CLOSING_READS,reservedBytes=CLOSING_BYTES,reservedDiscovery=3,reservedDetails=4,decodedBytes=0,discoveryReads=0,detailReads=0,inFlight=false,closed=false
+ let phase='opening',reservedReads=CLOSING_READS,reservedBytes=CLOSING_BYTES,reservedDiscovery=3,reservedDetails=4,decodedBytes=0,discoveryReads=0,detailReads=0,inFlight=false,closed=false,candidatesBound=false
  let timer
  const expire=()=>{
   if(closed||signal.aborted)return
@@ -168,10 +182,10 @@ export function createDaloopaOriginalReader(options={}){
   check();lastStarts.set(origin,performance.now())
  }
  return{limits,check,
-  bindCandidates(ids){check();need(phase==='opening'&&!inFlight&&receipts.length===3&&openingPages.has('listing'),'Current native discovery required before role binding');const listing=readDaloopaListing(openingPages.get('listing')),state=listState.get(listing);need(ids.length===2&&same(ids,state.eligible.slice(0,2).map(row=>row.reqId)),'Unbound or insufficient current IndiaRemote candidates');for(const id of ids)for(const type of ['detail','landing']){const current=descriptor(type+'-'+id);descriptors.set(current.label,current);labels.push(current.label)}},
-  beginClosing(){check();need(!inFlight&&phase==='opening'&&receipts.length===7&&receipts.every(row=>row.bodyComplete),'All seven opening originals must complete before closing');phase='closing'},
+  bindCandidates(ids){check();need(phase==='opening'&&!inFlight&&!candidatesBound&&receipts.length===3&&openingPages.has('listing'),'Current native discovery required before role binding');const listing=readDaloopaListing(openingPages.get('listing')),state=listState.get(listing);need(ids.length>=1&&ids.length<=2&&same(ids,state.eligible.slice(0,2).map(row=>row.reqId)),'Unbound or insufficient current IndiaRemote candidates');for(const id of ids)for(const type of ['detail','landing']){const current=descriptor(type+'-'+id);descriptors.set(current.label,current);labels.push(current.label)}reservedReads=labels.length;reservedDetails=2*ids.length;reservedBytes=(1+ids.length)*HTML_BYTES+(2+ids.length)*JSON_BYTES;candidatesBound=true},
+  beginClosing(){check();need(!inFlight&&phase==='opening'&&candidatesBound&&receipts.length===labels.length&&receipts.every(row=>row.bodyComplete),'All bound opening originals must complete before closing');phase='closing'},
   async read(label){
-   check();const descriptor=descriptors.get(label),position=receipts.length-(phase==='closing'?7:0)
+   check();const descriptor=descriptors.get(label),position=receipts.length-(phase==='closing'?labels.length:0)
    need(descriptor&&!inFlight&&position<labels.length&&labels[position]===label,'Unbound, concurrent or out-of-order native request')
    need(receipts.length<limits.maxRequests,'Original physical request ceiling exceeded')
    const isJSON=descriptor.kind==='json',isDiscovery=descriptor.counter==='discovery',kindCeiling=isJSON?JSON_BYTES:HTML_BYTES,ceiling=Math.min(kindCeiling,limits.maxEntityBytes)
@@ -212,7 +226,7 @@ export function createDaloopaOriginalReader(options={}){
     need(Buffer.from(text).equals(bytes),'Original UTF8 is not lossless');check()
     const result={label,url:descriptor.url,method:descriptor.method,requestBody:descriptor.body??null,bytes,text}
     if(phase==='opening')openingPages.set(label,result)
-    else if(label.startsWith('detail-'))need(envelopeView(openingPages.get(label)).nonDiagnosticBodyBase64===envelopeView(result).nonDiagnosticBodyBase64,'Complete native non-diagnostic data/v closing changed')
+    else if(label.startsWith('detail-'))need(sameNativeDetail(envelopeView(openingPages.get(label)),envelopeView(result)),'Complete native non-diagnostic data/v closing changed')
     else need(openingPages.get(label)?.bytes.equals(bytes),'Complete original native closing body changed')
     return result
    }catch(error){
@@ -232,22 +246,23 @@ export async function runCurrentDaloopaData(options={}){
   const observedAt=observationTime(options)
   need(reader.limits.maxRequests>=14&&reader.limits.maxPages>=6&&reader.limits.maxDetails>=8,'Reduced budget cannot close all fourteen original reads')
   const board=readDaloopaBoard(await reader.read('board'));client=readDaloopaClient(await reader.read('client'));listing=readDaloopaListing(await reader.read('listing'))
-  const state=listState.get(listing),selected=state.eligible.slice(0,2);need(selected.length===2,'Fewer than two qualified current IndiaRemote native candidates');reader.bindCandidates(selected.map(row=>row.reqId))
+  const state=listState.get(listing),selected=state.eligible.slice(0,2);need(selected.length>0,'No qualified current IndiaRemote native candidates');reader.bindCandidates(selected.map(row=>row.reqId))
   for(const row of selected){const id=row.reqId,detail=readDaloopaDetail(await reader.read('detail-'+id),id,row),landing=readDaloopaLanding(await reader.read('landing-'+id),id);opened.push({id,detail,landing,listRow:row,rawListRowJSON:state.rawRows.get(id)})}
   reader.beginClosing()
   const closingBoard=readDaloopaBoard(await reader.read('board')),closingClient=readDaloopaClient(await reader.read('client')),closingListing=readDaloopaListing(await reader.read('listing')),closingState=listState.get(closingListing)
-  for(const role of opened){const row=closingListing.reqDetailsBOList.find(row=>row.reqId===role.id),detail=readDaloopaDetail(await reader.read('detail-'+role.id),role.id,row);need(role.detail.nonDiagnosticBodyBase64===detail.nonDiagnosticBodyBase64&&role.detail.rawDataBase64===detail.rawDataBase64&&role.detail.nativeVersion===detail.nativeVersion&&role.detail.rawVersionToken===detail.rawVersionToken,'Complete current data/v token closing changed');const landing=readDaloopaLanding(await reader.read('landing-'+role.id),role.id);role.closing={detail,landing,listRow:row,rawListRowJSON:closingState.rawRows.get(role.id)}}
-  const stats=reader.stats();need(stats.requests===14&&stats.discoveryReads===6&&stats.detailReads===8&&stats.reservedClosingReads===0&&stats.reservedClosingBytes===0,'All fourteen physical originals must close')
+  need(client.carrierSHA256===closingClient.carrierSHA256,'Native client carrier changed at closing')
+  for(const role of opened){const row=closingListing.reqDetailsBOList.find(row=>row.reqId===role.id),detail=readDaloopaDetail(await reader.read('detail-'+role.id),role.id,row);need(sameNativeDetail({...role.detail,value:role.detail.envelope},{...detail,value:detail.envelope})&&role.detail.rawDataBase64===detail.rawDataBase64,'Complete current data/v token closing changed');const landing=readDaloopaLanding(await reader.read('landing-'+role.id),role.id);role.closing={detail,landing,listRow:row,rawListRowJSON:closingState.rawRows.get(role.id)}}
+  const stats=reader.stats(),physicalReads=2*(3+2*opened.length);need(stats.requests===physicalReads&&stats.discoveryReads===6&&stats.detailReads===4*opened.length&&stats.reservedClosingReads===0&&stats.reservedClosingBytes===0,'All bound physical originals must close')
   const jobs=opened.map(role=>({source:SOURCE,company:COMPANY,companyName:COMPANY,jobId:String(role.id),sourceJobId:String(role.id),title:role.detail.record.reqTitle,country:'India',location:'India (Remote)',nativeCountryCode:role.listRow.countryCode,nativeLocationList:structuredClone(role.detail.record.locationList),nativeWorkplace:'Remote',
    sourceUrl:role.landing.url,url:role.landing.url,jobUrl:role.landing.url,nativeJobLandingURL:role.landing.url,sourceCanonicalURL:null,nativeCanonicalURL:null,nativeLandingContainsRoleData:false,applyUrl:null,link:null,nativeApplicationURL:null,nativeApplicationActionVerified:false,activeApplyVerified:false,applicationVisited:false,
    postingDate:null,datePosted:null,postedDate:null,nativeDetailPublicationDate:null,firstEverPublication:null,firstPublicationVerified:false,closingDate:null,validThrough:null,nativeApprovalDate:role.listRow.approvedOn,sourcePublicationProvenance:'Native approvedOn is retained as approval data only; no public posting, first publication or expiry date proved',
    sourceDescription:completeCriteria(role),description:completeCriteria(role),jobDescription:completeCriteria(role),minimumQualification:role.detail.record.educationList.join('; '),sourceExperienceRequired:'Native listing expMin: '+role.listRow.expMin+'; expMax: '+role.listRow.expMax+'. Native detail expMin: '+role.detail.record.expMin+'; expMax: '+role.detail.record.expMax+'. Original rich criteria retained separately.',nativeListingDescription:role.listRow.jdDisplay,nativeEducationList:structuredClone(role.detail.record.educationList),nativeStructuredExperience:{min:role.detail.record.expMin,max:role.detail.record.expMax},nativeQualificationTensions:'Complete independent listing, detail and original rich criteria are preserved without reconciliation',
    nativeSourceRecord:structuredClone(role.detail.record),nativeClosingSourceRecord:structuredClone(role.closing.detail.record),nativeDetailData:structuredClone(role.detail.data),nativeClosingDetailData:structuredClone(role.closing.detail.data),nativeOriginalEnvelope:structuredClone(role.detail.envelope),nativeClosingOriginalEnvelope:structuredClone(role.closing.detail.envelope),nativeRawDataSHA256:role.detail.rawDataSHA256,nativeClosingRawDataSHA256:role.closing.detail.rawDataSHA256,nativeListingRecord:structuredClone(role.listRow),nativeClosingListingRecord:structuredClone(role.closing.listRow),nativeRawListingRecordJSON:role.rawListRowJSON,nativeRawDetailDataJSON:role.detail.rawDataJSON,nativeRawRoleRecordJSON:role.detail.rawRoleJSON,nativeDeclaredEmployerName:client.clientName,nativeLegalHiringOrganization:null,
    sourceDetailComplete:true,nativeCriteriaTextComplete:true,sourceDetailStatus:'complete',sourceCriteriaPresentation:'Complete original native plain/rich and raw44listing/4data/13role records as data only; opaque controls/counters are not additional screening, pay or availability semantics',firstParty:false,sourceCorporateBindingQualified:false,formalLegalEmployerQualified:false,currentCSSCoverage:false,clientDependencyCoverage:false,activationVerified:false,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,nativeRoleClosingReconciled:true}))
-  attachInventoryEvidence(jobs,{...inventory(14),verifiedAt:observedAt})
+  attachInventoryEvidence(jobs,{...inventory(physicalReads),verifiedAt:observedAt})
   const observations={source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:listing.reqDetailsBOList.length,observedVacancyCount:listing.reqDetailsBOList.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null}
   attachSourceObservationEvidence(jobs,observations)
-  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...observations,observedAt,nativeObservedRecordCount:listing.reqDetailsBOList.length,qualifiedNativeIndiaIds:opened.map(role=>role.id),unqualifiedCountryIds:listing.reqDetailsBOList.filter(row=>!plainIndia(row)).map(row=>row.reqId),unhydratedCandidateIds:state.eligible.slice(2).map(row=>row.reqId),heldRows:state.held,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,firstParty:false,sourceCorporateBindingQualified:false,formalLegalEmployerQualified:false,currentCSSCoverage:false,clientDependencyCoverage:false,activationVerified:false,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,nativeOpeningBoard:board,nativeClosingBoard:closingBoard,nativeClient:client,nativeClosingClient:closingClient,nativeOpeningListing:listing,nativeClosingListing:closingListing,nativeCandidates:opened,allOriginalNativeClosingReconciled:true,originalResponses:stats.receipts,limits:stats.limits,originalDecodedBytes:stats.decodedBytes,physicalReads:14,applicationInteractions:0,opaqueVUnconsumedMetadataOnly:true,allNonDiagnosticDataAndVTokensClosed:true,catalogueExampleCountsAreHistorical:true,fixtureBusinessValuesUsedAsAdmissionPins:false},configurable:true})
+  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{...observations,observedAt,nativeObservedRecordCount:listing.reqDetailsBOList.length,qualifiedNativeIndiaIds:opened.map(role=>role.id),unqualifiedCountryIds:listing.reqDetailsBOList.filter(row=>!plainIndia(row)).map(row=>row.reqId),unhydratedCandidateIds:state.eligible.slice(2).map(row=>row.reqId),heldRows:state.held,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,firstParty:false,sourceCorporateBindingQualified:false,formalLegalEmployerQualified:false,currentCSSCoverage:false,clientDependencyCoverage:false,activationVerified:false,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,nativeOpeningBoard:board,nativeClosingBoard:closingBoard,nativeClient:client,nativeClosingClient:closingClient,nativeOpeningListing:listing,nativeClosingListing:closingListing,nativeCandidates:opened,allOriginalNativeClosingReconciled:true,originalResponses:stats.receipts,limits:stats.limits,originalDecodedBytes:stats.decodedBytes,physicalReads,applicationInteractions:0,opaqueVUnconsumedMetadataOnly:true,allNonDiagnosticDataAndVTokensClosed:opened.every(role=>role.detail.rawVersionToken===role.closing.detail.rawVersionToken),allNonDiagnosticDataClosed:true,allOriginalVersionTokensRetained:true,catalogueExampleCountsAreHistorical:true,fixtureBusinessValuesUsedAsAdmissionPins:false},configurable:true})
   reader.check();return jobs
  }catch(error){
   options.signal?.throwIfAborted()

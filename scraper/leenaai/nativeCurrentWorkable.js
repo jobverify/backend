@@ -140,10 +140,21 @@ const location=(value,hidden)=>{
  if(hidden)assert(value.hidden===false,'native worksite hidden or unreviewed')
  return value
 }
+const salaryFields=['salary_from','salary_to','salary_currency_iso_code','salary_frequency']
+const nativeSalary=detail=>{
+ const present=salaryFields.filter(key=>Object.hasOwn(detail,key))
+ if(!present.length)return
+ assert(present.length===salaryFields.length,'complete native salary fields changed')
+ assert(Number.isSafeInteger(detail.salary_from)&&detail.salary_from>=0
+  &&Number.isSafeInteger(detail.salary_to)&&detail.salary_to>=detail.salary_from
+  &&detail.salary_to<=1000000000,'native salary range changed')
+ assert(detail.salary_currency_iso_code==='INR'&&detail.salary_frequency==='year','reviewed native salary currency/frequency changed')
+}
 const roleFields=detail=>{
  assert(record(detail),'role object changed')
  assert(!('type' in detail)||Object.hasOwn(detail,'type'),'inherited role type carrier changed')
- return ['id','shortcode','title','remote','location','locations','state','isInternal','code','published','type','language','department','accountUid','approvalStatus','workplace','description','requirements','benefits'].filter(key=>key!=='type'||Object.hasOwn(detail,'type'))
+ return ['id','shortcode','title','remote','location','locations','state','isInternal','code','published','type','language','department','accountUid','approvalStatus','workplace','description','requirements','benefits',...salaryFields]
+  .filter(key=>key!=='type'&&!salaryFields.includes(key)||Object.hasOwn(detail,key))
 }
 const criterion=(html,label)=>{
  assert(typeof html==='string'&&html.length<=200000&&html.trim().length>20,label+' full criteria missing or changed')
@@ -162,6 +173,7 @@ const criterion=(html,label)=>{
 }
 export const decodeNativeRole=(detail,proxy,account,observedAt)=>{
  exactKeys(detail,roleFields(detail),'role')
+ nativeSalary(detail)
  assert(Number.isSafeInteger(detail.id)&&detail.id>0&&detail.shortcode===proxy.shortcode&&detail.title===proxy.title&&detail.accountUid===account.uid,'role identity/account changed')
   assert(String(detail.id)===new URL(proxy.url).pathname.split('/').at(-1),'native integer ID disagrees with the declared role route')
  assert(detail.state==='published'&&detail.isInternal===false&&detail.approvalStatus==='approved','role public state changed')
@@ -276,6 +288,7 @@ const safeHeldModel=detail=>{
  // A refusal is not permission to copy an arbitrary response into evidence.
  // Unknown nested/private objects are a fatal schema boundary, not a hold.
  exactKeys(detail,roleFields(detail),'held role')
+ nativeSalary(detail)
  assert(Number.isSafeInteger(detail.id)&&detail.id>0,'held native ID changed')
  for(const key of ['shortcode','title','state','language','accountUid','approvalStatus','workplace'])plain(detail[key],'held '+key)
  if(Object.hasOwn(detail,'type'))plain(detail.type,'held type')

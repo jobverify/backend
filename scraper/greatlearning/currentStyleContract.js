@@ -32,6 +32,10 @@ export const INLINE_STYLE_CONTRACT={
     "fee08a3bf03cf3f7e5f21df362cd286cbe57e1a0f750cec99a60c3c8b8119439"
   ]
 }
+// The current home-only banner stylesheet adds offer/disclaimer typography and
+// adjusts banner dimensions. Careers, role, ancestry and external CSS inputs
+// remain exact. Admit this whole seven-style tuple, never arbitrary CSS.
+export const CURRENT_HOME_STYLE_CONTRACT=Object.freeze(INLINE_STYLE_CONTRACT.home.map((sha256,index)=>index===2?'7df11394350dbe5da8ef50cd62f9bceddb19779500ee3e3c4a39de42270b0433':sha256))
 export const STYLESHEET_DECLARATIONS={
   "home": [
     {

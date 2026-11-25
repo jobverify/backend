@@ -156,12 +156,14 @@ for (const source of Object.keys(sources)) {
   })
 }
 
-test('Cognex: retained ordinary corporate 429 remains fail-closed; no captured India subset can bypass it', async t => {
+test('Cognex: retained ordinary corporate 429 exhausts bounded recovery without bypassing the current handoff', async t => {
   const primary = packetFor('cognex', packet => packet.phase === 'initial-pages' && packet.status === 429)
   const result = await exercise(t, 'cognex', { change: state => { state.primary = primary } })
   assert.equal(result.rejected, true)
-  assert.equal(result.calls.length, 1)
-  assert.equal(result.calls[0].url, primary.url)
+  assert.equal(result.jobs, undefined)
+  assert.equal(result.evidence, null)
+  assert.equal(result.error.httpStatus, 429)
+  assert.deepEqual(result.calls.map(call => call.url), [primary.url, primary.url, primary.url])
 })
 
 test('Conde Nast: opaque corporate SSR without the declared reviewed renderer cannot authorize the India handoff', async t => {

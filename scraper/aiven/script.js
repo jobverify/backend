@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { runCurrentAivenAtlas } from './currentAtlas20261125.js'
 
 import provider from './provider.js'
 
@@ -186,10 +187,15 @@ export const createAivenScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
   async run({
-    fetchText = defaultFetchText,
+    fetchText,
+    fetchImpl,
+    requestIntervalMs,
+    timeoutMs,
+    requestTimeoutMs,
     now = () => new Date().toISOString(),
     signal,
   } = {}) {
+    if (!fetchText || fetchImpl) return runCurrentAivenAtlas({ fetchImpl, requestIntervalMs, timeoutMs, requestTimeoutMs, signal, now, maxJobs })
     const listingHtml = await fetchText(CAREERS_URL, { signal })
     if (!hasOfficialCareersSignal(listingHtml)) {
       throw new Error('Response is not the verified official Aiven careers listing')

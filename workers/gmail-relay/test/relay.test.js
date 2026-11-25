@@ -204,6 +204,18 @@ test('verification relay waits for SMTP acceptance and sends a fixed verificatio
   assert.equal(calls.rateKeys.length, 2);
 });
 
+for (const next of ['/jobs', '/jobs/example-engineer?from=search&sort=latest#details']) {
+  test(`verification relay delivers links with a local return path (${next})`, async t => {
+    const { calls, env, handler } = fixture(t);
+    const link = `https://jobverify.test/verify-email?next=${encodeURIComponent(next)}#token=${token}`;
+    const response = await handler(verificationRequest({ ...verificationBody, verificationLink: link }), env);
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { success: true });
+    assert.equal(calls.mail.length, 1);
+    assert.ok(calls.mail[0].text.includes(link));
+  });
+}
+
 test('verification relay requires authentication and enforces recipient limits', async t => {
   const { calls, env, handler } = fixture(t);
   assert.equal((await handler(verificationRequest(verificationBody, ''), env)).status, 401);
@@ -226,6 +238,15 @@ for (const invalid of [
   { ...verificationBody, verificationLink: resetLink },
   { ...verificationBody, verificationLink: `https://evil.test/verify-email#token=${token}` },
   { ...verificationBody, verificationLink: `https://jobverify.test/verify-email?next=evil#token=${token}` },
+  ...[
+    '?next=https%3A%2F%2Fevil.test%2Fjobs',
+    '?next=%2F%2Fevil.test%2Fjobs',
+    '?next=%2F%5Cevil.test%2Fjobs',
+    '?next=%2Fjobs&next=%2Fprofile',
+    '?next=%2Fjobs&mode=change',
+    '?redirect=%2Fjobs',
+    '?next=',
+  ].map(search => ({ ...verificationBody, verificationLink: `https://jobverify.test/verify-email${search}#token=${token}` })),
   { ...verificationBody, verificationLink: `${verificationLink}&next=evil` },
   { ...verificationBody, verificationLink: 'https://jobverify.test/verify-email#token=short' },
   { ...verificationBody, to: 'first@gmail.com,second@gmail.com' },

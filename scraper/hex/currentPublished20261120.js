@@ -15,7 +15,10 @@ const placeKeys=new Set(['joblocation','joblocations','worklocation','worklocati
 const context=(at,countries)=>({employer:COMPANY,observedAt:at,countryAlternatives:countries})
 function pure(fn){try{return fn()}catch(error){if(error?.nativeContradiction)throw error;throw Object.assign(Error('Hex native complete parser/contract: '+error.message),{cause:error,abortRetries:true,nativeContradiction:true,softFailure:true,failureKind:'parser_or_contract_error',lifecycleCleanupAllowed:false})}}
 function safeURL(value,base=CAREERS,{fragment=false}={}){need(typeof value==='string'&&value===value.trim()&&value,'native URL malformed');const u=new URL(value,base);need(u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&!u.search&&(fragment||!u.hash),'native exact public HTTPS URL differs');return u}
-export function isHexRoleURL(value){try{const u=safeURL(value),part=u.pathname.slice('/careers/'.length,-1);return u.origin===new URL(CAREERS).origin&&u.pathname.startsWith('/careers/')&&u.pathname.endsWith('/')&&/^[a-z0-9_()-]+$/i.test(decodeURIComponent(part))&&u.href===value}catch{return false}}
+export function isHexRoleURL(value){try{const u=safeURL(value),part=u.pathname.slice('/careers/'.length,-1);return u.origin===new URL(CAREERS).origin&&u.pathname.startsWith('/careers/')&&u.pathname.endsWith('/')&&/^[a-z0-9_()&-]+$/i.test(decodeURIComponent(part))&&u.href===value}catch{return false}}
+// Current Hex metadata writes a literal ampersand for the same role whose
+// advertised path encodes it. Admit only that path spelling equivalence.
+const sameRoleURL=(value,expected)=>value===expected||isHexRoleURL(value)&&isHexRoleURL(expected)&&value.replace(/%26/gi,'&')===expected.replace(/%26/gi,'&')
 function applications(properties,allowed){for(const p of properties)if(applicationKeys.has(key(p.key))&&p.value!=null)need(allowed.includes(safeURL(p.value).href),'native same-role application or detail alias conflicts')}
 function paths(root,target,path=[]){if(root===target)return[...path,root];for(const child of root.children.filter(n=>typeof n!=='string')){const found=paths(child,target,[...path,root]);if(found)return found}return null}
 function carrier(p,node,at,countries=[],allowed=[CAREERS],raw=false){
@@ -38,9 +41,9 @@ function publisher(html,url,at,row){
  const p=page(html,url,{canonical:false}),head=activeHead(p.normalized),publisherCarriers=[]
  const qualify=(node,raw=false)=>{publisherCarriers.push({node,raw});if(!row)carrier(p,node,at,[],[url],raw)}
  need(/\bHex\b/.test(p.title??''),'native current publisher brand differs')
- const canonicals=p.d.nodes(n=>n.tag==='link'&&(n.attrs.rel??'').toLowerCase()==='canonical');if(canonicals.length){const node=one(canonicals,'current publisher canonical');need(safeURL(node.attrs.href,url).href===url,'native publisher canonical differs');qualify(node)}
+ const canonicals=p.d.nodes(n=>n.tag==='link'&&(n.attrs.rel??'').toLowerCase()==='canonical');if(canonicals.length){const node=one(canonicals,'current publisher canonical');need(sameRoleURL(safeURL(node.attrs.href,url).href,url),'native publisher canonical differs');qualify(node)}
  const actualHeadTitle=one(all(p.raw.root,n=>n.tag==='title').filter(n=>paths(p.raw.root,n).some(parent=>parent.tag==='head')),'actual head-owned publisher title');qualify(actualHeadTitle,true)
- for(const[property,expected]of[['og:site_name',COMPANY],['og:url',url]]){const values=head.metas.filter(m=>m.property===property);need(values.length===1&&values[0].content===expected,'native current '+property+' publisher differs')}
+ for(const[property,expected]of[['og:site_name',COMPANY],['og:url',url]]){const values=head.metas.filter(m=>m.property===property);need(values.length===1&&(property==='og:url'?sameRoleURL(values[0].content,expected):values[0].content===expected),'native current '+property+' publisher differs')}
  for(const meta of p.d.nodes(n=>n.tag==='meta'&&['og:site_name','og:url','og:title'].includes(n.attrs.property)))qualify(meta)
  const headings=p.d.nodes(n=>n.tag==='h1');need(headings.length>0&&headings.length<=8,'native current own headings missing/excessive');if(row)need(headings.length===1&&norm(p.d.text(headings[0]))===row.title,'native own role heading conflicts with advertised identity')
  const structured=schemas(p,{types:['JobPosting','WebPage','AboutPage','WebSite','Organization']})

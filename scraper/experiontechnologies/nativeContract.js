@@ -4,6 +4,9 @@ import {readNativeDocument,extractActiveDescription} from './nativeHtml.js'
 export const HOME='https://experionglobal.com/',CAREERS=HOME+'job-openings/',CLIENT=HOME+'wp-content/themes/experionglobal/assets/js/main.js'
 const CLIENT_SHA256='13cf789724576f392864597318b5528abc19f9b679082bc95a70458adddd52e3'
 const CURRENT_CLIENT_SHA256='eb0c41212ad8da6040f05b63b9e3e4b57eb0f74ad13adf9e5c12b1d120fe7779'
+// The 25 November client appends only the service FAQ accordion handler;
+// all 59 previously reviewed statements, including pagination, are unchanged.
+const FAQ_CLIENT_SHA256='b7e7bc08a49c0ffabb482d64b42aea6a22d7787bb406799fef936dfc101ccf6b'
 const check=(ok,message)=>{if(!ok)throw new Error('Experion native contract: '+message)}
 const norm=x=>typeof x==='string'?x.replace(/\s+/g,' ').trim():''
 const only=(rows,label)=>{check(rows.length===1,'Expected one '+label);return rows[0]}
@@ -21,7 +24,7 @@ export function verifyExperionInventory(homepage,html,client){
  check(extractOfficialRecruitmentLinks(homepage,HOME).some(l=>l.href===CAREERS),'Current official corporate handoff unavailable')
  const doc=readNativeDocument(html)
  check(doc.nodes(n=>n.tag==='script'&&n.attrs.src===CLIENT&&[undefined,'','text/javascript','application/javascript'].includes(n.attrs.type)).length===1,'Current native pagination client unavailable')
- check(typeof client==='string'&&[CLIENT_SHA256,CURRENT_CLIENT_SHA256].includes(crypto.createHash('sha256').update(client).digest('hex')),'Native pagination client contract changed')
+ check(typeof client==='string'&&[CLIENT_SHA256,CURRENT_CLIENT_SHA256,FAQ_CLIENT_SHA256].includes(crypto.createHash('sha256').update(client).digest('hex')),'Native pagination client contract changed')
  const container=only(doc.nodes(n=>doc.hasClass(n,'career-jobs-container')),'native jobs container')
  const cards=descendants(container,n=>doc.hasClass(n,'career-job-row'))
  check(cards.length>0&&cards.length<=150,'Native inventory absent or exceeds bounded scope')

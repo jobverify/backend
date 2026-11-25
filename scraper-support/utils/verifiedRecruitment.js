@@ -168,6 +168,16 @@ const country = value => {
   return countries[0] || null
 }
 const asArray = value => value == null ? [] : Array.isArray(value) ? value : [value]
+// Listing geography only schedules a candidate's own full native detail. It
+// never supplies that detail's country evidence or excludes an unknown role.
+const indiaPostingCandidate = posting => {
+  try {
+    const locations = asArray(posting.jobLocation).map(location => location?.address).filter(Boolean)
+    const remote = posting.jobLocationType === 'TELECOMMUTE'
+      ? asArray(posting.applicantLocationRequirements).map(item => ({ addressCountry: item?.name })) : []
+    return [...locations, ...remote].map(address => country(address.addressCountry)).includes('India')
+  } catch { return false }
+}
 const workdayListingHasRequisition = (row, id, allowBulletMatch = true) => {
   if (!text(id)) return false
   if (allowBulletMatch && asArray(row.bulletFields).some(value => value === id)) return true
@@ -341,6 +351,7 @@ export function createVerifiedRecruitmentScraper(config) {
     const homepage = https(config.officialHomepageUrl || (config.companyDomain ? `https://${config.companyDomain}/` : ''))
     requireValue(text(config.source) && text(config.companyName) && (root || homepage), 'A registered source and official HTTPS surface are required')
     const maxRequests = options.maxRequests ?? 48, maxPages = options.maxPages ?? 8, maxDetails = options.maxDetails ?? 20
+    const preferIndiaInventory = (options.preferIndiaInventory ?? config.preferIndiaInventory) === true
     const sourceTimeoutMs = options.sourceTimeoutMs ?? 90000
     const requestIntervalMs=options.requestIntervalMs??config.nativeRequestIntervalMs??0,lastRequest=new Map()
     requireValue(Number.isSafeInteger(requestIntervalMs)&&requestIntervalMs>=0&&requestIntervalMs<=60000
@@ -869,6 +880,7 @@ export function createVerifiedRecruitmentScraper(config) {
       const visibleRoles = new Set(config.prioritizeRecruitmentSearch
         ? [...recruitmentSuccessFactorsPostings(doc, page.url), ...successFactorsUnifiedPostings(doc, page.url,{listing:nativeCandidate?.record})] : [])
       const schemas = [...recruitmentJobPostings(doc), ...microdata, ...visibleRoles]
+      const declaredSchemaRoleLinks = new Map()
       for (const posting of schemas) {
         if (corporatePage && !companyIdentified && !declaredCompanyRolePages.has(value) && !declaredCompanyRolePages.has(page.url)) continue
         const nativeURL = https(posting.url || posting['@id'] || page.url)
@@ -876,7 +888,8 @@ export function createVerifiedRecruitmentScraper(config) {
         if (!samePage(nativeURL, pageURL)) {
           if (companyIdentified || !corporatePage) {
             if (corporatePage && official(nativeURL)) declaredCompanyRolePages.add(nativeURL.href)
-            queue.unshift(nativeURL.href)
+            declaredSchemaRoleLinks.set(nativeURL.href, declaredSchemaRoleLinks.get(nativeURL.href) === true
+              || preferIndiaInventory && indiaPostingCandidate(posting))
           }
           continue
         }
@@ -919,6 +932,10 @@ export function createVerifiedRecruitmentScraper(config) {
           ...(visibleRoles.has(posting) && !posting.hiringOrganization && canDelegate && !config.requireNativeEmployerName
             ? { employerBinding: { method: 'current-native-visible-role-publisher', surface: page.url, legalEmployer: null } } : {}) })
       }
+      // Prepend each group once so equal-priority roles retain the publisher's
+      // declaration order. Other candidates keep their navigation precedence.
+      const schemaRoleNavigation = [...declaredSchemaRoleLinks]
+      queue.unshift(...schemaRoleNavigation.filter(([, india]) => !india).map(([url]) => url))
       if (config.stopAfterNativeIndiaLimit === true && jobs.length >= maxDetails && jibeSearchOrigins.has(pageURL.origin)) {
         observed.unresolved.push('native-detail-budget-reached'); break
       }
@@ -999,6 +1016,9 @@ export function createVerifiedRecruitmentScraper(config) {
       else queue.unshift(...navigation)
       queue.unshift(...declaredPageDataLinks)
       queue.unshift(...declaredNativeSearchLinks)
+      // Spend bounded detail reads on current typed India candidates before
+      // additional careers, translation, sort and paging navigation.
+      queue.unshift(...schemaRoleNavigation.filter(([, india]) => india).map(([url]) => url))
       if (boards.size && seenPages.size >= 2) break
     }
     for (const { descriptor, requestedURL } of eightfoldPages.values()) {

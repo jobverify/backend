@@ -16,6 +16,9 @@ const API = CAREERS + 'api/jobs'
 const CLIENTS = Object.freeze({
   'https://app.jibecdn.com/prod/search/4.11.225/main.js': '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f',
   'https://app.jibecdn.com/prod/search/4.11.226/main.js': '64df0d1d3d65b28b8ebe0d9ccd08d776ffb092486633fb72f91f26e6c9950f56',
+  // 4.11.228 retains the public query whitelist, complete page sizes and the
+  // country renderer; full inventory and country controls still qualify zero.
+  'https://app.jibecdn.com/prod/search/4.11.228/main.js': 'd654bbb278b072e4825ee8880f3f1678ddfda05d20959202b9e480cad7fa7b89',
 })
 const EMPLOYER = 'First Citizens Bank'
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'

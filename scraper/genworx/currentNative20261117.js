@@ -9,6 +9,8 @@ import{nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
 import{currentGenworxTransport}from'./currentTransport20261117.js'
 const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
 const currentRevision=JSON.parse(readFileSync(new URL('./currentProfile20261118.json',import.meta.url),'utf8'))
+const deployment20261125=JSON.parse(readFileSync(new URL('./currentProfile20261125.json',import.meta.url),'utf8'))
+const primaryRevisions=[profile,deployment20261125],nativeRevisions=[profile,currentRevision,deployment20261125]
 const sha=s=>createHash('sha256').update(s).digest('hex'),norm=v=>String(v??'').replace(/\s+/g,' ').trim(),id=v=>typeof v==='string'&&/^\d{8,30}$/.test(v)
 const check=(ok,reason)=>{if(!ok)throw Object.assign(Error('GENWORX current native contract: '+reason),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,label)=>{check(rows.length===1,'unique '+label);return rows[0]}
@@ -31,7 +33,7 @@ function nativeDocument(html,detail=false){
  check(doc.nodes(n=>n.tag==='div'&&n.attrs.id==='career-website-main').length===1,'active native renderer root')
  const scripts=doc.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/javascript)$/i.test(n.attrs.type??''))
  const field=detail?'detailScripts':'boardScripts'
- const revision=one([profile,currentRevision].filter(candidate=>candidate[field].length===scripts.length
+ const revision=one(nativeRevisions.filter(candidate=>candidate[field].length===scripts.length
   &&scripts.every((node,index)=>equal(node.attrs,candidate[field][index].attrs))),'reviewed native complete program revision')
  const expected=revision[field]
  check(scripts.length===expected.length,'complete declared native executable graph');const models={}
@@ -111,13 +113,15 @@ function passiveRichCriteria(html){
  }catch{return false}
 }
 export async function runCurrentGenworx(options={}){
- options.signal?.throwIfAborted();const allowed=new Set([profile.primary.url,profile.client.url,profile.boardURL,profile.nativeClient.url,currentRevision.nativeClient.url])
+ options.signal?.throwIfAborted();const allowed=new Set([profile.boardURL,...primaryRevisions.flatMap(revision=>[revision.primary.url,revision.client.url]),...nativeRevisions.map(revision=>revision.nativeClient.url)])
  const io=currentGenworxTransport({...options,allowedURL:url=>allowed.has(url)}),verifiedAt=new Date().toISOString()
  const exact=async(entry,kind='html')=>{const p=await io.read(entry.url,kind);check(p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'finite current employer/client original '+entry.url);return p}
  const round=async()=>{
-  const home=await exact(profile.primary);check(equal(activeHead(home.text).titles,[profile.primaryTitle]),'current employer title')
-  const root=readNativeDocument(home.text);check(root.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src==='/assets/index-DHSlVCQC.js').length===1,'active current primary module')
-  await exact(profile.client,'js');const board=await io.read(profile.boardURL),{doc,revision}=nativeDocument(board.text)
+  const home=await io.read(profile.primary.url),primaryRevision=one(primaryRevisions.filter(revision=>home.bodyBytes===revision.primary.bytes&&home.bodySHA256===revision.primary.sha256),'finite current employer deployment')
+  check(equal(activeHead(home.text).titles,[profile.primaryTitle]),'current employer title')
+  const root=readNativeDocument(home.text),clientPath=new URL(primaryRevision.client.url).pathname
+  check(root.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src===clientPath).length===1,'active current primary module')
+  await exact(primaryRevision.client,'js');const board=await io.read(profile.boardURL),{doc,revision}=nativeDocument(board.text)
   check(equal(activeHead(board.text).titles,[profile.boardTitle]),'native board title');await exact(revision.nativeClient,'js')
   const hidden=name=>{const n=one(doc.nodes(n=>n.tag==='input'&&n.attrs.id===name),'native hidden '+name);check(n.attrs.type==='hidden','native hidden carrier');return JSON.parse(n.attrs.value)}
   const rows=hidden('jobs'),meta=hidden('meta'),pageJson=hidden('pageJson'),moduleMeta=hidden('moduleMeta');checkRows(rows);checkMeta(meta)
@@ -149,7 +153,7 @@ export async function runCurrentGenworx(options={}){
     jobDescription:model.description,sourceDescription:model.row.Job_Description,location:[row.City,row.State,'India'].filter(Boolean).join(', '),city:row.City??null,state:row.State??null,country:'India',
     postingDate:row.Date_Opened,nativePublicationDateProvenance:'native-public-Date_Opened',employmentType:row.Job_Type??null,experienceRequired:row.Work_Experience??null,department:row.Industry??null,
     nativeEmployer:opening.meta.org_info,nativeListingRecord:row,nativeDetailRecord:model.row,nativeDetailMeta:model.meta,nativeApplicationModel:model.application,nativeApplicationFormURL:model.applicationURL,
-    nativeAssessmentId:model.application.meta.assessment_id??null,applicationVisited:false,publicEligibility:null,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+    nativeAssessmentId:model.application.meta.assessment_id??null,applicationVisited:false,publicEligibility:null,applicationValidationQualified:false,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
     companyCareerPage:profile.boardURL,companyDomain:'genworx.ai',atsPlatform:'zohorecruit',scrapedAt:verifiedAt})
   }
   attachInventoryEvidence(jobs,{status:'coverage-gap',firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,surface:profile.boardURL,pagesFetched:io.receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt,
@@ -157,7 +161,7 @@ export async function runCurrentGenworx(options={}){
   attachSourceObservationEvidence(jobs,{source:'genworx',recordKind:'vacancy-rows',observedRecordCount:opening.rows.length,observedVacancyCount:opening.rows.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{configurable:true,value:{...jobs.nativeCollectionEvidence,source:'genworx',observedListingCount:opening.rows.length,candidateDetails:opening.details.length,
    extractedDetailJobs:jobs.length,excludedDetailJobs:exclusions.length,exclusions,failures,nativeOpeningInventory:opening,nativeClosingInventory:closing,retainedResponses:io.receipts,
-   closingFullNativeInventoryMatch:true,listingPaginationComplete:null,companyGlobalTotal:null,companyIndiaTotal:null,applicationVisited:false,publicEligibility:null,
+   closingFullNativeInventoryMatch:true,listingPaginationComplete:null,companyGlobalTotal:null,companyIndiaTotal:null,applicationVisited:false,publicEligibility:null,applicationValidationQualified:false,
    sourceScopeComplete:false,browserEquivalenceComplete:false,lifecycleCleanupAllowed:false}})
   return jobs
  }finally{io.close()}
