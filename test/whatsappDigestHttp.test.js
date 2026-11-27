@@ -16,7 +16,14 @@ const { createApp } = await import('../src/app.js');
 test('daily digest HTTP access is admin-only, private, bounded and limited to currently public available jobs', { timeout: 90_000 }, async t => {
   const mongo = await MongoMemoryReplSet.create({ binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) }, replSet: { count: 1 } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
-  await mongoose.connect(mongo.getUri());
+  await mongoose.connect(mongo.getUri(), { monitorCommands: true });
+  await Job.init();
+  const digestQueries = [];
+  mongoose.connection.getClient().on('commandStarted', event => {
+    if (event.commandName === 'find' && event.command.find === Job.collection.name) {
+      digestQueries.push(event.command);
+    }
+  });
   const admin = await User.create({ email: 'digest-admin@example.test', role: 'admin', isVerified: true });
   const member = await User.create({ email: 'digest-member@example.test', isVerified: true });
   await SiteSettings.create({ _id: 'global', experiencedJobsEnabled: false });
@@ -56,8 +63,24 @@ test('daily digest HTTP access is admin-only, private, bounded and limited to cu
     jobType: 'Intern', fingerprint: `digest-${key}`, status: 'active', postedAt: new Date(),
     sourceUrl: `https://careers.example.test/${key}`, sourceDescription: description, description, ...overrides });
 
+  // More than one query batch of unavailable rows, including equal timestamps,
+  // must not hide older available jobs or consume the requested result limit.
+  const tiedCreatedAt = new Date();
+  // Its earlier ID places this available row after the 105 unavailable rows
+  // at the same timestamp, exercising the ID tie-break across query pages.
+  await Job.collection.updateOne({ fingerprint: 'digest-multi-location' }, { $set: { createdAt: tiedCreatedAt } });
+  await Job.create(Array.from({ length: 105 }, (_, index) => ({
+    title: `Unavailable Engineer ${index}`, company: 'Example', city: 'Pune', country: 'India', location: 'Pune, India',
+    jobType: 'Intern', fingerprint: `digest-unavailable-${index}`, status: 'active', postedAt: tiedCreatedAt,
+    createdAt: tiedCreatedAt, sourceUrl: null, applyUrl: null, sourceDescription: description, description,
+  })));
   const result = await request(`?date=${today}&limit=1`);
   assert.equal(result.response.status, 200);
+  assert.ok(digestQueries.length >= 2, 'eligible jobs must be found beyond the first database batch');
+  for (const command of digestQueries) {
+    assert.equal(command.limit, 100, 'bound the sort memory before opening a cursor');
+    assert.deepEqual(command.hint, { createdAt: -1 }, 'use the existing date index instead of multiplanning broad visibility indexes');
+  }
   assert.match(result.response.headers.get('cache-control'), /no-store/);
   assert.equal(result.body.data.date, today);
   assert.equal(result.body.data.timezone, 'Asia/Kolkata');

@@ -92,22 +92,30 @@ export async function getWhatsAppDigest(query = {}, now = new Date()) {
   const origin = resolveFrontendOrigin();
   const filter = applyPublicJobVisibility({ status: 'active', 'sourceAvailability.state': { $ne: 'closed' },
     createdAt: { $gte: start, $lt: end }, $or: [{ closingDate: null }, { closingDate: { $gt: now } }] }, await getSiteSettings(), now);
-  const cursor = Job.find(filter).sort({ createdAt: -1, _id: -1 })
-    .select({ title: 1, company: 1, city: 1, location: 1, locations: 1, _publicJobType: PUBLIC_JOB_TYPE_EXPRESSION,
-      applyUrl: 1, sourceUrl: 1, workdayApplicationStatus: 1, workdayApplicationStatusReason: 1, workdayApplicationStatusCheckedAt: 1 })
-    .maxTimeMS(5000).lean().cursor({ batchSize: 100 });
   const jobs = [];
-  try {
-    // Use the public board's recorded application state, without probing employer sites.
-    // Apply the limit after availability so skipped rows cannot hide eligible jobs.
-    for await (const row of cursor) {
+  const batchSize = 100;
+  let before;
+  while (jobs.length <= limit) {
+    // Pin the existing date index: broad visibility indexes can time out during
+    // plan selection. A bounded top-k sort also avoids the 32 MiB sort limit.
+    const pageFilter = before ? { $and: [filter, { $or: [
+      { createdAt: { $lt: before.createdAt } },
+      { createdAt: before.createdAt, _id: { $lt: before._id } },
+    ] }] } : filter;
+    const rows = await Job.find(pageFilter).sort({ createdAt: -1, _id: -1 })
+      .hint({ createdAt: -1 }).limit(batchSize)
+      .select({ createdAt: 1, title: 1, company: 1, city: 1, location: 1, locations: 1, _publicJobType: PUBLIC_JOB_TYPE_EXPRESSION,
+        applyUrl: 1, sourceUrl: 1, workdayApplicationStatus: 1, workdayApplicationStatusReason: 1, workdayApplicationStatusCheckedAt: 1 })
+      .maxTimeMS(5000).lean();
+    // Apply the result limit after availability so skipped rows cannot hide jobs.
+    for (const row of rows) {
       if (buildApplicationState(row).applicationStatus !== 'available') continue;
       const job = digestJob(row, origin);
       if (job) jobs.push(job);
       if (jobs.length > limit) break;
     }
-  } finally {
-    await cursor.close();
+    if (rows.length < batchSize) break;
+    before = rows.at(-1);
   }
   const hasMore = jobs.length > limit;
   if (hasMore) jobs.pop();
