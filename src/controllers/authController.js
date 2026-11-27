@@ -173,6 +173,14 @@ export const register = async (req, res) => {
   try {
     const user = await User.findOne({ email: normalizedEmail });
     if (user) {
+      if (user.google?.sub) {
+        return res.status(409).json({
+          code: 409,
+          success: false,
+          accountExists: true,
+          message: 'This account was created with Google. Select “Continue with Google” to sign in.',
+        });
+      }
       return res.status(201).json({
         code: 201,
         success: true,

@@ -1,6 +1,6 @@
 // The configured relay is the sole delivery path; falling back to SMTP on
 // Render Free would conceal the actual failure and delay the response.
-async function sendViaRelay(path, payload, label) {
+async function sendViaRelay(path, payload, label, fetchRelay = globalThis.fetch) {
   let endpoint;
   const secret = String(process.env.EMAIL_RELAY_SECRET ?? '').trim();
   try {
@@ -14,7 +14,7 @@ async function sendViaRelay(path, payload, label) {
   }
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetchRelay(endpoint, {
       method: 'POST',
       redirect: 'error',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
@@ -29,11 +29,11 @@ async function sendViaRelay(path, payload, label) {
   }
 }
 
-export const sendPasswordResetViaRelay = (to, resetLink) =>
-  sendViaRelay('/send-password-reset', { to, resetLink }, 'Password reset');
+export const sendPasswordResetViaRelay = (to, resetLink, fetchRelay) =>
+  sendViaRelay('/send-password-reset', { to, resetLink }, 'Password reset', fetchRelay);
 
-export const sendVerificationViaRelay = (to, verificationLink) =>
-  sendViaRelay('/send-verification', { to, verificationLink }, 'Verification');
+export const sendVerificationViaRelay = (to, verificationLink, fetchRelay) =>
+  sendViaRelay('/send-verification', { to, verificationLink }, 'Verification', fetchRelay);
 
-export const sendEmailChangeViaRelay = (to, verificationLink) =>
-  sendViaRelay('/send-email-change', { to, verificationLink }, 'Email change verification');
+export const sendEmailChangeViaRelay = (to, verificationLink, fetchRelay) =>
+  sendViaRelay('/send-email-change', { to, verificationLink }, 'Email change verification', fetchRelay);

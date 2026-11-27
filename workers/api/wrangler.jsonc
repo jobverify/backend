@@ -6,6 +6,7 @@
   "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
   "no_bundle": true,
   "ai": { "binding": "AI" },
+  "services": [{ "binding": "EMAIL_RELAY", "service": "jobverify-gmail-relay" }],
   "r2_buckets": [{ "binding": "SOCIAL_ASSETS", "bucket_name": "jobverify-social-assets" }],
   "workers_dev": true,
   "preview_urls": false,

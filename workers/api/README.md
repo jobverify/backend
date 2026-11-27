@@ -68,6 +68,13 @@ Then run `npm run deploy` and complete the checks below before attaching the pro
 
 Email delivery uses your existing HTTPS Gmail relay (`workers/gmail-relay`) on this target. SMTP environment variables are not used. Deploy/configure the relay first if it is not already working. Keep the relay origin and shared secret consistent on both sides.
 
+The API's `EMAIL_RELAY` service binding targets `jobverify-gmail-relay`. Worker
+email delivery uses this binding rather than a public fetch to a sibling
+`workers.dev` URL. Keep `EMAIL_RELAY_URL` and `EMAIL_RELAY_SECRET`: the binding
+selects the Worker, while the existing URL validation and bearer authentication
+still apply. Deploying the backend configuration installs the binding; the relay
+does not need redeployment for this routing change.
+
 Copy integration bindings that you currently use:
 
 | Feature | Bindings to transfer |
