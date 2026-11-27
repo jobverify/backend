@@ -207,7 +207,7 @@ export const register = async (req, res) => {
     await pending.save();
 
     const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
-    sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
+    await sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
     });
     res.status(201).json({
@@ -401,7 +401,7 @@ export const resendVerification = async (req, res) => {
     }
 
     const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
-    sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
+    await sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
     });
 

@@ -226,9 +226,15 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
   if (openingCorporate.signature !== closingCorporate.signature) reasons.add('closing-first-party-scope-changed')
   if (canonical(openingClient) !== canonical(closingClient)) reasons.add('closing-native-candidate-shell-changed')
   for (const id of [...openingCorporate.ids, ...closingCorporate.ids]) if (!closing.rows.some(row => row.id === id)) reasons.add('advertised-role-not-in-native-inventory')
-  const mapped = []
+  const mapped = [], excludedNativeRoles = []
+  const exclude = (detail, listing, reason) => {
+    reasons.add(reason + ':' + detail.id)
+    excludedNativeRoles.push({ detail, listing, payload: closing.detailPayloads.find(payload => payload.message.job[0].id === detail.id), reason })
+  }
   for (const detail of closing.details) {
-    if (!opening.details.some(row => row.id === detail.id && canonical(row) === canonical(detail))) continue
+    if (!opening.details.some(row => row.id === detail.id && canonical(row) === canonical(detail))) {
+      exclude(detail, closing.rows.find(row => row.id === detail.id), 'closing-native-role-changed'); continue
+    }
     const listing = closing.rows.find(row => row.id === detail.id)
     const arrays = ['officelocations_area', 'officelocations_without_area', 'tool_tip_locations']
     const allLocations = arrays.flatMap(key => Array.isArray(detail[key]) ? detail[key] : [])
@@ -246,9 +252,9 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
         || !sameLocations(record.officelocations_area, areas)) return false
       // The new listing concatenates each independently reconciled full address
       // and one opaque office code. Codes never supply country or extra places.
-      const normalized = locationKey(value), codes = normalized.match(/ \([a-z0-9_-]+\)(?=,|$)/g)
-      return codes?.length === record.officelocations_area.length
-        && locationKey(normalized.replace(/ \([a-z0-9_-]+\)(?=,|$)/g, '')) === locationKey(record.officelocations_area.join(','))
+      const parts = locationKey(value).split(/ \([a-z0-9_-]+\)(?:, |$)/g)
+      return parts.length === record.officelocations_area.length + 1 && parts.at(-1) === ''
+        && sameLocations(parts.slice(0, -1), record.officelocations_area)
     }
     const suppliedGeographyMatches = (record, isListing) => {
       for (const key of ['locations', 'officelocation_show_arr']) if (Object.hasOwn(record, key) && !displayMatches(record[key])
@@ -277,11 +283,11 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
       || !sameLocations(detail.officelocations_area, detail.tool_tip_locations)
       || !sameLocations(listing.tool_tip_locations, detail.tool_tip_locations)
       || !idsResolved || !suppliedGeographyMatches(detail, false) || !suppliedGeographyMatches(listing, true)) {
-      reasons.add('native-role-country-alternatives-unresolved:' + detail.id); continue
+      exclude(detail, listing, 'native-role-country-alternatives-unresolved'); continue
     }
-    if (detail.country != null && detail.country !== 'India') { reasons.add('contradictory-native-country:' + detail.id); continue }
+    if (detail.country != null && detail.country !== 'India') { exclude(detail, listing, 'contradictory-native-country'); continue }
     const html = decodeNativeEntities(detail.jd), description = extractActiveDescription(html)
-    if (!description || !hasSourceDescription({ sourceDescription: description })) { reasons.add('native-full-criteria-unavailable:' + detail.id); continue }
+    if (!description || !hasSourceDescription({ sourceDescription: description })) { exclude(detail, listing, 'native-full-criteria-unavailable'); continue }
     const visibilityUnknown = /<(?:script|style|template)\b|\b(?:hidden|inert|aria-hidden)\b|display\s*:\s*none|visibility\s*:\s*hidden/i.test(html)
     if (visibilityUnknown) reasons.add('native-description-visibility-unreviewed:' + detail.id)
     const criteriaUnknown = opening.globalCriteriaUnknown || closing.globalCriteriaUnknown
@@ -321,10 +327,11 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     sourceNativeDetailPayload: closing.detailPayloads.find(payload => payload.message.job[0].id === job.jobId),
     sourceNativeLocations: native.nativeLocationAlternatives, locations: native.nativeLocationAlternatives,
     sourceNativeLocationIds: native.nativeRaw.officelocation_arr,
+    sourceUnresolvedNativeRoles: excludedNativeRoles,
     requisitionId: native.internal_job_code || null, nativeEmployerBrand: spec.brand,
     sourceListingComplete: complete, sourceScopeComplete: complete, lifecycleCleanupAllowed: complete } })
   const audit = { source: spec.source, productionWrites: false, complete, reasons: [...reasons], nativeTotal: closing.total,
-    returnedIndiaJobs: jobs.length, openingSignature: opening.signature, closingSignature: closing.signature,
+    returnedIndiaJobs: jobs.length, excludedNativeRoles, openingSignature: opening.signature, closingSignature: closing.signature,
     openingCorporate, closingCorporate, openingClient, closingClient, nativeIds: closing.rows.map(row => row.id), receipts }
   onAudit?.(structuredClone(audit)); signal?.throwIfAborted()
   return attachInventoryEvidence(jobs, { status: complete ? jobs.length ? 'complete-inventory' : 'verified-empty' : 'coverage-gap',

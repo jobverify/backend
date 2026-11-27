@@ -34,6 +34,17 @@ const programmeProfiles=[
   'https://assets.nobroker.in/nb-new/41/41.07a9d48911ae6b02e436.chunk.js',
   'https://assets.nobroker.in/nb-new/careers/careers.eeb6f256aea164d5808f.chunk.js',
  ]},
+ {id:'current-20261125',componentModule:3320,entryModule:1024,configModule:1313,criticalPrograms:new Map([
+  ['https://assets.nobroker.in/nb-new/42/42.6ae35ef0ad3d17b3c0e5.chunk.js','c932829b00f63130f9941ed9de66f89d0310ec100409865287c737d8259ebe3e'],
+  ['https://assets.nobroker.in/nb-new/careers/careers.dc8c55c51eb197d34140.chunk.js','81bf0bef6b3a5b09808474409d1397f6ee358484ca7c3bdd675275e05c1ed154'],
+ ]),bootURLs:[
+  'https://assets.nobroker.in/nb-new/696.65b7354fa5791c7344a5.js',
+  'https://assets.nobroker.in/nb-new/main.3b6819ec1d18969ada7e.js',
+  'https://assets.nobroker.in/nb-new/6/6.9690ffb2fe29a9c0eb8e.chunk.js',
+  'https://assets.nobroker.in/nb-new/22/22.147545c74d4076bec3a9.chunk.js',
+  'https://assets.nobroker.in/nb-new/42/42.6ae35ef0ad3d17b3c0e5.chunk.js',
+  'https://assets.nobroker.in/nb-new/careers/careers.dc8c55c51eb197d34140.chunk.js',
+ ]},
 ]
 // Complete reviewed tuples prevent combining critical modules with another deployment.
 const programmeProfileFor=boot=>programmeProfiles.find(profile=>boot.length===profile.bootURLs.length&&boot.every((p,index)=>p.body===''&&isDeepStrictEqual(Object.keys(p.attrs).sort(),['async','crossorigin','data-chunk','src'])&&p.attrs.async===''&&p.attrs.crossorigin==='anonymous'&&p.attrs['data-chunk']===(index<2?'main':'careers')&&p.attrs.src===profile.bootURLs[index]))
@@ -71,16 +82,23 @@ export async function runCurrentNoBroker(options={}){
  options.signal?.throwIfAborted();need(options.maxJobs===undefined||Number.isSafeInteger(options.maxJobs)&&options.maxJobs>0,'Invalid output bound; native observations cannot be truncated')
  const reader=createCurrentNativeReader(options,{source:SOURCE,admitted:[[HOMEPAGE_URL,'html'],[CAREERS_URL,'html'],[JOB_FEED_URL,'json'],[SEARCH_URL,'html']],learnedURL:(url,kind)=>kind==='javascript'&&/^https:\/\/assets\.nobroker\.in\/nb-new\/.+\.js$/.test(url)||kind==='html'&&detailURL(url)})
  let opening,closing,nativeHandoffDenial
+ const rememberHandoffDenial=(error,url)=>{
+  options.signal?.throwIfAborted();const receipt=reader.stats().receipts.at(-1)
+  if(!(error?.accessChallenge||[401,402,403,406,407,429,451].includes(error?.httpStatus))
+   ||error?.failureKind!=='blocked_or_access_denied'||error.responseUrl!==url
+   ||receipt?.requestedUrl!==url||receipt.finalUrl!==url||receipt.status!==error.httpStatus)return false
+  nativeHandoffDenial={url,httpStatus:error.httpStatus,message:error.message,failureKind:error.failureKind,accessChallenge:error.accessChallenge===true,originalReceipt:receipt,bodyComplete:receipt.bodyComplete===true,followupDeniedHostRequests:0}
+  return true
+ }
  async function detail(url){
   if(nativeHandoffDenial)return {url,httpStatus:null,qualification:'unobserved-after-native-host-denial',activeApplyVerified:false}
   reader.allow(url,'html')
   try{const page=await reader.read(url);return {url,httpStatus:200,wholeOriginalHTML:page.body,qualification:'unreviewed-current-public-detail',activeApplyVerified:false}}
   catch(error){options.signal?.throwIfAborted();const receipt=reader.stats().receipts.at(-1)
-   if((error.accessChallenge||[401,402,403,406,407,429,451].includes(error.httpStatus))&&error.failureKind==='blocked_or_access_denied'&&error.responseUrl===url&&receipt?.finalUrl===url){
-    nativeHandoffDenial={url,httpStatus:error.httpStatus,message:error.message,failureKind:error.failureKind,accessChallenge:error.accessChallenge===true,originalReceipt:receipt,bodyComplete:receipt?.bodyComplete===true,followupDeniedHostRequests:0}
+   if(rememberHandoffDenial(error,url)){
     return {url,httpStatus:error.httpStatus,qualification:'native-detail-denied-no-criteria-or-application-qualified',originalReceipt:receipt,activeApplyVerified:false}
    }
-   if(error.httpStatus!==301)throw error;reader.check();const location=receipt?.headers?.location
+   if(error?.httpStatus!==301)throw error;reader.check();const location=receipt?.headers?.location
    need(receipt?.requestedUrl===url&&receipt.finalUrl===url&&/^https:\/\/www\.linkedin\.com\/jobs\/[a-z0-9-]+-jobs\?trk=expired_jd_redirect$/.test(location??''),'Current native detail no longer matches reviewed expired redirect; original HTTP '+String(error.httpStatus??'unavailable'))
    return {url,httpStatus:301,nativeRedirectLocation:location,originalReceipt:receipt,redirectFollowed:false,qualification:'native-expired-JD-redirect-to-generic-search',activeApplyVerified:false}
   }
@@ -89,7 +107,14 @@ export async function runCurrentNoBroker(options={}){
   const home=readCurrentNoBrokerPage((await reader.read(HOMEPAGE_URL)).body,HOMEPAGE_URL),career=readCurrentNoBrokerPage((await reader.read(CAREERS_URL)).body,CAREERS_URL),programmes=[]
   const profile=programmeProfiles.find(p=>p.id===career.programmeProfileId);need(profile,'Current native programme profile was not selected')
   for(const url of career.bootURLs){reader.allow(url,'javascript');const page=await reader.read(url);if(profile.criticalPrograms.has(url))need(page.sha256===profile.criticalPrograms.get(url),'Reviewed active programme import/config/feed binding changed');programmes.push({url,sha256:page.sha256,wholeOriginalProgram:page.body})}
-  const feed=readCurrentNoBrokerFeed((await reader.read(JOB_FEED_URL)).body),search=nativeHandoffDenial?{url:SEARCH_URL,qualification:'unobserved-after-native-host-denial'}:readCurrentNoBrokerSearch((await reader.read(SEARCH_URL)).body),details=[]
+  const feed=readCurrentNoBrokerFeed((await reader.read(JOB_FEED_URL)).body),details=[]
+  let search
+  if(nativeHandoffDenial)search={url:SEARCH_URL,qualification:'unobserved-after-native-host-denial'}
+  else try{search=readCurrentNoBrokerSearch((await reader.read(SEARCH_URL)).body)}
+  catch(error){
+   if(!rememberHandoffDenial(error,SEARCH_URL))throw error
+   search={url:SEARCH_URL,httpStatus:error.httpStatus,qualification:'native-search-denied-no-company-or-India-inventory',originalReceipt:nativeHandoffDenial.originalReceipt,activeApplyVerified:false}
+  }
   for(const row of feed.filter(Boolean))details.push(await detail(row.Link))
   return {home,career,programmes,feed,search,details,programmeBinding:{programmeProfileId:profile.id,componentModule:profile.componentModule,entryModule:profile.entryModule,configModule:profile.configModule,configExport:'firebaseConfig',collection:'jobOpeningSheet',feedURL:JOB_FEED_URL,searchURL:SEARCH_URL,reviewedCriticalProgramHashes:Object.fromEntries(profile.criticalPrograms),programmesExecuted:false,completeDependencyClosureQualified:false}}
  }

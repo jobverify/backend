@@ -25,18 +25,23 @@ function replay(change=(p,value)=>value){
   return Object.defineProperties(new Response(body,{status:p.status,headers}),{url:{value:p.finalURL},redirected:{value:p.redirected}})
  }}}
 }
-test('Keyence current declared client uses the real native listing POST and retains ten full original listing/detail records',async()=>{
+test('Keyence current declared client uses the real native listing POST and retains all ten explicit India records with unqualified criteria held',async()=>{
  const r=replay(),jobs=await run(r.options)
  assert.equal(jobs.length,10);assert.equal(r.reads.filter(p=>p.url===listing).length,2)
  assert.equal(r.reads.filter(p=>p.url===api+'groupcompanycareersetting').length,2)
  assert.ok(r.reads.every(p=>!p.url.startsWith(api+'job?page=')))
- assert.equal(r.audit.nativeTotal,10);assert.equal(r.audit.openingSignature,r.audit.closingSignature)
+ assert.equal(r.audit.nativeTotal,10)
+ // The genuine company payload changes two field aliases between reads.
+ assert.notEqual(r.audit.openingSignature,r.audit.closingSignature)
+ assert.ok(r.audit.reasons.includes('closing-native-inventory-or-full-details-changed'))
+ assert.equal(r.audit.excludedNativeRoles.length,0)
  for(const job of jobs){
   assert.equal(job.country,'India');assert.ok(job.sourceDescription.length>100)
   assert.equal(job.sourceNativeListingRecord.id,job.jobId);assert.equal(job.sourceNativeJob.id,job.jobId)
   assert.equal(job.sourceNativeListingPayload.data.find(row=>row.id===job.jobId).id,job.jobId)
   assert.equal(job.closingDate,new Date(job.sourceNativeListingRecord.job_posting.careers.to*1000).toISOString())
   assert.equal(job.lifecycleCleanupAllowed,false);assert.equal(job.sourceScopeComplete,false)
+  assert.equal(job.sourceDetailComplete,false,'New native fields remain unreviewed')
  }
  assert.equal(readInventoryEvidence(jobs).listingComplete,false,'Changed shell remains unqualified')
 })
@@ -51,7 +56,7 @@ test('Keyence modern listing location IDs must exactly reconcile with independen
  const r=replay((p,value)=>{if(p.url===listing)value.data.find(row=>row.id===firstId).officelocation_arr[0]='a0000000000000';return value})
  const jobs=await run(r.options);assert.equal(jobs.some(job=>job.jobId===firstId),false)
 })
-test('Keyence an extra modern listing criterion holds detail qualification while preserving the complete original payload',async()=>{
+test('Keyence an additional listing criterion is retained verbatim under the existing qualification hold',async()=>{
  const r=replay((p,value)=>{if(p.url===listing)value.data.find(row=>row.id===firstId).qualification='Additional licence required';return value})
  const job=(await run(r.options)).find(job=>job.jobId===firstId)
  assert.ok(job);assert.equal(job.sourceDetailComplete,false);assert.equal(job.sourceNativeListingRecord.qualification,'Additional licence required')
@@ -63,15 +68,18 @@ test('Keyence employer account identity remains exact on the current native rout
  assert.equal(r.reads.some(p=>p.url===listing),false)
 })
 test('Keyence current listing total and public posting windows remain checked',async()=>{
- for(const mutate of[value=>{value.job_counts=11},value=>{value.data[0].job_posting.careers.from++},value=>{value.data[0].job_posting.careers.to='later'}]){
+ for(const mutate of[value=>{value.job_counts=9},value=>{value.data[0].job_posting.careers.from++},value=>{value.data[0].job_posting.careers.to='later'}]){
   const r=replay((p,value)=>{if(p.url===listing)mutate(value);return value})
   await assert.rejects(run(r.options),/pagination incomplete|publication|closing epoch/)
  }
 })
 test('Keyence a closing modern listing criterion change remains a visible coverage gap',async()=>{
+ const baseline=replay();await run(baseline.options)
  const r=replay((p,value,index)=>{if(p.url===listing&&index===1)value.data[0].experience='10 - 20 Years';return value})
  const jobs=await run(r.options);assert.equal(jobs.length,10)
  assert.ok(r.audit.reasons.includes('closing-native-inventory-or-full-details-changed'))
  assert.notEqual(r.audit.openingSignature,r.audit.closingSignature)
+ assert.equal(r.audit.openingSignature,baseline.audit.openingSignature)
+ assert.notEqual(r.audit.closingSignature,baseline.audit.closingSignature,'The complete listing must contribute to closing proof')
  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
 })

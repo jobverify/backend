@@ -1,0 +1,53 @@
+{
+  "source": "front",
+  "status": "still-soft-failure",
+  "softFailure": true,
+  "upstreamOutage": false,
+  "failureKind": "coverage_gap",
+  "error": {
+    "name": "Error",
+    "message": "[front] Official ATS recovery: no-verified-supported-ats-binding",
+    "failureKind": "coverage_gap",
+    "softFailure": true,
+    "abortRetries": true
+  },
+  "adapter": "script",
+  "modulePath": "C:\\Users\\mohv\\release\\backend\\scraper\\front\\script.js",
+  "startedAt": "2026-11-25T04:11:31.807Z",
+  "validationAttemptId": "front:2026-11-25T04:11:31.622Z",
+  "entrypointSHA256": "30ef91d7d6ab6eabf59f1b518176b0c0273ef579f2ad42f43580e11b212ca3c3",
+  "finishedAt": "2026-11-25T04:11:54.763Z",
+  "durationMs": 22951,
+  "requestCount": 2,
+  "transportReceipts": [
+    {
+      "number": 1,
+      "method": "GET",
+      "url": "https://front.com/jobs",
+      "startedAt": "2026-11-25T04:11:34.733Z",
+      "error": {
+        "name": "TimeoutError",
+        "message": "The operation was aborted due to timeout",
+        "code": 23
+      }
+    },
+    {
+      "number": 2,
+      "method": "GET",
+      "url": "https://front.com/",
+      "startedAt": "2026-11-25T04:11:44.747Z",
+      "error": {
+        "name": "TimeoutError",
+        "message": "The operation was aborted due to timeout",
+        "code": 23
+      }
+    }
+  ],
+  "sourceDeadlineMs": 180000,
+  "persistenceDisabled": true,
+  "resourcePauseOverlapMs": 0,
+  "recheckAfterResourcePause": false,
+  "validationInfrastructureHold": true,
+  "needsRevalidation": true,
+  "infrastructureHoldReason": "Observed systemic connection timeout interval; no HTTP responses received. Source-specific diagnosis is unconfirmed."
+}

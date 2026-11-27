@@ -104,8 +104,8 @@ export function nativeHTMLModel(html,url){
 // A single existing footer contact is mechanically equal when Cloudflare changes
 // its XOR representation. This does not execute or qualify the current decoder.
 // All actual models/documents remain intact; only explicit comparison copies vary.
-export function qualifyProtectedHomeContact(html,model,reviewed){
- need(model?.url===HOME&&reviewed?.url===HOME,'protected contact is HOME-only')
+function qualifyProtectedContact(html,model,reviewed,pageURL){
+ need([HOME,CAREER].includes(pageURL)&&model?.url===pageURL&&reviewed?.url===pageURL,'protected contact requires its own reviewed page')
  const{root}=ownAttributeDocument(html),nodes=allNodes(root),parents=new Map()
  for(const parent of nodes)for(const child of parent.children)if(typeof child!=='string')parents.set(child,parent)
  need(!nodes.some(node=>node.nativeTagUnqualified),'unqualified protected contact namespace')
@@ -146,13 +146,15 @@ export function qualifyProtectedHomeContact(html,model,reviewed){
  requireReviewedHTML(comparisonModel,reviewed)
  const projectedText=html.replace(encoded,'[SINGLE-BOUND-ENCODED-CONTACT]')
  return{comparisonModel,projectedText,projectedSHA256:sha(projectedText),evidence:{
-  scope:'single-existing-active-footer-protected-public-contact-comparison-only',
+  scope:'single-existing-active-footer-protected-public-contact-comparison-only',pageURL,
   encodedBytes:22,encodedSHA256:sha(encoded),decodedBytes:decoded.length,decodedSHA256:sha(decoded),
   actualEncodedRepresentationRetainedInOriginalModel:true,wholeReviewedModelEqualAfterSingleFieldReconstruction:true,
   singleOwnedRawSpanProjected:true,projectedBodySHA256:sha(projectedText),decoderDeclarationQualified:true,
   decoderFetchedOrExecuted:false,currentDecoderBytesOrBrowserEquivalenceClaimed:false,plaintextPersisted:false
  }}
 }
+export const qualifyProtectedHomeContact=(html,model,reviewed)=>qualifyProtectedContact(html,model,reviewed,HOME)
+export const qualifyProtectedCareerContact=(html,model,reviewed)=>qualifyProtectedContact(html,model,reviewed,CAREER)
 
 // This closed interpreter checks effect kinds and DOM ownership without running
 // the publisher. Cosmetic classes and event/UI implementation can vary; no

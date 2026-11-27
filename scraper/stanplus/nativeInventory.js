@@ -237,9 +237,9 @@ export async function runReviewedThirdWaveDarwinboxInventory(spec, options = {})
         || !sameLocations(record.officelocations_area, areas)) return false
       // The new listing concatenates each independently reconciled full address
       // and one opaque office code. Codes never supply country or extra places.
-      const normalized = locationKey(value), codes = normalized.match(/ \([a-z0-9_-]+\)(?=,|$)/g)
-      return codes?.length === record.officelocations_area.length
-        && locationKey(normalized.replace(/ \([a-z0-9_-]+\)(?=,|$)/g, '')) === locationKey(record.officelocations_area.join(','))
+      const parts = locationKey(value).split(/ \([a-z0-9_-]+\)(?:, |$)/g)
+      return parts.length === record.officelocations_area.length + 1 && parts.at(-1) === ''
+        && sameLocations(parts.slice(0, -1), record.officelocations_area)
     }
     const suppliedGeographyMatches = (record, isListing) => {
       for (const key of ['locations', 'officelocation_show_arr']) if (Object.hasOwn(record, key) && !displayMatches(record[key])
