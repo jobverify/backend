@@ -17,7 +17,7 @@ test('screening rejects a compromised password using only a five-character hash 
     error instanceof PasswordSafetyError && error.statusCode === 400 && error.code === 'password_compromised');
   assert.equal(request[0], 'https://api.pwnedpasswords.com/range/49EFE');
   assert.equal(request[1].headers['Add-Padding'], 'true');
-  assert.equal(request[1].redirect, 'error');
+  assert.equal(request[1].redirect, 'manual');
   assert.equal(JSON.stringify(request).includes(candidate), false);
   assert.equal(JSON.stringify(request).includes('49EFEF5F70D47ADC2DB2EB397FBEF5F7BC560E29'), false);
   assert.ok(request[1].signal instanceof AbortSignal);
@@ -37,6 +37,7 @@ test('comparison uses complete case-insensitive suffixes', async () => {
 
 for (const [name, response] of [
   ['HTTP failure', () => new Response('Unavailable', { status: 503 })],
+  ['redirect', () => Response.redirect('https://other.example', 302)],
   ['empty response', () => new Response('')],
   ['HTML response', () => new Response('<html>Unavailable</html>')],
   ['malformed record', () => new Response(suffix + ':not-a-count\r\n')],

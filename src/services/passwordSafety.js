@@ -29,7 +29,9 @@ export function createPasswordSafety({ fetchImpl = (...args) => globalThis.fetch
           const hash = createHash('sha1').update(password, 'utf8').digest('hex').toUpperCase();
           const response = await fetchImpl('https://api.pwnedpasswords.com/range/' + hash.slice(0, 5), {
             headers: { Accept: 'text/plain', 'Add-Padding': 'true', 'User-Agent': 'Jobverify password screening' },
-            redirect: 'error', cache: 'no-store', signal: controller.signal,
+            // Workers rejects redirect: 'error'. Manual prevents following a
+            // redirect, and the response.ok check below rejects its 3xx status.
+            redirect: 'manual', cache: 'no-store', signal: controller.signal,
           });
           controller.signal.throwIfAborted();
           if (!response.ok || !response.body || Number(response.headers.get('content-length')) > MAX_RANGE_BYTES) throw unavailable();
