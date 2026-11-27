@@ -16,7 +16,9 @@ async function sendViaRelay(path, payload, label, fetchRelay = globalThis.fetch)
   try {
     const response = await fetchRelay(endpoint, {
       method: 'POST',
-      redirect: 'error',
+      // Workers supports only manual/follow. Manual keeps credentials on the
+      // configured relay; the success check below rejects every 3xx response.
+      redirect: 'manual',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
       body: JSON.stringify(payload),
       signal: AbortSignal.timeout(30_000),

@@ -51,7 +51,7 @@ test('registration verification uses the authenticated relay without SMTP', asyn
   t.mock.method(globalThis, 'fetch', async (url, options) => {
     assert.equal(url, 'https://mail-relay.example.workers.dev/send-verification');
     assert.equal(options.headers.Authorization, `Bearer ${secret}`);
-    assert.equal(options.redirect, 'error');
+    assert.equal(options.redirect, 'manual');
     assert.deepEqual(JSON.parse(options.body), { to: 'owner@gmail.com', verificationLink });
     return Response.json({ success: true });
   });
@@ -108,7 +108,7 @@ test('password-reset relay uses authenticated HTTPS and waits for acceptance wit
     assert.equal(request.url, 'https://mail-relay.example.workers.dev/send-password-reset');
     assert.equal(request.options.method, 'POST');
     assert.equal(request.options.headers.Authorization, `Bearer ${secret}`);
-    assert.equal(request.options.redirect, 'error');
+    assert.equal(request.options.redirect, 'manual');
     assert.ok(request.options.signal instanceof AbortSignal);
     assert.deepEqual(JSON.parse(request.options.body), { to: 'owner@gmail.com', resetLink });
   } finally { accept(); await delivery; }
