@@ -44,8 +44,8 @@ export async function verifyGoogleSitesPublisher(request,review){
  fail(bs.length===1,'bridge executable program ambiguous');const bn=nodes(parse(bs[0].raw,{ecmaVersion:'latest',sourceType:'script'}))
  const calls=cn.filter(n=>n.type==='CallExpression'),call=(callee,a,b)=>calls.filter(n=>member(n.callee)===callee&&member(n.arguments[0])===a&&member(n.arguments[1])===b)
  const identityMember=review.controllerIdentity||'_.jCa',controllerClass=review.controllerClass||'_.K3'
- const identity=cn.filter(n=>n.type==='AssignmentExpression'&&member(n.left)===identityMember&&n.right.type==='CallExpression'&&member(n.right.callee)==='_.ja'&&n.right.arguments[0]?.value==='N0NZx')
- fail(identity.length===1&&call(review.controllerRegister||'_.Vj',identityMember,controllerClass).length===1&&call('_.I',controllerClass,review.baseClass||'_.hD').length===1,'controller registration/inheritance changed')
+ const identity=cn.filter(n=>n.type==='AssignmentExpression'&&member(n.left)===identityMember&&n.right.type==='CallExpression'&&member(n.right.callee)===(review.controllerFactory||'_.ja')&&n.right.arguments[0]?.value==='N0NZx')
+ fail(identity.length===1&&call(review.controllerRegister||'_.Vj',identityMember,controllerClass).length===1&&call(review.controllerInherit||'_.I',controllerClass,review.baseClass||'_.hD').length===1,'controller registration/inheritance changed')
  const rpc=calls.filter(n=>member(n.callee)==='gapi.rpc.call'&&n.arguments[1]?.value==='updateInnerFrame');fail(rpc.length===1,'controller URL RPC ambiguous')
  const convert=rpc[0].arguments[3],data=convert?.arguments?.[0]
  fail(member(convert?.callee)===(review.urlConvert||'_.Bo')&&data?.type==='CallExpression'&&data.callee.type==='MemberExpression'&&data.callee.property.name==='getData'&&data.arguments.length===1&&data.arguments[0].value==='url'&&member(data.callee.object?.callee)===(review.viewMethod||'this.V'),'controller does not read its own data-url')

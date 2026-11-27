@@ -8,7 +8,9 @@
     "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US._0_99rmR4vA.O/am=AAAAGAAI/d=1/rs=AGEqA5lN6bX2oczbM7k3q7dUvgNJKaME4A/m=N0NZx": "2faf3e7f8854cef6a5c18c9e14b1ca7b2c2efc9ac49bc58e17b36df97550e084",
     "https://kidvento.keka.com/careers/api/embedjobs/js/79e3ba6e-9a27-4031-8af7-4c7bca97a921": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b",
     "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.WzVzPWGCWls.O/am=AAAAgAEg/d=1/rs=AGEqA5m1RLlx5JxFWsIUeNQXrmwlnQ4z_Q/m=view": "c65dc5efb493799bb7d0b96badd446f03cd3944df6add46a34381b8b142d8148",
-    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.WzVzPWGCWls.O/am=AAAAgAEg/d=1/rs=AGEqA5m1RLlx5JxFWsIUeNQXrmwlnQ4z_Q/m=N0NZx": "49379030ae6ad5f722aa3f6d09d17491e0f394b56ce7e8664cd3642849bb7c51"
+    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.WzVzPWGCWls.O/am=AAAAgAEg/d=1/rs=AGEqA5m1RLlx5JxFWsIUeNQXrmwlnQ4z_Q/m=N0NZx": "49379030ae6ad5f722aa3f6d09d17491e0f394b56ce7e8664cd3642849bb7c51",
+    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.qUNOjjvBM6s.O/am=AAAAAAOA/d=1/rs=AGEqA5njuFkulvnzd-bV8MyweAbeE0pJgA/m=view": "042b033b7b702c6d3c97d403ada315310be9bb92837a5f97c40ba4982b17bc01",
+    "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.qUNOjjvBM6s.O/am=AAAAAAOA/d=1/rs=AGEqA5njuFkulvnzd-bV8MyweAbeE0pJgA/m=N0NZx": "eea5288944119485a6006f98d3356229832c1ca1bb3f4b2b16415b6f0d0e863a"
   },
   "$detailHashes": {
     "https://kidvento.keka.com/careers/jobdetails/167753": "1148b99fd8b07de8a7038dac51650ea023db308fd1bf5e0fe0e15d98fbd331ba",
@@ -1036,6 +1038,23 @@
         "baseClass": "_.aD",
         "urlConvert": "_.so",
         "viewMethod": "this.U"
+      },
+      {
+        "bridge": "https://www.gstatic.com/atari/embeds/bbbac824948cd11ec13ee1bf92d30354/intermediate-frame-minified.html",
+        "bridgeSha256": "723199c25c3d4719b772b641ca89c6d239152b310d99a6758d5b551022813928",
+        "baseJs": "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.qUNOjjvBM6s.O/am=AAAAAAOA/d=1/rs=AGEqA5njuFkulvnzd-bV8MyweAbeE0pJgA/m=view",
+        "baseJsSha256": "042b033b7b702c6d3c97d403ada315310be9bb92837a5f97c40ba4982b17bc01",
+        "controller": "https://www.gstatic.com/_/atari/_/js/k=atari.vw.en_US.qUNOjjvBM6s.O/am=AAAAAAOA/d=1/rs=AGEqA5njuFkulvnzd-bV8MyweAbeE0pJgA/m=N0NZx",
+        "controllerSha256": "eea5288944119485a6006f98d3356229832c1ca1bb3f4b2b16415b6f0d0e863a",
+        "gapiCallbackSha256": "d8bf19ab2a6f0a82c1c8b45550af6f9a1189d3c687a9958ac38f5ba52d1f541a",
+        "controllerIdentity": "_.RCa",
+        "controllerFactory": "_.la",
+        "controllerRegister": "_.Rj",
+        "controllerClass": "_.K3",
+        "controllerInherit": "_.G",
+        "baseClass": "_.VC",
+        "urlConvert": "_.Zn",
+        "viewMethod": "this.V"
       }
     ],
     "bridge": "https://www.gstatic.com/atari/embeds/9581c1cb067d2cf0b0db63dc0d8422ac/intermediate-frame-minified.html",

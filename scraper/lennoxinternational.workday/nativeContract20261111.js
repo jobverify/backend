@@ -8,6 +8,7 @@ import fs from 'node:fs'
 
 export const profile=JSON.parse(fs.readFileSync(new URL('./profile20261111.json',import.meta.url)))
 const currentProfile=JSON.parse(fs.readFileSync(new URL('./reviewedCurrentShell20261114.json',import.meta.url)))
+const current20261125Profile=JSON.parse(fs.readFileSync(new URL('./reviewedCurrentShell20261125.json',import.meta.url)))
 export const need=(ok,message)=>{if(!ok)throw Object.assign(Error('[lennoxinternational] '+message),{abortRetries:true,failureKind:'native_contract_unverified'})}
 const norm=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
 const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -45,7 +46,7 @@ export function readShell(html){
  const executableNodes=predicate=>{const found=[],visit=n=>{if(['template','noscript'].includes(n.tag))return;if(predicate(n))found.push(n);for(const child of n.children)if(typeof child!=='string')visit(child)};visit(doc.root);return found}
  const scripts=executableNodes(n=>n.tag==='script'&&n.attrs.type!=='application/ld+json')
  const signatures=scripts.map(n=>({attributes:n.attrs,...(n.attrs.src?{}:{sha256:sha(n.raw??'')})}))
- const release=[profile,currentProfile].find(release=>isDeepStrictEqual(signatures,release.shellScripts))
+ const release=[profile,currentProfile,current20261125Profile].find(release=>isDeepStrictEqual(signatures,release.shellScripts))
  need(release,'reviewed native shell program set changed')
  const handlers=executableNodes(n=>Object.keys(n.attrs).some(k=>/^on/i.test(k))).map(n=>({tag:n.tag,handlers:Object.fromEntries(Object.entries(n.attrs).filter(([k])=>/^on/i.test(k)))}))
  need(isDeepStrictEqual(handlers,release.shellHandlers),'reviewed native shell handlers changed')
@@ -56,7 +57,7 @@ export function readShell(html){
   const walk=n=>{if(!n||typeof n!=='object')return;if(n.type==='AssignmentExpression'&&n.left.type==='MemberExpression'&&n.left.object.name==='icimsFrame'&&!n.left.computed&&n.left.property.name==='src')assignments.push(n);for(const v of Object.values(n)){if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')walk(v)}};walk(ast)
  }
  need(assignments.length===1&&assignments[0].right.type==='Literal'&&assignments[0].right.value===profile.frameURL,'native active iframe AST literal conflict')
- return{requestedURL:profile.shellURL,publisherCanonical:profile.shellCanonical,declaredFrameURL:profile.frameURL,programSignatures:signatures,handlers,listingPageLimit:release===currentProfile?2:1,reviewedShellAssets:release.shellAssets??[]}
+ return{requestedURL:profile.shellURL,publisherCanonical:profile.shellCanonical,declaredFrameURL:profile.frameURL,programSignatures:signatures,handlers,listingPageLimit:release===profile?1:2,reviewedShellAssets:release.shellAssets??[]}
 }
 const rolePattern=/^https:\/\/indiacareers-lennox\.icims\.com\/jobs\/(\d+)\/[^/?#]+\/job\?in_iframe=1$/
 function headerFields(doc,node){

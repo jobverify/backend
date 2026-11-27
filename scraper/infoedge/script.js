@@ -3,7 +3,8 @@ import { fileURLToPath } from 'node:url'
 
 import { INFOEDGE_CATALOG } from './catalog.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
-import { mapWithConcurrency } from '../../scraper-support/utils/mapWithConcurrency.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import { extractActiveDescription } from './nativeContent.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -27,6 +28,10 @@ const DEFAULT_PAGE_SIZE = 12
 const DEFAULT_MAX_PAGES = 500
 const DEFAULT_MAX_JOBS = 10000
 const DEFAULT_DETAIL_CONCURRENCY = 3
+// Only a response observed by this native transport can hold one unavailable
+// detail. A text-only/injected error or a changed endpoint cannot qualify.
+const nativeDetail404 = new WeakSet()
+const nativeAccessDenied = new WeakSet()
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -323,6 +328,8 @@ const defaultFetchJson = async (url, options = {}) => {
   const request = {
     method: options.method || 'GET',
     headers,
+    redirect: 'manual',
+    credentials: 'omit',
   }
 
   if (options.form) {
@@ -344,10 +351,17 @@ const defaultFetchJson = async (url, options = {}) => {
   const timeout = AbortSignal.timeout(Math.max(1, Math.min(20000, Number(options.timeoutMs) || 20000)))
   request.signal = options.signal ? AbortSignal.any([options.signal, timeout]) : timeout
   const response = await fetch(url, request)
-  if (response.status !== 200 || response.url !== url) {
-    throw new Error(`HTTP ${response.status} or endpoint identity changed for ${url}`)
+  try {
+    await requireNativeHttpResponse(response, url, { context: 'InfoEdge native JSON', signal: request.signal, callerSignal: options.signal ?? null })
+  } catch (error) {
+    if (url === DETAIL_API_URL && error?.httpStatus === 404 && error.requestedUrl === DETAIL_API_URL
+      && error.responseUrl === DETAIL_API_URL && !error.accessChallenge) nativeDetail404.add(error)
+    if (url === DETAIL_API_URL && error?.failureKind === 'blocked_or_access_denied'
+      && error.requestedUrl === DETAIL_API_URL && error.responseUrl === DETAIL_API_URL) nativeAccessDenied.add(error)
+    throw error
   }
-
+  options.signal?.throwIfAborted()
+  request.signal.throwIfAborted()
   return response.json()
 }
 
@@ -440,12 +454,32 @@ const fullListingDescription = record => {
     ? extractActiveDescription(description) : null
 }
 const unavailableDetail = error => error?.name !== 'SyntaxError'
-  && (error?.name === 'TimeoutError' || /^HTTP (?:403|429|502|503|504)\b/i.test(error?.message || ''))
+  && (error?.name === 'TimeoutError'
+    || error?.softFailure === true && error?.requestedUrl === error?.responseUrl && [403,429,502,503,504].includes(error?.httpStatus)
+    || !error?.requestedUrl && /^HTTP (?:403|429|502|503|504)\b/i.test(error?.message || ''))
 
 
 const unavailableSnapshot = unavailableDetail
 
 const firstPageSnapshot = page => JSON.stringify({ total: page.total, size: page.size, hasMore: page.hasMore, records: page.records.map(record => Object.fromEntries(['id', 'jobCode', 'newJobCode', 'companyId', 'careerSiteUrl', 'jobTitle', 'jobUrl', 'status', 'jobVisibility', 'location', 'locAgg', 'country', 'jobLocationRecord', 'referenceNumber', 'DepartmentName', 'departmentName', 'text9', 'createDate', 'createdDate', 'endtDate', 'endDate', 'experienceUIField', 'yrsOfExperience', 'mandatorySkills', 'skillSet', 'mediumDescriptionWithoutHtml', 'metaDescription', 'shortDescription'].map(key => [key, record[key] ?? null]))) })
+// A fatal identity/schema error stops admission and retains ownership of the
+// requests already in flight. The caller never returns while workers continue
+// draining the rest of the native queue in the background.
+const mapNativeDetails = async (records, concurrency, mapper, signal) => {
+  const results = new Array(records.length)
+  let cursor = 0, failed = false, failure
+  const worker = async () => {
+    while (!failed && cursor < records.length) {
+      const index = cursor++
+      try { results[index] = await mapper(records[index]) }
+      catch (error) { if (!failed) { failed = true; failure = error } }
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, records.length) }, worker))
+  signal?.throwIfAborted()
+  if (failed) throw failure
+  return results
+}
 export const createInfoEdgeScraper = ({ maxPages = DEFAULT_MAX_PAGES, maxJobs = DEFAULT_MAX_JOBS, detailConcurrency = DEFAULT_DETAIL_CONCURRENCY } = {}) => ({
   async run({ fetchJson, now = () => new Date().toISOString(), signal, requestTimeoutMs = 20000 } = {}) {
     signal?.throwIfAborted()
@@ -481,24 +515,40 @@ export const createInfoEdgeScraper = ({ maxPages = DEFAULT_MAX_PAGES, maxJobs = 
       offset += page.records.length
       if (!page.hasMore) { listingComplete = offset === page.total; break }
     }
-    let detailUnavailable = false, detailsComplete = true
+    let detailUnavailable = false, detailsComplete = true, terminalAccessDenial = null
+    const heldObservations = [], detailGaps = []
     const selected = indiaListings.slice(0, jobLimit)
     if (selected.length < indiaListings.length) listingComplete = false
-    const results = await mapWithConcurrency(selected, Math.max(1, Math.min(6, Number(detailConcurrency) || 1)), async record => {
+    const results = await mapNativeDetails(selected, Math.max(1, Math.min(6, Number(detailConcurrency) || 1)), async record => {
       const listing = mapSearchRecord(record)
-      let job = null
+      let job = null, sourceNativeDetail = null, detailAttempted = false
       if (!detailUnavailable) {
+        detailAttempted = true
         try {
           signal?.throwIfAborted()
           const payload = await requestJson(DETAIL_API_URL, { method: 'POST', json: buildDetailRequest(record), ...cancellation })
           signal?.throwIfAborted()
-          validateDates(verifyDetail(payload, record)); job = extractJobDetail(payload, listing)
+          validateDates(verifyDetail(payload, record)); job = extractJobDetail(payload, listing); sourceNativeDetail = payload
         } catch (error) {
           signal?.throwIfAborted()
+          if (nativeDetail404.has(error)) {
+            detailsComplete = false
+            const observation = { reason: 'native-detail-unavailable-404', sourceNativeListing: record,
+              httpStatus: error.httpStatus, requestedUrl: error.requestedUrl, responseUrl: error.responseUrl,
+              sourceDetailComplete: false, publicEligibility: null, lifecycleCleanupAllowed: false }
+            heldObservations.push(observation); detailGaps.push(observation)
+            return null
+          }
           if (!unavailableDetail(error)) throw error
+          if (nativeAccessDenied.has(error)) terminalAccessDenial = { httpStatus: error.httpStatus,
+            requestedUrl: error.requestedUrl, responseUrl: error.responseUrl }
+          detailGaps.push({ reason: 'native-detail-unavailable', sourceNativeListing: record,
+            httpStatus: error.httpStatus ?? null, requestedUrl: error.requestedUrl ?? null,
+            responseUrl: error.responseUrl ?? null, failureKind: error.failureKind ?? error.name ?? null })
           detailUnavailable = true; detailsComplete = false
         }
       }
+      if (!detailAttempted) detailGaps.push({ reason: 'detail-reading-stopped-after-native-unavailability', sourceNativeListing: record, httpStatus: null })
       if (!job) {
         detailsComplete = false
         const description = fullListingDescription(record)
@@ -506,19 +556,25 @@ export const createInfoEdgeScraper = ({ maxPages = DEFAULT_MAX_PAGES, maxJobs = 
         job = { ...listing, jobDescription: description, publicExperienceChecked: false }
       }
       const detailComplete=Boolean(job.jobDescription)
-      if (!detailComplete) { detailsComplete = false; job.jobDescription=null }
+      if (!detailComplete) { detailsComplete = false; job.jobDescription=null; detailGaps.push({ reason: 'full-native-description-unavailable', sourceNativeListing: record, httpStatus: null }) }
       const { _listingRecord, ...publicJob } = job
-      return { ...publicJob, country: 'India', source: SOURCE, link: job.applyUrl || job.sourceUrl, sourceDetailComplete:detailComplete, ...(detailComplete?{}:{sourceDetailStatus:'missing-content',sourceListingComplete:false}), scrapedAt: now() }
-    })
+      return { ...publicJob, sourceNativeListing: record, sourceNativeDetail, country: 'India', source: SOURCE, link: job.applyUrl || job.sourceUrl, sourceDetailComplete:detailComplete, ...(detailComplete?{}:{sourceDetailStatus:'missing-content',sourceListingComplete:false}), scrapedAt: now() }
+    }, signal)
     signal?.throwIfAborted()
     const jobs = results.filter(Boolean)
-    let recheckPayload, snapshotUnavailable = false
-    try {
+    // A new listing read cannot restore complete scope after an observed
+    // terminal denial. Keep closure unknown without issuing another request.
+    let recheckPayload, snapshotUnavailable = Boolean(terminalAccessDenial)
+    let closingSnapshotGap = terminalAccessDenial ? { reason: 'closing-native-listing-not-requested-after-access-denial',
+      precedingDetailDenial: terminalAccessDenial } : null
+    if (!terminalAccessDenial) try {
       recheckPayload = await requestJson(LISTING_API_URL, { method: 'POST', form: buildSearchPayload({ paginationStartNo: 0 }), ...cancellation })
     } catch (error) {
       signal?.throwIfAborted()
       if (!listingComplete || detailsComplete || jobs.length === 0 || !unavailableSnapshot(error)) throw error
       snapshotUnavailable = true
+      closingSnapshotGap = { reason: 'closing-native-listing-unavailable', httpStatus: error.httpStatus ?? null,
+        requestedUrl: error.requestedUrl ?? null, responseUrl: error.responseUrl ?? null }
     }
     signal?.throwIfAborted()
     if (!snapshotUnavailable) {
@@ -528,6 +584,21 @@ export const createInfoEdgeScraper = ({ maxPages = DEFAULT_MAX_PAGES, maxJobs = 
     }
     const complete = !snapshotUnavailable && listingComplete && detailsComplete && jobs.length === indiaListings.length
     if (!complete) jobs.forEach(job => { job.sourceListingComplete = false })
+    if (!complete) {
+      jobs.forEach(job => { job.sourceScopeComplete = false; job.lifecycleCleanupAllowed = false })
+      attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: seen.size,
+        observedVacancyCount: seen.size, sourceScopeComplete: false, companyIndiaTotal: null, companyGlobalTotal: null })
+      Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: { source: SOURCE,
+        observedListingCount: seen.size, observedIndiaListingCount: indiaListings.length, returnedIndiaCount: jobs.length,
+        qualifiedIndiaCount: jobs.filter(job => job.sourceDetailComplete).length,
+        nativeDetailQualifiedCount: jobs.filter(job => job.sourceNativeDetail && job.sourceDetailComplete).length,
+        listingFallbackCount: jobs.filter(job => !job.sourceNativeDetail).length,
+        nativeIndiaListings: indiaListings, heldObservations, detailGaps, closingFirstPageMatches: snapshotUnavailable ? null : true, closingSnapshotGap,
+        sourceScopeComplete: false, companyIndiaTotal: null, companyGlobalTotal: null,
+        applicationValidationQualified: false, browserEquivalenceComplete: false, publicEligibility: null,
+        lifecycleCleanupAllowed: false, reasons: [...new Set(detailGaps.map(gap => gap.reason)),
+          ...(closingSnapshotGap ? [closingSnapshotGap.reason] : []), ...(!listingComplete ? ['configured-listing-or-job-limit'] : [])] } })
+    }
     return attachInventoryEvidence(jobs, { status: complete ? (summary?.total ? 'complete-inventory' : 'verified-empty') : 'coverage-gap', surface: CAREERS_URL, firstParty: true, listingComplete: complete, pagesFetched: pages, reportedTotal: summary?.total, indiaFacetCount: listingComplete && !snapshotUnavailable ? indiaListings.length : null, verifiedAt: now(), reason: complete ? 'counted-publisher-listing-and-matching-native-India-details' : 'configured-limit-or-unavailable-details; publisher-full-description-subset-only' + (snapshotUnavailable ? '; final-snapshot-unavailable; fresh-counted-rows-only' : '') })
   },
 })

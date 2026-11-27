@@ -1,6 +1,7 @@
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 import {runNative} from '../../scraper-support/shared/rmkNativePair.js'
+import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const currentDir=path.dirname(fileURLToPath(import.meta.url))
 export const SOURCE="hershey"
 export const COMPANY="Hershey"
@@ -17,7 +18,30 @@ export const NATIVE_CONFIG=Object.freeze({
   "nativeEmployer": "The Hershey Company",
   "requisitionProperty": "customfield3"
 })
-export const run=(options={})=>runNative(NATIVE_CONFIG,options)
+export async function run(options={}){
+ const signal=options.signal?AbortSignal.any([options.signal,AbortSignal.timeout(540000)]):AbortSignal.timeout(540000)
+ const attempts=[]
+ for(let attempt=1;attempt<=2;attempt++){
+  signal.throwIfAborted()
+  try{
+   const jobs=await runNative(NATIVE_CONFIG,{...options,signal})
+   signal.throwIfAborted()
+   if(attempts.length)Object.defineProperty(jobs,'nativeCollectionEvidence',{configurable:true,value:{
+    source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+    nativeCaptureAttempts:[...attempts,{attempt,status:'reconciled',reportedTotal:readInventoryEvidence(jobs)?.reportedTotal}],
+   }})
+   return jobs
+  }catch(error){
+   signal.throwIfAborted()
+   if(error?.code==='RMK_NATIVE_INVENTORY_CHANGED'){
+    attempts.push({attempt,status:'discarded-inventory-change',code:error.code,message:error.message,nativeInventoryChange:error.nativeInventoryChange})
+    if(attempt===1)continue
+   }
+   if(attempts.length)error.nativeCaptureAttempts=attempts
+   throw error
+  }
+ }
+}
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const {saveToDB,saveToFile}=await import('../../scraper-support/utils/saveToDB.js')
  const jobs=await run()

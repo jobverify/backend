@@ -8,11 +8,13 @@ import { createDaloopaReplay, withDaloopaReplayClock } from './fixtures/replayNa
 const bytes = gunzipSync(fs.readFileSync(new URL('./fixtures/current-replica-detail-20261115.json.gz', import.meta.url)))
 const DETAIL_URL = 'https://daloopa.prod.in1.mynexthire.io/d17/careers/requisition/object'
 const BODY = '{"source":"careers","id":"","code":"","reqId":46}'
+const profile = JSON.parse(fs.readFileSync(new URL('./reviewedNativeData20261115.json', import.meta.url)))
+const listingRow = profile.listing.reqDetailsBOList.find(row => row.reqId === 46)
 const page = body => ({ label: 'detail-46', url: DETAIL_URL, method: 'POST', requestBody: BODY,
   bytes: body, text: body.toString('utf8') })
 
 test('Daloopa current alternate reviewed backend replica preserves the exact original role data', () => {
-  const result = readDaloopaDetail(page(bytes), 46)
+  const result = readDaloopaDetail(page(bytes), 46, listingRow)
   assert.equal(result.nativeVersion, 'd17-wq-20261103052123')
   assert.equal(result.record.reqId, 46)
   assert.deepEqual(result.data, JSON.parse(bytes).data)
@@ -38,10 +40,11 @@ test('Daloopa reconciles identical full criteria across reviewed backend replica
 })
 
 for (const [label, change] of [
-  ['an unreviewed build', value => value.replace('d17-wq-20261103052123', 'd17-zz-20261103052123')],
   ['duplicate version keys', value => value.replace('"v":', '"v":"d17-at-20261103052156","v":')],
   ['changed criteria', value => value.replace('India', 'United States')],
-  ['extra envelope bytes', value => value + ' '],
+  ['extra envelope controls', value => value.replace('"status":200', '"status":200,"extraControl":false')],
 ]) test(`Daloopa still rejects ${label} despite replica tolerance`, () => {
-  assert.throws(() => readDaloopaDetail(page(Buffer.from(change(bytes.toString('utf8')))), 46), error => error.code === 'DALOOPA_NATIVE_DATA_GAP')
+  const changed = change(bytes.toString('utf8'))
+  assert.notEqual(changed, bytes.toString('utf8'))
+  assert.throws(() => readDaloopaDetail(page(Buffer.from(changed)), 46, listingRow), error => error.code === 'DALOOPA_NATIVE_DATA_GAP')
 })

@@ -42,7 +42,10 @@ function nativeRows(html,extractCards){
  need(cards.length===rows.length,'Native whole model/card accounting changed')
  for(const row of rows){
   need(row&&typeof row==='object'&&!Array.isArray(row)&&typeof row.id==='string'&&/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(row.id)
-   &&!seen.has(row.id)&&typeof row.title==='string'&&row.title.trim()&&Array.isArray(row.locations),'Native row identity/model changed')
+   &&!seen.has(row.id)&&typeof row.title==='string'&&row.title.trim()
+   // Goodfit also publishes null for an unspecified workplace. Retain that
+   // original value as unknown; it cannot establish an India job or an empty board.
+   &&(row.locations===null||Array.isArray(row.locations)),'Native row identity/model changed')
   seen.add(row.id)
   need(row.organization?.name==='Springworks'&&row.organization.slug==='springworks','Native row tenant label changed')
   const card=cards.filter(value=>value.jobId===row.id)

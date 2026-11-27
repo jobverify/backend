@@ -1,0 +1,21 @@
+{
+  "label": "client",
+  "url": "https://daloopa.mynexthire.com/employer/jobboard/details_by_shortname/get/daloopa/",
+  "bytes": 27718,
+  "sha256": "cd5483b5a01170e89600523655bd0524cc9036ba7006f043c439cd23a7bd6417",
+  "observedChanges": [
+    {
+      "path": "tenantPreferencesMap.form_fields.applicants[25].enabled",
+      "attributeName": "quesAnswerMap",
+      "before": true,
+      "after": false
+    },
+    {
+      "path": "tenantPreferencesMap.form_fields.applicants[27].enabled",
+      "attributeName": "pi_passport_number",
+      "before": true,
+      "after": false
+    }
+  ],
+  "scope": "Finite whole-client revision. Native employer, public routes and all remaining controls unchanged. Formal employer, corporate binding, rendered criteria and application qualification remain unproved."
+}

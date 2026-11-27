@@ -13,9 +13,11 @@ const detailClients={
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-98a56e5ce2d7e26b.js']:{sha256:'be3428682abdcd6ad34dc8c4411824e7bd3cb37b37f5168753215cffe99607b6',plainTextOnly:false},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-337a5d16861cc114.js']:{sha256:'f551c8cac732833001391d857155585daa7b777303093132865424731b563b08',plainTextOnly:true},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-0fe2cf7bb6d9d490.js']:{sha256:'e7661baa9984f0a1e9087905d05bb45c7530d97f99e11d519d41631b828a86e7',plainTextOnly:true},
+ [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-f8d9113a7b1e6e0e.js']:{sha256:'69f92b7e2483be485cbdc8756af35b4b12c55364e53ce7200b03732304127064',plainTextOnly:true},
 }
 const hashes={
  [listClient]:'d8013145d710b9e631af135f51e9384f757fcebc1281e5b09f829f168f2b2442',
+ [origin+'/_next/static/chunks/pages/careers-091ce09ce7680f62.js']:'281df8f085ab5ba5db85164a4416ab0b0bdf28f6c3dfecdeed6ee72d67299eda',
 }
 const roleFields=new Set(['area','createdAt','dbId','description','desiredSkills','exp','goodToHave','id','jobDetails','location','qualifications','responsibilities','skills','slug','status','title','workMode'])
 const detailLabels={department:'Department',employmentType:'Employment type',areaOfInterest:'Area of interest',numberOfOpenings:'Number of openings',closingDate:'Closing date',ctcBand:'Compensation'}
@@ -47,8 +49,16 @@ function publisher(html){
  const head=activeHead(html),data=nextData(html)
  check(head.titles.length===1&&head.titles[0]==='Careers - Celebal Technologies'
   &&head.metas.some(row=>row.name==='description'&&row.content==='Empower the future you imagine')
-  &&data?.page==='/careers'&&typeof data.buildId==='string'&&/^[A-Za-z0-9_-]{1,128}$/.test(data.buildId)&&data.isFallback===false&&declares(html,listClient),'publisher surface or declared client contract changed')
+  &&data?.page==='/careers'&&typeof data.buildId==='string'&&/^[A-Za-z0-9_-]{1,128}$/.test(data.buildId)&&data.isFallback===false,'publisher surface or declared client contract changed')
+ listDeclaration(html)
  return data.buildId
+}
+function listDeclaration(html){
+ const clients=readNativeDocument(html).nodes(node=>node.tag==='script'&&node.attrs.src).map(node=>{
+  try{return new URL(node.attrs.src,origin).href}catch{return null}
+ }).filter(url=>url&&url.startsWith(origin+'/_next/static/chunks/pages/careers-')&&url.endsWith('.js'))
+ check(clients.length===1&&Object.hasOwn(hashes,clients[0])&&declares(html,clients[0]),'publisher surface or declared client contract changed')
+ return clients[0]
 }
 function detailDeclaration(html,publisherBuild){
  const data=nextData(html),clients=readNativeDocument(html).nodes(node=>node.tag==='script'&&node.attrs.src).map(node=>{
@@ -110,6 +120,9 @@ function closingDate(row){
 // the active opening, role and closing deployment; exact program bytes authorize.
 export async function readCurrentCelebalApi({html,readText,normalizeRole,now,maxJobs}){
  const publisherBuild=publisher(html)
+ // The current pair keeps the same GET inventory/detail bindings and criteria
+ // renderer. Its added validation belongs to unvisited application forms.
+ const listClient=listDeclaration(html)
  let pagesFetched=1
  const read=async url=>{pagesFetched++;return readText(url)}
  const program=async url=>{const code=await read(url);check(hash(code)===(hashes[url]??detailClients[url]?.sha256),'declared client program contract changed');return code}
@@ -148,7 +161,7 @@ export async function readCurrentCelebalApi({html,readText,normalizeRole,now,max
  }
  const closing=inventory(await read(api+'getAllJobs'))
  check(snapshot(opening)===snapshot(closing),'closing whole native inventory or criteria changed')
- const closingHtml=await read(careers);check(publisher(closingHtml)===publisherBuild,'closing publisher deployment changed')
+ const closingHtml=await read(careers);check(publisher(closingHtml)===publisherBuild&&listDeclaration(closingHtml)===listClient,'closing publisher deployment changed')
  await program(listClient)
  if(live.length){
   check(detailDeclaration(await read(careers+'/'+live[0].id),publisherBuild)===detailClient,'closing native detail client handoff changed')

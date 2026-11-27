@@ -1,6 +1,10 @@
 import { OAuth2Client } from "google-auth-library";
 
-const client = new OAuth2Client();
+// Workers' Node HTTP adapter can leave compressed responses undecoded.
+// Request plain JSON so Google signing keys reach the verifier intact.
+const client = new OAuth2Client({ transporterOptions: {
+  responseType: 'json', headers: { 'accept-encoding': 'identity' },
+} });
 
 const getGoogleClientId = () => {
   const clientId = String(process.env.GOOGLE_CLIENT_ID ?? "").trim();

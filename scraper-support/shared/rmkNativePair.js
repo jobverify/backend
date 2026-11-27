@@ -168,7 +168,12 @@ export async function runNative(config,{fetchText,signal,now=new Date().toISOStr
  requireNative(links(home,config.home).includes(config.origin+'/'),'Current corporate career handoff missing')
  requireNative(advertisesNativeSearch(careers,config),'Current advertised GET search missing or changed origin/scope')
  const search=config.origin+'/search/',rows=[],seen=new Map();let next=search,total=null,pages=0,first=null,observedRows=0,repeatedRows=0
- while(next){requireNative(++pages<=100,'Native pagination bound exceeded');const p=parseRmkListing(await get(next),config);if(total===null){total=p.total;first=p}requireNative(p.total===total&&p.start===observedRows+1,'Changed native total/range');observedRows+=p.jobs.length;for(const row of p.jobs){const prior=seen.get(row.jobId);if(prior){requireNative(isDeepStrictEqual(prior,row),'Conflicting duplicate native public ID');repeatedRows++}else{seen.set(row.jobId,row);rows.push(row)}}next=p.nextUrl
+ while(next){requireNative(++pages<=100,'Native pagination bound exceeded');const p=parseRmkListing(await get(next),config);if(total===null){total=p.total;first=p}
+  if(p.total!==total||p.start!==observedRows+1)throw Object.assign(Error('RMK source contract: Changed native total/range'),{
+   incompleteScope:true,code:'RMK_NATIVE_INVENTORY_CHANGED',nativeInventoryChange:{expectedTotal:total,reportedTotal:p.total,expectedStart:observedRows+1,reportedStart:p.start,
+    opening:{reportedTotal:total,observedRows,rows:structuredClone(rows)},currentPage:structuredClone(p)},
+  })
+  observedRows+=p.jobs.length;for(const row of p.jobs){const prior=seen.get(row.jobId);if(prior){requireNative(isDeepStrictEqual(prior,row),'Conflicting duplicate native public ID');repeatedRows++}else{seen.set(row.jobId,row);rows.push(row)}}next=p.nextUrl
   if(next){const u=new URL(next);requireNative(u.origin===config.origin&&u.pathname.replace(/\/$/,'')==='/search'&&!u.hash,'Unapproved continuation');const allowed={q:'',sortColumn:'referencedate',sortDirection:'desc',startrow:String(p.end)};for(const key of new Set(u.searchParams.keys()))requireNative(u.searchParams.getAll(key).length===1&&Object.hasOwn(allowed,key)&&u.searchParams.get(key)===allowed[key],'Native pagination scope changed');requireNative(u.searchParams.get('startrow')===String(p.end),'Wrong native continuation')}
  }
  requireNative(total===observedRows,'Native inventory does not reconcile')

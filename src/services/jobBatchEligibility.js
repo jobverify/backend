@@ -1,7 +1,7 @@
 import { buildClassificationInput, cleanSourceText } from './jobClassificationPolicy.js';
 import { sourceGuardedClassification } from './postScrapeClassification.js';
 import { batchHash, batchSourceFields, batchSourceHash, batchYears, batchMaximum, graduationAnchor,
-  BATCH_ELIGIBILITY_VERSION, hasBatchEligibility, hasGraduationYearEvidence } from '../utils/jobBatchEligibility.js';
+  BATCH_ELIGIBILITY_VERSION, hasBatchEligibility, hasGraduationYearEvidence, isPreferredBatchSection } from '../utils/jobBatchEligibility.js';
 
 // Alerts may be rendered before the asynchronous batch phase has saved its
 // result. Reuse deterministic policy rules without starting an extractor or
@@ -30,7 +30,8 @@ export function batchEligibilityInput(job, { now = new Date(), mode = 'policy' }
   const nativeMaximum = job.eligibleBatchesProvenance === 'source' && job.batchEligibility?.basis !== 'source_text' ? batchMaximum(job) : null;
   const inputHash = batchHash({ sourceHash, jobType, profile, anchorYear, nativeYears, nativeMaximum, version: BATCH_ELIGIBILITY_VERSION });
   return { sourceHash, text, jobType, profile, anchorYear, nativeYears, nativeMaximum, inputHash,
-    sourceConflict: Boolean(source.sourceNativeExperienceConflict),
+    sourceConflict: Boolean(source.sourceNativeExperienceConflict)
+      || guarded.sourceQualityIssues.some(issue => ['conflicting_role_eligibility', 'conflicting_employment_terms'].includes(issue)),
     sourceInput: buildClassificationInput({ ...job, descriptionRewrite: null }, { now }) };
 }
 
@@ -44,8 +45,9 @@ const supportedProfile = profile => profile?.hasExplicitExperience === true && p
 export function explicitSourceBatches(input) {
   const segments = []; let preferred = false;
   for (const line of input.text.split('\n')) {
-    if (/^(?:preferred|desirable|optional)\s*(?:qualifications?|requirements?)?/i.test(line.trim())) preferred = true;
-    else if (/^(?:required|minimum|basic|responsibilities|requirements|description|title)\b/i.test(line.trim())) preferred = false;
+    const heading = line.trim().replace(/([a-z])([A-Z])/g, '$1 $2');
+    if (isPreferredBatchSection(heading)) preferred = true;
+    else if (/^(?:required|minimum|basic|qualifications?|responsibilities|requirements|description|title)\b/i.test(heading)) preferred = false;
     if (!preferred) segments.push(...line.split(/[.!?;]/).filter(hasGraduationYearEvidence));
   }
   if (!segments.length) return { years: [], ambiguous: false };

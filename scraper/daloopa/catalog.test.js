@@ -8,10 +8,10 @@ test('actual current Daloopa registration selects the source-local native data c
  assert(provider.modulePath.replaceAll('\\','/').endsWith('/daloopa/nativeData20261115.js'))
  assert.equal(provider.source,'daloopa');assert.equal(provider.companyName,'Daloopa');assert.equal(provider.countryFilter,'India')
 })
-test('same loaded extension list changes only Daloopa and preserves all4565other catalog objects/order',()=>{
+test('same loaded extension list changes only Daloopa and preserves every other catalog object and order',()=>{
  const loaded=loadProviderExtensions(),selected=loaded.filter(row=>row.source==='daloopa'&&row.modulePath==='../daloopa/nativeData20261115.js');assert.equal(selected.length,1)
  const current=getScraperCatalog({providerExtensions:loaded}),before=getScraperCatalog({providerExtensions:loaded.filter(row=>row!==selected[0])})
- assert.equal(current.length,4566);assert.deepEqual(current.map(row=>row.source),before.map(row=>row.source));assert.deepEqual(current.filter(row=>row.source!=='daloopa'),before.filter(row=>row.source!=='daloopa'))
+ assert.equal(current.length,before.length);assert.ok(current.length>0);assert.deepEqual(current.map(row=>row.source),before.map(row=>row.source));assert.deepEqual(current.filter(row=>row.source!=='daloopa'),before.filter(row=>row.source!=='daloopa'))
 })
 test('actual default registered route uses14original reads with null actions/publication and all scope holds',async()=>{
  const io=createDaloopaReplay(),provider=getScraperCatalog().find(row=>row.source==='daloopa')

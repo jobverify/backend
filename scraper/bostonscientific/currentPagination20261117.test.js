@@ -31,7 +31,7 @@ test('current510row native acquisition keeps contradictory India geography quara
 })
 test('actual native total drift still stops acquisition instead of accepting an invented or stale total',async()=>{
  const io=replay((url,p)=>{if(new URL(url).searchParams.get('start')==='10')p.data.count--;return p})
- await assert.rejects(run(io),/Native total drift/);assert.equal(io.reads.length,4)
+ await assert.rejects(run(io),/Native total drift/);assert.equal(io.reads.length,8)
 })
 test('real paired original middle-page worksite-model drift cannot pass by retaining the same total and all IDs',async()=>{
  const url='https://bostonscientific.eightfold.ai/api/pcsx/search?domain=bostonscientific.com&query=&location=&start=120&limit=10'

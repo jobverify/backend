@@ -389,5 +389,16 @@
     "/js/common/suz-accessLog.js": "8cc3fbabe5b4376b4c7a5ed03087e82d3e8554fb931bc8fc4606d8c737b08890"
   },
   "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
-  "rendererProvenance": "Exact current Chrome-User-Agent candidate shell from advertised employer handoff. Full text/attributes/scripts/forms/frames/hiring surfaces are byte-pinned and opening/closing scope snapshots reconcile; no candidate shell executable or hiring channel is ignored."
+  "rendererProvenance": "Exact current Chrome-User-Agent candidate shell from advertised employer handoff. Full text/attributes/scripts/forms/frames/hiring surfaces are byte-pinned and opening/closing scope snapshots reconcile; no candidate shell executable or hiring channel is ignored.",
+  "previousReleases": [
+    {
+      "reviewedAt": "2026-11-25",
+      "clientUrl": "https://keyence.darwinbox.in/ms/candidatev2/main.f5e76c3f4b395062.js",
+      "clientSha256": "fca478943f06f1e5ce96b92bb2184c39c65c75e92d859eb7ec4738e9995f9766",
+      "apiContract": "candidate-v2-post-alljobs-v1",
+      "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+      "rendererReview": "Prior renderer pin deliberately retained. The current whole shell and its other executable/verification contexts remain unqualified; source completeness and lifecycle cleanup must stay held.",
+      "clientReview": "Exact current full client fetched from this employer-declared native origin. All eight reviewed company/group/listing/detail read and transform methods preserve complete structural AST after minifier-local identifier renaming; member/property names, literals, operators and operations remain exact. Full source bodies/AST hashes retained in batch-darwinbox-current/client-method-review.json.gz. No native schema, employer, country, full criteria, application or closing guard is relaxed."
+    }
+  ]
 }

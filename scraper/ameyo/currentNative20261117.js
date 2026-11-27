@@ -8,7 +8,7 @@ import {attachInventoryEvidence}from'../../scraper-support/utils/inventoryEviden
 import {attachSourceObservationEvidence}from'../../scraper-support/utils/sourceObservationEvidence.js'
 import {currentAmeyoTransport}from'./currentTransport20261117.js'
 import {nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
-const profiles=['./currentProfile20261117.json','./currentProfile20261120.json'].map(path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8')))
+const profiles=['./currentProfile20261117.json','./currentProfile20261120.json','./currentProfile20261125.json'].map(path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8')))
 const sha=s=>createHash('sha256').update(s).digest('hex'),equal=isDeepStrictEqual
 const check=(ok,message)=>{if(!ok)throw Object.assign(Error('Ameyo current native contract: '+message),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,label)=>{check(rows.length===1,'unique '+label);return rows[0]}

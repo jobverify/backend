@@ -2,7 +2,7 @@
 export const isPlaceholderClassificationText = value => {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim()
   return text.length <= 1 || !/[\p{L}\p{N}]/u.test(text)
-    || /^(?:n\s*\/?\s*a|not\s+(?:available|applicable|provided|specified)|tbd|tba|to\s+be\s+(?:announced|determined)|coming\s+soon|(?:enter\s+(?:the\s+)?)?job\s+description|description)[\s.!:]*$/i.test(text)
+    || /^(?:n\s*\/?\s*a|not\s+(?:available|applicable|provided|specified)|tbd|tba|to\s+be\s+(?:announced|determined)|coming\s+soon|(?:enter\s+(?:the\s+)?)?job\s+description|description|(?:test|dummy)(?:\s+(?:description|content))?)[\s.!:]*$/i.test(text)
 }
 
 export const isExplicitTestPosting = title => /\b(?:job|posting|vacancy|requisition)\s+(?:is\s+)?(?:for\s+)?(?:a\s+)?system\s+test\s+only\d*\b|\b(?:this\s+is\s+(?:a\s+)?)?(?:dummy|test)\s+(?:job|posting|vacancy|req(?:uisition)?)\s*[-:,(]?\s*(?:only|do\s+not\s+apply|for\s+test(?:ing)?)\b/i
@@ -11,6 +11,11 @@ export const isExplicitTestPosting = title => /\b(?:job|posting|vacancy|requisit
 export function sourceAvailabilityIssues(input, { unresolved = false } = {}) {
   const issues = []
   const description = input.sourceFields.description
+  const roleText = [description, input.sourceFields.responsibilities, input.sourceFields.requirements].filter(Boolean).join('\n')
+  const navigationOnly = Boolean(roleText) && !roleText.replace(/\b(?:privacy\s+policy|cookie\s+policy|terms\s+of\s+service|menu|service)\b/gi, '')
+    .replace(/[\s|,.;:-]+/g, '')
+  const independentFields = Object.entries(input.sourceFields).some(([field, value]) => field !== 'description' && value)
+  if (navigationOnly && !independentFields) issues.push('missing_role_description')
   const closures = description.matchAll(/\b(?:this|the)\s+(?:position|vacancy|role|job)\s+(?:is\s+)?(?:no\s+longer\s+(?:accepting\s+applications|available|open)|closed|has\s+been\s+(?:closed|filled))\b/gi)
   for (const closure of closures) {
     const prefix = description.slice(0, closure.index).split(/[.!?;\n]/).at(-1)
@@ -25,8 +30,8 @@ export function sourceAvailabilityIssues(input, { unresolved = false } = {}) {
   if (unresolved) {
     // Education alone or a rewritten caption cannot supply missing job duties.
     // Explicit source eligibility has already been resolved by the caller.
-    const roleText = [description, input.sourceFields.responsibilities, input.sourceFields.requirements].filter(Boolean).join('\n')
     const placeholder = !roleText || isPlaceholderClassificationText(roleText)
+      || /^([a-z0-9]+)(?:\s+\1){2,}[.!]?$/i.test(roleText.trim())
       || /^(?:apply\b[^.!?]{0,150}\b(?:careers?\s+(?:page|form)|first[- ]party\b[^.!?]{0,50}\bform)|to\s+be\s+updated\s+by\s+(?:the\s+)?recruiter|posted\s+by\s*:|\d{4}-\d{2}-\d{2}\s*\||(?:category|position)\s*:|job\s+description\s+\S|(?:must\s+have|primary\s+skills?|specializations?)\s*:)/i.test(roleText)
     if (placeholder && Buffer.byteLength(roleText, 'utf8') <= 200) issues.push('sparse_role_description')
     else if (roleText.length < 400 && /(?:\.{3}|\u2026)\s*$/.test(roleText)) issues.push('truncated_role_description')

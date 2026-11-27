@@ -10,6 +10,17 @@ const subtree=(d,node,predicate)=>nativeDescendants(node,predicate)
 const meta=(d,name)=>one(d.nodes(n=>n.tag==='meta'&&n.attrs.name===name),'meta '+name).attrs.content
 const canonical=(d,url)=>check(one(d.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'),'canonical').attrs.href===url,'Canonical mismatch')
 const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const attractionsEmployer='Walt Disney Attractions Technology LLC'
+function employerDeclaration(d,section,employer,url){
+ const expected='This position is with '+employer+', which is part of a business we call Disney Experiences.'
+ const excluded=new Set(['blockquote','q','pre','code','template','script','style','noscript'])
+ const containsExcluded=node=>excluded.has(node.tag)||node.children.some(child=>typeof child!=='string'&&containsExcluded(child))
+ const paragraphs=node=>node.inert||excluded.has(node.tag)?[]:
+  [...(node.tag==='p'&&/^This position is with\b/.test(d.text(node))?[node]:[]),...node.children.filter(child=>typeof child!=='string').flatMap(paragraphs)]
+ const statements=paragraphs(section)
+ check(statements.length===1&&!containsExcluded(statements[0])&&d.text(statements[0])===expected,'Native employer/business declaration unavailable or contradictory')
+ return {method:'same-role-native-employer-business-declaration',legalEmployer:employer,business:'Disney Experiences',evidenceURL:url,nativeDeclaration:expected}
+}
 export function originalDate(value,now,{display=false}={}){
  check(typeof value==='string','Missing original date')
  if(display)value=value.replace(/^Sept\./,'Sep.')
@@ -119,7 +130,9 @@ check(norm(a['data-tm-job-name'])===row.title&&d.text(one(subtree(d,head,n=>n.ta
  const postedAt=originalDate(a['data-tm-job-date-posted'],now);check(postedAt===row.postedAt,'Original listing/detail date mismatch')
  const visibleDate=d.text(one(subtree(d,head,n=>d.hasClass(n,'job-date')),'visible original date')).replace(/^Date posted /,'');check(originalDate(visibleDate,now,{display:true})===postedAt,'Visible original date mismatch')
  check(a['data-tm-job-posting-brand']===row.brand,'Native brand mismatch')
- const employer=a['data-tm-job-business'];check(['Disney (India) Private Limited','Lucasfilm Visual Effects (India) Private Limited','Disney HR Strategies & Services, LLC'].includes(employer),'Unqualified native legal employer')
+ const employer=a['data-tm-job-business'],attractions=employer===attractionsEmployer
+ check(['Disney (India) Private Limited','Lucasfilm Visual Effects (India) Private Limited','Disney HR Strategies & Services, LLC'].includes(employer)
+  ||attractions&&row.brand==='Disney Experiences','Unqualified native legal employer')
  check(meta(d,'job-ats-req-id')===row.req&&norm(meta(d,'job-tbcn-job-title'))===row.title&&['391,','391,'+employer].includes(meta(d,'gtm_tbcn_division')),'Native employer/req/title metadata mismatch')
  const locationCodes=row.city==='Mumbai'?['1269750-1264418-1275339']:['1269750-1267701-1277333','1269750-1267701-1277331-1277333']
  check(locationCodes.includes(meta(d,'job-location-ids'))&&meta(d,'gtm_tbcn_location')===(row.city==='Mumbai'?'Mumbai~Maharashtra~India':'Bengaluru~Karnataka~India'),'Native country/city metadata mismatch')
@@ -132,11 +145,13 @@ check(norm(a['data-tm-job-name'])===row.title&&d.text(one(subtree(d,head,n=>n.ta
  check(meta(d,'search-job-apply-url')===applyUrl,'Apply metadata mismatch')
  const sections=d.nodes(n=>n.attrs.id==='job-details-3');check(sections.length===1,'Missing role description section')
  const s=sections[0];for(const key of ['data-org-id','data-job-id','data-tm-job-name','data-tm-job-location','data-tm-job-id','data-tm-job-business','data-tm-job-date-posted','data-tm-job-posting-brand'])check(s.attrs[key]===a[key],'Description identity mismatch '+key)
+ const binding=attractions?employerDeclaration(d,s,employer,row.url):null
  const nativeJd=nativeEvidenceDescendants(s,n=>d.hasClass(n,'ats-description'));check(nativeJd.length<=1,'Ambiguous full description')
  const nativeText=nativeJd.length?d.text(nativeJd[0]):'',qualified=qualifiedDescription(nativeText,nativeJd.length?nativeTextBlocks(nativeJd[0]):[])
  const notice=findExplicitNativeClosure(nativeTextBlocks(head))||qualified.notice,description=notice?null:qualified.description
  const rejected=description?{}:{nativeRejectedDescription:nativeText||null,nativeRejectedDescriptionRawHTML:nativeJd.length?body.slice(nativeJd[0].start,nativeJd[0].end):null}
  const job={jobId:row.req,title:row.title,company:'Disney',source:'disney',location:row.location,locations:[row.location],city:row.city,country:'India',sourceUrl:row.url,sourceURL:row.url,url:row.url,applyUrl,postedAt,datePosted:postedAt,sourceDescription:description,jobDescription:description,sourceDetailComplete:Boolean(description),sourceDetailFailureReason:notice?'native-role-explicitly-closed':qualified.reason,...rejected,sourceListingComplete:false,sourceScopeComplete:false,nativeJobId:row.id,nativeRequisitionId:row.req,nativeLegalEmployer:employer,nativePostingBrand:row.brand,nativePublicationDate:a['data-tm-job-date-posted'],nativePublicationSource:row.url,nativeListingLocation:a['data-tm-job-location'],scrapedAt:new Date(now).toISOString()}
+ if(binding)job.nativeEmployerBinding=binding
  if(description||notice)job.sourceAvailabilityEvidence=createNativeRoleAvailability(job,{state:notice?'closed':'open',observedAt:now,evidenceHtml:body})
  return job
 }

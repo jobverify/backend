@@ -39,7 +39,9 @@ export const cleanSourceText = (value) => {
   }
   if (!/<[a-z][\s\S]*>/i.test(text)) return text.replace(/\r/g, '').replace(/[\t ]+/g, ' ').trim();
   return text.replace(/<(script|style|nav|footer|header|noscript)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, '')
-    .replace(/<\/?(?:br|p|li|div|h[1-6]|section|tr)\b[^>]*>/gi, '\n').replace(/<[^>]+>/g, ' ')
+    // Preserve each definition term with its value, then separate entries.
+    .replace(/<\/dt>\s*<dd\b[^>]*>/gi, ' ')
+    .replace(/<\/?(?:br|p|li|div|h[1-6]|section|tr|dl|dt|dd)\b[^>]*>/gi, '\n').replace(/<[^>]+>/g, ' ')
     .replace(/&#(x[0-9a-f]+|\d+);/gi, (match, code) => {
       const point = code.toLowerCase().startsWith('x') ? parseInt(code.slice(1), 16) : Number(code);
       return point >= 0 && point <= 0x10ffff ? String.fromCodePoint(point) : match;
@@ -53,7 +55,8 @@ export const hashClassificationInput = (input, identity = {}) => {
 };
 
 export const isTitleOnlyClassificationSource = (job = {}) => {
-  const caption = value => cleanSourceText(value).replace(/\s+/g, ' ').trim().toLowerCase();
+  const caption = value => cleanSourceText(value).replace(/^(?:job|position)\s+title\s*:\s*/i, '')
+    .replace(/\s+/g, ' ').trim().toLowerCase();
   const source = caption(getSourceDescription(job));
   return Boolean(source && [job.originalTitle, job.title].some(title => source === caption(title)));
 };
@@ -88,13 +91,14 @@ export const buildClassificationInput = (job = {}, { now = new Date(), identity 
   const publicationDate = resolveJobPublicationDate(job);
   const validPosted = publicationDate.provenance === 'source' && publicationDate.date
     ? publicationDate.date.toISOString().slice(0, 10) : null;
+  const nativeBatches = job.eligibleBatchesProvenance === 'source' && job.batchEligibility?.basis !== 'source_text';
   const input = {
     title: cleanSourceText(job.originalTitle || job.title), body, sourceFields, sourceEmploymentType,
     descriptionOrigin: selectedDescription.origin, descriptionIdentity: selectedDescription.identity,
     sourceExperienceRequired: sourceFields.experienceRequired,
-    eligibleBatches: [...new Set((job.eligibleBatchesProvenance === 'source' ? job.eligibleBatches || [] : []).map(Number).filter(year => Number.isInteger(year) && year >= 1990 && year <= referenceYear + 10))].sort(),
+    eligibleBatches: [...new Set((nativeBatches ? job.eligibleBatches || [] : []).map(Number).filter(year => Number.isInteger(year) && year >= 1990 && year <= referenceYear + 10))].sort(),
     postedDate: validPosted, referenceYear,
-    eligibleBatchesProvenance: job.eligibleBatchesProvenance === 'source' ? 'source' : null,
+    eligibleBatchesProvenance: nativeBatches ? 'source' : null,
     ...(nativeExperienceConflictEvidence(job) && { sourceNativeExperienceConflict: nativeExperienceConflictEvidence(job) }),
   };
   const runtimeIdentity = {
@@ -189,7 +193,7 @@ const sourceNumericFields = input => {
     .replace(new RegExp(NUMERIC_SOURCE_PATTERN.source + '\\s+(?:(?:of\\s+)?(?:service|employment|training)\\s+bond\\b|(?:of\\s+)?bond\\b(?=[\\t ]*(?:[,;.]|$)))', 'gim'), 'service bond');
   // The legacy bare-label parser reads only the first value of "Experience:
   // 0-2 years". Pass the whole source-backed quantity, including its unit.
-  const labeledPhrase = separated.required.match(new RegExp('\\bexperience\\s*:\\s*(' + NUMERIC_SOURCE_PATTERN.source
+  const labeledPhrase = separated.required.match(new RegExp('\\bexperience\\s*:\\s*((?:(?:minimum(?:\\s+of)?|at[\\s-]*least)\\s+)?' + NUMERIC_SOURCE_PATTERN.source
     + '(?:\\s*(?:-|to|~)\\s*' + NUMERIC_SOURCE_PATTERN.source + ')?)', 'i'))?.[1];
   const requiredPhrase = separated.required.match(/\b(?:requir(?:ing|ed|es)|must have|at least|minimum(?: of)?)\s+(\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:years?|yrs?|months?)\s+(?:of\s+)?[a-z -]{0,45}\bexperience)\b/i)?.[0]
     || (!labeledPhrase && separated.required.match(new RegExp(NUMERIC_SOURCE_PATTERN.source

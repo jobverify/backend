@@ -276,6 +276,7 @@ const fetchWorkdayResource = async (
     source = 'workday',
     requestScheduler = workdayRequestScheduler,
     kind = 'listing',
+    requireSuccess = false,
   } = {},
   consumeResponse = async (response) => response,
 ) => {
@@ -327,6 +328,13 @@ const fetchWorkdayResource = async (
       await disposeResponse(controller.signal)
       throw error
     }
+    if (requireSuccess && !response.ok) {
+      // The observed status remains authoritative if its body is corrupt or
+      // cancellation reaches the request deadline. Cleanup owns this slot.
+      primaryHttpError = buildWorkdayHttpFailureError(source, url, response.status, response.headers)
+      await disposeResponse(controller.signal)
+      throw primaryHttpError
+    }
     const result = await consumeResponse(response)
     throwIfAborted(controller.signal)
     return result
@@ -337,6 +345,8 @@ const fetchWorkdayResource = async (
       throwIfAborted(signal)
       throw primaryHttpError || controller.signal.reason
     }
+    // A known HTTP error retains its own retry policy after disposal.
+    if (primaryHttpError) throw primaryHttpError
     throw markWorkdayTransportFailure(error)
   } finally {
     release()
@@ -1127,6 +1137,31 @@ const bootstrapWorkdayJobsApiSession = async ({
   }
 
   throw lastError
+}
+
+const fetchWorkdayCorporateProofPage = async ({
+  url, source, signal, requestTimeoutMs, retryBaseDelayMs, requestScheduler,
+}) => {
+  for (let attempt = 1; attempt <= WORKDAY_JOBS_API_RETRY_ATTEMPTS; attempt += 1) {
+    throwIfAborted(signal)
+    try {
+      const result = await fetchWorkdayResource(
+        url,
+        { headers: { accept: 'text/html,application/xhtml+xml', 'user-agent': WORKDAY_FETCH_USER_AGENT }, cache: 'no-store' },
+        { signal, timeoutMs: requestTimeoutMs, source, requestScheduler, requireSuccess: true },
+        async response => ({ response, html: await response.text() }),
+      )
+      if (hasWorkdayOutageSignal({ html: result.html, url: result.response.url })) {
+        throw buildWorkdayOutageError(source, url)
+      }
+      return result
+    } catch (error) {
+      throwIfAborted(signal)
+      if (error?.abortRetries === true || attempt >= WORKDAY_JOBS_API_RETRY_ATTEMPTS
+        || !isRetryableWorkdayJobsApiError(error)) throw error
+      await delay(resolveWorkdayRetryDelayMs(error, attempt, retryBaseDelayMs), signal)
+    }
+  }
 }
 
 export const fetchWorkdayJobsApiPage = async ({
@@ -2092,12 +2127,9 @@ const runWorkdayJobsApiPass = async ({
             boardReceipt = currentWorkdayVanityBoardReceipt({ handoff, ...native })
           }
         } else {
-        const { response, html } = await fetchWorkdayResource(
-          config.officialCareersUrl,
-          { headers: { accept: 'text/html,application/xhtml+xml', 'user-agent': WORKDAY_FETCH_USER_AGENT }, cache: 'no-store' },
-          { signal, timeoutMs: requestTimeoutMs, source, requestScheduler },
-          async response => ({ response, html: await response.text() }),
-        )
+        const { response, html } = await fetchWorkdayCorporateProofPage({
+          url: config.officialCareersUrl, signal, requestTimeoutMs, source, retryBaseDelayMs, requestScheduler,
+        })
         boardReceipt = currentWorkdayBoardReceipt({ officialCareersUrl: config.officialCareersUrl,
           boardUrl: baseUrl, response, html, renderProof: worksiteProof?.corporateRenderProof ?? null })
         }
@@ -2106,7 +2138,10 @@ const runWorkdayJobsApiPass = async ({
         if (!inferred || inferred.jobsApiUrl !== jobsApiUrl) throw new Error('Workday API does not match the corporate-bound tenant and site')
       } catch (error) {
         throwIfAborted(signal)
-        if (config.officialVanityCareersUrl && error instanceof WorkdayRequestTimeoutError) throw error
+        // Acquiring board identity can fail before any geographic evidence is
+        // available. Preserve denials, challenges and transport diagnostics;
+        // only an invalid proof belongs to incomplete location scope.
+        if (error?.workdayJobsApiFailure === true || error?.upstreamOutage === true) throw error
         throw buildWorkdayIncompleteScopeError(source, config.officialCareersUrl || baseUrl, error)
       }
     }

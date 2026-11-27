@@ -6,12 +6,17 @@ const sha=value=>createHash('sha256').update(value).digest('hex')
 const requireProfile=(ok,reason)=>{if(!ok)throw Object.assign(Error('Leena AI native current publisher '+reason),{
   failureKind:'parser_or_contract_error',abortRetries:true})}
 
-// Full November 18 publisher bytes, with only the same three reviewed opaque
-// delivery values and the exact optional telemetry element excluded. The new
-// factory keeps the public feed hook, ready-only role rendering, and error-only
-// Workable fallback. Delivery values confer no request authority or job dates.
+// Full reviewed publisher deployments retain the same career factory, public
+// feed hook and error-only Workable fallback. The November 25 observation has
+// a new app/build/style deployment and no optional beacon. Every fixed byte
+// remains pinned; opaque delivery values confer no authority or job dates.
 export function currentPublisherSHA(html){
-  requireProfile(typeof html==='string'&&[193311,192950].includes(Buffer.byteLength(html)),'profile changed')
+  const frames=new Map([
+    [193311,'afb0bf607995ca7473339f16cc335ef7f6c39106f7079486b6fce73602b1efe0'],
+    [192950,'afb0bf607995ca7473339f16cc335ef7f6c39106f7079486b6fce73602b1efe0'],
+    [191259,'4923cd40cdd3725d94edae24337c4db17f634271818886f0de80d095752191b7'],
+  ])
+  requireProfile(typeof html==='string'&&frames.has(Buffer.byteLength(html)),'profile changed')
   const beacons=[...html.matchAll(/<script type="module" src="https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js\/[^]*?<\/script>/g)]
   requireProfile(beacons.length<=1,'telemetry declaration changed')
   let frame=html
@@ -28,6 +33,6 @@ export function currentPublisherSHA(html){
   frame=frame.replace(whole,whole.replace(ray,'0'.repeat(16)).replace(time,'0'.repeat(16)))
     .replace(reference,'main.js?ray='+'0'.repeat(16))
   const fingerprint=sha(frame)
-  requireProfile(fingerprint==='afb0bf607995ca7473339f16cc335ef7f6c39106f7079486b6fce73602b1efe0','whole document profile changed')
+  requireProfile(fingerprint===frames.get(Buffer.byteLength(html)),'whole document profile changed')
   return fingerprint
 }

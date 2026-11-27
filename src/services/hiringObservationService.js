@@ -24,6 +24,8 @@ const recordedSkills = [{ $project: { names: { $filter: {
 export async function readHiringSnapshot(settings = {}, now = new Date()) {
   const dayMs = 86400000;
   const firstDay = new Date(`${indiaDay(now)}T00:00:00+05:30`).getTime() - 89 * dayMs;
+  // Full-inventory facets need more time than paginated listing queries.
+  // Stay below the publishing feed downloader's 30-second request timeout.
   const [result] = await Job.aggregate([
     { $match: applyPublicJobVisibility({ status: 'active', $or: [{ closingDate: null }, { closingDate: { $gt: now } }] }, settings, now) },
     { $set: { _snapshotJobType: PUBLIC_JOB_TYPE_EXPRESSION, _snapshotWorkArrangement: PUBLIC_WORK_ARRANGEMENT_EXPRESSION } },
@@ -51,7 +53,7 @@ export async function readHiringSnapshot(settings = {}, now = new Date()) {
         } },
       ],
     } },
-  ], { maxTimeMS: 5000 }).exec();
+  ], { maxTimeMS: 15000 }).exec();
   const dailyCounts = new Map((result?.daily ?? []).map(row => [row._id, row]));
   return {
     generatedAt: now.toISOString(), scope: observationScope(settings),

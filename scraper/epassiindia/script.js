@@ -414,6 +414,12 @@ export const extractIndiaJobFromDetail = (listing = {}, detailHtml = '') => {
   if (organizationName !== OFFICIAL_BRAND) {
     throw new Error('Epassi India public Jobylon detail page no longer matches the expected company identity')
   }
+  const countryScopeFailure = message => Object.assign(new Error(message), {
+    code: 'EPASSI_NATIVE_COUNTRY_SCOPE_UNRESOLVED', incompleteScope: true,
+    softFailure: true, upstreamOutage: false, failureKind: 'surface_drift_or_fail_closed', abortRetries: true,
+    nativeCountryEvidence: { jobId: listing.jobId, sourceUrl: listing.sourceUrl,
+      nativeListing: structuredClone(listing), nativeJobPosting: structuredClone(jobPosting), rawDetailHtml: detailHtml },
+  })
 
   const rawLocations = Array.isArray(jobPosting?.jobLocation)
     ? jobPosting.jobLocation
@@ -424,10 +430,10 @@ export const extractIndiaJobFromDetail = (listing = {}, detailHtml = '') => {
     const address = normalizeAddress(location)
     if ((declaration != null && declaration !== '' && !extractCountryValue(declaration))
       || (address.country && !VERIFIED_COUNTRIES.has(address.country.toLowerCase()))) {
-      throw new Error('Epassi India public Jobylon detail has unrecognized declared country coverage')
+      throw countryScopeFailure('Epassi India public Jobylon detail has unrecognized declared country coverage')
     }
     if (address.country && address.country !== 'India' && isIndiaAddress(location)) {
-      throw new Error('Epassi India public Jobylon detail country declaration contradicts its India address')
+      throw countryScopeFailure('Epassi India public Jobylon detail country declaration contradicts its India address')
     }
   }
   const indiaLocations = rawLocations
@@ -446,7 +452,7 @@ export const extractIndiaJobFromDetail = (listing = {}, detailHtml = '') => {
       )
     if ((blankAddresses && explicitEuropePlacement)
       || (!blankAddresses && addresses.every(nonIndiaAddress))) return null
-    throw new Error('Epassi India public Jobylon detail lacks trustworthy country location coverage')
+    throw countryScopeFailure('Epassi India public Jobylon detail lacks trustworthy country location coverage')
   }
 
   return {
@@ -502,7 +508,7 @@ export const createEpassiIndiaScraper = ({ maxJobs = null } = {}) => ({
 
     const jobs = []
     const failures = []
-    let firstFailure
+    let firstFailure, hasFirstFailure = false
     const scrapedAt = now()
 
     for (const listing of selectedListings) {
@@ -517,14 +523,26 @@ export const createEpassiIndiaScraper = ({ maxJobs = null } = {}) => ({
         jobs.push({ ...job, source: SOURCE, link: job.applyUrl || job.sourceUrl, scrapedAt })
       } catch (error) {
         signal?.throwIfAborted()
-        firstFailure ??= error
+        if (!hasFirstFailure) { firstFailure = error; hasFirstFailure = true }
         failures.push({ jobId: listing.jobId, sourceUrl: listing.sourceUrl,
-          message: error.message, code: error.code ?? null, status: error.status ?? null })
+          message: error?.message ?? String(error), code: error?.code ?? null, status: error?.status ?? error?.httpStatus ?? null,
+          ...(error?.nativeCountryEvidence ? { nativeCountryEvidence: error.nativeCountryEvidence } : {}) })
       }
     }
 
     const limited = selectedListings.length < listings.length
-    if (failures.length && !jobs.length) throw firstFailure
+    if (failures.length && !jobs.length) {
+      // Diagnostic metadata must never replace the observed transport failure.
+      try { if (firstFailure && typeof firstFailure === 'object' && Object.isExtensible(firstFailure)) {
+        firstFailure.nativeCollectionEvidence = { source: SOURCE, observedListings: listings.length,
+          inspectedListings: selectedListings.length, nativeListings: structuredClone(listings), failures,
+          listingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false }
+        firstFailure.recruitmentObservations = { source: SOURCE, observedAt: scrapedAt, nativeRecords: listings.length,
+          returnedIndiaJobs: 0, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+          companyGlobalTotal: null, companyIndiaTotal: null, unresolved: ['native-detail-scope-unqualified'], failures }
+      } } catch { /* Preserve immutable and opaque original failures. */ }
+      throw firstFailure
+    }
     const incompleteDetails = jobs.filter(job => !job.jobDescription).length
     const incomplete = limited || failures.length > 0 || incompleteDetails > 0
     const result = incomplete ? jobs.map(job => ({ ...job, sourceListingComplete: false,

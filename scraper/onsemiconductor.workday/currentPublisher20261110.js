@@ -92,7 +92,20 @@ export function roleHold(record){
 }
 const detailURL=id=>api+'recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%22'+id+'%22,siteNumber=CX_1001'
 const listingURL=offset=>api+'recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs;siteNumber=CX_1001,limit=20,offset='+offset+',keyword=India'
-const listingModel=row=>JSON.stringify(row)
+// Oracle defines these as search distance/relevance, not requisition data:
+// https://docs.oracle.com/en/cloud/saas/human-resources/farws/op-recruitingcejobrequisitions-get.html
+// Retain the originals; compare every other field and the ranking field shapes.
+const rankingFields=['Distance','Relevancy']
+const listingModel=row=>{
+ const record={...row},rankingTypes=rankingFields.map(field=>{
+  if(!Object.hasOwn(row,field))return[field,'absent']
+  if(row[field]===null)return[field,'null']
+  need(typeof row[field]==='number'&&Number.isFinite(row[field]),'search ranking metadata changed shape')
+  delete record[field]
+  return[field,'finite-number']
+ })
+ return JSON.stringify({record,rankingTypes})
+}
 export async function runCurrent(options={}){
  need(!options.fetchPage&&!options.fetchJson,'transport receipts require fetchImpl, not metadata-free callbacks')
  const budget=options.sourceTimeoutMs??180000
@@ -138,8 +151,14 @@ export async function runCurrent(options={}){
   for(let i=jobs.length-1;i>=0;i--){const reason=roleHold(jobs[i].nativeSourceRecord);if(reason){held.unshift({id:jobs[i].jobId,reason,record:jobs[i].nativeSourceRecord});jobs.splice(i,1)}}
   const openingRows=(observed.nativeOracleRecords||[]).map(r=>r.listing),closingRows=[]
   for(let offset=0;offset<openingRows.length;offset+=20){const url=listingURL(offset),response=await read(url);need(response.status===200&&/json/i.test(response.headers.get('content-type')||''),'closing inventory transport changed');const p=payloads.get(url);need(p?.count===1&&p.hasMore===false&&p.items?.length===1&&p.items[0].SiteNumber==='CX_1001'&&p.items[0].Offset===offset&&p.items[0].TotalJobsCount===openingRows.length,'closing inventory identity changed');closingRows.push(...p.items[0].requisitionList)}
+  observed.onsemiClosingNativeInventory=structuredClone(closingRows)
   need(JSON.stringify(closingRows.map(listingModel))===JSON.stringify(openingRows.map(listingModel)),'closing inventory changed')
-  for(const job of jobs){const url=detailURL(job.jobId),response=await read(url);need(response.status===200&&/json/i.test(response.headers.get('content-type')||''),'closing detail transport changed');const p=payloads.get(url);need(p?.count===1&&p.hasMore===false&&p.items?.length===1&&JSON.stringify(p.items[0])===JSON.stringify(job.nativeSourceRecord.detail),'closing own criteria or identity changed');job.sourcePublisherBrand='onsemi';job.sourceRegisteredCompany='ON Semiconductor';job.sourceNativeClosingEvidence={detailURL:url,detailSHA256:sha(JSON.stringify(p.items[0])),inventoryRechecked:true,companyScopeComplete:false}}
+  const closingById=new Map(closingRows.map(row=>[row.Id,row]))
+  observed.onsemiSearchRankingChanges=openingRows.flatMap(row=>{
+   const closing=closingById.get(row.Id)
+   return rankingFields.some(field=>row[field]!==closing[field])?[{id:row.Id,opening:Object.fromEntries(rankingFields.map(field=>[field,row[field]])),closing:Object.fromEntries(rankingFields.map(field=>[field,closing[field]]))}]:[]
+  })
+  for(const job of jobs){const url=detailURL(job.jobId),response=await read(url);need(response.status===200&&/json/i.test(response.headers.get('content-type')||''),'closing detail transport changed');const p=payloads.get(url);need(p?.count===1&&p.hasMore===false&&p.items?.length===1&&JSON.stringify(p.items[0])===JSON.stringify(job.nativeSourceRecord.detail),'closing own criteria or identity changed');job.sourcePublisherBrand='onsemi';job.sourceRegisteredCompany='ON Semiconductor';job.sourceNativeClosingEvidence={detailURL:url,detailSHA256:sha(JSON.stringify(p.items[0])),inventoryRechecked:true,companyScopeComplete:false,closingListing:structuredClone(closingById.get(job.jobId)),searchRankingMetadataRecomputed:rankingFields.some(field=>job.nativeSourceRecord.listing[field]!==closingById.get(job.jobId)[field])}}
   observed.returnedIndiaJobs=jobs.length;observed.onsemiHeldRoles=held;observed.onsemiTransportReceipts=receipts
   if(held.length)observed.unresolved.push('source-own-role-qualification-held')
   need(jobs.length>0||openingRows.length===0,'all native India candidates failed qualification')

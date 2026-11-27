@@ -12,6 +12,55 @@ const CAREERS = /careers?|jobs?|openings?|(?:open|view|available)[-_ /]?(?:roles
 const THIRD_PARTY_HOST = /(?:^|\.)(?:linkedin\.com|facebook\.com|instagram\.com|twitter\.com|x\.com|youtube\.com|glassdoor\.com|indeed\.com)$/i
 const decode = text => String(text || '').replace(/\\u002[fF]/g, '/').replace(/\\\//g, '/').replace(/&amp;/gi, '&')
 
+const networkCodes = new Set(['ENOTFOUND', 'EAI_AGAIN', 'ECONNREFUSED', 'ECONNRESET', 'ECONNABORTED',
+  'ENETUNREACH', 'EHOSTUNREACH', 'EPIPE', 'ETIMEDOUT', 'ESOCKETTIMEDOUT', 'UND_ERR_CONNECT_TIMEOUT',
+  'UND_ERR_HEADERS_TIMEOUT', 'UND_ERR_BODY_TIMEOUT', 'UND_ERR_SOCKET', 'ERR_NETWORK'])
+const errorField = (error, key) => { try { return error?.[key] } catch { return undefined } }
+const httpStatus = error => [errorField(error, 'httpStatus'), errorField(error, 'status')]
+  .find(status => Number.isInteger(status) && status >= 100 && status <= 599) ?? null
+const failureInfo = error => {
+  const name = errorField(error, 'name'), message = errorField(error, 'message')
+  let network = false, nonNetwork = false, code, kind, status = null, terminal, current = error
+  const seen = new Set()
+  while (current != null && !seen.has(current) && seen.size < 32) {
+    seen.add(current)
+    const currentName = errorField(current, 'name'), currentCode = errorField(current, 'code'), currentKind = errorField(current, 'failureKind')
+    if (typeof currentKind === 'string' && currentKind) {
+      kind ??= currentKind
+      if (currentKind === 'network_or_timeout') network = true
+      else nonNetwork = true
+      if (!terminal && errorField(current, 'abortRetries') === true
+        && ['blocked_or_access_denied', 'parser_or_contract_error'].includes(currentKind)) terminal = current
+    }
+    status ??= httpStatus(current)
+    if (code == null && ['string', 'number'].includes(typeof currentCode)) code = currentCode
+    if (currentName === 'TimeoutError' || currentName === 'NetworkError' || networkCodes.has(currentCode)
+      || currentName === 'TypeError' && errorField(current, 'message') === 'fetch failed') network = true
+    current = errorField(current, 'cause')
+  }
+  // A response or any explicit native nonnetwork diagnosis disqualifies an
+  // all-no-HTTP outage. Incomplete cause inspection cannot establish one either.
+  if (nonNetwork || status != null || current != null && !seen.has(current)) network = false
+  return { network, httpStatus: status, terminal, summary: { ...(typeof name === 'string' ? { name } : {}),
+    ...(typeof message === 'string' ? { message } : {}), ...(code == null ? {} : { code }),
+    ...(kind ? { failureKind: kind } : {}) } }
+}
+const terminalFailure = error => {
+  const info = failureInfo(error), native = info.terminal
+  if (!native) return null
+  if (native === error) return error
+  // Do not mutate a caller-owned or frozen wrapper. Surface the native stop
+  // while retaining that wrapper and the complete original chain as its cause.
+  const failure = new Error(`Official ATS discovery stopped: ${errorField(native, 'message') || errorField(native, 'failureKind')}`, { cause: error })
+  Object.assign(failure, { name: 'OfficialAtsDiscoveryTerminalError', failureKind: errorField(native, 'failureKind'),
+    httpStatus: httpStatus(native) ?? info.httpStatus, abortRetries: true, sourceScopeComplete: false, lifecycleCleanupAllowed: false })
+  for (const key of ['softFailure', 'upstreamOutage', 'requestedUrl', 'responseUrl', 'accessChallenge']) {
+    const value = errorField(native, key)
+    if (value !== undefined) failure[key] = value
+  }
+  return failure
+}
+
 const defaultFetchPage = async (url, { signal } = {}) => {
   const response = await fetch(url, { signal: AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(10000)]), headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)' } })
   if (Number(response.headers.get('content-length')) > 3000000) throw new Error('official_response_too_large')
@@ -42,6 +91,14 @@ export const discoverOfficialAtsBoards = async (provider, { fetchPage = defaultF
   const boards = new Map()
   const candidateBoards = new Map()
   const checks = []
+  const failures = []
+  const recordFailure = (requestedURL, error) => {
+    const info = failureInfo(error)
+    failures.push({ requestedURL, error, network: info.network })
+    checks.push({ requestedURL, httpStatus: info.httpStatus,
+      checkedAt: new Date().toISOString(), failureKind: info.summary.name === 'TimeoutError' ? 'timeout' : 'network_or_response_error',
+      error: info.summary })
+  }
   const addBoard = (url, officialURL, evidenceURL, method, status, verified = true) => {
     const target = HTTP(url)
     if (!target || target.protocol !== 'https:' || target.username || target.password || target.port) return
@@ -63,6 +120,7 @@ export const discoverOfficialAtsBoards = async (provider, { fetchPage = defaultF
     attempts++
     try {
       const response = await fetchPage(requestedURL, { signal })
+      signal?.throwIfAborted()
       const finalURL = typeof response.url === 'string' ? response.url : null
       checks.push({ requestedURL, finalURL, httpStatus: response.status, checkedAt: new Date().toISOString() })
       const pageURL = HTTP(finalURL)
@@ -144,6 +202,7 @@ export const discoverOfficialAtsBoards = async (provider, { fetchPage = defaultF
         if (boards.size === 0) for (const url of scripts.slice(0, 2)) {
           try {
             const script = await fetchPage(url.href, { signal })
+            signal?.throwIfAborted()
             checks.push({ requestedURL: url.href, finalURL: script.url || null, httpStatus: script.status, checkedAt: new Date().toISOString() })
             if (script.status !== 200 || !trusted(HTTP(script.url)) || typeof script.html !== 'string'
               || Buffer.byteLength(script.html, 'utf8') > 3000000) continue
@@ -151,16 +210,37 @@ export const discoverOfficialAtsBoards = async (provider, { fetchPage = defaultF
               addBoard(feed, finalURL, script.url, 'official-careers-current-next-route-native-call', script.status)
             }
             collectCandidates(script.html, script.url, script.status)
-          } catch { signal?.throwIfAborted() /* Retain the page check without inventing a board. */ }
+          } catch (error) {
+            signal?.throwIfAborted()
+            const terminal = terminalFailure(error)
+            if (terminal) throw terminal
+            recordFailure(url.href, error)
+          }
         }
       }
       if (boards.size) break
     } catch (error) {
       signal?.throwIfAborted()
-      checks.push({ requestedURL, httpStatus: null, checkedAt: new Date().toISOString(), failureKind: error?.name === 'TimeoutError' ? 'timeout' : 'network_or_response_error' })
+      const terminal = terminalFailure(error)
+      if (terminal) throw terminal
+      recordFailure(requestedURL, error)
     }
   }
-  return { boards: [...boards.values()], candidateBoards: [...candidateBoards].filter(([key]) => !boards.has(key)).map(([, board]) => board),
+  signal?.throwIfAborted()
+  const discovery = { boards: [...boards.values()], candidateBoards: [...candidateBoards].filter(([key]) => !boards.has(key)).map(([, board]) => board),
     checks, reason: boards.size ? null : roots.length ? 'no-verified-supported-ats-binding' : 'missing-official-company-surface' }
+  // No HTTP document was obtained. Absence of a current ATS binding has not
+  // been observed; retain the failed reads and their original immutable causes.
+  if (!boards.size && failures.length > 0 && failures.length === checks.length
+    && checks.every(check => check.httpStatus == null) && failures.every(failure => failure.network)) {
+    discovery.reason = 'official-company-transport-unavailable'
+    const error = new AggregateError(failures.map(failure => failure.error),
+      `[${provider.source}] Official ATS discovery: ${discovery.reason}`, { cause: failures[0].error })
+    Object.assign(error, { name: 'OfficialAtsDiscoveryUnavailableError', failureKind: 'network_or_timeout',
+      softFailure: true, upstreamOutage: true, abortRetries: true, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+      discoveryEvidence: discovery })
+    throw error
+  }
+  return discovery
 }
 

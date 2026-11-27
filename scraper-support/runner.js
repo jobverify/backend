@@ -1108,9 +1108,36 @@ export const applyRetryPolicyToScraperError = (error) => {
   error.upstreamOutage = classification.upstreamOutage
   error.failureKind = classification.failureKind
 
+  // A single-attempt request can leave an ordinary rate limit to this loop.
+  // Require a typed server hint, and never override an inner stop decision.
+  let retryableRateLimit = false
+  if (error.abortRetries == null && classification.failureKind === 'blocked_or_access_denied') {
+    const seen = new Set()
+    let current = error
+    while (current && typeof current === 'object' && !seen.has(current) && seen.size < 8) {
+      seen.add(current)
+      const statuses = [current.status, current.httpStatus, current.statusCode, current.response?.status]
+        .filter(status => status != null)
+      if (current.abortRetries === true || current.accessChallenge === true
+        || statuses.some(status => status !== 429)
+        || ['parser_or_contract_error', 'configuration_error', 'surface_drift_or_fail_closed'].includes(current.failureKind)
+        || /captcha|challenge|human verification|verify (?:you are )?human|forbidden|unauthorized|access denied|permission denied/i.test(current.message || '')) {
+        break
+      }
+      if (statuses.includes(429) && typeof current.retryDelayMs === 'number'
+        && Number.isFinite(current.retryDelayMs) && current.retryDelayMs >= 0) {
+        retryableRateLimit = true
+      }
+      current = current.cause
+    }
+    // Cyclic, truncated or unstructured causes cannot prove a plain throttle.
+    if (current != null) retryableRateLimit = false
+  }
+
   if (
     error.abortRetries == null
     && NON_RETRIABLE_SOFT_FAILURE_KINDS.has(classification.failureKind)
+    && !retryableRateLimit
   ) {
     error.abortRetries = true
   }

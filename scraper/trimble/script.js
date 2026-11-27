@@ -32,13 +32,19 @@ function stateOf(document){
   &&typeof build.right.value==='string'&&/^[a-f\d]{10}$/.test(build.right.value),'native state assignment changed')
  return parseRemoteLiteral(raw.slice(state.right.start,state.right.end))
 }
-// Both whole stylesheets were reviewed. November19 adds utility/control styles
+// These whole stylesheets were reviewed. November19 adds utility/control styles
 // and new font deployment URLs; .hidden and the later80rem .xl:flex rule retain
-// their original semantics. No unknown stylesheet may use this projection.
+// their original semantics. November25 changes only the ten font URL deployment
+// query values. No unknown stylesheet may use this projection.
 const corporateStyles=new Set([
  '51ca5bcbb028725fb506394bf76060e2a8a8f0385dd7f3e3aff373834848c641',
  '86b0208a28eaa744b30ae0984930dd6f77cca968a09228dea41adacffd98b34f',
+ '83be3ecd7fb8752d0184c587768671cefb230823f4d968aa0362641bde18d36c',
 ])
+// The current counted native feed retains one unavailable role. This exact
+// branded404 frame was observed on its own listed URL. Only that URL's literal
+// occurrences are neutralized; this grants no job, eligibility or scope proof.
+const missingRoleFrame='27484258da2f7418eb9a8e6582ad4c26715214bec583bdde71550def535b1d9c'
 const corporateOf=page=>{
  const original=readNativeDocument(page.html)
  need(!treeNodes(original,n=>n.tag==='base').length,'corporate handoff base requires review')
@@ -133,11 +139,13 @@ export async function run(options={}){
  const now=options.now||new Date().toISOString();need(Number.isFinite(Date.parse(now)),'invalid observation time')
  const signal=AbortSignal.any([...(options.signal?[options.signal]:[]),AbortSignal.timeout(240000)])
  const receipts=[];let requests=0
- const read=async url=>{
+ const read=async (url,{missingRole=null}={})=>{
   signal.throwIfAborted();need(++requests<=100,'native public request budget reached')
   const response=await (options.fetchImpl||globalThis.fetch)(url,{redirect:'manual',credentials:'omit',signal:AbortSignal.any([signal,AbortSignal.timeout(20000)]),headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}})
   const html=await response.text();signal.throwIfAborted()
-  need(response.status===200&&response.url===url&&Buffer.byteLength(html)<=4*1024*1024,'current public response identity/status changed')
+  const reviewedMissing=response.status===404&&missingRole&&roleURLOf(missingRole)===url
+   &&!response.headers.get('cf-mitigated')&&sha(html.split(url).join('<own-missing-role-url>'))===missingRoleFrame
+  need((response.status===200||reviewedMissing)&&response.url===url&&Buffer.byteLength(html)<=4*1024*1024,'current public response identity/status changed')
   const page={url,status:response.status,html};receipts.push({...page,sha256:sha(html)});return page
  }
  const corporate=corporateOf(await read(OFFICIAL))
@@ -157,7 +165,9 @@ export async function run(options={}){
  const opening=await listing(),held=[],selected=[]
  for(const row of opening.rows){
   if(!indiaLocations(row).length)continue
-  const page=await read(roleURLOf(row))
+  const page=await read(roleURLOf(row),{missingRole:row})
+  if(page.status===404){held.push({row,reason:'native-listed-role-unavailable-404',httpStatus:404,
+   sourceDetailComplete:false,publicEligibility:null,lifecycleCleanupAllowed:false,originalPublicPage:page});continue}
   try{selected.push({row,detail:roleOf(page,row,now)})}
   catch(error){if(!error.softFailure)throw error;held.push({row,reason:error.message,originalPublicPage:page})}
  }

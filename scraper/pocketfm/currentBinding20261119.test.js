@@ -41,6 +41,9 @@ test('Pocket FM current 19-response imported workflow recovers qualified India c
  assert.equal(index,19)
  assert.equal(jobs.length,2)
  assert.ok(jobs.every(job=>job.country==='India'&&job.sourceDetailComplete&&job.sourceScopeComplete===false))
+ // Publication-window expectations belong to this historical observation.
+ assert.ok(Number.isFinite(Date.parse(workflow.startedAt)))
+ t.mock.timers.enable({apis:['Date'],now:Date.parse(workflow.startedAt)})
  const assessed=assessSoftFailureAcquisition(getScraperCatalog().find(row=>row.source==='pocketfm'),jobs)
  assert.equal(assessed.eligibleJobs,1)
  assert.equal(assessed.runnerOutcome.success,true)

@@ -4,7 +4,11 @@ Render calls this Worker over authenticated HTTPS. The Worker submits one fixed
 password-reset, registration-verification, or email-change verification email to Gmail over TLS on port 465.
 The backend still issues, stores, validates and expires tokens. No mailbox-provider API is required.
 
-Deployed relay: `https://jobverify-gmail-relay.jobverify-gmail-relay.workers.dev`.
+Deployed relay: `https://jobverify-gmail-relay.jobverify.workers.dev`.
+The Workers account subdomain is `jobverify`; the former
+`jobverify-gmail-relay.workers.dev` account subdomain no longer resolves. Keep
+backend `EMAIL_RELAY_URL` consistent with the deployed relay after account
+subdomain changes.
 Gmail authentication from this deployed Worker was verified on November 6, 2026,
 without sending an email. Backend activation and a real delivery test are
 separate steps below.
@@ -109,8 +113,10 @@ existing direct SMTP path, which still requires SMTP access from the host.
   sender, headers, attachments or SMTP destination accepted.
 - Exact HTTPS frontend origin, `/reset-password` or `/verify-email` matching the
   endpoint, no credentials, and one 64-character hexadecimal token in the fragment.
-  Reset/registration URLs reject all query parameters; email change requires only
-  the exact `?mode=change` query. Deploy this endpoint before the updated API.
+  Reset URLs reject all query parameters. Registration URLs optionally accept
+  one `next` parameter containing a local path on the same frontend origin;
+  email change requires only the exact `?mode=change` query. Deploy this endpoint
+  before the updated API.
 - Gmail TLS/certificate validation remains enabled. Success means Gmail accepted
   the message, not guaranteed arrival in the inbox.
 - `gmailSocket.js` opens verified TLS directly by hostname, then supplies the

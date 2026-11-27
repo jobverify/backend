@@ -17,9 +17,15 @@ const CANONICAL = 'https://dish.jibeapply.com'
 const SEARCH_CLIENTS = Object.freeze({
   'https://app.jibecdn.com/prod/search/4.11.225/main.js': '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f',
   'https://app.jibecdn.com/prod/search/4.11.226/main.js': '64df0d1d3d65b28b8ebe0d9ccd08d776ffb092486633fb72f91f26e6c9950f56',
+  // 4.11.228 retains /api/jobs, the country/page/limit whitelist and the
+  // explicit data.country renderer. All posting facts remain checked below.
+  'https://app.jibecdn.com/prod/search/4.11.228/main.js': 'd654bbb278b072e4825ee8880f3f1678ddfda05d20959202b9e480cad7fa7b89',
 })
-const DESCRIPTION_CLIENT = 'https://app.jibecdn.com/prod/descriptions/1.1.100/main.js'
-const DESCRIPTION_SHA = 'fc31de5557e316926aaa23755d10152e33f418ebbbdb731fd20b32023a93d880'
+const DESCRIPTION_CLIENTS = Object.freeze({
+  'https://app.jibecdn.com/prod/descriptions/1.1.100/main.js': 'fc31de5557e316926aaa23755d10152e33f418ebbbdb731fd20b32023a93d880',
+  // The current declared release retains the full native description section.
+  'https://app.jibecdn.com/prod/descriptions/1.1.102/main.js': 'e66eecfab3dda1f09240cccfca8f6a28ac0960d3051382f03d3c527a1e3fbac3',
+})
 const EMPLOYER = 'EchoStar'
 // Exact state/label pairs in the captured current native page. These reconcile
 // existing explicit US locations; they never identify a country or add a city.
@@ -33,6 +39,8 @@ const stable = value => JSON.stringify(value, (_, item) => item && typeof item =
   ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item)
 const one = (values, name) => { need(values.length === 1, 'one active ' + name + ' required'); return values[0] }
 const executable = node => !Object.hasOwn(node.attrs, 'nomodule') && /^(?:|module|(?:text|application)\/javascript)$/i.test(node.attrs.type || '')
+const descriptionRenderer = doc => one(doc.nodes(n => n.tag === 'script' && Object.hasOwn(DESCRIPTION_CLIENTS, n.attrs.src)
+  && executable(n)), 'reviewed description renderer').attrs.src
 const textBlocks = new Set(['root', 'html', 'body', 'div', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
   'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'td', 'th', 'section', 'article', 'main', 'header', 'footer', 'br', 'hr'])
 
@@ -240,7 +248,7 @@ const locationSnapshot = job => locations(job).map(location => {
 function detail(html, row, at) {
   const doc = document(html), listed = row.data
   one(doc.nodes(n => n.tag === 'descriptions-app'), 'own-role rendering component')
-  one(doc.nodes(n => n.tag === 'script' && n.attrs.src === DESCRIPTION_CLIENT && executable(n)), 'reviewed description renderer')
+  const renderer = descriptionRenderer(doc)
   need(assignment(doc, '_jibe').cid === 'dish', 'native role tenant changed')
   const config = assignment(doc, 'jobDescriptionConfig'), job = config.job
   need(job && job.client_code === 'dish' && job.slug === listed.slug && job.req_id === listed.req_id
@@ -306,7 +314,7 @@ function detail(html, row, at) {
     nativeCriteriaRepresentations: { plainTextAndFullHtmlEqual: true,
       listingPlainText: { description: listed.description, responsibilities: listed.responsibilities, qualifications: listed.qualifications },
       fullCurrentRoleHTML: { description: job.description, responsibilities: job.responsibilities, qualifications: job.qualifications },
-      currentRendererURL: DESCRIPTION_CLIENT, currentRendererSHA256: DESCRIPTION_SHA },
+      currentRendererURL: renderer, currentRendererSHA256: DESCRIPTION_CLIENTS[renderer] },
     nativeLocationRenderingEvidence: { fullLocation: job.full_location, shortLocation: job.short_location,
       formattedLocation: config.jobFormatted.location, metadataSettings: config.jdSettings, addressFormat: config.addressFormat ?? null },
     sourceDetailComplete: true, sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
@@ -318,7 +326,10 @@ export async function runCurrentDishInventory({ fetchImpl = globalThis.fetch, si
   need(Number.isSafeInteger(maxDetails) && maxDetails >= 1 && maxDetails <= 10, 'invalid native detail budget')
   const at = new Date(now()).toISOString()
   const deadline = signal ? AbortSignal.any([signal, AbortSignal.timeout(180000)]) : AbortSignal.timeout(180000)
-  const receipts = [], requestBudget = 14 + 2 * maxDetails
+  // Each distinct reviewed renderer needs an opening and closing read. Roles
+  // can declare different reviewed releases within the same bounded cohort.
+  const rendererBudget = 2 * Math.min(maxDetails, Object.keys(DESCRIPTION_CLIENTS).length)
+  const receipts = [], requestBudget = 12 + 2 * maxDetails + rendererBudget
   const read = async (url, kind, closing = false) => {
     deadline.throwIfAborted(); need(receipts.length < requestBudget, 'native request budget exhausted')
     const requestSignal = AbortSignal.any([deadline, AbortSignal.timeout(20000)]), requestedAt = new Date().toISOString()
@@ -351,16 +362,29 @@ export async function runCurrentDishInventory({ fetchImpl = globalThis.fetch, si
     for (const url of [HOME, CAREERS, INDIA]) corporateChain.push(corporate(await read(url, 'html', closing), url))
     const searchModel = search(await read(corporateChain[2].links[0].href, 'html', closing))
     need(hash(await read(searchModel.renderer, 'javascript', closing)) === SEARCH_CLIENTS[searchModel.renderer], 'current native search renderer changed')
-    need(hash(await read(DESCRIPTION_CLIENT, 'javascript', closing)) === DESCRIPTION_SHA, 'current native description renderer changed')
     return { corporateChain, searchModel }
   }
   const opening = await authority(false), opened = listing(await read(opening.searchModel.api, 'json'))
   const candidates = opened.rows.filter(row => locations(row.data).some(value => country(value) === 'India'))
   const selected = candidates.slice(0, maxDetails), jobs = []
-  for (const row of selected) jobs.push(detail(await read(roleURL(row.data), 'html'), row, at))
+  const roleRenderers = new Map(), verifiedRenderers = { opening: new Set(), closing: new Set() }
+  const readDetail = async (row, closing = false) => {
+    const html = await read(roleURL(row.data), 'html', closing)
+    const renderer = descriptionRenderer(document(html)), phase = closing ? 'closing' : 'opening'
+    if (closing) need(roleRenderers.get(row.data.slug) === renderer, 'closing native description renderer declaration changed')
+    else roleRenderers.set(row.data.slug, renderer)
+    // Verify only the renderer declared by the fetched role. Each phase reads
+    // its complete bytes again; a retired version never supplies current proof.
+    if (!verifiedRenderers[phase].has(renderer)) {
+      need(hash(await read(renderer, 'javascript', closing)) === DESCRIPTION_CLIENTS[renderer], 'current native description renderer changed')
+      verifiedRenderers[phase].add(renderer)
+    }
+    return detail(html, row, at)
+  }
+  for (const row of selected) jobs.push(await readDetail(row))
   need(jobs.length > 0, 'no qualified current India roles on selected native page; zero unavailable')
   for (let index = 0; index < selected.length; index++) {
-    const closing = detail(await read(roleURL(selected[index].data), 'html', true), selected[index], at)
+    const closing = await readDetail(selected[index], true)
     need(stable(closing) === stable(jobs[index]), 'closing native complete role criteria or identity changed')
   }
   const closing = listing(await read(opening.searchModel.api, 'json', true))

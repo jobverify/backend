@@ -26,6 +26,9 @@ const APP_COMPONENTS = new Map([
   // The Nov18 program changes only the App Router import bootstrap (module
   // 28623); the complete iframe/init module 28708 is byte-identical to Nov13.
   ['https://www.licious.in/_next/static/chunks/app/content/careers/jobs/page-65f97a24a6d830f5.js','874f11bda7bfb4fc5c05e3bd107956bbed186082d841ca96db7259a5c00ea0b6'],
+  // Nov25 changes only the import bootstrap to module 47917. The complete
+  // MyNextHire iframe/init module 28708 remains byte-identical to Nov18.
+  ['https://www.licious.in/_next/static/chunks/app/content/careers/jobs/page-c1cec5a194c4fed6.js','ff752f1267064c1cfdc28d26bcfe90e17a5f30859c17d1f62104cb08436c61d9'],
 ])
 const LISTING_INPUT = { source: 'careers', code: '', filterByBuId: -1 }
 // Freshly fetched, currently advertised clients establish the connected iframe,

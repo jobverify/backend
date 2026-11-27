@@ -83,7 +83,16 @@ function nativeURL(value,id,firstParty=false,foreignPublicTracking=null){
     const querySHA256=createHash('sha256').update(u.search.slice(1)).digest('hex')
     const reviewedTracking=value===u.href&&(review&&review.country===foreignPublicTracking&&u.pathname==='/job-openings/position/'+id+'/'&&querySHA256===review.sha256
       ||currentReview&&currentReview.country===foreignPublicTracking&&u.pathname===currentReview.path&&querySHA256===currentReview.sha256)
-    if(!reviewedTracking){
+    // The current public board also emits a bare millisecond clock followed
+    // by employeeShare, without the older Share flag or named t parameter.
+    // Neither flag is an application route: reads still use the query-free
+    // native public UID, with typed country and public visibility checked.
+    const clockShareTracking=value===u.href&&/^\?\d{13}&employeeShare$/.test(u.search)
+    // Keep the separately observed opaque foreign referral bound to its exact
+    // public UID, country and official path; do not interpret it as a route.
+    const currentForeignReferral=value===u.href&&id==='35.27F'&&foreignPublicTracking==='IL'
+      &&u.pathname==='/job-openings/position/35.27F/'&&u.search==='?-updates'
+    if(!reviewedTracking&&!clockShareTracking&&!currentForeignReferral){
     const keys=[...u.searchParams.keys()]
     check(new Set(keys).size===keys.length&&keys.every(k=>['ref',';t','Share','utm_search_query','jr_id','employee','employeeShare','t'].includes(k)),'Native official tracking query changed')
     const params=u.searchParams

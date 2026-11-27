@@ -60,9 +60,14 @@ function validPayload(payload, origin, type) {
     || typeof payload[linkKey] !== 'string' || payload[linkKey].length > 1024) return false;
   try {
     const link = new URL(payload[linkKey]);
+    const next = link.searchParams.get('next');
+    const validSearch = link.search === (type === 'email-change' ? '?mode=change' : '')
+      || type === 'verification' && link.searchParams.size === 1
+        && typeof next === 'string' && next.startsWith('/') && !next.startsWith('//')
+        && new URL(next, origin).origin === origin;
     return link.origin === origin && link.pathname === (verification ? '/verify-email' : '/reset-password')
       && !link.username && !link.password
-      && link.search === (type === 'email-change' ? '?mode=change' : '')
+      && validSearch
       && /^#token=[0-9a-f]{64}$/i.test(link.hash);
   } catch { return false; }
 }

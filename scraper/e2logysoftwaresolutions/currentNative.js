@@ -99,6 +99,7 @@ function originalNativeData(page){
   '8464e63a74fe56cba930917b413ca26ab453d46f0001fea1c7579296552a5e0a':'c63ab7f71866c1089db6945e4e90d2fdcb0b419e919b3e84b0690e5772a77c99',
   'e16197c12bc84c66765678777bf38c58a0b96d34cb6e3887438e884f9c68305c':'652e311ad823df25a17b6a85077d3def127f58a632f18534467dc09d449536a3',
   'c6c414f66fbee18eeaa351996703f27d8d2f1697dd54c876aa147d8ece52c4c0':'031b9feaf148e867b0165b061eee8703a496270d09f8b3da790109a597f60219',
+  '13e1fbb510ca8944fd0e0f76cbb5a0035216f62334581aa131b1bff931a918f6':'6f1b1f754327733b029688356c905d3bfa71bc644893712f0684f8a429fd0bcd',
  }[declarationSHA]
  need(mapSHA,'Native program declaration authority changed')
  // Count every inline script, including an unexpected MIME type or escaped
@@ -117,6 +118,9 @@ function originalNativeData(page){
  // complete Nov16 map. Its only non-map AST changes are four CDN build paths;
  // the four other fixed inline programs and the criteria-carrier AST are
  // unchanged. This finite data-reading profile does not certify activation.
+ // Nov25 adds only its exact declaration/CDN-map pair. The four fixed inline
+ // programs and complete criteria-carrier AST retain the same reviewed bytes
+ // and structure; vendor build-path literals grant no activation authority.
  need(scripts.length===6&&programHashes.every((hash,index)=>index===2?reviewedMapSHA.includes(sha(scripts[index].raw??'')):sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
  const script=scripts[5]
  need(!script.inert&&page.head.children.includes(script),'Native data carrier is not active in the owned head')
