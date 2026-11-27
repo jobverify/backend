@@ -5,6 +5,7 @@ import { createUnavailableResponse, forwardClientRequest, redirectInsecureReques
 import { loadMaintenanceTasks, runMaintenance } from './maintenance.js';
 import { bindPipelineDownloads, PIPELINE_FILE_PATH, pipelineFileResponse } from '../adapters/pipelineDownload.js';
 import { createWorkersAssistantModel } from './assistantModel.js';
+import { bindEmailRelay } from '../adapters/sendEmail.js';
 
 // One named API object owns the Mongoose connection. Data stays in Atlas.
 export class JobverifyApi extends DurableObject {
@@ -13,6 +14,7 @@ export class JobverifyApi extends DurableObject {
     this.environment = env;
     this.storage = ctx.storage;
     bindPipelineDownloads(env.API);
+    bindEmailRelay(env.EMAIL_RELAY);
   }
 
   async initialize() {
