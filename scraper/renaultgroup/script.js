@@ -1,6 +1,7 @@
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -29,22 +30,14 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\s+/g, ' ')
   .trim()
 
-const defaultFetchPage = async (url, { signal } = {}) => {
-  const response = await fetch(url, {
-    signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000),
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 const defaultRunWorkday = (options) => runWorkdayScraper(options)
 

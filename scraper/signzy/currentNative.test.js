@@ -20,6 +20,16 @@ const repinned=(change,corporateHtml=unchanged.corporateHtml)=>{const routeBody=
 const changeRole=(body,fn)=>{const rows=JSON.parse(body);fn(rows.find(r=>r.id===145329));return JSON.stringify(rows)}
 const bothFeeds=url=>url===board||url===embedded
 
+test('native UTC timestamps without fractional seconds retain the source date and full role criteria',async()=>{
+  const fetchImpl=transport((url,body)=>bothFeeds(url)?changeRole(body,role=>{role.publishedOn='2026-11-22T20:27:20Z'}):body)
+  const jobs=await run({fetchImpl})
+  const job=jobs.find(role=>role.jobId==='145329')
+  assert.equal(job.postingDate,'2026-11-22T20:27:20.000Z')
+  assert.equal(job.sourceNativePayload.publishedOn,'2026-11-22T20:27:20Z')
+  assert.equal(job.sourceDetailComplete,true)
+  assert.match(job.jobDescription,/Strong proficiency in JavaScript and Node.js/)
+})
+
 test('actual pinned Flight/default-page/NextScript chain establishes employer binding without evaluating JavaScript',()=>{assert.equal(validateClientBinding(unchanged).flightModule,51811)})
 for(const[name,change]of [
  ['wrong default export',body=>body.replace('default:function(){return p}','default:function(){return l}')],

@@ -1,0 +1,128 @@
+{
+  "purpose": "Exact current public read-service and DTO data qualification only; no rendering, organization-store or application approval",
+  "observedAt": "2026-11-27T20:24:53.451Z",
+  "apiOrigin": "https://thapi-stage0.azurewebsites.net",
+  "initialScriptURLs": [
+    "https://byteridge.turbohire.co/runtime-main.5580c07b07167ec174dd.js",
+    "https://byteridge.turbohire.co/18.6081fd087933a4c257f3.chunk.js",
+    "https://byteridge.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js",
+    "https://byteridge.turbohire.co/main.e15f0ac5069bbd0a19fd.chunk.js"
+  ],
+  "publicClientSHA256": {
+    "https://byteridge.turbohire.co/runtime-main.5580c07b07167ec174dd.js": "ba3dd8572f058ab23b69c9582177e43426e1c965706ad17eb439b146161461bb",
+    "https://byteridge.turbohire.co/18.6081fd087933a4c257f3.chunk.js": "e45b2a5d4c3f082311c827f42888190571e95cc55271fc1f22e0220af23637cf",
+    "https://byteridge.turbohire.co/30.86c6a5b9e9f7200f24dd.chunk.js": "f0b406873741adf14d0c8924a7f550871207904a76ff3ef19c98937c8b552153",
+    "https://byteridge.turbohire.co/main.e15f0ac5069bbd0a19fd.chunk.js": "2be8de33dad1c0a385d2c66555f727e599ec447c8191553ce652e9c58d482df4",
+    "https://byteridge.turbohire.co/24.a28a2a0baf5fa8604e96.chunk.js": "72d275fa9939f2505aac1d5046f580ffd1880b78f824ab462ee69bca1004a972",
+    "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js": "8d8fccead147ba379930a1f237aabc3eefcad8e2df44d23b1963969aeadbb7bb",
+    "https://byteridge.turbohire.co/17.b43c0c94060116649b1a.chunk.js": "15cb4b26906e7aa3399af7b463a941c6de7b112728983296527c97abc1827351",
+    "https://byteridge.turbohire.co/14.7e262e2081727fd99ad1.chunk.js": "33c137c304abd945bc985318982307629bb3d84ca5e536f0e1b64b9732f10d0e",
+    "https://byteridge.turbohire.co/64.b25336d8977beedc990c.chunk.js": "c7403c9aa92a627e0dc5df2c2b141a4c969fd28732a469dd5ced0be59d9423d0",
+    "https://byteridge.turbohire.co/3.10d75d15fa513fc1ae02.chunk.js": "d17d250d4e070285838573c940dc781e2b13dc8b176d8cc959103fd73a74a40d",
+    "https://byteridge.turbohire.co/5.5c1c2f858e01a890c5f9.chunk.js": "8da26474990fd591b5f8efd0db37ec5ed67386fa661d9b875a219a48b5dde426",
+    "https://byteridge.turbohire.co/6.2686de4e81bd3acfb734.chunk.js": "cca1b0e586117f641e544efa4328c1e223b383414fa6ebe5736227400e6f119f",
+    "https://byteridge.turbohire.co/7.f836db2b80a16205191b.chunk.js": "c4a0dfbc77582739876b4c443f3519416dc4384765a7a34e2ff7a929ca7d819e",
+    "https://byteridge.turbohire.co/62.786f64b8280122582926.chunk.js": "8c28534e0af2653dd49a1ffd12a2983af8db0e162c3d9c03287d70ea3e0c51ae"
+  },
+  "publicMethodSHA256": {
+    "getUnauthenticatedAccessToken": "d50db8d34d43d41eca8fc2f1403cec1661391d41d6dde960d7d1baec9be7f857",
+    "constructor": "78de35921c7af630f8dc9747604a81aae55a59093f3da08cb3d443707d6590b7",
+    "getUnAuthenticatedAccessToken": "75b78c537edf926ce6a024e37ccd9b587641b2c1698b5fb3dac6619c513142d0",
+    "getOrgDetailsFromAccountName": "2eabbd126aef739fe1af6db62fc05020588d5ce94cb0dec69ae60b7ee5393345",
+    "getPublicOrgInfo": "88a43f4ea0562dfca564e02d2d62a4be3ebfa20780fc796ab1eafa0aeab46702",
+    "getPublicJobRefsForOrgFiltered": "267cee1b3efaff2cfe9608daa28b0aab45de03ea4a5d6f38537675b253e9fd2d",
+    "getJobInfo": "7447d65681bd9761abc3ecf959449333f5dfb77116d643a0bf715612db9d0fcb"
+  },
+  "unqualifiedModules": [
+    {
+      "url": "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js",
+      "moduleId": "2377",
+      "sha256": "65300a5b163643b8661e489c48d0a0df8bcd40a84a262cde8d6d1ada29d7fff5"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js",
+      "moduleId": "2543",
+      "sha256": "4464e85e2ac9ed0ab66c0d7544ec1681a8ad2bc880e375aa7398424128fc8b71"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js",
+      "moduleId": "2739",
+      "sha256": "2378484272172c3f8e403d37270bb623f908b1d07e53e6aadc8d1995d225475f"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js",
+      "moduleId": "3019",
+      "sha256": "4495c01201dee2596bc8e7aafa4a8b85e596dd0768688a1072a209a464955a05"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/40.1933c4c55b856efac4bb.chunk.js",
+      "moduleId": "3953",
+      "sha256": "fa42b63cde277179cb166e011dd9a22b3fb0e9c031df60bccf99b55a38a4964d"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/62.786f64b8280122582926.chunk.js",
+      "moduleId": "2377",
+      "sha256": "cd1bb85ede43e74140a318d0e4e2063435fd5ef471613308d53b6817c32bf234"
+    },
+    {
+      "url": "https://byteridge.turbohire.co/62.786f64b8280122582926.chunk.js",
+      "moduleId": "2650",
+      "sha256": "492743875af9e8d7f7503481a5f92faec18ed601a1e540e4edb338fdb9a057da"
+    }
+  ],
+  "dtoKeys": [
+    "AdditionalFields",
+    "ApplicationEnquiryTemplateId",
+    "BUnitId",
+    "CTCInfo",
+    "ClientCompany",
+    "ClientDesc",
+    "ClientDescV2",
+    "ClientName",
+    "CompanyLogoUrl",
+    "CompanyUrl",
+    "CreatedByEmail",
+    "CreatedById",
+    "CreatedByName",
+    "CreatedDate",
+    "Department",
+    "Eligibility",
+    "EligibilityV2",
+    "Experience",
+    "ExpiryDates",
+    "HideVacancy",
+    "IjpEnquiryTemplateId",
+    "IsDraft",
+    "IsJobCalibratedByUser",
+    "IsPublic",
+    "JobCode",
+    "JobDescription",
+    "JobDescriptionV2",
+    "JobDescriptionVideoUrl",
+    "JobId",
+    "JobIdObfuscated",
+    "JobStatus",
+    "JobTitle",
+    "JobTypeV2",
+    "Location",
+    "NumberOfVacancy",
+    "OrgDetails",
+    "PublishedDate",
+    "PublishedDates",
+    "PublishedJobBoards",
+    "ReferralEnquiryTemplateId",
+    "RequisitionId",
+    "ResumeStates",
+    "RolesAndResponsibilities",
+    "RolesAndResponsibilitiesV2",
+    "ScorecardTemplateId",
+    "SeqNo",
+    "ShowClientName",
+    "Skills",
+    "Type",
+    "UpdatedDate"
+  ],
+  "renderingQualified": false,
+  "applicationQualified": false,
+  "companyScopeQualified": false
+}

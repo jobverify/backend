@@ -1,4 +1,17 @@
 {
+  "current-20261128": {
+    "jobSHA256": "9906d4d70ec8fd4e5ff6bc8c73a5d4c22f97ae679c23475b3a21b062bf78e725",
+    "filterSHA256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff",
+    "serviceSHA256": "0dc532fc058bdcbdf1ccbd48ca7a4b07c890426ccc8ca79f55ed908b23131274",
+    "directImports": [
+      { "path": "./chunk-ZKMRUQJB.js", "sha256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff" },
+      { "path": "./chunk-B7GQ3CPB.js", "sha256": "0dc532fc058bdcbdf1ccbd48ca7a4b07c890426ccc8ca79f55ed908b23131274" },
+      { "path": "./chunk-IIGMZVP4.js", "sha256": "1b5bc0127b8317393c3742a070b54e3bb04a4e379a6ded31d0e52eec71e01513" }
+    ],
+    "evidence": "test-data/current-programs-20261128.json.gz",
+    "reviewedProgramDelta": "Full88144byte job differs from current-20261119 only by its exact service import path. Full3018145byte service differs only by the exact lazy DOMPurify dependency path inside the retained jsPDF HTML export helper. Every other byte, including native filter/search/detail/organization and serialization logic, is unchanged. The535byte filter is identical; all three declared direct imports, including the2449byte helper, must be read and matched exactly before API requests. No program is executed and no arbitrary module variation is accepted.",
+    "freshContext": "Anonymous current portal with no query, selectedFilter or browser-history restore. Job constructor creates empty q and offset0/limit45 pagination. Initial loadJobsData copies eight undefined list fields, builds no filter query suffix, and the unchanged JSON serializer emits {} for the declared anonymous jobs/v1 POST. Country, company, criteria and cleanup holds are unchanged."
+  },
   "current-20261119": {
     "jobSHA256": "d09f722916757050e153688ee488b9697240046f709cfa17cebbed46ddd95a07",
     "filterSHA256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff",

@@ -45,11 +45,23 @@ const roleIdentity = (record, provider, { definitionsOnly = false } = {}) => {
     || (!definitionsOnly && hasUnhandledGreenhouseGeography(record))) return null
   try {
     const url = new URL(record.absolute_url)
-    if (url.protocol !== 'https:' || url.username || url.password || url.port || url.search || url.hash
-      || !['job-boards.greenhouse.io', 'boards.greenhouse.io', 'job-boards.eu.greenhouse.io', 'boards.eu.greenhouse.io'].includes(url.hostname)
-      || url.pathname.replace(/\/+$/, '') !== `/${encodeURIComponent(provider.boardToken)}/jobs/${record.id}`) return null
-    const region = url.hostname.includes('.eu.') ? 'eu' : 'global'
-    if (region !== expectedRegion(provider)) return null
+    if (url.protocol !== 'https:' || url.username || url.password || url.port || url.hash) return null
+    const nativeHost = ['job-boards.greenhouse.io', 'boards.greenhouse.io', 'job-boards.eu.greenhouse.io', 'boards.eu.greenhouse.io'].includes(url.hostname)
+    let region
+    if (nativeHost) {
+      if (url.search || url.pathname.replace(/\/+$/, '') !== `/${encodeURIComponent(provider.boardToken)}/jobs/${record.id}`) return null
+      region = url.hostname.includes('.eu.') ? 'eu' : 'global'
+    } else {
+      const employer = new URL(provider.companyCareerPage)
+      if (employer.protocol !== 'https:' || employer.username || employer.password || employer.port
+        || url.hostname.replace(/^www\./, '') !== employer.hostname.replace(/^www\./, '')
+        || url.searchParams.getAll('gh_jid').length !== 1
+        || url.searchParams.get('gh_jid') !== String(record.id)) return null
+      // The exact employer host and native ID bind a custom role URL. Region
+      // still comes from this provider's declared native board, never its host.
+      region = expectedRegion(provider)
+    }
+    if (!region || region !== expectedRegion(provider)) return null
     return { jobId: String(record.id), url: url.href, region }
   } catch { return null }
 }

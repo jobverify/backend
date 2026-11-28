@@ -14,9 +14,20 @@ const proNonceProfile={original:'efa53166bae286915d11944fa4c0791bfd364d94b749a56
 // query, renderer, employer and form programs retain their existing profiles.
 const emojiRevision=['85d9342f9efb02bf550ecb1bb7d6c6c5ea0b20656ff29e322e7f9d295465bb7f',
  '633b900004b5e802a7670be5a5a44b9bdef854dfaf3b2fdfc94704f40ebd2413']
+// Both currently served query variants have identical complete bodies (retained
+// in current-cookie-20261128.json.gz). Admit only this complete paired revision;
+// every declaration position, other attribute and inline program stays exact.
+const cookieRevision=[
+ {id:'cookie-law-info-js',src:'https://kanini.com/wp-content/plugins/cookie-law-info/legacy/public/js/cookie-law-info-public.js'},
+ {id:'cookie-law-info-ccpa-js',src:'https://kanini.com/wp-content/plugins/cookie-law-info/legacy/admin/modules/ccpa/assets/js/cookie-law-info-ccpa.js'},
+]
 export function inspectPrograms(doc,expected){
  const scripts=doc.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/javascript)$/i.test(n.attrs.type??''))
  check(scripts.length===expected.length,'whole active program declaration graph')
+ const cookieIndexes=cookieRevision.map(entry=>expected.findIndex(n=>equal(n.attrs,{src:entry.src+'?ver=3.5.9',id:entry.id})))
+ if(cookieIndexes.every((index,i)=>index>=0&&equal(scripts[index].attrs,{src:cookieRevision[i].src+'?ver=3.5.10',id:cookieRevision[i].id}))){
+  expected=expected.map((entry,index)=>{const revision=cookieIndexes.indexOf(index);return revision<0?entry:{...entry,attrs:{...entry.attrs,src:cookieRevision[revision].src+'?ver=3.5.10'}}})
+ }
  // The current home and listing exchange only these two adjacent, unchanged
  // marketing declarations. All attributes, other positions and inline code
  // remain bound to the reviewed graph; no general script reordering is allowed.

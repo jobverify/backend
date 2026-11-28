@@ -36,7 +36,7 @@ export function inspectPublicMain(body){return memo('main',body,()=>{
  check(renders.length===1,'public root router binding changed')
  const loaders=[]
  for(const variable of variables){const ids=[];walk(variable.init||{},node=>{if(node.type==='CallExpression'&&node.callee?.property?.name==='e'&&node.arguments?.length===1&&Number.isSafeInteger(node.arguments[0].value))ids.push(node.arguments[0].value)})
-  if(ids.length&&literals(variable).includes(3902))loaders.push({variable,ids:[...new Set(ids)].sort((a,b)=>a-b)})
+  if(ids.length&&[3902,3903].some(id=>literals(variable).includes(id)))loaders.push({variable,ids:[...new Set(ids)].sort((a,b)=>a-b)})
  }
  check(loaders.length===1,'public employer router lazy module changed')
  return{apiBase:apiBases[0],apiServiceModule:service.moduleId,publicMethods,publicServiceBindings:bindings,entryId,rootRender:fingerprint(renders[0]),publicLazyBootstrap:fingerprint(loaders[0].variable),publicChunkIds:loaders[0].ids}
@@ -63,6 +63,10 @@ export function inspectPublicInventory(body){return memo('inventory',body,()=>{
   }
  })
  return{stores:stores.sort((a,b)=>a.moduleId.localeCompare(b.moduleId)),defaults:defaults.sort((a,b)=>a.fingerprint.localeCompare(b.fingerprint))}
+})}
+export function inspectPublicEmployerRouter(body,moduleId){return memo('employer-router:'+moduleId,body,()=>{
+ const {modules}=webpack(syntax(body)),module=modules.get(String(moduleId))
+ return module?sha(body.slice(module.start,module.end)):null
 })}
 export function unreviewedInlineRecruiting(scripts){
  const findings=[]

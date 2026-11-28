@@ -1,5 +1,9 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {fetchTextWithRetry,isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
+import {isCurrentNativeHomepage,guardedReader,collectCurrentNative,attachHeldNativeEvidence} from './currentNative20261128.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -61,19 +65,23 @@ const isFirstPartyUrl = (url) => {
   return hostname === 'sagardefence.com' || hostname === 'www.sagardefence.com'
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    redirect: 'follow',
+const defaultFetchPage = async (url,{signal}={}) => {
+  const responses=new Set()
+  const dispose=async response=>{if(response.body&&!response.bodyUsed)await disposeResponseBody(response,{bestEffort:true})}
+  const fetchImpl=async(input,init)=>{
+    const response=await fetch(input,init)
+    if(init.signal?.aborted){try{await dispose(response)}catch{};throw init.signal.reason}
+    responses.add(response);return response
+  }
+  try{return await fetchTextWithRetry(url,{
+    signal,fetchImpl,attempts:1,timeoutMs:20000,redirect:'error',includeResponseMetadata:true,label:SOURCE,
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
+  })}finally{
+    // The shared reader already owns rejected HTTP/challenge body disposal.
+    await Promise.allSettled([...responses].filter(response=>response.ok&&!isHttpAccessChallenge(response)).map(dispose))
   }
 }
 
@@ -160,13 +168,25 @@ export const hasUnexpectedPublicJobsSignal = (html) =>
   || extractSuspiciousPublicJobLinks(html).length > 0
 
 export const createSagarDefenceScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
+  async run({ fetchPage = defaultFetchPage,signal,now=()=>new Date().toISOString() } = {}) {
+    const owned=guardedReader(fetchPage,signal)
+    const verifiedAt=()=>{signal?.throwIfAborted();const value=now();signal?.throwIfAborted();return value}
+    let requests=0,bytes=0
+    const readPage=async url=>{
+      signal?.throwIfAborted()
+      if(++requests>64)throw Error('Sagar current native request budget exceeded')
+      const page=await owned(url)
+      await requireNativeHttpResponse(page,url,{context:'Sagar native response identity',signal})
+      if(typeof page.html!=='string'||(bytes+=Buffer.byteLength(page.html))>10000000)throw Error('Sagar current native body byte budget exceeded')
+      signal?.throwIfAborted();return page
+    }
+    const homepage = await readPage(HOMEPAGE_URL)
+    if(isCurrentNativeHomepage(homepage.html))return collectCurrentNative({readText:async url=>(await readPage(url)).html,homepage:homepage.html,homepageURL:HOMEPAGE_URL,now:verifiedAt})
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('Sagar Defence verified official homepage no longer matches the known first-party surface')
     }
 
-    const careersPage = await fetchPage(CAREERS_URL)
+    const careersPage = await readPage(CAREERS_URL)
     if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
       throw new Error('Sagar Defence verified careers page no longer matches the known first-party surface')
     }
@@ -177,7 +197,7 @@ export const createSagarDefenceScraper = () => ({
       throw new Error('Sagar Defence careers page now exposes public jobs')
     }
 
-    const contactPage = await fetchPage(CONTACT_URL)
+    const contactPage = await readPage(CONTACT_URL)
     if (contactPage.status !== 200 || !hasOfficialContactSignal(contactPage.html)) {
       throw new Error('Sagar Defence verified contact page no longer matches the known first-party surface')
     }
@@ -185,7 +205,7 @@ export const createSagarDefenceScraper = () => ({
       throw new Error('Sagar Defence contact page now exposes public jobs')
     }
 
-    return []
+    return attachHeldNativeEvidence([],{pagesFetched:requests,verifiedAt:verifiedAt(),legacy:{homepage:homepage.html,careers:careersPage.html,contact:contactPage.html}})
   },
 })
 

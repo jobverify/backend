@@ -62,6 +62,7 @@ export const hydrateTurboHireJobs = async ({
   source, orgId, employer, origin, apiBaseUrl, boardUrl, payload, jobs,
   fetchJson, headers, listingUrl, listingRequest, maxJobs, signal, now = () => new Date().toISOString(),
   retainNativeProof = false, publisherProof = null, verifyPublisher, publicJobInfoUrl, verifyNativeDetail, mapNativeFields,
+  validateNativeEmployerAlias,
 }) => {
   signal?.throwIfAborted()
   const context = { source, orgId, employer }
@@ -93,8 +94,18 @@ export const hydrateTurboHireJobs = async ({
     const qualified = verifyNativeDetail ? await verifyNativeDetail(detail, listing) : null
     signal?.throwIfAborted()
     requireNative(source, detail?.JobId === listing.JobId && clean(detail.JobTitle) === job.title
-      && detail.OrgDetails?.OrgID === orgId && clean(detail.OrgDetails?.OrgName) === employer
+      && detail.OrgDetails?.OrgID === orgId
       && detail.JobIdObfuscated === listing.JobIdObfuscated && clean(detail.JobCode) === clean(listing.JobCode),
+    'detail role, title or employer contradicts the listing')
+    // Listing employer matching remains exact. A source can independently
+    // validate a native legal-name alias only after every detail identity field
+    // above binds to that listing. Copies keep the validator from rewriting the
+    // raw recruitment fields; defaults retain the original exact-name check.
+    const nativeEmployerName = clean(detail.OrgDetails?.OrgName)
+    const nativeLegalEmployer = nativeEmployerName === employer ? null : nativeEmployerName
+    requireNative(source, nativeEmployerName === employer
+      || typeof validateNativeEmployerAlias === 'function'
+        && validateNativeEmployerAlias(structuredClone(detail), structuredClone(listing)) === true,
     'detail role, title or employer contradicts the listing')
     requireNative(source, JSON.stringify(locations(source, detail)) === JSON.stringify(locations(source, listing)),
       'detail workplaces contradict the listing')
@@ -153,7 +164,7 @@ export const hydrateTurboHireJobs = async ({
         sourceDetailStatus: 'complete', sourcePrimaryLocation: workplaces[0].address,
         sourceDescriptionAttachment: detail.JobDescriptionBlobUrl || null, publicExperienceChecked: true, applicationVisited: false,
         nativeEmployerBinding: { method: 'current-corporate-handoff-and-native-organization', publisher: employer,
-          nativeOrganizationId: orgId, legalEmployer: null },
+          nativeOrganizationId: orgId, legalEmployer: nativeLegalEmployer },
         nativeSourceRecord: { nativeListing: turboHireRecruitmentRecord(listing),
           nativeDetail: turboHireRecruitmentRecord(detail), nativePublisher: publisherProof } }
     }

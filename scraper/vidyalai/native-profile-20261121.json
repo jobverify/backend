@@ -1,11 +1,17 @@
 {
   "ready": true,
   "homeSHA256": "9d1996f38a664da57b3ab00ce5cd864d0395389bd37a96a11c079e019fef66e1",
+  "additionalReviewedCorporateSHA256s": [
+    "b566acdb5fbcd7c14f5ac751123f0c956bbe7281fdda200ea65dd49a9aa390d3"
+  ],
   "boardShellSHA256": "ccc3bcd17ad132bdcdd1c9c5272186f8fddb42cff8a3851184cba274e2fe51f9",
   "roles": {
     "jobs/vidyalai/part-time-teacher---ib-diploma-programme-(ib-dp)---geography": {
       "cardShellSHA256": "98c14ff2b12630fb0fb7a6f933680b524f5d126a5f8b5ad0e96c657b86cfa6bb",
       "detailShellSHA256": "c3baca5a4a2c441039bd0db2d33fa9dadfe2e8086a1edfddbd921618322b60ff",
+      "additionalReviewedDetailShellSHA256s": [
+        "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02"
+      ],
       "criteriaSHA256": "cb1b462a0cfb059252725c5f80ee8e17d8dc84bb8ea5e64a5ca906b19941017c",
       "metadataSHA256": "956667083c9552bb98f32fe0beb6450f57bc796257587d244daedc3cbca183c0",
       "applicationDeclaration": "https://erp.vidyalai.com/part-time-teacher-application/new?job_title=Part%20Time%20Teacher%20-%20IB%20Diploma%20Programme%20(IB%20DP)%20-%20Geography"
@@ -13,6 +19,9 @@
     "jobs/vidyalai/part-time-teacher---advanced-placement-(ap)---psychology": {
       "cardShellSHA256": "d098567061a80626a00aa8cc42f8477fcb860be9541385cf583b2bcdc7eee656",
       "detailShellSHA256": "c3baca5a4a2c441039bd0db2d33fa9dadfe2e8086a1edfddbd921618322b60ff",
+      "additionalReviewedDetailShellSHA256s": [
+        "c3436c777d9c5231313b4adac42b98e61cbd9280e8b4e08d93966ee2e6772f02"
+      ],
       "criteriaSHA256": "0242a306b916ca55a1182d91454015b500bf41313bfe7a7ab88c1b36e8b3d78b",
       "metadataSHA256": "95d6a8149aefa3a4d0bca5f2011623c13087e5b669720cf4080553227610d5a3",
       "applicationDeclaration": "https://erp.vidyalai.com/part-time-teacher-application/new?job_title=Part%20Time%20Teacher%20-%20Advanced%20Placement%20(AP)%20-%20Psychology"

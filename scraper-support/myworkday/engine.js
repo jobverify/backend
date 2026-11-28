@@ -78,7 +78,14 @@ const createWorkdayEmptyResult = ({
   pagesFetched,
   reportedTotal,
   surface,
+  searchRestricted = false,
 }) => {
+  if (searchRestricted) return attachInventoryEvidence([], {
+    status: 'unverified', surface, firstParty: true, listingComplete: false,
+    lifecycleCleanupAllowed: false, pagesFetched, reportedTotal: null, indiaFacetCount: null,
+    verifiedAt: new Date().toISOString(),
+    reason: 'workday-restricted-search;selected-records=' + reportedTotal + ';india-inventory-unverified',
+  })
   const verified = boardIdentityVerified === true && hasIndiaCountryFacet === true
   return attachInventoryEvidence([], {
     status: verified ? 'verified-empty' : 'unverified',
@@ -328,12 +335,14 @@ const fetchWorkdayResource = async (
       await disposeResponse(controller.signal)
       throw error
     }
-    if (requireSuccess && !response.ok) {
-      // The observed status remains authoritative if its body is corrupt or
-      // cancellation reaches the request deadline. Cleanup owns this slot.
+    if (!response.ok) {
+      // Keep the observed status if reading an error/maintenance body fails or
+      // reaches the request deadline. Proof readers can skip that body entirely.
       primaryHttpError = buildWorkdayHttpFailureError(source, url, response.status, response.headers)
-      await disposeResponse(controller.signal)
-      throw primaryHttpError
+      if (requireSuccess) {
+        await disposeResponse(controller.signal)
+        throw primaryHttpError
+      }
     }
     const result = await consumeResponse(response)
     throwIfAborted(controller.signal)
@@ -346,7 +355,11 @@ const fetchWorkdayResource = async (
       throw primaryHttpError || controller.signal.reason
     }
     // A known HTTP error retains its own retry policy after disposal.
-    if (primaryHttpError) throw primaryHttpError
+    if (primaryHttpError) {
+      await disposeResponse()
+      throwIfAborted(signal)
+      throw primaryHttpError
+    }
     throw markWorkdayTransportFailure(error)
   } finally {
     release()
@@ -1717,7 +1730,7 @@ const fetchWorkdayScopePayload = async ({
               ...(session?.cookieHeader ? { cookie: session.cookieHeader } : {}),
             },
           },
-          { signal, timeoutMs: requestTimeoutMs, source, requestScheduler, kind: 'listing' },
+          { signal, timeoutMs: requestTimeoutMs, source, requestScheduler, kind: 'listing', requireSuccess: true },
           async (response) => {
             let payload = null
             if (response.ok) {
@@ -2315,6 +2328,7 @@ const runWorkdayJobsApiPass = async ({
             pagesFetched,
             reportedTotal,
             surface: jobsApiUrl,
+            searchRestricted: Boolean(effectiveSearchText),
           })
         }
 
@@ -2322,8 +2336,30 @@ const runWorkdayJobsApiPass = async ({
         console.log(`  [${source}] Page ${pageNum}: ${jobs.length} job records`)
 
         for (const [rowIndex, job] of jobs.entries()) {
-          const canonicalLink = countryProof && typeof job?.externalPath !== 'string' ? null
-            : buildWorkdayJobDetailUrl(job.externalPath, detailUrlBase, baseUrl)
+          let canonicalLink = null
+          if (typeof job?.externalPath === 'string') {
+            if (countryProof) canonicalLink = buildWorkdayJobDetailUrl(job.externalPath, detailUrlBase, baseUrl)
+            else {
+              try { canonicalLink = buildWorkdayJobDetailUrl(job.externalPath, detailUrlBase, baseUrl) }
+              catch { canonicalLink = null }
+            }
+          }
+          if (!countryProof) {
+            const apiBoard = new URL(jobsApiUrl).pathname.match(/^\/wday\/cxs\/([^/]+)\/([^/]+)\/jobs$/)
+            const roleUrl = canonicalLink ? new URL(canonicalLink) : null
+            const rolePath = roleUrl?.pathname.replace(/^\/[a-z]{2}-[a-z]{2}(?=\/)/i, '')
+            const identityFailure = typeof job?.title !== 'string' || !job.title.trim() ? 'missing-title'
+              : typeof job.externalPath !== 'string' || !/^\/job\/[^?#]+$/.test(job.externalPath)
+                || !roleUrl || roleUrl.origin !== new URL(baseUrl).origin
+                || !matchesWorkdayNativeRoleUrl(canonicalLink, canonicalLink)
+                || !apiBoard || rolePath !== '/' + apiBoard[2] + job.externalPath ? 'invalid-external-path' : null
+            if (identityFailure) {
+              const diagnostic = workdayListingIdentityDiagnostic({ reason: identityFailure,
+                board: boardReceipt?.board || baseUrl, rowIndex: offset + rowIndex, externalPath: job?.externalPath })
+              throw Object.assign(buildWorkdayIncompleteListingError(source,
+                'native role identity is missing ' + JSON.stringify(diagnostic)), { listingIdentity: diagnostic })
+            }
+          }
           if (countryProof) {
             const apiBoard = new URL(jobsApiUrl).pathname.match(/^\/wday\/cxs\/([^/]+)\/([^/]+)\/jobs$/)
             const expectedRolePath = '/' + apiBoard?.[2] + job?.externalPath
@@ -2808,20 +2844,29 @@ const runWorkdayJobsApiPass = async ({
         nativePayload: structuredClone(candidate.scopePayload),
         additionalWorksiteCountryBindings: candidate.additionalWorksiteCountryBindings || [] })),
     } })
-    if (unresolvedCountryRoles.length) for (const job of allJobs) Object.assign(job, {
+    // A completed keyword search proves only that selected result set. Even
+    // an India query combined with a country facet cannot establish that all
+    // India postings were selected. Retain the validated roles, withhold source
+    // inventory and cleanup authority, and never infer query equivalence.
+    const searchRestricted = Boolean(effectiveSearchText)
+    const incompleteScope = searchRestricted || unresolvedCountryRoles.length > 0
+    if (incompleteScope) for (const job of allJobs) Object.assign(job, {
       sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false,
-      sourceUnresolvedCountryRoleCount: unresolvedCountryRoles.length,
+      ...(unresolvedCountryRoles.length && { sourceUnresolvedCountryRoleCount: unresolvedCountryRoles.length }),
     })
     return attachInventoryEvidence(allJobs, {
-      status: unresolvedCountryRoles.length ? 'coverage-gap' : 'complete-inventory',
+      status: incompleteScope ? 'coverage-gap' : 'complete-inventory',
       surface: jobsApiUrl,
       firstParty: true,
-      listingComplete: unresolvedCountryRoles.length === 0,
+      listingComplete: !incompleteScope,
+      ...(searchRestricted && { lifecycleCleanupAllowed: false }),
       pagesFetched,
-      reportedTotal,
-      indiaFacetCount: unresolvedCountryRoles.length ? null : allJobs.length,
+      reportedTotal: searchRestricted ? null : reportedTotal,
+      indiaFacetCount: incompleteScope ? null : allJobs.length,
       verifiedAt: new Date(countryProof ? Date.now() : nativeDetailRecovery?.verifiedAt || Date.now()).toISOString(),
-      reason: unresolvedCountryRoles.length ? `reconciled-workday-board;unresolved-country-roles=${unresolvedCountryRoles.length};proven-india-roles-only`
+      reason: searchRestricted ? `workday-restricted-search;selected-records=${reportedTotal};india-inventory-unverified`
+        + (unresolvedCountryRoles.length ? `;unresolved-country-roles=${unresolvedCountryRoles.length}` : '')
+        : unresolvedCountryRoles.length ? `reconciled-workday-board;unresolved-country-roles=${unresolvedCountryRoles.length};proven-india-roles-only`
         : countryProof ? 'reconciled-complete-workday-board-country-proof' : 'complete-workday-india-enumeration',
     })
   } finally {

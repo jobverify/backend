@@ -56,6 +56,30 @@
       "browserEquivalenceComplete": false,
       "sourceScopeComplete": false,
       "lifecycleCleanupAllowed": false
+    },
+    {
+      "reviewedAt": "2026-11-27T23:47:09.387Z",
+      "main": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/main.094c4dab3df8b5f1.desktop.js",
+        "bytes": 946023,
+        "sha256": "525d818dc4d718bb940f2033781c9d651fb89dc7994a6a25db8fd181a6fb6b59"
+      },
+      "routeChunks": [
+        {
+          "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/47863.99bc7c854dfff997.desktop.js",
+          "bytes": 1144,
+          "sha256": "c3eba6f3cf781358f753e629b1e5f4a65aa593844b8fe4a655f19a0f03498f42"
+        }
+      ],
+      "chunk": {
+        "requestedURL": "https://cdn-static-assets.amberstudent.com/amber-user-website/build/assets/js/75004.e532da74aa920908.desktop.js",
+        "bytes": 37582,
+        "sha256": "cfb0500408deee6115ecea60fd6321c55a8fbf1caa14a8783daf7f3ed7ed49bd"
+      },
+      "proof": "Current corporate/job-opening document declares this complete main. Its lexical module59441 binds the own Jobs route through the same factory99870.Ay; complete loader options, literal Promise chunks92360/47863 and resolve20923 are unchanged. The complete exported bridge and complete37582-byte Jobs client are byte-identical to the previous reviewed native Keka reader. Main module/component/factory/fallback aliases and unrelated whole-main code differ; no browser/dependency/render equivalence, India total, company completeness or cleanup permission is asserted. Retain coherent whole URL/byte/hash tuple, exact native account, full raw criteria/country alternatives and opening/closing account/inventory/route proofs.",
+      "browserEquivalenceComplete": false,
+      "sourceScopeComplete": false,
+      "lifecycleCleanupAllowed": false
     }
   ]
 }

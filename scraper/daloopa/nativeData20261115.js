@@ -23,6 +23,7 @@ const sha=value=>createHash('sha256').update(value).digest('hex'),same=isDeepStr
 const reviewedReplicaPairs=[
  new Set(['d17-at-20261103052156','d17-wq-20261103052123']),
  new Set(['d17-ae-20261124072427','d17-8o-20261123230732']),
+ new Set(['d17-zx-20261125094135','d17-qc-20261125094104']),
 ]
 const escapeNativeText=value=>value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
 const completeCriteria=role=>role.detail.record.jdDisplay
@@ -104,9 +105,13 @@ export function readDaloopaListing(page){
   need(stringListFields.every(key=>string(row[key]))&&row.reqTitle.trim().length>0&&nullListFields.every(key=>row[key]===null),'Native row text/null/control model changed')
   need(plainText(row.jdDisplay),'Unsupported markup in native plain listing criteria')
   need(row.statusId===3&&row.priority===301&&row.positionType===1&&row.screeningMatchPercent===0&&row.fresher===false&&exact(row.customFields,[])&&Array.isArray(row.locationGroup)&&row.locationGroup.length===0,'Unreviewed native control/availability model')
-  need(['expMin','expMax','ctcBandHighEnd','ctcBandLowEnd'].every(key=>numeric(row[key]))&&positive(row.totalPositions)&&safe(row.roleId),'Native numeric experience/band/count model changed');approval(row.approvedOn);worksite(row.locationList)
+  // Position counts are retained native metadata, not vacancy availability proof.
+  // The public listing legitimately includes zero while keeping the full row.
+  need(['expMin','expMax','ctcBandHighEnd','ctcBandLowEnd'].every(key=>numeric(row[key]))&&safe(row.totalPositions)&&!Object.is(row.totalPositions,-0)&&safe(row.roleId),'Native numeric experience/band/count model changed');approval(row.approvedOn)
+  if(!(row.totalPositions===0&&Array.isArray(row.locationList)&&row.locationList.length===0))worksite(row.locationList)
   const span=parsed.spans.get('/reqDetailsBOList/'+index);need(span,'Complete original listing row token unavailable');rawRows.set(row.reqId,span.raw)
-  if(plainIndia(row))eligible.push(row);else held.push({id:row.reqId,reason:'role-owned-IndiaRemote-and-supported-worksite-not-qualified'})
+  if(row.totalPositions===0)held.push({id:row.reqId,reason:'native-zero-position-count;availability-unqualified'})
+  else if(plainIndia(row))eligible.push(row);else held.push({id:row.reqId,reason:'role-owned-IndiaRemote-and-supported-worksite-not-qualified'})
  }
  listState.set(value,{rawRows,eligible,held});return value
 }

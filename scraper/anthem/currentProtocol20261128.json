@@ -1,0 +1,19 @@
+{
+  "name": "anthem-current-20261128",
+  "source": "anthem",
+  "origin": "https://anthemhrcp.peoplestrong.com",
+  "mainPath": "main-N3GYSHED.js",
+  "mainSHA256": "029fd9ae4454e1e9df900ce916e495f4c81b23e00b7955d3551b5c45895f9444",
+  "jobPath": "./chunk-5KKCXGYG.js",
+  "jobSHA256": "9906d4d70ec8fd4e5ff6bc8c73a5d4c22f97ae679c23475b3a21b062bf78e725",
+  "filterSHA256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff",
+  "serviceSHA256": "0dc532fc058bdcbdf1ccbd48ca7a4b07c890426ccc8ca79f55ed908b23131274",
+  "directImports": [
+    { "path": "./chunk-ZKMRUQJB.js", "sha256": "314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff" },
+    { "path": "./chunk-B7GQ3CPB.js", "sha256": "0dc532fc058bdcbdf1ccbd48ca7a4b07c890426ccc8ca79f55ed908b23131274" },
+    { "path": "./chunk-IIGMZVP4.js", "sha256": "1b5bc0127b8317393c3742a070b54e3bb04a4e379a6ded31d0e52eec71e01513" }
+  ],
+  "evidence": "test-data/current-programs-20261128.json.gz",
+  "reviewedProgramDelta": "All five complete current Anthem programs are byte-identical to the independently captured current Amara deployment. Compared with the fully retained 20261119 programs, all 88144 job bytes are unchanged except its exact service import literal, and all 3018145 service bytes are unchanged except the exact lazy DOMPurify import literal inside jsPDF HTML export. That lazy PDF helper is unrelated to native request initialization. The complete 535-byte filter is unchanged; the previously declared 2449-byte side-effect helper is now fully retained and pinned. Every declared direct import must match its exact same-origin path and entire body before APIs; no website program is executed or arbitrary program variation admitted.",
+  "freshContext": "Anonymous declared Anthem portal, no query parameters, selectedFilter or browser-history restoration. The reviewed job constructor creates empty q and offset0/limit45 pagination. Initial loadJobsData copies eight undefined list fields and builds no filter suffix; the unchanged JSON serializer emits {} for the anonymous public jobs/v1 POST. Native tenant, company, country, complete criteria, application, opening/closing pagination, corporate-count and cleanup guards remain in force. Featured or corporate role counts are not substituted for native API inventory."
+}

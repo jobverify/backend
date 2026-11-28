@@ -2,6 +2,7 @@ import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEv
 import { toPlainText } from '../../scraper-support/detailExtractors/shared.js'
 import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
 import { activeScripts } from '../../scraper-support/utils/activeNativeHtml.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 export const CAREERS_URL = 'https://www.accellor.com/who-we-are/careers'
 export const PROXY_URL = 'https://workable-proxy-lyart.vercel.app/api/gem-jobs'
@@ -64,15 +65,50 @@ const readListing = payload => {
   const jobs = data.oatsExternalJobPostings?.jobPostings, filters = data.oatsExternalJobPostingsFilters
   prove(Array.isArray(jobs) && Array.isArray(filters), 'missing complete native listing')
   const departments = filters.filter(value => value.type === 'DEPARTMENT')
-  prove(departments.length > 0 && departments.every(value => Number.isSafeInteger(value.count) && value.count >= 0)
-    && departments.reduce((sum, value) => sum + value.count, 0) === jobs.length, 'native count and job inventory disagree')
+  const partitions = new Map(), unassignedPostingIds = []
+  prove(departments.length > 0, 'native department inventory missing')
+  for (const department of departments) {
+    prove(text(department.rawValue) && text(department.displayName)
+      && department.value === '1__' + department.rawValue
+      && !partitions.has(department.rawValue) && Number.isSafeInteger(department.count) && department.count >= 0,
+    'native department filter identity or count changed')
+    partitions.set(department.rawValue, { name: department.displayName, reportedCount: department.count, observedCount: 0 })
+  }
   const ids = new Set(), postings = new Set()
   for (const job of jobs) {
     prove(job && extId(job.extId) && text(job.id) && text(job.title) && text(job.job?.id)
       && !ids.has(job.extId) && !postings.has(job.id), 'missing or repeated native posting identity')
     ids.add(job.extId); postings.add(job.id); locations(job.locations)
+    // Gem's typed department filters omit explicitly unassigned postings.
+    // Missing/unknown fields are not an unassigned department. Every assigned
+    // posting still belongs to one exact native filter identity and count.
+    prove(Object.hasOwn(job.job, 'department'), 'native posting department field missing')
+    const department = job.job.department
+    if (department === null) unassignedPostingIds.push(job.extId)
+    else {
+      const partition = partitions.get(department?.extId)
+      prove(department && text(department.id) && text(department.extId)
+        && text(department.name) && partition && partition.name === department.name,
+      'native posting department identity changed')
+      partition.observedCount++
+    }
   }
-  return { board, jobs }
+  prove([...partitions.values()].every(partition => partition.reportedCount === partition.observedCount)
+    && departments.reduce((sum, department) => sum + department.count, 0) + unassignedPostingIds.length === jobs.length,
+  'native count and job inventory disagree')
+  // Preserve independent count disagreements as scope holds. The native city
+  // filters are not rewritten or dismissed merely because proxy IDs agree.
+  const locationFilterDisagreements = filters.filter(filter => filter.type === 'LOCATION_CITY').flatMap(filter => {
+    prove(text(filter.rawValue) && Number.isSafeInteger(filter.count) && filter.count >= 0,
+      'native location filter identity or count changed')
+    const observedCount = jobs.filter(job => job.locations.some(location => location.extId === filter.rawValue)).length
+    return observedCount === filter.count ? [] : [{ nativeLocationId: filter.rawValue,
+      name: filter.displayName, reportedCount: filter.count, observedCount }]
+  })
+  return { board, jobs, payload: structuredClone(payload), departmentPartition: {
+    assignedPostingCount: jobs.length - unassignedPostingIds.length, unassignedPostingIds,
+    departments: [...partitions].map(([nativeDepartmentId, values]) => ({ nativeDepartmentId, ...values })),
+  }, locationFilterDisagreements }
 }
 const signature = listing => JSON.stringify([listing.board.id, listing.jobs.map(job => ({
   id: job.id, extId: job.extId, title: job.title, job: job.job, locations: locations(job.locations),
@@ -100,10 +136,12 @@ export async function runAccellor({ fetchPage = defaultFetchPage, fetchJson = de
     const native = first.jobs.find(job => roleUrl(job.extId) === item.url)
     prove(native && native.title === item.title, 'official proxy/native tenant or posting identity mismatch')
   }
-  const checkedAt = new Date(now()).toISOString(), india = first.jobs.filter(job => job.locations.some(location => location.isoCountry === 'IND')), jobs = []
+  const checkedAt = new Date(now()).toISOString(), india = first.jobs.filter(job => job.locations.some(location => location.isoCountry === 'IND')), jobs = [], nativeDetailPayloads = []
   for (const stub of india) {
     signal?.throwIfAborted()
-    const detail = unwrap(await query('ExternalJobPosting', { extId: stub.extId }, DETAIL_QUERY)).oatsExternalJobPosting
+    const detailPayload = await query('ExternalJobPosting', { extId: stub.extId }, DETAIL_QUERY)
+    nativeDetailPayloads.push({ extId: stub.extId, payload: structuredClone(detailPayload) })
+    const detail = unwrap(detailPayload).oatsExternalJobPosting
     prove(detail && detail.id === stub.id && detail.extId === stub.extId && detail.title === stub.title
       && detail.job?.id === stub.job.id && detail.job.teamDisplayName === 'Accellor'
       && detail.isApplicationFormHidden === false && detail.isUnlistedExternally === false, 'native role/employer/application identity mismatch')
@@ -125,7 +163,26 @@ export async function runAccellor({ fetchPage = defaultFetchPage, fetchJson = de
   const last = readListing(await query('JobBoardList', {}, LIST_QUERY))
   prove(signature(first) === signature(last), 'final native listing drift')
   signal?.throwIfAborted()
-  return attachInventoryEvidence(jobs, { status: first.jobs.length ? 'complete-inventory' : 'verified-empty', firstParty: true,
-    surface: BOARD_URL, listingComplete: true, pagesFetched: 2, reportedTotal: first.jobs.length, indiaFacetCount: india.length,
-    verifiedAt: checkedAt, reason: 'current-official-proxy-bound-gem-native-department-total-and-final-inventory-reconciled' })
+  const complete = first.locationFilterDisagreements.length === 0 && last.locationFilterDisagreements.length === 0
+  for (const job of jobs) Object.assign(job, { sourceListingComplete: complete,
+    sourceScopeComplete: complete, lifecycleCleanupAllowed: complete })
+  const observations = { source: 'accellor', recordKind: 'vacancy-rows', observedRecordCount: last.jobs.length,
+    observedVacancyCount: last.jobs.length, sourceScopeComplete: complete, companyGlobalTotal: null, companyIndiaTotal: null }
+  attachSourceObservationEvidence(jobs, observations)
+  Object.defineProperty(jobs, 'nativeCollectionEvidence', { configurable: true, value: {
+    ...observations, openingNativePayload: first.payload, closingNativePayload: last.payload,
+    nativeDetailPayloads, employerProxyPayload: structuredClone(proxy),
+    openingDepartmentPartition: first.departmentPartition, closingDepartmentPartition: last.departmentPartition,
+    openingLocationFilterDisagreements: first.locationFilterDisagreements,
+    closingLocationFilterDisagreements: last.locationFilterDisagreements,
+    nativePostingProjectionClosingReconciled: true,
+    nativePostingClosingProjectionFields: ['board.id', 'id', 'extId', 'title', 'job', 'locations'],
+    lifecycleCleanupAllowed: complete,
+    companyScopeComplete: complete, applicationInteractions: 0,
+  } })
+  return attachInventoryEvidence(jobs, { status: complete ? first.jobs.length ? 'complete-inventory' : 'verified-empty' : 'coverage-gap', firstParty: true,
+    surface: BOARD_URL, listingComplete: complete, lifecycleCleanupAllowed: complete, pagesFetched: 2,
+    reportedTotal: first.jobs.length, indiaFacetCount: complete ? india.length : null,
+    verifiedAt: checkedAt, reason: 'current-official-proxy-bound-gem-native-department-partition-and-final-inventory-reconciled'
+      + (complete ? '' : ';native-location-filter-counts-unreconciled;company-scope-unknown;cleanup-forbidden') })
 }

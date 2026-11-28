@@ -86,7 +86,7 @@ export function readMyOperatorDetail(body,row){
  need(!/\b(?:(?:this|the) (?:job|role|position|vacancy) (?:is |has been |has )?(?:closed|filled|expired)|(?:we are |we're )?no longer accepting applications|applications? (?:are |have been )?closed)\b/i.test(criteria.sourceDescription),'Explicit native closed or inactive role notice')
  const compact=value=>value.replace(/[\s\u00ad\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]/g,'')
  if(compact(row.Job_Description)!==compact(criteria.sourceDescription))throw fail('Original criteria carriers disagree',{code:'MYOPERATOR_CRITERIA_DISAGREEMENT'})
- need(/\b(?:responsibilit(?:y|ies)|requirements|qualifications|candidate profile|skills|who you are|what you[\u2019']ll own)\b/i.test(criteria.sourceDescription),'Role-owned candidate criteria unavailable')
+ need(/\b(?:responsibilit(?:y|ies)|requirements|qualifications|candidate profile|skills|who you are|what you(?:[\u2019']ll| will) own)\b/i.test(criteria.sourceDescription),'Role-owned candidate criteria unavailable')
  return {record,criteria}
 }
 export async function runCurrentMyOperator(options={}){

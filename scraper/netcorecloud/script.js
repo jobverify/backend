@@ -2,9 +2,10 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fetchJsonWithRetry, composeAbortSignals } from '../../scraper-support/utils/fetch.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
-import { mapWithConcurrency } from '../../scraper-support/utils/mapWithConcurrency.js'
-import { CANONICAL_CITIES } from '../../scraper-support/utils/cities.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import { toPlainText } from '../../scraper-support/detailExtractors/shared.js'
+import { PRESENTATION_URL, verifyCurrentPresentation, verifyNativeReadPrograms } from './currentPresentation20261128.js'
 import { NETCORE_CLOUD_CATALOG } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -21,26 +22,45 @@ export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
 export const LISTING_API_URL = 'https://netcoreai.mynexthire.com/employer/careers/reqlist/get'
 export const TENANT_API_URL = 'https://netcoreai.mynexthire.com/employer/jobboard/details_by_shortname/get/netcoreai/'
 export const DETAIL_API_URL = 'https://netcoreai.prod.us1.mynexthire.io/d17/careers/requisition/object'
-const BOARD_SCRIPT_URL = 'https://netcoreai.mynexthire.com/employer/ui/js/jobboard/careers.js'
-const PRESENTATION_URL = 'https://careerpagenetcore.lovable.app/'
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0.0.0 Safari/537.36'
+const MAX_BODY_BYTES = 4 * 1024 * 1024
 const normalize = value => String(value ?? '').replace(/\s+/g, ' ').trim()
 const plain = html => toPlainText(html).replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#0?39;|&apos;/gi, "'")
 const same = (a, b) => normalize(a).toLowerCase() === normalize(b).toLowerCase()
 const defaultFetchPage = async (url, { signal } = {}) => {
+  signal?.throwIfAborted()
+  const deadline = composeAbortSignals(signal, AbortSignal.timeout(15000))
   const response = await fetch(url, {
     headers: { 'User-Agent': USER_AGENT, Accept: 'text/html,application/javascript,*/*' },
-    signal: composeAbortSignals(signal, AbortSignal.timeout(15000)),
+    redirect: 'error', credentials: 'omit',
+    signal: deadline,
   })
-  return { status: response.status, url: response.url, html: await response.text() }
+  signal?.throwIfAborted()
+  await requireNativeHttpResponse(response, url, { context: 'Netcore public careers page HTTP', signal: deadline, callerSignal: signal ?? null })
+  signal?.throwIfAborted()
+  const html = await response.text()
+  signal?.throwIfAborted()
+  return { status: response.status, url: response.url, headers: Object.fromEntries(response.headers), html }
 }
-const defaultFetchJson = (url, options = {}) => fetchJsonWithRetry(url, {
-  ...options, headers: { 'User-Agent': USER_AGENT, Accept: 'application/json', ...options.headers },
-  timeoutMs: 15000, label: SOURCE,
-})
+const defaultFetchJson = async (url, options = {}) => {
+  const response = await fetchJsonWithRetry(url, {
+    ...options, redirect: 'error', credentials: 'omit', includeResponseMetadata: true,
+    headers: { 'User-Agent': USER_AGENT, Accept: 'application/json', ...options.headers },
+    timeoutMs: 15000, label: SOURCE,
+  })
+  options.signal?.throwIfAborted()
+  if (response.status !== 200 || response.url !== url) throw new Error('Netcore public native JSON response identity unavailable')
+  return response.payload
+}
 const getPage = async (fetchPage, url, signal) => {
-  const page = await fetchPage(url, { signal })
-  if (page.status !== 200 || page.url !== url) throw new Error('Netcore verified public careers surface unavailable: HTTP ' + page.status + ' for ' + url)
+  signal?.throwIfAborted()
+  let page
+  try { page = await fetchPage(url, { signal }) } catch (error) { signal?.throwIfAborted(); throw error }
+  signal?.throwIfAborted()
+  await requireNativeHttpResponse({ status: page.status, url: page.url, headers: new Headers(page.headers), body: null, bodyUsed: true }, url,
+    { context: 'Netcore verified public careers surface unavailable', signal, callerSignal: signal ?? null })
+  signal?.throwIfAborted()
+  if (typeof page.html !== 'string' || Buffer.byteLength(page.html) > MAX_BODY_BYTES) throw new Error('Netcore complete public client/program response exceeds byte contract')
   return page.html
 }
 const postOptions = (body, signal) => ({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal })
@@ -50,7 +70,7 @@ const verifyTenant = tenant => {
   if (!Array.isArray(urls) || urls.length !== 3 || new Set(urls.map(item => item.pageType)).size !== 3
     || !['application', 'jd', 'list'].every(type => urls.some(item => item.pageType === type && item.url === 'https://netcorecloud.com/careers-list'))) throw new Error('Netcore public ATS careers handoff changed materially')
 }
-const verifyPresentation = html => {
+const verifyLegacyPresentation = html => {
   const categories = [...String(html).matchAll(/href=["']https:\/\/netcorecloud\.com\/careers-list\?job_category=([a-z_]+)["']/g)].map(match => match[1]).sort()
   if (!/<title>\s*Careers at Netcore\b[^<]*<\/title>/i.test(html) || !/Find Your Role/i.test(normalize(plain(html)))
     || JSON.stringify([...new Set(categories)]) !== JSON.stringify(['customer_success', 'engineering', 'marketing', 'others', 'product', 'sales'])) throw new Error('Netcore verified careers presentation handoff changed materially')
@@ -61,33 +81,15 @@ const verifyBoard = html => {
     || !String(html).includes('/employer/ui/html/jobboard/careers/careers-application.html')
     || !/<script\b[^>]*src=["']\/employer\/ui\/js\/jobboard\/careers\.js["']/i.test(html)) throw new Error('Netcore verified public careers board handoff unavailable')
 }
-const verifyFullListContract = script => {
-  if (!/reqList\s*=\s*response\.data\.reqDetailsBOList/.test(script)
-    || !/pagination\.totalItems\s*=\s*[^;]+reqList\.length\s*;/.test(script)
-    || !/url:\s*careersFactory\.smaclifyUrl\s*\+\s*["']\/careers\/reqlist\/get["']/.test(script)) throw new Error('Netcore complete public inventory contract changed materially')
-}
-const locationKey = locations => JSON.stringify(locations.map(item => [normalize(item.office).toLowerCase(), normalize(item.address).toLowerCase()]).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))))
+const canonical = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)
+  ? Object.fromEntries(Object.entries(item).sort(([a], [b]) => a.localeCompare(b))) : item)
+const locationKey = locations => canonical(locations)
 const validateLocations = locations => {
   if (!Array.isArray(locations) || !locations.length || locations.some(item => !normalize(item?.office) || typeof item.address !== 'string')) throw new Error('Netcore incomplete inventory: unresolved job locations')
 }
-const countryFor = row => {
-  const offices = row.locationList.map(item => normalize(item.office))
-  const inferred = offices.map(office => CANONICAL_CITIES[office.toLowerCase()] && !/^(remote|none)$/i.test(office) ? 'India'
-    : /\b(?:Philippines|Manila|Singapore|Indonesia|Jakarta|Vietnam|Malaysia|Thailand|United States|USA|United Kingdom|London|Australia|UAE|Dubai)\b/i.test(office) ? 'foreign' : null)
-  if (normalize(row.countryCode)) {
-    const code = normalize(row.countryCode).toUpperCase()
-    const countryName = /^[A-Z]{2}$/.test(code) ? new Intl.DisplayNames(['en'], { type: 'region' }).of(code) : null
-    if (!countryName || countryName === code || code === 'ZZ') throw new Error('Netcore incomplete inventory: unknown job country code')
-    const country = code === 'IN' ? 'India' : 'foreign'
-    if (inferred.some(value => value && value !== country)) throw new Error('Netcore incomplete inventory: contradictory job country')
-    return country
-  }
-  if (inferred.some(value => !value) || new Set(inferred).size !== 1) throw new Error('Netcore incomplete inventory: unknown or mixed job country')
-  return inferred[0]
-}
 const validateInventory = payload => {
-  if (!Array.isArray(payload?.reqDetailsBOList) || payload.errorMessage
-    || ['next', 'nextPage', 'pageToken', 'hasMore', 'offset', 'limit', 'totalPages'].some(key => payload[key] != null)) throw new Error('Netcore incomplete public inventory: invalid jobs array or unsupported pagination')
+  if (!payload || canonical(Object.keys(payload).sort()) !== canonical(['hrXmlModel', 'reqDetailsBOList', 'requesterTitle'])
+    || !Array.isArray(payload.reqDetailsBOList) || payload.reqDetailsBOList.length > 2000) throw new Error('Netcore incomplete public inventory: invalid jobs array or unsupported pagination/envelope')
   const seen = new Set()
   for (const row of payload.reqDetailsBOList) {
     if (!Number.isInteger(row?.reqId) || row.reqId <= 0 || !normalize(row.reqTitle) || !normalize(row.location) || !normalize(row.jdDisplay)
@@ -96,62 +98,95 @@ const validateInventory = payload => {
     seen.add(row.reqId)
     validateLocations(row.locationList)
     if (!row.locationList.some(item => same(row.location, item.office)) && !same(row.location, row.locationList.map(item => item.office).join(', '))) throw new Error('Netcore incomplete public inventory: listing locations disagree')
-    countryFor(row)
-    if (!/^\d{4}-\d{2}-\d{2}T/.test(row.approvedOn || '')) throw new Error('Netcore incomplete public inventory: posting date missing')
+    // approvedOn is retained as native workflow data, never promoted to a
+    // publication date. Country cannot be inferred from an office or address.
   }
   return payload.reqDetailsBOList
 }
-const inventoryKey = rows => JSON.stringify(rows.map(row => [
-  row.reqId, row.statusId, normalize(row.reqTitle), normalize(row.location), locationKey(row.locationList), normalize(row.countryCode),
-  row.expMin, row.expMax, normalize(row.buName), row.approvedOn, normalize(row.employmentType), normalize(row.jdDisplay),
-]).sort((a, b) => a[0] - b[0]))
-const buildJobUrl = (id, pageType = 'jd') => {
-  const context = { pageType, cvSource: 'careers', reqId: id, requester: { id: '', code: '', name: '' }, page: 'careers', bufilter: -1, customFields: {} }
-  const url = new URL(CAREERS_URL)
-  url.searchParams.set('src', 'careers')
-  url.searchParams.set('p', Buffer.from(JSON.stringify(context)).toString('base64'))
-  return url.toString()
-}
-const mapDetail = (row, payload) => {
+const observeDetail = (row, payload, reasons) => {
   const detail = payload?.data?.reqDetailsBO
   if (payload?.status !== 200 || !detail || detail.reqId !== row.reqId || detail.statusId !== 3 || detail.requisitionPublished !== true
     || !same(detail.reqTitle, row.reqTitle) || detail.expMin !== row.expMin || detail.expMax !== row.expMax || !normalize(detail.jdDisplay)
     || !Array.isArray(detail.locationList) || !detail.locationList.length
     || detail.locationList.some(item => !normalize(item?.office) || typeof item.address !== 'string')
     || locationKey(detail.locationList) !== locationKey(row.locationList)) throw new Error('Netcore published job detail no longer matches its current public listing')
-  const sourceUrl = buildJobUrl(row.reqId)
+  const countries = [row.country, row.countryCode, detail.country, detail.countryCode,
+    ...row.locationList.flatMap(place => [place.country, place.countryCode]),
+    ...detail.locationList.flatMap(place => [place.country, place.countryCode])].filter(value => value != null && value !== '')
+  const countryNames = countries.map(value => ['India', 'IN', 'IND'].includes(value) ? 'IN' : value)
+  reasons.add(!countries.length ? 'native-role-country-unpublished:' + row.reqId
+    : countryNames.some(value => typeof value !== 'string') || new Set(countryNames).size > 1 ? 'native-role-country-conflicts:' + row.reqId
+      : 'native-role-country-unqualified:' + row.reqId)
   return {
-    title: normalize(detail.reqTitle), company: COMPANY, source: SOURCE, jobId: String(row.reqId), requisitionId: String(row.reqId),
-    location: normalize(row.location), city: normalize(row.location), country: countryFor(row) === 'India' ? 'India' : null,
-    department: normalize(row.buName) || null, sourceUrl, applyUrl: buildJobUrl(row.reqId, 'application'), postingDate: row.approvedOn.slice(0, 10),
-    employmentType: normalize(row.employmentType) || null, experienceRequired: row.expMin + '-' + row.expMax + ' years',
-    publicExperienceChecked: true, jobDescription: plain(detail.jdDisplay), requiredSkills: [],
-    minimumQualification: null, preferredQualification: null, closingDate: null, remoteStatus: null,
+    source: SOURCE, jobId: String(row.reqId), title: detail.reqTitle,
+    listingRecord: row, detailResponse: payload, detailRecord: detail,
+    sourceUrl: CAREERS_URL, nativeListingUrl: LISTING_API_URL, nativeDetailUrl: DETAIL_API_URL,
+    jobDescription: detail.jdDisplay, sourceDescription: detail.jdDisplay,
+    country: null, city: null, location: null, remoteStatus: null, postingDate: null, applyUrl: null,
+    sourceDetailComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
   }
 }
 
 export const createNetcoreCloudScraper = () => ({
-  async run({ fetchPage = defaultFetchPage, fetchJson = defaultFetchJson, signal, now = () => new Date().toISOString() } = {}) {
+  async run({ fetchPage = defaultFetchPage, fetchJson = defaultFetchJson, signal, now = () => new Date().toISOString(), onRecords, onAudit } = {}) {
     signal?.throwIfAborted()
-    // The current first-party site delegates to this presentation; the public tenant independently pins its company and careers URL.
-    verifyPresentation(await getPage(fetchPage, PRESENTATION_URL, signal))
-    verifyBoard(await getPage(fetchPage, CAREERS_URL, signal))
-    verifyTenant(await fetchJson(TENANT_API_URL, { signal }))
-    verifyFullListContract(await getPage(fetchPage, BOARD_SCRIPT_URL, signal))
-    const listBody = { source: 'careers', code: '', filterByBuId: -1 }
-    const rows = validateInventory(await fetchJson(LISTING_API_URL, postOptions(listBody, signal)))
-    const details = await mapWithConcurrency(rows, 3, async row => {
+    const pageAt = url => getPage(fetchPage, url, signal)
+    const jsonAt = async (url, options = { signal }) => {
       signal?.throwIfAborted()
-      return mapDetail(row, await fetchJson(DETAIL_API_URL, postOptions({ source: 'careers', id: '', code: '', reqId: row.reqId }, signal)))
-    })
-    const finalRows = validateInventory(await fetchJson(LISTING_API_URL, postOptions(listBody, signal)))
-    if (inventoryKey(rows) !== inventoryKey(finalRows) || details.length !== rows.length) throw new Error('Netcore public inventory changed during detail validation: count and record agreement failed')
+      let payload
+      try { payload = await fetchJson(url, options) } catch (error) { signal?.throwIfAborted(); throw error }
+      signal?.throwIfAborted()
+      if (Buffer.byteLength(JSON.stringify(payload) ?? '') > MAX_BODY_BYTES) throw new Error('Netcore public native JSON response exceeds byte contract')
+      return payload
+    }
+    const presentation = await pageAt(PRESENTATION_URL)
+    let presentationProfile
+    // Choose the current profile before validating it; a current-client failure
+    // must never fall through to the historical identity-only presentation.
+    if (presentation.includes('https://netcore.ai/careers-list?job_category=') || presentation.includes('/assets/index-q-Djt2Ye.js')) {
+      presentationProfile = await verifyCurrentPresentation(presentation, pageAt)
+    } else { verifyLegacyPresentation(presentation); presentationProfile = 'legacy-identity-only' }
+    const board = await pageAt(CAREERS_URL)
+    verifyBoard(board)
+    const tenant = await jsonAt(TENANT_API_URL)
+    verifyTenant(tenant)
+    await verifyNativeReadPrograms(board, CAREERS_URL, pageAt)
+    const listBody = { source: 'careers', code: '', filterByBuId: -1 }
+    const openingInventory = await jsonAt(LISTING_API_URL, postOptions(listBody, signal))
+    const rows = validateInventory(openingInventory)
+    const reasons = new Set(['corporate-current-delegation-unverified', 'role-employer-scope-unqualified',
+      'full-native-criterion-rendering-unqualified', 'native-application-authority-unqualified',
+      'native-publication-date-unqualified', 'company-scope-unqualified'])
+    const observations = []
+    for (const row of rows) {
+      signal?.throwIfAborted()
+      observations.push(observeDetail(row, await jsonAt(DETAIL_API_URL, postOptions({ source: 'careers', id: '', code: '', reqId: row.reqId }, signal)), reasons))
+    }
+    const closingInventory = await jsonAt(LISTING_API_URL, postOptions(listBody, signal))
+    validateInventory(closingInventory)
+    if (canonical(openingInventory) !== canonical(closingInventory)) throw new Error('Netcore public inventory changed during detail validation: full raw count and record agreement failed')
+    const closingTenant = await jsonAt(TENANT_API_URL)
+    verifyTenant(closingTenant)
+    if (canonical(tenant) !== canonical(closingTenant)) throw new Error('Netcore closing native tenant identity/configuration changed')
     signal?.throwIfAborted()
-    const jobs = details.filter(job => job.country === 'India').map(job => ({ ...job, location: /\bIndia\b/i.test(job.location) ? job.location : job.location + ', India', link: job.applyUrl, scrapedAt: now() }))
+    // Raw observations are retained outside the job-normalization boundary.
+    // Unknown geography cannot acquire India defaults or create a company zero.
+    const jobs = []
+    attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: rows.length,
+      observedVacancyCount: rows.length, sourceScopeComplete: false })
+    const audit = { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: rows.length, observedVacancyCount: rows.length,
+      sourceScopeComplete: false, lifecycleCleanupAllowed: false, companyIndiaTotal: null, companyGlobalTotal: null,
+      inventoryComplete: false, detailComplete: false, applicationAuthority: false, criterionRenderingQualified: false,
+      presentationProfile, observations, openingInventory, closingInventory, tenantRecord: tenant, closingTenantRecord: closingTenant,
+      closingDetailReadsPerformed: false, reasons: [...reasons] }
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: audit, configurable: true })
+    if (typeof onRecords === 'function') await onRecords(structuredClone(observations))
+    if (typeof onAudit === 'function') await onAudit(structuredClone(audit))
+    signal?.throwIfAborted()
     return attachInventoryEvidence(jobs, {
-      status: jobs.length ? 'complete-inventory' : 'verified-empty', surface: CAREERS_URL, firstParty: true, listingComplete: true,
-      pagesFetched: 2, reportedTotal: null, indiaFacetCount: jobs.length, verifiedAt: now(),
-      reason: 'complete-public-array-' + rows.length + '-published-job-details-reconciled-stable-count-india-' + jobs.length,
+      status: 'discovery-only', surface: CAREERS_URL, firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+      pagesFetched: 2, reportedTotal: null, indiaFacetCount: null, verifiedAt: now(),
+      reason: 'netcore-native-observations-held:' + [...reasons].join(';'),
     })
   },
 })

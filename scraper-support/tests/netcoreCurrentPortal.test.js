@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { readFile } from 'node:fs/promises'
+import { gunzipSync } from 'node:zlib'
 import { run } from '../../scraper/netcorecloud/script.js'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
@@ -12,6 +13,7 @@ const detailUrl = 'https://netcoreai.prod.us1.mynexthire.io/d17/careers/requisit
 const scriptUrl = 'https://netcoreai.mynexthire.com/employer/ui/js/jobboard/careers.js'
 const fixture = async name => readFile(new URL('./fixtures/netcorecloud/' + name, import.meta.url), 'utf8')
 const json = async name => JSON.parse(await fixture(name))
+const currentPackets = JSON.parse(gunzipSync(await readFile(new URL('../../scraper/netcorecloud/test-data-20261128/current-presentation.json.gz', import.meta.url)))).packets
 const harness = async (overrides = {}) => {
   const client = await json('tenant.json')
   const inventory = await json('inventory.json')
@@ -24,8 +26,12 @@ const harness = async (overrides = {}) => {
       calls.push({ url, type: 'page' })
       if (/^https:\/\/(?:netcorecloud\.com|netcore\.ai)\//.test(url)) return { status: 403, url: url.replace('netcorecloud.com', 'netcore.ai'), html: '<title>Error 403 Forbidden</title>' }
       const name = url === board ? 'board.html' : url === presentation ? 'presentation.html' : url === scriptUrl ? 'board-contract.txt' : null
-      assert.ok(name, 'Unexpected page request: ' + url)
-      return { status: overrides.boardStatus && url === board ? overrides.boardStatus : 200, url, html: overrides[name] ?? await fixture(name) }
+      const current = currentPackets.find(packet => packet.requestedUrl === url)
+      assert.ok(name || current, 'Unexpected page request: ' + url)
+      // Keep the historical identity/data fixtures; use the complete genuine
+      // native board/programs now required instead of a regex-only JS fragment.
+      return { status: overrides.boardStatus && url === board ? overrides.boardStatus : 200, url,
+        html: overrides[name] ?? (url === presentation ? await fixture(name) : current.body) }
     },
     fetchJson: async (url, options) => {
       calls.push({ url, type: 'json' })
@@ -49,36 +55,45 @@ const harness = async (overrides = {}) => {
   return { invoke, calls, client, inventory, details }
 }
 
-test('Netcore verifies its live public ATS independently of blocked marketing pages and reconciles every detail before India filtering', async () => {
+test('Netcore retains every native detail independently of blocked marketing pages with unknown country and application authority held', async () => {
   const h = await harness()
   const jobs = await h.invoke()
-  assert.deepEqual(jobs.map(job => [job.jobId, job.title, job.city, job.country]), [
-    ['1046', 'Global Lead - Sales Enablement', 'Mumbai', 'India'],
-    ['1034', 'Senior AI Platform Engineer', 'Bengaluru', 'India'],
+  assert.deepEqual(jobs, [])
+  const observations = jobs.nativeCollectionEvidence.observations
+  assert.deepEqual(observations.map(job => [job.jobId, job.title, job.city, job.country]), [
+    ['1046', 'Global Lead - Sales Enablement', null, null],
+    ['1034', 'Senior AI Platform Engineer', null, null],
+    ['935', h.inventory.reqDetailsBOList.find(row => row.reqId === 935).reqTitle, null, null],
   ])
   assert.equal(h.calls.filter(call => call.url === detailUrl).length, 3)
   assert.equal(h.calls.filter(call => call.url === listUrl).length, 2)
   assert.equal(h.calls.some(call => /^https:\/\/(?:netcorecloud\.com|netcore\.ai)\//.test(call.url)), false)
-  for (const job of jobs) {
-    assert.equal(job.company, 'Netcore Cloud')
+  for (const job of observations) {
     assert.equal(job.source, 'netcorecloud')
-    assert.equal(job.publicExperienceChecked, true)
+    assert.notEqual(job.publicExperienceChecked, true)
     assert.ok(job.jobDescription.length > 1500)
-    const url = new URL(job.applyUrl)
-    assert.equal(url.origin + url.pathname, board)
-    assert.equal(JSON.parse(Buffer.from(url.searchParams.get('p'), 'base64')).reqId, Number(job.jobId))
-    assert.equal(JSON.parse(Buffer.from(url.searchParams.get('p'), 'base64')).pageType, 'application')
-    const detailContext = JSON.parse(Buffer.from(new URL(job.sourceUrl).searchParams.get('p'), 'base64'))
-    assert.equal(detailContext.pageType, 'jd')
+    assert.equal(job.applyUrl, null)
+    assert.equal(job.sourceUrl, board)
+    assert.equal(job.remoteStatus, null)
+    assert.equal(job.postingDate, null)
+    assert.equal(job.sourceDetailComplete, false)
+    assert.equal(job.sourceScopeComplete, false)
+    assert.equal(job.lifecycleCleanupAllowed, false)
+    assert.deepEqual(job.listingRecord, h.inventory.reqDetailsBOList.find(row => String(row.reqId) === job.jobId))
+    assert.deepEqual(job.detailResponse, h.details[job.jobId])
+    assert.equal(job.jobDescription, h.details[job.jobId].data.reqDetailsBO.jdDisplay)
   }
-  assert.match(jobs[0].jobDescription, /Bonus Points If You/i)
-  assert.equal(jobs[0].postingDate, '2026-08-27')
+  assert.match(observations[0].jobDescription, /Bonus Points If You/i)
+  assert.match(observations[0].listingRecord.approvedOn, /^2026-08-27/)
   const evidence = readInventoryEvidence(jobs)
-  assert.equal(evidence.status, 'complete-inventory')
+  assert.equal(evidence.status, 'discovery-only')
   assert.equal(evidence.firstParty, true)
-  assert.equal(evidence.listingComplete, true)
-  assert.equal(evidence.indiaFacetCount, 2)
-  assert.match(evidence.reason, /3.*published.*detail/i)
+  assert.equal(evidence.listingComplete, false)
+  assert.equal(evidence.indiaFacetCount, null)
+  assert.equal(evidence.lifecycleCleanupAllowed, false)
+  assert.equal(jobs.nativeCollectionEvidence.companyIndiaTotal, null)
+  assert.equal(jobs.nativeCollectionEvidence.companyGlobalTotal, null)
+  assert.match(evidence.reason, /country-unpublished.*1046/i)
 })
 
 test('Netcore rejects wrong public tenant ID, brand, company website and careers handoff', async () => {
@@ -94,14 +109,13 @@ test('Netcore rejects unhealthy or unrelated public ATS and presentation pages',
   await assert.rejects((await harness({ 'presentation.html': '<title>Other Careers</title>' })).invoke(), /presentation|handoff/i)
   await assert.rejects((await harness({ 'board-contract.txt': 'pagination.totalItems = 10; // truncated listing' })).invoke(), /complete.*inventory.*contract/i)
 })
-test('Netcore rejects malformed, duplicated, closed, incomplete and unknown-country inventory records', async () => {
+test('Netcore rejects malformed, duplicated, closed and incomplete inventory records', async () => {
   const h = await harness(), row = h.inventory.reqDetailsBOList[0]
   for (const inventory of [
     {}, { reqDetailsBOList: null },
     { reqDetailsBOList: [row, row] },
     { reqDetailsBOList: [{ ...row, reqTitle: '' }] },
     { reqDetailsBOList: [{ ...row, statusId: 4 }] },
-    { reqDetailsBOList: [{ ...row, location: 'Remote', locationAddress: '', locationList: [{ office: 'Remote', address: '' }] }] },
   ]) await assert.rejects((await harness({ inventory })).invoke(), /incomplete|duplicate|status|country/i)
 })
 test('Netcore rejects unpublished, closed, missing, mismatched and failed current job details', async () => {
@@ -122,18 +136,38 @@ test('Netcore rejects inventory count or field changes during detailed validatio
     { ...h.inventory, reqDetailsBOList: h.inventory.reqDetailsBOList.map((row, index) => index ? row : { ...row, expMin: row.expMin + 1 }) },
   ]) await assert.rejects((await harness({ secondInventory })).invoke(), /inventory changed|count.*agreement/i)
 })
-test('Netcore verifies a foreign-only inventory without treating missing data as empty', async () => {
+test('Netcore retains a country-labelled office as an unqualified observation without company zero authority', async () => {
   const h = await harness()
   const foreign = h.inventory.reqDetailsBOList.find(row => row.reqId === 935)
   const jobs = await (await harness({ inventory: { ...h.inventory, reqDetailsBOList: [foreign] } })).invoke()
   assert.deepEqual(jobs, [])
-  assert.equal(readInventoryEvidence(jobs).status, 'verified-empty')
-  assert.equal(readInventoryEvidence(jobs).indiaFacetCount, 0)
+  assert.equal(readInventoryEvidence(jobs).status, 'discovery-only')
+  assert.equal(readInventoryEvidence(jobs).indiaFacetCount, null)
+  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed, false)
+  assert.deepEqual(jobs.nativeCollectionEvidence.observations[0].listingRecord, foreign)
+  assert.equal(jobs.nativeCollectionEvidence.observations[0].country, null)
 })
-test('Netcore accepts a typed zero-job inventory only with its verified public tenant and full-list contract', async () => {
+test('Netcore holds a typed zero-job native inventory without company-wide completion proof', async () => {
   const jobs = await (await harness({ inventory: { requesterTitle: '', reqDetailsBOList: [], hrXmlModel: null } })).invoke()
   assert.equal(jobs.length, 0)
-  assert.equal(readInventoryEvidence(jobs).status, 'verified-empty')
+  assert.equal(readInventoryEvidence(jobs).status, 'discovery-only')
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed, false)
+})
+
+test('Netcore retains an unknown-country Remote office without inventing India or remote work authority', async () => {
+  const h = await harness(), row = h.inventory.reqDetailsBOList[0]
+  const locationList = [{ office: 'Remote', address: '' }]
+  const inventory = { ...h.inventory, reqDetailsBOList: [{ ...row, location: 'Remote', locationAddress: '', locationList }] }
+  const detail = h.details[row.reqId]
+  const jobs = await (await harness({ inventory, details: { [row.reqId]: { ...detail, data: { ...detail.data, reqDetailsBO: { ...detail.data.reqDetailsBO, locationList } } } } })).invoke()
+  assert.deepEqual(jobs, [])
+  const observation = jobs.nativeCollectionEvidence.observations[0]
+  assert.deepEqual(observation.listingRecord.locationList, locationList)
+  assert.equal(observation.country, null)
+  assert.equal(observation.remoteStatus, null)
+  assert.equal(observation.applyUrl, null)
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
 })
 
 test('Netcore rejects a public board that loses its native application form surface', async () => {

@@ -6,6 +6,7 @@ import { readLiteralModel } from '../../scraper-support/native-sources/literalMo
 import { PEOPLESTRONG_NATIVE_PARTS, buildPairListUrl, buildPairDetailUrl, buildPairOrganizationUrl, mapPeopleStrongPairRole } from '../../scraper-support/shared/peopleStrongNativePair20261027.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { analyzePublishableJobs } from '../../scraper-support/utils/publishableJobMetrics.js'
+import { parse as parseProgram } from 'acorn'
 
 const profiles=JSON.parse(fs.readFileSync(new URL('./currentProtocolProfiles.json',import.meta.url))),source='amararajaenergymobility',origin='https://amararajacareers.peoplestrong.com',careers='https://amararaja.com/careers/',base=origin+'/api/cp/rest/altone/cp/'
 const sha=v=>createHash('sha256').update(v).digest('hex'),need=(v,message)=>{if(!v)throw Object.assign(Error('Amara native: '+message),{code:'PEOPLESTRONG_NATIVE_UNVERIFIED'})}
@@ -54,24 +55,45 @@ async function client(read){
  need(profileEntry,'Unverified initial native filter/search body')
  const [profileName,profile]=profileEntry
  need([PEOPLESTRONG_NATIVE_PARTS,'getJobDetails(','jobDescription'].every(s=>job.includes(s)),'current full public detail protocol missing')
- const imports=[...new Set([...job.matchAll(/from\s*"(\.\/chunk-[A-Z0-9]+\.js)"/g)].map(x=>x[1]))],filterVar=job.match(/this\.filterTO=new ([\w$]+)/)?.[1]
+ let imports=[...new Set([...job.matchAll(/from\s*"(\.\/chunk-[A-Z0-9]+\.js)"/g)].map(x=>x[1]))]
+ const filterVar=job.match(/this\.filterTO=new ([\w$]+)/)?.[1],reviewedImports=profile.directImports
+ // This finite deployment also declares a side-effect-only helper. Its full
+ // direct graph must match the reviewed original bodies before API reads.
+ if(reviewedImports!==undefined){
+  need(Array.isArray(reviewedImports)&&reviewedImports.length>0&&reviewedImports.length<=32
+   &&reviewedImports.every(entry=>entry&&Object.keys(entry).sort().join(',')==='path,sha256'
+    &&typeof entry.path==='string'&&/^\.\/chunk-[A-Z0-9]+\.js$/.test(entry.path)&&/^[a-f0-9]{64}$/.test(entry.sha256)),
+  'unreviewed current direct-import profile')
+  let program
+  try{program=parseProgram(job,{ecmaVersion:'latest',sourceType:'module'})}catch{need(false,'current job import declarations cannot be parsed')}
+  imports=program.body.filter(statement=>statement.type==='ImportDeclaration').map(statement=>statement.source.value)
+  need(new Set(imports).size===imports.length&&JSON.stringify(imports)===JSON.stringify(reviewedImports.map(entry=>entry.path)),
+   'current declared direct-import graph changed')
+  for(const file of imports){
+   const resolved=new URL(file,origin+'/'+main)
+   need(resolved.origin===origin&&resolved.pathname==='/'+file.slice(2)&&!resolved.search&&!resolved.hash
+    &&!resolved.username&&!resolved.password,'current direct-import authority changed')
+  }
+ }
  const filterImports=[...job.matchAll(/import\{([^}]+)\}from"(\.\/chunk-[A-Z0-9]+\.js)"/g)].filter(x=>x[1].split(',').some(n=>n.trim().endsWith(' as '+filterVar)))
  need(filterVar&&filterImports.length===1&&imports.length>0&&imports.length<=32,'unreviewed native filter import')
  let filter=false,service=false
- for(const file of imports){
+ for(const[index,file]of imports.entries()){
   const body=await read(new URL(file,origin+'/'+main).href),hash=sha(body)
+  if(reviewedImports)need(hash===reviewedImports[index].sha256,'unreviewed current direct-import program')
   if(file===filterImports[0][2])filter=hash===profile.filterSHA256&&/^var \w+=class\{isFiltered\(\)\{return [^{}]+\}\};export\{\w+ as a\};?$/.test(body.trim())
   if(body.includes('getjoblist(')){
    need(hash===profile.serviceSHA256,'unreviewed native service protocol')
    const pagination=profile.paginationDeclaration?[profile.paginationDeclaration]:[',ay=45,','var Xx=class{constructor(){this.offset=0,this.limit=ay,this.totalRecords=-1}}']
    service=[...pagination,'/api/cp/rest/altone/cp/','this.makePostReq("jobs/v1?offset=','getJobDetails(','/v2?part=','&isReqId=','job/organizationDetails?jobCode='].every(s=>body.includes(s))
   }
-  if(filter&&service)break
+  if(filter&&service&&!reviewedImports)break
  }
  need(filter&&service,'unreviewed native filter or readonly public protocol')
  need(response(await read(base+'urlinfo')).url===new URL(origin).hostname,'native tenant identity mismatch')
  need(Array.isArray(response(await read(base+'layout?isPreview=false'))),'current public layout missing')
- return{main,jobModule:module,profile:profileName,jobSHA256:profile.jobSHA256,filterSHA256:profile.filterSHA256,serviceSHA256:profile.serviceSHA256,initialSearchBody:'{}',emptyInitialFilterVerified:true,websiteProgramExecuted:false}
+ return{main,jobModule:module,profile:profileName,jobSHA256:profile.jobSHA256,filterSHA256:profile.filterSHA256,serviceSHA256:profile.serviceSHA256,initialSearchBody:'{}',emptyInitialFilterVerified:true,websiteProgramExecuted:false,
+  ...(reviewedImports?{declaredDirectImports:structuredClone(reviewedImports),directImportGraphQualified:true}:{})}
 }
 
 export const createAmaraNativeInventory=(defaults={})=>({async run(provided={}){

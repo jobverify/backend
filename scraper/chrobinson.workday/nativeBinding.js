@@ -1,5 +1,6 @@
 import {readNativeDocument,extractActiveDescription,decodeNativeHtml} from './nativeHtml.js'
 export const CAREERS='https://www.chrobinson.com/en-us/about-us/careers/'
+const CORPORATE_CANONICALS=new Set([CAREERS,'https://www.chrobinson.com/about-us/careers/'])
 export const BOARD='https://chrobinson.wd5.myworkdayjobs.com/CHRobinson'
 export const TALENT_NETWORK=BOARD+'/page/3e8b8b1707d61001a64a805e2ac80000'
 export const LEGAL_EMPLOYERS=['090 C.H. Robinson Worldwide Freight India Private Limited','083 C.H. Robinson Worldwide GmbH']
@@ -11,7 +12,7 @@ export async function verifyCHRobinsonBinding({fetchPage,signal=AbortSignal.time
  const p=await bounded(signal,async()=>{if(fetchPage)return fetchPage(CAREERS,{signal});const r=await fetch(CAREERS,{signal,redirect:'error',headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}});return{status:r.status,url:r.url,body:await r.text()}})
  check(p?.status===200&&p.url===CAREERS&&typeof p.body==='string'&&p.body.length<=2000000,'Current corporate HTTP or final URL unavailable')
  const d=readNativeDocument(p.body),canonicals=d.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical')
- check(canonicals.length===1&&canonicals[0].attrs.href===CAREERS,'Current corporate canonical missing')
+ check(canonicals.length===1&&CORPORATE_CANONICALS.has(canonicals[0].attrs.href),'Current corporate canonical missing')
  check(d.nodes(n=>n.tag==='title').some(n=>norm(n.raw)==='Careers | C.H. Robinson'),'Current corporate title missing')
  const anchors=d.nodes(n=>n.tag==='a'&&n.attrs.href===TALENT_NETWORK)
  check(anchors.some(n=>d.text(n)==='Sign up now'&&n.attrs['trk-desc']==='Careers-join-our-talent-network-cta'),'Current active exact Workday talent-network handoff missing')

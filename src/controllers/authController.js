@@ -215,9 +215,13 @@ export const register = async (req, res) => {
     await pending.save();
 
     const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
-    await sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
+    try {
+      await sendVerificationEmail(normalizedEmail, magicLink);
+    } catch (err) {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
-    });
+      return res.status(503).json({ code: 503, success: false,
+        message: 'Unable to send the verification email. Please try again in a minute.' });
+    }
     res.status(201).json({
       code: 201,
       success: true,
@@ -409,9 +413,13 @@ export const resendVerification = async (req, res) => {
     }
 
     const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
-    await sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
+    try {
+      await sendVerificationEmail(normalizedEmail, magicLink);
+    } catch (err) {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
-    });
+      return res.status(503).json({ code: 503, success: false,
+        message: 'Unable to send the verification email. Please try again in a minute.' });
+    }
 
     res.status(200).json({
       code: 200,
@@ -642,7 +650,7 @@ export const login = async (req, res) => {
         return res.status(401).json({
           code: 401,
           success: false,
-          message: "Incorrect email or password. Please try again or reset your password.",
+          message: "Account does not exist. Please create an account.",
         });
       }
       if (pendingUser?.password) {

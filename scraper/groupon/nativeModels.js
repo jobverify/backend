@@ -28,7 +28,11 @@ export const CURRENT_20261120_MODULES={main:{path:'index-BJfNRE2S.js',sha:'656ed
 // Current published GET methods and whole role renderer remain unchanged;
 // retain the complete new graph independently from earlier deployments.
 export const CURRENT_20261125_MODULES={main:{path:'index-BDMW3WUv.js',sha:'393621a5bb558906574aa208fe6f89c892d611b027d831958b6d20ebcae1aef0'},origins:{path:'src-ORtK68OJ.js',sha:'485d346525a56f9c75942f468bab2620fbec8eb6b0c9a5432d22028b481cd154'},roles:{path:'page-BvsMC2Uo.js',sha:'4f060c33fb761d8cb7e4a063db3754c78d1e83d219db64943d1bf19e365969a1'},detail:{path:'useJob-jN_iMHzv.js',sha:'dafc047a61da7a4d537e2c2240d71e1331c042a4a00fbd76ceb031599fb1d948'},locations:MODULES.locations}
-export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES,CURRENT_20261116_MODULES,CURRENT_20261117_MODULES,CURRENT_20261119_MODULES,CURRENT_20261120_MODULES,CURRENT_20261125_MODULES]
+// This complete current graph retains the two public careers GET methods and
+// whole role criteria consumer. Its route/client bindings have their own exact
+// plan below; other SDK, dependency and browser behavior is not inferred.
+export const CURRENT_20261128_MODULES={main:{path:'index-DMEepMtj.js',sha:'c50f11965f510bccd5d46d225dd225effe59f09121f18c0e5414c2ba7b32dde4'},origins:{path:'src-Ki0Cnzhk.js',sha:'18a770e709babc1147f92bd71ee93896420775a7b9c052e53ff2531b3920368e'},roles:{path:'page-Cco3wRb4.js',sha:'5d39ad737534e6da8ca0b192179191182dcdf43494bd7af93c7e538e225ee5e8'},detail:{path:'useJob-B43A6q3w.js',sha:'faa03b089e7930ed1a321455deb0e9e05445a526fbee94bc86ce73511a8c10bd'},locations:MODULES.locations}
+export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES,CURRENT_20261111_MODULES,CURRENT_20261113_MODULES,CURRENT_20261116_MODULES,CURRENT_20261117_MODULES,CURRENT_20261119_MODULES,CURRENT_20261120_MODULES,CURRENT_20261125_MODULES,CURRENT_20261128_MODULES]
 export const profileModuleURL=(key,modules)=>new URL('assets/'+modules[key].path,PRIMARY).href
 export const moduleURL=key=>profileModuleURL(key,MODULES)
 export function profileForPublisher(value){
@@ -68,7 +72,7 @@ export function loadingContract(programs){
  // graph keeps its own route/client plan; mixed or unseen programs still fail.
  const recentBindings=modules===CURRENT_20261116_MODULES||modules===CURRENT_20261117_MODULES||modules===CURRENT_20261119_MODULES||modules===CURRENT_20261120_MODULES||modules===CURRENT_20261125_MODULES
  const roleBinding=recentBindings?'eS':'nS'
- const productionClient=recentBindings?'function ev(){return c(`production`,!0)}function tv(){return s(`core`,ev())}function nv(){return $_({baseUrl:tv()})}':'function nv(){return d(`production`,!0)}function rv(){return a(`core`,nv())}function iv(){return tv({baseUrl:rv()})}'
+ const productionClient=modules===CURRENT_20261128_MODULES?'function nv(){return c(`production`,!0)}function rv(){return s(`core`,nv())}function iv(){return tv({baseUrl:rv()})}':recentBindings?'function ev(){return c(`production`,!0)}function tv(){return s(`core`,ev())}function nv(){return $_({baseUrl:tv()})}':'function nv(){return d(`production`,!0)}function rv(){return a(`core`,nv())}function iv(){return tv({baseUrl:rv()})}'
  need(main.wholeProgram.includes(roleBinding+'=q(()=>$(()=>import(`./' + modules.roles.path + '`)')&&main.wholeProgram.includes('path:`roles`,element:(0,P.jsx)('+roleBinding+',{}'),'current roles route binding changed')
  need(main.wholeProgram.includes(productionClient)&&main.wholeProgram.includes('.careers.jobsList()'),'current production inventory client changed')
  need(origins.wholeProgram.includes('core:{')&&origins.wholeProgram.includes('production:`api-core.livingsocial.com`'),'native production core origin changed')

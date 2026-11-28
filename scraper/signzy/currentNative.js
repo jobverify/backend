@@ -41,8 +41,8 @@ function inspectRole(role) {
   const doc=readVisibleNativeDocument(role.description,{strict:true}),visible=doc.text(doc.nodes(n=>n.tag==='root')[0])
   if(clean(visible)!==clean(extractActiveDescription(role.description)))fail(`hidden native criteria for ${role.id}`)
   if(!Array.isArray(role.jobLocations))fail(`invalid native country array for ${role.id}`)
-  if(typeof role.publishedOn!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}Z$/.test(role.publishedOn)
-      ||!Number.isFinite(Date.parse(role.publishedOn))||new Date(role.publishedOn).toISOString()!==role.publishedOn.replace(/\.(\d{1,3})Z$/,(_,digits)=>'.'+digits.padEnd(3,'0')+'Z'))fail(`invalid native date for ${role.id}`)
+  if(typeof role.publishedOn!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(role.publishedOn)
+      ||!Number.isFinite(Date.parse(role.publishedOn))||new Date(role.publishedOn).toISOString()!==role.publishedOn.replace(/(?:\.(\d{1,3}))?Z$/,(_,digits='')=>'.'+digits.padEnd(3,'0')+'Z'))fail(`invalid native date for ${role.id}`)
   if(!Number.isInteger(role.jobType)||![0,1,2,3,4,5,6].includes(role.jobType)||(role.experience!=null&&typeof role.experience!=='string')
       ||typeof role.departmentName!=='string'||typeof role.departmentIdentifier!=='string'||typeof role.jobNumber!=='string'
       ||typeof role.excerpt!=='string'||typeof role.salaryRangeFormat!=='string'||!Number.isInteger(role.publishedSinceDays)

@@ -1,4 +1,6 @@
 import {createHash} from 'node:crypto'
+import {readFileSync} from 'node:fs'
+import {parse as parseProgram} from 'acorn'
 import {document} from './rmkNativePairHtml.js'
 import {nativeCountryName} from './nativeJobPosting.js'
 import {attachInventoryEvidence} from '../utils/inventoryEvidence.js'
@@ -198,28 +200,50 @@ async function client(source,read){
  const s=spec(source),shell=await read(s.origin+s.shell);proof(/<app-root\b/i.test(shell),'Native app shell missing');const main=shell.match(/<script\b[^>]*\bsrc=["'](main-[A-Z0-9]+\.js)["']/)?.[1];proof(main,'Current native main missing')
  const js=await read(s.origin+'/'+main),module=js.match(/path:"job",loadChildren:\(\)=>import\("(\.\/chunk-[A-Z0-9]+\.js)"\)/)?.[1];proof(module,'Current job module missing')
  const job=await read(new URL(module,s.origin+'/'+main).href);proof(job.includes(PEOPLESTRONG_NATIVE_PARTS)&&job.includes('getJobDetails(')&&job.includes('jobDescription'),'Current full public detail protocol missing')
- const imports=[...new Set([...job.matchAll(/from\s*["'](\.\/chunk-[A-Z0-9]+\.js)["']/g)].map(x=>x[1]))];proof(imports.length>0&&imports.length<=32,'Unbounded or missing current service imports');let found=false,emptyInitialFilter=false
+ let imports=[...new Set([...job.matchAll(/from\s*["'](\.\/chunk-[A-Z0-9]+\.js)["']/g)].map(x=>x[1]))];proof(imports.length>0&&imports.length<=32,'Unbounded or missing current service imports');let found=false,emptyInitialFilter=false
  const filterVar=job.match(/this\.filterTO=new ([\w$]+)/)?.[1],filterImport=[...job.matchAll(/import\{([^}]+)\}from"(\.\/chunk-[A-Z0-9]+\.js)"/g)].find(x=>x[1].split(',').some(n=>n.trim().endsWith(' as '+filterVar)))?.[2]
  // The current declared deployment adds three optional filters and factors
  // the unchanged page size into a constant. A fresh empty filter class still
  // serializes every field away, yielding the same anonymous {} request.
  // Accept only the captured reviewed job/service programs for this form;
  // unrelated executable changes must continue to fail closed.
- // These are the only two configured tenants, both declaring this reviewed
- // whole program. Historical unretained programs have no approved profile;
- // recognizing fragments cannot prove their default filters or later writes.
- proof(filterVar&&filterImport&&sha(job)==='2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c','Unverified initial native filter/search body')
- for(const file of imports){
+ // Anthem alone also has a separately captured finite current deployment.
+ // The fixed repository asset is never supplied by a caller. Its complete
+ // direct graph includes the side-effect import missed by the legacy reader.
+ // All other sources and legacy programs retain their original admission.
+ const current=source==='anthem'?JSON.parse(readFileSync(new URL('../../scraper/anthem/currentProtocol20261128.json',import.meta.url),'utf8')):null
+ const profile=current?.jobSHA256===sha(job)?current:null
+ proof(filterVar&&filterImport&&(profile||sha(job)==='2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c'),'Unverified initial native filter/search body')
+ if(profile){
+  proof(profile.name==='anthem-current-20261128'&&profile.source===source&&profile.origin===s.origin
+   &&profile.mainPath===main&&profile.mainSHA256===sha(js)&&profile.jobPath===module,'Current Anthem program authority changed')
+  proof(Array.isArray(profile.directImports)&&profile.directImports.length===3
+   &&profile.directImports.every(entry=>entry&&Object.keys(entry).sort().join(',')==='path,sha256'
+    &&typeof entry.path==='string'&&/^\.\/chunk-[A-Z0-9]+\.js$/.test(entry.path)&&/^[a-f0-9]{64}$/.test(entry.sha256)),
+  'Unreviewed current Anthem direct-import profile')
+  let program
+  try{program=parseProgram(job,{ecmaVersion:'latest',sourceType:'module'})}catch{proof(false,'Current Anthem job imports cannot be parsed')}
+  imports=program.body.filter(statement=>statement.type==='ImportDeclaration').map(statement=>statement.source.value)
+  proof(new Set(imports).size===imports.length&&JSON.stringify(imports)===JSON.stringify(profile.directImports.map(entry=>entry.path)),
+   'Current Anthem direct-import graph changed')
+  for(const file of imports){
+   const resolved=new URL(file,s.origin+'/'+main)
+   proof(resolved.origin===s.origin&&resolved.pathname==='/'+file.slice(2)&&!resolved.search&&!resolved.hash
+    &&!resolved.username&&!resolved.password,'Current Anthem direct-import authority changed')
+  }
+ }
+ for(const[index,file]of imports.entries()){
   const body=await read(new URL(file,s.origin+'/'+main).href)
-  if(file===filterImport)emptyInitialFilter=sha(body)==='314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff'&&/^var \w+=class\{isFiltered\(\)\{return [^{}]+\}\};export\{\w+ as a\};?$/.test(body.trim())
-  const pageSize=sha(body)==='aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c'&&body.includes(',ay=45,')&&body.includes('var Xx=class{constructor(){this.offset=0,this.limit=ay,this.totalRecords=-1}}')
+  if(profile)proof(sha(body)===profile.directImports[index].sha256,'Current Anthem direct-import program changed')
+  if(file===filterImport)emptyInitialFilter=sha(body)===(profile?.filterSHA256??'314164747e257b4d01aa85fc5bbdf18d018cefb95b7ba738b99059e723c4e1ff')&&/^var \w+=class\{isFiltered\(\)\{return [^{}]+\}\};export\{\w+ as a\};?$/.test(body.trim())
+  const pageSize=sha(body)===(profile?.serviceSHA256??'aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c')&&body.includes(',ay=45,')&&body.includes('var Xx=class{constructor(){this.offset=0,this.limit=ay,this.totalRecords=-1}}')
   if(body.includes('getjoblist(')&&['/api/cp/rest/altone/cp/','this.makePostReq("jobs/v1?offset=','getJobDetails(','/v2?part=','&isReqId=','job/organizationDetails?jobCode='].every(x=>body.includes(x))&&pageSize)found=true
-  if(found&&emptyInitialFilter)break
+  if(found&&emptyInitialFilter&&!profile)break
  }
  proof(emptyInitialFilter,'Unverified initial native filter shape')
  proof(found,'Current anonymous readonly native protocol changed')
  const info=response(await read(s.origin+'/api/cp/rest/altone/cp/urlinfo'));proof(info.url===new URL(s.origin).hostname,'Native tenant identity mismatch');proof(Array.isArray(response(await read(s.origin+'/api/cp/rest/altone/cp/layout?isPreview=false'))),'Current public layout missing')
- return{main,jobModule:module,initialSearchBody:'{}',emptyInitialFilterVerified:true}
+ return{main,jobModule:module,initialSearchBody:'{}',emptyInitialFilterVerified:true,...(profile?{profile:profile.name,jobSHA256:profile.jobSHA256,filterSHA256:profile.filterSHA256,serviceSHA256:profile.serviceSHA256,declaredDirectImports:structuredClone(profile.directImports),directImportGraphQualified:true,websiteProgramExecuted:false}:{})}
 }
 export const createPeopleStrongPairScraper=(source,defaults={})=>({async run(runOptions={}){
  const options={...defaults,...runOptions};options.signal?.throwIfAborted();const s=spec(source);proof(!options.fetchJson||options.fetchPage,'Listing-only injection requires current fetchPage transport');proof(!options.fetchText||options.fetchPage,'Legacy transport requires current fetchPage transport')

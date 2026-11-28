@@ -8,10 +8,11 @@ const CLIENT = 'https://coralogix.com/assets/pages/careers/page.js?v=0f8f0637'
 const DETAIL_CLIENT = 'https://coralogix.com/assets/pages/careers-position/page.js?v=5461ccfb'
 const ASTRO_CLIENT = 'https://coralogix.com/_astro/careers-page.tEjVQcR0.js'
 const ASTRO_DETAIL_CLIENT = 'https://coralogix.com/_astro/careers-position-page.CqJoTVAg.js'
-// Both reviewed deployments declare the same complete-array Comeet inventory
-// and same-ID details=true read. Select only the pair actually declared by the
-// current corporate page, and never use retired assets as a fallback.
-const DEPLOYMENTS = new Map([[CLIENT, DETAIL_CLIENT], [ASTRO_CLIENT, ASTRO_DETAIL_CLIENT]])
+const CURRENT_SSR_CLIENT = 'https://coralogix.com/_astro/careers-page.Cx6kwXfg.js'
+// The reviewed deployments declare the same complete-array Comeet inventory
+// and same-ID details=true read. Select only the deployment actually declared
+// by the current corporate page, and never use retired assets as a fallback.
+const DEPLOYMENTS = new Map([[CLIENT, DETAIL_CLIENT], [ASTRO_CLIENT, ASTRO_DETAIL_CLIENT], [CURRENT_SSR_CLIENT, null]])
 const API = 'https://www.comeet.co/careers-api/2.0/company/06.004/positions'
 // This public pair is declared by the current first-party executable careers client.
 const TOKEN = '604241801E141E1460430200604604'
@@ -21,6 +22,7 @@ const SHA = {
   [DETAIL_CLIENT]: '52c4e12eac8444f00f6dd196614cd21b97fdb83219927b8262cdaadcc9d0c5a9',
   [ASTRO_CLIENT]: 'bdc2cc3e956fd5cd387def8841581cddfc0f10db3d3496d1d93efb2aff71cd72',
   [ASTRO_DETAIL_CLIENT]: 'e47847bd7ffcad14ac1fcea09cd155e04a923abea133b79591d0299584c14bcc',
+  [CURRENT_SSR_CLIENT]: 'a79e0c5a7d44a1943a901403d3bd46dd0618f89b69c51b2cc5aaf5d6b54040e6',
 }
 const hash = value => createHash('sha256').update(value).digest('hex')
 const need = (value, why) => { if (!value) throw Error('Coralogix current native: ' + why) }
@@ -98,6 +100,51 @@ const detail = (html, row) => {
   }
 }
 
+// The current first-party deployment renders role criteria in the original
+// HTML, with no former detail-client declaration. Treat this as published data,
+// retain its complete original model, and compare it with the same native UID.
+// Neither this static check nor a native API response qualifies rendered/UI or
+// application behavior; that uncertainty remains an explicit detail hold.
+const currentPublicRole = (html, row) => {
+  const doc = readNativeDocument(html, { sourceRanges: true })
+  const roleURL = new URL(row.url_active_page); roleURL.search = ''
+  const canonical = one(doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical'), 'current public canonical')
+  need(canonical.attrs.href === roleURL.href && roleURL.origin === 'https://coralogix.com', 'current public canonical authority changed')
+  need(!doc.nodes(node => node.tag === 'base' || node.tag === 'iframe'
+    || node.tag === 'meta' && (node.attrs['http-equiv'] || '').toLowerCase() === 'refresh').length, 'current public navigation authority changed')
+  const carrier = one(doc.nodes(node => node.tag === 'script' && node.attrs.id === 'job-ld'
+    && node.attrs.type === 'application/ld+json' && !node.attrs.src), 'current public JobPosting model')
+  const model = JSON.parse(carrier.raw)
+  const expectedKeys = ['@context', '@type', '@id', 'title', 'description', 'datePosted', 'employmentType',
+    'hiringOrganization', 'identifier', 'jobLocation', 'occupationalCategory', 'directApply', 'url']
+  const employment = { 'Full-time': 'FULL_TIME', 'Part-time': 'PART_TIME', Contract: 'CONTRACTOR', Internship: 'INTERN', Temporary: 'TEMPORARY' }
+  need(equal(Object.keys(model).sort(), expectedKeys.sort()) && model['@context'] === 'https://schema.org'
+    && model['@type'] === 'JobPosting' && model['@id'] === roleURL.href + '#job' && model.url === roleURL.href
+    && model.title === row.name && model.identifier?.name === 'Coralogix' && model.identifier.value === row.uid
+    && model.hiringOrganization?.name === 'Coralogix' && model.hiringOrganization.sameAs === 'https://coralogix.com'
+    && equal(Object.keys(model.hiringOrganization).sort(), ['@type', 'logo', 'name', 'sameAs'])
+    && model.hiringOrganization['@type'] === 'Organization'
+    && equal(Object.keys(model.identifier).sort(), ['@type', 'name', 'value']) && model.identifier['@type'] === 'PropertyValue'
+    && model.jobLocation?.['@type'] === 'Place' && model.jobLocation.address?.['@type'] === 'PostalAddress'
+    && equal(Object.keys(model.jobLocation).sort(), ['@type', 'address'])
+    && equal(Object.keys(model.jobLocation.address).sort(), ['@type', 'addressCountry'])
+    && model.jobLocation.address.addressCountry === 'IN' && model.datePosted === row.time_updated
+    && model.employmentType === employment[row.employment_type] && model.occupationalCategory === row.department
+    && model.directApply === false,
+  'current public employer/role/country/model identity changed')
+  one(doc.nodes(node => node.tag === 'h1' && doc.text(node) === row.name), 'current public native title')
+  const owner = one(doc.nodes(node => (node.attrs.class || '').split(/\s+/).includes('job-body')), 'current public full criteria owner')
+  const body = html.slice(owner.sourceStart, owner.sourceEnd)
+  const criteriaText = extractActiveDescription(model.description)
+  need(criteriaText?.length >= 250 && visibleAuthoredCriteria(body)
+    && criteriaText.replace(/\s+/g, ' ').trim() === doc.text(owner).replace(/\s+/g, ' ').trim(),
+  'current public complete model/criteria presentation differs')
+  need(doc.nodes(node => node.tag === 'a' && node.attrs.href === row.url_comeet_hosted_page).length > 0,
+    'current public native application binding changed')
+  return { model, criteriaText, originalHtml: html, originalEntitySHA256: hash(html),
+    originalEntityBytes: Buffer.byteLength(html), renderedCriteriaQualified: false, applicationQualified: false }
+}
+
 export async function runCurrentCoralogix(options = {}) {
   const signal = AbortSignal.any([AbortSignal.timeout(180000), ...(options.signal ? [options.signal] : [])])
   const wait = promise => new Promise((resolve, reject) => {
@@ -106,7 +153,8 @@ export async function runCurrentCoralogix(options = {}) {
     Promise.resolve(promise).then(value => { signal.removeEventListener('abort', abort); resolve(value) }, error => { signal.removeEventListener('abort', abort); reject(error) })
     if (signal.aborted) abort()
   })
-  const responses = [], failures = [], observed = new Map()
+  const responses = [], failures = [], observed = new Map(), nativeDetailObservations = []
+  let currentPublicRoleOpening = null, currentPublicRoleClosing = null
   const read = async url => {
     signal.throwIfAborted()
     const page = await wait(Promise.resolve().then(async () => {
@@ -130,8 +178,11 @@ export async function runCurrentCoralogix(options = {}) {
     return client
   }
   const currentClient = await context(), currentDetailClient = DEPLOYMENTS.get(currentClient)
+  const currentSSR = currentClient === CURRENT_SSR_CLIENT
   const opening = listing(await read(LIST))
-  const representative = opening.find(row => nativeCountry(row) === 'India')
+  const representative = opening.find(row => nativeCountry(row) === 'India'
+    && (!currentSSR || new URL(row.url_active_page).origin === 'https://coralogix.com'))
+  if (currentSSR && opening.some(row => nativeCountry(row) === 'India')) need(representative, 'current public India role authority unavailable')
   if (representative) {
     const roleUrl = new URL(representative.url_active_page)
     // The current first-party link appends only this navigation-context flag.
@@ -139,8 +190,11 @@ export async function runCurrentCoralogix(options = {}) {
     need(roleUrl.origin === 'https://coralogix.com' && roleUrl.pathname.startsWith('/careers/co/')
       && ['', '?isComingFromApp=true'].includes(roleUrl.search) && !roleUrl.hash, 'first-party role identity changed')
     const html = await read(roleUrl.href)
-    one(script(html, currentDetailClient), 'current full criteria client')
-    need(hash(await read(currentDetailClient)) === SHA[currentDetailClient], 'unreviewed full criteria client contract')
+    if (currentSSR) currentPublicRoleOpening = currentPublicRole(html, representative)
+    else {
+      one(script(html, currentDetailClient), 'current full criteria client')
+      need(hash(await read(currentDetailClient)) === SHA[currentDetailClient], 'unreviewed full criteria client contract')
+    }
   }
   const inspect = async (rows, phase) => {
     for (const row of rows) {
@@ -148,7 +202,24 @@ export async function runCurrentCoralogix(options = {}) {
       if (!resolvedCountry) { failures.push({ id: row.uid, phase, reason: 'native workplace country unknown' }); continue }
       if (resolvedCountry !== 'India') continue
       try {
-        const job = detail(await read(detailUrl(row.uid)), row)
+        const html = await read(detailUrl(row.uid))
+        let raw
+        if (currentSSR) {
+          const original = { id: row.uid, phase, originalText: html }
+          nativeDetailObservations.push(original)
+          raw = JSON.parse(html); original.originalRecord = raw
+        }
+        const job = detail(html, row)
+        if (currentSSR) {
+          if (row.uid === representative.uid) {
+            const criteria = raw.details.map(section => section.name + ' ' + extractActiveDescription(section.value)).join(' ').replace(/\s+/g, ' ').trim()
+            need(criteria === currentPublicRoleOpening.criteriaText.replace(/\s+/g, ' ').trim(), 'current public/native complete criteria differ')
+          }
+          Object.assign(job, { sourceDetailComplete: false, nativeCriteriaTextComplete: true,
+            sourceDetailFailureKind: 'current-native-criteria-data-rendering-and-application-unqualified',
+            sourceRenderedCriteriaComplete: false, sourceApplicationQualificationComplete: false,
+            sourceNativeRecord: raw, sourceCriteriaPresentation: 'Full original native criteria as data; renderer and application unqualified' })
+        }
         if (phase === 'closing' && !equal(observed.get(row.uid), job)) failures.push({ id: row.uid, phase, reason: 'full criteria changed at closing' })
         if (phase === 'opening') observed.set(row.uid, job)
       } catch (error) { signal.throwIfAborted(); if (/public HTTP/.test(error.message)) throw error; failures.push({ id: row.uid, phase, reason: error.message }) }
@@ -159,6 +230,10 @@ export async function runCurrentCoralogix(options = {}) {
   const closingBeforeDetails = listing(await read(LIST))
   await inspect(closingBeforeDetails, 'closing')
   const closing = listing(await read(LIST)), unchanged = equal(projection(opening), projection(closingBeforeDetails)) && equal(projection(opening), projection(closing))
+  if (currentSSR && representative) {
+    currentPublicRoleClosing = currentPublicRole(await read(representative.url_active_page), representative)
+    need(equal(currentPublicRoleOpening.model, currentPublicRoleClosing.model), 'current public complete model changed at closing')
+  }
   if (!unchanged) failures.push({ phase: 'closing-inventory', reason: 'current public membership changed after full closing details' })
   const bad = new Set(failures.map(row => row.id)), active = new Map(closing.map(row => [row.uid, row]))
   let jobs = [...observed.values()].filter(job => !bad.has(job.jobId) && active.has(job.jobId)
@@ -168,9 +243,12 @@ export async function runCurrentCoralogix(options = {}) {
   const complete = unchanged && !failures.length && !limited
   attachInventoryEvidence(jobs, { status: complete ? 'complete-inventory' : 'coverage-gap', surface: LIST, firstParty: true,
     listingComplete: complete, lifecycleCleanupAllowed: false, pagesFetched: responses.length, reportedTotal: opening.length, indiaFacetCount: complete ? jobs.length : null,
-    verifiedAt: new Date().toISOString(), reason: 'Current corporate-declared exact Comeet tenant, reviewed complete-array client, native countries, same-ID full criteria and final membership after closing details; public-board scope only.' })
+    verifiedAt: new Date().toISOString(), reason: 'Current corporate-declared exact Comeet tenant, reviewed complete-array client, native countries, same-ID full criteria and final membership after closing details; public-board scope only.'
+      + (currentSSR ? ' Native criteria data retained; rendered criteria and application controls unqualified.' : '') })
   if (!complete) attachSourceObservationEvidence(jobs, { source: 'coralogix', recordKind: 'vacancy-rows', observedRecordCount: opening.length, observedVacancyCount: opening.length, sourceScopeComplete: false })
-  const audit = { source: 'coralogix', opening, closing, observedDetails: [...observed.values()], sourceCompanyWideScopeComplete: false, lifecycleCleanupAllowed: false, failures, limited, responses }
+  const audit = { source: 'coralogix', opening, closing, observedDetails: [...observed.values()], sourceCompanyWideScopeComplete: false, lifecycleCleanupAllowed: false, failures, limited, responses,
+    ...(currentSSR ? { currentPublicRoleOpening, currentPublicRoleClosing, nativeDetailObservations,
+      sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null } : {}) }
   Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: audit, configurable: true })
   Object.defineProperty(jobs, 'sourceAudit', { value: audit })
   signal.throwIfAborted()

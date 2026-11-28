@@ -41,8 +41,18 @@ export async function runCurrentValutico(options={}){
  }
  async function shell(card){
   reader.allow(card.legacyURL,'html')
-  let row=await read(card.legacyURL,{allowFinal:u=>modernCode(u)!==null,allowRedirect:l=>modernCode(l)!==null})
-  if(row.location){reader.allow(row.location,'html');row=await read(row.location)}
+  const numericURL='https://apply.workable.com/valutico-2/jobs/'+card.legacyNativeId
+  const modernTarget=literal=>{
+   if(modernCode(literal)!==null)return literal
+   if(/^\/valutico-2\/j\/[A-F0-9]{10}\/?$/.test(literal))return new URL(literal,numericURL).href
+   return null
+  }
+  let row=await read(card.legacyURL,{allowFinal:u=>modernCode(u)!==null,allowRedirect:l=>l===numericURL||modernCode(l)!==null})
+  if(row.location){
+   const target=row.location;reader.allow(target,'html')
+   row=await read(target,target===numericURL?{allowFinal:u=>modernCode(u)!==null,allowRedirect:l=>modernTarget(l)!==null}:{})
+   if(row.location){const modern=modernTarget(row.location);reader.allow(modern,'html');row=await read(modern)}
+  }
   return readModernShell(row.body,row.finalURL,card)
  }
  async function collect(phaseName){

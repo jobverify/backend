@@ -5,6 +5,8 @@ import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml
 import { inspectRecruitingBundle } from '../../scraper-support/utils/recruitingBundleContracts.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
+import { hasCurrentDittoHandoff, runCurrentDittoPublisher } from './currentPublisher20261128.js'
+import { boundedDeclaredPublicGet } from '../../scraper-support/native-sources/boundedDeclaredPublicGet.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -28,20 +30,13 @@ const envelope = payload => {
 }
 
 const defaultFetchPage = async (url, { signal } = {}) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; JobverifyScraper/1.0)',
-      Accept: 'text/html,application/xhtml+xml',
-    },
-    redirect: 'follow',
-    signal: AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(20000)]),
+  const response = await boundedDeclaredPublicGet(url, {
+    fetchImpl: (requested, init) => fetch(requested, { ...init, credentials: 'omit' }),
+    signal, timeoutMs: 20000, overflowError: new Error('Ditto native page exceeds the streaming byte limit'),
   })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return { status: response.status, url: response.url, html: await response.text() }
+  const bytes = Buffer.from(response.bodyBase64, 'base64'), html = bytes.toString('utf8')
+  if (bytes.length > 8 * 1024 * 1024 || !Buffer.from(html).equals(bytes)) fail('oversized or invalid native page bytes')
+  return { status: response.status, url: response.url, headers: response.headers, html }
 }
 const defaultFetchJson = (url, options) => fetchJsonWithRetry(url, { ...options, label: SOURCE, timeoutMs: 20000 })
 
@@ -53,7 +48,14 @@ export const hasVerifiedOfficialCareersHandoff = (html = '') => {
 
 const pageAt = async (url, fetchPage, signal) => {
   signal?.throwIfAborted()
-  const page = await fetchPage(url, { signal })
+  const page = await new Promise((resolve, reject) => {
+    const aborted = () => { signal?.removeEventListener('abort', aborted); reject(signal.reason) }
+    signal?.addEventListener('abort', aborted, { once: true })
+    Promise.resolve().then(() => { signal?.throwIfAborted(); return fetchPage(url, { signal }) }).then(value => {
+      signal?.removeEventListener('abort', aborted); resolve(value)
+    }, error => { signal?.removeEventListener('abort', aborted); reject(error) })
+    if (signal?.aborted) aborted()
+  })
   signal?.throwIfAborted()
   if (page?.status !== 200 || !sameUrl(page.url, url) || typeof page.html !== 'string') fail('employer page or bundle binding unavailable')
   return page.html
@@ -91,9 +93,11 @@ const validApplyUrl = (value, id, form) => {
 }
 
 export const createDittoInsuranceScraper = ({ pageSize = 100, maxPages = 50, maxJobs = null } = {}) => ({
-  async run({ fetchPage = defaultFetchPage, fetchJson = defaultFetchJson, signal, now = () => new Date().toISOString() } = {}) {
+  async run(options = {}) {
+    const { fetchPage = defaultFetchPage, fetchJson = defaultFetchJson, signal, now = () => new Date().toISOString() } = options
     if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100 || !Number.isInteger(maxPages) || maxPages < 1) fail('invalid pagination limits')
     const homepage = await pageAt(OFFICIAL_HOME_URL, fetchPage, signal)
+    if (hasCurrentDittoHandoff(homepage)) return runCurrentDittoPublisher({ ...options, homeOpening: homepage, maxJobs })
     if (!hasVerifiedOfficialCareersHandoff(homepage)) fail('current employer careers handoff unavailable')
     const portal = await pageAt(OFFICIAL_CAREERS_URL, fetchPage, signal)
     const bundles = readNativeDocument(portal).nodes(node => node.tag === 'script' && !Object.hasOwn(node.attrs, 'nomodule')

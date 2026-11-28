@@ -1,0 +1,27 @@
+[
+  {
+    "source": "thoughtworks",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/thoughtworks/script.js",
+    "companyName": "Thoughtworks",
+    "companyCareerPage": "https://www.thoughtworks.com/careers/jobs",
+    "companyDomain": "thoughtworks.com",
+    "atsPlatform": "first-party-careers",
+    "parser": "custom-script",
+    "template": null,
+    "templateOptions": null,
+    "config": null,
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "backfillMode": "live-parser",
+    "scraperTimeoutMs": 180000,
+    "paginationStrategy": "declared-current-native-array-and-correlated-India-SSR-closing",
+    "extractionStrategy": "current-active-carrier+whole-declared-producer+explicit-native-country+same-role-SSR-date-criteria+closing",
+    "verifiedSurfaceSummary": "The current official Thoughtworks jobs page declares its own careersv2 GET producer and UUID role route. Explicit native India roles require correlated current SSR title, country, assigned primary location, publication date and raw authored criteria. All native observations are retained. Browser rendering, legal employer, application controls, company-wide inventory and cleanup remain unqualified; no successful company zero is inferred."
+  }
+]

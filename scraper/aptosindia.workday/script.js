@@ -1,4 +1,5 @@
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -51,37 +52,14 @@ const normalizeComparableUrl = (value) => {
 
 const sameUrl = (left, right) => normalizeComparableUrl(left) === normalizeComparableUrl(right)
 
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url, { signal } = {}) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-    signal: signal ? AbortSignal.any([signal, createTimeoutSignal(15000)]) : createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-    contentType: response.headers.get('content-type'),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 const defaultFetchJson = (url, body, { signal } = {}) => fetchJsonWithRetry(url, {
   signal,

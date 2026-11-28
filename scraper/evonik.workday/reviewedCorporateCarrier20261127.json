@@ -1,0 +1,1312 @@
+{
+  "revision": "corporate-20261127",
+  "corporate": {
+    "requestedUrl": "https://www.evonik.com/en/careers.html",
+    "bytes": 306177,
+    "sha256": "94ed6ec247d23126c25401183ee16bc6c4b8c7569439d1c66c77fb098af1b5e7"
+  },
+  "seed": {
+    "requestedUrl": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R51758",
+    "bytes": 185375,
+    "sha256": "a24171c3c3c3e23ebf53f32972b80ac3e7b742f48968011c0cbd0a5fe2ecff80",
+    "model": {
+      "@context": "http://schema.org",
+      "@type": "JobPosting",
+      "description": "<p><b><span>What we offer</span></b><br /><br /><span>At Evonik, you’re part of a global chemical company working in many sectors that go beyond chemistry. From lipids for tomorrow’s medicines, biosurfactants for green detergents, additives for plastics recycling or membranes to help drive forward the energy transition, you’ll play an essential part in helping the world’s most essential industries succeed.<br /><br />Our success hinges on a diversity of ideas powered by people, not egos. Whether you’re a scientist or engineer, new to the team or established, in business, production, or anything in between – we cheer each other on. Because we believe we can do anything. Explore everything. And Be Part of Something Special!</span><br /><br /><b><span>Find out more about the many benefits we offer:</span></b><br /><br /><a href=\"http://www.evonik.com/en/careers/why.html\" target=\"_blank\"><span>https://www.evonik.com/en/careers/why.html</span></a><br /><br /><br /><b><span>Meet the team and get to know the people behind Evonik:</span></b><br /><br /><a href=\"http://www.evonik.com/en/news/meet-the-team.html\" target=\"_blank\"><span>https://www.evonik.com/en/news/meet-the-team.html</span></a></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p><b>RESPONSIBILITIES</b></p><ul><li>Design and maintain data platforms, pipelines and integration architectures that enable AI/ML-powered manufacturing solutions, potentially from multiple data sources.</li><li>Manage the right architecture between external technology platforms and Evonik&#39;s production and enterprise systems.</li><li>Partner with production, engineering, IT and cybersecurity stakeholders to identify data needs,  to provide insights to enhance decision-making processes, and to deliver scalable and compliant digital solutions.</li><li>Collaborate with data scientists and technology partners to ensure availability of clean data and deploy AI/ML models into production environments.</li><li>Lead technical implementation activities, coordinate stakeholders and manage project deliverables across multiple initiatives.</li><li>Support the deployment, governance, and monitoring of successful pilot solutions across Evonik&#39;s production assets.</li><li>Continuously evaluate emerging technologies and identify opportunities to create business value through AI, advanced analytics and digitalization.</li></ul><p><br /><b>REQUIREMENTS</b></p><ul><li>Bachelor’s degree in Computer Science, Data Science, Engineering, or a related field.</li><li>Minimum of 5 years of experience in Data Engineering or in a similar role. Experience within chemical or manufacturing industry is a preferred.</li><li>Strong knowledge of API design and proficiency in programming languages such as Python, collaborative tools like GitHub &amp; Azure DevOps, and experience with data visualization tools (i.e., Tableau, PowerBI).</li><li>Strong knowledge of SQL and database management systems (e.g., PostgreSQL, MySQL).</li><li>Familiarity with cloud-native data platforms (Azure or AWS), containerization, data warehousing solutions (i.e., Databricks), and MLOps/DataOps practices is highly desirable.</li><li>Demonstrated ability to work with external vendors and technology partners to implement innovative solutions.</li><li>Understanding of machine learning concepts and experience with ML frameworks (e.g., TensorFlow, PyTorch) is a plus.</li><li>Experience designing and deploying AI agent architectures, including MCP-based integrations (e.g., FastMCP, LangChain), and connecting them securely to enterprise and manufacturing data sources such as MES, historians and SQL databases.</li><li>Familiarity with other engineering/process control related software (IP21, PI Historian, PACE, etc) is a plus.</li><li>Fluent in English, enabling clear communication in diverse professional settings.</li><li>Ability to present and suggest sound data-centric recommendations based on analytical and critical thinking.</li><li>Capable in identifying and articulating value-driven use cases that align with organizational goals and enhance operational efficiency.</li><li>Willingness to travel occasionally, both domestically and internationally, to support our global operations and initiatives.</li><li>Possess network to stay abreast with industry trends and being adaptable on new technology/techniques to enhance new and innovative thinking.</li></ul><p></p><p></p><p style=\"text-align:left !important\"><b>Your Application</b><br /> </p><p style=\"text-align:left !important\">To ensure that your application is proceeded as quickly as possible and to protect the environment, please apply online via our <a target=\"_blank\" href=\"https://evonik.wd3.myworkdayjobs.com/en-US/External_Careers\">careers portal</a>. Further information about Evonik as Employer can be found at <a target=\"_blank\" href=\"https://www.evonik.com/en/careers.html\"><span style=\"color:#0000ff\"><u>www.evonik.com/en/careers.html</u></span></a>.  </p><p style=\"text-align:left !important\">Please address your application to the Talent Acquisition Manager, stating your earliest possible starting date and your salary expectations.</p><p style=\"text-align:inherit !important\"></p><p style=\"text-align:inherit !important\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Your Talent Acquisition Manager:</b></p>Samantha Fu<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\">Company is</p>Evonik (SEA) Pte. Ltd.",
+      "title": "Data Engineer (Advanced Process Innovation)",
+      "directApply": true,
+      "industry": "Chemical Industry",
+      "datePosted": "2026-11-27",
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Evonik",
+        "sameAs": "https://www.evonik.com",
+        "logo": "https://www.evonik.com/content/dam/evonik/images/logos---brands/evonik_logo.jpg"
+      },
+      "jobLocation": [
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Singapore - Nucleos_ARC",
+            "addressCountry": "Singapore"
+          }
+        }
+      ],
+      "sameAs": "https://evonik.wd3.myworkdayjobs.com/External_Careers/job/Singapore---Nucleos_ARC/Data-Engineer--Advanced-Process-Innovation-_R51758/apply",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "Evonik",
+        "value": "R51758"
+      }
+    }
+  },
+  "corporateCardEnvelope": {
+    "bytes": 306177,
+    "outerRuns": [
+      {
+        "bytes": 167798,
+        "sha256": "5f5ca7f1f871ac28a21e8a090f995bfaea21ca7e4eca1866ced1b389cef1e84f"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 248,
+        "sha256": "45cb123ead4b3f3907bc8b5a49c999cbe5acc08ff474d96ea58e6565bd0ab68b"
+      },
+      {
+        "bytes": 125426,
+        "sha256": "cdfabfd9e44315e1d2da0774ac93f545c02009703707412a57141cae507b8568"
+      }
+    ],
+    "cards": [
+      {
+        "id": "R51758",
+        "bytes": 1431,
+        "sha256": "56d25a4ff54afdc6cae7d8aa5881d88c15c3a6fd3055ef564db91b7874abaf10",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R51758",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Data Engineer (Advanced Process Innovation)"
+        }
+      },
+      {
+        "id": "R52964",
+        "bytes": 1408,
+        "sha256": "ed7f71c3d26841da4bee7b06bf1c8317ae3b0c9b2d0a1c8bf70151ee2509a9f9",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R52964",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Senior Business Director - AEM China"
+        }
+      },
+      {
+        "id": "R53156",
+        "bytes": 1391,
+        "sha256": "48d92793b891d4bf10082e945e3e6b225b291f057d0536d6aa4f6d4f05ccb608",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R53156",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Techniker/Bachelor (m/w/d) Bau"
+        }
+      },
+      {
+        "id": "R52822",
+        "bytes": 1392,
+        "sha256": "30ad299d010dc552cd1f8a8ac12169dc5d75c808c601e04aeea048ef9f2bfa34",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R52822",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Accounts Receivable - Analyst"
+        }
+      },
+      {
+        "id": "R51795",
+        "bytes": 1387,
+        "sha256": "ab1c6142059cb6ec063d1692d4c23bc3b77d530bf7679b2595073b64fc667393",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R51795",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Jr. Customer Services Analyst"
+        }
+      },
+      {
+        "id": "R51693",
+        "bytes": 1371,
+        "sha256": "24f2ddb9eefc1edcb525166ecef2ac140a744df0e600defd38b6464155c8881a",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R51693",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Pasante en Logística"
+        }
+      },
+      {
+        "id": "R52930",
+        "bytes": 1400,
+        "sha256": "9686c2aecb868fe16bf4a2fd011a206dbc4ded21ebe3b82e2e71621052494e2a",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R52930",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Supply Chain and Logistic Analyst"
+        }
+      },
+      {
+        "id": "R45266",
+        "bytes": 1437,
+        "sha256": "7ea4e87367d42763f4c7244fd4d71f40af340f6d794c3d1fd1828b5b290e6393",
+        "attrs": {
+          "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+          "href": "/en/careers/jobs/job.html?jobId=R45266",
+          "target": "_self",
+          "rel": "follow",
+          "title": "Prüfer (m/w/d) für zerstörungsfreie Prüfverfahren"
+        }
+      }
+    ],
+    "ownerSlots": [
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ],
+      [
+        {
+          "tag": "root",
+          "attrs": {},
+          "activeFrame": null,
+          "inert": null
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en",
+            "x-data": "",
+            ":style": "$store.globalStore.scrollDisabled ? { paddingRight : window.innerWidth - document.body.offsetWidth + 'px', overflow: 'hidden'} : null"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "data-cmp-data-layer-enabled": ""
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "px-016 pb-016 tablet:px-020 tablet:pb-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-container",
+            "data-search_endpoint_graphql": "https://evonik-isv.trueinnovation.de/search-prod/graphql",
+            "data-search_lang": "en",
+            "data-search_myevonik": "false",
+            "class": "container mb-016 tablet:mb-030",
+            "data-area-of-interest-url": "/content/experience-fragments/evonik/de/en/modals/forms/aem/customer/areas-of-interest/master"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "container-content"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "slider-jobs"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-00 slider-jobs__container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row-container"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "col pointer-events-none"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "x-data": "swiperSlider",
+            "class": "swiper relative flex flex-col ",
+            ":id": "$id('swiper')",
+            "@resize.window.debounce.500ms": "handleResize()",
+            "data-swiper": "{\"a11y\": { \"prevSlideMessage\": \"Previous Guideline\", \"nextSlideMessage\": \"Next Guideline\", \"firstSlideMessage\": \"This is the first Guideline\", \"lastSlideMessage\": \"This is the last Guideline\" } }"
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-wrapper pointer-events-auto "
+          },
+          "activeFrame": false,
+          "inert": false
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "swiper-slide w-10/12 tablet:w-5/12 laptop:w-[29.255%] desktop:w-3/12 mr-016 tablet:mr-020"
+          },
+          "activeFrame": false,
+          "inert": false
+        }
+      ]
+    ]
+  },
+  "corporateRoleDeclarations": [
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R51758",
+      "text": "Data Engineer (Advanced Process Innovation) Singapore | Singapore - Nucleos_ARC 11/27/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R51758",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Data Engineer (Advanced Process Innovation)"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R52964",
+      "text": "Senior Business Director - AEM China China | Shanghai Xinzhuang 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R52964",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Senior Business Director - AEM China"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R53156",
+      "text": "Techniker/Bachelor (m/w/d) Bau Germany | Marl SYNEQT 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R53156",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Techniker/Bachelor (m/w/d) Bau"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R52822",
+      "text": "Accounts Receivable - Analyst Argentina | Buenos Aires 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R52822",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Accounts Receivable - Analyst"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R51795",
+      "text": "Jr. Customer Services Analyst Colombia | Medellin 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R51795",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Jr. Customer Services Analyst"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R51693",
+      "text": "Pasante en Logística Colombia | Medellin 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R51693",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Pasante en Logística"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R52930",
+      "text": "Supply Chain and Logistic Analyst Argentina | Buenos Aires 11/26/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R52930",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Supply Chain and Logistic Analyst"
+      }
+    },
+    {
+      "url": "https://www.evonik.com/en/careers/jobs/job.html?jobId=R45266",
+      "text": "Prüfer (m/w/d) für zerstörungsfreie Prüfverfahren Germany | Marl SYNEQT 11/25/2026",
+      "attrs": {
+        "class": "tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   ",
+        "href": "/en/careers/jobs/job.html?jobId=R45266",
+        "target": "_self",
+        "rel": "follow",
+        "title": "Prüfer (m/w/d) für zerstörungsfreie Prüfverfahren"
+      }
+    }
+  ],
+  "review": {
+    "corporateFullEntityReviewed": true,
+    "currentFeaturedIds": [
+      "R51758",
+      "R52964",
+      "R53156",
+      "R52822",
+      "R51795",
+      "R51693",
+      "R52930",
+      "R45266"
+    ],
+    "changedPrograms": [
+      {
+        "url": "https://www.evonik.com/etc.clientlibs/evonik/clientlibs/clientlib-site.lc-2c0c1fea9b3e62a2ac7d9c6597418acd-lc.min.js",
+        "bytes": 370421,
+        "sha256": "81205a51555c12b1d4f2fce8923bbbf1a5e7c1e654bc9d9aceadebf701c90c95"
+      },
+      {
+        "url": "https://www.evonik.com/etc.clientlibs/evonik/clientlibs/clientlib-search.lc-50a846a434cf35f0e8d79fe447e6ff09-lc.min.js",
+        "bytes": 90270,
+        "sha256": "4f2f94f58c69dd9de13f7dbd8e49c70fb61d3f0771e639bc6b1ea2506b7231c7"
+      }
+    ],
+    "applicationVisited": false,
+    "companyScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "wholeProgramOrCSSOrUIQualified": false,
+    "featuredRowsArePartialNativeObservations": true,
+    "featuredLiteralDataMustNotEstablishCountryOrCompanyCompleteness": true,
+    "genuineMembershipChange": {
+      "beforeCarrierSHA256": "94ed6ec247d23126c25401183ee16bc6c4b8c7569439d1c66c77fb098af1b5e7",
+      "afterCarrierSHA256": "ef137a2082ed9ca4a793ea636238cd66ff6bf9d4a0bd3908fdf8b7c203d46305",
+      "added": "R51129",
+      "removed": "R45266",
+      "outsideBytesAndFullCardPresentationUnchanged": true
+    }
+  },
+  "mutableCardPresentation": {
+    "normalizedHTML": "<a class=\"tile-job relative block overflow-hidden h-full group transition-colors duration-300 bg-color-primary hover:bg-color-primary-dark text-color-secondary   \" href=\"{{EVONIK_HREF}}\" target=\"_self\" rel=\"follow\" title=\"{{EVONIK_TITLE_ATTRIBUTE}}\">\n        \n\n\n        \n        <div class=\"tile-job__inner relative h-full p-016 pb-020 tablet:p-020 flex flex-col justify-between gap-016\">\n            \n            \n\n    \n    \n    <h3 class=\"tile-job__title text-16 font-medium line-clamp-3 hyphens-auto\">{{EVONIK_TITLE_TEXT}}</h3>\n\n            <div class=\"flex flex-col gap-08\">\n                \n                <div class=\"flex items-center gap-x-08\">\n                    <i class=\"icon icon-location_on text-20 -mt-02\"></i>\n                    \n                    \n                     \n                    \n                    \n                        \n                    \n                    \n                    \n                    <span class=\"block break-words line-clamp-2\">{{EVONIK_LOCATION_TEXT}}</span>\n                </div>\n                \n                <div class=\"flex items-center gap-x-08\">\n                    <i class=\"icon icon-calendar text-20 -mt-02\"></i>\n                    \n                    <span class=\"block break-words line-clamp-1\">{{EVONIK_DATE_TEXT}}</span>\n                </div>\n            </div>\n        </div>\n    \n    </a>",
+    "bytes": 1368,
+    "sha256": "baadfc4a439f87e7b378268f9430e758ad9ffd6b954b0414ae6be40f80ec2b85",
+    "literalDataSlots": [
+      "HREF",
+      "TITLE_ATTRIBUTE",
+      "TITLE_TEXT",
+      "LOCATION_TEXT",
+      "DATE_TEXT"
+    ],
+    "outsideRunsSHA256": "fb8028ec6751a0914f26150b9942eda025c6a3cc2dba9bcb8e79fdd877f4f856",
+    "observedCardCount": 8
+  }
+}

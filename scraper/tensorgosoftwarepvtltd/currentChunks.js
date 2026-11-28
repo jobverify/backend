@@ -5,6 +5,51 @@ export const need=(ok,message)=>{if(!ok)throw Object.assign(Error('TensorGo nati
 const key=p=>p.key?.name??p.key?.value,prop=(n,k)=>n?.properties?.find(p=>key(p)===k)?.value
 export const visit=(node,fn)=>{if(!node||typeof node!=='object')return;fn(node);for(const value of Object.values(node))if(value&&typeof value==='object'){if(Array.isArray(value))value.forEach(n=>visit(n,fn));else visit(value,fn)}}
 const find=(node,fn)=>{const result=[];visit(node,n=>{if(fn(n))result.push(n)});return result},one=(rows,label)=>{need(rows.length===1,'Expected one '+label);return rows[0]},parsed=text=>{need(typeof text==='string'&&Buffer.byteLength(text)<=4*1024*1024,'Client byte bound');return parse(text,{ecmaVersion:'latest'})}
+// Minified names are local to their lexical scope. An unrelated module import
+// cannot make a route ambiguous or provide a missing/shadowed route loader.
+function routeLoader(ast,route,symbol){
+ need(typeof symbol==='string'&&symbol.length>0,'Native route component binding changed')
+ const parents=new WeakMap(),functions=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression'])
+ const unsupportedScopes=new Set(['SwitchStatement','ClassDeclaration','ClassExpression','StaticBlock','WithStatement'])
+ const index=node=>{if(!node||typeof node!=='object')return;for(const value of Object.values(node))if(value&&typeof value==='object'){const children=Array.isArray(value)?value:[value];for(const child of children)if(child&&typeof child==='object'){parents.set(child,node);index(child)}}};index(ast)
+ const binds=pattern=>{if(!pattern)return false;if(pattern.type==='Identifier')return pattern.name===symbol;if(pattern.type==='RestElement')return binds(pattern.argument);if(pattern.type==='AssignmentPattern')return binds(pattern.left);if(pattern.type==='ObjectPattern')return pattern.properties.some(p=>binds(p.value??p.argument));if(pattern.type==='ArrayPattern')return pattern.elements.some(binds);return false}
+ const unique=rows=>{need(rows.length===1,'Ambiguous native route lexical binding');return rows[0]}
+ const direct=(scope,includeVar)=>{
+  const rows=[]
+  for(const statement of scope.body??[]){
+   if(statement.type==='VariableDeclaration'&&(includeVar||statement.kind!=='var'))for(const declaration of statement.declarations)if(binds(declaration.id))rows.push(declaration)
+   if(['FunctionDeclaration','ClassDeclaration'].includes(statement.type)&&binds(statement.id))rows.push(statement)
+  }
+  return rows.length?unique(rows):null
+ }
+ const functionVars=scope=>{const rows=[];const scan=node=>{if(!node||typeof node!=='object'||functions.has(node.type)||node.type==='StaticBlock')return;if(node.type==='VariableDeclaration'&&node.kind==='var')for(const declaration of node.declarations)if(binds(declaration.id))rows.push(declaration);for(const value of Object.values(node))if(value&&typeof value==='object')Array.isArray(value)?value.forEach(scan):scan(value)};scan(scope.body);return rows.length?unique(rows):null}
+ const resolve=(node,checkScopes=false)=>{
+  for(let scope=node;scope;scope=parents.get(scope)){
+   // These scopes have distinct lexical/var environments which this finite
+   // route reader does not qualify. They cannot borrow an enclosing loader.
+   need(!checkScopes||!unsupportedScopes.has(scope.type),'Unsupported native route lexical scope')
+   if(scope.type==='BlockStatement'||scope.type==='Program'){const declared=direct(scope,scope.type==='Program');if(declared)return declared}
+   if(functions.has(scope.type)){
+    const parameters=scope.params.filter(binds);if(parameters.length)return unique(parameters)
+    if(binds(scope.id))return scope
+    const declared=functionVars(scope);if(declared)return declared
+   }
+   if(scope.type==='CatchClause'&&binds(scope.param))return scope.param
+   if(['ForStatement','ForInStatement','ForOfStatement'].includes(scope.type)){
+    const declaration=scope.init??scope.left
+    if(declaration?.type==='VariableDeclaration'&&declaration.kind!=='var'){
+     const rows=declaration.declarations.filter(row=>binds(row.id));if(rows.length)return unique(rows)
+    }
+   }
+  }
+  return null
+ }
+ const loader=resolve(route,true)
+ need(loader?.type==='VariableDeclarator'&&loader.id.type==='Identifier'&&loader.init?.type==='CallExpression','Native route lazy loader binding changed')
+ const writes=find(ast,node=>node.type==='AssignmentExpression'&&binds(node.left)||node.type==='UpdateExpression'&&binds(node.argument)||['ForInStatement','ForOfStatement'].includes(node.type)&&binds(node.left))
+ need(writes.every(write=>resolve(write)!==loader),'Native route loader binding reassigned')
+ return loader
+}
 const name=n=>n?.type==='Identifier'?n.name:null,member=(n,object,field)=>n?.type==='MemberExpression'&&name(n.object)===object&&key({key:n.property})===field,callee=n=>n?.type==='SequenceExpression'?n.expressions.at(-1):n
 const modules=ast=>{const result=new Map();visit(ast,n=>{if(n.type==='Property'&&Number.isInteger(n.key?.value)&&['FunctionExpression','ArrowFunctionExpression'].includes(n.value?.type)&&n.value.params.length===3){need(!result.has(n.key.value),'Duplicate native module');result.set(n.key.value,n.value)}});return result}
 const bindings=fn=>new Map(fn.body.body.flatMap(n=>n.type==='VariableDeclaration'?n.declarations:n.type==='FunctionDeclaration'?[n]:[]).filter(n=>n.id?.name).map(n=>[n.id.name,n.type==='VariableDeclarator'?n.init:n]))
@@ -33,7 +78,7 @@ function readEmployer(module){const vars=bindings(module),exports=exportsOf(modu
  const postingExport=one([...exports].filter(([,node])=>typeof node==='object'&&contains(node,n=>n===posting)),'exported JobPosting renderer')[0];return{postingExport,model:{name:orgName,legalName,jobPostingCountry:country,workplaceSource:'native job.locations',identitySource:'native job.id'}}
 }
 export function readMainRecruitment(bundle){const ast=parsed(bundle),allModules=modules(ast),transportEntry=one([...allModules].filter(([,n])=>contains(n,x=>x.value===API_BASE)&&contains(n,x=>x.type==='ObjectExpression'&&prop(x,'get')?.type==='ArrowFunctionExpression')),'API transport module'),employerEntry=one([...allModules].filter(([,n])=>contains(n,x=>x.type==='Property'&&key(x)==='legalName'&&x.value.value==='TensorGo Software Private Limited')),'native employer module'),transport=readTransport(transportEntry[1]),employer=readEmployer(employerEntry[1]),routes={}
- for(const path of ['/careers','/careers/:slug']){const route=one(find(ast,n=>n.type==='ObjectExpression'&&prop(n,'path')?.value===path),'published '+path+' route'),symbol=name(prop(route,'element')?.arguments?.[0]),loader=one(find(ast,n=>n.type==='VariableDeclarator'&&n.id.name===symbol&&n.init?.type==='CallExpression'),'route lazy loader'),chunks=find(loader,n=>n.type==='CallExpression'&&n.callee?.property?.name==='e'&&Number.isInteger(n.arguments[0]?.value)).map(n=>n.arguments[0].value),entry=one(find(loader,n=>n.type==='CallExpression'&&n.callee?.property?.name==='bind'&&Number.isInteger(n.arguments[1]?.value)),'route entry module').arguments[1].value;need(chunks.length>0&&chunks.length<=12,'Unbounded recruitment dependency declaration');routes[path]={chunks,entry}}
+ for(const path of ['/careers','/careers/:slug']){const route=one(find(ast,n=>n.type==='ObjectExpression'&&prop(n,'path')?.value===path),'published '+path+' route'),symbol=name(prop(route,'element')?.arguments?.[0]),loader=routeLoader(ast,route,symbol),chunks=find(loader,n=>n.type==='CallExpression'&&n.callee?.property?.name==='e'&&Number.isInteger(n.arguments[0]?.value)).map(n=>n.arguments[0].value),entry=one(find(loader,n=>n.type==='CallExpression'&&n.callee?.property?.name==='bind'&&Number.isInteger(n.arguments[1]?.value)),'route entry module').arguments[1].value;need(chunks.length>0&&chunks.length<=12,'Unbounded recruitment dependency declaration');routes[path]={chunks,entry}}
  const ids=[...new Set(Object.values(routes).flatMap(r=>r.chunks))],runtime=one(find(ast,n=>n.type==='AssignmentExpression'&&n.left?.property?.name==='u'&&contains(n.right,x=>x.value==='static/js/')&&contains(n.right,x=>x.value==='.chunk.js')),'published chunk URL runtime'),map=one(find(runtime.right,n=>n.type==='ObjectExpression'&&ids.every(id=>n.properties.some(p=>String(key(p))===String(id)&&/^[a-f0-9]{8}$/.test(p.value.value)))),'recruitment chunk versions'),urls=ids.map(id=>ORIGIN+'/static/js/'+id+'.'+map.properties.find(p=>String(key(p))===String(id)).value.value+'.chunk.js')
  return{transport,employer,transportModule:transportEntry[0],employerModule:employerEntry[0],routes,chunkURLs:urls,moduleBodies:allModules}
 }
@@ -53,4 +98,16 @@ export function readRoleRecruitment(main,programs){const all=new Map(),duplicate
  const flow=one([...bindings(role)].filter(([,fn])=>['FunctionDeclaration','ArrowFunctionExpression'].includes(fn?.type)&&name(fn.params[0])===name(applicationSlug.arguments[0])&&contains(fn,n=>n===application)),'role application flow')[0],flowBinding=one(find(role,n=>n.type==='VariableDeclarator'&&n.id.type==='Identifier'&&n.init?.type==='CallExpression'&&name(n.init.callee)===flow&&name(n.init.arguments[0])===slug),'native route slug application binding').id.name,submit=one(find(role,n=>n.type==='CallExpression'&&member(n.callee,flowBinding,'submit')&&n.arguments[0]?.type==='ObjectExpression'),'native application form packet'),formFields=submit.arguments[0].properties.map(p=>{need(p.type==='Property'&&typeof key(p)==='string','Unknown native application field');return key(p)}).sort()
  return{api:{...main.transport.model,listPath:'/api/jobs',detailPath:'/api/jobs/{encodeURIComponent(slug)}',bundledFallbackUsed:false},employer:main.employer.model,application:{roleURLTemplate:ORIGIN+'/careers/:slug',declaredMethod:'POST',declaredPath:'/api/jobs/{encodeURIComponent(slug)}/applications',nativeRoleSlugBound:true,formFields,submissionPerformed:false},fullCriteriaField:'native detail.description',nativeIdentityFields:['id','slug','title','locations'],nativeCountryFieldPublished:false}
 }
-export async function readReviewedTensorGoChunks({html,asset,bundle,readText}){const doc=readNativeDocument(html),mains=doc.nodes(n=>n.tag==='script'&&n.attrs.src&&/\/static\/js\/main\.[^/]+\.js$/.test(n.attrs.src)),title=activeHead(html).titles;need(asset.origin===ORIGIN&&mains.length===1&&new URL(mains[0].attrs.src,ORIGIN).href===asset.href&&title.length===1&&/HumAIn by TensorGo/.test(title[0])&&!doc.nodes(n=>n.tag==='base').length,'Own careers bundle identity changed');const main=readMainRecruitment(bundle),programs=new Map();for(const url of main.chunkURLs)programs.set(url,await readText(url));const semantics=readRoleRecruitment(main,programs);return{semantics,declaredChunkURLs:main.chunkURLs,rawMain:bundle,rawPrograms:[...programs].map(([url,body])=>({url,body})),browserProgramsExecuted:false}}
+function hasCurrentCareersMetadata(doc,title){
+ if(title!=='Careers at TensorGo | Build Pre-AGI Teammates')return false
+ const canonical=doc.nodes(n=>n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('canonical'))
+ if(canonical.length!==1||canonical[0].attrs.href!==ORIGIN+'/careers')return false
+ const organizations=[]
+ for(const node of doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json')){
+  let value;try{value=JSON.parse(node.raw)}catch{return false}
+  for(const model of Array.isArray(value)?value:[value])if(model?.['@type']==='Organization')organizations.push(model)
+ }
+ return organizations.length===1&&organizations[0]['@id']===ORIGIN+'/#organization'&&organizations[0].name==='TensorGo'
+  &&organizations[0].legalName==='TensorGo Software Private Limited'&&organizations[0].url===ORIGIN
+}
+export async function readReviewedTensorGoChunks({html,asset,bundle,readText}){const doc=readNativeDocument(html),mains=doc.nodes(n=>n.tag==='script'&&n.attrs.src&&/\/static\/js\/main\.[^/]+\.js$/.test(n.attrs.src)),title=activeHead(html).titles;need(asset.origin===ORIGIN&&mains.length===1&&new URL(mains[0].attrs.src,ORIGIN).href===asset.href&&title.length===1&&(/HumAIn by TensorGo/.test(title[0])||hasCurrentCareersMetadata(doc,title[0]))&&!doc.nodes(n=>n.tag==='base').length,'Own careers bundle identity changed');const main=readMainRecruitment(bundle),programs=new Map();for(const url of main.chunkURLs)programs.set(url,await readText(url));const semantics=readRoleRecruitment(main,programs);return{semantics,declaredChunkURLs:main.chunkURLs,rawMain:bundle,rawPrograms:[...programs].map(([url,body])=>({url,body})),browserProgramsExecuted:false}}

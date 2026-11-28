@@ -18,7 +18,12 @@ const currentForm={bytes:10070,sha256:'223a1ced48129dacbd41e4742c65a7e608852d7c6
 // retain all form data without asserting application validation equivalence.
 const reviewedForms=[currentForm,{bytes:10070,sha256:'5c96c018c54b427e96b7b4e031b8f88044245daabf51f5957bcf9b55632eedec',program:{
  url:'https://static.zohocdn.com/recruit/javascript/new-webform-render.cf31892f523c34063f88f17e9e07e474.js',
- bytes:2046436,sha256:'8f2d95c7a40d8339dacb5de3c837e07d2481b942d1d8587012056b08dba96c85'}}]
+ bytes:2046436,sha256:'8f2d95c7a40d8339dacb5de3c837e07d2481b942d1d8587012056b08dba96c85'}},
+ // Current full form differs only in its CSS/renderer URLs. The complete public
+ // form URL builder is byte-identical; rendering/validation remain unqualified.
+ {bytes:10070,sha256:'19cbeeb4a918b313206b6bf013ec644000d2799f8531eb7d0a9466064e212e8e',program:{
+ url:'https://static.zohocdn.com/recruit/javascript/new-webform-render.082690d8aba11ae76b52f8df164b9068.js',
+ bytes:2046888,sha256:'8a63028213a7508467f913288c5d1afbaae24955e03ca58df487e895a5638de4'}}]
 export async function runCurrentKanini(options={}){
  options.signal?.throwIfAborted();const allowed=new Set([...profile.corporate.map(c=>c.url),profile.form.url,profile.formProgram.url,...reviewedForms.map(form=>form.program.url),profile.formAPI])
  const io=currentKaniniTransport({...options,allowedRequest:(url,method,body)=>method==='POST'?url===profile.listingClient.endpoint&&/^search=&location=&action=get_all_jobs&page=(?:[1-9]|1\d|20)&limit=12$/.test(body):allowed.has(url)}),verifiedAt=new Date().toISOString()

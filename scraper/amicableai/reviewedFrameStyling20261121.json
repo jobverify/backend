@@ -250,6 +250,89 @@
           "attrs": {}
         }
       ]
+    },
+    {
+      "id": "current-20261128",
+      "corporateStyleDeclarations": [
+        {
+          "href": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.314dd54bb.min.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-MU3VS79nT00WOepnu5FlL5OeVQUPU2miQ5YDVq42jpUiRfpPUEKfCZJvxmWxmPUG",
+          "crossorigin": "anonymous"
+        },
+        {
+          "rel": "preload",
+          "href": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "as": "style",
+          "onload": "this.onload=null;this.rel='stylesheet'"
+        }
+      ],
+      "corporateFrameCss": [
+        {
+          "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.314dd54bb.min.css",
+          "sha256": "08f91e867847d0a0118a138f4fe3e8bcdaf1867273c116a3186e0f2e0035f98b"
+        },
+        {
+          "url": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+          "sha256": "322d15d99efb792c941a5202fa8fc7ee9e932847227383ff9605163338a08eac"
+        }
+      ],
+      "corporateInlineCss": [
+        "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+        "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+        "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+        "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+      ],
+      "corporateFramePath": [
+        {
+          "tag": "iframe",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "iframe-wrapper"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "embed-form ef-styled w-embed w-iframe"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-full"
+          }
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "id": "explore-vacancies",
+            "class": "section-primary sp-pb-default bg-light"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "class": "page-wrapper pw-relative"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {}
+        },
+        {
+          "tag": "root",
+          "attrs": {}
+        }
+      ]
     }
   ]
 }

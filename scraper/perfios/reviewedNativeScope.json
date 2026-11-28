@@ -230,6 +230,17 @@
       ]
     }
   },
+  "previousReleases": [
+    {
+      "reviewedAt": "2026-11-28",
+      "clientUrl": "https://perfios.darwinbox.in/ms/candidatev2/main.f5e76c3f4b395062.js",
+      "clientSha256": "fca478943f06f1e5ce96b92bb2184c39c65c75e92d859eb7ec4738e9995f9766",
+      "apiContract": "candidate-v2-post-alljobs-v1",
+      "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+      "rendererReview": "The prior complete renderer pin is retained. The current shell and other corporate/executable contexts remain unqualified; this client admission grants no company inventory or cleanup authority.",
+      "clientReview": "The exact full client was fetched from the literal active script declaration on the captured Perfios native page. Its complete 1291632 bytes equal the separately reviewed Gati/Stanplus current client. The existing public POST all-jobs transport and complete native schemas, employer, geography, criteria, application and closing guards are unchanged. No program or browser execution is inferred."
+    }
+  ],
   "legacyTransition": {
     "url": "https://perfios.darwinbox.in/ms/candidate/careers/",
     "shellSha256": "5430b7b88e76f852407f2689785fe50c825ab5057fd7eebb90b9f8323250c450",

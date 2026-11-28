@@ -42,6 +42,29 @@ test('Airbase retains native PublishedDate and exact own-country facts instead o
  assert.notEqual(job.postingDate,job.sourceNativeApplicationJob.lastChangedUtc)
  assert.equal(job.sourceNativeApplicationJob.companyName,'PAYLOCITY CORPORATION')
 })
+
+test('Airbase excludes an unrelated parent India role while retaining its complete native evidence',async t=>{
+ const{jobs,calls}=await exercise(t,{change:fixture=>{
+  const packet=fixture.responses['https://2000recruiting.paylocity.com/recruiting/jobs/Details/48705']
+  assert.match(packet.html,/Airbase\s+by\s+Paylocity/i)
+  packet.html=packet.html.replace(/Airbase\s+by\s+Paylocity/gi,'Paylocity')
+ }})
+ assert.deepEqual(jobs.map(job=>job.jobId).sort(),['41843','46127','48032'])
+ assert.ok(jobs.every(job=>job.company==='Airbase by Paylocity'&&/Airbase\s+by\s+Paylocity/i.test(job.sourceDescription)))
+ const evidence=jobs[0].sourceNativeInventory
+ assert.equal(evidence.parentIndiaCandidateCount,4)
+ assert.equal(evidence.qualifiedAirbaseIndiaCount,3)
+ assert.equal(evidence.originalOwnRoleFacts.length,3)
+ const excluded=evidence.excludedParentIndiaRoleFacts.find(fact=>fact.row.JobId===48705)
+ assert.ok(excluded.description.length>1000)
+ assert.equal(excluded.job.companyName,'PAYLOCITY CORPORATION')
+ assert.equal(excluded.job.jobLocation.country,'IND')
+ assert.equal(excluded.reason,'native-description-does-not-declare-Airbase-by-Paylocity')
+ assert.equal(calls.filter(call=>call.url.endsWith('/Details/48705')).length,2)
+ assert.equal(calls.filter(call=>call.url.endsWith('/Apply/48705')).length,2)
+ assert.equal(evidence.sourceScopeComplete,false)
+ assert.equal(readInventoryEvidence(jobs).listingComplete,false)
+})
 test('Airbase caps only after full native listing and every own detail/application closing comparison',async t=>{
  const{jobs,calls}=await exercise(t,{options:{maxJobs:1}})
  assert.equal(jobs.length,1)

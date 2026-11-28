@@ -38,14 +38,25 @@ function places(record,at,allowed){
  need(Array.isArray(record.secondaryLocations)&&record.secondaryLocations.length<=64,'native secondary workplaces malformed')
  return[{location:record.location,address:record.address},...record.secondaryLocations].map(place=>{
   need(place&&typeof place==='object'&&!Array.isArray(place)&&typeof place.location==='string'&&norm(place.location)&&!/\b(?:worldwide|anywhere|global|APAC|EMEA)\b/i.test(place.location),'native whole workplace is unresolved')
-  const address=place.address?.postalAddress??place.address;need(address&&typeof address==='object'&&!Array.isArray(address),'native typed workplace address absent');typed(place,'Place');typed(address,'PostalAddress');const country=foreignCountry(address.addressCountry);workplaceFacts(place,country,at,allowed);workplaceFacts(address,country,at,allowed);if(place.address?.postalAddress){typed(place.address,'PostalAddress');workplaceFacts(place.address,country,at,allowed)}
+  const address=place.address?.postalAddress??place.address;let country
+  typed(place,'Place')
+  if(place.address===null){
+   // The native optional address is null for the current Spain remote role.
+   // Its whole authored label supplies the country directly; city labels and
+   // present but incomplete typed addresses cannot establish that evidence.
+   const label=/^(.+) - Remote$/.exec(place.location)
+   need(label&&record.isRemote===true&&record.workplaceType==='Remote','native typed workplace address absent and explicit remote country unavailable')
+   country=foreignCountry(label[1]);workplaceFacts(place,country,at,allowed)
+  }else{
+   need(address&&typeof address==='object'&&!Array.isArray(address),'native typed workplace address absent');typed(address,'PostalAddress');country=foreignCountry(address.addressCountry);workplaceFacts(place,country,at,allowed);workplaceFacts(address,country,at,allowed);if(place.address?.postalAddress){typed(place.address,'PostalAddress');workplaceFacts(place.address,country,at,allowed)}
+  }
   const parts=place.location.split(/\s+-\s+/)[0].split(/\s*(?:\/|\bor\b)\s*/i),alternatives=parts.length>1?parts.map(nativeCountryName):[]
   if(parts.length>1)need(parts.length<=16&&alternatives.every(value=>value&&value!=='India')&&alternatives.includes(country),'native explicit workplace alternatives are unresolved or conflict with typed primary country')
   const countries=[...new Set([country,...alternatives])]
   need(writtenPlaceCountries(place.location).every(value=>countries.includes(value)),'native authored workplace country contradicts typed or explicit alternatives')
-  for(const value of[address.name,address.addressLocality,address.addressRegion,address.streetAddress].filter(v=>v!=null)){need(typeof value==='string','native workplace text malformed');need(writtenPlaceCountries(value).every(c=>c===country||country==='United States'&&c==='Georgia'&&value===address.addressRegion&&value==='Georgia'),'native same-address authored country contradicts typed address')}
+  for(const value of[address?.name,address?.addressLocality,address?.addressRegion,address?.streetAddress].filter(v=>v!=null)){need(typeof value==='string','native workplace text malformed');need(writtenPlaceCountries(value).every(c=>c===country||country==='United States'&&c==='Georgia'&&value===address.addressRegion&&value==='Georgia'),'native same-address authored country contradicts typed address')}
   for(const[field,value]of Object.entries(place))if(countryKeys.has(key(field))&&value!=null)need(foreignCountry(value)===country,'native same-workplace explicit countries conflict')
-  return{country,countries,authoredCountryAlternatives:parts.length>1?parts:[],location:place.location,originalAddress:structuredClone(place.address),address:structuredClone(address)}
+  return{country,countries,authoredCountryAlternatives:parts.length>1?parts:[],location:place.location,originalAddress:structuredClone(place.address),address:structuredClone(address),...(address===null?{countrySource:'native-explicit-country-label'}:{})}
  })
 }
 function extraFacts(model,at,workplaces,allowed){
@@ -58,7 +69,7 @@ function extraFacts(model,at,workplaces,allowed){
   if(['joblocation','joblocations','worklocation','worklocations','primarylocation','primarylocations'].includes(name)){
    const entries=Array.isArray(value)?value:[value];need(entries.length>0&&entries.length<=32,'native additional workplaces malformed')
    const written=entries.map(place=>{need(place&&typeof place==='object'&&!Array.isArray(place),'native typed additional workplace malformed');typed(place,'Place');const address=place.address?.postalAddress??place.address??place;typed(address,'PostalAddress');const country=foreignCountry(address.addressCountry??place.country??place.countryCode);workplaceFacts(place,country,at,allowed);workplaceFacts(address,country,at,allowed);for(const text of[place.name,address.name,address.addressLocality,address.addressRegion].filter(v=>v!=null))need(writtenPlaceCountries(text).every(c=>c===country),'native typed workplace country contradicts authored place');return{country,city:address.addressLocality??null}})
-   need(written.some(place=>workplaces.some(known=>place.country===known.country&&(!place.city||!known.address.addressLocality||norm(place.city).toLowerCase()===norm(known.address.addressLocality).toLowerCase()))),'native additional typed primary workplace contradicts current role')
+   need(written.some(place=>workplaces.some(known=>place.country===known.country&&(!place.city||!known.address?.addressLocality||norm(place.city).toLowerCase()===norm(known.address.addressLocality).toLowerCase()))),'native additional typed primary workplace contradicts current role')
   }
  }
  publication(model,at,countries,allowed)

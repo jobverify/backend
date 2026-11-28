@@ -986,6 +986,7 @@ test('runWorkdayScraper jobs-api mode does not require Puppeteer when the first 
 
 test('nonempty Workday payloads that produce no valid jobs are not marked authoritative empty', async () => {
   const originalFetch = global.fetch
+  let listingRequests = 0
 
   global.fetch = async (url, options = {}) => {
     if ((options.method || 'GET') === 'GET') {
@@ -1001,6 +1002,7 @@ test('nonempty Workday payloads that produce no valid jobs are not marked author
       }
     }
 
+    listingRequests += 1
     return {
       ok: true,
       status: 200,
@@ -1017,16 +1019,27 @@ test('nonempty Workday payloads that produce no valid jobs are not marked author
   }
 
   try {
-    const jobs = await runWorkdayScraper({
+    await assert.rejects(runWorkdayScraper({
       company: 'Contract Test',
       baseUrl: 'https://nonempty-contract-test.wd5.myworkdayjobs.com/en-US/external',
       locationCountry: 'india-id',
       source: 'nonempty-contract-test',
       scraperDir: path.join(testsDir, '../myworkday'),
+    }), error => {
+      assert.equal(error.name, 'WorkdayIncompleteListingError')
+      assert.equal(error.failureKind, 'parser_or_contract_error')
+      assert.equal(error.abortRetries, true)
+      assert.notEqual(error.softFailure, true)
+      assert.deepEqual(error.listingIdentity, {
+        reason: 'invalid-external-path',
+        board: 'https://nonempty-contract-test.wd5.myworkdayjobs.com/en-US/external',
+        rowIndex: 0,
+        externalPath: null,
+      })
+      assert.doesNotMatch(error.message, /Schema-drifted posting without an external path/)
+      return true
     })
-
-    assert.deepEqual(jobs, [])
-    assert.equal(readInventoryEvidence(jobs)?.status, 'complete-inventory')
+    assert.equal(listingRequests, 2, 'a persistent malformed identity allows one fresh listing pass')
   } finally {
     global.fetch = originalFetch
   }

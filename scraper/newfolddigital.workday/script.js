@@ -1,4 +1,5 @@
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -54,21 +55,14 @@ const sameUrl = (left, right) => normalizeComparableUrl(left) === normalizeCompa
 const isAcceptedWorkdayBoardUrl = (value) =>
   WORKDAY_BOARD_ACCEPTED_URLS.some((candidate) => sameUrl(value, candidate))
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 const defaultFetchJson = (url, body) => fetchJsonWithRetry(url, {
   method: 'POST',
@@ -254,8 +248,11 @@ export const createNewFoldDigitalScraper = ({
     fetchPage = defaultFetchPage,
     fetchJson = defaultFetchJson,
     now = defaultNow,
+    signal,
   } = {}) {
-    const workdayBoardPage = await fetchPage(WORKDAY_BOARD_URL)
+    signal?.throwIfAborted()
+    const workdayBoardPage = await (signal === undefined ? fetchPage(WORKDAY_BOARD_URL) : fetchPage(WORKDAY_BOARD_URL, { signal }))
+    signal?.throwIfAborted()
     assertWorkdayPageAvailable(workdayBoardPage, { source: SOURCE, url: WORKDAY_BOARD_URL })
     if (
       workdayBoardPage.status !== 200

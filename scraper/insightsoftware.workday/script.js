@@ -1,4 +1,5 @@
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { mapJobsWithInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
@@ -50,21 +51,14 @@ const stripTags = (value) => normalizeWhitespace(
     .replace(/<[^>]+>/g, ' '),
 )
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 export const buildScraperOptions = () => ({
   company: COMPANY,
@@ -248,12 +242,19 @@ export const createInsightsoftwareScraper = ({
   async run({
     fetchPage = defaultFetchPage,
     workdayRunner: workdayRunnerOverride = workdayRunner,
+    signal,
   } = {}) {
+    signal?.throwIfAborted()
+    const readPage = async url => {
+      try { return await (signal === undefined ? fetchPage(url) : fetchPage(url, { signal })) }
+      finally { signal?.throwIfAborted() }
+    }
     let careersPage = null
     try {
-      careersPage = await fetchPage(CAREERS_URL)
+      careersPage = await readPage(CAREERS_URL)
     } catch (error) {
-      if (!isTransientCareersAccessFailure(error)) {
+      signal?.throwIfAborted()
+      if (error?.accessChallenge || !isTransientCareersAccessFailure(error)) {
         throw error
       }
     }
@@ -271,7 +272,7 @@ export const createInsightsoftwareScraper = ({
       }
     }
 
-    const workdayBoardPage = await fetchPage(WORKDAY_BOARD_URL)
+    const workdayBoardPage = await readPage(WORKDAY_BOARD_URL)
     assertWorkdayPageAvailable(workdayBoardPage, { source: SOURCE, url: WORKDAY_BOARD_URL })
     if (
       workdayBoardPage?.status !== 200
@@ -281,7 +282,9 @@ export const createInsightsoftwareScraper = ({
       throw new Error('The verified insightsoftware public Workday board no longer matches the trusted jobs surface')
     }
 
-    const jobs = await workdayRunnerOverride(buildScraperOptions())
+    const jobs = await workdayRunnerOverride({
+      ...buildScraperOptions(), ...(signal === undefined ? {} : { signal }),
+    })
 
     return mapJobsWithInventoryEvidence(jobs, (job) => ({
       ...job,

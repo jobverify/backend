@@ -1,4 +1,5 @@
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { mapJobsWithInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
@@ -50,21 +51,14 @@ const sameUrlIgnoringSearch = (left, right) => {
   }
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 export const extractOfficialWorkdayBoardUrl = (html = '', baseUrl = OFFICIAL_CAREERS_PAGE_URL) => {
   for (const match of String(html ?? '').matchAll(/<a\b[^>]*href=(["'])(.*?)\1[^>]*>/gi)) {
@@ -107,8 +101,14 @@ export const createLatticeSemiconductorIndiaScraper = () => ({
   async run({
     fetchPage = defaultFetchPage,
     runWorkday = runWorkdayScraper,
+    signal,
   } = {}) {
-    const careersPage = await fetchPage(OFFICIAL_CAREERS_PAGE_URL)
+    signal?.throwIfAborted()
+    const readPage = async url => {
+      try { return await (signal === undefined ? fetchPage(url) : fetchPage(url, { signal })) }
+      finally { signal?.throwIfAborted() }
+    }
+    const careersPage = await readPage(OFFICIAL_CAREERS_PAGE_URL)
     if (careersPage.status !== 200 || !hasOfficialCareersPageSignal(careersPage.html)) {
       throw new Error('Lattice Semiconductor India verified first-party careers page no longer matches the trusted public surface')
     }
@@ -117,7 +117,7 @@ export const createLatticeSemiconductorIndiaScraper = () => ({
       throw new Error('Lattice Semiconductor India verified first-party careers page no longer exposes the pinned Workday handoff')
     }
 
-    const workdayBoard = await fetchPage(OFFICIAL_WORKDAY_BOARD_URL)
+    const workdayBoard = await readPage(OFFICIAL_WORKDAY_BOARD_URL)
     assertWorkdayPageAvailable(workdayBoard, { source: SOURCE, url: OFFICIAL_WORKDAY_BOARD_URL })
     if (workdayBoard.status !== 200 || !hasOfficialWorkdayBoardSignal(workdayBoard.html)) {
       throw new Error('Lattice Semiconductor India verified Workday board no longer matches the trusted public jobs surface')
@@ -129,6 +129,7 @@ export const createLatticeSemiconductorIndiaScraper = () => ({
       locationCountry: INDIA_COUNTRY_FACET_ID,
       source: SOURCE,
       scraperDir: currentDir,
+      ...(signal === undefined ? {} : { signal }),
     })
 
     return mapJobsWithInventoryEvidence(jobs, (job) => ({

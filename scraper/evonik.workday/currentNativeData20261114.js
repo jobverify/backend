@@ -9,6 +9,8 @@ import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvid
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const PROFILE=JSON.parse(readFileSync(new URL('./reviewedNativeData20261114.json',import.meta.url),'utf8'))
+const CORPORATE_PROFILES=[PROFILE,JSON.parse(readFileSync(new URL('./reviewedCorporateCarrier20261127.json',import.meta.url),'utf8'))]
+const CURRENT_BOOTSTRAP=JSON.parse(readFileSync(new URL('./reviewedNativeBootstrap20261127.json',import.meta.url),'utf8'))
 export const CAREERS=PROFILE.corporate.requestedUrl
 const SOURCE='evonik',ORIGIN='https://evonik.wd3.myworkdayjobs.com',SITE='/External_Careers',API=ORIGIN+'/wday/cxs/evonik'+SITE
 const USER_AGENT='Mozilla/5.0 (compatible; Jobverify careers inventory check)'
@@ -44,7 +46,7 @@ export function readEvonikJSON(text){
  walk(ast);return value
 }
 
-const display=(key,value)=>typeof value==='string'&&value.length<=100&&new RegExp(PROFILE.relativeDisplayGrammar[key]).test(value)
+const display=(key,value)=>typeof value==='string'&&value.length<=100&&(new RegExp(PROFILE.relativeDisplayGrammar[key]).test(value)||key==='timeLeftToApply'&&value==='1 day left to apply')
 function reviewedData(actual,expected,path='native'){
  if(Array.isArray(expected)){need(Array.isArray(actual)&&actual.length===expected.length,'Changed reviewed array '+path);expected.forEach((value,index)=>reviewedData(actual[index],value,path+'['+index+']'));return}
  if(object(expected)){
@@ -93,8 +95,9 @@ function document(html){
  need(!nodes.some(node=>node.tag==='base'||node.tag==='meta'&&(node.attrs['http-equiv']??'').toLowerCase()==='refresh'),'Original document base or refresh changed')
  return{doc,root,nodes}
 }
-function corporateCards(bytes){
- const envelope=PROFILE.corporateCardEnvelope,ordered=[],seen=new Set()
+function corporateCards(bytes,profile){
+ if(profile.mutableCardPresentation)return mutableCorporateCards(bytes,profile)
+ const envelope=profile.corporateCardEnvelope,ordered=[],seen=new Set()
  need(bytes.length===envelope.bytes,'Original corporate careers carrier length changed')
  let cursor=0
  for(let index=0;index<8;index++){
@@ -108,10 +111,61 @@ function corporateCards(bytes){
  need(seen.size===8&&part.length===outside.bytes&&sha(part)===outside.sha256,'Original corporate final bytes or complete card inventory changed')
  return ordered
 }
-export function readEvonikCorporate(page,seed=false){
- const expected=seed?PROFILE.seed:PROFILE.corporate
+function mutableCorporateCard(raw,profile){
+ const values={},slots=[
+  ['HREF',/(\bhref=")([^"]*)(")/g],
+  ['TITLE_ATTRIBUTE',/(\btitle=")([^"]*)(")/g],
+  ['TITLE_TEXT',/(<h3 class="tile-job__title text-16 font-medium line-clamp-3 hyphens-auto">)([^<]*)(<\/h3>)/g],
+  ['LOCATION_TEXT',/(<span class="block break-words line-clamp-2">)([^<]*)(<\/span>)/g],
+  ['DATE_TEXT',/(<span class="block break-words line-clamp-1">)([^<]*)(<\/span>)/g],
+ ]
+ let normalized=raw
+ for(const[key,expression]of slots){
+  let count=0
+  normalized=normalized.replace(expression,(_all,before,value,after)=>{count++;values[key]=value;return before+'{{EVONIK_'+key+'}}'+after})
+  need(count===1,'Current featured card literal data ownership changed '+key)
+ }
+ const presentation=profile.mutableCardPresentation
+ need(Buffer.byteLength(normalized)===presentation.bytes&&sha(normalized)===presentation.sha256,'Current complete featured card presentation changed')
+ need(/^\/en\/careers\/jobs\/job\.html\?jobId=R[1-9]\d{0,11}$/.test(values.HREF),'Current featured card literal role authority changed')
+ const {doc}=document(raw),anchors=doc.nodes(node=>node.tag==='a'),headings=doc.nodes(node=>node.tag==='h3'),locations=doc.nodes(node=>node.tag==='span'&&node.attrs.class==='block break-words line-clamp-2')
+ need(anchors.length===1&&headings.length===1&&locations.length===1,'Current featured card active data owners changed')
+ const attrs=anchors[0].attrs,expected=profile.corporateCardEnvelope.cards[0].attrs
+ need(keys(attrs,Object.keys(expected))&&Object.entries(expected).every(([key,value])=>['href','title'].includes(key)||attrs[key]===value)&&attrs.href===values.HREF,'Current featured card full attributes changed')
+ const literal=(value,ceiling)=>typeof value==='string'&&value.length>0&&value.length<=ceiling&&!/[\u0000-\u001f\u007f]/.test(value)
+ const title=doc.text(headings[0]),locationText=doc.text(locations[0])
+ need(literal(title,500)&&literal(locationText,500)&&attrs.title===title,'Current featured title or location data is ambiguous')
+ need(/^\d{2}\/\d{2}\/\d{4}$/.test(values.DATE_TEXT),'Current featured calendar display changed')
+ const [month,day,year]=values.DATE_TEXT.split('/'),postedDate=calendar(year+'-'+month+'-'+day,'featured posting')
+ const bytes=Buffer.from(raw),url=new URL(values.HREF,CAREERS).href,id=new URL(url).searchParams.get('jobId')
+ return{id,url,attrs,title,locationText,dateText:values.DATE_TEXT,postedDate,text:doc.text(anchors[0]),bytes:bytes.length,sha256:sha(bytes),bodyBase64:bytes.toString('base64')}
+}
+function mutableCorporateCards(bytes,profile){
+ const text=bytes.toString('utf8'),matches=[...text.matchAll(/<a\b[^>]*\bclass="tile-job(?:\s[^"]*)?"[^>]*>[\s\S]*?<\/a>/g)],ordered=[],envelope=profile.corporateCardEnvelope
+ need(matches.length===8,'Current complete featured card inventory changed')
+ let cursor=0
+ for(const[index,match]of matches.entries()){
+  const outside=Buffer.from(text.slice(cursor,match.index)),expected=envelope.outerRuns[index]
+  need(outside.length===expected.bytes&&sha(outside)===expected.sha256,'Current full corporate bytes outside featured data changed')
+  ordered.push(mutableCorporateCard(match[0],profile));cursor=match.index+match[0].length
+ }
+ const outside=Buffer.from(text.slice(cursor)),expected=envelope.outerRuns[8]
+ need(outside.length===expected.bytes&&sha(outside)===expected.sha256,'Current final corporate programme or authority changed')
+ need(new Set(ordered.map(card=>card.id)).size===8,'Duplicate current featured requisition')
+ const seed=ordered.find(card=>card.url===profile.seed.requestedUrl),model=profile.seed.model,address=model.jobLocation[0].address
+ need(seed&&seed.title===model.title&&seed.locationText===address.addressCountry+' | '+address.addressLocality&&seed.postedDate===model.datePosted,'Current declared seed data contradicts its exact employer/identity profile')
+ return ordered
+}
+export function readEvonikCorporate(page,seed=false,seedURL=PROFILE.seed.requestedUrl){
  need(Buffer.isBuffer(page.bytes)&&typeof page.text==='string'&&Buffer.from(page.text).equals(page.bytes),'Original corporate text/byte representation changed')
- const ordered=seed?null:corporateCards(page.bytes)
+ // The current full prefix selects a programme revision, not job data. Every
+ // outside byte and full card presentation remains pinned independently.
+ const mutable=CORPORATE_PROFILES.find(profile=>profile.mutableCardPresentation),prefix=mutable?.corporateCardEnvelope.outerRuns[0]
+ const current=!seed&&prefix&&page.bytes.length>=prefix.bytes&&sha(page.bytes.subarray(0,prefix.bytes))===prefix.sha256
+ const revisions=current?[mutable]:CORPORATE_PROFILES.filter(profile=>seed?profile.seed.requestedUrl===seedURL:!profile.mutableCardPresentation&&profile.corporateCardEnvelope.bytes===page.bytes.length)
+ need(revisions.length===1,seed?'Unreviewed corporate seed URL':'Original corporate careers carrier length changed')
+ const profile=revisions[0],expected=seed?profile.seed:profile.corporate
+ const ordered=seed?null:corporateCards(page.bytes,profile)
  if(seed)need(page.bytes.length===expected.bytes&&sha(page.bytes)===expected.sha256,'Original corporate seed carrier changed')
  const {doc,root}=document(page.text)
  if(!seed){
@@ -121,19 +175,27 @@ export function readEvonikCorporate(page,seed=false){
   walk(root)
   const active=doc.nodes(isCard)
   need(owners.length===8&&active.length===8,'Original active corporate card owner inventory changed')
-  owners.forEach((owner,index)=>need(owner.node===active[index]&&owner.node.inert===false&&owner.node.activeFrame===false&&same(owner.node.attrs,ordered[index].attrs)&&same(owner.ancestors,PROFILE.corporateCardEnvelope.ownerSlots[index]),'Original complete corporate card owner or ancestry changed'))
+  owners.forEach((owner,index)=>need(owner.node===active[index]&&owner.node.inert===false&&owner.node.activeFrame===false&&same(owner.node.attrs,ordered[index].attrs)&&same(owner.ancestors,profile.corporateCardEnvelope.ownerSlots[index]),'Original complete corporate card owner or ancestry changed'))
   const links=doc.nodes(node=>node.tag==='a'&&typeof node.attrs.href==='string').map(node=>({url:new URL(node.attrs.href,CAREERS).href,text:doc.text(node),attrs:node.attrs}))
   need(links.some(link=>link.url==='https://www.evonik.com/en/careers/jobs.html'),'Current corporate careers handoff absent')
   const roles=links.filter(link=>/^https:\/\/www\.evonik\.com\/en\/careers\/jobs\/job\.html\?jobId=R\d+$/.test(link.url))
-  need(roles.length===8&&roles.every((role,index)=>role.url===new URL(ordered[index].attrs.href,CAREERS).href&&same(role,PROFILE.corporateRoleDeclarations.find(original=>original.url===role.url)))&&roles.some(link=>link.url===PROFILE.seed.requestedUrl),'Current literal corporate role declarations changed')
+  need(roles.length===8&&roles.every((role,index)=>role.url===new URL(ordered[index].attrs.href,CAREERS).href&&(profile.mutableCardPresentation?same(role.attrs,ordered[index].attrs)&&role.text===ordered[index].text:same(role,profile.corporateRoleDeclarations.find(original=>original.url===role.url))))&&roles.some(link=>link.url===profile.seed.requestedUrl),'Current literal corporate role declarations changed')
+  if(profile.mutableCardPresentation){
+   const binding=ordered.find(card=>card.url===profile.seed.requestedUrl)
+   // Featured tiles are partial native records. Membership/data may change
+   // while the exact programme and currently declared seed binding stay fixed.
+   // Retain every original card; these labels never establish India/company
+   // scope or substitute for the exact CXS/public criteria and closing reads.
+   return{handshake:{careersURL:'https://www.evonik.com/en/careers/jobs.html',seedURL:profile.seed.requestedUrl,outsideRunsSHA256:profile.mutableCardPresentation.outsideRunsSHA256,cardPresentationSHA256:profile.mutableCardPresentation.sha256,seedDeclaration:{url:binding.url,attrs:binding.attrs,title:binding.title,locationText:binding.locationText,postedDate:binding.postedDate}},observation:{bytes:page.bytes.length,sha256:sha(page.bytes),orderedCardIds:ordered.map(card=>card.id),roleDeclarations:roles,rawCardRecords:ordered,companyScopeComplete:false,indiaScopeComplete:false}}
+  }
   // Only this exact eight-card corporate tile multiset is unordered. Preserve
   // the actual raw order/hash; native listings and role closures stay exact.
-  return{handshake:{careersURL:'https://www.evonik.com/en/careers/jobs.html',seedURL:PROFILE.seed.requestedUrl,cards:PROFILE.corporateCardEnvelope.cards.map(({id,bytes,sha256})=>({id,bytes,sha256})),roleDeclarations:PROFILE.corporateRoleDeclarations},observation:{bytes:page.bytes.length,sha256:sha(page.bytes),orderedCardIds:ordered.map(card=>card.id),roleDeclarations:roles}}
+  return{handshake:{careersURL:'https://www.evonik.com/en/careers/jobs.html',seedURL:profile.seed.requestedUrl,cards:profile.corporateCardEnvelope.cards.map(({id,bytes,sha256})=>({id,bytes,sha256})),roleDeclarations:profile.corporateRoleDeclarations},observation:{bytes:page.bytes.length,sha256:sha(page.bytes),orderedCardIds:ordered.map(card=>card.id),roleDeclarations:roles}}
  }
  const models=doc.nodes(node=>node.tag==='script'&&node.attrs.type==='application/ld+json').map(node=>readEvonikJSON(node.raw)),canonical=doc.nodes(node=>node.tag==='link'&&node.attrs.rel==='canonical')
- need(models.length===1&&same(models[0],PROFILE.seed.model)&&canonical.length===1&&canonical[0].attrs.href===PROFILE.seed.requestedUrl,'Corporate seed original employer/identity data changed')
- const model=models[0]
- need(model.identifier.value==='R47504'&&model.hiringOrganization.name==='Evonik'&&model.hiringOrganization.sameAs==='https://www.evonik.com'&&model.sameAs.startsWith(ORIGIN+SITE+'/job/')&&/_R47504(?:-\d+)?\/apply$/.test(model.sameAs),'Corporate own-account binding changed')
+ need(models.length===1&&same(models[0],profile.seed.model)&&canonical.length===1&&canonical[0].attrs.href===profile.seed.requestedUrl,'Corporate seed original employer/identity data changed')
+ const model=models[0],id=new URL(profile.seed.requestedUrl).searchParams.get('jobId')
+ need(/^R\d+$/.test(id??'')&&model.identifier.value===id&&model.hiringOrganization.name==='Evonik'&&model.hiringOrganization.sameAs==='https://www.evonik.com'&&model.sameAs.startsWith(ORIGIN+SITE+'/job/')&&new RegExp('_'+id+'(?:-\\d+)?/apply$').test(model.sameAs),'Corporate own-account binding changed')
  need(doc.nodes(node=>node.tag==='a'&&node.attrs.href===model.sameAs).length>0&&doc.nodes(node=>node.tag==='a'&&node.attrs.href===ORIGIN+'/en-US'+SITE).length>0,'Literal own native account declarations absent')
  return model
 }
@@ -171,7 +233,17 @@ function staticBoot(raw,profile){
  need(first?.type==='AssignmentExpression'&&first.operator==='='&&member(first.left)&&first.right?.type==='LogicalExpression'&&first.right.operator==='||'&&member(first.right.left)&&first.right.right?.type==='ObjectExpression','Initial literal own-account declaration changed')
  const object=first.right.right,properties=object.properties,names=properties.map(property=>property.key?.name??property.key?.value)
  need(properties.every(property=>property.type==='Property'&&!property.computed&&!property.method&&property.kind==='init')&&same(names,profile.staticBootPropertyNames)&&new Set(names).size===names.length,'Unknown or duplicate original boot data property')
- need(same(bootShape(object),profile.staticBootDataShape),'Original boot data shape changed')
+ const shape=bootShape(object)
+ if(!same(shape,profile.staticBootDataShape)){
+  need(same(shape,CURRENT_BOOTSTRAP.staticBootDataShape),'Original boot data shape changed')
+  const token=properties.find(property=>(property.key.name??property.key.value)==='token')?.value
+  need(token?.type==='Literal'&&typeof token.value==='string','Current public token is not one literal')
+  // This finite revision added three opaque feature IDs. Pin the complete
+  // programme on both sides of the public token; do not admit arbitrary
+  // feature lists by their length or pretend their UI meaning is qualified.
+  const before=Buffer.from(raw.slice(0,token.start)),after=Buffer.from(raw.slice(token.end))
+  need(before.length===CURRENT_BOOTSTRAP.rawBeforeToken.bytes&&sha(before)===CURRENT_BOOTSTRAP.rawBeforeToken.sha256&&after.length===CURRENT_BOOTSTRAP.rawAfterToken.bytes&&sha(after)===CURRENT_BOOTSTRAP.rawAfterToken.sha256,'Unreviewed current bootstrap programme outside public token')
+ }
  const scalar=name=>{const value=properties.find(property=>(property.key.name??property.key.value)===name)?.value;need(value?.type==='Literal','Nonliteral static authority '+name);return value.value}
  need(scalar('tenant')==='evonik'&&scalar('siteId')==='External_Careers'&&scalar('isExternal')===true&&scalar('postingAvailable')===true,'Static native account/availability contradiction')
  // This is a static data contradiction check, never whole-program authority.
@@ -203,7 +275,7 @@ export function createEvonikOriginalReader(options={}){
  need(aliases.every(value=>Number.isSafeInteger(value)&&value>0&&value<=DEFAULTS.sourceTimeoutMs),'Invalid source deadline ceiling')
  const limits=Object.fromEntries(Object.entries(DEFAULTS).map(([name,maximum])=>{const value=name==='sourceTimeoutMs'?Math.min(maximum,...aliases):options[name]??maximum;need(Number.isSafeInteger(value)&&value>0&&value<=maximum,'Invalid '+name+' ceiling');return[name,value]}))
  const controller=new AbortController(),signal=caller?AbortSignal.any([caller,controller.signal]):controller.signal,started=performance.now(),receipts=[],lastStarts=new Map()
- const allowed=new Set([CAREERS,PROFILE.seed.requestedUrl,API+'/jobs',...PROFILE.roles.map(role=>API+role.APIRecord.jobPostingInfo.externalUrl.slice((ORIGIN+SITE).length))])
+ const allowed=new Set([CAREERS,...CORPORATE_PROFILES.map(profile=>profile.seed.requestedUrl),API+'/jobs',...PROFILE.roles.map(role=>API+role.APIRecord.jobPostingInfo.externalUrl.slice((ORIGIN+SITE).length))])
  let decodedBytes=0,currentPhase='opening',reservedReads=CLOSING_READS,reservedBytes=CLOSING_BYTES,inFlight=false,closed=false
  const expire=()=>controller.abort(new DOMException('Evonik native90s source deadline exceeded','TimeoutError'))
  const timer=setTimeout(expire,limits.sourceTimeoutMs)
@@ -274,7 +346,7 @@ export async function runCurrentEvonikData(options={}){
  try{
   const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString()
   need(typeof now==='string'&&Number.isFinite(Date.parse(now)),'Invalid native source clock')
-  const home=readEvonikCorporate(await reader.read(CAREERS)),seed=readEvonikCorporate(await reader.read(PROFILE.seed.requestedUrl),true)
+  const home=readEvonikCorporate(await reader.read(CAREERS)),seedURL=home.handshake.seedURL,seed=readEvonikCorporate(await reader.read(seedURL),true,seedURL)
   const global=readEvonikListing((await reader.read(API+'/jobs',post(false))).text),india=readEvonikListing((await reader.read(API+'/jobs',post(true))).text,true)
   need(same(indiaFacet(global),indiaFacet(india)),'Global/India selected facet contradiction')
   for(const row of india.jobPostings.slice(0,10)){
@@ -290,7 +362,7 @@ export async function runCurrentEvonikData(options={}){
    need(same(observed.nativeOpening,native.data)&&same(observed.landingOpening.model,landing.model),'Complete original native/public role closing changed '+observed.id)
    Object.assign(observed,{nativeClosing:native.data,landingClosing:landing})
   }
-  const lastSeed=readEvonikCorporate(await reader.read(PROFILE.seed.requestedUrl),true),lastHome=readEvonikCorporate(await reader.read(CAREERS))
+  const lastSeed=readEvonikCorporate(await reader.read(seedURL),true,seedURL),lastHome=readEvonikCorporate(await reader.read(CAREERS))
   need(same(seed,lastSeed)&&same(home.handshake,lastHome.handshake),'Current corporate/seed handoff closing changed')
   const stats=reader.stats();need(stats.requests===48&&stats.reservedClosingReads===0&&stats.reservedClosingBytes===0,'Required original closing observations incomplete')
   const jobs=observations.map(observed=>{

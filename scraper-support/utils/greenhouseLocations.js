@@ -4,6 +4,8 @@ export const NATIVE_INDIA_LOCATION = /\bindia\b|\bbengaluru\b|\bbangalore\b|\bhy
 const WORK_MODE = /^(?:hybrid|in[- ]office|on[- ]site)(?:\s*[;,]\s*(?:hybrid|in[- ]office|on[- ]site))*$/i
 const LOCATION_FIELD = /^(?:(?:job(?: posting)?|office)\s+)?(?:locations?|countries|country|offices?)(?:\s*\(for website only\))?$/i
 const COUNTRY_FIELD = /^(?:(?:job(?: posting)?|office)\s+)?(?:countries|country)(?:\s*\(for website only\))?$/i
+const isLocationCategory = entry => entry?.name === 'Location Category' && entry.value_type === 'single_select'
+const isLocationField = entry => LOCATION_FIELD.test(entry?.name || '') || isLocationCategory(entry)
 const fail = () => { throw new Error('Invalid Greenhouse inventory: malformed native locations') }
 
 export const greenhouseCountryLabels = record => (Array.isArray(record?.metadata) ? record.metadata : [])
@@ -21,7 +23,7 @@ export const hasUnhandledGreenhouseGeography = record =>
   || unknownGeographicField(record?.location, ['name'])
   || (Array.isArray(record?.offices) && record.offices.some(office => unknownGeographicField(office, ['name', 'location'])))
   || (Array.isArray(record?.metadata) ? record.metadata : []).some(entry => GEO_FIELD.test(entry?.name || '')
-    && !LOCATION_FIELD.test(entry.name)
+    && !isLocationField(entry)
     && hasValue(entry.value))
 
 export const hasNativeIndiaLocation = label => typeof label === 'string'
@@ -63,7 +65,8 @@ export const greenhouseLocationLabels = (record = {}) => {
   const labels = []
   if (record.metadata != null && !Array.isArray(record.metadata)) fail()
   for (const entry of record.metadata || []) {
-    if (!LOCATION_FIELD.test(entry?.name || '')) continue
+    if (!isLocationField(entry)) continue
+    if (isLocationCategory(entry) && entry.value != null && typeof entry.value !== 'string') fail()
     const values = Array.isArray(entry.value) ? entry.value : entry.value == null ? [] : [entry.value]
     for (const value of values) {
       if (typeof value !== 'string') fail()

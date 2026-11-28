@@ -1,0 +1,58 @@
+{
+  "reviewedEmployerUrl": "https://www.keboola.com/about/jobs",
+  "evidenceSha256": "f037e5a467f89ac526be4953e275e5980c8a355248a47f5e9b04dcc9b2c16592",
+  "scope": "Observed own recruiting/self-fragment aliases, one newsletter form and inspected embeds; unrelated marketing navigation is not a completeness gate.",
+  "ownRecruitmentAliases": [
+    {
+      "url": "https://www.keboola.com/about/jobs#main-content",
+      "recruitingLabels": []
+    },
+    {
+      "url": "https://www.keboola.com/about/jobs",
+      "recruitingLabels": [
+        "Jobs"
+      ]
+    },
+    {
+      "url": "https://www.keboola.com/about/jobs#",
+      "recruitingLabels": []
+    }
+  ],
+  "forms": [
+    {
+      "attrs": {},
+      "text": "Subscribe #noSpamWePromise",
+      "controls": [
+        {
+          "tag": "input",
+          "attrs": {
+            "type": "email",
+            "placeholder": "Your email",
+            "required": "",
+            "aria-label": "Email address for newsletter",
+            "class": "flex-1 min-w-0 !bg-white/10 !border-white/20 !text-white !placeholder-gray-500 text-sm !rounded-lg !px-4 !py-2.5",
+            "name": "email",
+            "value": ""
+          }
+        },
+        {
+          "tag": "button",
+          "attrs": {
+            "type": "submit",
+            "class": "px-4 py-2.5 bg-brand-blue text-white text-sm font-semibold rounded-lg hover:bg-brand-blue-dark transition-colors shrink-0 cursor-pointer disabled:opacity-50"
+          }
+        }
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "title": "Map of the Keboola office at Dělnická 191/27, Prague 7",
+      "src": "https://maps.google.com/maps?q=50.1033253,14.4482083&z=16&output=embed",
+      "loading": "lazy",
+      "referrerpolicy": "no-referrer-when-downgrade",
+      "class": "absolute inset-0 h-full w-full border-0"
+    }
+  ],
+  "scriptedNavigation": []
+}

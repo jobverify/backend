@@ -219,6 +219,18 @@ export const createBritanniaScraper = ({
         origin: ORIGIN, apiBaseUrl: API_BASE_URL, boardUrl: BOARD_URL, payload: listingsPayload, jobs,
         fetchJson, headers: buildAuthenticatedHeaders(tokenPayload.access_token), listingUrl: FILTERED_JOBS_URL,
         listingRequest, maxJobs: cap, signal, now, retainNativeProof: true,
+        // The current native detail for this organization uses the full legal
+        // name on some roles. Accept only that captured alias with the same
+        // role/application IDs and the native employer's official URL/subdomain.
+        // The shared hydrator keeps its exact listing-employer, country,
+        // publication, criteria and closing checks and retains both raw names.
+        validateNativeEmployerAlias: (detail, listing) => Boolean(currentClient)
+          && listing.OrgDetails?.OrgID === ORG_ID && listing.OrgDetails?.OrgName === 'Britannia Industries'
+          && detail.OrgDetails?.OrgID === ORG_ID && detail.OrgDetails?.OrgName === 'Britannia Industries Limited'
+          && detail.OrgDetails?.OrgURL === 'https://www.britannia.co.in/'
+          && detail.OrgDetails?.CareerPageSubdomain === 'britannia'
+          && detail.JobId === listing.JobId && detail.JobIdObfuscated === listing.JobIdObfuscated
+          && detail.JobCode === listing.JobCode && detail.JobTitle === listing.JobTitle,
         mapNativeFields: detail => ({ employmentType: normalizeWhitespace(detail.JobTypeV2),
           experienceRequired: formatExperience(detail.Experience),
           requiredSkills: Array.isArray(detail.Skills) ? detail.Skills.filter(value => typeof value === 'string').map(normalizeWhitespace).filter(Boolean) : [] }),

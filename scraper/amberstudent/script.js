@@ -65,8 +65,8 @@ function nativeInventory(payload,observedAt){
   if (!Array.isArray(payload)) throw new Error('Amber invalid Keka inventory: expected a complete jobs array')
   const jobs=[],seen=new Set(),unknownCountryIds=[],countryConflictIds=[]
   for (const row of payload) {
-    const id = clean(row?.id), title = clean(row?.title), description = extractActiveDescription(row?.description)
-    if (!/^\d+$/.test(id) || !title || !description || !Array.isArray(row.jobLocations)) throw new Error('Amber incomplete Keka inventory: invalid job')
+    const id = clean(row?.id), title = clean(row?.title)
+    if (!/^\d+$/.test(id) || !title || !Array.isArray(row.jobLocations)) throw new Error('Amber incomplete Keka inventory: invalid job')
     if (seen.has(id)) throw new Error('Amber incomplete Keka inventory: duplicate job ID')
     seen.add(id)
     if (!row.jobLocations.length || row.jobLocations.some(place=>{
@@ -77,6 +77,10 @@ function nativeInventory(payload,observedAt){
       const code=nativeCountryName(place.countryCode),name=nativeCountryName(place.countryName)
       return code&&name&&code!==name
     })){countryConflictIds.push(id);continue}
+    // Keep country-unproved observations in the complete raw audit. Only
+    // country-qualified models proceed to full criteria and the India filter.
+    const description = extractActiveDescription(row?.description)
+    if (!description) throw new Error('Amber incomplete Keka inventory: invalid job')
     const locations=row.jobLocations.filter(place=>(nativeCountryName(place.countryCode)||nativeCountryName(place.countryName))==='India')
     if (!locations.length) continue
     const doc=readNativeDocument(row.description)

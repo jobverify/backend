@@ -1,5 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {readCurrentStructuredPage, structuredCriteriaState, enrichCurrentStructuredJobs} from './currentStructured20261128.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -201,8 +203,9 @@ export const normalizeRole = (role = {}, { now = () => new Date().toISOString() 
   }
 }
 
-const defaultFetchPage = async (url) => {
+const defaultFetchPage = async (url, {signal} = {}) => {
   const response = await fetch(url, {
+    signal,
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -218,23 +221,49 @@ const defaultFetchPage = async (url) => {
 }
 
 export const createAaravSolutionsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
+  async run({ fetchPage = defaultFetchPage, signal } = {}) {
+    signal?.throwIfAborted()
+    const homepage = await fetchPage(HOMEPAGE_URL, {signal})
+    signal?.throwIfAborted()
+    if (homepage.status !== 200 || homepage.url !== HOMEPAGE_URL || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('Aarav Solutions verified official homepage no longer matches the trusted first-party surface')
     }
 
-    const careersPage = await fetchPage(CAREERS_URL)
+    const careersPage = await fetchPage(CAREERS_URL, {signal})
+    signal?.throwIfAborted()
     if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
       throw new Error('Aarav Solutions verified careers page no longer matches the trusted first-party public job surface')
     }
 
     if (hasStructuredCareersSignal(careersPage.html)) {
+      const opening = readCurrentStructuredPage(careersPage)
       const jobs = extractStructuredIndiaRoles(careersPage.html, now)
       if (jobs.length === 0) {
         throw new Error('Aarav Solutions structured careers page has no verified India roles')
       }
-      return jobs
+      const closingHomepage = await fetchPage(HOMEPAGE_URL, {signal})
+      signal?.throwIfAborted()
+      if (closingHomepage.status !== 200 || closingHomepage.url !== HOMEPAGE_URL || !hasOfficialHomepageSignal(closingHomepage.html)) {
+        throw new Error('Aarav Solutions closing homepage identity changed')
+      }
+      const closingPage = await fetchPage(CAREERS_URL, {signal})
+      signal?.throwIfAborted()
+      const closing = readCurrentStructuredPage(closingPage)
+      if (structuredCriteriaState(opening) !== structuredCriteriaState(closing)) {
+        throw new Error('Aarav current structured closing native criteria changed')
+      }
+      const result = enrichCurrentStructuredJobs(jobs, closing)
+      Object.defineProperty(result, 'nativeCollectionEvidence', {configurable: true, value: {
+        source: SOURCE, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+        openingNativeRecords: opening.records, closingNativeRecords: closing.records,
+        openingPageSHA256: opening.pageSHA256, closingPageSHA256: closing.pageSHA256,
+        nativeListingRecords: closing.records.length,
+        renderedCriteriaQualified: false, applicationQualified: false,
+      }})
+      return attachInventoryEvidence(result, {status: 'coverage-gap', surface: CAREERS_URL,
+        firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false,
+        pagesFetched: 4, reportedTotal: null, indiaFacetCount: null, verifiedAt: now(),
+        reason: 'current-paired-structured-native-criteria;rendering-application-and-company-scope-unqualified'})
     }
 
     if (!hasVerifiedHubSpotApplyForm(careersPage.html)) {
@@ -254,7 +283,7 @@ export const createAaravSolutionsScraper = ({ now = () => new Date().toISOString
   },
 })
 
-export const run = async (options = {}) => createAaravSolutionsScraper(options).run()
+export const run = async (options = {}) => createAaravSolutionsScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

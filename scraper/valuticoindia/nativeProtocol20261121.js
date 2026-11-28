@@ -21,6 +21,33 @@ function reviewedModuleExecutionModel(fn,criticalScopes,seen){
 }
 const REVIEWED_BODY_AST={"requireRuntime":"6666ff2320da1f4ce3d031c60c31b8f4f5e8bc2440a5eb590f139ebc0837bf51","runtimeEntry":"ddb4bd0f0ec1112e4b691e31bbd52aa05744a73db02f418b11608bbaa7b5e5d4","main":"f87f200ebd868d1a6c6c9627472aa558f065e0764307b292943e407a755d2e97","startup":"d250606898e466bbe1f4e09c6672ef9c4d7e9752cd138f0a6e2375268592815a","provider":"bb9b16d7142bca39b561ac02e2a86f16ac81e328abf01dcbafd61b658b32f8ea","composition":"178674cda7935a9409dab2fab15d0e8fff15f27d34a5adcfce5faca7ad87cb7a","accountInitializer":"84d61b091c48434d0874491f94b8238e6570dd5049045015c934859d683855c3","accountProvider":"539898096e6dcbf38fa12af8306e20b1bf3436f0ffcaeb8614d27509e46f743a","roleLoader":"871653acbf7439eac3cd46227fb6a750abca49ddd52f3b68577168efb86a2fb3","serviceAdapter":"6c6c4791ae6e68d27209c208eeaf8deb009683ce62615c6f2fa304ba9b1aea6c","accountGetters":"bbe4489016f2014f7b2befc91e082ef344eb8e69c4570ab02d90fafdad75751b","careersSelector":"96ee887f9cad577c0a044ca49e6693603631275a32ca0a8e3a4f8bf1cfaaefa7","getFactory":"d2c9bc0431c59de4bcc79f11b3293e866433e665e04a243fc534b8d425c0beff","transportFactory":"95d741f3738e5252e2be96648ef3b7e1b1deef13f4e904fdcfe10a083653ffef","conditionalAuth":"712d6fb0875d380a588b0d785cfb0a2a4b1221f451a48ced6f4afcb06ccc78bd","configurationLoader":"48a3c7a12eeed8f1269e177ed65202cb82e85bbad0677a0911f41f134bea89e5"}
 const REVIEWED_MODULE_EXECUTION_AST={"5636":"3d6217c0efadb7e43f475ee2a42ec9d2e21842d9d54514ff98ea1a2a93c36b6b","6749":"60900bb582ffe38a134f75940f114c689ff80c00caa301a8fa4709e78452ffc8","11587":"bff0a1176939889f60175f78fad9b829c2bd0ab00ebb54b0c3ca310aa1438844","22663":"32b7c959e657b587197fe0c29d5f4b6e6ad5061b2967e98aa5b16c56d5fba9d2","26946":"0a02b546f9244c29135ce9241201065ef4c842bfcf6947ce0c2721b63b0d7284","27431":"e379f17a944dca5350cf1f987067870e1206ce9fcfba05ab599c7fb0fa1bf958","67728":"6b28a17167ca46a8df24503860bc647aff29425456c95861b690b11ac4ee4133","73846":"d98ad1e002635f5470a9b1a96af530f17abd1b7ac765482b4de13c0230a7144f","82468":"7b8eae12f9e53fe2f5f9955103fdeaafae2b79fe73c716bcf9e6ce18c3cfeeca","82762":"3d88f515504749e4f865f8b197cda15c54fb9c82bc5bc25c6a453cad4267a6bf","84784":"18bb76e38ced46598cfecec02bdd2a09db9fd668719de3f7a79f46d0fd056c4f","85259":"8e33b85ae44a264a4f673311d66461886018f663ef4529afc43d490ac173ec20","96819":"b20cb6b5daa00aacd3401132bb44cbb7235ddce45e290c4d38c85eb8689d464b"}
+// A second finite public-data profile is witnessed by the genuine registered
+// current-client-20261128 fixture. The active Promise helper is tv, the same
+// careers transport is exported as k, and the same role route is exported as y.
+// Startup still awaits configuration/provider initialization; account/full and
+// job GET factories, account/shortcode consumers and conditional internal auth
+// remain separately checked below. Provider/account helpers were minified again.
+// The new main also names different lazy rendering/application chunks. Those
+// chunks are not executed or qualified by this GET/data contract. Keep their
+// entire declaring module model, every critical body and all ownership checks:
+// an unreviewed change cannot donate dormant original endpoints or reassign a
+// checked consumer. The historical profile is retained without modification.
+const CURRENT_BODY_AST={...REVIEWED_BODY_AST,
+ runtimeEntry:'8bdd1e0cebab996d995f52b7f1a66838dd29009da4a3238cc681f3fe20846292',
+ main:'838ed0cb070e031d5bfffc215bde00f11a5f84f32b8e52365b4fca06bdd2988c',
+ startup:'ef6f3510a3569403df600e73aa920983791b205a1616e3a78a37671daefd8bd8',
+ provider:'e00bc455ca6be34d112e409f26ecc446ddb3fb8d745475973f22755a15510f90',
+ composition:'1081d370defa24a820dec22b8f6f1c9bc1a03d8137e97ecc5d7b890284c82d13',
+ roleLoader:'4218f5f308c01b66aa661945aadeacf8a4c3763bc1fb1d55e6b63c093d470124',
+ transportFactory:'e674f62b40d5520af712e50a166f301fea3775789cb8be981a3836267b187b4f',
+}
+const CURRENT_MODULE_EXECUTION_AST={...REVIEWED_MODULE_EXECUTION_AST,
+ 26946:'2f67a609e8177fcdf2834d032a78ca104ce649526ed4e63070173a2c8e9dd43c',
+ 67728:'251e6e0a46ced03ddbf26f60af58cf5994a0f3639fde3eeada0d1e8eb24633aa',
+ 84784:'745d9911651fa1f4f833e1fe9e7a30fd0f247bc05857e569fb1fade71b318b12',
+ 85259:'3dd2baf9074de8b5d66dca8f64d1ccd57743a0ece6cc6be511bb9111c781b420',
+ 96819:'499af3c46275753a251194118263548dd6df8a3ca42dd4c9b777fb4ba7f8ec23',
+}
 // This source-owned profile reviews the consumed current public programme.
 // It never executes publisher code or pins an entire JS release/body hash.
 export function readProtocol(source){
@@ -61,8 +88,11 @@ export function readProtocol(source){
  const promise=returned(runner)
  need(promise.type==='NewExpression'&&promise.callee.name==='Promise'&&promise.arguments.length===1&&promise.arguments[0].type==='FunctionExpression','Native startup Promise not constructed')
  const executor=promise.arguments[0],executorBindings=bindings(executor),runNext=executor.body.body.at(-1)?.expression
- need(code(executorBindings.get('i'))==='e.apply(t,r)'&&code(executorBindings.get('a'))==='function a(e){ty(i,n,o,a,s,"next",e)}'&&code(executorBindings.get('s'))==='function s(e){ty(i,n,o,a,s,"throw",e)}'&&code(runNext)==='a(void 0)','Native generator is not advanced by the active Promise')
- const asyncStep=entry.get('ty')
+ const advanceName=executorBindings.get('a')?.body?.body[0]?.expression?.callee?.name
+ need(advanceName==='ty'||advanceName==='tv','Unreviewed native Promise step binding')
+ const currentProfile=advanceName==='tv',bodyProfile=currentProfile?CURRENT_BODY_AST:REVIEWED_BODY_AST,moduleProfile=currentProfile?CURRENT_MODULE_EXECUTION_AST:REVIEWED_MODULE_EXECUTION_AST
+ need(code(executorBindings.get('i'))==='e.apply(t,r)'&&code(executorBindings.get('a'))===`function a(e){${advanceName}(i,n,o,a,s,"next",e)}`&&code(executorBindings.get('s'))===`function s(e){${advanceName}(i,n,o,a,s,"throw",e)}`&&code(runNext)==='a(void 0)','Native generator is not advanced by the active Promise')
+ const asyncStep=entry.get(advanceName)
  need(asyncStep?.type==='FunctionDeclaration'&&asyncStep.body.body.length===2&&code(asyncStep).includes('var s=e[i](a),l=s.value')&&code(asyncStep).endsWith('s.done?t(l):Promise.resolve(l).then(n,o)}'),'Native async step execution changed')
  const generatorCall=returned(assignment.right)
  need(generatorCall.type==='CallExpression'&&generatorCall.callee.type==='FunctionExpression'&&generatorCall.arguments.length===2&&generatorCall.arguments[0].type==='ThisExpression'&&generatorCall.arguments[1].type==='FunctionExpression','Native active generator callback changed')
@@ -87,7 +117,8 @@ export function readProtocol(source){
  need(element(returned(initializer.get('u')),'l.A.Provider')&&code(initializer.get('c')).includes('(0,s.ct)(window.location.pathname)')&&code(initializer.get('c')).includes('a.meta.subdomain'),'Native account route/context initializer changed')
  req(73846,'a',22663);req(73846,'s',11587);req(11587,'n',84784)
  const route=bindings(mod(84784))
- need(route.get('i')?.value==='/:account'&&route.get('a')?.value==='/:account/j/:job'&&exports(84784).get('cs')?.name==='v'&&code(route.get('v'))==='[a,"/"].join("")','Native consumed role route changed')
+ const roleRouteName=currentProfile?'y':'v'
+ need(route.get('i')?.value==='/:account'&&route.get('a')?.value==='/:account/j/:job'&&exports(84784).get('cs')?.name===roleRouteName&&code(route.get(roleRouteName))==='[a,"/"].join("")','Native consumed role route changed')
  function effect(fn){const found=[];walk(fn.body,n=>{if(n.type==='CallExpression'&&n.callee.type==='SequenceExpression'&&member(n.callee.expressions.at(-1),'n','useEffect'))found.push(n)},true);need(found.length===1&&found[0].arguments[0]?.type==='FunctionExpression','Unique invoked native role effect required');return found[0].arguments[0]}
  const loader=provider.get('W'),jobEffect=effect(loader),jobCalls=[]
  walk(jobEffect.body,n=>{if(n.type==='CallExpression'&&n.callee.type==='MemberExpression'&&n.callee.property.name==='job'&&n.callee.object.type==='CallExpression'&&n.callee.object.callee.type==='MemberExpression'&&n.callee.object.callee.property.name==='account')jobCalls.push(n)},true)
@@ -111,8 +142,9 @@ export function readProtocol(source){
  need(options?.type==='ObjectExpression'&&options.properties.length===1&&options.properties[0].key.name==='withCredentials'&&code(options.properties[0].value)==='!0','Native job GET options changed')
  need(code(details).includes('d(c)("/api/v1/accounts/".concat(e),{params:a({full:!0},t?{lng:t}:{})})'),'Native account detail GET/options changed')
  need(code(serviceBindings.get('c'))==='function(e){return e.careers}'&&code(serviceBindings.get('d')).includes('return e.get(t,r&&a({},r)||{})'),'Native GET factory is not bound to careers transport')
- need(exports(26946).get('Ay')?.name==='A','Native transport export changed')
- const transport=bindings(mod(26946)),transportFactory=transport.get('A')
+ const transportName=currentProfile?'k':'A'
+ need(exports(26946).get('Ay')?.name===transportName,'Native transport export changed')
+ const transport=bindings(mod(26946)),transportFactory=transport.get(transportName)
  need(transportFactory?.type==='CallExpression'&&transportFactory.arguments.length===0&&transportFactory.callee.type==='FunctionExpression','Native transport instance not initialized as declared')
  const factories=[];walk(transportFactory.callee.body,n=>{if(n.type==='CallExpression'&&member(n.callee,'i','default')===false&&n.callee.type==='MemberExpression'&&n.callee.property.name==='then'&&member(n.callee.object,'i','default'))factories.push(n)})
  need(factories.length===1&&factories[0].arguments.length===1,'Native public configuration not consumed by transport')
@@ -140,7 +172,7 @@ export function readProtocol(source){
  const criticalScopes={requireRuntime:runtime,runtimeEntry:outer.body.body.find(n=>n.start<=starts[0].start&&n.end>=starts[0].end),main:tm,startup,provider:provider.get('eR'),composition:provider.get('eC'),accountInitializer:initializer.get('c'),accountProvider:initializer.get('u'),roleLoader:loader,serviceAdapter:bindings(mod(27431)).get('n'),accountGetters:accountFn,careersSelector:serviceBindings.get('c'),getFactory:serviceBindings.get('d'),transportFactory:transportFactory.callee,conditionalAuth:auth,configurationLoader:config.get('s')}
  for(const[name,node]of Object.entries(criticalScopes)){
   const digest=createHash('sha256').update(JSON.stringify(normalizedAST(node))).digest('hex')
-  need(digest===REVIEWED_BODY_AST[name],'Reviewed consumed native body/control flow changed: '+name)
+  need(digest===bodyProfile[name],'Reviewed consumed native body/control flow changed: '+name)
  }
  // Keep every executed module-level binding, assignment side, initializer,
  // export expression and control node. Only independently checked scopes
@@ -148,8 +180,8 @@ export function readProtocol(source){
  const scopeEntries=Object.entries(criticalScopes)
  need(scopeEntries.length===16&&new Set(scopeEntries.map(([,node])=>node)).size===16,'Ambiguous consumed native scope markers')
  for(let i=0;i<scopeEntries.length;i++)for(let j=i+1;j<scopeEntries.length;j++){const a=scopeEntries[i][1],b=scopeEntries[j][1];need(a.end<=b.start||b.end<=a.start,'Overlapping consumed native scope markers')}
- const markerCounts=new Map,moduleNodes=Object.keys(REVIEWED_MODULE_EXECUTION_AST).map(id=>mod(Number(id)))
- for(const[id,expected]of Object.entries(REVIEWED_MODULE_EXECUTION_AST)){
+ const markerCounts=new Map,moduleNodes=Object.keys(moduleProfile).map(id=>mod(Number(id)))
+ for(const[id,expected]of Object.entries(moduleProfile)){
   const projection=reviewedModuleExecutionModel(mod(Number(id)),criticalScopes,markerCounts)
   need(createHash('sha256').update(JSON.stringify(projection)).digest('hex')===expected,'Consumed native module binding/control changed: '+id)
  }

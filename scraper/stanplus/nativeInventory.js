@@ -1,5 +1,6 @@
 import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
+import {isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
 import { createHash } from 'node:crypto'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { selectReviewedCandidateClient } from '../darwinbox/reviewedCandidateClient.js'
@@ -127,7 +128,7 @@ export async function runReviewedThirdWaveDarwinboxInventory(spec, options = {})
     })
     // Match the existing Darwinbox engine's bounded anonymous-session refresh.
     // Repeat the identical public read once; persistent denials fail closed.
-    if (response.status === 403 && attempt === 1) continue
+    if (response.status === 403 && attempt === 1 && !isHttpAccessChallenge(response)) continue
     await requireNativeHttpResponse(response, api + path, {
       context: `[${spec.source}] native Darwinbox: native API HTTP status/content type changed: ${path}`,
       signal, callerSignal: signal ?? null,

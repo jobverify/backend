@@ -7,10 +7,12 @@ import{attachInventoryEvidence}from'../../scraper-support/utils/inventoryEvidenc
 import{attachSourceObservationEvidence}from'../../scraper-support/utils/sourceObservationEvidence.js'
 import{nativeCountryName}from'../../scraper-support/shared/nativeJobPosting.js'
 import{currentGenworxTransport}from'./currentTransport20261117.js'
+import{currentPrimaryDependency,reviewedCurrentGenworxPrimary}from'./currentPrimary20261127.js'
 const profile=JSON.parse(readFileSync(new URL('./currentProfile20261117.json',import.meta.url),'utf8'))
 const currentRevision=JSON.parse(readFileSync(new URL('./currentProfile20261118.json',import.meta.url),'utf8'))
 const deployment20261125=JSON.parse(readFileSync(new URL('./currentProfile20261125.json',import.meta.url),'utf8'))
-const primaryRevisions=[profile,deployment20261125],nativeRevisions=[profile,currentRevision,deployment20261125]
+const deployment20261127=JSON.parse(readFileSync(new URL('./currentProfile20261127.json',import.meta.url),'utf8'))
+const primaryRevisions=[profile,deployment20261125],nativeRevisions=[profile,currentRevision,deployment20261125,deployment20261127]
 const sha=s=>createHash('sha256').update(s).digest('hex'),norm=v=>String(v??'').replace(/\s+/g,' ').trim(),id=v=>typeof v==='string'&&/^\d{8,30}$/.test(v)
 const check=(ok,reason)=>{if(!ok)throw Object.assign(Error('GENWORX current native contract: '+reason),{abortRetries:true,failureKind:'parser_or_contract_error',sourceScopeComplete:false,lifecycleCleanupAllowed:false})}
 const one=(rows,label)=>{check(rows.length===1,'unique '+label);return rows[0]}
@@ -113,15 +115,16 @@ function passiveRichCriteria(html){
  }catch{return false}
 }
 export async function runCurrentGenworx(options={}){
- options.signal?.throwIfAborted();const allowed=new Set([profile.boardURL,...primaryRevisions.flatMap(revision=>[revision.primary.url,revision.client.url]),...nativeRevisions.map(revision=>revision.nativeClient.url)])
+ options.signal?.throwIfAborted();const allowed=new Set([profile.boardURL,currentPrimaryDependency.url,...primaryRevisions.flatMap(revision=>[revision.primary.url,revision.client.url]),...nativeRevisions.map(revision=>revision.nativeClient.url)])
  const io=currentGenworxTransport({...options,allowedURL:url=>allowed.has(url)}),verifiedAt=new Date().toISOString()
  const exact=async(entry,kind='html')=>{const p=await io.read(entry.url,kind);check(p.bodyBytes===entry.bytes&&p.bodySHA256===entry.sha256,'finite current employer/client original '+entry.url);return p}
  const round=async()=>{
-  const home=await io.read(profile.primary.url),primaryRevision=one(primaryRevisions.filter(revision=>home.bodyBytes===revision.primary.bytes&&home.bodySHA256===revision.primary.sha256),'finite current employer deployment')
+  const home=await io.read(profile.primary.url),primaryRevision=one(reviewedCurrentGenworxPrimary(home,primaryRevisions),'finite current employer deployment')
   check(equal(activeHead(home.text).titles,[profile.primaryTitle]),'current employer title')
   const root=readNativeDocument(home.text),clientPath=new URL(primaryRevision.client.url).pathname
   check(root.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src===clientPath).length===1,'active current primary module')
-  await exact(primaryRevision.client,'js');const board=await io.read(profile.boardURL),{doc,revision}=nativeDocument(board.text)
+  await exact(primaryRevision.client,'js');for(const dependency of primaryRevision.clientDependencies??[])await exact(dependency,'js')
+  const board=await io.read(profile.boardURL),{doc,revision}=nativeDocument(board.text)
   check(equal(activeHead(board.text).titles,[profile.boardTitle]),'native board title');await exact(revision.nativeClient,'js')
   const hidden=name=>{const n=one(doc.nodes(n=>n.tag==='input'&&n.attrs.id===name),'native hidden '+name);check(n.attrs.type==='hidden','native hidden carrier');return JSON.parse(n.attrs.value)}
   const rows=hidden('jobs'),meta=hidden('meta'),pageJson=hidden('pageJson'),moduleMeta=hidden('moduleMeta');checkRows(rows);checkMeta(meta)

@@ -122,17 +122,26 @@ const readNativeJson = raw => {
   catch { need(false, 'native data is not JSON') }
 }
 
+// Only the native HTTP reader can witness this exact terminal listing response.
+// Caller/body-only errors cannot supply redirect authority by matching fields.
+const nativeRootRedirects = new WeakMap()
 const fetchNativeText = async (url, {signal, callerSignal} = {}) => {
   signal?.throwIfAborted()
   const requestSignal = AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(20000)])
   const response = await fetch(url, {signal: requestSignal, redirect: 'manual',
     headers: {Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)'}})
   if (response.status !== 200) {
+    const redirect = {requestedUrl: url, responseUrl: response.url,
+      status: response.status, location: response.headers.get('location')}
     await disposeResponseBody(response, {signal: callerSignal, bestEffort: true})
-    throw Object.assign(new Error(`Paradox public response HTTP ${response.status}`), {
+    const error = Object.assign(new Error(`Paradox public response HTTP ${response.status}`), {
       status: response.status, abortRetries: true, softFailure: true,
       failureKind: [401,403,429].includes(response.status) ? 'blocked_or_access_denied' : 'network_or_timeout',
     })
+    if (redirect.status === 302 && redirect.responseUrl === url && redirect.location === '/') {
+      nativeRootRedirects.set(error, redirect)
+    }
+    throw error
   }
   const chunks = []; let size = 0
   for await (const chunk of response.body) {
@@ -207,7 +216,7 @@ export const createParadoxPublicScraper = source => {
       return html
     }
     const jobs = [], pages = [], ids = new Set(), requisitions = new Set(), selectedNativeRecords = [], heldNativeRecords = []
-    let total = null, observed = 0, complete = false
+    let total = null, observed = 0, complete = false, paginationStop = null
     const searchPage = (html, page) => {
       const state = readParadoxPreload(html), search = state?.jobSearch
       need(Array.isArray(search?.jobs) && Number.isSafeInteger(search.totalJob) && search.totalJob >= 0
@@ -216,7 +225,23 @@ export const createParadoxPublicScraper = source => {
       return {state, search}
     }
     for (let page = 1; page <= maxPages && jobs.length < maxJobs; page++) {
-      const url = pageURL(profile, page), {state, search} = searchPage(await read(url), page)
+      const url = pageURL(profile, page)
+      let html
+      try { html = await read(url) }
+      catch (error) {
+        callerSignal?.throwIfAborted(); signal.throwIfAborted()
+        const redirect = nativeRootRedirects.get(error)
+        // The current FedEx terminal page redirects to root while its earlier
+        // pages report one additional row. Recheck every accepted listing page
+        // below and retain only already twice-qualified roles as a partial
+        // observation. No root/alternate URL is followed, or zero inferred.
+        if (source !== 'fedex' || !pages.length || observed <= 0 || observed >= total
+          || !redirect || redirect.requestedUrl !== url) throw error
+        paginationStop = {reason: 'native-listing-redirected-to-root', ...redirect,
+          reportedTotal: total, observedRecords: observed}
+        break
+      }
+      const {state, search} = searchPage(html, page)
       if (total === null) total = search.totalJob
       need(search.totalJob === total && observed + search.jobs.length <= total, 'native total changed during pagination')
       need(search.jobs.length || observed === total, 'native pagination ended early')
@@ -239,6 +264,10 @@ export const createParadoxPublicScraper = source => {
           && row.companyID === profile.nativeWorkdayCompanyID
         if (row.companyName !== profile.nativeCompany && !workdayMirror) {
           heldNativeRecords.push({reason: 'native-employer-contract-unqualified', record: structuredClone(row)})
+          continue
+        }
+        if (!text(profile.employer || row.brandName)) {
+          heldNativeRecords.push({reason: 'native-employer-name-unqualified', record: structuredClone(row)})
           continue
         }
         const url = new URL(row.originalURL, profile.origin + '/')
@@ -293,11 +322,19 @@ export const createParadoxPublicScraper = source => {
       need(listingSnapshot(search, profile) === page.snapshot, 'closing native listing changed')
     }
     if (jobs.length) jobs[0].nativeInventoryContext = {selectedNativeRecords, heldNativeRecords,
-      observedRecordCount: observed, selectedPaginationComplete: complete, companyScopeComplete: false}
+      observedRecordCount: observed, selectedPaginationComplete: complete, companyScopeComplete: false,
+      ...(paginationStop ? {paginationStop} : {})}
     attachInventoryEvidence(jobs, {status: 'coverage-gap', surface: pageURL(profile,1), firstParty: true,
       listingComplete: false, pagesFetched: pages.length * 2, reportedTotal: null, indiaFacetCount: null,
-      verifiedAt: checkedAt, reason: `qualified-native-India-roles=${jobs.length};held-native-India-roles=${heldNativeRecords.length};selected-native-rows=${observed};selected-pagination-complete=${complete};whole-company-scope-unqualified;cleanup-forbidden`})
-    return attachSourceObservationEvidence(jobs, {source, recordKind: 'vacancy-rows', observedRecordCount: observed,
+      verifiedAt: checkedAt, reason: `qualified-native-India-roles=${jobs.length};held-native-India-roles=${heldNativeRecords.length};selected-native-rows=${observed};selected-pagination-complete=${complete};whole-company-scope-unqualified;cleanup-forbidden${paginationStop ? ';pagination-stop=' + paginationStop.reason : ''}`})
+    attachSourceObservationEvidence(jobs, {source, recordKind: 'vacancy-rows', observedRecordCount: observed,
       observedVacancyCount: observed, sourceScopeComplete: false})
+    if (paginationStop) Object.defineProperty(jobs, 'nativeCollectionEvidence', {value: {
+      source, recordKind: 'vacancy-rows', selectedNativeRecords, heldNativeRecords,
+      observedRecordCount: observed, observedVacancyCount: observed, selectedPaginationComplete: false,
+      paginationStop, sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null,
+      lifecycleCleanupAllowed: false,
+    }, configurable: true})
+    return jobs
   }}
 }

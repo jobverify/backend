@@ -2,9 +2,9 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { isIndiaJob as isIndiaJobInScope } from '../../scraper-support/utils/indiaLocationFilter.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import {readCurrentPublicCareers} from './currentPublic20261128.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -13,8 +13,6 @@ export const CAREERS_URL = 'https://www.ganitinc.com/careers'
 export const COMPANY = 'Ganit'
 export const SOURCE = 'ganit'
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'
 const DETAIL_URL_REGEX = /^https:\/\/ganitinc\.zohorecruit\.in\/jobs\/Careers\/(\d+)\/[^?\s]+(?:\?[^"\s<>]*)?$/i
 
 const normalizeWhitespace = (value) => {
@@ -118,16 +116,6 @@ export const hasOfficialCareersSignal = (html) => {
     && /https:\/\/ganitinc\.zohorecruit\.in\/jobs\/Careers\//i.test(page)
 }
 
-const defaultFetchText = (url) =>
-  fetchTextWithRetry(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    label: SOURCE,
-    timeoutMs: 15000,
-  })
-
 const buildJob = ({
   title,
   sourceUrl,
@@ -222,11 +210,18 @@ export const extractIndiaJobs = (html) => {
 export const createGanitScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+  async run(options = {}) {
+    const {fetchText,now = () => new Date().toISOString(),signal} = options
+    signal?.throwIfAborted()
+    let careersHtml
+    if (fetchText === undefined) {
+      const current = await readCurrentPublicCareers(options)
+      if (current.jobs) return current.jobs
+      careersHtml = current.legacyHTML
+    } else {
+      careersHtml = await fetchText(CAREERS_URL,{signal})
+    }
+    signal?.throwIfAborted()
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Response is not the verified official Ganit careers page')
     }

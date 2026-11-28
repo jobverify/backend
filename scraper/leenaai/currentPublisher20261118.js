@@ -10,11 +10,16 @@ const requireProfile=(ok,reason)=>{if(!ok)throw Object.assign(Error('Leena AI na
 // feed hook and error-only Workable fallback. The November 25 observation has
 // a new app/build/style deployment and no optional beacon. Every fixed byte
 // remains pinned; opaque delivery values confer no authority or job dates.
+// The November 27 deployment changes the app/build, navigation and stylesheet
+// while declaring the same separately whole-hash/AST-verified career factory.
+// Both genuinely observed beacon variants have the same exact document frame.
 export function currentPublisherSHA(html){
   const frames=new Map([
     [193311,'afb0bf607995ca7473339f16cc335ef7f6c39106f7079486b6fce73602b1efe0'],
     [192950,'afb0bf607995ca7473339f16cc335ef7f6c39106f7079486b6fce73602b1efe0'],
     [191259,'4923cd40cdd3725d94edae24337c4db17f634271818886f0de80d095752191b7'],
+    [191347,'d3f3c065e7b1df4b3134a29c96894b0b57cdf9937acabcde325f0e65769d4c80'],
+    [191708,'d3f3c065e7b1df4b3134a29c96894b0b57cdf9937acabcde325f0e65769d4c80'],
   ])
   requireProfile(typeof html==='string'&&frames.has(Buffer.byteLength(html)),'profile changed')
   const beacons=[...html.matchAll(/<script type="module" src="https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js\/[^]*?<\/script>/g)]

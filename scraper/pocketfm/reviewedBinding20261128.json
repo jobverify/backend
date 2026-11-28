@@ -1,0 +1,34 @@
+{
+  "source": "pocketfm",
+  "reviewedAt": "2026-11-28",
+  "parent": {
+    "url": "https://pocketfm.com/_next/static/chunks/0psw89x_a37rc.js?dpl=c9c6b9e",
+    "sha256": "c0bca7afdd59dcc96517f4055f737cd6befdc8ffdb29c7391c38b71f060575b5",
+    "bytes": 16588,
+    "programSHA256": "18c8619884e990eca104385e72b2277b0e4ce185f25328552fa85076054d104e",
+    "declaration": {
+      "src": "/_next/static/chunks/0psw89x_a37rc.js?dpl=c9c6b9e",
+      "async": ""
+    }
+  },
+  "runtime": {
+    "url": "https://pocketfm.com/_next/static/chunks/turbopack-18_5df4vs6w4n.js?dpl=c9c6b9e",
+    "sha256": "a17a9d57e14035e3d32a3e8dd704ba108e2118e3a3f725e82b0345d586f54925",
+    "bytes": 10309,
+    "declaration": {
+      "src": "/_next/static/chunks/turbopack-18_5df4vs6w4n.js?dpl=c9c6b9e",
+      "async": ""
+    }
+  },
+  "assetSuffix": "?dpl=c9c6b9e",
+  "footer": {
+    "url": "https://pocketfm.com/_next/static/chunks/2g_t-raq8uk-3.js?dpl=c9c6b9e",
+    "sha256": "c3a4e829f80ea7c3cb34779ef0144c42d6226b35ce45c409c4967b3a9c390102",
+    "bytes": 15128,
+    "programSHA256": "2e78a0dd8a3fc4c0b3bba37088420582eb87c24001dbc3abe4a81ec237ff33bd"
+  },
+  "review": "Exact complete current declared parent/runtime/footer tuple, preserving the publisher's full dpl query. The literal homepage Flight script-0 and one executable classic parent declaration agree. The exact512169 loader targets516114 and declares the selected first chunk. The full active classic runtime is retained: its static fallback reads the suffix from document.currentScript.src, prefixes /_next/ and appends the suffix when loading that literal chunk. Both declaration attributes and all three complete program bodies remain exact; unknown query values or bytes are rejected rather than stripped. The footer516114 re-exports642732, whose careers entry and company link group retain https://jobs.lever.co/pocketfm. Current compiler/local/cache changes are not erased or claimed browser-equivalent. Other programs/global overrides, browser/styles/other lazy paths and company-wide recruitment authority remain unqualified. Native identity, assigned country, full criteria/application/publication, opening/closing and company/cleanup controls remain in the unchanged native reader.",
+  "browserEquivalenceComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

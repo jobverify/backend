@@ -9,7 +9,7 @@ const replay=async(transform=(url,body)=>body,options={})=>{let audit;const read
 test('current active SearchJobs handler reaches employer-bound public TurboHire and reconciles native zero',async()=>{
  const{jobs,audit,reads}=await replay();assert.equal(jobs.length,0);assert.ok(reads.some(r=>r.url===native));assert.ok(!reads.some(r=>r.url.includes('careers.alkemlabs.com')))
  const e=readInventoryEvidence(jobs);assert.equal(e.status,'verified-empty');assert.equal(e.reportedTotal,0);assert.equal(e.indiaFacetCount,0);assert.equal(e.listingComplete,true)
- assert.equal(audit.closingReconciled,true);assert.equal(audit.observedGlobalCount,0);assert.equal(audit.scopeComplete,true);assert.equal(audit.anonymousSessionCredentialsRetained,false)
+ assert.equal(audit.closingReconciled,true);assert.equal(audit.observedGlobalCount,0);assert.equal(audit.configuredBoardComplete,true);assert.equal(audit.scopeComplete,false);assert.equal(audit.anonymousSessionCredentialsRetained,false)
  assert.doesNotMatch(JSON.stringify(audit),/synthetic-public-visitor-token/)
 })
 for(const change of ['organization','total','continuation','positive','client','css','nomodule','hidden-class','native-nomodule'])test('unproved '+change+' cannot become verified native zero',async()=>{

@@ -50,13 +50,15 @@ export function readCareers(html){
 }
 export function readClient(source,url){
  need(isClientURL(url),'current declared native client URL required')
+ const currentPassiveDataOnly=hash(source)==='1708e4df433151d271bb3144129ad122099901e340d2a5e2be0b7325d11d0ea7'
+  &&url==='https://app.reczee.com/react-static/static/js/main.78f87bc2.chunk.js'
  // The program's reviewed read/render contract is pinned, never executed.
  // Country is proved separately by original role and API location fields.
  // The November13 bundle changes unrelated application code. Its public GET,
  // URL builder, API version, own-role reader and criteria renderer have the
  // exact same source hashes as the previously reviewed deployment.
  need(['3928ddc04e0df5e22e193d3fdf6191944c6eb285959819b12d5d269452782e49',
-  '8121c21c565097351e9ee508c1016485bc6835d398936b338c64ab8bb8ce7fab'].includes(hash(source)),
+  '8121c21c565097351e9ee508c1016485bc6835d398936b338c64ab8bb8ce7fab'].includes(hash(source))||currentPassiveDataOnly,
  'changed declared client requires read/render contract review')
  const ast=parse(source,{ecmaVersion:'latest',sourceType:'script'}),nodes=[],pending=[ast]
  while(pending.length){const n=pending.pop();nodes.push(n);for(const v of Object.values(n))if(v&&typeof v==='object')Array.isArray(v)?pending.push(...v.filter(c=>c&&typeof c==='object')):pending.push(v)}
@@ -73,6 +75,7 @@ export function readClient(source,url){
   &&source.includes('dangerouslySetInnerHTML:{__html:e.content}')&&source.includes('path:"/:companySlug/:requisitionSlug/apply",component:co'),'native public criteria/title renderer changed')
  return {url,bodySHA256:hash(source),apiBaseURL:'https://app.reczee.com/api/'+version.apiVersion,pathTemplate:'requisitions/from-slug/<published-slug>',companyParameter:'company_slug',
   payload:'data.requisition',publishedTitleField:'designation',descriptionField:'job_description',publicVisibilityField:'open_for_careers_page',screeningQuestionsField:'data.screening_questions',programExecuted:false,
+  ...(currentPassiveDataOnly?{currentPassiveDataOnly:true}:{}),
   declarations:{version:structuredClone(version),httpModuleSHA256:hash(http),urlBuilderSHA256:hash(builder),publicReadComponentSHA256:hash(span(publicRead)),renderingComponentSHA256:hash(span(rendering))}}
 }
 export function readRole(html,row){
@@ -142,6 +145,11 @@ export function makeJob(rawAPIJSON,row,role,careers,client,clock){
    screeningQuestions:structuredClone(api.data.screening_questions),eeocQuestionsEnabled:api.data.eeoc_questions_enabled},
   sourceNativeCriteriaContainerRetained:true,sourceCountryScopeUnresolved:!proven,sourceDetailComplete:false,sourceDetailStatus:'partial',sourceDetailFailureKind:proven?'native-closing-unreconciled':'native-country-unproven',
   nativeRoleClosingReconciled:false,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,scrapedAt:clock}
+ if(client.currentPassiveDataOnly)Object.assign(j,{
+  sourceCurrentClientDataOnly:true,sourceDetailComplete:false,sourceDetailStatus:'partial',
+  sourceDetailFailureKind:proven?'native-current-client-rendering-application-unqualified':'native-country-unproven',
+  sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,sourceAvailabilityVerified:false,sourcePublicContextValidated:false,
+ })
  if(proven)j.sourceWorksiteCountryProof={method:'declared-reczee-jobposting-and-native-api-location',literalRoleCountry:true,exactCampusEstablished:false,
   country:'India',roleURL:row.sourceUrl,apiURL:apiURL(row.sourceUrl,client),nativeCorporateLocationLabel:row.nativeLocationLabel,nativeRoleAddresses:structuredClone(addresses),nativeAPILocations:structuredClone(locations),nativeApplicantRequirements:structuredClone(p.applicantLocationRequirements)}
  else j.sourceNativeCountryContext={nativeCorporateLocationLabel:row.nativeLocationLabel,corporateCountry,nativeRoleAddresses:structuredClone(addresses),nativeAPILocations:structuredClone(locations),nativeApplicantRequirements:structuredClone(p.applicantLocationRequirements),unreviewedWorkplaceScopes:scopes,unreviewedGeographicDeclarations:structuredClone(typed)}

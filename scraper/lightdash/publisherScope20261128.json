@@ -1,0 +1,36 @@
+{
+  "reviewedEmployerUrl": "https://www.lightdash.com/",
+  "evidenceSha256": "516137d6f28db61d0c30706c1919712d0d36492ea853736245dc0d34ccb92bb3",
+  "scope": "Observed own recruiting/self-fragment aliases, one newsletter form and inspected embeds; unrelated marketing navigation is not a completeness gate.",
+  "ownRecruitmentAliases": [],
+  "forms": [
+    {
+      "attrs": {
+        "class": "flex w-full"
+      },
+      "text": "Email address Subscribe",
+      "controls": [
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "newsletter-email",
+            "type": "email",
+            "required": "",
+            "placeholder": "Enter your email address",
+            "class": "t-body-s h-10 min-w-0 grow bg-white/10 px-3 text-n-0 outline-none placeholder:text-white/40 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary",
+            "name": "email"
+          }
+        },
+        {
+          "tag": "button",
+          "attrs": {
+            "type": "submit",
+            "class": "t-label disabled:cursor-wait disabled:opacity-60 h-10 shrink-0 cursor-pointer bg-n-0 px-4 text-n-900 transition-colors hover:bg-primary hover:text-white"
+          }
+        }
+      ]
+    }
+  ],
+  "frames": [],
+  "scriptedNavigation": []
+}

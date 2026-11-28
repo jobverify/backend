@@ -1,0 +1,114 @@
+{
+  "version": "sagar-current-passive-native-20261128",
+  "homepageSHA256": "5173d30e9e30c9f2115aec9caf60a3a1f861f3f4b5ad88a6e047b3eab5cb68a2",
+  "normalizedCareerSHA256": "71cd52a6acdeb8e409bbc0377df71d951cdedeee176c94b2a3dd2db3b66254b3",
+  "careerURL": "https://www.sagardefence.com/careers",
+  "modelRow": "13",
+  "componentImport": [
+    1499,
+    [
+      "5837",
+      "static/chunks/5837-76b8e752acf78786.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "2698",
+      "static/chunks/2698-1a9179d48175b646.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "6995",
+      "static/chunks/app/careers/page-dd0e1c456a5969eb.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186"
+    ],
+    "GrowWithUs"
+  ],
+  "gridOpen": "<div class=\"mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3\">",
+  "cardTemplate": "<div class=\"reveal \"><div class=\"group flex h-full flex-col rounded-tl-[40px] rounded-br-[40px] border border-border bg-white p-7 transition hover:border-primary/50\"><p class=\"text-xs uppercase tracking-wider text-primary\">{{department}}</p><h3 class=\"mt-2 font-display text-lg font-semibold text-foreground font-body\"><b>{{title}}</b></h3><pre class=\"m-0 mt-2 line-clamp-3 flex-1 whitespace-pre-wrap font-sans text-sm leading-5 text-muted\">{{description}}</pre><div class=\"mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted\"><span>{{location}}</span></div><button type=\"button\" class=\"group/link mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary\">Apply <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-arrow-right h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1\"><path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path></svg></button></div></div>",
+  "paginationOpen": "<div class=\"mt-12 flex flex-wrap items-center justify-center gap-2\">",
+  "paginationButtons": [
+    "<button type=\"button\" disabled=\"\" class=\"h-9 rounded-md border border-border px-3 text-sm font-semibold text-muted transition hover:border-primary/50 hover:text-foreground disabled:pointer-events-none disabled:opacity-40\">Prev</button>",
+    "<button type=\"button\" aria-current=\"page\" class=\"h-9 w-9 rounded-md border text-sm font-semibold transition border-primary bg-primary text-white\">1</button>",
+    "<button type=\"button\" class=\"h-9 w-9 rounded-md border text-sm font-semibold transition border-border text-muted hover:border-primary/50 hover:text-foreground\">2</button>",
+    "<button type=\"button\" class=\"h-9 w-9 rounded-md border text-sm font-semibold transition border-border text-muted hover:border-primary/50 hover:text-foreground\">3</button>",
+    "<button type=\"button\" class=\"h-9 rounded-md border border-border px-3 text-sm font-semibold text-muted transition hover:border-primary/50 hover:text-foreground disabled:pointer-events-none disabled:opacity-40\">Next</button>"
+  ],
+  "assets": [
+    {
+      "url": "https://www.sagardefence.com/_next/static/css/1462afedea42881a.css",
+      "sha256": "10abebd1d231a217d5623f39397221d66edc7e4b7a7c70d78f28aac472e56555",
+      "bytes": 90350
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/css/968115cd91d38d6e.css",
+      "sha256": "c5c6c38de95a7f4b69ee634ba18a3727ad01be6c2686aa853d58739375bc5be9",
+      "bytes": 5980
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/fd9d1056-d8f8962c4cff4ed4.js",
+      "sha256": "98ba18783e4147f28eddf0b668d273fb6679771b1589e0b3c3713f9309a718ad",
+      "bytes": 163910
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/2472-16fc602cfb454ffc.js",
+      "sha256": "0dce45ae973346e94ea4e62593e099f78bb78a63dd44ca77a08fd775ae4eb7fb",
+      "bytes": 110574
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/main-app-0b555e6f182adcf6.js",
+      "sha256": "f51c0c921b3dd3203b6cb641ee0ab241fe346d36e9e30e11401a9ccc959882b8",
+      "bytes": 509
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/8326-afb8e597e8ab80ba.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "76a6d7f3710fde046b512ecc77cb66e72220ca9e4e39e68dd1835b7dcdcbaae4",
+      "bytes": 21949
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/413-ed9eac56ab5ec98e.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "481f3960a842b5bc83e983fba4c8236045a0216657412329359189d3ef36142a",
+      "bytes": 13447
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/app/layout-9174c3b5a91cb5fc.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "97935380493f21a33b9f2c6fbe7e4d16276bddf927163f8df85a6f43d4c5ad27",
+      "bytes": 14740
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/app/page-dd3352a24028159a.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "95e563a8249a1d5d6828b824e6a5b86bc51f6fbc7ff6e029fe70d72da40d52cd",
+      "bytes": 1101
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js",
+      "sha256": "0225eb034d024a03bdc90ea6c79f56193662e7c3eee909696298820e517cbb83",
+      "bytes": 91460
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/webpack-092f5343845e7c77.js",
+      "sha256": "24f361f1452e92b36e732b92209a9bb9dfc767bf8effed8f69c3927213017472",
+      "bytes": 5280
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/5837-76b8e752acf78786.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "2f7222ad169519e90bfd993f882512b5f7a5f55147984da4b7366fd65bd47363",
+      "bytes": 28015
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/2698-1a9179d48175b646.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "8766d237bbceea4623c7af9b3355ed64f7b306804341cc124aa081c30c8a0f6b",
+      "bytes": 32954
+    },
+    {
+      "url": "https://www.sagardefence.com/_next/static/chunks/app/careers/page-dd0e1c456a5969eb.js?dpl=dpl_GjTh2b3VDcoRoUkWwBTatGfEY186",
+      "sha256": "67d964b67e5ac1f6ba2b79aa97ad2827bce45339f55bd2b9034e8372e75196fd",
+      "bytes": 90416
+    }
+  ],
+  "limits": {
+    "records": 600,
+    "requests": 64,
+    "bytes": 10000000
+  },
+  "authority": {
+    "rendering": false,
+    "application": false,
+    "publication": false,
+    "company": false,
+    "cleanup": false
+  },
+  "nullRegistrationScript": "<script>self.__next_f.push([1,\"12:null\\n\"])</script>"
+}

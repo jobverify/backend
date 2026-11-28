@@ -5,13 +5,20 @@ import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvid
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {findExplicitNativeClosure} from '../../scraper-support/utils/sourceAvailability.js'
 import {nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
+import {buildHttpError,isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 
 export const SQUARE_CAREERS='https://www.squareyards.com/career'
 const origin='https://www.squareyards.com',source='squareyards'
+// Whole current program differs from the prior producer only in an image
+// fallback and deferred analytics loader. The native GET/renderer is unchanged.
+// Its application client is unreviewed: admit native criteria data only.
+const currentCareerProgram=origin+'/assets/js/carriers-0811cca07c.min.js'
 const programs=new Map([
  [origin+'/assets/js/carriers-cc4012780b.min.js','8fdf761fc326f5901517c7e23404b316664189463fa8361fb20b6afff82046df'],
  [origin+'/assets/js/career_form-40df87e33c.min.js','23ac3784f73df5d28a31e5b7891037ead88f31ec35fbb529fba602d2c4f389be'],
  [origin+'/assets/js/career_form-390e287ba4.min.js','3101c786b3c8cc7b7e0fc88800849bba4b3a3e3a636f12127076b53761ea8caa'],
+ [currentCareerProgram,'6e1e4016672669220baf25fe8204fb8b42d0b13c42441790d2a5f9802d9a7078'],
 ])
 const norm=x=>String(x??'').replace(/\s+/g,' ').trim()
 const need=(ok,message)=>{if(!ok)throw Object.assign(Error('Square Yards current native: '+message),{abortRetries:true})}
@@ -31,9 +38,10 @@ export function squareListing(html){
  const tabs=one(doc.nodes(n=>doc.hasClass(n,'departmentTabs')),'native department navigation')
  const names=doc.nodes(n=>n.tag==='button'&&doc.hasClass(n,'onClickLink'),tabs).map(n=>n.attrs['data-name'])
  need(same(names,['Sales','Technology','Marketing','CR','HR','Interior Company']),'native department inventory changed')
- const declarations=doc.nodes(n=>n.tag==='script'&&n.attrs.src).map(n=>new URL(n.attrs.src,SQUARE_CAREERS).href)
- need(declarations.includes([...programs.keys()][0]),'native career client declaration changed')
- return{departments:paths,labels:names,program:[...programs.keys()][0]}
+ const declarations=doc.nodes(n=>n.tag==='script'&&n.attrs.src&&(!n.attrs.type||/^(?:module|(?:text|application)\/(?:java|ecma)script)$/i.test(n.attrs.type)))
+  .map(n=>new URL(n.attrs.src,SQUARE_CAREERS).href).filter(url=>programs.has(url)&&url.includes('/carriers-'))
+ const program=one(declarations,'native career client declaration')
+ return{departments:paths,labels:names,program}
 }
 const appURL=row=>origin+'/career_form/'+row.id+'?location='+row.location.split(' ').join('_')+'&dept='+row.department.split(' ').join('_')
 function criteriaGuard(doc,country,workplace){
@@ -100,31 +108,67 @@ export function squareApplication(html,row){
 }
 export async function runSquareNative(options={}){
  options.signal?.throwIfAborted();need(!options.fetchText&&!options.fetchJson&&!options.fetchDepartmentListings,'metadata-free legacy callbacks cannot qualify current native reads')
- const io=createBoundedPublicCareerTransport({...options,source,allowedURL:(u,m)=>m==='GET'&&(u===SQUARE_CAREERS||programs.has(u)||paths.some(p=>u===SQUARE_CAREERS+'/'+p)||u.startsWith(origin+'/career_form/')&&/^\/career_form\/\d+$/.test(new URL(u).pathname))})
+ const selectedFetch=options.fetchImpl??globalThis.fetch
+ need(!(selectedFetch===globalThis.fetch&&options.requestIntervalMs!==undefined&&options.requestIntervalMs<1000),'invalid public transport limits: minimum pacing')
+ const fetchImpl=async(url,init)=>{
+  const response=await selectedFetch(url,init)
+  const interrupted=init.signal?.aborted
+  const error=!interrupted&&(response.status!==200||isHttpAccessChallenge(response))?buildHttpError(response,url):null
+  if(interrupted||error){
+   try{await disposeResponseBody(response,{signal:init.signal,bestEffort:true})}catch{}
+   options.signal?.throwIfAborted()
+   if(error)throw error
+   init.signal?.throwIfAborted()
+  }
+  return response
+ }
+ const io=createBoundedPublicCareerTransport({...options,fetchImpl,source,allowedURL:(u,m)=>m==='GET'&&(u===SQUARE_CAREERS||programs.has(u)||paths.some(p=>u===SQUARE_CAREERS+'/'+p)||u.startsWith(origin+'/career_form/')&&/^\/career_form\/\d+$/.test(new URL(u).pathname))})
  const rawPages=[],openingNativeRecords=[],closingNativeRecords=[],held=[],jobs=[],openingApplications=[],closingApplications=[]
  const load=async(u,kind='html')=>{const value=kind==='json'?await io.fetchJson(u):kind==='js'?await io.fetchScript(u):await io.fetchText(u);rawPages.push({url:u,kind,...(kind==='json'?{originalModel:value}:{html:value,sha256:hash(value)})});return value}
- const client=async()=>{for(const[u,expected]of programs)need(hash(await load(u,'js'))===expected,'whole declared program changed')}
- const inventory=async(target)=>{
-  for(const path of paths){const packet=await load(SQUARE_CAREERS+'/'+path,'json');need(packet.status===1&&packet.message==='Successfully'&&Array.isArray(packet.data),'native department response unavailable');need(packet.data.length<=120,'native row budget exceeded');for(const row of packet.data)target.push({departmentPath:path,row})}
+ const client=async listing=>{
+  const selected=listing.program===currentCareerProgram?[[currentCareerProgram,programs.get(currentCareerProgram)]]:[...programs].filter(([url])=>url!==currentCareerProgram)
+  for(const[u,expected]of selected)need(hash(await load(u,'js'))===expected,'whole declared program changed')
+ }
+ const inventory=async(target,currentClientPassiveDataOnly=false)=>{
+  for(const path of paths){
+   const packet=await load(SQUARE_CAREERS+'/'+path,'json')
+   if(currentClientPassiveDataOnly)need(same(Object.keys(packet??{}).sort(),['data','message','status']),'unknown current department metadata requires country/employer/eligibility review')
+   need(packet.status===1&&packet.message==='Successfully'&&Array.isArray(packet.data),'native department response unavailable');need(packet.data.length<=120,'native row budget exceeded');for(const row of packet.data)target.push({departmentPath:path,row})
+  }
   need(target.length>0&&target.length<=200&&new Set(target.map(x=>x.row.id)).size===target.length,'missing or ambiguous native full inventory')
  }
  try{
-  const listing=squareListing(await load(SQUARE_CAREERS));await client();await inventory(openingNativeRecords)
+  const listing=squareListing(await load(SQUARE_CAREERS)),currentClientPassiveDataOnly=listing.program===currentCareerProgram
+  await client(listing);await inventory(openingNativeRecords,currentClientPassiveDataOnly)
   for(const{departmentPath,row}of openingNativeRecords){
-   let job;try{job=squareRole(row,departmentPath)}catch(e){held.push({id:row?.id,reason:e.message,originalRecord:row});continue}
+   let job;try{
+    if(currentClientPassiveDataOnly)need(['India Primary','Support','Services'].includes(row?.verticalName),'current native employer vertical is unqualified')
+    job=squareRole(row,departmentPath)
+   }catch(e){held.push({id:row?.id,reason:e.message,originalRecord:row});continue}
+   if(currentClientPassiveDataOnly){
+    Object.assign(job,{currentClientPassiveDataOnly:true,sourceDetailComplete:false,publicExperienceChecked:false,
+     sourceBrowserRenderingQualified:false,sourceApplicationQualified:false,sourceAvailabilityQualified:false,sourceNativeApplication:null,
+     sourceCompanyScopeUnresolved:true})
+    jobs.push(job);continue
+   }
    const html=await load(job.applyUrl),model=squareApplication(html,row);openingApplications.push({id:row.id,model,html});job.sourceNativeApplication=model;jobs.push(job)
   }
-  await inventory(closingNativeRecords);need(same(openingNativeRecords,closingNativeRecords),'native closing full inventory differs')
-  for(const job of jobs){const row=job.nativeSourceRecord,html=await load(job.applyUrl),model=squareApplication(html,row);closingApplications.push({id:row.id,model,html});need(same(model,job.sourceNativeApplication),'native closing full application differs');job.sourceClosingQualified=true}
-  await client();need(same(listing,squareListing(await load(SQUARE_CAREERS))),'native closing publisher inventory differs')
+  await inventory(closingNativeRecords,currentClientPassiveDataOnly);need(same(openingNativeRecords,closingNativeRecords),'native closing full inventory differs')
+  for(const job of jobs){
+   if(currentClientPassiveDataOnly){job.sourceClosingQualified=true;continue}
+   const row=job.nativeSourceRecord,html=await load(job.applyUrl),model=squareApplication(html,row);closingApplications.push({id:row.id,model,html});need(same(model,job.sourceNativeApplication),'native closing full application differs');job.sourceClosingQualified=true
+  }
+  await client(listing);need(same(listing,squareListing(await load(SQUARE_CAREERS))),'native closing publisher inventory differs')
   const summary={source,openingNativeRecords,closingNativeRecords,held,openingApplications,closingApplications,rawPages,openingClosingMatch:true,
-   companyIndiaTotal:null,companyGlobalTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,applicationSubmitted:false}
+   companyIndiaTotal:null,companyGlobalTotal:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false,applicationSubmitted:false,
+   currentClientPassiveDataOnly,currentDeclaredCareerProgram:listing.program}
   const now=(options.now||(()=>new Date().toISOString()))();need(Number.isFinite(Date.parse(now)),'invalid observation clock')
   for(const j of jobs)j.scrapedAt=now
   const selected=Number.isSafeInteger(options.maxJobs)&&options.maxJobs>=0?jobs.slice(0,options.maxJobs):jobs
   attachSourceObservationEvidence(selected,{source,recordKind:'vacancy-rows',observedRecordCount:openingNativeRecords.length,observedVacancyCount:openingNativeRecords.length,sourceScopeComplete:false,companyIndiaTotal:null,companyGlobalTotal:null})
   Object.defineProperty(selected,'nativeCollectionEvidence',{value:summary,configurable:true})
   await options.onAudit?.(structuredClone(summary));io.signal.throwIfAborted()
-  return attachInventoryEvidence(selected,{status:'coverage-gap',surface:SQUARE_CAREERS,firstParty:true,pagesFetched:rawPages.length,listingComplete:false,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'whole-own-role-criteria-and-application-closing-qualified;other-brands-and-company-inventory-held'})
+  return attachInventoryEvidence(selected,{status:'coverage-gap',surface:SQUARE_CAREERS,firstParty:true,pagesFetched:rawPages.length,listingComplete:false,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,
+   reason:currentClientPassiveDataOnly?'whole-current-native-criteria-closing-paired;browser-application-availability-formal-details-other-brands-company-scope-held':'whole-own-role-criteria-and-application-closing-qualified;other-brands-and-company-inventory-held'})
  }finally{io.close()}
 }

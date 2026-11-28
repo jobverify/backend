@@ -123,11 +123,22 @@ export function readAccount(body){
  return value
 }
 const JOB_FIELDS=['id','shortcode','title','remote','location','locations','state','isInternal','code','published','type','language','department','accountUid','approvalStatus','workplace','description','requirements','benefits']
+const COMPENSATION_FIELDS=['salary_from','salary_to','salary_currency_iso_code','salary_frequency']
+const JOB_COMPENSATION_FIELDS=[...JOB_FIELDS,...COMPENSATION_FIELDS]
+// The paired current native DTOs publish this complete optional group: safe
+// positive whole-number bounds, an explicit open maximum, EUR/USD and year.
+// Keep literal values in the full native model. No coercion, bound/currency
+// inference, broader frequency support or unknown-field admission is implied.
+const validCompensation=j=>COMPENSATION_FIELDS.every(key=>Object.hasOwn(j,key))
+ &&Number.isSafeInteger(j.salary_from)&&j.salary_from>0
+ &&(j.salary_to===null||Number.isSafeInteger(j.salary_to)&&j.salary_to>=j.salary_from)
+ &&['EUR','USD'].includes(j.salary_currency_iso_code)&&j.salary_frequency==='year'
 export function readJob(body,account,card,shell){
  const j=strictJSON(body);need(object(j),'Native role object required')
  need(j.id===card.legacyNativeId&&j.shortcode===shell.shortcode&&j.accountUid===account.uid&&j.title===card.title,'Native role ID/shortcode/employer/title identity mismatch')
  const issues=[],issue=v=>{if(!issues.includes(v))issues.push(v)}
- if(!keys(j,JOB_FIELDS))issue('unreviewed-native-fields')
+ if(!keys(j,JOB_FIELDS)&&!keys(j,JOB_COMPENSATION_FIELDS))issue('unreviewed-native-fields')
+ if(COMPENSATION_FIELDS.some(key=>Object.hasOwn(j,key))&&!validCompensation(j))issue('unqualified-native-compensation')
  if(j.state!=='published'||j.isInternal!==false||j.approvalStatus!=='approved')issue('not-current-public-publication')
  if(typeof j.published!=='string'||!Number.isFinite(Date.parse(j.published)))issue('unqualified-native-publication-date')
  if(j.code!==null&&typeof j.code!=='string')issue('unqualified-native-requisition-code')

@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {attachHeldNativeEvidence,collectNativeSnapshots,guardedReader} from './currentPublisher20261128.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -132,11 +134,11 @@ export const buildZappyhireJobDetailUrl = (id) =>
 const parseZappyhireLocations = (locations) => (Array.isArray(locations) ? locations : [])
   .map((item) => ({
     city: normalizeWhitespace(String(item?.city ?? '').split('-')[0]),
-    countryCode: String(item?.country_code ?? 'IN').toUpperCase(),
+    countryCode: typeof item?.country_code === 'string' ? item.country_code : null,
   }))
   .filter((item) => item.city)
 
-export const extractZappyhireJob = (record, detail, verifiedCities, scrapedAt) => {
+export const extractZappyhireJob = (record, detail, verifiedCities, scrapedAt, {countryHeld=false} = {}) => {
   const item = record?._source
   const id = Number(item?.job)
   const locations = parseZappyhireLocations(detail?.location)
@@ -152,12 +154,18 @@ export const extractZappyhireJob = (record, detail, verifiedCities, scrapedAt) =
     || !Number.isInteger(id)
     || detail?.id !== id
     || normalizeWhitespace(detail?.title) !== normalizeWhitespace(item?.title)
-    || locations.length === 0
-    || !locations.every((location) => location.countryCode === 'IN' && verifiedCities.has(location.city))
     || applyUrl.origin !== 'https://recruitcareers.zappyhire.com'
+    || applyUrl.username || applyUrl.password || applyUrl.hash
     || !/^\/credgenics\/apply\/?$/.test(applyUrl.pathname)
-    || applyUrl.searchParams.get('job') !== String(id)) {
+    || applyUrl.searchParams.getAll('job').length !== 1
+    || applyUrl.searchParams.get('job') !== String(id)
+    || [...applyUrl.searchParams.keys()].some(key => !['job','source','company'].includes(key))
+    || ['source','company'].some(key=>applyUrl.searchParams.getAll(key).length>1 || applyUrl.searchParams.has(key)&&applyUrl.searchParams.get(key)!=='1')) {
     throw new Error(`Credgenics Zappyhire job ${id} no longer matches the verified public listing and detail`)
+  }
+  if (countryHeld) return null
+  if (locations.length === 0 || !locations.every((location) => location.countryCode === 'IN' && verifiedCities.has(location.city))) {
+    throw new Error(`Credgenics Zappyhire job ${id} has unqualified native country or location`)
   }
 
   const location = `${locations.map((entry) => entry.city).join(', ')}, India`
@@ -189,6 +197,18 @@ export const extractZappyhireJob = (record, detail, verifiedCities, scrapedAt) =
     companyCareerPage: ZAPPYHIRE_BOARD_URL,
     companyDomain: 'credgenics.com',
     atsPlatform: 'official-zappyhire-board',
+    nativeCriteriaData: {record:structuredClone(record),detail:structuredClone(detail)},
+    sourceDetailComplete: false,
+    sourceDetailStatus: 'partial',
+    sourceDetailFailureKind: 'native-rendering-and-application-unqualified',
+    sourceRenderedCriteriaComplete: false,
+    sourceApplicationQualificationComplete: false,
+    sourceAvailabilityVerified: false,
+    applicationPublicContextValidated: false,
+    activeApplyVerified: false,
+    sourceScopeComplete: false,
+    sourceListingComplete: false,
+    lifecycleCleanupAllowed: false,
   }
 }
 
@@ -215,72 +235,68 @@ export const pageExposesFirstPartyJobsSignal = (html) => {
   return false
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const readWithOwnedResponses = async (reader,url,options) => {
+  const responses=new Set()
+  const dispose=async response=>{
+    if(response.body&&!response.bodyUsed)await disposeResponseBody(response,{bestEffort:true})
+  }
+  const fetchImpl=async (input,init)=>{
+    const response=await fetch(input,init)
+    // A fetch which ignores abort may settle after the reader's finally ran.
+    // That late response retains its own cleanup rather than escaping ownership.
+    if(init.signal?.aborted){
+      try{await dispose(response)}catch{}
+      throw init.signal.reason
+    }
+    responses.add(response)
+    return response
+  }
+  try{return await reader(url,{...options,fetchImpl})}
+  finally{await Promise.allSettled([...responses].map(dispose))}
+}
+
+const defaultFetchText = async (url, {signal} = {}) => {
+  const result = await readWithOwnedResponses(fetchTextWithRetry,url, {
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   },
   label: SOURCE,
   timeoutMs: 15000,
-})
+  signal,
+  redirect: 'manual',
+  includeResponseMetadata: true,
+  })
+  if (result.status !== 200 || result.url !== url) throw new Error(`Credgenics public text response identity changed for ${url}`)
+  return result.html
+}
 
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
+const defaultFetchJson = async (url, {signal} = {}) => {
+  const result = await readWithOwnedResponses(fetchJsonWithRetry,url, {
   headers: { 'User-Agent': USER_AGENT, Accept: 'application/json' },
   label: SOURCE,
   timeoutMs: 15000,
-})
+  signal,
+  redirect: 'manual',
+  includeResponseMetadata: true,
+  })
+  if (result.status !== 200 || result.url !== url) throw new Error(`Credgenics public JSON response identity changed for ${url}`)
+  return result.payload
+}
 
 export const createCredgenicsScraper = ({ pageSize = 100 } = {}) => ({
-  async run({ fetchText = defaultFetchText, fetchJson = defaultFetchJson, now = () => new Date().toISOString() } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
+  async run({ fetchText = defaultFetchText, fetchJson = defaultFetchJson, now = () => new Date().toISOString(), signal } = {}) {
+    const readText = guardedReader(fetchText,signal)
+    const readJSON = guardedReader(fetchJson,signal)
+    const homepageHtml = await readText(HOMEPAGE_URL)
 
     if (hasCurrentHomepageSignal(homepageHtml)) {
       if (!Number.isInteger(pageSize) || pageSize < 1 || pageSize > 100) {
         throw new Error('Credgenics Zappyhire page size must be between 1 and 100')
       }
-      const boardHtml = await fetchText(ZAPPYHIRE_BOARD_URL)
-      if (!hasZappyhireBoardShell(boardHtml)) {
-        throw new Error('Credgenics Zappyhire board no longer matches the official careers shell')
-      }
-      const [config, filters] = await Promise.all([
-        fetchJson(`${ZAPPYHIRE_API_BASE}careers/configurations/`),
-        fetchJson(`${ZAPPYHIRE_API_BASE}careers/filter-params/`),
-      ])
-      if (config?.status !== 1
-        || !/^credgenics$/i.test(String(config.results?.name ?? ''))
-        || config.results?.website !== HOMEPAGE_URL
-        || !/^credgenics careers$/i.test(String(config.results?.career_text_heading ?? ''))
-        || config.results?.other_organization_settings?.country !== 'in'
-        || filters?.status !== 1
-        || !Array.isArray(filters.results?.locations)) {
-        throw new Error('Credgenics Zappyhire configuration no longer matches the verified India organization')
-      }
-
-      const verifiedCities = new Set(filters.results.locations.map(normalizeWhitespace).filter(Boolean))
-      const records = []
-      let total = null
-      for (let page = 1; total === null || records.length < total; page += 1) {
-        if (page > 100) throw new Error('Credgenics Zappyhire jobs exceeded the pagination limit')
-        const payload = await fetchJson(buildZappyhireJobsUrl(page, pageSize))
-        const count = payload?.results?.total?.value
-        const hits = payload?.results?.hits
-        if (payload?.status !== 1 || !Number.isInteger(count) || count < 0
-          || !Array.isArray(hits) || (total !== null && total !== count)
-          || (count > 0 && hits.length === 0)) {
-          throw new Error('Credgenics Zappyhire jobs pagination no longer matches the public API')
-        }
-        total = count
-        records.push(...hits)
-      }
-      if (records.length !== total || new Set(records.map((record) => record?._source?.job)).size !== total) {
-        throw new Error('Credgenics Zappyhire jobs pagination returned duplicate or missing roles')
-      }
       const scrapedAt = now()
-      return Promise.all(records.map(async (record) => {
-        const detailPayload = await fetchJson(buildZappyhireJobDetailUrl(record?._source?.job))
-        if (detailPayload?.status !== 1) throw new Error('Credgenics Zappyhire job detail is unavailable')
-        return extractZappyhireJob(record, detailPayload.results, verifiedCities, scrapedAt)
-      }))
+      return collectNativeSnapshots({readText,readJSON,homepageHtml,homepageURL:HOMEPAGE_URL,boardURL:ZAPPYHIRE_BOARD_URL,apiBase:ZAPPYHIRE_API_BASE,pageSize,scrapedAt,
+        verifyHomepage:hasCurrentHomepageSignal,verifyBoard:hasZappyhireBoardShell,extractJob:extractZappyhireJob,buildJobsURL:buildZappyhireJobsUrl,buildDetailURL:buildZappyhireJobDetailUrl})
     }
 
     if (!hasOfficialHomepageSignal(homepageHtml)) {
@@ -296,7 +312,7 @@ export const createCredgenicsScraper = ({ pageSize = 100 } = {}) => ({
       throw new Error('Credgenics careers handoff changed; refusing to assume the verified external route still applies')
     }
 
-    return []
+    return attachHeldNativeEvidence([],{surface:HOMEPAGE_URL,verifiedAt:now()})
   },
 })
 

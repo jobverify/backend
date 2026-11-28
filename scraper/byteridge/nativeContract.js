@@ -4,6 +4,7 @@ import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml
 import { nativeCountryName, nativeLocationCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
 import { projectAuthorVisibility, projectedIframeSources, projectedFrameContexts, executableDocument } from './nativeVisibility.js'
 import { turboHireRecruitmentRecord } from '../../scraper-support/utils/turboHireNativeFacts.js'
+import {currentCriteriaInitialScripts,currentCriteriaPublicClients,currentCriteriaDTOKeys} from './currentCriteriaProjection20261128.js'
 
 export const CAREER_PAGE_URL = 'https://byteridge.com/careers/'
 export const FRAME_URL = 'https://byteridge.com/wp-content/career/index.html'
@@ -147,7 +148,7 @@ export function frameContract(html, client) {
   check(nodes.length === 1 && executable(nodes[0]), 'careers client is not executable')
   return { frameSHA256: sha256(html), clientSHA256: sha256(client) }
 }
-export function nativePageContract(html, expected) {
+function inspectNativePage(html, expected, criteriaDataOnly) {
   const doc = document(html),execution=executableDocument(html)
   const elements = documentElements(doc)
   check(sameStyles(surfaceStyles(html,doc,NATIVE_ORIGIN),reviewedSurfaces.native),'unreviewed native stylesheet visibility')
@@ -155,7 +156,8 @@ export function nativePageContract(html, expected) {
   check(!elements.some(n => n.tag === 'base'), 'unreviewed native base')
   const scripts = execution.nodes(n => n.tag === 'script' && n.attrs.src)
   const native = scripts.filter(n => new URL(n.attrs.src, NATIVE_ORIGIN).origin === NATIVE_ORIGIN)
-  const clientURLs = [NATIVE_CLIENTS,...(reviewedSurfaces.nativeClientVersions||[]).map(version=>version.scriptURLs)].find(urls => native.length === urls.length && native.every(n => executable(n) && !Object.hasOwn(n.attrs,'integrity') && urls.includes(new URL(n.attrs.src, NATIVE_ORIGIN).href)) && new Set(native.map(n => new URL(n.attrs.src, NATIVE_ORIGIN).href)).size === urls.length)
+  const versions=criteriaDataOnly?[currentCriteriaInitialScripts]:[NATIVE_CLIENTS,...(reviewedSurfaces.nativeClientVersions||[]).map(version=>version.scriptURLs)]
+  const clientURLs = versions.find(urls => native.length === urls.length && native.every(n => executable(n) && !Object.hasOwn(n.attrs,'integrity') && urls.includes(new URL(n.attrs.src, NATIVE_ORIGIN).href)) && new Set(native.map(n => new URL(n.attrs.src, NATIVE_ORIGIN).href)).size === urls.length)
   check(clientURLs, 'native public client version/execution drift')
   check(scripts.filter(n => new URL(n.attrs.src, NATIVE_ORIGIN).origin !== NATIVE_ORIGIN).every(n => executable(n) && NATIVE_EXTERNALS.has(pathOnly(n.attrs.src, NATIVE_ORIGIN))), 'unreviewed external native client')
   check(projectedFrameContexts(doc).length === 0, 'unreviewed native frame')
@@ -168,8 +170,11 @@ export function nativePageContract(html, expected) {
   check(posting.hiringOrganization?.name === LEGAL_EMPLOYER && companyURL(posting.hiringOrganization.sameAs), 'native legal employer binding changed')
   check(typeof posting.description === 'string' && plain(posting.description).length >= 200, 'missing full public schema description')
   const locations = [posting.jobLocation].flat()
-  check(locations.length > 0 && locations.length <= 64, 'missing native schema countries')
-  const countries = locations.map(location => {
+  // Current data-only schema shape errors are isolated at roleContract below,
+  // where the raw model and DTO can be retained as held evidence. The ordinary
+  // fully reviewed page contract retains its existing strict country checks.
+  if(!criteriaDataOnly)check(locations.length > 0 && locations.length <= 64, 'missing native schema countries')
+  const countries = criteriaDataOnly?locations.map(location=>typeof location?.address?.addressCountry==='string'?nativeCountryName(location.address.addressCountry):null).filter(Boolean):locations.map(location => {
     const a = location?.address
     check(a && typeof a === 'object' && !Array.isArray(a) && Object.keys(a).every(k => ['@type','addressCountry','addressLocality','addressRegion','postalCode','streetAddress'].includes(k)), 'unreviewed native schema address')
     check(typeof a.addressCountry === 'string' && nativeCountryName(a.addressCountry), 'unknown explicit native schema country')
@@ -179,9 +184,12 @@ export function nativePageContract(html, expected) {
   const visibleText=doc.nodes(n=>n.tag==='body').map(n=>doc.text(n)).join(' ')
   const version = reviewedSurfaces.nativeClientVersions?.find(value => canonical(value.scriptURLs) === canonical(clientURLs))
   return { posting, countries: [...new Set(countries)], clientURLs,
-    publicClientURLs: version?.clientURLs || [], companyScopeUnqualified: version?.companyScopeUnqualified === true,
+    publicClientURLs: criteriaDataOnly?currentCriteriaPublicClients:version?.clientURLs || [], companyScopeUnqualified: criteriaDataOnly||version?.companyScopeUnqualified === true,
+    currentNativeCriteriaData:criteriaDataOnly,
     roleLinks,visibleClosure:explicitClosure(visibleText) }
 }
+export const nativePageContract=(html,expected)=>inspectNativePage(html,expected,false)
+export const currentNativeCriteriaPageContract=(html,expected)=>inspectNativePage(html,expected,true)
 export function organizationContract(value) {
   check(value && typeof value === 'object' && !Array.isArray(value) && value.OrgID === ORG_ID, 'public organization identity changed')
   check(value.CareerPageSubdomain === 'byteridge' && companyURL(value.OrgURL) && value.IsCareerPagePublished === true, 'public organization reciprocal website/publication changed')
@@ -253,6 +261,12 @@ const section = (dto, name) => {
   return selected
 }
 const typedCountryContract = dto => check(!Object.keys(dto).some(k => k !== 'Location' && /country|joblocation|address|locations/i.test(k)), 'unreviewed typed role country field')
+// A native workplace can explicitly be a country by itself ("India"). Keep
+// that literal country evidence separate from parsing an address suffix; an
+// unrecognized city/name still cannot supply a country or a city inference.
+const explicitRoleCountry = value => nativeCountryName(value) || nativeLocationCountryName(value)
+const explicitIndiaRemoteLabel = value => /^(?:India\s*\(Remote\)|Remote\s*[,(-]?\s*India\s*\)?)$/i.test(value)
+  || value === 'Remote (India). Occasional client-site travel may be required.'
 const roleCountry = (dto, html, native) => {
   const schemaCountries=native.countries
   check(!Object.keys(dto).some(k => k !== 'Location' && /country|joblocation|address|locations/i.test(k)), 'unreviewed typed role country field')
@@ -279,15 +293,15 @@ const roleCountry = (dto, html, native) => {
   const countries = [], remote = addresses.some(a => /^remote(?: job)?$/i.test(a))
   for (const address of addresses) {
     if (/^remote(?: job)?$/i.test(address)) continue
-    const country = nativeLocationCountryName(address)
+    const country = explicitRoleCountry(address)
     check(country, 'unknown explicit native address country')
     countries.push(country)
   }
   const text = plain(html)
   const labels = [...text.matchAll(/\bLocation\s*:\s*([\s\S]*?)(?=\bLocation\s*:|\b(?:Department|Role Overview|Role|Experience|Employment Type)\s*:|$)/gi)].map(m => norm(m[1]))
-  const indiaRemote = labels.some(label => /^(?:India\s*\(Remote\)|Remote\s*[,(-]?\s*India\s*\)?)$/i.test(label))
+  const indiaRemote = labels.some(explicitIndiaRemoteLabel)
   for(const label of labels) {
-    const explicitCountry=/^(?:India\s*\(Remote\)|Remote\s*[,(-]?\s*India\s*\)?)$/i.test(label)?'India':nativeLocationCountryName(label)
+    const explicitCountry=explicitIndiaRemoteLabel(label)?'India':explicitRoleCountry(label)
     check(explicitCountry,'unknown explicit role Location country')
     countries.push(explicitCountry)
   }
@@ -297,7 +311,7 @@ const roleCountry = (dto, html, native) => {
   check(unique.length > 0 && canonical([...unique].sort()) === canonical([...schemaCountries].sort()), 'native role/schema country conflict')
   const schemaAddresses=[native.posting.jobLocation].flat().map(l=>l.address.addressLocality)
   check(schemaAddresses.every(a=>typeof a==='string'&&addresses.some(b=>norm(a)===norm(b))),'native schema/detail locality conflict')
-  const indiaAddresses=addresses.filter(address=>nativeLocationCountryName(address)==='India')
+  const indiaAddresses=addresses.filter(address=>explicitRoleCountry(address)==='India')
   return {addresses,indiaAddresses,countries:unique,remote,location:remote ? 'Remote, India' : (unique.includes('India')?indiaAddresses:addresses).join(' / ')}
 }
 const CRITERIA_LABELS={qualifications:'Qualifications',educationRequirements:'Education requirements',experienceRequirements:'Experience requirements',responsibilities:'Responsibilities',eligibilityToWorkRequirement:'Eligibility to work',physicalRequirement:'Physical requirements',sensoryRequirement:'Sensory requirements',securityClearanceRequirement:'Security clearance requirements',competencyRequired:'Required competencies',jobBenefits:'Job benefits'}
@@ -321,6 +335,34 @@ const structuredCriteria = posting => {
   }
   return {raw,publishedHTML:published.join('\n')}
 }
+const currentCriteriaSchemaContract=(posting,dto)=>{
+  const requireSchema=(condition,message)=>{
+    if(!condition)throw Object.assign(Error('Byteridge native source: unreviewed current criteria schema geography or eligibility: '+message),{code:'BYTERIDGE_NATIVE_CONTRACT',nativeCriteriaSchemaUnreviewed:true})
+  }
+  const object=value=>value&&typeof value==='object'&&!Array.isArray(value)
+  // Applicant eligibility is a distinct fact from workplace country. A new
+  // applicantLocationRequirements/jobLocationType or other unknown field must
+  // be held with its raw value, rather than silently disappearing from data.
+  const keys=new Set(['@context','@type','title','description','datePosted','validThrough','employmentType','hiringOrganization','jobLocation','industry','workHours','skills',...Object.keys(CRITERIA_LABELS)])
+  requireSchema(object(posting)&&Object.keys(posting).every(key=>keys.has(key)),'unknown JobPosting field')
+  requireSchema(posting['@context']==='https://schema.org'&&posting['@type']==='JobPosting','changed schema context/type')
+  requireSchema(object(posting.hiringOrganization)&&posting.hiringOrganization['@type']==='Organization'
+    &&Object.keys(posting.hiringOrganization).every(key=>['@type','name','sameAs'].includes(key)),'unknown hiring organization model')
+  requireSchema(['industry','workHours'].every(key=>typeof posting[key]==='string'&&posting[key].trim()),'unsupported industry/work-hours model')
+  requireSchema(Array.isArray(posting.skills)&&posting.skills.every(value=>typeof value==='string'&&value.trim())
+    &&canonical(posting.skills)===canonical(dto?.Skills),'native schema/DTO skills conflict or shape')
+  const locations=[posting.jobLocation].flat()
+  requireSchema(locations.length>0&&locations.length<=64,'missing or unbounded job locations')
+  for(const place of locations){
+    requireSchema(object(place)&&place['@type']==='Place'&&Object.keys(place).every(key=>['@type','address'].includes(key)),'unknown Place geography or type')
+    const address=place.address
+    requireSchema(object(address)&&address['@type']==='PostalAddress'
+      &&Object.keys(address).every(key=>['@type','addressCountry','addressLocality'].includes(key)),'unknown address geography or type')
+    requireSchema(typeof address.addressCountry==='string'&&nativeCountryName(address.addressCountry),'unknown typed address country')
+    requireSchema(address.addressLocality==null||typeof address.addressLocality==='string'&&address.addressLocality.trim(),'unsupported typed locality')
+  }
+}
+export const currentNativeCriteriaRecord=dto=>structuredClone(Object.fromEntries(Object.entries(dto&&typeof dto==='object'?dto:{}).filter(([key])=>!['CreatedByName','CreatedByEmail','CreatedById','OrgDetails'].includes(key))))
 const employmentKey=value=>typeof value==='string'?({fulltime:'full-time',parttime:'part-time',contract:'contractor',contractor:'contractor',contractual:'contractor',intern:'intern',internship:'intern',temporary:'temporary',volunteer:'volunteer',perdiem:'per-diem',other:'other'})[norm(value).toLowerCase().replace(/[\s_-]/g,'')]||null:null
 const employmentContract=(dto,posting)=>{
   const primary=typeof dto.JobTypeV2==='string'&&dto.JobTypeV2.trim()?dto.JobTypeV2:typeof dto.Type==='string'&&dto.Type!=='UNSPECIFIED'?dto.Type:null
@@ -345,6 +387,8 @@ const customFields = fields => {
   })
 }
 export function roleContract(row, dto, native, proxy, now) {
+  if(native.currentNativeCriteriaData)currentCriteriaSchemaContract(native.posting,dto)
+  if(native.currentNativeCriteriaData)check(dto&&Object.keys(dto).every(key=>currentCriteriaDTOKeys.includes(key)),'unreviewed current public DTO field')
   typedCountryContract(row);typedCountryContract(dto);if(proxy)typedCountryContract(proxy)
   check(dto && typeof dto === 'object' && dto.JobId === row.JobId && norm(dto.JobTitle) === norm(row.JobTitle) && dto.JobCode === row.JobCode, 'native listing/detail identity mismatch')
   check(dto.JobStatus === 'Active' && dto.IsPublic === true && dto.IsDraft === false, 'role is not active, public and published')
@@ -390,6 +434,15 @@ export function roleContract(row, dto, native, proxy, now) {
   const requisitionId = dto.RequisitionId && !/^0{8}-0{4}-0{4}-0{4}-0{12}$/.test(dto.RequisitionId) ? dto.RequisitionId : null
   const nativeListingState=Object.fromEntries(['JobId','JobCode','JobTitle','Department','PublishedDate','ExpiryDates','Location','Type','CTCInfo','ShowClientName','ClientName','Experience','Skills','JobDescV2'].map(k=>[k,row[k]]))
   const semantic = {jobId:dto.JobId,title:dto.JobTitle,jobCode:dto.JobCode,requisitionId,department:dto.Department,location:dto.Location,type:dto.Type,jobType:dto.JobTypeV2,experience:dto.Experience,skills:dto.Skills,numberOfVacancy:dto.NumberOfVacancy,custom,description,responsibilities,eligibility,publishedDates:dto.PublishedDates,general:general.raw,expiryDates:dto.ExpiryDates,boards:dto.PublishedJobBoards,jobStatus:dto.JobStatus,isPublic:dto.IsPublic,isDraft:dto.IsDraft,applicationEnquiryTemplateId:dto.ApplicationEnquiryTemplateId,applicationRoleId:dto.JobIdObfuscated,employer,posting:native.posting,proxyState,nativeListingState,nativeRoleLinks:native.roleLinks}
+  // Closing comparison includes the complete DTO in RAM, including fields not
+  // selected for publication. Staff contacts are never added to output records.
+  if(native.currentNativeCriteriaData)semantic.currentNativeDTO=structuredClone(dto)
+  const dataOnly=native.currentNativeCriteriaData?{
+    sourceDetailComplete:false,sourceDetailStatus:'partial',sourceDetailFailureKind:'current-native-criteria-data-rendering-and-application-unqualified',
+    nativeCriteriaTextComplete:true,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,
+    sourceAvailabilityVerified:false,applicationPublicContextValidated:false,
+    nativeCriteriaDataRecord:currentNativeCriteriaRecord(dto),
+  }:{}
   return {semantic, proxyCoherent, country:country.countries.includes('India') ? 'India' : country.countries.join(' / '),
     roleLinks:native.roleLinks,job:{id:dto.JobId,jobId:dto.JobId,sourceJobId:dto.JobId,requisitionId,jobCode:dto.JobCode,source:'byteridge',company:'Byteridge',legalEmployer:LEGAL_EMPLOYER,nativeApplicationTemplateId:dto.ApplicationEnquiryTemplateId || null,
       nativeHiringOrganization:structuredClone(native.posting.hiringOrganization),
@@ -402,5 +455,5 @@ export function roleContract(row, dto, native, proxy, now) {
       postingDate:posted.raw,postedAt:posted.raw,nativePublicationDate:posted.raw,nativePublicationPrecision:posted.precision,nativePublicationSource:'publicjobs.PublishedDates.CAREERPAGE',nativePublicationGeneral:general.raw,nativePublishedDates:dto.PublishedDates,
       closingDate:expiry?.value??null,nativeExpiryRaw:expiry?.raw??null,nativeExpiryPrecision:expiry?.precision??null,sourceClosingDateIsExact:expiry?.exact??false,nativeExpirySource:expiry?'publicjobs.ExpiryDates.CAREERPAGE':null,nativeExpiryDates:dto.ExpiryDates??null,firstEverPublication:null,
       nativeLocationAddresses:country.addresses,nativeCountryEvidence:{addresses:country.addresses,schemaCountries:native.countries,explicitRoleLocationForRemote:country.remote,...(country.method?{method:country.method,roleLocationLabel:country.roleLocationLabel}:{})},nativeCustomFields:custom,
-      sourceDetailComplete:true,sourceDetailStatus:'complete',sourceAvailabilityVerified:true,sourceActive:true,scrapedAt:now}}
+      sourceDetailComplete:true,sourceDetailStatus:'complete',sourceAvailabilityVerified:true,sourceActive:true,scrapedAt:now,...dataOnly}}
 }

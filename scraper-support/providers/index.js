@@ -20,7 +20,8 @@ import { attachInventoryEvidence, readInventoryEvidence } from '../utils/invento
 import { attachInventoryDelegationEvidence, readInventoryDelegationEvidence } from '../utils/inventoryDelegationEvidence.js'
 import { attachSourceObservationEvidence, readSourceObservationEvidence } from '../utils/sourceObservationEvidence.js'
 import { hasMatchingPublicAtsBinding } from '../utils/publicAtsIdentity.js'
-import { buildHttpError, parseRetryAfterHeader } from '../utils/fetch.js'
+import { buildHttpError, isHttpAccessChallenge, parseRetryAfterHeader } from '../utils/fetch.js'
+import { disposeResponseBody } from '../shared/responseBodyDisposal.js'
 import {FINOLEX_CATALOG} from '../../scraper/finolexindustrieslimited/catalog.js'
 import {GOODNOTES_CATALOG} from '../../scraper/goodnotes/catalog.js'
 import {DENTALKART_CATALOG} from '../../scraper/dentalkart/catalog.js'
@@ -449,6 +450,17 @@ const getTokenValueFromPayload = (payload, tokenPath = 'token') =>
     .split('.')
     .reduce((current, key) => (current == null ? null : current[key]), payload) ?? null
 
+const rejectApiAccessChallenge = async (response, url, signal) => {
+  if (!isHttpAccessChallenge(response)) return
+  const error = buildHttpError(response, url)
+  if (response.body && !response.bodyUsed) {
+    try { await disposeResponseBody(response, { signal, bestEffort: true }) } catch {}
+  }
+  // The API engine preserves the outer caller's exact cancellation reason.
+  // This signal also contains its local deadline; keep the observed challenge.
+  throw error
+}
+
 const createAuthorizedFetchJson = (provider) => {
   const authConfig = provider.config?.auth || {}
   let cachedToken = null
@@ -463,6 +475,7 @@ const createAuthorizedFetchJson = (provider) => {
       signal,
     })
 
+    await rejectApiAccessChallenge(response, authConfig.tokenUrl, signal)
     if (!response.ok) {
       throw buildHttpError(response, authConfig.tokenUrl)
     }
@@ -495,12 +508,14 @@ const createAuthorizedFetchJson = (provider) => {
     }
 
     let response = await executeRequest()
+    await rejectApiAccessChallenge(response, url, options.signal)
     let httpError = response.ok ? null : buildHttpError(response, url)
     if (
       shouldAuthorizeRequest(provider, url)
       && (response.status === 401 || response.status === 403)
     ) {
       response = await executeRequest({ forceRefresh: true })
+      await rejectApiAccessChallenge(response, url, options.signal)
       httpError = response.ok ? null : buildHttpError(response, url)
     }
 
@@ -670,6 +685,7 @@ const fetchJson = async (url, options = {}) => {
     signal: options.signal,
   })
 
+  await rejectApiAccessChallenge(response, url, options.signal)
   if (!response.ok) {
     const error = buildHttpError(response, url)
     const retryAfter = response.headers?.get?.('retry-after')

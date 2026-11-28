@@ -152,6 +152,32 @@
       ]
     }
   },
+  "additionalPublicClientContracts": [
+    {
+      "reviewedAt": "2026-11-27",
+      "main": {
+        "apiBase": "https://thapi-stage2.azurewebsites.net",
+        "apiServiceModule": "18",
+        "publicMethods": {
+          "getUnAuthenticatedAccessToken": "46c9a7b2bca109debc2db933496a4b1a2b6b7a3cb387755f6705467787b1ac5d",
+          "getOrgDetailsFromAccountName": "7ab9c3d9217353c33e3a0ec0bb90794b847743df2154fd4a304b85d787c7c0d3",
+          "getPublicOrgInfo": "3c07e8e956b3395d1836fc56376bd0e6d9cf7b37d7a096e494b3c9173c930284",
+          "getPublicJobRefsForOrgFiltered": "38294f1377bf6c902ce0570e97bed19164ff2e262abbfd3ff736c0c517c4d0c1"
+        },
+        "publicServiceBindings": [
+          "0aab1b227b266d308df4f271e623940d770881ce9ee3884ff32f302f589cad4a"
+        ],
+        "entryId": 1896,
+        "rootRender": "a099195307b40c65478c5faa3b55a654c2ac3f6ad9367409ec911165fc4368f1",
+        "publicLazyBootstrap": "7f63dfaa3e456d318151f44eb96deaa12d673b946dc67d9b8a0fd837aacc3687",
+        "publicChunkIds": [13,17,25,38,40]
+      },
+      "employerRouter": {
+        "moduleId": 3903,
+        "functionSHA256": "783ce9d25e0d6f674178d44facda78a8227e19fd72128b501f6a7f6cd82f63b1"
+      }
+    }
+  ],
   "publicClientContract": {
     "main": {
       "apiBase": "https://thapi-stage2.azurewebsites.net",

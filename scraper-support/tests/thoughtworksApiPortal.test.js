@@ -2,11 +2,18 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 import { runApiPortalScraper } from '../apiPortal/engine.js'
-import { getScraperCatalog } from '../providers/index.js'
+import { getScraperCatalog, loadProviderExtensions } from '../providers/index.js'
 
-test('runApiPortalScraper maps Thoughtworks Greenhouse jobs and keeps India roles', async () => {
-  const provider = getScraperCatalog().find((item) => item.source === 'thoughtworks')
+test('the historical Thoughtworks Greenhouse mapping remains isolated from current script registration', async () => {
+  const current = getScraperCatalog().find((item) => item.source === 'thoughtworks')
+  assert.equal(current.adapter, 'script')
+  // Exercise the retained historical template explicitly. The current provider
+  // uses its declared first-party service and never selects this old board.
+  const provider = getScraperCatalog({
+    providerExtensions: loadProviderExtensions().filter((item) => item.source !== 'thoughtworks'),
+  }).find((item) => item.source === 'thoughtworks')
   assert.ok(provider)
+  assert.equal(provider.adapter, 'apiPortal')
 
   const listingsPayload = {
     jobs: [

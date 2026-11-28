@@ -2,10 +2,13 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const CAREER_PAGE_URL = 'https://www.ajafirm.com/career.html'
+const SOURCE = 'aanandpjangidandassociates'
 const COMPANY_NAME = 'Aanand P Jangid and Associates LLP'
 const OPENINGS_URL = `${CAREER_PAGE_URL}#open-positions`
 
@@ -99,13 +102,13 @@ export const extractSearchResults = (html) => {
         title,
         company: COMPANY_NAME,
         department: null,
-        location: 'India',
+        location: null,
         city: null,
-        country: 'India',
+        country: null,
         jobId,
         requisitionId: jobId,
         sourceUrl: OPENINGS_URL,
-        applyUrl: OPENINGS_URL,
+        applyUrl: null,
         employmentType: null,
         experienceRequired: null,
         minimumQualification: null,
@@ -114,7 +117,21 @@ export const extractSearchResults = (html) => {
         postingDate: null,
         closingDate: null,
         jobDescription: null,
-        remoteStatus: 'On-site',
+        remoteStatus: null,
+        sourceCountryComplete: false,
+        sourceDetailComplete: false,
+        sourceApplicationQualificationComplete: false,
+        activeApplyVerified: false,
+        sourceListingComplete: false,
+        sourceScopeComplete: false,
+        lifecycleCleanupAllowed: false,
+        sourceQualificationHolds: [
+          'role-country-unproven', 'role-details-unproven',
+          'application-unproven', 'inventory-scope-unproven',
+        ],
+        // Keep the original criteria and navigation as observations. Footer
+        // offices and a generic contact handler do not qualify a role.
+        nativeObservation: { title, rawHtml: String(html ?? ''), openingsHtml: sectionHtml || null },
       }
     })
     .filter(Boolean)
@@ -133,12 +150,33 @@ export const createAanandPJangidAndAssociatesScraper = () => ({
       throw new Error('AJA verified public openings surface no longer contains job cards')
     }
 
-    return jobs.map((job) => ({
+    const observations = jobs.map((job) => ({
       ...job,
-      source: 'aanandpjangidandassociates',
+      source: SOURCE,
       link: job.applyUrl || job.sourceUrl,
       scrapedAt: new Date().toISOString(),
     }))
+    const sourceEvidence = {
+      source: SOURCE, recordKind: 'vacancy-rows',
+      observedRecordCount: observations.length, observedVacancyCount: observations.length,
+      sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null,
+    }
+    attachSourceObservationEvidence(observations, sourceEvidence)
+    Object.defineProperty(observations, 'nativeCollectionEvidence', {
+      configurable: true,
+      value: {
+        ...sourceEvidence, sourceListingComplete: false, sourceDetailComplete: false,
+        sourceCountryComplete: false, sourceApplicationQualificationComplete: false,
+        lifecycleCleanupAllowed: false, rawHtml: careersHtml,
+        observations: observations.map(job => job.nativeObservation),
+      },
+    })
+    return attachInventoryEvidence(observations, {
+      status: 'coverage-gap', surface: CAREER_PAGE_URL, firstParty: true,
+      listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 1,
+      reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
+      reason: 'Native title observations lack qualified role countries, full details, application authority and inventory scope',
+    })
   },
 })
 

@@ -1,6 +1,7 @@
 import { setTimeout as delay } from 'node:timers/promises'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
-import { CAREER_PAGE_URL,FRAME_URL,CLIENT_URL,PROXY_URL,NATIVE_ORIGIN,API_ORIGIN,ORG_ID,LIST_URL,check,sha256,canonical,corporateContract,frameContract,nativePageContract,organizationContract,listingContract,jobURL,publicJobURL,filteredBody,roleContract,reviewedNativeClients } from './nativeContract.js'
+import { CAREER_PAGE_URL,FRAME_URL,CLIENT_URL,PROXY_URL,NATIVE_ORIGIN,API_ORIGIN,ORG_ID,LIST_URL,check,sha256,canonical,corporateContract,frameContract,nativePageContract,currentNativeCriteriaPageContract,organizationContract,listingContract,jobURL,publicJobURL,filteredBody,roleContract,reviewedNativeClients,currentNativeCriteriaRecord } from './nativeContract.js'
+import {currentCriteriaClientSHA256,matchesCurrentCriteriaManifest,qualifyCurrentCriteriaPrograms} from './currentCriteriaProjection20261128.js'
 
 const bounded = (operation, signal) => new Promise((resolve,reject) => {
   const cleanup = () => signal.removeEventListener('abort',abort)
@@ -21,16 +22,17 @@ export async function runNativeByteridge(options = {}) {
   const controller = new AbortController(), timer = setTimeout(() => controller.abort(Error('Byteridge bounded source deadline exceeded')), timeout)
   const signal = options.signal ? AbortSignal.any([options.signal,controller.signal]) : controller.signal
   const previous = new Map(), retainedResponses = [], sessionHeaders = {Origin:NATIVE_ORIGIN,Referer:NATIVE_ORIGIN+'/',Accept:'application/json, text/plain, */*'}
-  let token = null
+  let token = null,criteriaProof=null,pageContract=nativePageContract
+  const publicReadClients={...reviewedNativeClients,...currentCriteriaClientSHA256}
   const get = async (url, {method='GET',body,json=false,anonymous=false} = {}) => {
     signal.throwIfAborted()
     const parsed = new URL(url)
     const allowed = [CAREER_PAGE_URL,FRAME_URL,CLIENT_URL,PROXY_URL,LIST_URL,API_ORIGIN+'/api/token/noauth',API_ORIGIN+'/api/publicorganizations?accountName=byteridge',API_ORIGIN+'/api/publicorganizations/'+ORG_ID].includes(url) || /^https:\/\/byteridge\.turbohire\.co\/job\/publicjobs\/[\da-f-]{36}\?utm_source=CareerPage$/.test(url) || /^https:\/\/thapi-stage0\.azurewebsites\.net\/api\/publicjobs\/[\da-f-]{36}$/.test(url)
-    check((allowed || Object.hasOwn(reviewedNativeClients,url)) && (method === 'GET' || method === 'POST' && [PROXY_URL,LIST_URL].includes(url)), 'request outside reviewed public read-only contract')
+    check((allowed || Object.hasOwn(publicReadClients,url)) && (method === 'GET' || method === 'POST' && [PROXY_URL,LIST_URL].includes(url)), 'request outside reviewed public read-only contract')
     const wait = interval - (Date.now() - (previous.get(parsed.origin) || 0))
     if (wait > 0) await delay(wait,undefined,{signal})
     previous.set(parsed.origin,Date.now())
-    const isClient = url === CLIENT_URL || Object.hasOwn(reviewedNativeClients,url)
+    const isClient = url === CLIENT_URL || Object.hasOwn(publicReadClients,url)
     const headers = parsed.origin === API_ORIGIN ? {...sessionHeaders,...(token && !anonymous ? {Authorization:'Bearer '+token} : {})} : {Accept:json ? 'application/json, text/plain, */*' : isClient ? 'application/javascript, text/javascript, */*' : 'text/html,application/xhtml+xml'}
     if (method === 'POST') Object.assign(headers,{'Content-Type':'application/json;charset=UTF-8',...(url === PROXY_URL ? {Origin:'https://byteridge.com',Referer:FRAME_URL} : {})})
     let text,status=200,contentType=null,finalUrl
@@ -45,7 +47,7 @@ export async function runNativeByteridge(options = {}) {
       check(!contentType || (json ? /(?:application|text)\/[^;]*json/i : isClient ? /(?:application|text)\/(?:x-)?(?:java|ecma)script/i : /text\/html/i).test(contentType), 'public response MIME changed')
       text = await bounded(() => { if (typeof response.body === 'string') return response.body; const method = response.text; signal.throwIfAborted(); return Reflect.apply(method,response,[]) },signal)
     }
-    check(typeof text === 'string' && Buffer.byteLength(text) <= (Object.hasOwn(reviewedNativeClients,url) ? 16000000 : 5000000), 'oversized/invalid public response')
+    check(typeof text === 'string' && Buffer.byteLength(text) <= (Object.hasOwn(publicReadClients,url) ? 16000000 : 5000000), 'oversized/invalid public response')
     // Only response hashes and sizes are retained. Issued anonymous credentials,
     // cookies, staff contacts and irrelevant DTO account fields never leave RAM.
     const metadata = {url,method,status,contentType,bodyBytes:Buffer.byteLength(text),bodySHA256:sha256(text),observedAt:new Date().toISOString(),anonymousSession:anonymous}
@@ -71,12 +73,12 @@ export async function runNativeByteridge(options = {}) {
     return {organization,listing}
   }
   const details = async (phase, warm = new Map()) => {
-    const results = new Map(), reasons=[], proxy=new Map(phase.proxy.records.map(row=>[row.JobId,row]))
+    const results = new Map(), reasons=[], heldNativeCriteriaRecords=[], proxy=new Map(phase.proxy.records.map(row=>[row.JobId,row]))
     for (const row of phase.listing.records) {
       // Transport errors abort immediately; malformed individual role facts
       // retain partial coverage while unrelated healthy roles remain usable.
       const html=warm.get(row.JobId) || await get(jobURL(row.JobId))
-      const page=nativePageContract(html,row)
+      const page=pageContract(html,row)
       if(page.companyScopeUnqualified)reasons.push('current-native-client-company-inventory-unqualified')
       const dto=await get(publicJobURL(row.JobId),{json:true})
       try {
@@ -93,9 +95,15 @@ export async function runNativeByteridge(options = {}) {
       } catch (error) {
         if(error.code!=='BYTERIDGE_NATIVE_CONTRACT' && !(error instanceof SyntaxError)) throw error
         reasons.push('unresolved-role:'+row.JobId+':'+error.message)
+        if(page.currentNativeCriteriaData)heldNativeCriteriaRecords.push({jobId:row.JobId,title:row.JobTitle,
+          reason:error.message,failureKind:error.nativeCriteriaSchemaUnreviewed?'current-native-schema-geography-or-eligibility-unreviewed':'current-native-role-criteria-unresolved',
+          nativeJobPosting:structuredClone(page.posting),nativeCriteriaDataRecord:currentNativeCriteriaRecord(dto),nativeListing:currentNativeCriteriaRecord(row),
+          sourceDetailComplete:false,sourceDetailStatus:'partial',nativeCriteriaTextComplete:false,sourceRenderedCriteriaComplete:false,
+          sourceApplicationQualificationComplete:false,sourceAvailabilityVerified:false,applicationPublicContextValidated:false,
+          sourceScopeComplete:false,lifecycleCleanupAllowed:false})
       }
     }
-    return {results,reasons}
+    return {results,reasons,heldNativeCriteriaRecords}
   }
   try {
     const opening=await surface()
@@ -105,17 +113,27 @@ export async function runNativeByteridge(options = {}) {
     const first=opening.proxy.records[0]
     check(first.ApplyUrl===jobURL(first.JobId),'unreviewed native application context')
     const firstHTML=await get(first.ApplyUrl)
-    const firstPage=nativePageContract(firstHTML,first)
-    for(const url of firstPage.publicClientURLs)check(sha256(await get(url))===reviewedNativeClients[url],'current native client bytes changed')
+    if(matchesCurrentCriteriaManifest(firstHTML))pageContract=currentNativeCriteriaPageContract
+    const firstPage=pageContract(firstHTML,first),programs=new Map()
+    for(const url of firstPage.publicClientURLs){
+      const body=await get(url)
+      check(sha256(body)===publicReadClients[url],'current native client bytes changed')
+      programs.set(url,body)
+    }
+    if(firstPage.currentNativeCriteriaData)criteriaProof=qualifyCurrentCriteriaPrograms(programs)
     await get(API_ORIGIN+'/api/token/noauth',{json:true,anonymous:true})
     Object.assign(opening,await nativeList())
     const openingDetails=await details(opening,new Map([[first.JobId,firstHTML]]))
     const closing=await surface()
     Object.assign(closing,await nativeList())
     const closingDetails=await details(closing)
+    // Data-only qualification is bounded by both observed program snapshots.
+    // This does not approve execution of any changed UI/application module.
+    if(criteriaProof)for(const url of firstPage.publicClientURLs)check(sha256(await get(url))===currentCriteriaClientSHA256[url],'closing current native client bytes changed')
     const ids=phase=>phase.listing.records.map(row=>row.JobId).sort()
     const proxyIds=phase=>phase.proxy.records.map(row=>row.JobId).sort()
     const reasons=[...opening.corporate.reasons,...closing.corporate.reasons,...opening.proxy.reasons,...closing.proxy.reasons,...opening.listing.reasons,...closing.listing.reasons,...openingDetails.reasons,...closingDetails.reasons]
+    if(criteriaProof)reasons.push('current-native-criteria-data-rendering-and-application-unqualified')
     if(canonical(ids(opening))!==canonical(ids(closing))) reasons.push('native-global-identities-changed')
     if(canonical(proxyIds(opening))!==canonical(proxyIds(closing))) reasons.push('corporate-global-identities-changed')
     if(canonical(ids(opening))!==canonical(proxyIds(opening)) || canonical(ids(closing))!==canonical(proxyIds(closing))) reasons.push('corporate-native-global-identities-disagree')
@@ -129,13 +147,21 @@ export async function runNativeByteridge(options = {}) {
         nativeSourceRecord:{...left.job.nativeSourceRecord,nativeClosingListing:right.job.nativeSourceRecord.nativeListing,
           nativeClosingDetail:right.job.nativeSourceRecord.nativeDetail,nativeClosingJobPosting:right.job.nativeSourceRecord.nativeJobPosting,
           nativePublisher:{corporateURL:CAREER_PAGE_URL,frameURL:FRAME_URL,clientURL:CLIENT_URL,orgId:ORG_ID,
-            organization:opening.organization,clients:Object.fromEntries(firstPage.publicClientURLs.map(url=>[url,reviewedNativeClients[url]]))}}})
+            organization:opening.organization,clients:Object.fromEntries(firstPage.publicClientURLs.map(url=>[url,publicReadClients[url]]))}}})
     }
     if(maxJobs<healthy.length) reasons.push('caller-cap-after-full-native-reconciliation')
     const complete=reasons.length===0
     const evidence={source:'byteridge',surface:CAREER_PAGE_URL,nativeSurface:NATIVE_ORIGIN,observedGlobalRecords:opening.listing.records.length,reportedTotal:opening.listing.total,confirmedIndiaRecords:healthy.length,confirmedForeignRecords:[...openingDetails.results.values()].filter(r=>r.country!=='India').length,unresolvedRecords:opening.listing.records.length-openingDetails.results.size,
-      closingReconciled:true,sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,reasons:[...new Set(reasons)],sourceFrameContexts:{opening:opening.corporate.frameContexts,closing:closing.corporate.frameContexts},retainedResponses,verifiedAt:now,anonymousSessionCredentialsRetained:false,publicRolePageFetched:true,applicationPublicContextValidated:true,applicationSubmitted:false,candidateActionsTaken:false}
+      closingReconciled:true,sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,reasons:[...new Set(reasons)],sourceFrameContexts:{opening:opening.corporate.frameContexts,closing:closing.corporate.frameContexts},retainedResponses,verifiedAt:now,anonymousSessionCredentialsRetained:false,publicRolePageFetched:true,applicationPublicContextValidated:!criteriaProof,applicationSubmitted:false,candidateActionsTaken:false,
+      ...(criteriaProof?{nativeCriteriaDataOnly:true,sourceDetailComplete:false,sourceRenderedCriteriaComplete:false,sourceApplicationQualificationComplete:false,sourceAvailabilityVerified:false,
+        heldNativeCriteriaRecords:{opening:openingDetails.heldNativeCriteriaRecords,closing:closingDetails.heldNativeCriteriaRecords},
+        nativeReadService:{apiOrigin:criteriaProof.apiOrigin,methods:criteriaProof.readMethods,programs:criteriaProof.programs},
+        unqualifiedProgramModules:criteriaProof.unqualifiedModules.map(({source,...metadata})=>metadata)}:{})}
     const jobs=healthy.slice(0,maxJobs).map(job=>({...job,sourceListingComplete:complete,sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,sourceObservedGlobalJobCount:opening.listing.records.length,sourceObservedIndiaJobCount:healthy.length,nativeCollectionEvidence:evidence}))
+    if(criteriaProof){
+      if(jobs.length)jobs[0].nativeUnqualifiedProgramEvidence=criteriaProof.unqualifiedModules
+      else Object.defineProperty(jobs,'nativeUnqualifiedProgramEvidence',{value:criteriaProof.unqualifiedModules,enumerable:false})
+    }
     Object.defineProperty(jobs,'nativeInventoryEvidence',{value:evidence,enumerable:false})
     Object.defineProperty(jobs,Symbol.for('jobverify.verified-recruitment-observations'),{value:{...evidence,nativeRecords:evidence.observedGlobalRecords,unresolved:evidence.reasons}})
     signal.throwIfAborted()

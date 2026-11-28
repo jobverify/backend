@@ -26,6 +26,12 @@ const careerPageHtml = `
       <h2>Fresher Hiring</h2>
       <h2>Experience Hiring</h2>
       <h2>We are ready for you. Are you too?</h2>
+      <div class="awsm-job-wrap">
+        <input type="hidden" name="awsm_pagination_base" value="https://www.smartsocs.com/career/" />
+        <div class="awsm-job-listings" data-listings="10">
+          <div class="awsm-jobs-pagination"><button class="awsm-load-more-btn" data-page="1">Load more</button></div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
@@ -74,6 +80,7 @@ const jobsAjaxHtml = `
     </div>
   </a>
 </div>
+<div class="awsm-jobs-pagination"><button class="awsm-load-more-btn" data-page="2">Load more</button></div>
 `
 
 const emptyJobsAjaxHtml = `
@@ -104,6 +111,30 @@ const mixedLocationJobsAjaxHtml = `
   </a>
 </div>
 `
+
+// These are controlled legacy parser fixtures. Their explicit native carrier
+// does not describe the current marketing-only careers page or prove live jobs.
+const nativeEvidence = jobId => ({
+  sourceNativeLocationValues: ['India: Bangalore', 'India: Hyderabad'],
+  sourceCountryEvidence: {
+    qualified: true,
+    explicitCountries: ['India'],
+    values: ['India: Bangalore', 'India: Hyderabad'],
+    reason: 'all-native-location-values-explicitly-India',
+  },
+  sourceDetailComplete: false,
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  sourceApplicationAuthority: false,
+  sourceNativeApplicationEvidence: {
+    applicationAuthority: false,
+    navigationOnly: true,
+    nativeApplicationUrl: null,
+    reason: 'listing-link-is-unqualified-detail-navigation',
+  },
+  sourceNativeCardHTML: [...jobsAjaxHtml.matchAll(/<div class="awsm-job-listing-item[^]*?<\/a>\s*<\/div>/g)]
+    .map(match => match[0]).find(html => html.includes(`id="awsm-grid-item-${jobId}"`)),
+})
 
 test('SmartSoC Solutions scraper pins the verified first-party careers surface', async () => {
   const smartSoc = await loadSmartSocSolutionsModule()
@@ -136,7 +167,7 @@ test('extractJobsFromAjaxHtml parses the verified public SmartSoC job cards', as
       jobId: '16931',
       requisitionId: '16931',
       sourceUrl: 'https://www.smartsocs.com/jobs/low-power-verification/',
-      applyUrl: 'https://www.smartsocs.com/jobs/low-power-verification/',
+      applyUrl: null,
       employmentType: 'Full Time',
       experienceRequired: null,
       minimumQualification: null,
@@ -145,7 +176,8 @@ test('extractJobsFromAjaxHtml parses the verified public SmartSoC job cards', as
       postingDate: null,
       closingDate: null,
       jobDescription: null,
-      remoteStatus: 'On-site',
+      remoteStatus: null,
+      ...nativeEvidence('16931'),
     },
     {
       title: 'Pattern Generation',
@@ -157,7 +189,7 @@ test('extractJobsFromAjaxHtml parses the verified public SmartSoC job cards', as
       jobId: '16933',
       requisitionId: '16933',
       sourceUrl: 'https://www.smartsocs.com/jobs/pattern-generation/',
-      applyUrl: 'https://www.smartsocs.com/jobs/pattern-generation/',
+      applyUrl: null,
       employmentType: 'Full Time',
       experienceRequired: null,
       minimumQualification: null,
@@ -166,7 +198,8 @@ test('extractJobsFromAjaxHtml parses the verified public SmartSoC job cards', as
       postingDate: null,
       closingDate: null,
       jobDescription: null,
-      remoteStatus: 'On-site',
+      remoteStatus: null,
+      ...nativeEvidence('16933'),
     },
   ])
 
@@ -177,12 +210,23 @@ test('extractJobsFromAjaxHtml parses the verified public SmartSoC job cards', as
       title: job.title,
       location: job.location,
       city: job.city,
+      country: job.country,
+      rawLocations: job.sourceNativeLocationValues,
     })),
     [
       {
         title: 'Mixed Location Role',
-        location: 'Bangalore; Hyderabad, India',
-        city: 'Bangalore',
+        location: 'Bangalore; Sweden: Stockholm; USA: Delaware; India: Hyderabad',
+        city: null,
+        country: null,
+        rawLocations: ['Bangalore', 'Sweden: Stockholm', 'USA: Delaware', 'India: Hyderabad'],
+      },
+      {
+        title: 'Global Only Role',
+        location: 'Sweden: Stockholm; USA: Delaware',
+        city: null,
+        country: null,
+        rawLocations: ['Sweden: Stockholm', 'USA: Delaware'],
       },
     ],
   )
@@ -256,7 +300,7 @@ test('run fetches the SmartSoC career page and loadmore endpoint to return jobs'
     jobId: '16931',
     requisitionId: '16931',
     sourceUrl: 'https://www.smartsocs.com/jobs/low-power-verification/',
-    applyUrl: 'https://www.smartsocs.com/jobs/low-power-verification/',
+    applyUrl: null,
     employmentType: 'Full Time',
     experienceRequired: null,
     minimumQualification: null,
@@ -265,7 +309,8 @@ test('run fetches the SmartSoC career page and loadmore endpoint to return jobs'
     postingDate: null,
     closingDate: null,
     jobDescription: null,
-    remoteStatus: 'On-site',
+    remoteStatus: null,
+    ...nativeEvidence('16931'),
     source: 'smartsocsolutions',
     link: 'https://www.smartsocs.com/jobs/low-power-verification/',
     scrapedAt: '2026-07-13T00:00:00.000Z',

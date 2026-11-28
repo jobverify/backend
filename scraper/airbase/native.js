@@ -82,8 +82,8 @@ const detailSections=(html,row)=>{
  }
  need(sections.some(section=>section.label==='Description'&&extractActiveDescription(section.html)?.length>100),'full published native description missing')
  const content=sections.filter(section=>section.label!=='Job Type').map(section=>`<h3>${escape(section.label)}</h3>${section.html}`).join('\n')
- need(/\bAirbase\s+by\s+Paylocity\b/i.test(extractActiveDescription(content)||''),'own native role does not declare Airbase by Paylocity employer branding')
- return{description:content,sections,employmentType:sections.find(section=>section.label==='Job Type')?.text||null}
+ const airbaseBranded=/\bAirbase\s+by\s+Paylocity\b/i.test(extractActiveDescription(content)||'')
+ return{description:content,sections,airbaseBranded,employmentType:sections.find(section=>section.label==='Job Type')?.text||null}
 }
 export const reviewRole=(row,detailHtml,applyHtml)=>{
  const model=dataValue(applyHtml,'application'),job=model.application?.job
@@ -125,15 +125,17 @@ export const createAirbaseNativeScraper=({fetchImpl=globalThis.fetch,now=()=>new
  const opening=readBoard(await read(BOARD)),candidates=opening.Jobs.filter(row=>!row.IsInternal&&row.JobLocation?.Country==='IND'),reviews=new Map(),failures=[]
  const hydrate=async row=>reviewRole(row,await read(`${ORIGIN}/recruiting/jobs/Details/${row.JobId}`),await read(`${ORIGIN}/recruiting/jobs/Apply/${row.JobId}`))
  for(const row of candidates){try{reviews.set(row.JobId,await hydrate(row))}catch(error){signal?.throwIfAborted();bounded.throwIfAborted();if(error.failureKind==='parser_or_contract_error')throw error;failures.push({jobId:row.JobId,stage:'opening-detail',reason:error.message})}}
- const originalOwnRoleFacts=[...reviews.values()]
+ const originalParentIndiaRoleFacts=[...reviews.values()],originalOwnRoleFacts=originalParentIndiaRoleFacts.filter(fact=>fact.airbaseBranded)
+ const excludedParentIndiaRoleFacts=originalParentIndiaRoleFacts.filter(fact=>!fact.airbaseBranded).map(fact=>({...fact,reason:'native-description-does-not-declare-Airbase-by-Paylocity'}))
  const closing=readBoard(await read(BOARD)),current=new Map(closing.Jobs.map(row=>[row.JobId,row]))
  for(const row of candidates){const first=reviews.get(row.JobId),last=current.get(row.JobId);if(!first)continue;if(!last||signature(row)!==signature(last)){reviews.delete(row.JobId);failures.push({jobId:row.JobId,stage:'closing-native-record',reason:'own native record changed or disappeared'});continue}
   try{const checked=await hydrate(last);if(first.snapshot!==checked.snapshot){reviews.delete(row.JobId);failures.push({jobId:row.JobId,stage:'closing-native-criteria',reason:'own full criteria or application requirements changed'})}}catch(error){signal?.throwIfAborted();bounded.throwIfAborted();if(error.failureKind==='parser_or_contract_error')throw error;reviews.delete(row.JobId);failures.push({jobId:row.JobId,stage:'closing-detail',reason:error.message})}}
  await read(HANDOFF,{handoff:true})
  const finalParentBoard=readBoard(await read(BOARD)),finalRows=new Map(finalParentBoard.Jobs.map(row=>[row.JobId,row]))
  for(const[jobId,fact]of reviews)if(!finalRows.has(jobId)||signature(fact.row)!==signature(finalRows.get(jobId))){reviews.delete(jobId);failures.push({jobId,stage:'final-native-record',reason:'own role changed or disappeared after full closing criteria reads'})}
- const observations={parentBoardObservedCount:opening.Jobs.length,parentIndiaCandidateCount:candidates.length,qualifiedAirbaseIndiaCount:reviews.size,parentBoardStable:signature(opening)===signature(closing)&&signature(closing)===signature(finalParentBoard),originalParentBoard:opening,closingParentBoard:closing,finalParentBoard,originalOwnRoleFacts,failures,receipts,sourceScopeComplete:false,broaderMigrationScope:'Reviewed parent tenant and own Airbase-branded India roles do not establish all Airbase or Paylocity hiring channels.'}
- const all=[...reviews.values()],selected=Number.isSafeInteger(maxJobs)&&maxJobs>0?all.slice(0,maxJobs):all
+ const all=[...reviews.values()].filter(fact=>fact.airbaseBranded)
+ const observations={parentBoardObservedCount:opening.Jobs.length,parentIndiaCandidateCount:candidates.length,qualifiedAirbaseIndiaCount:all.length,parentBoardStable:signature(opening)===signature(closing)&&signature(closing)===signature(finalParentBoard),originalParentBoard:opening,closingParentBoard:closing,finalParentBoard,originalParentIndiaRoleFacts,originalOwnRoleFacts,excludedParentIndiaRoleFacts,failures,receipts,sourceScopeComplete:false,broaderMigrationScope:'Reviewed parent tenant and own Airbase-branded India roles do not establish all Airbase or Paylocity hiring channels.'}
+ const selected=Number.isSafeInteger(maxJobs)&&maxJobs>0?all.slice(0,maxJobs):all
  const jobs=selected.map(fact=>{const {row,job}=fact;return{source:'airbase',company:'Airbase by Paylocity',sourcePublisher:'Paylocity',legalHiringEmployer:null,title:norm(row.JobTitle),jobId:String(row.JobId),requisitionId:job.jobCode||null,country:'India',location:row.LocationName,city:norm(row.JobLocation.City).split(',')[0]||null,department:row.HiringDepartment||job.hiringDepartment||null,employmentType:fact.employmentType,experienceRequired:null,minimumQualification:null,preferredQualification:null,requiredSkills:[],postingDate:fact.postingDate,sourcePostingDate:fact.postingDate,sourceDateEvidence:'paylocity-public-native-PublishedDate',sourceNativePublishedDate:row.PublishedDate,closingDate:null,sourceUrl:job.displayUrl,applyUrl:job.applyUrl,link:job.applyUrl,jobDescription:fact.description,sourceDescription:fact.description,sourceDetailComplete:true,sourceNativeApplicationQuestions:fact.screener?.questions||[],sourceNativeApplicationJob:job,sourceNativeApplicationModel:fact.model,sourceNativeListingRecord:row,sourceNativeInventory:observations,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,scrapedAt:new Date(now()).toISOString()}})
  signal?.throwIfAborted();bounded.throwIfAborted();onNativeAudit?.(observations);signal?.throwIfAborted()
  attachSourceObservationEvidence(jobs,{source:'airbase',recordKind:'mixed',observedRecordCount:opening.Jobs.length,observedVacancyCount:candidates.length,sourceScopeComplete:false})

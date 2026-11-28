@@ -2,7 +2,7 @@ import reviewed from './reviewedSurfaces.json' with {type:'json'}
 import {publicRead,requireNative,sha,structure,error} from './publicRead.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {inspectPublicMain,inspectPublicRuntime,inspectPublicInventory,unreviewedInlineRecruiting,inspectCorporateHandoff} from './publicClientContract.js'
+import {inspectPublicMain,inspectPublicRuntime,inspectPublicInventory,inspectPublicEmployerRouter,unreviewedInlineRecruiting,inspectCorporateHandoff} from './publicClientContract.js'
 import {cssContext,handoffStyleModel} from './handoffStyles.js'
 const COMPANY='Alkem Laboratories',SOURCE='alkemlaboratories',corporate='https://www.alkemlabs.com/career',origin='https://alkem.turbohire.co',api='https://thapi-stage2.azurewebsites.net',orgId='be8cbaf5-58c9-4a69-8b97-b4e95133771f'
 const check=(ok,message)=>requireNative(ok,COMPANY,message)
@@ -46,11 +46,18 @@ export async function runCurrentAlkem(options={}){
    check(!native.scripts.some(s=>s.attrs.type==='application/ld+json'&&/JobPosting/.test(s.body)),'native structured public roles contradict an unreviewed empty shell')
    const main=core.find(s=>shape(s)==='main'),runtime=core.find(s=>shape(s)==='runtime-main')
    const publicMain=inspectPublicMain(await scope.read(main.url.href,{phase,kind:'javascript',retainBody:false}))
-   check(same(publicMain,reviewed.publicClientContract.main),'public native API or employer router contract changed')
-   const graph=inspectPublicRuntime(await scope.read(runtime.url.href,{phase,kind:'javascript',retainBody:false}),publicMain.publicChunkIds),inventory=[]
-   for(const path of graph.urls)inventory.push(inspectPublicInventory(await scope.read(origin+path,{phase,kind:'javascript',retainBody:false})))
+   const profiles=[{main:reviewed.publicClientContract.main,employerRouter:{moduleId:3902}},...reviewed.additionalPublicClientContracts]
+   const profile=profiles.find(candidate=>same(publicMain,candidate.main))
+   check(profile,'public native API or employer router contract changed')
+   const graph=inspectPublicRuntime(await scope.read(runtime.url.href,{phase,kind:'javascript',retainBody:false}),publicMain.publicChunkIds),inventory=[],routers=[]
+   for(const path of graph.urls){
+    const body=await scope.read(origin+path,{phase,kind:'javascript',retainBody:false})
+    inventory.push(inspectPublicInventory(body))
+    const router=inspectPublicEmployerRouter(body,profile.employerRouter.moduleId);if(router)routers.push(router)
+   }
    const publicInventory={stores:inventory.flatMap(row=>row.stores).sort((a,b)=>a.moduleId.localeCompare(b.moduleId)),defaults:inventory.flatMap(row=>row.defaults).sort((a,b)=>a.fingerprint.localeCompare(b.fingerprint))}
    check(same(publicInventory,reviewed.publicClientContract.inventory),'public complete-array inventory controller or default filters changed')
+   check(routers.length===1&&(!profile.employerRouter.functionSHA256||routers[0]===profile.employerRouter.functionSHA256),'public employer router module is missing, ambiguous or unreviewed')
    return{corporatePublicHandoff:handoff.publicHandoffSHA256,corporateHandoffActive:styles.ssrStyles.active&&styles.clientStyles.active,nativePublicContract:{main:publicMain,inventory:publicInventory},publicChunkIds:graph.publicChunkIds}
   }
   const openingContext=await context('initial')
@@ -64,11 +71,11 @@ export async function runCurrentAlkem(options={}){
   const initial=await readPhase('initial'),closingContext=await context('closing'),closing=await readPhase('closing')
   const closingReconciled=same(initial,closing)&&same(openingContext,closingContext),complete=closingReconciled&&initial.jobs.Total===0,stamp=scope.stamp()
   const observations=initial.jobs.Result.map(record=>({kind:'public-native-role-unreviewed',nativeRecord:record,sourceDetailComplete:false,country:null,postingDate:null}))
-  const reason=!closingReconciled?'closing-native-employer-or-inventory-changed':complete?'current-corporate-SearchJobs-native-full-array-Total0-and-closing-reconciliation':'positive-public-native-records-require-full-criteria-country-identity-collector'
-  const evidence={status:complete?'verified-empty':'coverage-gap',surface:corporate,firstParty:true,listingComplete:complete,pagesFetched:scope.publicPages.length,reportedTotal:complete?0:null,indiaFacetCount:complete?0:null,verifiedAt:stamp,reason}
+  const reason=!closingReconciled?'closing-native-employer-or-inventory-changed':complete?'configured-Alkem-TurboHire-CareerPage-Total0-and-closing-reconciliation;corporate-career-CMS-and-company-scope-unverified':'positive-public-native-records-require-full-criteria-country-identity-collector'
+  const evidence={status:complete?'verified-empty':'coverage-gap',surface:corporate,firstParty:true,listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:scope.publicPages.length,reportedTotal:complete?0:null,indiaFacetCount:complete?0:null,verifiedAt:stamp,reason}
   const jobs=attachInventoryEvidence([],evidence)
-  if(!complete)attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:observations.length,observedVacancyCount:observations.length,sourceScopeComplete:false})
-  await scope.audit({observations,observedGlobalCount:observations.length,nativeGlobalReportedTotal:initial.jobs.Total,closingReconciled,scopeComplete:complete,
+  attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:observations.length,observedVacancyCount:observations.length,sourceScopeComplete:false})
+  await scope.audit({observations,observedGlobalCount:observations.length,nativeGlobalReportedTotal:initial.jobs.Total,closingReconciled,configuredBoardComplete:complete,scopeComplete:false,sourceScopeComplete:false,companyInventoryComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,
    sourceInventoryScope:'current declared first-party Alkem TurboHire public CareerPage',openingOrganization:initial.org,closingOrganization:closing.org,
    openingListing:initial.jobs,closingListing:closing.jobs,anonymousSessionCredentialsRetained:false,applicationSubmitted:false,candidateActionsTaken:false,inventoryEvidence:evidence})
   if(!closingReconciled)throw error(COMPANY,reason)

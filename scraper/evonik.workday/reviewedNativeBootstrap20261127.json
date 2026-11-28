@@ -1,0 +1,832 @@
+{
+  "revision": "native-bootstrap-20261127",
+  "originalObservedRole": "R52507",
+  "originalBootstrap": {
+    "bytes": 5803,
+    "sha256": "53e8d0dd371d06292a273500093561be19c48d510f96ef4b49a349dac12f9182"
+  },
+  "staticBootDataShape": {
+    "kind": "object",
+    "properties": [
+      {
+        "key": "tenant",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "siteId",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "locale",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "requestLocale",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "supportedLocales",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "array",
+          "items": [
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            }
+          ]
+        }
+      },
+      {
+        "key": "clientOrigin",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "language",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "null"
+        }
+      },
+      {
+        "key": "cdnEndpoint",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "useCdn",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "maintenancePageUrl",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "token",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "environment",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "isExternal",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "appName",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "loggingEndpoint",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "string"
+        }
+      },
+      {
+        "key": "postingAvailable",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "key": "allowedFileTypes",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "array",
+          "items": []
+        }
+      },
+      {
+        "key": "blockedFileTypes",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "array",
+          "items": [
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            }
+          ]
+        }
+      },
+      {
+        "key": "toggles",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "array",
+          "items": [
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            },
+            {
+              "kind": "string"
+            }
+          ]
+        }
+      },
+      {
+        "key": "branding",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "object",
+          "properties": [
+            {
+              "key": "formFields",
+              "computed": false,
+              "kind": "init",
+              "value": {
+                "kind": "object",
+                "properties": [
+                  {
+                    "key": "color",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "string"
+                    }
+                  },
+                  {
+                    "key": "textColor",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "progressBar",
+              "computed": false,
+              "kind": "init",
+              "value": {
+                "kind": "object",
+                "properties": [
+                  {
+                    "key": "color",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "button",
+              "computed": false,
+              "kind": "init",
+              "value": {
+                "kind": "object",
+                "properties": [
+                  {
+                    "key": "primary",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "object",
+                      "properties": [
+                        {
+                          "key": "color",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "borderColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "textColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "hover",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "object",
+                            "properties": [
+                              {
+                                "key": "color",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "borderColor",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "textColor",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "secondary",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "object",
+                      "properties": [
+                        {
+                          "key": "color",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "borderColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "textColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "hover",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "object",
+                            "properties": [
+                              {
+                                "key": "color",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "borderColor",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "textColor",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "shape",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "header",
+              "computed": false,
+              "kind": "init",
+              "value": {
+                "kind": "object",
+                "properties": [
+                  {
+                    "key": "imageBanner",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "object",
+                      "properties": [
+                        {
+                          "key": "maintainAspectRatio",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "boolean"
+                          }
+                        },
+                        {
+                          "key": "image",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "object",
+                            "properties": [
+                              {
+                                "key": "id",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "altText",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "null"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "key": "banner",
+                    "computed": false,
+                    "kind": "init",
+                    "value": {
+                      "kind": "object",
+                      "properties": [
+                        {
+                          "key": "color",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "borderColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "textColor",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "string"
+                          }
+                        },
+                        {
+                          "key": "image",
+                          "computed": false,
+                          "kind": "init",
+                          "value": {
+                            "kind": "object",
+                            "properties": [
+                              {
+                                "key": "id",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "string"
+                                }
+                              },
+                              {
+                                "key": "altText",
+                                "computed": false,
+                                "kind": "init",
+                                "value": {
+                                  "kind": "null"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "key": "embedded",
+              "computed": false,
+              "kind": "init",
+              "value": {
+                "kind": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "geoIpCountryCode",
+        "computed": false,
+        "kind": "init",
+        "value": {
+          "kind": "UNQUALIFIED:ConditionalExpression"
+        }
+      }
+    ]
+  },
+  "rawBeforeToken": {
+    "bytes": 538,
+    "sha256": "9b85df5f11b9ebb40c2e753c98cc8f9bed53928fc0d15fa6145640e51fc55d93"
+  },
+  "rawAfterToken": {
+    "bytes": 4827,
+    "sha256": "9083bbc017d41509aeb93faa0f36f49907388a182d8e066ce8bde139bb24819f"
+  },
+  "observedToggleIds": [
+    "b9739002c86510002015dea9402c0000",
+    "36ce9cb779e5100019c1a5050b9a0000",
+    "32bccbf501f610002313c4ee6e9c0000",
+    "e702eb48468610000d6ad4a553cb0000",
+    "812c4a153c711000151c5ca11e310000",
+    "0d6ebcfdc39a10001bc8f95b3aac0000",
+    "43b4d9d7cb8e10000a703bad20420000",
+    "532bfa92863b100019ab08f4c04b0000",
+    "dac26076be8510002347bab78d5a0000",
+    "badb3f02bef210000e20c92ac0260000",
+    "e466d0b066ff10000c3605be74f10000",
+    "292c4bafc34210001a28e93bebcf0000",
+    "b3999fdcfb7310001ed650a18cc80000",
+    "e42e6d1d2524100010042528c43e0000",
+    "f45271d06fcd10001b2d8737149f0000",
+    "b8ce26d67ff9100014ec4b645b840000",
+    "bc9894c7142610001616fde6e0700000",
+    "6edcf8e6cd7f10001b1f86c9e3ef0000",
+    "a969fb8f4cfd10000ad4ba96cd820000",
+    "459bb3f1e4a9100014b8f73a20850000",
+    "ab2374beb65d10002c8233ca9b5a0000",
+    "13809c87a71610001b62b41c11800000",
+    "31177c86226910001079dc24b7110000",
+    "4706b65dd8ee100015f0034e1e480000",
+    "6c7d10abcf8e100015455f96664e0000",
+    "7d2bc1254b7d10000e2b5811864a0000",
+    "78b52d8385791000141adb10f19a0000",
+    "560b3d5bfd701000208972c8730e0000",
+    "158e13f2980210000e5f46c2d5ae0000",
+    "b6678cba4dbc10000a476842e3bb0000",
+    "2e8eb95af853100024f8c97124d40000",
+    "65f18e16aea0100010c0b34df7700000",
+    "96cc49ab4185100014c0824814050000",
+    "e4f054463fea1000274c8a0d22ad0000",
+    "d1584fca3857100011d5595041c00000",
+    "d72ef83634b710001a93a11d485b0000",
+    "466d58ad03691000185ddce1282a0000",
+    "75ecc5f3792b1000131d51fc86ab0000",
+    "bc814e895c1d10000d1fd3354f4b0000",
+    "258d1be19f40100013265e0888c90000",
+    "cdbf5f0a33931000115a15a023a40000",
+    "20ccbc6c60701000fafdc3dce74a0000",
+    "16593e8eb6ca10000935b558a50a0000",
+    "e1733537b151100014e202818e520000",
+    "db3fa9600f8810001798c5a6d2dd0000",
+    "1502396ba0ef1000103c22d48c570000",
+    "9c10810cc40b1000460d082ad8de0000",
+    "9c10810cc40b100045f3593f47b50000",
+    "6658d90adc4f100014da5605f7080000",
+    "195d457a6acb10001008bcba6e490000",
+    "7412d755467b1000466a75950f5a0000",
+    "1fda372a2c2310002fdb093b08500000",
+    "10f7a56eb11c100024a6d65b625a0000",
+    "25e5d9d7d60010001a37bac5c8790000",
+    "bce501965f00100013f45b4362460000",
+    "e1fdcb592a641000290e46a2b10f0000",
+    "5054a9c1a3eb1000262607b170020000",
+    "ed40d41dc10410001f00b0c2ea120000",
+    "2af7a0871946100029867d9279b30000"
+  ],
+  "review": {
+    "outsideTokenAndTogglesUnchanged": true,
+    "outsideTokenAndTogglesSHA256": "6a66f57a8286d00e9d7d3a0d6dcf10dc556f36fa0a0f1b2189d0b0f8bf0d51ab",
+    "tokenValueShapeOrLengthQualified": false,
+    "toggleMeaningQualified": false,
+    "wholeProgramQualified": false,
+    "dependenciesOrCSSOrUIOrApplicationQualified": false,
+    "companyScopeComplete": false,
+    "lifecycleCleanupAllowed": false
+  }
+}

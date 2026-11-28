@@ -78,7 +78,7 @@ export async function runUnosecurNative(options={}){
    if(!equivalent(job.nativeSourceRecord,closed.nativeSourceRecord)){hold(job,'closing whole role/API model changed','closing-role',closing);continue}
    job.nativeClosingRecord=structuredClone(closed.nativeSourceRecord);job.nativeRoleClosingReconciled=true;audit.nativeRoleClosingReconciled++
    assign(job,[['sourceClosingRawNativeHTML',roleRead.receipt],['sourceClosingRawNativeCareersHTML',close.receipt],['sourceClosingRawNativeClientJS',closedClientRead.receipt],['sourceClosingRawNativeAPIJSON',data.receipt]])
-   if(job.country&&job.sourceNativeCriteriaContainerRetained){job.sourceDetailComplete=true;job.sourceDetailStatus='complete';job.sourceDetailFailureKind=null}
+   if(job.country&&job.sourceNativeCriteriaContainerRetained&&!job.sourceCurrentClientDataOnly){job.sourceDetailComplete=true;job.sourceDetailStatus='complete';job.sourceDetailFailureKind=null}
   }
  }catch(error){options.signal?.throwIfAborted();failure=error;audit.failures.push({message:error.message,status:error.status??null,requestUrl:error.requestUrl??null})
   for(const j of jobs){j.sourceDetailComplete=false;j.sourceDetailStatus='partial';if(j.country)j.sourceDetailFailureKind='native-collection-failed'}}

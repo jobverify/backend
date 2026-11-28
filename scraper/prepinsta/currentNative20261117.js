@@ -24,7 +24,14 @@ function native(body){
  const input=JSON.parse(nodes[0].raw),page=input.props?.pageProps,data=page?.apolloState?.data,reference=data?.ROOT_QUERY?.['startup({"slug":"prepinsta"})']?.__ref,tenant=data?.[reference]
  need(page?.params?.slug==='prepinsta'&&page.parsedUrl?.pathname==='/company/prepinsta/jobs'&&reference==='Startup:4128337'&&tenant?.id==='4128337'&&tenant.__typename==='Startup'&&tenant.name==='PrepInsta'&&tenant.slug==='prepinsta'&&tenant.companyUrl==='http://www.prepinsta.com','Current native tenant/employer identity changed')
  need(isDeepStrictEqual(activeHead(body).titles,['Jobs at PrepInsta: Explore current Opportunities']),'Current native own jobs title changed')
- const connections=Object.entries(tenant).filter(([key])=>key.startsWith('jobListingsConnection('))
+ const allConnections=Object.entries(tenant).filter(([key])=>key.startsWith('jobListingsConnection('))
+ const previews=allConnections.filter(([key])=>{const args=JSON.parse(key.slice('jobListingsConnection('.length,-1));return Object.keys(args).length===1&&args.first===10})
+ need(previews.length<=1,'Native tenant preview connection is ambiguous')
+ for(const[,preview]of previews)need(preview&&typeof preview==='object'&&!Array.isArray(preview)
+  &&Object.keys(preview).length===3&&preview.__typename==='JobListingConnection'
+  &&preview.totalCount===0&&Array.isArray(preview.edges)&&preview.edges.length===0,
+  'Native tenant preview connection is nonempty or unqualified')
+ const connections=allConnections.filter(entry=>!previews.includes(entry))
  need(connections.length===1,'Native tenant jobs connection is ambiguous')
  const [query,connection]=connections[0],descriptor=JSON.parse(query.slice('jobListingsConnection('.length,-1))
  need(descriptor.after==='MA=='&&descriptor.first===20&&isDeepStrictEqual(descriptor.filters,{acceptedRemoteLocationIds:[],jobSourceIds:[],jobTypes:[],locationIds:[],roleIds:[]})&&connection.__typename==='JobListingConnection'&&connection.pageSize===0&&connection.totalPageCount===1&&Array.isArray(connection.edges)&&connection.edges.length===0&&tenant.liveJobListingsCount===0,'Native tenant observation no longer matches its empty unfiltered connection; company inventory remains unknown')

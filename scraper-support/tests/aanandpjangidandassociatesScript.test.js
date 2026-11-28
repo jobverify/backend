@@ -62,31 +62,44 @@ test('extractSearchResults parses AJA current opening cards from the public care
       sourceUrl: job.sourceUrl,
       applyUrl: job.applyUrl,
       country: job.country,
+      remoteStatus: job.remoteStatus,
     })),
     [
       {
         title: 'Data Analytics Consultant',
         jobId: 'data-analytics-consultant',
         sourceUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        applyUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        country: 'India',
+        applyUrl: null,
+        country: null,
+        remoteStatus: null,
       },
       {
         title: 'Cyber Security Analyst',
         jobId: 'cyber-security-analyst',
         sourceUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        applyUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        country: 'India',
+        applyUrl: null,
+        country: null,
+        remoteStatus: null,
       },
       {
         title: 'Forensic Audit Manager',
         jobId: 'forensic-audit-manager',
         sourceUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        applyUrl: 'https://www.ajafirm.com/career.html#open-positions',
-        country: 'India',
+        applyUrl: null,
+        country: null,
+        remoteStatus: null,
       },
     ],
   )
+  for (const job of extractSearchResults(careersHtml)) {
+    assert.equal(job.location, null)
+    assert.equal(job.city, null)
+    for (const field of ['sourceCountryComplete', 'sourceDetailComplete',
+      'sourceApplicationQualificationComplete', 'activeApplyVerified',
+      'sourceListingComplete', 'sourceScopeComplete', 'lifecycleCleanupAllowed']) {
+      assert.equal(job[field], false)
+    }
+  }
 })
 
 test('run returns current AJA opening cards with scraper metadata', async () => {

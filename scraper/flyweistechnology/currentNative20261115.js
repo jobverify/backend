@@ -14,6 +14,8 @@ const STYLES = {
   '/_next/static/css/3ad56064251c9581.css': 'a10da25a72f0559457d817f97847fc27656e842a86fd4247c2ac2ea7d6debec3',
   '/_next/static/css/c37ef131e7ddc94a.css': 'db762ed4e21b623e2b3d7544d8f517c03ada2234d125d8e4a60968383615ce09',
   '/_next/static/css/d5216807d843bf9d.css': 'aee4440b8342fb8ed61da1d3e56e669a9cdee16f3082fad83578402e2c773548',
+  '/_next/static/css/46804a84a3f95bbc.css': '957a14b9ce7b84e6a2200c593696be00e5edbd40fc5c08b54e6a730da90e740e',
+  '/_next/static/css/b83a55a9d343c40f.css': '9c589253dc94a2b3d918e13f2866b99332e588189db0affa732006fb36743742',
 }
 // Finite base CSS releases alter TechWall CTA spacing and the enquiry modal.
 // Keep full-byte hashes and paired ordered declarations, applying every rule
@@ -22,6 +24,8 @@ const STYLE_PROFILES = [
   ['/_next/static/css/8ac2af147fdd4582.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
   ['/_next/static/css/c37ef131e7ddc94a.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
   ['/_next/static/css/d5216807d843bf9d.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
+  // This release separates the complete company/role rules from the home CSS.
+  { home: ['/_next/static/css/46804a84a3f95bbc.css','/_next/static/css/f19dbbf993f3b973.css'], careers: ['/_next/static/css/46804a84a3f95bbc.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/b83a55a9d343c40f.css'] },
 ]
 const sha = value => createHash('sha256').update(value).digest('hex')
 const text = value => typeof value === 'string' ? value.replace(/\s+/gu, ' ').trim() : ''
@@ -177,10 +181,15 @@ export const createCurrentFlyweisScraper = () => ({ async run(options = {}) {
   const page = async (url, closing = false) => {
     const result = await read(url), raw = readNativeDocument(result.html)
     need(!raw.nodes(n => n.tag === 'base').length, 'unreviewed native base')
-    const styles = raw.nodes(n => n.tag === 'link' && n.attrs.rel === 'stylesheet').map(n => new URL(n.attrs.href, url))
-    const count = new URL(url).pathname === '/' ? 3 : 2
-    const matched = STYLE_PROFILES.find(profile => styles.length === count && styles.every((value, i) =>
-      value.origin === new URL(url).origin && !value.search && !value.hash && value.pathname === profile[i]))
+    const styleNodes = raw.nodes(n => n.tag === 'link' && n.attrs.rel === 'stylesheet')
+    const styles = styleNodes.map(n => new URL(n.attrs.href, url)), home = new URL(url).pathname === '/'
+    const matched = STYLE_PROFILES.find(profile => {
+      const legacy = Array.isArray(profile), expected = legacy ? profile.slice(0, home ? 3 : 2) : profile[home ? 'home' : 'careers']
+      return styles.length === expected.length && styles.every((value, i) =>
+        value.origin === new URL(url).origin && !value.search && !value.hash && value.pathname === expected[i] &&
+        (legacy || (Object.keys(styleNodes[i].attrs).sort().join(',') === 'data-precedence,href,rel' &&
+          styleNodes[i].attrs.href === expected[i] && styleNodes[i].attrs['data-precedence'] === 'next')))
+    })
     need(matched, 'native stylesheet declarations changed')
     need(!styleProfile || styleProfile === matched, 'native stylesheet release changed during acquisition')
     styleProfile = matched

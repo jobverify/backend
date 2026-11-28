@@ -5,6 +5,7 @@ import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNa
 import { nativeCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 import { verifyPocketClientBinding } from './currentClientBinding.js'
 
 const HOME = 'https://pocketfm.com/', BOARD = 'https://jobs.lever.co/pocketfm'
@@ -182,7 +183,8 @@ const role = (html, applicationHtml, row) => {
 }
 
 export async function runCurrentPocketFM(options = {}) {
-  const signal = AbortSignal.any([AbortSignal.timeout(240000), ...(options.signal ? [options.signal] : [])])
+  const callerSignal = options.signal ?? null
+  const signal = AbortSignal.any([AbortSignal.timeout(240000), ...(callerSignal ? [callerSignal] : [])])
   const wait = promise => new Promise((resolve, reject) => {
     const abort = () => { signal.removeEventListener('abort', abort); reject(signal.reason) }
     signal.addEventListener('abort', abort, { once: true })
@@ -193,9 +195,16 @@ export async function runCurrentPocketFM(options = {}) {
   const read = async url => {
     signal.throwIfAborted()
     const page = await wait(Promise.resolve().then(async () => {
-      if (options.fetchPage) return options.fetchPage(url, { signal })
-      const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]), headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'text/html,application/json,application/javascript' } })
-      return { status: response.status, url: response.url, html: await response.text() }
+      if (options.fetchPage) {
+        const response = await options.fetchPage(url, { signal })
+        await requireNativeHttpResponse({ status: response.status, url: response.url, headers: new Headers(response.headers), body: response.body, bodyUsed: response.bodyUsed }, url,
+          { context: 'Pocket FM public HTTP response', signal, callerSignal })
+        return response
+      }
+      const responseSignal = AbortSignal.any([signal, AbortSignal.timeout(20000)])
+      const response = await fetch(url, { redirect: 'manual', signal: responseSignal, headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'text/html,application/json,application/javascript' } })
+      await requireNativeHttpResponse(response, url, { context: 'Pocket FM public HTTP response', signal: responseSignal, callerSignal })
+      return { status: response.status, url: response.url, headers: response.headers, html: await response.text() }
     }))
     signal.throwIfAborted()
     need(page.status === 200 && page.url === url && typeof page.html === 'string' && Buffer.byteLength(page.html) < 8000000, 'public HTTP/final URL/body identity changed')
@@ -220,7 +229,7 @@ export async function runCurrentPocketFM(options = {}) {
         const job = role(await read(row.hostedUrl), await read(row.applyUrl), row)
         if (phase === 'opening') observed.set(row.id, job)
         else if (!equal(observed.get(row.id), job)) failures.push({ id: row.id, phase, reason: 'closing original criteria/application changed' })
-      } catch (error) { signal.throwIfAborted(); if (/public HTTP/.test(error.message)) throw error; failures.push({ id: row.id, phase, reason: error.message }) }
+      } catch (error) { signal.throwIfAborted(); if (error.abortRetries || error.httpStatus != null || /public HTTP/.test(error.message)) throw error; failures.push({ id: row.id, phase, reason: error.message }) }
     }
   }
   await inspect(opening, 'opening')

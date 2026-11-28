@@ -19,7 +19,10 @@ const CURRENT_20261119 = JSON.parse(readFileSync(new URL('./reviewedBinding20261
 // November21 changes router caching/Activity handling. Keep its complete raw
 // programme tuple separate; it is not normalized into an older browser model.
 const CURRENT_20261121 = JSON.parse(readFileSync(new URL('./reviewedBinding20261121.json', import.meta.url), 'utf8'))
-const CURRENT_PROFILES = [CURRENT_20261117, CURRENT_20261119, CURRENT_20261121]
+// This finite release publishes a query on both its parent and runtime. Keep
+// those complete URLs and the reviewed runtime's selected-child suffix intact.
+const CURRENT_20261128 = JSON.parse(readFileSync(new URL('./reviewedBinding20261128.json', import.meta.url), 'utf8'))
+const CURRENT_PROFILES = [CURRENT_20261117, CURRENT_20261119, CURRENT_20261121, CURRENT_20261128]
 const exactCurrentProgram = (url, body, expected) => url === expected.url
   && Buffer.byteLength(body) === expected.bytes
   && createHash('sha256').update(body).digest('hex') === expected.sha256
@@ -32,7 +35,8 @@ const fail = reason => { throw Error('Pocket FM native inventory: current client
 const chunkURL = value => {
   try {
     const url = new URL(value, ORIGIN)
-    return url.origin === ORIGIN && !url.username && !url.password && !url.search && !url.hash
+    const reviewedParentQuery = CURRENT_PROFILES.some(profile => profile.runtime && profile.parent.url === url.href)
+    return url.origin === ORIGIN && !url.username && !url.password && (!url.search || reviewedParentQuery) && !url.hash
       && /^\/_next\/static\/chunks\/[a-z\d_-]+\.js$/i.test(url.pathname) ? url.href : null
   } catch { return null }
 }
@@ -112,22 +116,49 @@ const loaderChild = program => {
   return child
 }
 
+const currentQueriedDeclarations = (html, profile) => {
+  const declarations = clientScriptDeclarations(html)
+  const attributes = value => JSON.stringify(Object.keys(value).sort().map(key => [key, value[key]]))
+  for (const [label, expected] of [['parent', profile.parent], ['runtime', profile.runtime]]) {
+    const selected = declarations.filter(node => {
+      if (!node.attrs.src) return false
+      try { return new URL(node.attrs.src, ORIGIN).href === expected.url } catch { return false }
+    })
+    if (selected.length !== 1 || attributes(selected[0].attrs) !== attributes(expected.declaration)) {
+      fail('unreviewed current ' + label + ' declaration')
+    }
+  }
+  if (declarations.some(node => !node.attrs.src && /\b(?:TURBOPACK_ASSET_SUFFIX|TURBOPACK_CHUNK_BASE_PATH)\b/.test(node.raw))) {
+    fail('unreviewed current runtime override')
+  }
+}
+
 export const verifyCurrentPocketClientBinding = async (html, getText) => {
   const parentURL = currentParentURL(html)
+  const queriedProfile = CURRENT_PROFILES.find(profile => profile.runtime && profile.parent.url === parentURL)
+  if (queriedProfile) currentQueriedDeclarations(html, queriedProfile)
   const parentBody = await getText(parentURL)
   const parent = readReviewedClientProgram(parentBody, { normalizeChunkNames: true })
   const currentProfile = CURRENT_PROFILES.find(profile => parent?.sha256 === profile.parent.programSHA256
     && exactCurrentProgram(parentURL, parentBody, profile.parent))
   const current = Boolean(currentProfile)
   if (!current && ![LOADER_SHA256, LOADER_20261113_SHA256].includes(parent?.sha256)) fail('unreviewed parent program')
-  const childURL = loaderChild(parent.program)
+  let childURL = loaderChild(parent.program)
+  if (currentProfile?.runtime) {
+    const runtimeBody = await getText(currentProfile.runtime.url)
+    if (!exactCurrentProgram(currentProfile.runtime.url, runtimeBody, currentProfile.runtime)) fail('unreviewed complete current runtime programme')
+    const suffix = new URL(currentProfile.runtime.url).search
+    if (suffix !== currentProfile.assetSuffix || childURL + suffix !== currentProfile.footer.url) fail('unreviewed current selected chunk suffix')
+    childURL = currentProfile.footer.url
+  }
   const footerBody = await getText(childURL)
   const footer = readReviewedClientProgram(footerBody)
   if (current ? footer?.sha256 !== currentProfile.footer.programSHA256
     || !exactCurrentProgram(childURL, footerBody, currentProfile.footer)
     : footer?.sha256 !== FOOTER_SHA256) fail('unreviewed careers footer program')
   return { parentURL, childURL, loaderProgramSHA256: parent.sha256, footerProgramSHA256: footer.sha256,
-    ...(current ? {browserEquivalenceComplete:false,sourceScopeComplete:false} : {}) }
+    ...(current ? {browserEquivalenceComplete:false,sourceScopeComplete:false} : {}),
+    ...(currentProfile?.runtime ? {runtimeURL:currentProfile.runtime.url,lifecycleCleanupAllowed:false} : {}) }
 }
 
 export const verifyLegacyPocketClientBinding = async (html, getText) => {

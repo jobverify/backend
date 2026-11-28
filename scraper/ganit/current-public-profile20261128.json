@@ -1,0 +1,384 @@
+{
+  "schema": "ganit.finite-current-native-public-career/v1",
+  "source": "ganit",
+  "careerURL": "https://www.ganitinc.com/careers",
+  "careerSHA256": "ad72a06b373098c67c689ca5117d54c528ceda8d5c5a5aaef3b88178754ba3ac",
+  "careerBytes": 45197,
+  "homepageURL": "https://www.ganitinc.com/",
+  "homepageSHA256": "927ec29e30ed9d1df88de1ed5eccb8aff5cf316d3465d8de587e2972f10207bf",
+  "homepageBytes": 214255,
+  "programs": [
+    {
+      "url": "https://www.ganitinc.com/assets/manifest-fcfe1732.js",
+      "sha256": "ba6dcab3bfc268fddeaebc112b9a9aac1d15d0644c5fa91b066556db15420713",
+      "bytes": 38359
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/entry.client-DiPJeN2g.js",
+      "sha256": "b53395d1a9e4844d5052e217b1bda28b2a58d5d4e2b75351e56055b48af86ff5",
+      "bytes": 182294
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "sha256": "5a6911a542d494009230c713e755d931ba0fdb1f580900a341c3edb49711200c",
+      "bytes": 84373
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/scheduler-ppiElk6C.js",
+      "sha256": "9a5f08780e7484b71c78e401cd92691634bd869ea10a42862cf60343d9255b8c",
+      "bytes": 3561
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "sha256": "51ac27e80ed7afdae591d55cc5a293e1cd4f8b4947fdd1c14406db7cdcad1fdc",
+      "bytes": 32038
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/root-Cps2Qi4H.js",
+      "sha256": "ca1151211c93d213648024a2d28d54ef033bec3fbc660115737830ce82db6266",
+      "bytes": 6863
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/lib-n3379FtN.js",
+      "sha256": "c055116b1061946e284b70304a794d27411c266dac234ab6c7ae8cdd9b51ab42",
+      "bytes": 10747
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/site-DeBCC9ph.js",
+      "sha256": "2c9bdc82fd66602096fd9ca711f35ea18dd58be9daa8b0443d03e09b654a39c4",
+      "bytes": 5924
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "sha256": "3414479dbe7d59d340899afa4574fc7d9e8d7760781e769ed97779a5e6ae061a",
+      "bytes": 35101
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "sha256": "5e0ac5a049bd67baba35d3e15bc7fc97debf6df23abf9f15222aaa37a1bb5aa3",
+      "bytes": 6423
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/pixel-iso-2IHMXTRH.js",
+      "sha256": "f20264f81dfd51d9ac6d10d6f64087fe080fcd060e0487991b3e4bbc65755644",
+      "bytes": 4400
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/story-pager-D6T_YWeK.js",
+      "sha256": "a101b031cc77288a914c890472ea84595778056bcce2f70b9324080ef3031b9b",
+      "bytes": 6616
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/StoryRail-Cgi2tvjU.js",
+      "sha256": "4dfa1d9b35ffd98f51528d161140c92bd505ae7161e2543ec904618d93fbfee3",
+      "bytes": 841
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/AiParts-BZbcfg31.js",
+      "sha256": "8e215f798c4e77018627cddc36580d2e359a282c58469ddf8c0f43cd0754490c",
+      "bytes": 104
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/kit-Dpj7DV8J.js",
+      "sha256": "08a2fb1fef1c3e0acfd365dce03e31801b82ab6c7846c6e19581fe2d8f062b24",
+      "bytes": 2850
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "sha256": "5b876cdb389ff079b1141654473839dac7807f3f3c8687b85a13bd0f56b756ea",
+      "bytes": 4168
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/story-dpr-BTJmJN6g.js",
+      "sha256": "c5eec758c52cb9138605a180462b606d0602f04a8c5262c5842a9d9ed92f6aec",
+      "bytes": 212
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/scene-guard-BH8wjExd.js",
+      "sha256": "50740618bf048b2d179630bd8c35194890baf300fa010b7711e87682ed1597e6",
+      "bytes": 543
+    }
+  ],
+  "staticEdges": [
+    {
+      "from": "https://www.ganitinc.com/assets/entry.client-DiPJeN2g.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/entry.client-DiPJeN2g.js",
+      "to": "https://www.ganitinc.com/assets/scheduler-ppiElk6C.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/entry.client-DiPJeN2g.js",
+      "to": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/scheduler-ppiElk6C.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/root-Cps2Qi4H.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/root-Cps2Qi4H.js",
+      "to": "https://www.ganitinc.com/assets/lib-n3379FtN.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/root-Cps2Qi4H.js",
+      "to": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/root-Cps2Qi4H.js",
+      "to": "https://www.ganitinc.com/assets/site-DeBCC9ph.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/lib-n3379FtN.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/lib-n3379FtN.js",
+      "to": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/lib-n3379FtN.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/site-DeBCC9ph.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/pixel-iso-2IHMXTRH.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/story-pager-D6T_YWeK.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/StoryRail-Cgi2tvjU.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/AiParts-BZbcfg31.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/careers-Dz18GK2q.js",
+      "to": "https://www.ganitinc.com/assets/kit-Dpj7DV8J.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/pixel-iso-2IHMXTRH.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/pixel-iso-2IHMXTRH.js",
+      "to": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/pixel-iso-2IHMXTRH.js",
+      "to": "https://www.ganitinc.com/assets/story-dpr-BTJmJN6g.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/story-pager-D6T_YWeK.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/story-pager-D6T_YWeK.js",
+      "to": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/StoryRail-Cgi2tvjU.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/StoryRail-Cgi2tvjU.js",
+      "to": "https://www.ganitinc.com/assets/story-pager-D6T_YWeK.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/AiParts-BZbcfg31.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/AiParts-BZbcfg31.js",
+      "to": "https://www.ganitinc.com/assets/site-DeBCC9ph.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "to": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "to": "https://www.ganitinc.com/assets/scene-guard-BH8wjExd.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/story-dpr-BTJmJN6g.js",
+      "to": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/story-dpr-BTJmJN6g.js",
+      "to": "https://www.ganitinc.com/assets/perf-OYcTfJ26.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/scene-guard-BH8wjExd.js",
+      "to": "https://www.ganitinc.com/assets/jsx-runtime-qgpwnHAj.js",
+      "kind": "static"
+    },
+    {
+      "from": "https://www.ganitinc.com/assets/scene-guard-BH8wjExd.js",
+      "to": "https://www.ganitinc.com/assets/device-tier-DrxvmIgD.js",
+      "kind": "static"
+    }
+  ],
+  "frameworkDynamicImports": [
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "start": 9844,
+      "end": 9860,
+      "expression": "import(e.module)"
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "start": 14756,
+      "end": 14765,
+      "expression": "import(e)"
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "start": 16446,
+      "end": 16474,
+      "expression": "import(a.clientLoaderModule)"
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "start": 16665,
+      "end": 16693,
+      "expression": "import(a.clientActionModule)"
+    },
+    {
+      "url": "https://www.ganitinc.com/assets/errorBoundaries-DBk4L09i.js",
+      "start": 16947,
+      "end": 16979,
+      "expression": "import(a.clientMiddlewareModule)"
+    }
+  ],
+  "careerRoute": {
+    "id": "routes/careers",
+    "parentId": "root",
+    "path": "careers",
+    "hasAction": false,
+    "hasLoader": false,
+    "hasClientAction": false,
+    "hasClientLoader": false,
+    "hasClientMiddleware": false,
+    "hasDefaultExport": true,
+    "hasErrorBoundary": false,
+    "module": "/assets/careers-Dz18GK2q.js",
+    "imports": [
+      "/assets/jsx-runtime-qgpwnHAj.js",
+      "/assets/lib-n3379FtN.js",
+      "/assets/site-DeBCC9ph.js",
+      "/assets/device-tier-DrxvmIgD.js",
+      "/assets/pixel-iso-2IHMXTRH.js",
+      "/assets/story-pager-D6T_YWeK.js",
+      "/assets/StoryRail-Cgi2tvjU.js",
+      "/assets/AiParts-BZbcfg31.js",
+      "/assets/kit-Dpj7DV8J.js",
+      "/assets/errorBoundaries-DBk4L09i.js",
+      "/assets/perf-OYcTfJ26.js",
+      "/assets/story-dpr-BTJmJN6g.js",
+      "/assets/scene-guard-BH8wjExd.js"
+    ],
+    "css": [
+      "/assets/careers-Wdf_5s5I.css"
+    ]
+  },
+  "rootRoute": {
+    "id": "root",
+    "path": "",
+    "hasAction": false,
+    "hasLoader": false,
+    "hasClientAction": false,
+    "hasClientLoader": false,
+    "hasClientMiddleware": false,
+    "hasDefaultExport": true,
+    "hasErrorBoundary": false,
+    "module": "/assets/root-Cps2Qi4H.js",
+    "imports": [
+      "/assets/jsx-runtime-qgpwnHAj.js",
+      "/assets/scheduler-ppiElk6C.js",
+      "/assets/errorBoundaries-DBk4L09i.js",
+      "/assets/lib-n3379FtN.js",
+      "/assets/site-DeBCC9ph.js"
+    ],
+    "css": [
+      "/assets/root-BCA65c64.css"
+    ]
+  },
+  "entry": {
+    "module": "/assets/entry.client-DiPJeN2g.js",
+    "imports": [
+      "/assets/jsx-runtime-qgpwnHAj.js",
+      "/assets/scheduler-ppiElk6C.js",
+      "/assets/errorBoundaries-DBk4L09i.js"
+    ],
+    "css": []
+  },
+  "scope": "Configured current public career native data only; company completeness, browser rendering and application remain unqualified"
+}

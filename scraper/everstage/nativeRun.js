@@ -17,6 +17,9 @@ const closed=/\b(?:this (?:job|position|role) is (?:no longer available|closed)|
 const foreign=/\b(?:United States|USA|United Kingdom|Australia|France|Germany|Canada|Singapore|Israel|Portugal|Brazil|Philippines|Mexico|New York|Sydney|Paris|London|Tokyo|California)\b/i
 const hash=v=>createHash('sha256').update(v).digest('hex')
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
+const sameLocationLabels=(actual,expected)=>Array.isArray(actual)&&actual.every(v=>typeof v==='string')
+ &&actual.length===expected.length&&new Set(actual).size===actual.length&&new Set(expected).size===expected.length
+ &&same([...actual].sort(),[...expected].sort())
 const doc=body=>{need(typeof body==='string'&&body.length>0&&Buffer.byteLength(body)<=3000000,'Native body missing or over bound');return readNativeDocument(body)}
 function envelope(v){
  need(v&&typeof v==='object'&&!Array.isArray(v),'Native envelope missing')
@@ -100,8 +103,8 @@ function jobData(a,row,now){
  for(const key of ['closed','isClosed','archived','isArchived','isInternal'])if(j[key]!=null)need(j[key]===false,'Native job closed/internal status')
  need(j.jsonLd==null,'Native schema contract changed and requires qualification')
  for(const k of ['datePosted','postedAt','publishedAt','publishedOn','postingDate','publicationDate','published_at','posted_at','published_on','posted_on','publication_date','date_posted'])need(j[k]==null&&row.rows.every(r=>r[k]==null),'Native publication contract changed; creation is not publication')
- const names=row.locations.map(l=>l.name);need(same(j.workLocations,names),'Native job location geography mismatch')
- if(a.workLocations!=null)need(same(a.workLocations,names),'Native page location geography mismatch')
+ const names=row.locations.map(l=>l.name);need(sameLocationLabels(j.workLocations,names),'Native job location geography mismatch')
+ if(a.workLocations!=null)need(sameLocationLabels(a.workLocations,names),'Native page location geography mismatch')
  need(j.department?.base_department===row.identity.department.name&&plain(j.department.name)&&Array.isArray(j.department.department_tree)&&j.department.department_tree[0]===row.identity.department.name,'Native department identity mismatch')
  if(a.department!=null)need(same(a.department,j.department),'Native page department identity contradiction')
  for(const k of ['country','countryCode','country_code'])if(j[k]!=null)need(row.locations.every(l=>j[k]===l[k==='country'?'country':'countryCode']),'Native detail country geography contradiction')

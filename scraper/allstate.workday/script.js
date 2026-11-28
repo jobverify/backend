@@ -139,7 +139,10 @@ const extractMinimumQualification = (description) => {
 
 const need = (condition, message) => { if (!condition) throw new Error(`Allstate ${message}`) }
 const API_BASE = 'https://jobsapi-internal.m-cloud.io/api/'
-const SEARCH_PROGRAM_GRAPH = JSON.parse(readFileSync(new URL('./searchPrograms20261116.json',import.meta.url),'utf8'))
+// Each observed declaration plan is exact, including all script attributes,
+// order and complete inline bodies. The four ready programs stay unchanged.
+const SEARCH_PROGRAM_GRAPHS = ['searchPrograms20261116.json','searchPrograms20261128.json']
+  .map(name => JSON.parse(readFileSync(new URL(name,import.meta.url),'utf8')))
 // Four complete original ready registrations bind the two public widgets and
 // their CWS-presence/widget guards. Calls in an uncalled wrapper or an edited
 // control-flow plan cannot qualify merely because they appear somewhere in AST.
@@ -188,8 +191,9 @@ export const extractSearchConfiguration = (html = '') => {
   // Include the complete declared script plan, even visually hidden scripts.
   // An extra computed setter, changed activation attribute or additional client
   // cannot override the pinned ready callbacks while escaping a dot-call regex.
-  need(isDeepStrictEqual(scriptNodes.map(node => ({attrs:node.attrs,
-    bodySHA256:createHash('sha256').update(node.raw || '').digest('hex')})),SEARCH_PROGRAM_GRAPH),
+  const declaredPlan = scriptNodes.map(node => ({attrs:node.attrs,
+    bodySHA256:createHash('sha256').update(node.raw || '').digest('hex')}))
+  need(SEARCH_PROGRAM_GRAPHS.some(graph => isDeepStrictEqual(declaredPlan,graph)),
   'public search program execution binding changed')
   const scripts = scriptNodes.filter(node => !node.attrs.src && !Object.hasOwn(node.attrs,'nomodule')
     && /^(?:|(?:text|application)\/(?:java|ecma)script)$/i.test(node.attrs.type || '')).map(node => node.raw || '')

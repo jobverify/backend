@@ -71,7 +71,12 @@ const REVIEWED_FOREIGN_TRACKING_20261119=Object.freeze({
 function nativeURL(value,id,firstParty=false,foreignPublicTracking=null){
   check(typeof value==='string','Native role URL missing')
   const u=new URL(value)
-  check(!u.hash&&!u.username&&!u.password,'Native role URL credentials/fragment changed')
+  // The current public US variants retain an own-page Hiring anchor as raw
+  // attribution/navigation data. It is never fetched or used as India proof:
+  // actual reads still require the exact query/fragment-free full Comeet UID.
+  const publicUsHiringFragment=firstParty&&foreignPublicTracking==='US'
+    &&value===u.href&&u.hash==='#Hiring'&&!u.search
+  check((!u.hash||publicUsHiringFragment)&&!u.username&&!u.password,'Native role URL credentials/fragment changed')
   if(firstParty){
     // Native foreign records retain search/referral/share tracking and location
     // variants can point to the base role page. These raw links are data only:

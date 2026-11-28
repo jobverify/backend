@@ -1,9 +1,9 @@
 import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/pageAvailability.js'
+import { fetchWorkdayPage } from '../../scraper-support/myworkday/pageFetch.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { runWorkdayScraper } from '../../scraper-support/myworkday/engine.js'
-import { composeAbortSignals } from '../../scraper-support/utils/fetch.js'
 import { ITRON_INDIA_CATALOG } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -37,37 +37,14 @@ const normalizeComparableUrl = (value) => {
 
 const sameUrl = (left, right) => normalizeComparableUrl(left) === normalizeComparableUrl(right)
 
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url, { signal } = {}) => {
-  const requestSignal = composeAbortSignals(signal, createTimeoutSignal(15000))
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-    signal: requestSignal,
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = (url, { signal } = {}) => fetchWorkdayPage(url, {
+  source: SOURCE,
+  signal,
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  },
+})
 
 const isAcceptedWorkdayBoardUrl = (value) =>
   WORKDAY_BOARD_ACCEPTED_URLS.some((candidate) => sameUrl(value, candidate))
@@ -112,9 +89,11 @@ export const createItronIndiaScraper = () => ({
     workdayRunner = runWorkdayScraper,
     signal,
   } = {}) {
-    const fetchVerifiedPage = (url) => (
-      signal === undefined ? fetchPage(url) : fetchPage(url, { signal })
-    )
+    signal?.throwIfAborted()
+    const fetchVerifiedPage = async (url) => {
+      try { return await (signal === undefined ? fetchPage(url) : fetchPage(url, { signal })) }
+      finally { signal?.throwIfAborted() }
+    }
     const careersPage = await fetchVerifiedPage(CAREERS_URL)
     if (
       careersPage.status !== 200

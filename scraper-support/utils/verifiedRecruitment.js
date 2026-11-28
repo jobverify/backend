@@ -31,6 +31,9 @@ import { declaredEightfoldPcsxTwilioRecruitment, readEightfoldPcsxTwilioRecruitm
 import { structuredRecruitmentPublisherState, recruitmentSchemaContext } from './recruitmentPublisher.js'
 import { darwinboxRecruitmentBoard, readDarwinboxRecruitment } from './recruitmentDarwinbox.js'
 import { reconcileRecruitmentStreamedHtml } from './recruitmentStreamedHtml.js'
+import { isHttpAccessChallenge, parseRetryAfterHeader } from './fetch.js'
+import { workdayRequestScheduler } from '../myworkday/requestScheduler.js'
+import { disposeResponseBody, disposeResponseReader } from '../shared/responseBodyDisposal.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
 const sha = value => createHash('sha256').update(value).digest('hex')
@@ -40,6 +43,7 @@ const career = /careers?|jobs?|vacanc|openings?|open[-_ /]?(?:roles?|positions?)
 const recruitmentNavigation = /recruit|recrut|karrier|stellen|carri[eè]r|empleo|trabaj|trabalh|lavora|採用|求人|채용|招聘|招募|職位|加入我们/i
 const asset = /\.(?:avif|webp|png|jpe?g|gif|svg|ico|css|m?js|woff2?|ttf|otf|mp[34]|webm|pdf|zip)$/i
 const vendor = /(?:^|\.)(?:myworkdayjobs\.com|myworkdaysite\.com|greenhouse\.io|ashbyhq\.com|lever\.co|smartrecruiters\.com|workable\.com|breezy\.hr|recruitee\.com|teamtailor\.com|bamboohr\.com|applytojob\.com|jobvite\.com|icims\.com|successfactors\.com|successfactors\.eu|jobs2web\.com|oraclecloud\.com|comeet\.com|keka\.com|darwinbox\.in)$/i
+const workdayChallengeHtml = /<title[^>]*>\s*(?:just a moment|access denied|attention required|robot check|radware captcha page)|\/cdn-cgi\/challenge-platform\/|<(?:h1|p)\b[^>]*>\s*(?:captcha challenge|verify you are human)/i
 // Retain the native references before any caller-supplied fetch hook runs.
 const nativeDOMExceptionPrototype = typeof DOMException === 'undefined' ? null : DOMException.prototype
 const nativeDOMExceptionName = nativeDOMExceptionPrototype && Object.getOwnPropertyDescriptor(nativeDOMExceptionPrototype, 'name')?.get
@@ -47,10 +51,39 @@ const nativeDOMExceptionMessage = nativeDOMExceptionPrototype && Object.getOwnPr
 const fail = message => { throw new Error(message) }
 const requireValue = (value, message) => { if (!value) fail(message) }
 const cleanupRead = operation => { try { void Promise.resolve(operation()).catch(() => {}) } catch {} }
+const createWorkdayReadOwnership = release => {
+  const pending = new Set()
+  let finished = false, released = false, grace
+  const releaseOwned = () => {
+    if (released) return
+    released = true
+    clearTimeout(grace)
+    release()
+  }
+  const settle = operation => {
+    pending.delete(operation)
+    if (finished && pending.size === 0) releaseOwned()
+  }
+  return {
+    track(value) {
+      const operation = Promise.resolve(value)
+      pending.add(operation)
+      void operation.then(() => settle(operation), () => settle(operation))
+      return operation
+    },
+    finish() {
+      finished = true
+      if (pending.size === 0) releaseOwned()
+      // A noncompliant fetch/read remains observed, but cannot own shard
+      // capacity indefinitely after the caller-facing wait has ended.
+      else grace = setTimeout(releaseOwned, 1000)
+    },
+  }
+}
 // Abort signals also bound transports and streams which do not implement abort.
 // Always observe late settlement, and dispose a late response without waiting
 // for cancellation itself to settle.
-const waitForRead = (operation, signal, disposeLate) => new Promise((resolve, reject) => {
+const waitForRead = (operation, signal, disposeLate, ownership) => new Promise((resolve, reject) => {
   let settled = false
   const detach = () => signal.removeEventListener('abort', aborted)
   const aborted = () => {
@@ -59,10 +92,13 @@ const waitForRead = (operation, signal, disposeLate) => new Promise((resolve, re
   }
   signal.addEventListener('abort', aborted, { once: true })
   if (signal.aborted) { aborted(); return }
-  Promise.resolve().then(() => { signal.throwIfAborted(); return operation() }).then(value => {
+  const pending = Promise.resolve().then(() => { signal.throwIfAborted(); return operation() }).then(value => {
     if (settled || signal.aborted) {
       aborted()
-      if (disposeLate) cleanupRead(() => disposeLate(value, signal.reason))
+      if (disposeLate) {
+        if (ownership) return Promise.resolve().then(() => disposeLate(value, signal.reason)).catch(() => {})
+        cleanupRead(() => disposeLate(value, signal.reason))
+      }
       return
     }
     settled = true; detach(); resolve(value)
@@ -71,6 +107,7 @@ const waitForRead = (operation, signal, disposeLate) => new Promise((resolve, re
     if (signal.aborted) { aborted(); return }
     settled = true; detach(); reject(error)
   })
+  ownership?.track(pending)
 })
 const diagnosticValue = (value, key) => {
   const original = value
@@ -106,6 +143,7 @@ const diagnosticError = (original, depth = 0, seen = new Set()) => {
   const status = diagnosticValue(original, 'status') ?? diagnosticValue(original, 'statusCode')
     ?? diagnosticValue(diagnosticValue(original, 'response'), 'status')
   if (['number', 'string'].includes(typeof status) && /^[1-5]\d\d$/.test(String(status))) error.status = Number(status)
+  if (diagnosticValue(original, 'accessChallenge') === true) error.accessChallenge = true
   const requestUrl = diagnosticUrl(diagnosticValue(original, 'requestUrl'))
   if (requestUrl) error.requestUrl = requestUrl
   const cause = diagnosticValue(original, 'cause')
@@ -124,6 +162,7 @@ const diagnosticSignal = error => {
 const failureDiagnostic = (stage, error) => {
   const chain = diagnosticChain(error), { status, code } = diagnosticSignal(error)
   return { stage, message: error.message, name: error.name,
+    ...(error.accessChallenge === true ? { accessChallenge: true } : {}),
     ...(error.requestUrl ? { requestUrl: error.requestUrl } : {}),
     ...(status != null ? { status } : {}), ...(code ? { code } : {}),
     ...(chain.length > 1 ? { causes: chain.slice(1).map(item => ({
@@ -408,6 +447,7 @@ export function createVerifiedRecruitmentScraper(config) {
     }
     let aggregateBytes = 0
     const cache = new Map()
+    const workdayHttpFailures = new WeakSet()
     const permit = (value, methods = ['GET']) => {
       const url = https(value); requireValue(url, 'Invalid delegated recruitment URL')
       const prefix = pathKey(url)
@@ -422,16 +462,21 @@ export function createVerifiedRecruitmentScraper(config) {
       const url = https(value), method = init.method || 'GET'
       const jsonFormat = format === 'json' || format === 'json-text'
       requireValue(url && allowed(url, method), 'Unbound recruitment request refused')
+      const rawWorkday = jsonFormat && /(?:^|\.)myworkday(?:jobs|site)\.com$/i.test(url.hostname)
+        && /^\/wday\/cxs\//.test(url.pathname) && !(format === 'json' && options.fetchJson)
       const key = method + ':' + url.href + ':' + (init.body || '')
       if (method === 'GET' && init.cache !== 'no-store' && cache.has(key)) return cache.get(key)
-      const task = (async () => {
-        requireValue(++observed.requestCount <= maxRequests, 'Recruitment request budget reached')
+      const attemptRead = async workdayAttempt => {
+        if (rawWorkday) {
+          requireValue(observed.requestCount < maxRequests, 'Recruitment request budget reached')
+          observed.requestCount++
+        } else requireValue(++observed.requestCount <= maxRequests, 'Recruitment request budget reached')
         requireValue(format !== 'json-text' || !options.fetchJson || options.fetchImpl,
           'Original native JSON requires raw response text; a parsed JSON hook cannot supply it')
         const wait=requestIntervalMs-(Date.now()-(lastRequest.get(url.origin)||0))
         if(wait>0)await delay(wait,undefined,{signal})
-        lastRequest.set(url.origin,Date.now())
-        let response
+        if (!rawWorkday) lastRequest.set(url.origin,Date.now())
+        let response, workdayHttpFailure
         if (!jsonFormat && options.fetchPage) {
           const page = await waitForRead(() => options.fetchPage(url.href, { signal }), signal)
           response = { ...page, contentType: page.contentType || 'text/html', body: page.html }
@@ -439,26 +484,107 @@ export function createVerifiedRecruitmentScraper(config) {
           const payload = await waitForRead(() => options.fetchJson(url.href, { ...init, signal }), signal)
           response = { status: 200, url: url.href, contentType: 'application/json', body: JSON.stringify(payload) }
         } else {
+          const release = rawWorkday ? await workdayRequestScheduler.acquire(url.href, {
+            signal, kind: method === 'POST' ? 'listing' : 'detail',
+          }) : null
+          const ownership = rawWorkday ? createWorkdayReadOwnership(release) : null
+          try {
+          if (rawWorkday) lastRequest.set(url.origin, Date.now())
           const timeout = AbortSignal.any([signal, AbortSignal.timeout(15000)])
           const raw = await waitForRead(() => (options.fetchImpl || globalThis.fetch)(url.href, { ...init, method,
             redirect: jsonFormat ? 'error' : 'follow', credentials: 'omit', signal: timeout,
             headers: { Accept: jsonFormat ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)', ...init.headers } }),
-          timeout, (late, reason) => late?.body?.cancel(reason))
-          let reader
+          timeout, (late, reason) => rawWorkday ? disposeResponseBody(late, { reason, bestEffort: true })
+            : late?.body?.cancel(reason), ownership)
+          let reader, bodyFailure, disposalFailure, rawBody, bodyComplete = false, byteLimitFailure = false, accessChallenge = false, retryAfter
           const chunks = []; let bytes = 0
+          const bodyHash = rawWorkday ? createHash('sha256') : null
           try {
+            if (rawWorkday) {
+              const final = https(raw.url)
+              requireValue(final && allowed(final, method), 'Recruitment redirect changed authority')
+              requireValue(final.href === url.href, 'Native API changed response identity')
+              accessChallenge = isHttpAccessChallenge(raw)
+              retryAfter = raw.headers.get('retry-after')
+              if (raw.status !== 200 || accessChallenge) {
+                workdayHttpFailure = Object.assign(new Error('Recruitment HTTP ' + raw.status), {
+                  status: raw.status, code: 'RECRUITMENT_HTTP_ERROR',
+                  ...(accessChallenge ? { accessChallenge: true } : {}),
+                })
+                workdayHttpFailures.add(workdayHttpFailure)
+              }
+              if (accessChallenge) {
+                workdayHttpFailure.message = 'Recruitment Workday access challenge HTTP ' + raw.status
+                throw workdayHttpFailure
+              }
+              if (raw.status === 429 || raw.status === 503) {
+                const serverDelay = parseRetryAfterHeader(retryAfter)
+                workdayRequestScheduler.recordRateLimit(url.href, Math.max(1000 * (2 ** (workdayAttempt - 1)),
+                  serverDelay ?? (raw.status === 429 ? 5000 : 0)))
+              }
+            }
+            if (Number(raw.headers.get('content-length')) > 4e6) byteLimitFailure = true
             requireValue(Number(raw.headers.get('content-length')) <= 4e6, 'Recruitment response body exceeds its limit')
             reader = raw.body?.getReader()
             requireValue(reader, 'Missing recruitment response body')
-            for (;;) { const item = await waitForRead(() => reader.read(), timeout); timeout.throwIfAborted(); if (item.done) break
-              bytes += item.value.byteLength; requireValue(bytes <= 4e6, 'Recruitment response body exceeds its limit'); chunks.push(Buffer.from(item.value)) }
+            for (;;) { const item = await waitForRead(() => reader.read(), timeout, undefined, ownership); timeout.throwIfAborted(); if (item.done) break
+              bytes += item.value.byteLength
+              if (rawWorkday) { aggregateBytes += item.value.byteLength; bodyHash.update(item.value) }
+              if (bytes > 4e6 || rawWorkday && aggregateBytes > 24e6) byteLimitFailure = true
+              requireValue(bytes <= 4e6, 'Recruitment response body exceeds its limit')
+              if (rawWorkday) requireValue(aggregateBytes <= 24e6, 'Recruitment aggregate byte budget reached')
+              chunks.push(Buffer.from(item.value)) }
+            bodyComplete = true
+            if (rawWorkday) {
+              rawBody = Buffer.concat(chunks).toString('utf8')
+              if (workdayChallengeHtml.test(rawBody)) {
+                accessChallenge = true
+                workdayHttpFailure ||= Object.assign(new Error('Recruitment Workday access challenge HTTP ' + raw.status), {
+                  status: raw.status, code: 'RECRUITMENT_HTTP_ERROR',
+                })
+                workdayHttpFailure.accessChallenge = true
+                workdayHttpFailures.add(workdayHttpFailure)
+                throw workdayHttpFailure
+              }
+              if ((raw.status !== 200 || /^\s*</.test(rawBody))
+                && /workday is currently unavailable|community\.workday\.com\/maintenance-page/i.test(rawBody)) {
+                workdayHttpFailure = Object.assign(new Error('Workday is currently unavailable upstream'), {
+                  status: raw.status, code: 'WORKDAY_UPSTREAM_UNAVAILABLE',
+                })
+                throw workdayHttpFailure
+              }
+            }
+          } catch (error) {
+            if (!rawWorkday) throw error
+            bodyFailure = error
           } finally {
-            if (reader) {
+            if (rawWorkday) {
+              const disposal = ownership.track((async () => {
+                if (reader) {
+                  await disposeResponseReader(reader, { bestEffort: true })
+                  try { reader.releaseLock() } catch {}
+                } else await disposeResponseBody(raw, { bestEffort: true })
+              })())
+              try { await waitForRead(() => disposal, timeout, undefined, ownership) }
+              catch (error) {
+                if (!timeout.aborted) disposalFailure = { error }
+                else bodyFailure ||= error
+              }
+              receipts.push({ requestedURL: url.href, finalURL: raw.url, status: raw.status, format,
+                bodyBytes: bytes, bodySHA256: bodyHash.digest('hex'), bodyComplete,
+                ...(retryAfter !== null && retryAfter !== undefined ? { retryAfter: retryAfter.slice(0, 128) } : {}),
+                ...(accessChallenge ? { accessChallenge: true } : {}),
+              })
+            } else if (reader) {
               cleanupRead(() => reader.cancel(timeout.aborted ? timeout.reason : undefined))
               cleanupRead(() => reader.releaseLock())
             } else cleanupRead(() => raw.body?.cancel(timeout.aborted ? timeout.reason : undefined))
           }
-          response = { status: raw.status, url: raw.url, contentType: raw.headers.get('content-type') || '', body: Buffer.concat(chunks).toString('utf8') }
+          if (disposalFailure) throw disposalFailure.error
+          signal.throwIfAborted()
+          if (bodyFailure) throw byteLimitFailure ? bodyFailure : workdayHttpFailure || bodyFailure
+          response = { status: raw.status, url: raw.url, contentType: raw.headers.get('content-type') || '', body: rawBody ?? Buffer.concat(chunks).toString('utf8') }
+          } finally { ownership?.finish() }
         }
         signal.throwIfAborted()
         const final = https(response.url)
@@ -523,10 +649,12 @@ export function createVerifiedRecruitmentScraper(config) {
         }
         requireValue(final && allowed(final, method), 'Recruitment redirect changed authority')
         requireValue(!jsonFormat || final.href === url.href, 'Native API changed response identity')
-        aggregateBytes += Buffer.byteLength(body); requireValue(aggregateBytes <= 24e6, 'Recruitment aggregate byte budget reached')
-        receipts.push({ requestedURL: url.href, finalURL: final.href, status: response.status, format,
-          bodyBytes: Buffer.byteLength(body), bodySHA256: sha(body) })
-        if (response.status !== 200) throw Object.assign(new Error('Recruitment HTTP ' + response.status), {
+        if (!rawWorkday) {
+          aggregateBytes += Buffer.byteLength(body); requireValue(aggregateBytes <= 24e6, 'Recruitment aggregate byte budget reached')
+          receipts.push({ requestedURL: url.href, finalURL: final.href, status: response.status, format,
+            bodyBytes: Buffer.byteLength(body), bodySHA256: sha(body) })
+        }
+        if (response.status !== 200) throw workdayHttpFailure || Object.assign(new Error('Recruitment HTTP ' + response.status), {
           status: response.status, code: 'RECRUITMENT_HTTP_ERROR',
         })
         const publisherHTML = typeof config.readCurrentPublisherDeclaration === 'function'
@@ -545,6 +673,16 @@ export function createVerifiedRecruitmentScraper(config) {
         }
         return format === 'json' ? JSON.parse(body) : format === 'json-text'
           ? { url: final.href, status: 200, text: body } : { url: final.href, status: 200, html: body }
+      }
+      const task = (async () => {
+        for (let attempt = 1; ; attempt++) {
+          try { return await attemptRead(attempt) }
+          catch (error) {
+            signal.throwIfAborted()
+            if (!(rawWorkday && workdayHttpFailures.has(error) && !error.accessChallenge
+              && [429, 503].includes(error.status) && attempt < 3 && observed.requestCount < maxRequests)) throw error
+          }
+        }
       })().catch(error => {
         signal.throwIfAborted()
         const bounded = diagnosticError(error)

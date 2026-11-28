@@ -25,7 +25,7 @@ const ignoredDirs = new Set([
 function* sourceFiles(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory() && !ignoredDirs.has(entry.name)) {
+    if (entry.isDirectory() && !ignoredDirs.has(entry.name) && !(dir === root && entry.name === "reports")) {
       yield* sourceFiles(fullPath);
     } else if (entry.isFile() && /\.(?:js|mjs|cjs)$/.test(entry.name)) {
       yield fullPath;

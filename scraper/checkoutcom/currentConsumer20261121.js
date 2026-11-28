@@ -3,6 +3,7 @@ import {scriptKind} from './currentScriptKind20261120.js'
 import {normalizeInvocation} from './currentInvocations20261121.js'
 import {need,one,all} from './currentFacts20261120.js'
 import {carrier} from './currentConstraints20261121.js'
+import {qualifyCurrentTemplateConsumer} from './currentTemplateConsumer20261127.js'
 
 const functions=new Set(['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression'])
 const children=node=>Object.entries(node??{}).filter(([name])=>!['start','end','raw','loc','range'].includes(name)).flatMap(([,value])=>(Array.isArray(value)?value:[value]).filter(value=>value&&typeof value==='object'&&typeof value.type==='string'))
@@ -49,7 +50,9 @@ export function qualifyCurrentConsumer(page,at,listingURL,proxyURL){
 
  const fetchNode=one(p.nodes.filter(node=>{const call=invoke(node);return call&&builtin(call.callee,'fetch')&&call.args.length===1&&literal(call.args[0])===proxyURL}),'actual connected declared proxy fetch')
  const request=invoke(fetchNode);requireCall(request,1)
- const init=owner(fetchNode);need(init?.async&&init.params.length===0,'current declared proxy initializer differs')
+ const init=owner(fetchNode)
+ if(init&&!init.async)return qualifyCurrentTemplateConsumer(page,at,listingURL,proxyURL,{programs,p,fetchNode,init})
+ need(init?.async&&init.params.length===0,'current declared proxy initializer differs')
  const wrapper=owner(init);need(wrapper&&wrapper.params.length===0,'current original initializer is outside its own closure')
  const immediate=one(p.nodes.filter(node=>{const call=invoke(node);return call&&fn(call.callee)===wrapper}),'actual invoked own programme closure');requireCall(invoke(immediate),0)
  const response=defined(init,node=>node?.type==='AwaitExpression'&&node.argument===fetchNode,'original awaited proxy Response')

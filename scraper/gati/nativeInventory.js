@@ -13,6 +13,13 @@ const ORIGIN='https://allcargologistics.darwinbox.in',HOME=ORIGIN+'/ms/candidate
 const CLIENT=ORIGIN+'/ms/candidatev2/main.71bd301266b6050c.js'
 const CURRENT_CLIENT=ORIGIN+'/ms/candidatev2/main.819c4120b20f8091.js'
 const CURRENT_CLIENT_SHA='ee0926eab1aaa71ffd022d8a0b2898f90b058543b857491c889648cd0ca10b5d'
+// The current own-host home/allJobs declarations and full client were read
+// together. This exact release retains the published POST alljobs reader;
+// changed corporate/shell bytes and whole-employer scope remain held below.
+const REVIEWED_POST_CLIENTS=new Map([
+ [CURRENT_CLIENT,CURRENT_CLIENT_SHA],
+ [ORIGIN+'/ms/candidatev2/main.f5e76c3f4b395062.js','fca478943f06f1e5ce96b92bb2184c39c65c75e92d859eb7ec4738e9995f9766'],
+])
 const CURRENT_LISTING=ORIGIN+'/ms/candidateapi/job/alljobs?companyId=main'
 const CONFIG=ORIGIN+'/ms/candidateapi/getCompanyConfig?is_preview=false&companyId=main',GROUP=ORIGIN+'/ms/candidateapi/groupcompanycareersetting?companyId=main',LISTING=ORIGIN+'/ms/candidateapi/job?page=1&companyId=main'
 const CHROME='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
@@ -75,7 +82,7 @@ export async function runCurrentGatiInventory(options={}){
    requireNative(bases.length===1&&bases[0].attrs.href==='/ms/candidatev2/','unreviewed native client base URL')
    const programs=doc.nodes(n=>n.tag==='script'&&n.attrs.src).map(n=>new URL(n.attrs.src,ORIGIN+'/ms/candidatev2/').href)
     .filter(value=>/^main\.[^/]+\.js$/.test(new URL(value).pathname.split('/').at(-1)))
-   requireNative(programs.length===1&&[CLIENT,CURRENT_CLIENT].includes(programs[0]),'unreviewed declared native client URL')
+   requireNative(programs.length===1&&(programs[0]===CLIENT||REVIEWED_POST_CLIENTS.has(programs[0])),'unreviewed declared native client URL')
    requireNative(declaredClientUrl===null||declaredClientUrl===programs[0],'conflicting declared native client URLs')
    declaredClientUrl=programs[0]
   }
@@ -84,9 +91,9 @@ export async function runCurrentGatiInventory(options={}){
  async function client(){
   const {body,response}=await request(declaredClientUrl)
   requireNative(/(?:java|ecma)script/i.test(response.headers?.get('content-type')||''),'client content type changed')
-  const current=declaredClientUrl===CURRENT_CLIENT
-  if(current)requireNative(sha(body)===CURRENT_CLIENT_SHA,'current declared client executable bytes changed')
-  note(sha(body)===(current?CURRENT_CLIENT_SHA:review.surfaceHashes[CLIENT])&&['getCompanyConfig','groupcompanycareersetting','job?page='].every(value=>body.includes(value)),'published-native-client-contract-changed')
+  const currentHash=REVIEWED_POST_CLIENTS.get(declaredClientUrl),current=Boolean(currentHash)
+  if(current)requireNative(sha(body)===currentHash,'current declared client executable bytes changed')
+  note(sha(body)===(current?currentHash:review.surfaceHashes[CLIENT])&&['getCompanyConfig','groupcompanycareersetting','job?page='].every(value=>body.includes(value)),'published-native-client-contract-changed')
   // Current transport proof does not refresh the historical company-wide
   // hiring scope. Changed corporate pages remain separately unqualified.
   if(current)reasons.add('current-declared-client-company-scope-unqualified')
@@ -110,7 +117,7 @@ export async function runCurrentGatiInventory(options={}){
   declaredClientUrl=null
   const surfaces=[];for(const url of [ROOT,PARENT,CAREERS,HOME,SEED])surfaces.push(await surface(url))
   const clientHash=await client(),company=await api(CONFIG),group=await api(GROUP)
-  const listingAPI=declaredClientUrl===CURRENT_CLIENT?CURRENT_LISTING:LISTING
+  const listingAPI=REVIEWED_POST_CLIENTS.has(declaredClientUrl)?CURRENT_LISTING:LISTING
   const listing=await api(listingAPI,listingAPI===CURRENT_LISTING?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({companyId:'main',sort_option:'new',limit:10,page:1})}:{})
   return {surfaces,clientHash,clientUrl:declaredClientUrl,listingAPI,company,group,listing}
  }

@@ -91,7 +91,8 @@ export const inspectNativeBoard=html=>{
 }
 export const inspectNativeDetail=(html,record)=>{
  const value=projectNativeDetail(html,record),reviewed=profile.roles?.[record.route]
- need(profile.ready&&reviewed&&value.shellSHA256===reviewed.detailShellSHA256,'whole native detail/program/style contract changed')
+ // Route-owned public session variants keep every program/style byte significant.
+ need(profile.ready&&reviewed&&[reviewed.detailShellSHA256,...(reviewed.additionalReviewedDetailShellSHA256s??[])].includes(value.shellSHA256),'whole native detail/program/style contract changed')
  need(sha(value.record.jobDescription)===reviewed.criteriaSHA256&&sha(JSON.stringify(value.record.nativeMetadata))===reviewed.metadataSHA256,'full native criteria/metadata changed')
  need(value.record.applyUrl===reviewed.applicationDeclaration,'native application declaration changed')
  return value.record
@@ -122,7 +123,9 @@ export async function runNativeVidyalai(options={}){
  try{
   for(const signal of signals)signal.throwIfAborted()
   need(profile.ready,'native deployment not qualified')
-  const home=await read(HOME,'initial');need(sha(home)===profile.homeSHA256,'whole current corporate native authority changed')
+  // Each complete corporate original supplies static SSR delegation only.
+  // Changed corporate programs are not executed or qualified as browser behavior.
+  const home=await read(HOME,'initial');need([profile.homeSHA256,...profile.additionalReviewedCorporateSHA256s].includes(sha(home)),'whole current corporate native authority changed')
   const firstHTML=await read(BOARD,'initial'),first=inspectNativeBoard(firstHTML),records=[]
   for(const record of first.records)records.push(inspectNativeDetail(await read(record.url,'initial'),record))
   const closingHome=await read(HOME,'closing');need(closingHome===home,'corporate closing snapshot changed')

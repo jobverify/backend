@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import {TURBOHIRE_CURRENT_PUBLIC_CLIENT} from '../../scraper-support/utils/turboHirePublicClient.js'
+import {qualifyCurrentBritanniaService} from './currentService20261128.js'
 
 // The November 6 public deployment still declares the same careers API and
 // filtered/public-job methods. Scope this reviewed deployment to Britannia;
@@ -15,6 +16,11 @@ const clients=Object.freeze([
  Object.freeze({path:'/main.aa5b044542056e5c6e59.chunk.js',
   sha256:'50a44f5a5be38ad3738a63a19ebf2bc3b4b65ebb2dbe0e01be4c7e69349c4dda',
   apiBaseURL:'https://thapi-stage2.azurewebsites.net'}),
+ // November 28: exact current deployment plus a separately parsed complete
+ // constructor/public token/organization/listing/full-role method contract.
+ Object.freeze({path:'/main.4ca2a916b28913f44dec.chunk.js',
+  sha256:'c6e9e2c42c3c58be844502081294c78a9be4285803322e2b3b432e94f3629000',
+  apiBaseURL:'https://thapi-stage2.azurewebsites.net',currentService:true}),
 ])
 const origin='https://britannia.turbohire.co'
 export const isReviewedBritanniaClientURL=url=>clients.some(client=>url===origin+client.path)
@@ -30,6 +36,7 @@ export const verifyBritanniaPublicClient=async({boardHTML,fetchScript})=>{
  requireClient(client,'unreviewed current public client URL')
  const body=await fetchScript(url.href),digest=createHash('sha256').update(body).digest('hex')
  requireClient(digest===client.sha256,'current public client bytes changed')
+ if(client.currentService)qualifyCurrentBritanniaService(body)
  const service=/class\s+([A-Za-z_$][\w$]*)\{constructor\(\)\{this\.API_SERVER_BASE_URL="(https:[^"]+)"/.exec(body)
  requireClient(service?.[2]===client.apiBaseURL
   &&body.includes('getPublicJobRefsForOrgFiltered(e,t,a)')

@@ -1,5 +1,6 @@
 import {setTimeout as delay} from 'node:timers/promises'
 import {CAREERS,isRoleURL,isClientURL,need,hash} from './nativeModels.js'
+import {buildHttpError,isHttpAccessChallenge} from '../../scraper-support/utils/fetch.js'
 const isAPI=value=>{try{const u=new URL(value);return u.origin==='https://app.reczee.com'&&!u.username&&!u.password&&!u.port&&!u.hash&&/^\/api\/v1\/requisitions\/from-slug\/[A-Za-z0-9]+$/.test(u.pathname)&&u.search==='?company_slug=unosecur'}catch{return false}}
 export function createUnosecurPublicRead(options,receipts){
  const interval=options.minIntervalMs??1000
@@ -19,7 +20,7 @@ export function createUnosecurPublicRead(options,receipts){
    if(combined.aborted){cancel(response.body);combined.throwIfAborted()}
    need(response.url===url,'observed native HTTP URL changed')
    const receipt={url,method:'GET',kind,status:response.status,bodySHA256:null,httpMetadataVerified:true};receipts.push(receipt)
-   if(response.status!==200)throw Object.assign(Error('Unosecur native HTTP '+response.status),{status:response.status,requestUrl:url,abortRetries:true})
+   if(response.status!==200||isHttpAccessChallenge(response))throw Object.assign(buildHttpError(response,url),{requestUrl:url,abortRetries:true,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
    const mime=response.headers.get('content-type')||''
    need((kind==='html'?/^text\/html\b/i:kind==='json'?/^application\/json\b/i:/^(?:application|text)\/javascript\b/i).test(mime),'native response MIME changed')
    const length=response.headers.get('content-length'),encoding=response.headers.get('content-encoding')?.toLowerCase()
